@@ -1,0 +1,80 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Secure end-to-end encrypted messaging platform" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#0f172a" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style is:global>
+    :root {
+      --color-bg: #0f172a;
+      --color-fg: #f8fafc;
+      --color-primary: #6366f1;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-fg);
+      line-height: 1.6;
+    }
+    
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    ::selection {
+      background-color: rgba(99, 102, 241, 0.3);
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+          <span class="font-bold text-xl">Quick</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/features" class="text-slate-300 hover:text-white transition">Features</a>
+          <a href="/security" class="text-slate-300 hover:text-white transition">Security</a>
+          <a href="/docs" class="text-slate-300 hover:text-white transition">Docs</a>
+          <a href="https://github.com/vikasswaminh/quick" target="_blank" class="text-slate-300 hover:text-white transition">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <main class="pt-16">
+    <slot />
+  </main>
+</body>
+</html>

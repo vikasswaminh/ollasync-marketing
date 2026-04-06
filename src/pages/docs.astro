@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Documentation - Quick Messaging">
+  <div class="py-24 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          Documentation
+        </h1>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+          Get started with Quick Messaging. Deploy your own end-to-end encrypted messaging infrastructure.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Quick Start -->
+        <div class="lg:col-span-2">
+          <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 mb-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Quick Start</h2>
+            
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3">1. Clone the Repository</h3>
+                <div class="bg-slate-950 rounded-lg p-4 overflow-x-auto">
+                  <pre class="text-sm font-mono text-slate-300"><code><span class="text-primary-400">git</span> clone https://github.com/vikasswaminh/quick.git
+<span class="text-primary-400">cd</span> quick</code></pre>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3">2. Generate Certificates</h3>
+                <div class="bg-slate-950 rounded-lg p-4 overflow-x-auto">
+                  <pre class="text-sm font-mono text-slate-300"><code><span class="text-slate-500"># Generate TLS certificates for mTLS</span>
+<span class="text-primary-400">chmod</span> +x scripts/generate-certs.sh
+<span class="text-primary-400">./scripts/generate-certs.sh</span></code></pre>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3">3. Generate Secrets</h3>
+                <div class="bg-slate-950 rounded-lg p-4 overflow-x-auto">
+                  <pre class="text-sm font-mono text-slate-300"><code><span class="text-slate-500"># Generate JWT secrets and API keys</span>
+<span class="text-primary-400">chmod</span> +x scripts/generate-secrets.sh
+<span class="text-primary-400">./scripts/generate-secrets.sh</span> >> .env</code></pre>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3">4. Deploy with Docker Compose</h3>
+                <div class="bg-slate-950 rounded-lg p-4 overflow-x-auto">
+                  <pre class="text-sm font-mono text-slate-300"><code><span class="text-slate-500"># Build and start all services</span>
+<span class="text-primary-400">docker-compose</span> up -d
+
+<span class="text-slate-500"># Check service health</span>
+<span class="text-primary-400">docker-compose</span> ps</code></pre>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3">5. Access Dashboards</h3>
+                <div class="bg-slate-950 rounded-lg p-4 overflow-x-auto">
+                  <pre class="text-sm font-mono text-slate-300"><code><span class="text-slate-500"># Grafana (default credentials in .env)</span>
+<span class="text-slate-400">open http://localhost:3000</span>
+
+<span class="text-slate-500"># Prometheus (protected by nginx auth)</span>
+<span class="text-slate-400">open http://localhost:9090</span></code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Architecture -->
+          <div class="bg-slate-800 rounded-xl p-8 border border-slate-700">
+            <h2 class="text-2xl font-bold text-white mb-6">Service Architecture</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm">
+                <thead>
+                  <tr class="border-b border-slate-700">
+                    <th class="pb-3 text-slate-300 font-medium">Service</th>
+                    <th class="pb-3 text-slate-300 font-medium">Port</th>
+                    <th class="pb-3 text-slate-300 font-medium">Protocol</th>
+                    <th class="pb-3 text-slate-300 font-medium">Auth</th>
+                  </tr>
+                </thead>
+                <tbody class="text-slate-400">
+                  <tr class="border-b border-slate-700/50">
+                    <td class="py-3 font-medium text-white">Gateway</td>
+                    <td class="py-3">4433/UDP</td>
+                    <td class="py-3">QUIC + mTLS</td>
+                    <td class="py-3"><span class="text-rose-400">Client Certificate</span></td>
+                  </tr>
+                  <tr class="border-b border-slate-700/50">
+                    <td class="py-3 font-medium text-white">Key Server</td>
+                    <td class="py-3">8080/TCP</td>
+                    <td class="py-3">HTTP + TLS</td>
+                    <td class="py-3"><span class="text-amber-400">JWT Bearer</span></td>
+                  </tr>
+                  <tr class="border-b border-slate-700/50">
+                    <td class="py-3 font-medium text-white">Router</td>
+                    <td class="py-3">8081/TCP</td>
+                    <td class="py-3">HTTP + TLS</td>
+                    <td class="py-3"><span class="text-amber-400">JWT Bearer</span></td>
+                  </tr>
+                  <tr class="border-b border-slate-700/50">
+                    <td class="py-3 font-medium text-white">Media</td>
+                    <td class="py-3">8082/TCP</td>
+                    <td class="py-3">HTTP + TLS</td>
+                    <td class="py-3"><span class="text-primary-400">API Key</span></td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 font-medium text-white">Grafana</td>
+                    <td class="py-3">3000/TCP</td>
+                    <td class="py-3">HTTP</td>
+                    <td class="py-3"><span class="text-emerald-400">Basic Auth</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+            <h3 class="font-semibold text-white mb-4">Resources</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="https://github.com/vikasswaminh/quick" target="_blank" class="flex items-center text-slate-400 hover:text-white transition">
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                  </svg>
+                  GitHub Repository
+                </a>
+              </li>
+              <li>
+                <a href="https://raw.githubusercontent.com/vikasswaminh/quick/main/FEATURE_LIST.md" target="_blank" class="flex items-center text-slate-400 hover:text-white transition">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                  Feature List
+                </a>
+              </li>
+              <li>
+                <a href="https://raw.githubusercontent.com/vikasswaminh/quick/main/AUDIT_MASTER_REPORT.md" target="_blank" class="flex items-center text-slate-400 hover:text-white transition">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  </svg>
+                  Security Audit
+                </a>
+              </li>
+              <li>
+                <a href="https://raw.githubusercontent.com/vikasswaminh/quick/main/DEPLOYMENT.md" target="_blank" class="flex items-center text-slate-400 hover:text-white transition">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                  </svg>
+                  Deployment Guide
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+            <h3 class="font-semibold text-white mb-4">Requirements</h3>
+            <ul class="space-y-2 text-slate-400 text-sm">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-emerald-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Docker 20.10+
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-emerald-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Docker Compose 2.0+
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-emerald-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                4GB RAM minimum
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-emerald-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Linux/macOS/Windows
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-primary-900/30 rounded-xl p-6 border border-primary-500/30">
+            <h3 class="font-semibold text-white mb-2">Need Help?</h3>
+            <p class="text-slate-400 text-sm mb-4">
+              Found an issue or have a question? Open an issue on GitHub.
+            </p>
+            <a href="https://github.com/vikasswaminh/quick/issues" target="_blank" class="inline-flex items-center text-primary-400 hover:text-primary-300 text-sm font-medium">
+              Open an Issue
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <Footer />
+</Layout>
