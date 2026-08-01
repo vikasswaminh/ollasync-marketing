@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ollasync — End-to-end encrypted calls &amp; deal rooms for business</title>
+<meta name="description" content="Ollasync is end-to-end encrypted video meetings, webinars, recordings, and secure deal rooms for business. No downloads — start in one click.">
+<meta name="theme-color" content="#08090b">
+<link rel="canonical" href="https://ollasync.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ollasync.com/">
+<meta property="og:title" content="Ollasync — End-to-end encrypted calls &amp; deal rooms for business">
+<meta property="og:description" content="End-to-end encrypted video meetings, webinars, recordings, and secure deal rooms for business.">
+<meta property="og:image" content="https://ollasync.com/screenshots/hero.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ollasync — End-to-end encrypted calls &amp; deal rooms for business">
+<meta name="twitter:description" content="End-to-end encrypted video meetings, webinars, recordings, and secure deal rooms for business.">
+<meta name="twitter:image" content="https://ollasync.com/screenshots/hero.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237c5cff'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='white' stroke-width='2.6'/%3E%3C/svg%3E">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{background:#08090b;color:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",system-ui,sans-serif;font-feature-settings:"ss01","cv01";overflow-x:hidden}
+  a{color:#c9cdd6;text-decoration:none}
+  a:hover{color:#f4f5f7}
+  ::selection{background:rgba(124,92,255,.35)}
+  @keyframes auroraA{0%{transform:translate(0,0) scale(1)}50%{transform:translate(8%,6%) scale(1.15)}100%{transform:translate(0,0) scale(1)}}
+  @keyframes auroraB{0%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-10%,-4%) scale(1)}100%{transform:translate(0,0) scale(1.1)}}
+  @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-14px)}100%{transform:translateY(0)}}
+  @keyframes pulseGlow{0%,100%{opacity:.5}50%{opacity:1}}
+  @keyframes wave{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+  @keyframes ringpulse{0%{box-shadow:0 0 0 0 rgba(61,220,151,.55)}70%{box-shadow:0 0 0 10px rgba(61,220,151,0)}100%{box-shadow:0 0 0 0 rgba(61,220,151,0)}}
+  @keyframes spinslow{to{transform:rotate(360deg)}}
+  @keyframes dashmove{to{stroke-dashoffset:-24}}
+</style>
+</helmet>
+<div id="olla-root" style="position:relative;min-height:100vh;isolation:isolate">
+
+  <div aria-hidden="true" style="position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden">
+    <div class="js-par" data-depth="18" style="position:absolute;top:-18%;left:-6%;width:64vw;height:64vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(124,92,255,.42),rgba(124,92,255,0) 62%);filter:blur(30px);animation:auroraA 18s ease-in-out infinite"></div>
+    <div class="js-par" data-depth="30" style="position:absolute;top:-6%;right:-12%;width:58vw;height:58vw;max-width:820px;max-height:820px;border-radius:50%;background:radial-gradient(circle at 60% 40%,rgba(59,110,255,.34),rgba(59,110,255,0) 60%);filter:blur(34px);animation:auroraB 22s ease-in-out infinite"></div>
+    <div class="js-par" data-depth="12" style="position:absolute;top:34%;left:44%;width:46vw;height:46vw;max-width:640px;max-height:640px;border-radius:50%;background:radial-gradient(circle,rgba(61,220,151,.16),rgba(61,220,151,0) 62%);filter:blur(40px);animation:auroraA 26s ease-in-out infinite"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 78%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,11,0) 40%,rgba(8,9,11,.55) 78%,#08090b 100%)"></div>
+  </div>
+
+  <header id="olla-nav" style="position:sticky;top:0;z-index:50;transition:background .25s ease,border-color .25s ease,backdrop-filter .25s ease;border-bottom:1px solid rgba(255,255,255,0)">
+    <div style="max-width:1200px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;gap:32px">
+      <a onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;color:#f4f5f7;font-weight:600;font-size:16px;letter-spacing:-.01em;cursor:pointer">
+        <span style="display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,#7c5cff,#5b7cff);box-shadow:0 6px 18px rgba(124,92,255,.4),inset 0 1px 0 rgba(255,255,255,.35)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.6" stroke="#fff" stroke-width="1.9"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#fff" stroke-width="1.9"/></svg>
+        </span>
+        Ollasync
+      </a>
+      <nav style="display:flex;gap:26px;font-size:14.5px;margin-left:6px">
+        <a class="js-nav" data-page="features" onClick="{{ goFeatures }}" style="cursor:pointer;color:{{ navFeatures }}">Features</a><a class="js-nav" data-page="security" onClick="{{ goSecurity }}" style="cursor:pointer;color:{{ navSecurity }}">Security</a><a class="js-nav" data-page="usecases" onClick="{{ goUsecases }}" style="cursor:pointer;color:{{ navUsecases }}">Use cases</a><a class="js-nav" data-page="pricing" onClick="{{ goPricing }}" style="cursor:pointer;color:{{ navPricing }}">Pricing</a><a class="js-nav" data-page="blog" onClick="{{ goBlog }}" style="cursor:pointer;color:{{ navBlog }}">Blog</a><a class="js-nav" data-page="docs" onClick="{{ goDocs }}" style="cursor:pointer;color:{{ navDocs }}">Docs</a>
+      </nav>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:14px">
+        <a onClick="{{ goApp }}" style="font-size:14.5px;cursor:pointer">Log in</a>
+        <a onClick="{{ goApp }}" style="display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:550;color:#fff;background:linear-gradient(150deg,#8768ff,#5b7cff);padding:9px 15px;border-radius:9px;box-shadow:0 8px 22px rgba(91,124,255,.35),inset 0 1px 0 rgba(255,255,255,.3);cursor:pointer">Open app</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <section style="max-width:1200px;margin:0 auto;padding:76px 28px 40px;display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center">
+      <div>
+        <div data-reveal style="display:inline-flex;align-items:center;gap:9px;padding:7px 13px 7px 10px;border:1px solid rgba(124,92,255,.3);background:rgba(124,92,255,.08);border-radius:100px;font-size:13px;color:#cfc6ff;font-family:'JetBrains Mono',ui-monospace,monospace">
+          <span style="display:grid;place-items:center;width:18px;height:18px;border-radius:6px;background:rgba(124,92,255,.22)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.6" stroke="#cfc6ff" stroke-width="2"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#cfc6ff" stroke-width="2"/></svg></span>
+          End-to-end encrypted · server-blind by design
+        </div>
+        <h1 data-reveal style="margin-top:26px;font-size:64px;line-height:1.02;letter-spacing:-.035em;font-weight:640">
+          End-to-end encrypted<br><span style="background:linear-gradient(105deg,#b9a6ff 0%,#8f7bff 40%,#6f93ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent">calls &amp; deal rooms</span> for business
+        </h1>
+        <p data-reveal style="margin-top:24px;font-size:18.5px;line-height:1.6;color:#9096a1;max-width:560px">
+          Ollasync is private video, screen sharing, recording, and confidential document rooms — encrypted in the browser so the server, the SFU, and we ourselves only ever see ciphertext. Hosted in the EU, or self-host your own.
+        </p>
+        <div data-reveal style="margin-top:32px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <a href="#cta" style="display:inline-flex;align-items:center;gap:9px;font-size:15.5px;font-weight:560;color:#fff;background:linear-gradient(150deg,#8768ff,#5b7cff);padding:14px 22px;border-radius:11px;box-shadow:0 12px 34px rgba(91,124,255,.4),inset 0 1px 0 rgba(255,255,255,.3)">Open the app <span style="opacity:.8">→</span></a>
+          <a onClick="{{ goSecurity }}" style="display:inline-flex;align-items:center;gap:9px;font-size:15.5px;font-weight:520;color:#e7e9ee;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:14px 22px;border-radius:11px;cursor:pointer">How the crypto works</a>
+        </div>
+        <div data-reveal style="margin-top:30px;display:flex;flex-wrap:wrap;gap:20px 26px;font-size:14px;color:#8a90a0">
+          <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:rgba(61,220,151,.16)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#3ddc97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No plaintext on our servers</span>
+          <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:rgba(61,220,151,.16)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#3ddc97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>EU data residency (Frankfurt)</span>
+          <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:rgba(61,220,151,.16)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#3ddc97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Self-host option</span>
+        </div>
+      </div>
+
+      <div data-reveal style="position:relative">
+        <div style="position:absolute;inset:-14% -8%;background:radial-gradient(circle at 60% 40%,rgba(124,92,255,.4),transparent 60%);filter:blur(30px);z-index:-1;animation:pulseGlow 6s ease-in-out infinite"></div>
+        <div style="animation:floaty 8s ease-in-out infinite">
+          <div style="border:1px solid rgba(255,255,255,.12);border-radius:22px;background:linear-gradient(180deg,rgba(23,24,30,.86),rgba(14,15,19,.9));backdrop-filter:blur(18px);box-shadow:0 40px 90px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.08);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:#cfc6ff;font-family:'JetBrains Mono',monospace"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.6" stroke="#3ddc97" stroke-width="2"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#3ddc97" stroke-width="2"/></svg> encrypted call · 4 here</span>
+              <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#3ddc97"><span style="width:7px;height:7px;border-radius:50%;background:#3ddc97;animation:pulseGlow 2s infinite"></span>live</span>
+            </div>
+            <div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="js-tile" style="position:relative;aspect-ratio:16/11;border-radius:14px;overflow:hidden;background:linear-gradient(140deg,#3b2f66,#5b4b9e)">
+                <div style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(150deg,#b7a4ff,#8f7bff);display:grid;place-items:center;font-weight:600;font-size:19px;color:#1a1330">JD</span></div>
+                <span style="position:absolute;left:9px;bottom:8px;font-size:11.5px;background:rgba(0,0,0,.5);padding:3px 8px;border-radius:7px;backdrop-filter:blur(4px)">Jane D.</span>
+              </div>
+              <div class="js-tile" style="position:relative;aspect-ratio:16/11;border-radius:14px;overflow:hidden;background:linear-gradient(140deg,#25405e,#3d6b8f)">
+                <div style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(150deg,#8fc8ff,#5b93ff);display:grid;place-items:center;font-weight:600;font-size:19px;color:#0d1a2b">BS</span></div>
+                <span style="position:absolute;left:9px;bottom:8px;font-size:11.5px;background:rgba(0,0,0,.5);padding:3px 8px;border-radius:7px;backdrop-filter:blur(4px)">Bob S.</span>
+              </div>
+              <div class="js-tile" style="position:relative;aspect-ratio:16/11;border-radius:14px;overflow:hidden;background:linear-gradient(140deg,#2f5a4c,#3d8f6f)">
+                <div style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(150deg,#8ff0c8,#3ddc97);display:grid;place-items:center;font-weight:600;font-size:19px;color:#0d2b1e">AK</span></div>
+                <span style="position:absolute;left:9px;bottom:8px;font-size:11.5px;background:rgba(0,0,0,.5);padding:3px 8px;border-radius:7px;backdrop-filter:blur(4px)">Aïsha K.</span>
+              </div>
+              <div class="js-tile" style="position:relative;aspect-ratio:16/11;border-radius:14px;overflow:hidden;background:linear-gradient(140deg,#4a3a2c,#8f6b3d);outline:2px solid #3ddc97;animation:ringpulse 2.4s infinite">
+                <div style="position:absolute;inset:0;display:grid;place-items:center"><span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(150deg,#ffd9a4,#ffb15b);display:grid;place-items:center;font-weight:600;font-size:17px;color:#2b1c0d">You</span></div>
+                <span style="position:absolute;left:9px;bottom:8px;font-size:11.5px;background:rgba(0,0,0,.5);padding:3px 8px;border-radius:7px;backdrop-filter:blur(4px)">You</span>
+                <span style="position:absolute;right:9px;bottom:9px;display:flex;align-items:flex-end;gap:2.5px;height:16px">
+                  <span style="width:3px;height:100%;border-radius:2px;background:#3ddc97;transform-origin:bottom;animation:wave 1s ease-in-out infinite;animation-delay:0s"></span>
+                  <span style="width:3px;height:100%;border-radius:2px;background:#3ddc97;transform-origin:bottom;animation:wave 1s ease-in-out infinite;animation-delay:.15s"></span>
+                  <span style="width:3px;height:100%;border-radius:2px;background:#3ddc97;transform-origin:bottom;animation:wave 1s ease-in-out infinite;animation-delay:.3s"></span>
+                  <span style="width:3px;height:100%;border-radius:2px;background:#3ddc97;transform-origin:bottom;animation:wave 1s ease-in-out infinite;animation-delay:.45s"></span>
+                </span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:10px;padding:6px 14px 16px">
+              <span style="display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="12" rx="3" stroke="#e7e9ee" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="#e7e9ee" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+              <span style="display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2.4" stroke="#e7e9ee" stroke-width="1.8"/><path d="m16 10 5-3v10l-5-3" stroke="#e7e9ee" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+              <span style="display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 15px;border-radius:21px;background:rgba(124,92,255,.16);border:1px solid rgba(124,92,255,.34);color:#cfc6ff;font-size:13px;font-weight:520"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2.2" stroke="#cfc6ff" stroke-width="1.8"/><path d="M8 21h8M12 17v4" stroke="#cfc6ff" stroke-width="1.8" stroke-linecap="round"/></svg>Share</span>
+              <span style="display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" stroke="#e7e9ee" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+              <span style="display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:21px;background:linear-gradient(150deg,#ff6b7a,#e0455c);color:#fff;font-size:13px;font-weight:560;box-shadow:0 8px 22px rgba(224,69,92,.35)">Leave</span>
+            </div>
+            <div style="padding:11px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:#7f8593;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:8px">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" stroke="#3ddc97" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              key: generated in your browser, never on our servers
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="max-width:1200px;margin:20px auto 0;padding:0 28px">
+      <div style="overflow:hidden;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">
+        <div style="display:flex;gap:44px;padding:15px 0;width:max-content;animation:marq 32s linear infinite;font-family:'JetBrains Mono',monospace;font-size:13px;color:#6b7180;letter-spacing:.02em">
+          <span>AES-256-GCM</span><span>·</span><span>X25519 key agreement</span><span>·</span><span>HKDF</span><span>·</span><span>WebRTC Insertable Streams</span><span>·</span><span>SFrame</span><span>·</span><span>EU · Frankfurt</span><span>·</span><span>zero plaintext</span><span>·</span>
+          <span>AES-256-GCM</span><span>·</span><span>X25519 key agreement</span><span>·</span><span>HKDF</span><span>·</span><span>WebRTC Insertable Streams</span><span>·</span><span>SFrame</span><span>·</span><span>EU · Frankfurt</span><span>·</span><span>zero plaintext</span><span>·</span>
+        </div>
+      </div>
+    </div>
+
+    <section style="max-width:1200px;margin:0 auto;padding:88px 28px 40px">
+      <div data-reveal style="text-align:center;margin-bottom:44px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Proof, not promises</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+        <div data-reveal style="padding:30px 24px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015))">
+          <div class="js-count" data-count="0" style="font-size:52px;font-weight:640;letter-spacing:-.03em;line-height:1;background:linear-gradient(120deg,#fff,#b9a6ff);-webkit-background-clip:text;background-clip:text;color:transparent">0</div>
+          <div style="margin-top:12px;font-size:14px;color:#9096a1;line-height:1.5">plaintext bytes the server can read</div>
+        </div>
+        <div data-reveal style="padding:30px 24px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015))">
+          <div style="font-size:40px;font-weight:640;letter-spacing:-.02em;line-height:1;background:linear-gradient(120deg,#fff,#8fc8ff);-webkit-background-clip:text;background-clip:text;color:transparent">AES-GCM</div>
+          <div style="margin-top:12px;font-size:14px;color:#9096a1;line-height:1.5">authenticated encryption on every frame &amp; message</div>
+        </div>
+        <div data-reveal style="padding:30px 24px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015))">
+          <div style="font-size:52px;font-weight:640;letter-spacing:-.02em;line-height:1;background:linear-gradient(120deg,#fff,#8ff0c8);-webkit-background-clip:text;background-clip:text;color:transparent">E2EE</div>
+          <div style="margin-top:12px;font-size:14px;color:#9096a1;line-height:1.5">on chat, audio, video and screen share</div>
+        </div>
+        <div data-reveal style="padding:30px 24px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015))">
+          <div style="font-size:52px;font-weight:640;letter-spacing:-.03em;line-height:1;display:flex;align-items:baseline"><span class="js-count" data-count="100" style="background:linear-gradient(120deg,#fff,#b9a6ff);-webkit-background-clip:text;background-clip:text;color:transparent">100</span><span style="font-size:32px;background:linear-gradient(120deg,#fff,#b9a6ff);-webkit-background-clip:text;background-clip:text;color:transparent">%</span></div>
+          <div style="margin-top:12px;font-size:14px;color:#9096a1;line-height:1.5">self-hostable, no vendor lock-in</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" style="max-width:1200px;margin:0 auto;padding:88px 28px 40px">
+      <div data-reveal style="max-width:640px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Everything you need</div>
+        <h2 style="margin-top:16px;font-size:42px;line-height:1.06;letter-spacing:-.03em;font-weight:640">One product for confidential collaboration</h2>
+        <p style="margin-top:18px;font-size:17px;line-height:1.6;color:#9096a1">Calls, rooms and chat that assume the network is hostile — because for the conversations that matter, it is.</p>
+      </div>
+      <div style="margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <div data-reveal style="padding:26px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2.4" stroke="#b9a6ff" stroke-width="1.7"/><path d="m16 10 5-3v10l-5-3" stroke="#b9a6ff" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:18.5px;font-weight:590;letter-spacing:-.01em">Encrypted video &amp; screen share</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">HD calls, multi-party, screen sharing and recording — every track sealed with a key the SFU never sees.</p>
+        </div>
+        <div data-reveal style="padding:26px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(59,110,255,.14);border:1px solid rgba(59,110,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 7a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#8fc8ff" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:18.5px;font-weight:590;letter-spacing:-.01em">Confidential deal rooms</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Spin up an ephemeral room with documents, NDAs, parties and an audit trail. Built for M&amp;A, diligence and legal.</p>
+        </div>
+        <div data-reveal style="padding:26px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(61,220,151,.14);border:1px solid rgba(61,220,151,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" stroke="#8ff0c8" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:18.5px;font-weight:590;letter-spacing:-.01em">Server-blind chat</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">In-call and async messaging encrypted end to end. The relay stores ciphertext only — not metadata theatre, real blindness.</p>
+        </div>
+        <div data-reveal style="padding:26px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="4.2" stroke="#b9a6ff" stroke-width="1.7"/><path d="m11 11 9 9M17 17l2-2M15 15l2-2" stroke="#b9a6ff" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:18.5px;font-weight:590;letter-spacing:-.01em">Client-side keys</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Each room's key is generated in your browser and shared only through the invite link — never sent to our servers. Chat, audio, video and screen share are all sealed with it.</p>
+        </div>
+        <div data-reveal style="padding:26px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(59,110,255,.14);border:1px solid rgba(59,110,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.4" stroke="#8fc8ff" stroke-width="1.7"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5M12 14.5v2.5" stroke="#8fc8ff" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:18.5px;font-weight:590;letter-spacing:-.01em">SSO, passkeys &amp; teams</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Sign in your way — per-org SSO (OIDC &amp; SAML), passkeys, 2FA and magic-link. Invite your team into one shared workspace.</p>
+        </div>
+        <div data-reveal style="padding:26px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(61,220,151,.14);border:1px solid rgba(61,220,151,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.4" stroke="#8ff0c8" stroke-width="1.7"/><path d="M3.6 12h16.8M12 3.6c2.4 2.3 3.6 5.2 3.6 8.4S14.4 18.1 12 20.4C9.6 18.1 8.4 15.2 8.4 12S9.6 5.9 12 3.6z" stroke="#8ff0c8" stroke-width="1.7"/></svg></div>
+          <h3 style="margin-top:18px;font-size:18.5px;font-weight:590;letter-spacing:-.01em">EU data residency</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Our shared cloud runs in the EU (Frankfurt, Germany). Need Switzerland or another jurisdiction? Single-tenant and self-hosted deployments put the SFU where you choose.</p>
+        </div>
+        <div data-reveal style="grid-column:span 3;padding:28px 30px;border:1px solid rgba(124,92,255,.28);border-radius:18px;background:linear-gradient(105deg,rgba(124,92,255,.12),rgba(59,110,255,.06));display:flex;align-items:center;gap:22px">
+          <div style="display:grid;place-items:center;width:48px;height:48px;border-radius:13px;background:rgba(124,92,255,.2);border:1px solid rgba(124,92,255,.36);flex-shrink:0"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M4 11 12 4l8 7v8a1.5 1.5 0 0 1-1.5 1.5H14v-6h-4v6H5.5A1.5 1.5 0 0 1 4 19z" stroke="#cfc6ff" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h3 style="font-size:18.5px;font-weight:590;letter-spacing:-.01em">Self-host option</h3>
+            <p style="margin-top:7px;font-size:14.5px;line-height:1.6;color:#9aa0b0;max-width:760px">Run the whole stack on your own infrastructure — one app server, one database, your SFU. No phone-home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="usecases" style="max-width:1200px;margin:0 auto;padding:88px 28px 40px">
+      <div data-reveal style="max-width:640px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Built for</div>
+        <h2 style="margin-top:16px;font-size:42px;line-height:1.06;letter-spacing:-.03em;font-weight:640">Teams who can't afford to trust the server</h2>
+        <p style="margin-top:18px;font-size:17px;line-height:1.6;color:#9096a1">If a leak is an existential event — a deal, a case, a patient, a board — Ollasync is built for you.</p>
+      </div>
+      <div style="margin-top:44px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
+        <div data-reveal style="padding:28px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM16 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20v-1a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v1M13 20v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2" stroke="#b9a6ff" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:20px;font-weight:590;letter-spacing:-.01em">M&amp;A &amp; deal rooms</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Diligence data rooms with NDAs, watermarks and a tamper-evident activity log.</p>
+          <a href="#" style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#b9a6ff">Learn more →</a>
+        </div>
+        <div data-reveal style="padding:28px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(59,110,255,.14);border:1px solid rgba(59,110,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 6h14M7 6l-3 7a3 3 0 0 0 6 0zM17 6l-3 7a3 3 0 0 0 6 0z" stroke="#8fc8ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:20px;font-weight:590;letter-spacing:-.01em">Legal &amp; advisory</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Privileged client conversations that stay privileged — even from us.</p>
+          <a href="#" style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#8fc8ff">Learn more →</a>
+        </div>
+        <div data-reveal style="padding:28px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(61,220,151,.14);border:1px solid rgba(61,220,151,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2 5 4-11 2 6h6" stroke="#8ff0c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:20px;font-weight:590;letter-spacing:-.01em">Finance &amp; OTC</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Trade and treasury comms that never touch the server in the clear — with EU residency.</p>
+          <a href="#" style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#8ff0c8">Learn more →</a>
+        </div>
+        <div data-reveal style="padding:28px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012))">
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20.5 8.5c0 5-8.5 10-8.5 10S3.5 13.5 3.5 8.5a4.2 4.2 0 0 1 8.5-1 4.2 4.2 0 0 1 8.5 1z" stroke="#b9a6ff" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:20px;font-weight:590;letter-spacing:-.01em">Healthcare</h3>
+          <p style="margin-top:9px;font-size:14.5px;line-height:1.6;color:#8a90a0">Clinician–patient calls with a server-blind design that supports your DPA.</p>
+          <a href="#" style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#b9a6ff">Learn more →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" style="max-width:1200px;margin:0 auto;padding:88px 28px 40px">
+      <div style="border:1px solid rgba(255,255,255,.1);border-radius:26px;overflow:hidden;background:linear-gradient(180deg,rgba(20,21,27,.7),rgba(11,12,16,.7));position:relative">
+        <div style="position:absolute;top:-30%;right:-10%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,255,.28),transparent 62%);filter:blur(30px);pointer-events:none"></div>
+        <div style="position:relative;padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+          <div data-reveal>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">How it works</div>
+            <h2 style="margin-top:16px;font-size:36px;line-height:1.1;letter-spacing:-.025em;font-weight:640">The server holds ciphertext. Only the room holds keys.</h2>
+            <p style="margin-top:18px;font-size:16px;line-height:1.65;color:#9096a1">Identity and media keys are generated and kept in your browser — each room's key is shared only through the invite link, never with our servers. Message, call and screen-share frames are all sealed with it. The delivery service and the SFU relay encrypted bytes they cannot read — verified end-to-end, not asserted in a policy doc.</p>
+            <a onClick="{{ goSecurity }}" style="margin-top:24px;display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:530;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:12px 20px;border-radius:11px;cursor:pointer">Read the security model →</a>
+          </div>
+          <div data-reveal style="display:flex;flex-direction:column;gap:0">
+            <div style="display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid rgba(124,92,255,.32);border-radius:14px;background:rgba(124,92,255,.09)">
+              <div style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:rgba(124,92,255,.2)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.4" stroke="#cfc6ff" stroke-width="1.6"/><path d="M3.6 12h16.8M12 3.6c2.4 2.3 3.6 5.2 3.6 8.4S14.4 18.1 12 20.4" stroke="#cfc6ff" stroke-width="1.6"/></svg></div>
+              <div><div style="font-size:15px;font-weight:560">Your browser</div><div style="font-size:12.5px;color:#8a90a0;font-family:'JetBrains Mono',monospace">generates keys · encrypts frames</div></div>
+              <span style="margin-left:auto;font-size:11px;font-family:'JetBrains Mono',monospace;color:#3ddc97;border:1px solid rgba(61,220,151,.3);padding:4px 8px;border-radius:7px">plaintext</span>
+            </div>
+            <div style="height:26px;margin-left:37px;border-left:2px dashed rgba(255,255,255,.18)"></div>
+            <div style="display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.03)">
+              <div style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.06)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="6" rx="1.6" stroke="#c9cdd6" stroke-width="1.6"/><rect x="3" y="14" width="18" height="6" rx="1.6" stroke="#c9cdd6" stroke-width="1.6"/><path d="M7 7h.01M7 17h.01" stroke="#c9cdd6" stroke-width="2" stroke-linecap="round"/></svg></div>
+              <div><div style="font-size:15px;font-weight:560">Delivery service &amp; SFU</div><div style="font-size:12.5px;color:#8a90a0;font-family:'JetBrains Mono',monospace">relays bytes it cannot read</div></div>
+              <span style="margin-left:auto;font-size:11px;font-family:'JetBrains Mono',monospace;color:#b9a6ff;border:1px solid rgba(124,92,255,.32);padding:4px 8px;border-radius:7px">ciphertext</span>
+            </div>
+            <div style="height:26px;margin-left:37px;border-left:2px dashed rgba(255,255,255,.18)"></div>
+            <div style="display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid rgba(61,220,151,.32);border-radius:14px;background:rgba(61,220,151,.07)">
+              <div style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:rgba(61,220,151,.16)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" stroke="#8ff0c8" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#8ff0c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div><div style="font-size:15px;font-weight:560">Other room members</div><div style="font-size:12.5px;color:#8a90a0;font-family:'JetBrains Mono',monospace">decrypt with the shared room key</div></div>
+              <span style="margin-left:auto;font-size:11px;font-family:'JetBrains Mono',monospace;color:#3ddc97;border:1px solid rgba(61,220,151,.3);padding:4px 8px;border-radius:7px">plaintext</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" style="max-width:1200px;margin:0 auto;padding:88px 28px 96px">
+      <div data-reveal style="position:relative;border:1px solid rgba(124,92,255,.3);border-radius:28px;overflow:hidden;background:linear-gradient(160deg,rgba(124,92,255,.16),rgba(59,110,255,.08));padding:72px 40px;text-align:center">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(124,92,255,.35),transparent 60%);pointer-events:none;animation:pulseGlow 7s ease-in-out infinite"></div>
+        <div style="position:relative">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#cfc6ff">Try it now</div>
+          <h2 style="margin-top:16px;font-size:48px;line-height:1.05;letter-spacing:-.03em;font-weight:660;max-width:720px;margin-left:auto;margin-right:auto">Start a private room in seconds</h2>
+          <p style="margin-top:20px;font-size:17.5px;line-height:1.6;color:#c2c6d0;max-width:560px;margin-left:auto;margin-right:auto">No credit card to try it. Your conversations stay yours — encrypted end to end, the server never holds a key.</p>
+          <div style="margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+            <a href="https://login.ollasync.com" style="display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:570;color:#1a1330;background:#fff;padding:15px 26px;border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.35)">Open the app →</a>
+            <a onClick="{{ goSecurity }}" style="display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:520;color:#f4f5f7;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:15px 26px;border-radius:12px;cursor:pointer">How the crypto works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ isFeatures }}">
+    <section style="max-width:1200px;margin:0 auto;padding:88px 28px 8px;text-align:center">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Features</div>
+      <h1 data-reveal style="margin-top:16px;font-size:52px;line-height:1.05;letter-spacing:-.03em;font-weight:650;max-width:820px;margin-left:auto;margin-right:auto">Everything you need — sealed end to end</h1>
+      <p data-reveal style="margin-top:20px;font-size:18px;line-height:1.6;color:#9096a1;max-width:600px;margin-left:auto;margin-right:auto">Calls, rooms and chat that assume the network is hostile. Every capability is built so the server only ever relays ciphertext.</p>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:44px 28px;display:flex;flex-direction:column;gap:32px">
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:32px;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01))">
+        <div>
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="13" height="12" rx="2.4" stroke="#b9a6ff" stroke-width="1.7"/><path d="m16 10 5-3v10l-5-3" stroke="#b9a6ff" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:26px;font-weight:600;letter-spacing:-.02em">Encrypted video &amp; screen share</h3>
+          <p style="margin-top:12px;font-size:15.5px;line-height:1.65;color:#8a90a0">HD multi-party calls, screen sharing and recording. Each media frame is encrypted with WebRTC Insertable Streams before it leaves your device — the SFU forwards packets it cannot decode.</p>
+          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#cfc6ff;border:1px solid rgba(124,92,255,.3);padding:5px 10px;border-radius:8px">SFrame</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#cfc6ff;border:1px solid rgba(124,92,255,.3);padding:5px 10px;border-radius:8px">recording</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#cfc6ff;border:1px solid rgba(124,92,255,.3);padding:5px 10px;border-radius:8px">up to 50 tiles</span>
+          </div>
+        </div>
+        <div style="aspect-ratio:16/10;border-radius:16px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 12px,rgba(255,255,255,.015) 12px 24px);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#62666d">gallery-view screenshot</span></div>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:32px;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01))">
+        <div style="aspect-ratio:16/10;border-radius:16px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 12px,rgba(255,255,255,.015) 12px 24px);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;order:0"><span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#62666d">deal-room screenshot</span></div>
+        <div>
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(59,110,255,.14);border:1px solid rgba(59,110,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 7a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#8fc8ff" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:26px;font-weight:600;letter-spacing:-.02em">Confidential deal rooms</h3>
+          <p style="margin-top:12px;font-size:15.5px;line-height:1.65;color:#8a90a0">Ephemeral rooms with documents, NDAs, invited parties and a tamper-evident activity log. Purpose-built for M&amp;A, diligence and legal workflows.</p>
+          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8fc8ff;border:1px solid rgba(59,110,255,.3);padding:5px 10px;border-radius:8px">watermarks</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8fc8ff;border:1px solid rgba(59,110,255,.3);padding:5px 10px;border-radius:8px">NDAs</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8fc8ff;border:1px solid rgba(59,110,255,.3);padding:5px 10px;border-radius:8px">audit trail</span>
+          </div>
+        </div>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:32px;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01))">
+        <div>
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(61,220,151,.14);border:1px solid rgba(61,220,151,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" stroke="#8ff0c8" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:18px;font-size:26px;font-weight:600;letter-spacing:-.02em">Server-blind chat</h3>
+          <p style="margin-top:12px;font-size:15.5px;line-height:1.65;color:#8a90a0">In-call and async messaging encrypted end to end. The relay stores ciphertext only — real blindness, not metadata theatre.</p>
+          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8ff0c8;border:1px solid rgba(61,220,151,.3);padding:5px 10px;border-radius:8px">threads</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8ff0c8;border:1px solid rgba(61,220,151,.3);padding:5px 10px;border-radius:8px">files</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8ff0c8;border:1px solid rgba(61,220,151,.3);padding:5px 10px;border-radius:8px">reactions</span>
+          </div>
+        </div>
+        <div style="aspect-ratio:16/10;border-radius:16px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 12px,rgba(255,255,255,.015) 12px 24px);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#62666d">chat-panel screenshot</span></div>
+      </div>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:24px 28px 40px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><h4 style="font-size:16px;font-weight:570">Client-side keys</h4><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">Room keys generated in your browser, shared only through the invite link.</p></div>
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><h4 style="font-size:16px;font-weight:570">SSO &amp; passkeys</h4><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">OIDC &amp; SAML, passkeys, 2FA and magic-link for your whole org.</p></div>
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><h4 style="font-size:16px;font-weight:570">EU data residency</h4><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">Shared cloud in Frankfurt; single-tenant elsewhere on request.</p></div>
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><h4 style="font-size:16px;font-weight:570">Self-host</h4><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">One app server, one database, your SFU. No phone-home.</p></div>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ isSecurity }}">
+    <section style="max-width:1200px;margin:0 auto;padding:88px 28px 8px;text-align:center">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Security</div>
+      <h1 data-reveal style="margin-top:16px;font-size:52px;line-height:1.05;letter-spacing:-.03em;font-weight:650;max-width:820px;margin-left:auto;margin-right:auto">The server holds ciphertext. Only the room holds keys.</h1>
+      <p data-reveal style="margin-top:20px;font-size:18px;line-height:1.6;color:#9096a1;max-width:640px;margin-left:auto;margin-right:auto">Verified end-to-end encryption, not asserted in a policy doc. Here is exactly what we can and cannot see.</p>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:44px 28px">
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="padding:28px;border:1px solid rgba(61,220,151,.28);border-radius:20px;background:rgba(61,220,151,.06)">
+          <h3 style="font-size:19px;font-weight:590;color:#8ff0c8">What the server never sees</h3>
+          <ul style="margin-top:16px;list-style:none;display:flex;flex-direction:column;gap:12px">
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Audio, video and screen-share content</li>
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Chat messages and shared files</li>
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Room encryption keys</li>
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Deal-room documents</li>
+          </ul>
+        </div>
+        <div style="padding:28px;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:rgba(255,255,255,.03)">
+          <h3 style="font-size:19px;font-weight:590;color:#c9cdd6">What the server does handle</h3>
+          <ul style="margin-top:16px;list-style:none;display:flex;flex-direction:column;gap:12px">
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#8a90a0"><span style="color:#7f8593">•</span> Encrypted byte relay between peers</li>
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#8a90a0"><span style="color:#7f8593">•</span> Auth &amp; session tokens (SSO / passkeys)</li>
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#8a90a0"><span style="color:#7f8593">•</span> Room membership &amp; routing</li>
+            <li style="display:flex;gap:10px;font-size:14.5px;color:#8a90a0"><span style="color:#7f8593">•</span> Tamper-evident audit metadata</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:24px 28px">
+      <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-radius:24px;background:linear-gradient(180deg,rgba(20,21,27,.7),rgba(11,12,16,.7));padding:40px">
+        <h3 style="font-size:22px;font-weight:600;letter-spacing:-.01em;margin-bottom:24px">How a frame travels</h3>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid rgba(124,92,255,.32);border-radius:14px;background:rgba(124,92,255,.09)">
+            <div style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:rgba(124,92,255,.2)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.4" stroke="#cfc6ff" stroke-width="1.6"/><path d="M3.6 12h16.8M12 3.6c2.4 2.3 3.6 5.2 3.6 8.4S14.4 18.1 12 20.4" stroke="#cfc6ff" stroke-width="1.6"/></svg></div>
+            <div><div style="font-size:15px;font-weight:560">Your browser</div><div style="font-size:12.5px;color:#8a90a0;font-family:'JetBrains Mono',monospace">generates keys · encrypts frames</div></div>
+            <span style="margin-left:auto;font-size:11px;font-family:'JetBrains Mono',monospace;color:#3ddc97;border:1px solid rgba(61,220,151,.3);padding:4px 8px;border-radius:7px">plaintext</span>
+          </div>
+          <div style="height:26px;margin-left:37px;border-left:2px dashed rgba(255,255,255,.18)"></div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.03)">
+            <div style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.06)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="6" rx="1.6" stroke="#c9cdd6" stroke-width="1.6"/><rect x="3" y="14" width="18" height="6" rx="1.6" stroke="#c9cdd6" stroke-width="1.6"/><path d="M7 7h.01M7 17h.01" stroke="#c9cdd6" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div><div style="font-size:15px;font-weight:560">Delivery service &amp; SFU</div><div style="font-size:12.5px;color:#8a90a0;font-family:'JetBrains Mono',monospace">relays bytes it cannot read</div></div>
+            <span style="margin-left:auto;font-size:11px;font-family:'JetBrains Mono',monospace;color:#b9a6ff;border:1px solid rgba(124,92,255,.32);padding:4px 8px;border-radius:7px">ciphertext</span>
+          </div>
+          <div style="height:26px;margin-left:37px;border-left:2px dashed rgba(255,255,255,.18)"></div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid rgba(61,220,151,.32);border-radius:14px;background:rgba(61,220,151,.07)">
+            <div style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:rgba(61,220,151,.16)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" stroke="#8ff0c8" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#8ff0c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div style="font-size:15px;font-weight:560">Other room members</div><div style="font-size:12.5px;color:#8a90a0;font-family:'JetBrains Mono',monospace">decrypt with the shared room key</div></div>
+            <span style="margin-left:auto;font-size:11px;font-family:'JetBrains Mono',monospace;color:#3ddc97;border:1px solid rgba(61,220,151,.3);padding:4px 8px;border-radius:7px">plaintext</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:24px 28px 40px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#b9a6ff;font-weight:500">AES-256-GCM</div><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">Authenticated encryption on every frame and message.</p></div>
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#8fc8ff;font-weight:500">X25519</div><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">Elliptic-curve key agreement for room membership.</p></div>
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#8ff0c8;font-weight:500">HKDF</div><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">Per-track key derivation from the shared room secret.</p></div>
+        <div data-reveal style="padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03)"><div style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#b9a6ff;font-weight:500">SFrame</div><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">End-to-end media framing the SFU forwards untouched.</p></div>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ isUsecases }}">
+    <section style="max-width:1200px;margin:0 auto;padding:88px 28px 8px;text-align:center">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Use cases</div>
+      <h1 data-reveal style="margin-top:16px;font-size:52px;line-height:1.05;letter-spacing:-.03em;font-weight:650;max-width:820px;margin-left:auto;margin-right:auto">Teams who can't afford to trust the server</h1>
+      <p data-reveal style="margin-top:20px;font-size:18px;line-height:1.6;color:#9096a1;max-width:600px;margin-left:auto;margin-right:auto">If a leak is an existential event — a deal, a case, a patient, a board — Ollasync is built for you.</p>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:44px 28px 40px;display:flex;flex-direction:column;gap:16px">
+      <div data-reveal style="padding:32px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center">
+        <div>
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM16 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20v-1a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v1M13 20v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2" stroke="#b9a6ff" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3 style="margin-top:16px;font-size:23px;font-weight:600;letter-spacing:-.01em">M&amp;A &amp; deal rooms</h3>
+          <p style="margin-top:10px;font-size:14.5px;line-height:1.6;color:#8a90a0">Diligence data rooms with NDAs, watermarks and a tamper-evident activity log.</p>
+        </div>
+        <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> Per-party document permissions</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> Dynamic watermarking</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> Signed, immutable audit log</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> Auto-expiring room access</li>
+        </ul>
+      </div>
+      <div data-reveal style="padding:32px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center">
+        <div>
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(59,110,255,.14);border:1px solid rgba(59,110,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 6h14M7 6l-3 7a3 3 0 0 0 6 0zM17 6l-3 7a3 3 0 0 0 6 0z" stroke="#8fc8ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:16px;font-size:23px;font-weight:600;letter-spacing:-.01em">Legal &amp; advisory</h3>
+          <p style="margin-top:10px;font-size:14.5px;line-height:1.6;color:#8a90a0">Privileged client conversations that stay privileged — even from us.</p>
+        </div>
+        <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#5b7cff">›</span> Privilege-preserving by design</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#5b7cff">›</span> Client-matter workspaces</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#5b7cff">›</span> Retention &amp; legal hold</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#5b7cff">›</span> Recorded consultations, sealed</li>
+        </ul>
+      </div>
+      <div data-reveal style="padding:32px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center">
+        <div>
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(61,220,151,.14);border:1px solid rgba(61,220,151,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2 5 4-11 2 6h6" stroke="#8ff0c8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:16px;font-size:23px;font-weight:600;letter-spacing:-.01em">Finance &amp; OTC</h3>
+          <p style="margin-top:10px;font-size:14.5px;line-height:1.6;color:#8a90a0">Trade and treasury comms that never touch the server in the clear — with EU residency.</p>
+        </div>
+        <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#3ddc97">›</span> EU data residency (Frankfurt)</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#3ddc97">›</span> Exportable compliance records</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#3ddc97">›</span> SSO &amp; SCIM provisioning</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#3ddc97">›</span> Single-tenant deployment</li>
+        </ul>
+      </div>
+      <div data-reveal style="padding:32px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center">
+        <div>
+          <div style="display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.28)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20.5 8.5c0 5-8.5 10-8.5 10S3.5 13.5 3.5 8.5a4.2 4.2 0 0 1 8.5-1 4.2 4.2 0 0 1 8.5 1z" stroke="#b9a6ff" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <h3 style="margin-top:16px;font-size:23px;font-weight:600;letter-spacing:-.01em">Healthcare</h3>
+          <p style="margin-top:10px;font-size:14.5px;line-height:1.6;color:#8a90a0">Clinician–patient calls with a server-blind design that supports your DPA.</p>
+        </div>
+        <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> Server-blind consultations</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> DPA &amp; BAA support</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> No content stored in the clear</li>
+          <li style="display:flex;gap:10px;font-size:14px;color:#c2c6d0"><span style="color:#8f7bff">›</span> Waiting-room &amp; identity checks</li>
+        </ul>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ isPricing }}">
+    <section style="max-width:1200px;margin:0 auto;padding:88px 28px 8px;text-align:center">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Pricing</div>
+      <h1 data-reveal style="margin-top:16px;font-size:52px;line-height:1.05;letter-spacing:-.03em;font-weight:650;max-width:760px;margin-left:auto;margin-right:auto">Priced for teams that keep secrets</h1>
+      <p data-reveal style="margin-top:20px;font-size:18px;line-height:1.6;color:#9096a1;max-width:560px;margin-left:auto;margin-right:auto">EU-hosted by default. Move to single-tenant or self-host at any tier. No credit card to try it.</p>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:44px 28px 40px">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch">
+        <div data-reveal style="display:flex;flex-direction:column;padding:30px;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:rgba(255,255,255,.03)">
+          <div style="font-size:15px;font-weight:560;color:#c9cdd6">Team</div>
+          <div style="margin-top:14px;display:flex;align-items:baseline;gap:6px"><span style="font-size:44px;font-weight:660;letter-spacing:-.03em">€12</span><span style="font-size:14px;color:#8a90a0">/user · mo</span></div>
+          <p style="margin-top:10px;font-size:13.5px;line-height:1.55;color:#8a90a0">For small teams that need private calls today.</p>
+          <a onClick="{{ goApp }}" style="margin-top:20px;text-align:center;font-size:14.5px;font-weight:530;color:#e7e9ee;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:12px;border-radius:11px;cursor:pointer">Start free</a>
+          <ul style="margin-top:22px;list-style:none;display:flex;flex-direction:column;gap:11px">
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Up to 25 members</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> E2EE calls up to 20 participants</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Server-blind chat</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> 1 active deal room</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Passkeys &amp; 2FA</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> EU hosting (Frankfurt)</li>
+          </ul>
+        </div>
+        <div data-reveal style="position:relative;display:flex;flex-direction:column;padding:30px;border:1px solid rgba(124,92,255,.4);border-radius:22px;background:linear-gradient(180deg,rgba(124,92,255,.14),rgba(59,110,255,.05));box-shadow:0 30px 70px -30px rgba(124,92,255,.6)">
+          <span style="position:absolute;top:-12px;left:30px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(150deg,#8768ff,#5b7cff);padding:5px 11px;border-radius:8px">Most popular</span>
+          <div style="font-size:15px;font-weight:560;color:#cfc6ff">Business</div>
+          <div style="margin-top:14px;display:flex;align-items:baseline;gap:6px"><span style="font-size:44px;font-weight:660;letter-spacing:-.03em">€29</span><span style="font-size:14px;color:#b6bccb">/user · mo</span></div>
+          <p style="margin-top:10px;font-size:13.5px;line-height:1.55;color:#b6bccb">For firms running deals, cases and diligence.</p>
+          <a onClick="{{ goApp }}" style="margin-top:20px;text-align:center;font-size:14.5px;font-weight:560;color:#fff;background:linear-gradient(150deg,#8768ff,#5b7cff);padding:12px;border-radius:11px;box-shadow:0 10px 28px rgba(91,124,255,.4);cursor:pointer">Start free</a>
+          <ul style="margin-top:22px;list-style:none;display:flex;flex-direction:column;gap:11px">
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#e7e9ee"><span style="color:#3ddc97">✓</span> Everything in Team</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#e7e9ee"><span style="color:#3ddc97">✓</span> Unlimited deal rooms</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#e7e9ee"><span style="color:#3ddc97">✓</span> Encrypted recording</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#e7e9ee"><span style="color:#3ddc97">✓</span> SSO — OIDC &amp; SAML</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#e7e9ee"><span style="color:#3ddc97">✓</span> Audit logs &amp; watermarks</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#e7e9ee"><span style="color:#3ddc97">✓</span> Priority support</li>
+          </ul>
+        </div>
+        <div data-reveal style="display:flex;flex-direction:column;padding:30px;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:rgba(255,255,255,.03)">
+          <div style="font-size:15px;font-weight:560;color:#c9cdd6">Enterprise &amp; Self-host</div>
+          <div style="margin-top:14px;display:flex;align-items:baseline;gap:6px"><span style="font-size:44px;font-weight:660;letter-spacing:-.03em">Custom</span></div>
+          <p style="margin-top:10px;font-size:13.5px;line-height:1.55;color:#8a90a0">Run it your way, in your jurisdiction.</p>
+          <a onClick="{{ goApp }}" style="margin-top:20px;text-align:center;font-size:14.5px;font-weight:530;color:#e7e9ee;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:12px;border-radius:11px;cursor:pointer">Talk to sales</a>
+          <ul style="margin-top:22px;list-style:none;display:flex;flex-direction:column;gap:11px">
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Everything in Business</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Single-tenant or self-hosted SFU</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Choose your data jurisdiction</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> DPA &amp; BAA, custom SLA</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> SCIM provisioning</li>
+            <li style="display:flex;gap:9px;font-size:13.5px;color:#c2c6d0"><span style="color:#3ddc97">✓</span> Dedicated support</li>
+          </ul>
+        </div>
+      </div>
+      <p data-reveal style="margin-top:24px;text-align:center;font-size:13px;color:#62666d;font-family:'JetBrains Mono',monospace">All plans: end-to-end encrypted · zero plaintext on our servers · cancel anytime</p>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ isBlog }}">
+    <section style="max-width:1200px;margin:0 auto;padding:88px 28px 8px;text-align:center">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Blog</div>
+      <h1 data-reveal style="margin-top:16px;font-size:52px;line-height:1.05;letter-spacing:-.03em;font-weight:650">Notes on building server-blind</h1>
+      <p data-reveal style="margin-top:20px;font-size:18px;line-height:1.6;color:#9096a1;max-width:560px;margin-left:auto;margin-right:auto">Engineering, cryptography and product from the Ollasync team.</p>
+    </section>
+    <section style="max-width:1120px;margin:0 auto;padding:44px 28px 40px">
+      <div data-reveal style="display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;padding:28px;border:1px solid rgba(124,92,255,.28);border-radius:22px;background:linear-gradient(105deg,rgba(124,92,255,.12),rgba(59,110,255,.05));margin-bottom:28px">
+        <div style="aspect-ratio:16/9;border-radius:16px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 12px,rgba(255,255,255,.015) 12px 24px);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#62666d">featured cover</span></div>
+        <div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#cfc6ff;border:1px solid rgba(124,92,255,.3);padding:4px 9px;border-radius:7px">Engineering</span>
+          <h2 style="margin-top:14px;font-size:30px;line-height:1.15;letter-spacing:-.02em;font-weight:620">Why we built Ollasync server-blind from day one</h2>
+          <p style="margin-top:12px;font-size:15px;line-height:1.6;color:#9096a1">Most "encrypted" tools still trust the server. We decided the server should be structurally incapable of reading your data — here's the architecture that makes it true.</p>
+          <div style="margin-top:16px;font-size:13px;color:#7f8593;font-family:'JetBrains Mono',monospace">Jul 14, 2026 · 8 min read</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.03);overflow:hidden">
+          <div style="aspect-ratio:16/9;background:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 11px,rgba(255,255,255,.013) 11px 22px);border-bottom:1px solid rgba(255,255,255,.08);display:grid;place-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#62666d">cover</span></div>
+          <div style="padding:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8fc8ff">Cryptography</span><h3 style="margin-top:10px;font-size:18px;font-weight:580;line-height:1.25;letter-spacing:-.01em">How SFrame keeps the SFU in the dark</h3><div style="margin-top:14px;font-size:12.5px;color:#7f8593;font-family:'JetBrains Mono',monospace">Jul 2 · 6 min</div></div>
+        </div>
+        <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.03);overflow:hidden">
+          <div style="aspect-ratio:16/9;background:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 11px,rgba(255,255,255,.013) 11px 22px);border-bottom:1px solid rgba(255,255,255,.08);display:grid;place-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#62666d">cover</span></div>
+          <div style="padding:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8ff0c8">Compliance</span><h3 style="margin-top:10px;font-size:18px;font-weight:580;line-height:1.25;letter-spacing:-.01em">EU data residency, actually explained</h3><div style="margin-top:14px;font-size:12.5px;color:#7f8593;font-family:'JetBrains Mono',monospace">Jun 21 · 5 min</div></div>
+        </div>
+        <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.03);overflow:hidden">
+          <div style="aspect-ratio:16/9;background:repeating-linear-gradient(45deg,rgba(255,255,255,.045) 0 11px,rgba(255,255,255,.013) 11px 22px);border-bottom:1px solid rgba(255,255,255,.08);display:grid;place-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#62666d">cover</span></div>
+          <div style="padding:20px"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#b9a6ff">Guide</span><h3 style="margin-top:10px;font-size:18px;font-weight:580;line-height:1.25;letter-spacing:-.01em">Run a self-hosted SFU in 20 minutes</h3><div style="margin-top:14px;font-size:12.5px;color:#7f8593;font-family:'JetBrains Mono',monospace">Jun 9 · 10 min</div></div>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ isDocs }}">
+    <section style="max-width:1200px;margin:0 auto;padding:88px 28px 8px">
+      <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8f7bff">Docs</div>
+      <h1 data-reveal style="margin-top:16px;font-size:46px;line-height:1.06;letter-spacing:-.03em;font-weight:650">Build on an encrypted core</h1>
+      <p data-reveal style="margin-top:18px;font-size:17px;line-height:1.6;color:#9096a1;max-width:600px">Guides, concepts and API references for shipping with Ollasync — hosted or self-hosted.</p>
+    </section>
+    <section style="max-width:1200px;margin:0 auto;padding:36px 28px 40px;display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start">
+      <aside data-reveal style="position:sticky;top:88px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03);padding:18px">
+        <div style="font-size:11.5px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#62666d;padding:6px 8px">Getting started</div>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#f4f5f7;background:rgba(124,92,255,.14);cursor:pointer">Quickstart</a>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">Installation</a>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">Authentication</a>
+        <div style="font-size:11.5px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#62666d;padding:14px 8px 6px">Concepts</div>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">Security model</a>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">Rooms &amp; keys</a>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">Calls &amp; media</a>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">Deal rooms</a>
+        <div style="font-size:11.5px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#62666d;padding:14px 8px 6px">Operate</div>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">Self-hosting</a>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">SSO &amp; SCIM</a>
+        <a style="display:block;padding:8px 10px;border-radius:8px;font-size:14px;color:#9096a1;cursor:pointer">API reference</a>
+      </aside>
+      <div data-reveal style="min-width:0">
+        <h2 style="font-size:28px;font-weight:620;letter-spacing:-.02em">Quickstart</h2>
+        <p style="margin-top:12px;font-size:15px;line-height:1.65;color:#9096a1">Create an encrypted room and invite a peer. The room key is generated in the browser and shared only through the invite link — it never reaches our servers.</p>
+        <div style="margin-top:22px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:#0c0d11;overflow:hidden">
+          <div style="display:flex;align-items:center;gap:7px;padding:11px 15px;border-bottom:1px solid rgba(255,255,255,.08)"><span style="width:11px;height:11px;border-radius:50%;background:#ff6b7a"></span><span style="width:11px;height:11px;border-radius:50%;background:#ffb15b"></span><span style="width:11px;height:11px;border-radius:50%;background:#3ddc97"></span><span style="margin-left:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#62666d">room.ts</span></div>
+          <pre style="margin:0;padding:18px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;color:#c9cdd6"><span style="color:#7f8593">// keys are generated client-side, never sent to the server</span>
+<span style="color:#b9a6ff">import</span> { createRoom } <span style="color:#b9a6ff">from</span> <span style="color:#8ff0c8">"@ollasync/sdk"</span>;
+
+<span style="color:#b9a6ff">const</span> room = <span style="color:#b9a6ff">await</span> <span style="color:#8fc8ff">createRoom</span>({ e2ee: <span style="color:#ffb15b">true</span> });
+<span style="color:#8fc8ff">console</span>.log(room.inviteLink); <span style="color:#7f8593">// share this out-of-band</span>
+
+<span style="color:#b9a6ff">await</span> room.<span style="color:#8fc8ff">join</span>({ camera: <span style="color:#ffb15b">true</span>, mic: <span style="color:#ffb15b">true</span> });</pre>
+        </div>
+        <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <a style="display:block;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03);cursor:pointer"><h4 style="font-size:16px;font-weight:570">Security model →</h4><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">Exactly what the server can and cannot see.</p></a>
+          <a style="display:block;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03);cursor:pointer"><h4 style="font-size:16px;font-weight:570">Self-hosting →</h4><p style="margin-top:8px;font-size:13.5px;line-height:1.55;color:#8a90a0">One app server, one database, your SFU.</p></a>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+  </main>
+
+  <footer style="border-top:1px solid rgba(255,255,255,.08);padding:40px 28px">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <a onClick="{{ goHome }}" style="display:flex;align-items:center;gap:9px;color:#f4f5f7;font-weight:600;font-size:15px;cursor:pointer">
+        <span style="display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:linear-gradient(150deg,#7c5cff,#5b7cff)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.6" stroke="#fff" stroke-width="2"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#fff" stroke-width="2"/></svg></span>
+        Ollasync
+      </a>
+      <span style="font-size:13px;color:#62666d;font-family:'JetBrains Mono',monospace">encrypted in the browser · EU-hosted · self-hostable</span>
+      <div style="margin-left:auto;display:flex;gap:22px;font-size:13.5px;color:#8a90a0">
+        <a onClick="{{ goFeatures }}" style="cursor:pointer">Features</a><a onClick="{{ goSecurity }}" style="cursor:pointer">Security</a><a onClick="{{ goUsecases }}" style="cursor:pointer">Use cases</a><a onClick="{{ goPricing }}" style="cursor:pointer">Pricing</a><a onClick="{{ goDocs }}" style="cursor:pointer">Docs</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'home' };
+  nav(p) {
+    if (this.state.page === p) { window.scrollTo(0, 0); return; }
+    this.setState({ page: p }, () => this._afterNav());
+    // Fallback in case setState callback isn't honored by the runtime.
+    setTimeout(() => this._afterNav(), 0);
+  }
+  _afterNav() {
+    window.scrollTo(0, 0);
+    if (this._scan) this._scan();
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState && prevState.page !== this.state.page) this._afterNav();
+  }
+  renderVals() {
+    const p = this.state.page;
+    const on = '#f4f5f7', off = '#c9cdd6';
+    return {
+      isHome: p === 'home', isFeatures: p === 'features', isSecurity: p === 'security',
+      isUsecases: p === 'usecases', isPricing: p === 'pricing', isBlog: p === 'blog', isDocs: p === 'docs',
+      navFeatures: p === 'features' ? on : off, navSecurity: p === 'security' ? on : off,
+      navUsecases: p === 'usecases' ? on : off, navPricing: p === 'pricing' ? on : off,
+      navBlog: p === 'blog' ? on : off, navDocs: p === 'docs' ? on : off,
+      goHome: () => this.nav('home'), goFeatures: () => this.nav('features'),
+      goSecurity: () => this.nav('security'), goUsecases: () => this.nav('usecases'),
+      goPricing: () => this.nav('pricing'), goBlog: () => this.nav('blog'),
+      goDocs: () => this.nav('docs'), goApp: () => { location.href = 'https://login.ollasync.com'; },
+    };
+  }
+  componentDidMount() {
+    const root = document.getElementById('olla-root');
+    if (!root) return;
+
+    // Scroll reveals + counters (rAF + getBoundingClientRect — robust to scaled preview & re-scannable per page)
+    const runCount = (el) => {
+      if (el._done) return; el._done = true;
+      const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      const dur = 1400, start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased).toString();
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    // Show an element at its visible resting state, with a frame-safe entrance.
+    // Base style is ALWAYS visible; the fade is a WAAPI animation with fill:none,
+    // so if rAF/transitions are frozen (hidden iframe) the element still ends up visible.
+    const show = (el, animate) => {
+      el._shown = true;
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.willChange = 'auto';
+      if (animate && el.animate) {
+        // Defer behind two frames: only animate if rAF is actually running,
+        // so a frozen/hidden iframe never renders the 0% (invisible) frame.
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          try { el.animate(
+            [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'none' }],
+            { duration: 700, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'none' }
+          ); } catch (e) {}
+        }));
+      }
+    };
+    this._reveal = () => {
+      const vh = window.innerHeight;
+      root.querySelectorAll('[data-reveal]').forEach((el) => {
+        if (el._shown) return;
+        if (el.getBoundingClientRect().top < vh * 0.92) show(el, true);
+      });
+      root.querySelectorAll('.js-count').forEach((el) => {
+        if (el._done) return;
+        if (el.getBoundingClientRect().top < vh * 0.9) runCount(el);
+      });
+    };
+    this._scan = () => {
+      const vh = window.innerHeight;
+      root.querySelectorAll('[data-reveal]').forEach((el) => {
+        if (el._init) return;
+        el._init = true; el._shown = false;
+        const top = el.getBoundingClientRect().top;
+        if (top < vh * 0.98) {
+          // In view now → visible immediately (never gated on time), with a safe entrance.
+          show(el, true);
+        } else {
+          // Below the fold → hidden, revealed on scroll when frames are running.
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(26px)';
+          el.style.transition = 'opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)';
+          el.style.willChange = 'opacity, transform';
+        }
+      });
+      this._reveal();
+    };
+    this._scan();
+    window.addEventListener('scroll', this._reveal, { passive: true });
+    window.addEventListener('resize', this._reveal, { passive: true });
+
+    // Nav scrolled state
+    const nav = document.getElementById('olla-nav');
+    const onScroll = () => {
+      if (window.scrollY > 24) {
+        nav.style.background = 'rgba(8,9,11,.72)';
+        nav.style.backdropFilter = 'blur(14px)';
+        nav.style.borderBottomColor = 'rgba(255,255,255,.08)';
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.borderBottomColor = 'rgba(255,255,255,0)';
+      }
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    this._onScroll = onScroll;
+
+    // Parallax on aurora layers
+    const pars = root.querySelectorAll('.js-par');
+    const onMove = (ev) => {
+      const cx = (ev.clientX / window.innerWidth - 0.5);
+      const cy = (ev.clientY / window.innerHeight - 0.5);
+      pars.forEach((p) => {
+        const d = parseFloat(p.getAttribute('data-depth')) || 12;
+        p.style.marginLeft = (cx * d) + 'px';
+        p.style.marginTop = (cy * d) + 'px';
+      });
+    };
+    window.addEventListener('mousemove', onMove, { passive: true });
+    this._onMove = onMove;
+
+    // Speaking-tile cycle (re-queries each tick so it survives page switches)
+    let idx = 3;
+    this._speak = setInterval(() => {
+      const tiles = root.querySelectorAll('.js-tile');
+      if (!tiles.length) return;
+      tiles.forEach((t) => { t.style.outline = 'none'; t.style.animation = 'none'; });
+      idx = (idx + 1) % tiles.length;
+      const t = tiles[idx];
+      t.style.outline = '2px solid #3ddc97';
+      t.style.animation = 'ringpulse 2.4s infinite';
+    }, 2600);
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onMove) window.removeEventListener('mousemove', this._onMove);
+    if (this._reveal) { window.removeEventListener('scroll', this._reveal); window.removeEventListener('resize', this._reveal); }
+    if (this._speak) clearInterval(this._speak);
+  }
+}
+</script>
+</body>
+</html>
