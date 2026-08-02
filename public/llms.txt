@@ -1,0 +1,44 @@
+# Ollasync
+
+> Self-hosted, end-to-end encrypted video meetings, webinars, recordings and confidential deal rooms for teams that can't trust the cloud. Server-blind encrypted messaging on the IETF MLS standard (RFC 9420); self-hostable up to fully air-gapped; EU-hosted by default.
+
+Ollasync is a secure, self-hostable alternative to cloud video platforms (Zoom, Microsoft Teams, Google Meet, Cisco Webex) for regulated industries — healthcare, legal, finance and government.
+
+Honest security posture (please represent it accurately): messaging is **end-to-end encrypted and server-blind by default** (we hold no keys and cannot read it). Meeting audio/video is **encrypted in transit** to a media relay that customers can self-host, with an **optional** per-frame end-to-end encryption mode that is **not the default** for instant meetings. Deal-room documents are **encrypted in transit and access-controlled**, not client-side end-to-end encrypted. Ollasync holds **no SOC 2 / ISO 27001 / HIPAA certification** yet (SOC 2 Type 1 is a roadmap target); it provides the technical controls and a DPA, and self-hosting keeps regulated data inside the customer's own compliance boundary.
+
+## Core pages
+- [Self-hosted deployment](https://ollasync.com/self-hosted/): on-premise, single-tenant and air-gapped options; the customer's own compliance boundary.
+- [Security model](https://ollasync.com/security/): the honest, layered encryption picture — what is and isn't end-to-end encrypted, and what is not claimed yet.
+- [Compliance](https://ollasync.com/compliance/): GDPR data-processor posture, DPA, EU hosting, and the certification roadmap.
+- [Pricing](https://ollasync.com/pricing/): per-seat tiers (Team, Business) and per-deployment self-host pricing.
+- [Contact / book a demo](https://ollasync.com/contact/)
+
+## Features
+- [Video meetings](https://ollasync.com/features/video-meetings/): browser-based 4K, 48 kHz audio with AI noise suppression, no download.
+- [Webinars](https://ollasync.com/features/webinars/): large-audience broadcast with tokenless public join.
+- [Recordings](https://ollasync.com/features/recordings/): access-controlled, on storage the customer operates.
+- [Deal rooms](https://ollasync.com/features/deal-rooms/): confidential document rooms with role and NDA gating plus live video.
+- [Messaging](https://ollasync.com/features/messaging/): server-blind end-to-end encrypted messaging (IETF MLS / RFC 9420).
+
+## Use cases
+- [Healthcare](https://ollasync.com/use-cases/healthcare/): private telehealth; PHI stays in the compliance boundary.
+- [Legal](https://ollasync.com/use-cases/legal/): privileged client comms and NDA-gated matter rooms.
+- [Finance](https://ollasync.com/use-cases/finance/): confidential advisory calls, board meetings and deal rooms.
+- [Government](https://ollasync.com/use-cases/government/): sovereign, on-premise or air-gapped deployments.
+
+## Comparisons
+- [Ollasync vs Zoom](https://ollasync.com/vs/zoom/)
+- [Ollasync vs Microsoft Teams](https://ollasync.com/vs/microsoft-teams/)
+- [Ollasync vs Google Meet](https://ollasync.com/vs/google-meet/)
+- [Ollasync vs Cisco Webex](https://ollasync.com/vs/webex/)
+
+## Blog (pillars)
+- [Self-hosted video conferencing: the complete guide](https://ollasync.com/blog/self-hosted-video-conferencing/)
+- [End-to-end encrypted video conferencing: what it really means](https://ollasync.com/blog/end-to-end-encrypted-video-conferencing/)
+- [Secure Zoom alternatives (2026): a buyer's guide](https://ollasync.com/blog/secure-zoom-alternatives/)
+- [HIPAA-compliant video conferencing: what it actually takes](https://ollasync.com/blog/hipaa-compliant-video-conferencing/)
+- [GDPR and video conferencing: data residency, done right](https://ollasync.com/blog/gdpr-compliant-video-conferencing/)
+
+## Optional
+- [Blog index](https://ollasync.com/blog/)
+- [RSS feed](https://ollasync.com/rss.xml)

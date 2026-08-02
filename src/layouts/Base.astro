@@ -27,7 +27,11 @@ const {
   schema,
 } = Astro.props;
 
-const canonicalURL = canonical || new URL(Astro.url.pathname, SITE.url).href.replace(/\/$/, '') || SITE.url;
+// Canonical must match the actually-served URL (directory format → trailing slash)
+// and the sitemap, so it never points at a 308-redirecting path.
+let _canonPath = Astro.url.pathname;
+if (!_canonPath.endsWith('/')) _canonPath += '/';
+const canonicalURL = canonical || new URL(_canonPath, SITE.url).href;
 const ogImageURL = new URL(ogImage, SITE.url).href;
 const fullTitle = title.includes(SITE.name) ? title : `${title} · ${SITE.name}`;
 
