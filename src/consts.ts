@@ -4,7 +4,8 @@
 export const SITE = {
   name: 'Ollasync',
   domain: 'ollasync.com',
-  url: 'https://ollasync.com',
+  // Canonical host is www (apex 301-redirects to www). Drives canonicals/OG/schema.
+  url: 'https://www.ollasync.com',
   appUrl: 'https://login.ollasync.com',
   tagline: 'Self-hosted, end-to-end encrypted video meetings & deal rooms',
   description:
