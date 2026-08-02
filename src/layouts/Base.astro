@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Background from '../components/Background.astro';
+import { SITE } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  /** override canonical; defaults to current URL */
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  /** extra JSON-LD (object or array), merged with site-wide Organization + WebSite */
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = SITE.ogImage,
+  ogType = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, SITE.url).href.replace(/\/$/, '') || SITE.url;
+const ogImageURL = new URL(ogImage, SITE.url).href;
+const fullTitle = title.includes(SITE.name) ? title : `${title} · ${SITE.name}`;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.name,
+  url: SITE.url,
+  logo: new URL('/og-ollasync.png', SITE.url).href,
+  description:
+    'End-to-end encrypted, self-hostable video meetings, webinars and confidential deal rooms for regulated teams.',
+  sameAs: [],
+};
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+};
+const extra = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const schemas = [orgSchema, siteSchema, ...extra];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  <meta name="theme-color" content="#08090b" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageURL} />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237c5cff'/%3E%3Crect x='9' y='15' width='14' height='9' rx='2.3' fill='none' stroke='white' stroke-width='2.2'/%3E%3Cpath d='M12 15v-2.5a4 4 0 0 1 8 0V15' fill='none' stroke='white' stroke-width='2.2'/%3E%3C/svg%3E" />
+
+  {schemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
+
+  <!-- mark JS available so reveal styles only apply when JS can undo them -->
+  <script is:inline>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <Background />
+  <Nav />
+  <main id="top">
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    // Reveal-on-scroll (progressive enhancement).
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    const revealAll = () => els.forEach((el) => el.classList.add('in'));
+    if ('IntersectionObserver' in window && els.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+      els.forEach((el) => io.observe(el));
+      // Safety net: nothing should ever stay invisible. If the observer never
+      // fires for an element (instant jumps, tab restore, edge cases), reveal
+      // whatever is left shortly after load.
+      window.addEventListener('load', () => setTimeout(() => {
+        els.forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < window.innerHeight * 1.1) el.classList.add('in'); });
+      }, 400));
+      setTimeout(revealAll, 3000);
+    } else {
+      revealAll();
+    }
+  </script>
+</body>
+</html>

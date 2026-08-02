@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Cta from '../../components/Cta.astro';
+import { FEATURES } from '../../data/features';
+
+const title = 'Features — encrypted meetings, webinars, recordings & deal rooms';
+const description =
+  'Everything Ollasync does: encrypted 4K video meetings, webinars, access-controlled recordings, confidential deal rooms and server-blind messaging — self-hostable and EU-hosted.';
+---
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="One platform"
+    eyebrowIcon="layers"
+    crumbs={[{ label: 'Features' }]}
+    title="Everything a meeting needs —"
+    titleAccent="under one encryption model"
+    lead="Meetings, webinars, recordings, deal rooms and messaging, built to the same standard and deployable the same way: on our EU service, or on your own infrastructure."
+  />
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <div class="feature-rows" data-reveal>
+        {FEATURES.map((f) => (
+          <a href={`/features/${f.slug}`} class="feature-row card card--hover">
+            <div class="card__icon"><Icon name={f.icon} size={20} /></div>
+            <div>
+              <h2 class="h3" style="display:flex;align-items:center;gap:8px">{f.label} <span class="fr-arrow"><Icon name="arrow" size={16} /></span></h2>
+              <p style="margin-top:6px">{f.lead}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .feature-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .feature-row { display: flex; gap: 16px; align-items: flex-start; }
+  .feature-row .card__icon { margin-bottom: 0; flex: none; }
+  .feature-row p { color: var(--muted); font-size: 14.5px; }
+  .fr-arrow { color: var(--muted); opacity: 0; transform: translateX(-4px); transition: all var(--dur) ease; }
+  .feature-row:hover .fr-arrow { opacity: 1; transform: none; color: var(--iris); }
+  @media (max-width: 900px) { .feature-rows { grid-template-columns: 1fr; } }
+</style>

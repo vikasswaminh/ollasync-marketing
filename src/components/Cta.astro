@@ -1,0 +1,43 @@
+---
+import { SITE } from '../consts';
+interface Props {
+  title?: string;
+  sub?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+}
+const {
+  title = 'Bring your meetings in-house.',
+  sub = 'Start encrypted in one click on our EU-hosted service — or run the whole platform on your own infrastructure. No plaintext ever touches a server you don’t control.',
+  primary = { label: 'Book a demo', href: '/contact' },
+  secondary = { label: 'See self-hosting', href: '/self-hosted' },
+} = Astro.props;
+---
+<section class="section">
+  <div class="container">
+    <div class="cta-band" data-reveal>
+      <div class="cta-band__glow" aria-hidden="true"></div>
+      <h2 class="h2" style="max-width:16ch">{title}</h2>
+      <p class="lead" style="margin-top:14px;max-width:52ch">{sub}</p>
+      <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:14px">
+        <a href={primary.href} class="btn btn-primary">{primary.label} <span class="arrow">→</span></a>
+        <a href={secondary.href} class="btn btn-ghost">{secondary.label}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    position: relative; overflow: hidden;
+    border: 1px solid var(--line-2); border-radius: var(--r-xl);
+    padding: clamp(32px, 5vw, 60px);
+    background: linear-gradient(140deg, rgba(124,92,255,.14), rgba(59,110,255,.08) 55%, rgba(14,15,19,.6));
+    box-shadow: var(--sh-card);
+  }
+  .cta-band__glow {
+    position: absolute; top: -40%; right: -10%; width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,92,255,.45), transparent 60%); filter: blur(30px);
+    animation: pulseGlow 7s ease-in-out infinite; pointer-events: none;
+  }
+</style>

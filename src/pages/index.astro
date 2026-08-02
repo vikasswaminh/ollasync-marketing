@@ -1,0 +1,301 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CallMock from '../components/CallMock.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { SITE } from '../consts';
+
+const latestPosts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+const fmtDate = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const title = 'Self-hosted, end-to-end encrypted video meetings & deal rooms';
+const description =
+  'Ollasync is end-to-end encrypted video meetings, webinars, recordings and confidential deal rooms — self-hostable or EU-hosted, server-blind by design. A secure Zoom alternative for teams that can’t trust the cloud.';
+
+const whySelfHost = [
+  { icon: 'server', title: 'Your keys, your servers', body: 'Run the entire platform inside your own datacenter or private cloud. Media, recordings and documents never leave infrastructure you control.' },
+  { icon: 'globe', title: 'Data residency you decide', body: 'Pin every byte to a jurisdiction of your choosing. EU-hosted by default in Frankfurt, or on-premise anywhere — including fully air-gapped.' },
+  { icon: 'shield-check', title: 'Your compliance boundary', body: 'When the software runs on your estate, regulated data stays inside your existing controls, audits and DPAs. No third-party subprocessor to explain away.' },
+  { icon: 'eye-off', title: 'Server-blind either way', body: 'Content is encrypted in the browser before it ever hits the wire. Even on our hosted service, we only ever see ciphertext — never your calls, files or messages.' },
+];
+
+const features = [
+  { icon: 'video', title: 'Video meetings', href: '/features/video-meetings', body: 'Encrypted 4K calls with studio-grade audio and AI noise suppression. No download — join from any browser.' },
+  { icon: 'users', title: 'Webinars', href: '/features/webinars', body: 'Broadcast to large audiences with a tokenless public join, moderation and Q&A — all under the same encryption model.' },
+  { icon: 'play', title: 'Recordings', href: '/features/recordings', body: 'Capture meetings with encryption-gated recording, so playback stays restricted to the people you authorise.' },
+  { icon: 'file-lock', title: 'Deal rooms', href: '/features/deal-rooms', body: 'Confidential document rooms with live video — for M&A, diligence and board matters that can’t leak.' },
+  { icon: 'chat', title: 'Messaging', href: '/features/messaging', body: 'Server-blind team messaging with forward secrecy, built on the open IETF MLS standard (RFC 9420).' },
+];
+
+const verticals = [
+  { icon: 'pulse', title: 'Healthcare', href: '/use-cases/healthcare', body: 'Private telehealth and PHI that stays inside your compliance boundary.' },
+  { icon: 'scale', title: 'Legal', href: '/use-cases/legal', body: 'Privileged client conversations and secure document exchange.' },
+  { icon: 'building', title: 'Finance', href: '/use-cases/finance', body: 'Confidential advisory calls, deal rooms and board meetings.' },
+  { icon: 'landmark', title: 'Government', href: '/use-cases/government', body: 'Sovereign, on-premise or air-gapped deployments.' },
+];
+
+const faq = [
+  { q: 'Is Ollasync end-to-end encrypted?', a: 'Messaging is: it uses the open IETF MLS standard (RFC 9420), keys stay on participants’ devices, and the server only ever stores ciphertext — so we can’t read your messages. Video runs over a media relay (SFU) that you can self-host, encrypted in transit (TLS 1.3 / DTLS-SRTP), with an end-to-end encryption mode available. We describe exactly what is protected, and how, on our security page — no blanket claims.' },
+  { q: 'Can I self-host Ollasync?', a: 'Yes. The whole platform can run on your own servers, private cloud or an air-gapped network. When you self-host, meeting media, recordings and documents never leave infrastructure you control — the software becomes part of your existing compliance boundary.' },
+  { q: 'Where is my data stored?', a: 'On our managed service, data is hosted in the EU (Frankfurt). If you self-host, you choose the jurisdiction entirely — including a fully air-gapped network. Your messages stay end-to-end encrypted regardless, so location decides where the data lives, and self-hosting decides who operates the servers it lives on.' },
+  { q: 'Can Ollasync read my meetings or messages?', a: 'We can’t read your messages — they’re end-to-end encrypted and we hold no keys. For video on our hosted service, media passes through a relay in encrypted transit; if you self-host, that relay is yours, so meeting media never leaves your control. We never mine or sell your data, and we tell you plainly what the server can and can’t see.' },
+  { q: 'How is Ollasync different from Zoom?', a: 'Ollasync is fully self-hostable, EU-hosted, and built around server-blind encrypted messaging — for teams whose meetings and documents are too sensitive to sit on a US cloud they can’t inspect. See our detailed Zoom comparison for a feature-by-feature breakdown.' },
+  { q: 'Is Ollasync HIPAA or GDPR compliant?', a: 'Compliance is a property of your deployment, not a checkbox we sell. Ollasync gives you the technical controls a HIPAA or GDPR programme needs — encryption, EU or on-premise hosting, access control, audit logging and a data-processing agreement. When you self-host, regulated data stays inside your own audited environment. We hold no SOC 2 or ISO 27001 certification yet, and we say so.' },
+];
+
+const homeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE.name,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web browser, self-hosted (Linux)',
+  description: description,
+  featureList: [
+    'End-to-end encrypted video meetings',
+    'Encrypted webinars',
+    'Encryption-gated recordings',
+    'Confidential deal rooms',
+    'Server-blind messaging (IETF MLS / RFC 9420)',
+    'Self-hosting and EU data residency',
+  ],
+  url: SITE.url,
+};
+---
+<Base title={title} description={description} schema={homeSchema}>
+  <!-- HERO -->
+  <section class="section" style="padding-top:64px;padding-bottom:44px">
+    <div class="container hero">
+      <div class="hero__copy">
+        <span class="eyebrow" data-reveal><Icon name="lock" size={13} stroke="#cfc6ff" /> Encrypted · self-hostable · server-blind messaging</span>
+        <h1 class="display" data-reveal style="margin-top:22px">
+          Self-hosted, end-to-end encrypted <span class="gradient-text">video meetings &amp; deal rooms</span> for teams that can’t trust the cloud
+        </h1>
+        <p class="lead" data-reveal style="margin-top:22px;max-width:56ch">
+          Encrypted video, webinars, recording and confidential document rooms — running on infrastructure <em>you</em> control, or hosted for you in the EU. Messaging is end-to-end encrypted and server-blind; self-host the rest and your meetings never leave your walls.
+        </p>
+        <div class="hero__cta" data-reveal>
+          <a href="/contact" class="btn btn-primary">Book a demo <span class="arrow">→</span></a>
+          <a href="/self-hosted" class="btn btn-ghost">See self-hosting</a>
+        </div>
+        <ul class="hero__ticks" data-reveal>
+          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Server-blind encrypted messaging</li>
+          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>EU data residency (Frankfurt)</li>
+          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Self-host or on-premise</li>
+        </ul>
+      </div>
+      <div class="hero__art" data-reveal>
+        <CallMock />
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST MARQUEE -->
+  <div class="section-tight" style="padding-block:22px;border-block:1px solid var(--line)">
+    <div class="container marquee">
+      <div class="marquee__track">
+        {Array.from({ length: 2 }).map(() => (
+          <span>
+            <span class="chip"><Icon name="lock" size={14} stroke="#3ddc97" /> End-to-end encrypted</span>
+            <span class="chip"><Icon name="globe" size={14} stroke="#8f7bff" /> EU-hosted · Frankfurt</span>
+            <span class="chip"><Icon name="server" size={14} stroke="#8f7bff" /> Self-host ready</span>
+            <span class="chip"><Icon name="video" size={14} stroke="#3ddc97" /> Native 4K video</span>
+            <span class="chip"><Icon name="mic" size={14} stroke="#8f7bff" /> Opus 48 kHz · AI noise suppression</span>
+            <span class="chip"><Icon name="fingerprint" size={14} stroke="#3ddc97" /> IETF MLS · RFC 9420</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY SELF-HOST -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">The wedge</span>
+        <h2 class="h2" style="margin-top:12px">Built for the meetings you can’t put on someone else’s cloud</h2>
+        <p class="kicker" style="margin-top:14px">Most video tools ask you to trust a vendor with your most sensitive conversations. Ollasync is designed so you don’t have to — either the content is unreadable to us, or the whole system runs on hardware you own.</p>
+      </div>
+      <div class="grid grid-4" data-reveal>
+        {whySelfHost.map((c) => (
+          <div class="card card--hover">
+            <div class="card__icon"><Icon name={c.icon} size={20} /></div>
+            <h3 class="h3">{c.title}</h3>
+            <p>{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE OVERVIEW -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">One platform</span>
+        <h2 class="h2" style="margin-top:12px">Everything a meeting needs — under one encryption model</h2>
+      </div>
+      <div class="feature-rows" data-reveal>
+        {features.map((f) => (
+          <a href={f.href} class="feature-row card--hover card">
+            <div class="card__icon"><Icon name={f.icon} size={20} /></div>
+            <div>
+              <h3 class="h3" style="display:flex;align-items:center;gap:8px">{f.title} <span class="feature-row__arrow"><Icon name="arrow" size={16} /></span></h3>
+              <p style="margin-top:6px">{f.body}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY TEASER -->
+  <section class="section">
+    <div class="container sec-teaser">
+      <div data-reveal>
+        <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={13} stroke="#a9f2d1" /> Two ways your content stays yours</span>
+        <h2 class="h2" style="margin-top:18px">Either we can’t read it — or it never reaches us at all</h2>
+        <p class="lead" style="margin-top:16px;max-width:52ch">Ollasync is built on two guarantees. Messaging is end-to-end encrypted, so we hold no keys and see only ciphertext. And because the whole platform is self-hostable, you can keep meetings, recordings and documents entirely inside your own network.</p>
+        <div class="guarantees">
+          <div class="guarantee">
+            <div class="card__icon card__icon--teal"><Icon name="eye-off" size={20} /></div>
+            <div>
+              <h3 class="h3">Server-blind messaging</h3>
+              <p class="muted" style="font-size:14.5px;margin-top:4px">End-to-end encrypted with the open <strong>IETF MLS standard (RFC 9420)</strong> and forward secrecy. Keys stay on devices — <em>we can’t read your messages.</em></p>
+            </div>
+          </div>
+          <div class="guarantee">
+            <div class="card__icon"><Icon name="server" size={20} /></div>
+            <div>
+              <h3 class="h3">Self-host everything else</h3>
+              <p class="muted" style="font-size:14.5px;margin-top:4px">Run the media relay, storage and app on your own infrastructure. Meeting video and documents stay inside your trust boundary — never a third party’s.</p>
+            </div>
+          </div>
+        </div>
+        <a href="/security" class="btn btn-ghost" style="margin-top:26px">How the encryption really works <span class="arrow">→</span></a>
+      </div>
+      <div class="sec-teaser__viz panel" data-reveal aria-hidden="true">
+        <div class="viz-row"><span class="viz-node">You</span><span class="viz-flow mono">🔒 MLS</span><span class="viz-node viz-node--server">Delivery service</span><span class="viz-flow mono">🔒 MLS</span><span class="viz-node">Them</span></div>
+        <div class="viz-label mono">what the server stores for messaging</div>
+        <div class="viz-cipher mono">9f2a·c701·b83e·44da·10ff·e2b9·77c4·1a0d<br />5e6b·92af·d3c8·071e·bb45·2f9a·84d1·c6e0<br />a1d7·38fc·6b20·e94a·77b3·0c5e·d2f1·9a48</div>
+        <div class="viz-foot"><span class="badge-soft">ciphertext only</span><span class="mono" style="font-size:11px;color:var(--muted)">keys never leave your device</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERTICALS -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Who it’s for</span>
+        <h2 class="h2" style="margin-top:12px">For teams where a leaked meeting is a headline</h2>
+      </div>
+      <div class="grid grid-4" data-reveal>
+        {verticals.map((v) => (
+          <a href={v.href} class="card card--hover">
+            <div class="card__icon card__icon--teal"><Icon name={v.icon} size={20} /></div>
+            <h3 class="h3">{v.title}</h3>
+            <p>{v.body}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VS ZOOM TEASER -->
+  <section class="section">
+    <div class="container">
+      <div class="vs-teaser panel" data-reveal>
+        <div>
+          <span class="eyebrow-label">Switching from Zoom?</span>
+          <h2 class="h2" style="margin-top:12px;max-width:20ch">The encrypted, self-hostable Zoom alternative</h2>
+          <p class="lead" style="margin-top:14px;max-width:48ch">Same one-click, no-download meetings your team already expects — without handing your most sensitive calls to a cloud you can’t inspect.</p>
+          <a href="/vs/zoom" class="btn btn-primary" style="margin-top:22px">Compare Ollasync vs Zoom <span class="arrow">→</span></a>
+        </div>
+        <ul class="vs-teaser__list">
+          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>End-to-end encrypted by default</li>
+          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Self-host or EU-hosted</li>
+          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Server-blind — no vendor access to content</li>
+          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>No app install for guests</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FROM THE BLOG -->
+  {latestPosts.length > 0 && (
+    <section class="section" style="padding-top:20px">
+      <div class="container">
+        <div class="section-head" data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none;gap:20px">
+          <div>
+            <span class="eyebrow-label">Resources</span>
+            <h2 class="h2" style="margin-top:12px">From the blog</h2>
+          </div>
+          <a href="/blog" class="btn btn-ghost btn-sm" style="white-space:nowrap">All articles <span class="arrow">→</span></a>
+        </div>
+        <div class="blog-teaser" data-reveal>
+          {latestPosts.map((p) => (
+            <a href={`/blog/${p.slug}`} class="card card--hover bt-card">
+              <div class="bt-media"><img src={p.data.cover || '/og-ollasync.png'} alt={p.data.title} width="380" height="200" loading="lazy" /></div>
+              <div class="bt-body">
+                <span class="chip" style="font-size:11px">{p.data.category}</span>
+                <h3 style="font-size:16.5px;font-weight:600;margin-top:10px">{p.data.title}</h3>
+                <div class="mono" style="font-size:12px;color:var(--muted-2);margin-top:10px">{fmtDate(p.data.pubDate)} · {p.data.readTime} min</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Faq items={faq} />
+  <Cta />
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; }
+  .hero__cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero__ticks { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px 24px; list-style: none; }
+
+  .feature-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .feature-row { display: flex; gap: 16px; align-items: flex-start; }
+  .feature-row .card__icon { margin-bottom: 0; flex: none; }
+  .feature-row__arrow { color: var(--muted); opacity: 0; transform: translateX(-4px); transition: all var(--dur) ease; }
+  .feature-row:hover .feature-row__arrow { opacity: 1; transform: none; color: var(--iris); }
+
+  .sec-teaser { display: grid; grid-template-columns: 1fr .9fr; gap: 48px; align-items: center; }
+  .guarantees { display: grid; gap: 16px; margin-top: 24px; }
+  .guarantee { display: flex; gap: 15px; align-items: flex-start; }
+  .guarantee .card__icon { margin-bottom: 0; flex: none; }
+  .guarantee h3 { font-size: 17px; }
+  .sec-teaser__viz { padding: 26px; }
+  .viz-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .viz-node { font-size: 13px; padding: 8px 12px; border-radius: 9px; border: 1px solid var(--line-2); background: rgba(255,255,255,.03); color: var(--ink); }
+  .viz-node--server { border-color: rgba(255,120,120,.35); color: #ffb4b4; background: rgba(255,80,80,.06); }
+  .viz-flow { font-size: 11px; color: var(--teal); }
+  .viz-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2); margin: 20px 0 8px; }
+  .viz-cipher { font-size: 12px; line-height: 1.9; color: #6a7180; word-break: break-all; background: rgba(0,0,0,.3); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .viz-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 16px; }
+
+  .vs-teaser { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); }
+  .vs-teaser__list { list-style: none; display: grid; gap: 14px; }
+  .vs-teaser__list li { display: flex; gap: 11px; align-items: center; color: var(--ink-2); font-size: 15px; }
+  .vs-teaser__list .tick { display: grid; place-items: center; width: 19px; height: 19px; border-radius: 50%; background: var(--teal-150); flex: none; }
+
+  .blog-teaser { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .bt-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .bt-media img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid var(--line); }
+  .bt-body { padding: 18px; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; }
+    .feature-rows { grid-template-columns: 1fr; }
+    .sec-teaser, .vs-teaser { grid-template-columns: 1fr; gap: 32px; }
+    .blog-teaser { grid-template-columns: 1fr; }
+  }
+</style>

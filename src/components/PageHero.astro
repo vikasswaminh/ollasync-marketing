@@ -1,0 +1,30 @@
+---
+import Breadcrumb from './Breadcrumb.astro';
+import Icon from './Icon.astro';
+interface Props {
+  eyebrow?: string;
+  eyebrowIcon?: string;
+  title: string;
+  titleAccent?: string;
+  lead?: string;
+  crumbs?: { label: string; href?: string }[];
+  align?: 'left' | 'center';
+}
+const { eyebrow, eyebrowIcon, title, titleAccent, lead, crumbs, align = 'left' } = Astro.props;
+---
+<section class="section" style="padding-top:40px;padding-bottom:20px">
+  <div class="container" style={align === 'center' ? 'max-width:820px;text-align:center' : ''}>
+    {crumbs && <div style={align === 'center' ? 'display:flex;justify-content:center;margin-bottom:20px' : 'margin-bottom:20px'}><Breadcrumb items={crumbs} /></div>}
+    {eyebrow && (
+      <span class="eyebrow" data-reveal>
+        {eyebrowIcon && <Icon name={eyebrowIcon} size={13} stroke="#cfc6ff" />}
+        {eyebrow}
+      </span>
+    )}
+    <h1 class="display" data-reveal style="margin-top:18px;font-size:clamp(34px,5vw,52px)">
+      {title}{titleAccent && <> <span class="gradient-text">{titleAccent}</span></>}
+    </h1>
+    {lead && <p class="lead" data-reveal style={`margin-top:20px;max-width:60ch${align === 'center' ? ';margin-inline:auto' : ''}`}>{lead}</p>}
+    <slot />
+  </div>
+</section>

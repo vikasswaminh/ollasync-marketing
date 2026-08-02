@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { FEATURES } from '../../data/features';
+
+export function getStaticPaths() {
+  return FEATURES.map((f) => ({ params: { slug: f.slug }, props: { f } }));
+}
+const { f } = Astro.props;
+const others = FEATURES.filter((x) => x.slug !== f.slug);
+---
+<Base title={f.metaTitle} description={f.metaDescription}>
+  <PageHero
+    eyebrow={f.eyebrow}
+    eyebrowIcon={f.icon}
+    crumbs={[{ label: 'Features', href: '/features' }, { label: f.label }]}
+    title={f.title}
+    titleAccent={f.titleAccent}
+    lead={f.lead}
+  >
+    <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
+      <a href="/contact" class="btn btn-primary">Book a demo <span class="arrow">→</span></a>
+      <a href="/security" class="btn btn-ghost">How it’s secured</a>
+    </div>
+  </PageHero>
+
+  <!-- CAPABILITIES -->
+  <section class="section" style="padding-top:34px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Capabilities</span>
+        <h2 class="h2" style="margin-top:12px">What you get</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        {f.capabilities.map((c) => (
+          <div class="card card--hover">
+            <div class="card__icon"><Icon name={c.icon} size={20} /></div>
+            <h3 class="h3">{c.title}</h3>
+            <p>{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY NOTE -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="secnote panel" data-reveal>
+        <div class="card__icon card__icon--teal" style="margin-bottom:0"><Icon name="shield-check" size={22} /></div>
+        <div>
+          <span class="eyebrow-label">How it’s secured</span>
+          <p class="lead" style="margin-top:10px;max-width:70ch">{f.securityNote}</p>
+          <a href="/security" class="btn btn-ghost" style="margin-top:18px">Read the full security model <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={f.faq} title={`${f.label} — questions`} />
+
+  <!-- EXPLORE MORE -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal><h2 class="h3">Explore the rest of the platform</h2></div>
+      <div class="explore" data-reveal>
+        {others.map((o) => (
+          <a href={`/features/${o.slug}`} class="chip explore__chip"><Icon name={o.icon} size={15} /> {o.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+
+<style>
+  .secnote { display: flex; gap: 20px; align-items: flex-start; padding: clamp(24px,3vw,36px); }
+  .secnote .card__icon { flex: none; }
+  .explore { display: flex; flex-wrap: wrap; gap: 12px; }
+  .explore__chip { padding: 10px 16px; font-size: 14px; }
+  .explore__chip:hover { border-color: var(--violet-300); color: var(--ink); }
+  @media (max-width: 640px) { .secnote { flex-direction: column; } }
+</style>

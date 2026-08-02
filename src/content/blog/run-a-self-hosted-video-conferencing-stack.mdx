@@ -1,0 +1,125 @@
+---
+title: "How to run a self-hosted video conferencing stack: a practical guide"
+description: "A practical, high-level guide to standing up a self-hosted, encrypted video conferencing stack: components, prerequisites, deployment steps and scaling."
+pubDate: 2026-06-09
+category: "Guides"
+cover: "/blog-cover-self-host.png"
+pillarSlug: "self-hosted-video-conferencing"
+readTime: 10
+author: "The Ollasync team"
+authorRole: "Security & product"
+takeaways:
+  - "A self-hosted video stack is a handful of generic components — application/API, media relay (SFU), object storage, identity/SSO and a SQL database — on standard Linux hosts."
+  - "The prerequisites are modest: Linux hosts with a container runtime, TLS certificates for your domain, and either an OIDC identity provider or built-in accounts."
+  - "Deployment is a repeatable shape: run the containers, wire them on a private network, terminate TLS at the edge, point DNS, and bring your own SSO."
+  - "Start small — a few CPU cores — and scale the relay horizontally by concurrency; fully air-gapped, offline-update operation is supported."
+keywords: ["self-hosted video conferencing setup", "how to self-host video conferencing", "on-premise video conferencing guide", "self-host video meetings"]
+---
+
+Self-hosting a real-time video platform used to mean a rack of specialist hardware and a full-time team to keep it alive. That reputation is out of date. A modern encrypted video-conferencing stack is a small set of containers running on ordinary Linux hosts — the same shape you'd deploy any web application in.
+
+This guide walks through what those components are, what you need before you start, the shape of the deployment, and how to think about scaling and air-gapped operation. It stays deliberately high-level and vendor-neutral: the exact images, sizes and tuning belong in a deployment guide tailored to your environment, and we'll point you there at the end. What follows is the mental model you need to plan the work.
+
+## The components you'll run
+
+A real-time meeting platform decomposes into five generic building blocks. Everything below runs as a container on infrastructure you control, and — importantly — none of it needs to call out to a service someone else operates.
+
+| Component | What it does | Rough footprint |
+| --- | --- | --- |
+| **Application / API** | Rooms, meetings, recordings orchestration, documents, tokens, and the messaging delivery service. This is the brain of the system. | Small; scales with users, not media |
+| **Media relay (SFU)** | Forwards live audio and video between participants over WebRTC. The one component whose load tracks concurrent streams. | CPU-bound; the piece you scale out |
+| **Object storage** | Holds recordings and document blobs on storage you own, addressed over an S3-compatible API. | Grows with retained content |
+| **Identity / SSO** | Sign-in. Either an OIDC identity provider you already run, or built-in local accounts. | Tiny, or reuse existing |
+| **Database** | Durable state — accounts, rooms, metadata, message routing state. A standard SQL database. | Small to moderate |
+
+The key insight is that only the **media relay** is genuinely real-time and CPU-hungry. The application, database and identity services behave like any other web workload. That's what makes the whole thing tractable on modest infrastructure.
+
+## Prerequisites
+
+Before you deploy anything, get these four things in place. None of them is exotic.
+
+- **Standard Linux hosts with a container runtime.** One host is enough to prove the workflow; production separates the media relay from the application tier so you can scale them independently. A current long-term-support Linux distribution with any mainstream container runtime is fine.
+- **TLS certificates for your domain.** Every browser-facing endpoint must be served over TLS 1.3. Certificates from a public certificate authority work; for internal-only or air-gapped deployments, your own internal CA works just as well. You'll need a certificate for the application hostname and, typically, one for the media endpoint.
+- **An identity source.** Decide up front whether users sign in through your existing **OIDC** identity provider (single sign-on into your own directory) or through built-in local accounts. Bringing your own SSO is the common enterprise choice and keeps account lifecycle inside systems you already govern.
+- **DNS you control.** You'll publish a small number of records pointing your chosen hostnames at the public (or internal) address where TLS terminates.
+
+<div class="callout">
+Rule of thumb: if you can run a containerised web application with a database behind a reverse proxy today, you already have the operational muscle to run this. The media relay is the only genuinely new concept, and it behaves predictably once you understand it scales with concurrent streams.
+</div>
+
+## The shape of the deployment
+
+Every self-hosted deployment follows the same five moves, regardless of scale. The specifics differ; the shape doesn't.
+
+1. **Deploy the containers.** Bring up the application/API, the media relay, object storage (or point at an existing S3-compatible store), the database, and — if you're not reusing an external one — the identity service.
+2. **Wire them on a private network.** The application, database, storage and identity services talk to each other over an internal network that is **not** exposed to the internet. Only two things face the outside world: the application's HTTPS endpoint and the media relay's WebRTC ports.
+3. **Terminate TLS at the edge.** A reverse proxy in front of the application handles TLS 1.3 termination and routes traffic inward. The media relay negotiates its own encrypted transport (DTLS-SRTP) directly with browsers.
+4. **Point DNS.** Publish the records for your application and media hostnames so browsers resolve them to your edge.
+5. **Bring your own SSO.** Register the platform as a client in your OIDC provider (or configure local accounts), and users sign in through the directory you already run.
+
+A minimal illustrative configuration — with **generic placeholders only** — captures the topology. Treat this as a sketch of the relationships, not a copy-paste deployment:
+
+```yaml
+# Illustrative only — placeholders, not real images or vendors.
+services:
+  app:                     # application / API
+    networks: [private, edge]
+    environment:
+      DATABASE_URL: "<your-sql-database-url>"     # a SQL database
+      STORAGE_ENDPOINT: "http://storage.internal" # S3-compatible object storage
+      OIDC_ISSUER: "https://sso.example.internal" # your identity provider
+    # TLS is terminated by the edge proxy in front of this service
+
+  sfu:                     # media relay (SFU) — scale this tier out
+    networks: [edge]
+    # exposes WebRTC/UDP; negotiates DTLS-SRTP directly with browsers
+
+  db:                      # SQL database — private network only
+    networks: [private]
+
+  storage:                 # object storage — private network only
+    networks: [private]
+
+networks:
+  private:                 # internal: app <-> db <-> storage <-> identity
+    internal: true
+  edge:                    # only app (HTTPS) and sfu (WebRTC) face outward
+```
+
+Notice what the browser actually touches: the application over HTTPS, and the media relay over WebRTC. Everything else lives on the private network, unreachable from outside. That containment is a big part of why self-hosting tightens your security boundary — there's simply less exposed surface, and no default egress to a vendor.
+
+## How encryption fits into the picture
+
+Standing up the stack and encrypting it are two different jobs, and it's worth being precise about what each layer protects when you self-host:
+
+- **Meeting media** is encrypted in transit with DTLS-SRTP between each browser and the relay. Because the relay is *yours*, the media never reaches an outside operator in the first place. (A per-frame end-to-end encryption mode exists for keeping even the relay blind; it is a deliberate mode, not the default.)
+- **Messaging** is end-to-end encrypted and server-blind by default, built on the [IETF MLS standard (RFC 9420)](/security) via an independently audited open-source library — the operator holds no keys.
+- **Recordings and documents** are encrypted in transit and access-controlled, stored on object storage you own.
+
+Our [security page](/security) sets out exactly what each path does and doesn't protect, without blanket claims.
+
+## Scaling notes
+
+The scaling story is refreshingly simple because the load is concentrated in one place.
+
+- **Start small.** A few CPU cores comfortably run the application, database and a modest media relay for early, real-world testing. You do not need a cluster to begin.
+- **Scale the relay horizontally.** As concurrent participants grow, the media relay is the tier that feels it first, because its work is proportional to the number of live streams it forwards. Add relay instances and distribute rooms across them by **concurrency** — each new instance absorbs more simultaneous streams. The application and database tiers rarely need the same aggressive scaling.
+- **Right-size storage to retention.** Object storage grows with how much recorded content and how many documents you keep. Plan capacity against your retention policy, not your peak concurrency.
+
+Because only the relay scales with meeting load, capacity planning comes down to one honest question: *how many concurrent streams do you need to serve?*
+
+## Air-gapped and offline updates
+
+The most sensitive environments can't reach the public internet at all, and this architecture is designed for that.
+
+- **No phone-home.** Every component talks only to the others you run. There's no telemetry back-channel or licence check that requires outbound connectivity, so the stack functions fully disconnected.
+- **Offline updates.** In an air-gapped deployment you update the way you'd update any regulated system: pull new container images and artefacts into an internal registry through your controlled transfer process, then roll them out from inside the boundary. Nothing needs to reach out to fetch an update mid-flight.
+- **Internal certificates and identity.** With an internal CA for TLS and your own OIDC provider, the entire trust chain — encryption and sign-in alike — stays inside the air gap.
+
+## Where to go from here
+
+This is the map, not the turn-by-turn directions — and deliberately so. The exact images, resource sizing, network ACLs, storage classes and relay tuning depend on your environment, your scale and your compliance obligations, and those belong in a deployment guide written against your specifics rather than a blog post that would only go stale.
+
+If you're planning a rollout, the fastest path is to talk it through: [contact us](/contact) for the detailed self-hosting documentation and reference sizing for your target concurrency and residency requirements.
+
+For the bigger picture of why teams take this route in the first place, read the pillar guide to [self-hosted video conferencing](/blog/self-hosted-video-conferencing), see what deploying inside your own boundary buys you on the [self-hosted](/self-hosted) page, and check exactly what each encryption layer protects on our [security](/security) page.

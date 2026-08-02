@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../consts';
+
+const title = 'Docs & getting started';
+const description =
+  'Get started with Ollasync — start an encrypted meeting in one click on our hosted service, or talk to us about a self-hosted deployment.';
+
+const paths = [
+  { icon: 'zap', title: 'Start hosted', body: 'Create an account on our EU-hosted service and start an encrypted meeting or deal room in one click — no download.', cta: { label: 'Open the app', href: SITE.appUrl } },
+  { icon: 'server', title: 'Self-host', body: 'Run Ollasync on your own infrastructure — private cloud, on-premise or air-gapped. We’ll share the deployment guide and size it with you.', cta: { label: 'Talk to us', href: '/contact' } },
+  { icon: 'shield-check', title: 'Security & DPA', body: 'For security reviews: the whitepaper describes exactly what’s protected and how, and a DPA is available for your legal team.', cta: { label: 'Security model', href: '/security' } },
+];
+
+const quickstart = [
+  'Open the app and create your workspace with email, a magic link or SSO.',
+  'Start a meeting or a deal room — invite people by link or email.',
+  'Guests join from any browser, no download; hosts approve who comes in.',
+  'Turn on messaging for end-to-end encrypted, server-blind conversations.',
+  'When you’re ready, move to single-tenant or self-hosted — the experience is identical.',
+];
+---
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Docs"
+    eyebrowIcon="doc"
+    crumbs={[{ label: 'Docs' }]}
+    title="Get started in"
+    titleAccent="a few minutes"
+    lead="However you deploy, the product works the same. Pick your path below, or follow the quickstart."
+  />
+
+  <section class="section" style="padding-top:28px">
+    <div class="container">
+      <div class="grid grid-3" data-reveal>
+        {paths.map((p) => (
+          <div class="card card--hover" style="display:flex;flex-direction:column">
+            <div class="card__icon"><Icon name={p.icon} size={20} /></div>
+            <h2 class="h3">{p.title}</h2>
+            <p style="flex:1">{p.body}</p>
+            <a href={p.cta.href} class="btn btn-ghost btn-sm" style="align-self:flex-start;margin-top:16px">{p.cta.label} <span class="arrow">→</span></a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="container" style="max-width:760px">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Quickstart</span>
+        <h2 class="h2" style="margin-top:12px">Your first encrypted meeting</h2>
+      </div>
+      <ol class="quickstart" data-reveal>
+        {quickstart.map((q, i) => (
+          <li><span class="quickstart__n mono">{i + 1}</span><span>{q}</span></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .quickstart { list-style: none; display: grid; gap: 14px; counter-reset: q; }
+  .quickstart li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--r); background: rgba(255,255,255,.02); color: var(--ink-2); font-size: 15.5px; }
+  .quickstart__n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--violet-050); border: 1px solid var(--violet-300); color: #cfc6ff; font-size: 13px; flex: none; }
+</style>

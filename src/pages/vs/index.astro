@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Cta from '../../components/Cta.astro';
+import { COMPETITORS } from '../../data/vs';
+
+const title = 'Ollasync vs Zoom, Teams, Meet & Webex';
+const description =
+  'How Ollasync compares to Zoom, Microsoft Teams, Google Meet and Cisco Webex on encryption, self-hosting, data residency and confidential deal rooms — a fair, honest breakdown.';
+---
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Comparisons"
+    eyebrowIcon="layers"
+    crumbs={[{ label: 'Compare' }]}
+    title="The secure, self-hostable"
+    titleAccent="alternative"
+    lead="We compare fairly — the big platforms are fast and capable, and we say where they’re strong. But if you need to control where your meetings run and who can reach the data, here’s how Ollasync stacks up."
+  />
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <div class="grid grid-2" data-reveal>
+        {COMPETITORS.map((c) => (
+          <a href={`/vs/${c.slug}`} class="card card--hover uc-card">
+            <h2 class="h3">Ollasync vs {c.name}</h2>
+            <p>{c.intro.split('.')[0]}.</p>
+            <span class="uc-more mono">See the comparison <Icon name="arrow" size={15} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .uc-card { display: flex; flex-direction: column; }
+  .uc-card p { flex: 1; color: var(--muted); }
+  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-size: 13px; color: var(--iris); }
+</style>

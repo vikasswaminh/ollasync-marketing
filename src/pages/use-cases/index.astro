@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Cta from '../../components/Cta.astro';
+import { USE_CASES } from '../../data/useCases';
+
+const title = 'Use cases — encrypted video for regulated industries';
+const description =
+  'How healthcare, legal, finance and government teams use Ollasync for encrypted, self-hostable video meetings, messaging and confidential deal rooms.';
+---
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Regulated industries"
+    eyebrowIcon="shield"
+    crumbs={[{ label: 'Use cases' }]}
+    title="Built for teams where a leaked meeting is"
+    titleAccent="a headline"
+    lead="The same platform, tuned to the confidentiality and sovereignty demands of the industries that feel them most."
+  />
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <div class="grid grid-2" data-reveal>
+        {USE_CASES.map((u) => (
+          <a href={`/use-cases/${u.slug}`} class="card card--hover uc-card">
+            <div class="card__icon card__icon--teal"><Icon name={u.icon} size={22} /></div>
+            <h2 class="h3">{u.label}</h2>
+            <p>{u.lead}</p>
+            <span class="uc-more mono">Explore {u.label.toLowerCase()} <Icon name="arrow" size={15} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .uc-card { display: flex; flex-direction: column; }
+  .uc-card p { flex: 1; }
+  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-size: 13px; color: var(--iris); }
+</style>

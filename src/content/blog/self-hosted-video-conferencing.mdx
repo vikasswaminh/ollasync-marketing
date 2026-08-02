@@ -1,0 +1,99 @@
+---
+title: "Self-hosted video conferencing: the complete guide"
+description: "Why teams self-host video conferencing, what it actually takes, and how to keep meetings, recordings and documents inside your own trust boundary — without giving up a modern experience."
+pubDate: 2026-07-28
+category: "Self-hosting"
+cover: "/blog-cover-self-host.png"
+pillar: true
+readTime: 11
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["self-hosted video conferencing", "on-premise video conferencing", "self-hosted zoom alternative", "self-host video meetings"]
+takeaways:
+  - "Self-hosting means meetings, recordings and documents stay on infrastructure you operate — not a vendor's cloud."
+  - "The real driver is control: data residency, your own compliance boundary, and no third-party operator in the path."
+  - "A modern self-hosted stack is a handful of components — app, media relay, storage, identity — on standard Linux."
+  - "You don't have to trade experience for control: browser-based, no-download meetings work self-hosted too."
+---
+
+Most video conferencing runs on someone else's cloud. For the majority of calls, that's fine. But for a growing set of teams — in healthcare, law, finance and government — "someone else's cloud" is exactly the problem. When a meeting carries protected health information, privileged advice, material non-public information or state secrets, the question stops being *is it encrypted?* and becomes *whose servers is it running on, and which laws reach them?*
+
+This guide walks through what self-hosted video conferencing actually is, why teams choose it, what it takes to run, and how to get there without giving up the one-click experience everyone now expects.
+
+## What "self-hosted" really means
+
+Self-hosted video conferencing means the software runs on infrastructure **you** control — your private cloud, your datacenter, or an isolated network — instead of a vendor's multi-tenant cloud. The practical consequence is simple: the media, the recordings and the documents never leave your walls.
+
+That's different from three things it's often confused with:
+
+- **Cloud with data residency options.** Choosing a region on a vendor's cloud controls *where* data sits, but the vendor still operates the servers and is still in the trust path.
+- **End-to-end encryption alone.** E2EE controls *who can read* content. It's essential, but it doesn't change who runs the infrastructure or which jurisdiction it's in.
+- **On-premise as a legacy afterthought.** Several incumbents technically offer an on-premise product, but it's a deprecated path bolted onto a cloud-first platform. Self-hosted-first is a different design center.
+
+Self-hosting combines all three concerns — residency, encryption and operation — into one answer: *you run it.*
+
+## Why teams self-host
+
+<div class="callout">
+The common thread: when the cost of a leaked meeting is a regulatory finding or a front-page story, "trust us" isn't an acceptable security model.
+</div>
+
+### 1. Data sovereignty and jurisdiction
+
+If your data sits on a US-operated cloud, it can be subject to foreign legal process regardless of where the datacenter is — a concern many European organisations raise about statutes like the US CLOUD Act. Running the platform on national or in-house infrastructure keeps data under your own jurisdiction. See our [government use case](/use-cases/government) for how this plays out in the public sector.
+
+### 2. Your compliance boundary
+
+Auditors care about scope. Every external service that touches regulated data is another subprocessor to document, assess and defend. When the software runs on your own estate, the data stays inside the controls you've *already* certified — there's nothing new to add to the audit. That's the core of our [self-hosted](/self-hosted) pitch.
+
+### 3. No operator in the path
+
+Self-hosting removes the vendor from the data path entirely. There's no default egress, no telemetry back-channel required, and — critically — no third party who *could* be compelled to hand over data they don't hold.
+
+### 4. Air-gapped operation
+
+The most sensitive environments can't rely on any internet-connected SaaS. A self-hostable platform that runs fully air-gapped is often the only option that clears the bar.
+
+## What a modern self-hosted stack looks like
+
+A common myth is that self-hosting means racks of exotic infrastructure. In practice, a modern real-time platform is a small set of components running on standard Linux:
+
+| Component | What it does |
+| --- | --- |
+| **Application & API** | Rooms, meetings, documents, tokens and the messaging delivery service. |
+| **Media relay (SFU)** | Forwards live audio and video between participants. |
+| **Object storage** | Holds recordings and document blobs on storage you control. |
+| **Identity & SSO** | Sign-in and single sign-on into your own directory (OIDC). |
+| **Database** | Durable state — accounts, rooms, metadata. |
+
+Everything speaks only to the other components you run. There's no dependency on a service the vendor operates, which is what makes air-gapped deployment possible.
+
+## The experience trade-off (there isn't one)
+
+The historical knock on self-hosted tools was that they felt worse: heavy desktop clients, clunky admin, dated UX. That's no longer necessary. A browser-first platform gives guests a **no-download, one-click** join whether it's running on a public cloud or inside your firewall. Native 4K video, full-band audio and AI noise suppression don't depend on where the servers live — they depend on the codec and the client. You can have control *and* a modern experience.
+
+## How encryption fits
+
+Self-hosting and end-to-end encryption solve different halves of the same problem, and they compose well:
+
+- **Messaging** can be end-to-end encrypted and *server-blind* — built on the open [IETF MLS standard (RFC 9420)](/security) — so even the operator can't read it.
+- **Meeting media** is encrypted in transit to the relay. When you self-host, that relay is *yours*, so the media never reaches a third party in the first place.
+- **Documents** are encrypted in transit and access-controlled; self-hosting keeps them on your storage.
+
+We describe exactly what each path protects, and what it doesn't, on our [security page](/security) — no blanket claims.
+
+## Getting started without a big-bang migration
+
+You don't have to flip everything at once. A sensible path:
+
+1. **Start hosted** on an EU service to prove the workflow with real users.
+2. **Move sensitive teams to single-tenant** — a dedicated, isolated instance in your chosen region.
+3. **Bring it fully on-premise** for the workloads that require it, up to and including air-gapped.
+
+Because the product experience is identical across all three, users don't feel the change; only the deployment boundary moves.
+
+## The bottom line
+
+Self-hosted video conferencing isn't about nostalgia for on-premise software. It's about drawing your trust boundary where your risk actually lives. If your meetings are sensitive enough that *where they run* matters, self-hosting lets you keep control without giving up a modern, encrypted experience.
+
+Ready to see it on your own infrastructure? [Talk to us about self-hosting](/self-hosted), or read how it compares to the [cloud incumbents](/vs/zoom).

@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { USE_CASES } from '../../data/useCases';
+
+export function getStaticPaths() {
+  return USE_CASES.map((u) => ({ params: { slug: u.slug }, props: { uc: u } }));
+}
+const { uc } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Ollasync for ${uc.label}`,
+  serviceType: 'Encrypted video conferencing and collaboration',
+  description: uc.metaDescription,
+  provider: { '@type': 'Organization', name: 'Ollasync' },
+  areaServed: uc.label,
+};
+---
+<Base title={uc.metaTitle} description={uc.metaDescription} schema={schema}>
+  <PageHero
+    eyebrow={uc.eyebrow}
+    eyebrowIcon={uc.icon}
+    crumbs={[{ label: 'Use cases', href: '/use-cases' }, { label: uc.label }]}
+    title={uc.title}
+    titleAccent={uc.titleAccent}
+    lead={uc.lead}
+  >
+    <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
+      <a href="/contact" class="btn btn-primary">Book a demo <span class="arrow">→</span></a>
+      <a href="/self-hosted" class="btn btn-ghost">See self-hosting</a>
+    </div>
+  </PageHero>
+
+  <!-- PAINS -->
+  <section class="section" style="padding-top:34px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">The problem</span>
+        <h2 class="h2" style="margin-top:12px">Why the usual tools don’t fit</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        {uc.pains.map((p) => (
+          <div class="card pain">
+            <h3 class="h3">{p.title}</h3>
+            <p>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HELPS -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">How Ollasync helps</span>
+        <h2 class="h2" style="margin-top:12px">Confidentiality that fits your workflow</h2>
+      </div>
+      <div class="grid grid-2" data-reveal>
+        {uc.helps.map((h) => (
+          <div class="card feature-row card--hover">
+            <div class="card__icon"><Icon name={h.icon} size={20} /></div>
+            <div>
+              <h3 class="h3">{h.title}</h3>
+              <p style="margin-top:6px">{h.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENARIO -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="scenario panel" data-reveal>
+        <span class="badge-soft">In practice</span>
+        <h2 class="h3" style="margin-top:14px;max-width:26ch">{uc.scenario.title}</h2>
+        <p class="lead" style="margin-top:12px;max-width:70ch">{uc.scenario.body}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="boundary panel" data-reveal>
+        <div>
+          <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={13} stroke="#a9f2d1" /> Compliance posture</span>
+          <h2 class="h2" style="margin-top:16px;max-width:18ch">{uc.complianceTitle}</h2>
+          <p class="lead" style="margin-top:14px;max-width:50ch">We give you controls, not a badge we don’t hold — and self-hosting keeps regulated data inside your own boundary.</p>
+          <a href="/compliance" class="btn btn-ghost" style="margin-top:22px">Full compliance posture <span class="arrow">→</span></a>
+        </div>
+        <ul class="check-list boundary__list">
+          {uc.compliance.map((c) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={uc.faq} title={`${uc.label} — common questions`} />
+  <Cta
+    title={`Bring ${uc.label.toLowerCase()} conversations in-house.`}
+    sub="See it on your own infrastructure. Tell us your environment and requirements, and we’ll size a proof of concept with you."
+    primary={{ label: 'Book a demo', href: '/contact' }}
+    secondary={{ label: 'See self-hosting', href: '/self-hosted' }}
+  />
+</Base>
+
+<style>
+  .pain h3 { font-size: 17px; }
+  .pain p { margin-top: 8px; }
+  .scenario { padding: clamp(26px,4vw,40px); }
+  .boundary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); }
+  .boundary__list { gap: 14px; }
+  @media (max-width: 900px) { .boundary { grid-template-columns: 1fr; gap: 28px; } }
+</style>

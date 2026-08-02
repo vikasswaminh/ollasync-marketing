@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Cta from '../components/Cta.astro';
+
+const title = 'About Ollasync';
+const description =
+  'Ollasync builds encrypted, self-hostable video meetings and deal rooms for teams that can’t trust the cloud — with radical honesty about what our security does and doesn’t do.';
+
+const principles = [
+  { icon: 'eye-off', title: 'Server-blind where it counts', body: 'The server should be structurally unable to read what it doesn’t need to. Messaging is end-to-end encrypted and we hold no keys.' },
+  { icon: 'server', title: 'Your data, your walls', body: 'The most sensitive conversations shouldn’t live on infrastructure you can’t inspect. Everything is self-hostable — up to fully air-gapped.' },
+  { icon: 'fingerprint', title: 'Radical honesty', body: 'We publish exactly what is protected, what isn’t yet, and what we don’t hold. A serious buyer rewards a vendor who draws the line clearly.' },
+  { icon: 'layers', title: 'Open standards', body: 'We build on published, audited cryptography — IETF MLS (RFC 9420) — not a proprietary black box you have to take on faith.' },
+];
+---
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="About"
+    eyebrowIcon="spark"
+    crumbs={[{ label: 'About' }]}
+    title="Software for teams that"
+    titleAccent="can’t trust the cloud"
+    lead="Most video tools ask you to hand your most sensitive conversations to a vendor and hope for the best. We started Ollasync because some teams simply can’t — and shouldn’t have to."
+  />
+
+  <section class="section" style="padding-top:28px">
+    <div class="container" style="max-width:760px">
+      <div class="prose" data-reveal style="font-size:17px;line-height:1.7">
+        <p>Healthcare teams, law firms, banks and public bodies all share a problem: the tools everyone uses for meetings put their most confidential conversations on infrastructure they don’t control, in jurisdictions they didn’t choose, operated by companies they can’t audit.</p>
+        <p>Ollasync is our answer. It’s an encrypted platform for meetings, webinars, recordings, messaging and confidential deal rooms — designed from the start to be <strong>server-blind where it matters</strong> and <strong>self-hostable everywhere else</strong>. Either we can’t read your content, or it never reaches us at all.</p>
+        <p>We’re just as committed to being honest about the limits. Our security page and whitepaper describe precisely what each part of the product protects, what’s encrypted end-to-end and what’s encrypted in transit, and which certifications we don’t yet hold. We’d rather tell you than let a badge imply something untrue.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">What we believe</span>
+        <h2 class="h2" style="margin-top:12px">The principles behind the product</h2>
+      </div>
+      <div class="grid grid-4" data-reveal>
+        {principles.map((p) => (
+          <div class="card card--hover">
+            <div class="card__icon"><Icon name={p.icon} size={20} /></div>
+            <h3 class="h3">{p.title}</h3>
+            <p>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

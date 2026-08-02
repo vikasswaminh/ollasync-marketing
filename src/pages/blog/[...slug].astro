@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+  return posts.map((post) => {
+    // related: same pillar cluster first, then same category
+    const related = posts
+      .filter((p) => p.slug !== post.slug)
+      .map((p) => {
+        let score = 0;
+        if (post.data.pillarSlug && (p.slug === post.data.pillarSlug || p.data.pillarSlug === post.data.pillarSlug)) score += 3;
+        if (p.data.category === post.data.category) score += 1;
+        return { p, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3)
+      .map((x) => x.p);
+    return { params: { slug: post.slug }, props: { post, related } };
+  });
+}
+
+const { post, related } = Astro.props;
+const { Content, headings } = await post.render();
+---
+<BlogPost post={post} headings={headings} related={related}>
+  <Content />
+</BlogPost>

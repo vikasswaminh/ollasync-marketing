@@ -1,0 +1,120 @@
+---
+title: "HIPAA-compliant video conferencing: what it actually takes"
+description: "There's no such thing as HIPAA-certified software. Here's what HIPAA really requires of telehealth video — safeguards, access control, audit trails, a BAA — and how self-hosting keeps PHI inside your boundary."
+pubDate: 2026-07-22
+category: "Compliance"
+cover: "/blog-cover-eu-residency.png"
+pillar: true
+readTime: 11
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["HIPAA compliant video conferencing", "HIPAA video calls", "telehealth video security", "HIPAA video conferencing software"]
+takeaways:
+  - "No software is 'HIPAA certified' — HIPAA compliance is the covered entity's programme, not a product badge."
+  - "The Security Rule asks for specific safeguards: access control, audit controls, transmission security and integrity."
+  - "A signed BAA is mandatory before any vendor touches PHI — it's a legal requirement, not a nice-to-have."
+  - "Self-hosting is powerful for healthcare: PHI stays inside controls you already certify, with no new subprocessor to defend."
+---
+
+If you have ever searched for "HIPAA-compliant video conferencing", you have probably seen a lot of vendors claim to be exactly that. Most of those claims are, at best, loose shorthand — and at worst, actively misleading. Because here is the uncomfortable truth that a healthcare buyer needs to internalise before comparing any tools:
+
+**There is no such thing as HIPAA-certified software.**
+
+HIPAA does not certify products. There is no government body, no accreditation scheme, and no logo you can earn that makes a piece of software "HIPAA compliant" on its own. Compliance is a property of *your* organisation — the covered entity or business associate — and of the way you deploy, configure and operate the tools you choose. A vendor can supply the technical controls that make compliance achievable. It cannot hand you compliance in a box.
+
+This guide is the honest version. It walks through what HIPAA actually requires of a telehealth or clinical video call, where encryption fits, why the Business Associate Agreement is non-negotiable, and why self-hosting is such a strong answer for organisations that handle protected health information (PHI). If you work in healthcare, [our healthcare use case](/use-cases/healthcare) is the companion to this piece.
+
+## What HIPAA actually asks of a video call
+
+HIPAA — the US Health Insurance Portability and Accountability Act — is not a checklist of approved apps. It is a set of rules about how PHI must be protected. Two of those rules matter most for video conferencing: the **Privacy Rule** (who may access PHI and for what purpose) and the **Security Rule** (how electronic PHI must be safeguarded).
+
+The Security Rule is where the technical requirements live, and it is deliberately technology-neutral. It groups safeguards into three families:
+
+- **Administrative safeguards** — risk analysis, workforce policies, access management, incident response. These are things *your* organisation does, not things a video tool provides.
+- **Physical safeguards** — controls over the facilities and devices where PHI is stored or accessed.
+- **Technical safeguards** — the part a video platform directly supports.
+
+For a video meeting carrying PHI, the technical safeguards that matter are:
+
+| Security Rule requirement | What it means for video |
+| --- | --- |
+| **Access control** | Only authorised users can join a room or view a recording. Unique user identity, authentication, and the ability to lock rooms and manage participants. |
+| **Audit controls** | The system records who did what and when — joins, recordings, document access — so activity can be reviewed. |
+| **Integrity** | PHI is not improperly altered or destroyed in transit or at rest. |
+| **Transmission security** | PHI is protected against interception while moving across a network — in practice, strong encryption in transit. |
+| **Person or entity authentication** | The system verifies that a user is who they claim to be before granting access. |
+
+Notice what is *not* on that list: any specific brand, any certificate, any "HIPAA mode" toggle. The Security Rule describes *outcomes*. Your job — with your vendor's help — is to demonstrate that your deployment achieves them and to document the risk analysis behind your choices.
+
+## Encryption: necessary, and widely misdescribed
+
+Encryption is central to transmission security, so it deserves precision rather than marketing gloss. Vendors love to say "end-to-end encrypted" because it sounds absolute. For video, that phrase is frequently wrong, and getting it wrong in a HIPAA context is a real problem. So here is exactly what protects what.
+
+**Live meeting media is encrypted in transit.** Modern real-time video is protected on the wire with DTLS-SRTP, the same family of transport encryption (TLS 1.3) that secures the rest of the web. That protects PHI against interception between the participant and the media relay — which is precisely what the Security Rule's transmission-security standard asks for. A separate, per-frame end-to-end encryption mode exists for the highest-sensitivity calls, but you should treat it as an option to enable deliberately, not a default that is silently always on. **Anyone claiming "all video is always end-to-end encrypted" is overselling** — and you should be sceptical of it, from us or anyone else.
+
+**Messaging can go further.** Text messaging in Ollasync is fully end-to-end encrypted and *server-blind* by default, built on the open [IETF MLS standard (RFC 9420)](/security) using an independently audited open-source library. The operator holds no keys and cannot read the content. (Routing metadata — who talks to whom, and when — is still visible, as it must be for delivery. We say so plainly.)
+
+**Documents are encrypted in transit and access-controlled**, and can be NDA-gated, but they are not client-side end-to-end encrypted today. We will not tell you they are.
+
+<div class="callout">
+The reason to be this pedantic: under HIPAA, you are documenting a risk analysis. If your documentation rests on a vendor's overstated encryption claim, your programme inherits that weakness. Accurate claims are safer claims.
+</div>
+
+The single most powerful move here, though, is not about the encryption mode at all. It is *who operates the relay the media passes through* — which is where self-hosting comes in.
+
+## The BAA is not optional
+
+Whenever a vendor handles PHI on your behalf, HIPAA treats that vendor as a **business associate**, and the law requires a **Business Associate Agreement (BAA)** between you before any PHI changes hands. The BAA is a contract that binds the vendor to safeguard PHI, restricts how they may use it, sets breach-notification obligations, and flows down responsibilities to their own subcontractors.
+
+Two practical consequences follow:
+
+1. **No BAA, no PHI.** If a video vendor will not sign a BAA, they cannot lawfully be in the path of your PHI — full stop. Some consumer-grade tools explicitly exclude healthcare use in their terms for exactly this reason.
+2. **Every subprocessor is in scope.** A hosted platform typically relies on other providers underneath it — hosting, storage, delivery. Each one that can touch PHI is another business associate you must account for. The fewer parties in the path, the smaller your compliance surface.
+
+Ollasync will discuss and sign a BAA for hosted deployments that handle PHI, and we provide a Data Processing Agreement alongside it. But the cleanest way to shrink the BAA problem is to remove parties from the path entirely — which, again, points at self-hosting.
+
+## Why self-hosting is so strong for healthcare
+
+Here is the core argument, and it is worth stating directly: **the most reliable way to keep PHI compliant is to keep it inside a boundary you already control and already certify.**
+
+When you self-host the platform, the media relay, the recordings storage, the database and the application all run on infrastructure *you* operate — your private cloud, your datacentre, or an isolated clinical network. The consequences for a HIPAA programme are significant:
+
+- **PHI never leaves your environment.** The video, the recordings and the documents stay on systems already inside your audit scope. There is no new external service to assess, document and defend.
+- **No third-party operator to compel or breach.** A vendor cannot be forced to disclose — or accidentally leak — data it never holds. Self-hosting removes the operator from the data path.
+- **Your existing controls apply unchanged.** Access management, logging, retention and physical security that you have already certified for other clinical systems extend naturally to cover the platform.
+- **The subprocessor list shrinks toward zero.** Fewer parties in the path means fewer BAAs, a smaller attack surface, and a simpler story for your auditor.
+
+This is the heart of [our self-hosted offering](/self-hosted): control drawn where your risk actually lives. A browser-first, no-download experience means clinicians and patients still get a modern one-click join — you are not trading usability for control.
+
+For teams that are not ready to run their own infrastructure, EU-region hosting with a signed BAA and DPA is a reasonable middle path. But if PHI sensitivity is high, self-hosting is the option that most cleanly satisfies the "keep it inside your boundary" instinct that HIPAA rewards.
+
+## What honestly to expect from Ollasync
+
+Because this is a compliance topic, we will be exact about what we do and do not claim:
+
+- We are **not** "HIPAA certified" — no software is, and any vendor who says otherwise is either using sloppy shorthand or misleading you.
+- We provide **technical controls** that map to the Security Rule: access control, participant management, audit logging, encryption in transit for media, default-on end-to-end encryption for messaging, and EU-region or on-premise hosting.
+- We will **sign a BAA and a DPA** for hosted deployments that handle PHI.
+- When you **self-host**, PHI stays inside your environment and your existing compliance boundary — which is the strongest position of all.
+- The MLS *library* underpinning our messaging is independently audited; our own overall integration and deployment are **not** independently audited yet. **SOC 2 Type 1 is a roadmap target we have stated, not a certification we hold.** We would rather tell you that than imply otherwise.
+
+Compliance is your programme. Our job is to give you controls that make it demonstrable, contracts that make it lawful, and a deployment model that keeps regulated data where you can defend it.
+
+## What to ask any video vendor
+
+Take this list into any evaluation — including ours:
+
+1. **Will you sign a BAA?** If not, they cannot handle PHI. This is the first filter.
+2. **What exactly is encrypted, in transit and at rest — and what is *not*?** Push back on any blanket "everything is end-to-end encrypted" claim for video.
+3. **Who operates every server PHI passes through, and in which jurisdiction?** Every operator is a subprocessor and a business associate.
+4. **Can I get complete audit logs of access to meetings, recordings and documents?**
+5. **Can I self-host, so PHI never leaves my environment?** For high-sensitivity workloads this is the cleanest answer.
+6. **What do you claim about certification — and can you show it, or is it a roadmap item?** Honesty here tells you a lot about the vendor.
+
+If a vendor answers these plainly, you can build a defensible programme on top of them. If they dodge, that is your answer.
+
+## The bottom line
+
+HIPAA-compliant video conferencing is real — but it is something *you* achieve, not something you buy pre-certified. HIPAA compliance lives in your covered-entity programme: your risk analysis, your safeguards, your BAAs, your controls. A good platform supplies the technical building blocks — strong encryption in transit, default-on encrypted messaging, access control, audit trails — and, crucially, a deployment model that keeps PHI inside a boundary you already trust.
+
+That is the case for self-hosting, and it is why healthcare teams choose it. Read more on [how we secure each data path](/security), see [the healthcare use case](/use-cases/healthcare), explore [running it on your own infrastructure](/self-hosted), or dig into [our overall approach to compliance](/compliance).

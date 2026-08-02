@@ -1,0 +1,87 @@
+---
+title: "The self-hosted Zoom alternative: what it actually means"
+description: "Why Zoom itself can't really be self-hosted, what a genuinely self-hostable alternative looks like, and the residency and compliance benefits of owning it."
+pubDate: 2026-07-06
+category: "Comparisons"
+cover: "/blog-cover-alternatives.png"
+pillarSlug: "secure-zoom-alternatives"
+readTime: 8
+author: "The Ollasync team"
+authorRole: "Security & product"
+takeaways:
+  - "Zoom is a cloud service; it can't meaningfully be self-hosted — legacy on-prem connectors still route through or depend on Zoom's cloud."
+  - "A genuinely self-hostable alternative runs entirely on infrastructure you operate, with no vendor operator in the media path."
+  - "The real benefits are data residency, a clean compliance boundary, and the option of fully air-gapped operation."
+  - "Ollasync is self-hosted-first: the same modern, browser-based experience, but the servers — and the trust boundary — are yours."
+keywords: ["self-hosted Zoom alternative", "on-premise Zoom alternative", "Zoom alternative you can host", "self-hosted video conferencing"]
+---
+
+"Self-hosted Zoom" is one of the most-searched phrases in enterprise video, and it runs into a wall almost immediately: you can't really self-host Zoom. That's not a knock on Zoom — it's simply a cloud product, and cloud products live on the vendor's servers by design. If your requirement is that meetings run on infrastructure *you* control, you're not looking for a way to host Zoom. You're looking for a self-hostable alternative built for that from the start.
+
+This post explains why the distinction matters, what a genuinely self-hostable platform looks like, and what you actually gain by owning the deployment.
+
+## Why Zoom can't really be self-hosted
+
+Zoom is excellent at what it's designed to be: a globally available, cloud-operated meeting service that works for hundreds of millions of people. For general business use, that's exactly what most organisations want, and it offers an optional end-to-end encryption mode for calls that need it.
+
+But "cloud-operated" is the whole architecture, not a deployment option you can flip. A few clarifications people often ask about:
+
+- **The media runs in the vendor's cloud.** Your audio and video are routed through servers Zoom operates. Even with the optional E2EE mode enabled — which does keep the content encrypted from the operator — the *infrastructure* is still theirs, in their jurisdiction, under their operational control.
+- **On-premise connectors are niche and legacy.** Zoom has historically offered on-premise components aimed at very large deployments. In practice these are narrow, they still depend on Zoom's cloud for signalling, account and management functions, and they're a specialist path bolted onto a cloud-first platform — not "run the whole thing yourself, disconnected."
+- **The trust boundary doesn't move.** Data residency options let you influence *where* some data sits, but the vendor still operates the service and remains in the trust path. That's a meaningfully different posture from *you run it*.
+
+None of this is a flaw. It's what a consumer-and-enterprise cloud service is. It just isn't self-hosting, and it's worth being honest about that before you spend a procurement cycle looking for a setting that doesn't exist.
+
+<div class="callout">
+The plain version: with a cloud service you're choosing <em>whose cloud</em> and <em>which region</em>. With a self-hostable platform you're choosing <em>your own infrastructure</em>. Those are different questions, and only one of them removes the operator from the path.
+</div>
+
+## What a genuinely self-hostable alternative looks like
+
+A platform you can truly host yourself is designed so that every component runs on infrastructure you operate — and, crucially, so that nothing needs to call home to the vendor to work. In practice that means a small set of generic components on standard Linux:
+
+- an **application / API** service that runs rooms, meetings, recordings and documents;
+- a **media relay (SFU)** that forwards live audio and video between participants;
+- **object storage** you own for recordings and files;
+- an **identity / SSO** integration into your own directory (OIDC);
+- a **SQL database** for durable state.
+
+The defining property isn't the component list — it's the absence of a mandatory dependency on a service the vendor runs. When there's no phone-home, no default egress and no external control plane, the deployment can live entirely inside your boundary, up to and including a network with no internet access at all.
+
+You don't give up the modern experience to get there. A browser-first platform gives guests a **no-download, one-click** join whether it's running in a public cloud or inside your firewall. Control and a good experience aren't a trade-off any more.
+
+## What you actually gain
+
+The reason to self-host isn't ideology — it's four concrete outcomes that a cloud service structurally can't offer.
+
+### Data residency
+
+When you run the platform, the data physically sits where you put it — your region, your datacentre, your national infrastructure — and stays there. There's no need to trust a region setting or a subprocessor list, because there's no third party holding the data to begin with.
+
+### A clean compliance boundary
+
+Auditors count subprocessors. Every external service that touches regulated data is another thing to assess, document and defend. When the software runs on your own estate, sensitive meetings and recordings stay inside controls you've *already* established — there's nothing new to add to the audit scope. This is the core of the [self-hosted](/self-hosted) argument.
+
+### No operator in the path
+
+Self-hosting removes the vendor from the data path entirely. There's no operator who *could* be compelled to hand over data they don't hold, and — for organisations concerned about foreign legal reach over cloud providers — the platform runs under **your** jurisdiction, not a vendor's. For teams outside the US specifically, running on non-US infrastructure you control is often the whole point.
+
+### Air-gapped operation
+
+The most sensitive environments can't use any internet-connected SaaS, full stop. A platform designed to run fully disconnected — updated through your own controlled process, authenticated against your own internal identity — clears a bar that no cloud service can.
+
+## How Ollasync is positioned
+
+We built Ollasync **self-hosted-first**. The same platform runs three ways from one codebase:
+
+1. **Hosted on EU infrastructure**, to prove the workflow quickly with real users.
+2. **Single-tenant**, a dedicated isolated instance in your chosen region.
+3. **Fully on-premise**, up to and including air-gapped.
+
+Because the product experience is identical across all three, moving from hosted to on-premise changes the deployment boundary without changing what users see. And the encryption story is precise rather than sweeping: **messaging** is end-to-end encrypted and server-blind by default on the [IETF MLS standard](/security); **meeting media** is encrypted in transit (DTLS-SRTP) to a relay that, when self-hosted, is yours — so it never reaches an outside operator; a per-frame E2EE mode exists for keeping even the relay blind. We spell out exactly what each layer protects on the [security](/security) page rather than making blanket claims.
+
+## The bottom line
+
+If your search for a "self-hosted Zoom" keeps hitting dead ends, that's because the answer isn't a hidden Zoom setting — it's a platform architected to run on your own infrastructure from day one. Zoom remains a strong general-purpose cloud tool with an optional E2EE mode. But when *where the servers run* is part of your requirement, you need self-hosting as a first-class design centre, not a legacy add-on.
+
+For the fuller landscape of secure options, read the pillar guide to [secure Zoom alternatives](/blog/secure-zoom-alternatives). To see a direct feature-by-feature view, read [Ollasync vs Zoom](/vs/zoom), explore what running it yourself looks like on the [self-hosted](/self-hosted) page, or check the specifics on our [security](/security) page.

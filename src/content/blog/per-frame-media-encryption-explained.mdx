@@ -1,0 +1,91 @@
+---
+title: "Per-frame media encryption, explained: how to keep an SFU in the dark"
+description: "How per-frame media encryption uses WebRTC insertable streams and SFrame-style framing to hand a relay ciphertext it can't decode — and where the honest limits are."
+pubDate: 2026-07-02
+category: "Cryptography"
+cover: "/blog-cover-sframe.png"
+pillarSlug: "end-to-end-encrypted-video-conferencing"
+readTime: 8
+author: "The Ollasync team"
+authorRole: "Security & product"
+takeaways:
+  - "Per-frame media encryption encrypts each audio/video frame in the browser with a key the relay never holds, so the SFU forwards ciphertext it can't decode."
+  - "It relies on WebRTC insertable streams plus SFrame-style framing, and it needs a shared media key provisioned to participants — which is why it's a mode, not a free default."
+  - "The standard instant-meeting path uses DTLS-SRTP to a relay you can self-host; per-frame E2EE by default is on our roadmap."
+  - "Self-hosting keeps the relay yours either way, so the media never reaches a third-party operator in the first place."
+keywords: ["per-frame media encryption", "SFrame encryption", "end-to-end encrypted SFU", "WebRTC insertable streams"]
+---
+
+Group video calls almost always run through a **Selective Forwarding Unit (SFU)** — a media relay that receives each participant's audio and video and forwards the right streams to everyone else. It's what makes a twelve-person call feasible without every browser uploading twelve copies of its webcam. But it raises an awkward question for sensitive meetings: if the relay is in the middle of every stream, what can it see?
+
+The honest answer depends on *how* the media is encrypted. This post walks through **per-frame media encryption** — the technique that lets an SFU forward your video without ever being able to decode it — and is clear about where it applies today and where it doesn't.
+
+## Two different encryption layers
+
+The confusion around "is my video encrypted?" usually comes from collapsing two separate layers into one word.
+
+- **Transport encryption (DTLS-SRTP).** Standard WebRTC encrypts media on the wire between each participant and the relay using DTLS-SRTP. Nobody on the network path — coffee-shop Wi-Fi, your ISP, a passive tap — can read the stream. This is on by default and it's genuinely strong. But the *relay itself* terminates that encryption: to route and forward media, it decrypts, handles, and re-encrypts on the way out. A compromised or compelled relay operator could, in principle, observe the plaintext.
+- **Per-frame media encryption (end-to-end).** Here the browser encrypts the *contents of each media frame* with a key the relay never possesses, then hands the already-encrypted frame to the transport. The SFU still sees packets, sizes and timing — it needs those to route — but the pixels and audio samples inside are ciphertext it cannot decode. The relay becomes a blind forwarder.
+
+The first layer protects the network. The second layer protects you *from the infrastructure in the middle*. They stack: per-frame E2EE runs **inside** the DTLS-SRTP transport, not instead of it.
+
+## How per-frame encryption actually works
+
+Two browser and IETF building blocks make this possible without reinventing WebRTC.
+
+### WebRTC insertable streams
+
+Modern browsers expose an API — **insertable streams** (via encoded transforms) — that lets application code sit in the pipeline *after* the codec has encoded a frame but *before* it's packetised and sent. You get a hook on every outgoing encoded frame and every incoming one.
+
+That hook is the whole trick. On the send side, you take the encoded frame bytes and encrypt them with your own key. On the receive side, you decrypt before the frame reaches the decoder. The SFU sits between those two points and only ever handles the encrypted form.
+
+### SFrame-style framing
+
+You can't naively encrypt the entire packet, because the relay still needs some metadata in the clear to do its job — which frame this is, how to forward it, how to handle packet loss. **SFrame** (Secure Frame) is the IETF approach that solves exactly this: it encrypts the frame *payload* with an AEAD cipher (such as AES-256-GCM) while leaving the minimal routing header the SFU needs. The result is a frame the relay can forward correctly but can't read.
+
+Put together, the flow looks like this:
+
+| Step | Where | What happens |
+| --- | --- | --- |
+| 1 | Sender browser | Camera/mic captured, codec encodes the frame |
+| 2 | Sender browser | Insertable-streams transform encrypts the payload (SFrame-style, AEAD) with the media key |
+| 3 | Transport | DTLS-SRTP wraps the already-encrypted frame for the wire |
+| 4 | SFU (relay) | Reads routing metadata, forwards ciphertext — **no media key, no decode** |
+| 5 | Receiver browser | DTLS-SRTP unwrapped, then insertable-streams transform decrypts the payload |
+| 6 | Receiver browser | Decoder renders the frame |
+
+At no point in steps 2–5 does the relay hold the key that decrypts the payload. That's what "keeping the SFU in the dark" means in practice.
+
+## The honest catch: keys have to come from somewhere
+
+<div class="callout">
+Per-frame media encryption is real end-to-end encryption for live video — but it is a <strong>mode</strong>, not a switch that costs nothing. Its security rests entirely on how the shared media key is provisioned, and that's the hard part.
+</div>
+
+For every participant to encrypt and decrypt the same frames, they all need the same **media key** (or a key schedule they can each derive). Getting that key to exactly the right people — and *only* them — without the relay ever seeing it is the genuinely difficult part. It means running a separate key-agreement channel among participants, rotating keys as people join and leave (so a departed guest can't decrypt what comes after them), and handling the edge cases: late joiners, reconnections, and forward secrecy across membership changes.
+
+That machinery is why per-frame E2EE isn't simply "always on" for every ad-hoc call. It also has practical consequences: some server-side conveniences that need to touch media — cloud recording, server-side transcription, certain compatibility paths — can't operate on content they can't read. That's an inherent, honest trade-off of true end-to-end encryption, not a shortcoming of any one product. It's the same reason the optional E2EE modes in mainstream tools also disable features when you turn them on.
+
+## Where Ollasync stands today
+
+We want to be precise, because this is exactly the kind of claim that's easy to overstate.
+
+- The **standard instant-meeting flow** encrypts media in transit with DTLS-SRTP to the SFU. That protects the network path completely. It is **not** per-frame end-to-end encryption by default — the relay terminates transport encryption to forward streams.
+- A **per-frame E2EE mode**, built on insertable streams and SFrame-style framing as described above, exists for meetings that need the relay kept blind. Enabling it by default across all instant meetings is on our **roadmap**, not a shipped default we'll pretend otherwise about.
+- **Messaging** is a different and stronger story: it's end-to-end encrypted and server-blind by default, built on the [IETF MLS standard](/security). We hold no keys and can't read message content.
+
+So when should you reach for per-frame E2EE versus transport encryption? If your threat model includes *the relay operator themselves*, per-frame E2EE is the answer. But there's a second, simpler answer that changes the maths entirely.
+
+## Self-hosting: make the relay yours
+
+Per-frame encryption exists to defend against an SFU you don't trust. The most direct way to trust the SFU is to **own it**.
+
+When you [self-host](/self-hosted) the relay, "the third party in the middle" isn't a third party at all — it's your own infrastructure, inside your own trust boundary, under your own jurisdiction. Transport encryption to a relay *you* operate means the media never reaches an outside operator in the first place. Per-frame E2EE then becomes defence-in-depth on top of infrastructure you already control, rather than the only thing standing between your video and a vendor's cloud.
+
+That combination — a self-hostable SFU plus a per-frame E2EE mode for the highest-sensitivity calls — is the model we think holds up honestly. Neither claim overreaches the other.
+
+## The takeaway
+
+Per-frame media encryption is a genuine, standards-based way to hand a relay ciphertext it can't decode: encrypt each frame in the browser with insertable streams, frame it SFrame-style so the SFU can still route it, and never let the relay hold the media key. Its security lives or dies on key provisioning, which is why it's a deliberate mode rather than a universal default — for us and for everyone else in the field.
+
+For the full picture of what "end-to-end encrypted video" does and doesn't mean, read the [pillar guide to end-to-end encrypted video conferencing](/blog/end-to-end-encrypted-video-conferencing). To see exactly what each layer protects, without blanket claims, visit our [security page](/security) — or explore how [video meetings](/features/video-meetings) work when the relay is yours.

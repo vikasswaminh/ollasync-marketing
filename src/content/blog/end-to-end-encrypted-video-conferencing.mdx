@@ -1,0 +1,116 @@
+---
+title: "End-to-end encrypted video conferencing: what it really means"
+description: "An honest guide to end-to-end encrypted video conferencing: what E2EE actually protects, encrypted-in-transit versus end-to-end, and the questions buyers should ask."
+pubDate: 2026-07-26
+category: "Cryptography"
+cover: "/blog-cover-server-blind.png"
+pillar: true
+readTime: 11
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["end-to-end encrypted video conferencing", "encrypted video calls for business", "e2ee video conferencing", "server-blind messaging"]
+takeaways:
+  - "E2EE means only participants can read content; encrypted-in-transit only protects the network hop and leaves the server able to read the plaintext."
+  - "Real platforms are layered: messaging can be end-to-end encrypted and server-blind by default, while live meeting media is usually encrypted in transit to a relay."
+  - "\"Is it E2EE?\" is the wrong single question — ask who operates the servers and who holds the keys."
+  - "Server-blind is not zero-knowledge: even with unreadable content, routing metadata like room, membership and timing remains visible."
+---
+
+"Is your video conferencing end-to-end encrypted?" is one of the most common questions we get, and one of the least useful as a single yes/no. Nearly every serious tool will answer "yes" to *something*, because encryption shows up in several places for several different jobs. The honest answer for any real platform — ours included — is: *it depends which part you mean, and it's layered.*
+
+This guide is the definitive, plain-English version of that answer. It explains what end-to-end encryption (E2EE) actually is, how it differs from the "encrypted in transit" that every product has, why "server-blind" and "zero-knowledge" are not the same claim, and how the reality breaks down across messaging, live meeting media and shared documents. By the end you'll have a short buyer's checklist and a better question to ask than "is it E2EE?".
+
+## Encrypted in transit vs end-to-end: the distinction that matters
+
+Almost all traffic on the modern web is encrypted in transit. When your browser talks to a server over TLS 1.3, nobody on the network — your café Wi-Fi, your ISP, a passive tap — can read the bytes. That is genuinely important, and it is table stakes. But it protects only the *hop* between your device and the server. At the server, the data is decrypted so the service can do its job.
+
+End-to-end encryption is a stronger and more specific property: content is encrypted on the sender's device and can only be decrypted by the intended recipients' devices. The servers in between forward ciphertext they cannot read. The "ends" are the people, not the machines.
+
+The difference is entirely about **who holds the keys**:
+
+| Property | Encrypted in transit | End-to-end encrypted |
+| --- | --- | --- |
+| Protected against network eavesdroppers | Yes | Yes |
+| Server can read the plaintext | **Yes** | **No** |
+| Keys held by | The operator | The participants |
+| What a compelled operator can hand over | Readable content | Only ciphertext |
+
+Both are "encryption". Only one of them means the operator structurally *cannot* read your content. When a vendor says "encrypted" without saying *which* of these, assume the weaker one until proven otherwise.
+
+## Server-blind is not "zero-knowledge"
+
+Here's where a lot of marketing goes wrong, and where we try hard not to. If content is end-to-end encrypted, the server is **content-blind**: it holds ciphertext and no keys, so it can't read your messages. That is a real, valuable property and we build for it.
+
+What it is *not* is "we know nothing". To route a message the server still has to see some **metadata**: which conversation it belongs to, who the members are, the approximate size of the payload, and when it was sent. A relay that forwards your encrypted video still sees that a call is happening, between how many endpoints, for how long, and roughly how much bandwidth it used. None of that is the *content* — but it isn't nothing.
+
+<div class="callout">
+This is why we say <strong>"we can't read your messages"</strong> and not "we know nothing" or "zero-knowledge". Server-blind means the content is unreadable to the operator. Metadata — room identifiers, membership, message size and timing — is still visible because it's what makes delivery work. Anyone claiming a networked system reveals literally nothing is overselling.
+</div>
+
+The right goal isn't the impossible "zero-knowledge" slogan. It's a system *designed so the server is structurally unable to read what it doesn't need to*. We go deeper on exactly what a relay can and can't observe in [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call).
+
+## The layered reality of a real platform
+
+A collaboration platform isn't one channel; it's several, each with different threat models and different practical constraints. Treating "the product" as a single E2EE yes/no hides more than it reveals. Here's the honest layer-by-layer picture.
+
+### Messaging: end-to-end encrypted and server-blind, by default
+
+Text messaging is the layer where full E2EE is both achievable and on by default. Our messaging is built on the **IETF Messaging Layer Security standard (MLS, RFC 9420)** using an independently audited open-source MLS library rather than a home-grown protocol. Messages are encrypted on your device; the server stores and forwards ciphertext only. We hold no message keys.
+
+The precise, honest claim is: **we can't read your messages.** The server still sees the routing metadata described above — room, membership, size, timing — but never the plaintext. MLS is what makes this work efficiently for *groups*, with forward secrecy and post-compromise security as members come and go. If you want the mechanics, we wrote a friendly explainer in [how MLS encryption works](/blog/how-mls-encryption-works), and there's a plain summary on the [security page](/security) and the [messaging feature page](/features/messaging).
+
+### Live meeting media: encrypted in transit, with an optional per-frame mode
+
+Live audio and video is the layer where the honest story diverges most from the marketing you'll hear elsewhere. For an instant, browser-based meeting, the media is **encrypted in transit** using WebRTC's DTLS-SRTP, and signalling rides over TLS 1.3. The streams flow to a **Selective Forwarding Unit (SFU)** — a relay that forwards each participant's video to the others without a heavyweight per-call mixer.
+
+That relay decrypts the transport layer to route packets, which means a *hosted* relay is, in principle, in a position to see decrypted media. So we will **not** tell you "all your video calls are always end-to-end encrypted" — that would be false for the default instant-meeting path, and it's false for most competitors' defaults too. There are two honest strengths instead:
+
+1. **A per-frame E2EE mode exists.** Using insertable streams with SFrame-style per-frame encryption, media can be encrypted end-to-end so even the relay only forwards ciphertext. This is a real capability — but it is **not the default** for instant meetings, because it carries trade-offs (compatibility, some features, cost). We cover the mechanics and the trade-offs in [per-frame media encryption explained](/blog/per-frame-media-encryption-explained).
+2. **When you self-host, the relay is yours.** This is the point that actually matters for most regulated buyers. If you [self-host](/self-hosted) the SFU, the media never reaches a third-party operator in the first place — the "who runs the relay?" question answers itself. Control of the infrastructure often does more for your real risk than toggling a per-frame mode on a vendor's cloud.
+
+### Documents and deal rooms: encrypted in transit, access-controlled, NDA-gated
+
+The document layer — the files shared in a deal room — is protected by **encryption in transit, granular access control and NDA gating**, with audit logging of who opened what. That is the appropriate control set for a workflow where documents must be indexed, watermarked, permissioned and revoked.
+
+We are deliberately precise here: deal-room documents are **not** client-side end-to-end encrypted in the current web flow. Client-side E2EE for documents is on our roadmap, but it is not shipped, and we will never imply otherwise. If a vendor claims their browser-based document room is "fully end-to-end encrypted" while also offering server-side search, preview and watermarking, ask how both can be true at once. Our honest position is written up on the [deal-rooms feature page](/features/deal-rooms).
+
+## Why "is it E2EE?" is the wrong question
+
+Put the three layers together and the flaw in the single yes/no question becomes obvious. A vendor can truthfully say "we offer end-to-end encryption" because *one* channel supports it, while the channel you actually care about runs encrypted-in-transit on their cloud. Both statements can sit on the same page without technically lying.
+
+A far more revealing question is: **who operates the servers, and who holds the keys?**
+
+- If the operator holds the keys, "encrypted" means encrypted-in-transit and they can read your content when they choose to or are compelled to.
+- If the participants hold the keys, the operator is content-blind for that channel — but ask *which* channels, and whether it's the default or an opt-in mode.
+- If **you** operate the servers, the "who could be compelled?" question collapses, because there's no third-party operator in the path at all.
+
+That last point is why self-hosting and E2EE compose so well: E2EE decides *who can read*, self-hosting decides *who runs the infrastructure*. Strong systems use both, layer by layer, rather than leaning on one slogan.
+
+## A fair word on the incumbents
+
+To be clear, we're not claiming the big platforms have no encryption — they do, and they've improved. Being honest cuts both ways:
+
+- **Zoom** offers an optional E2EE meeting mode using AES-256-GCM. It's real, but it's not the default and it disables some features when on.
+- **Microsoft Teams** supports opt-in E2EE for 1:1 calls.
+- **Google Meet** offers client-side encryption on some enterprise tiers.
+- **Cisco Webex** offers an opt-in E2EE meeting mode.
+
+Credit where due: those are meaningful options. The pattern to notice is that meeting E2EE is almost universally **opt-in, not default** — which is exactly why the layered, "which channel and is it the default?" framing matters more than a marketing checkbox. Where we choose to differentiate is elsewhere: **server-blind messaging on by default**, the ability to **self-host the whole stack** so no third party is in the path, **native deal rooms**, and **operating outside the US** for buyers to whom jurisdiction matters. See the head-to-heads on [Zoom](/vs/zoom), [Microsoft Teams](/vs/microsoft-teams), [Google Meet](/vs/google-meet) and [Webex](/vs/webex).
+
+## A buyer's checklist
+
+When you evaluate any "encrypted" video platform, walk this list channel by channel rather than accepting one global answer:
+
+1. **Which channels are end-to-end encrypted, and which are only encrypted in transit?** Get it per channel: messaging, live media, documents.
+2. **What's the default, and what's opt-in?** An E2EE mode that's off by default protects nobody who doesn't know to turn it on.
+3. **Who holds the keys?** If the operator does, treat the content as readable by the operator.
+4. **Who operates the servers — and can you run them yourself?** Self-hosting removes the third-party operator from the path entirely.
+5. **What metadata is visible even when content is encrypted?** Expect an honest answer about room, membership, size and timing — not "nothing".
+6. **What protects documents specifically?** In-transit encryption plus access control is a legitimate answer; "the whole room is E2EE" alongside server-side preview and search deserves scrutiny.
+7. **What compliance controls and contracts are on offer** — encryption, access control, audit logging, a DPA — versus vague certification claims? We keep ours factual on the [compliance page](/compliance).
+
+## The bottom line
+
+End-to-end encryption is essential, but it is a property of *specific channels*, not a badge you pin on a whole product. The strongest, most honest posture is layered: messaging that's **server-blind by default** on IETF MLS; live media that's **encrypted in transit** to a relay you can **own by self-hosting**, with an **optional per-frame E2EE mode** when you need it; and documents that are **encrypted in transit and tightly access-controlled** while true client-side E2EE remains on the roadmap.
+
+So don't ask a platform whether it's "end-to-end encrypted" and stop there. Ask *who operates the servers and who holds the keys* — channel by channel — and insist on precise answers. That's the standard we hold ourselves to on our [security page](/security), and it's the one worth holding everyone to.

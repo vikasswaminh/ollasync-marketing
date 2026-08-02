@@ -1,0 +1,43 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+<LegalLayout
+  title="Data Processing Agreement"
+  description="Summary of Ollasync’s Data Processing Agreement (DPA): roles, sub-processors, residency, security measures and breach notification. Full DPA available on request."
+  updated="1 August 2026"
+  crumb="DPA"
+>
+  <p>When we process personal data on your behalf through the hosted service, we do so as a <strong>data processor</strong> under a Data Processing Agreement. This page summarises it; the full DPA is available for signature on request and forms part of your contract.</p>
+
+  <h2>Roles</h2>
+  <p>You are the data controller for the personal data in your workspace. Ollasync is the data processor, acting on your documented instructions. When you self-host, there is no processor relationship with us for your data — you operate everything.</p>
+
+  <h2>What we process, and how</h2>
+  <p>We process the account data, metadata and (for non-end-to-end-encrypted paths) content described in our <a href="/privacy">Privacy Policy</a>, solely to provide the service. End-to-end encrypted messaging content is not readable by us.</p>
+
+  <h2>Sub-processors</h2>
+  <p>We use a limited set of infrastructure sub-processors to run the hosted service. The current list — with each sub-processor’s role and location — is provided in the DPA, and we give notice of changes so you can object. Self-hosting removes sub-processors from your data path.</p>
+
+  <h2>Data residency</h2>
+  <p>The hosted service is operated in the <strong>EU (Frankfurt)</strong>. Where any transfer outside the EEA is required, it is covered by appropriate safeguards such as the EU Standard Contractual Clauses. Self-host to pin residency entirely to your own jurisdiction.</p>
+
+  <h2>Security measures</h2>
+  <ul>
+    <li>Encryption in transit (TLS 1.3) everywhere; end-to-end encryption for messaging.</li>
+    <li>Access control, role and NDA gating, and audit logging.</li>
+    <li>Least-privilege service architecture and per-IP rate limiting.</li>
+    <li>Continuous automated testing of security-relevant guarantees.</li>
+  </ul>
+  <p>Full technical and organisational measures are described in the DPA and our <a href="/security">security whitepaper</a>.</p>
+
+  <h2>Breach notification</h2>
+  <p>We will notify you without undue delay after becoming aware of a personal-data breach affecting your data, with the information you need to meet your own notification obligations.</p>
+
+  <h2>Your rights & assistance</h2>
+  <p>We assist you in responding to data-subject requests and in meeting your GDPR obligations, taking into account the nature of the processing. On termination we delete or return personal data as instructed, subject to legal retention requirements.</p>
+
+  <h2>Request the DPA</h2>
+  <p>To receive the full DPA and current sub-processor list for your review: <a href="mailto:privacy@ollasync.com">privacy@ollasync.com</a>.</p>
+
+  <p class="note">This is a plain-language summary for transparency. The signed DPA governs in case of any difference, and should be reviewed by your legal team.</p>
+</LegalLayout>

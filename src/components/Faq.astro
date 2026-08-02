@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+interface Props { items: { q: string; a: string }[]; title?: string; }
+const { items, title = 'Frequently asked questions' } = Astro.props;
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+<section class="section" aria-labelledby="faq-h">
+  <div class="container" style="max-width:820px">
+    <div class="section-head center" data-reveal>
+      <span class="eyebrow-label">FAQ</span>
+      <h2 class="h2" id="faq-h" style="margin-top:12px">{title}</h2>
+    </div>
+    <div class="faq" data-reveal>
+      {items.map((i) => (
+        <details class="faq__item">
+          <summary>
+            <span>{i.q}</span>
+            <span class="faq__chevron"><Icon name="arrow" size={18} /></span>
+          </summary>
+          <div class="faq__a"><p>{i.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+  .faq { display: grid; gap: 10px; }
+  .faq__item { border: 1px solid var(--line); border-radius: var(--r); background: rgba(255,255,255,.02); overflow: hidden; }
+  .faq__item[open] { border-color: var(--violet-300); background: var(--violet-050); }
+  summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; font-weight: 550; font-size: 16px; color: var(--ink); }
+  summary::-webkit-details-marker { display: none; }
+  .faq__chevron { color: var(--muted); transition: transform var(--dur) ease; flex: none; }
+  .faq__chevron :global(svg) { transform: rotate(90deg); }
+  .faq__item[open] .faq__chevron { transform: rotate(90deg); color: var(--iris); }
+  .faq__a { padding: 0 20px 20px; }
+  .faq__a p { color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 68ch; }
+</style>

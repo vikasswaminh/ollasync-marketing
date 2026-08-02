@@ -1,0 +1,198 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+
+const title = 'Self-hosted, on-premise encrypted video conferencing';
+const description =
+  'Run Ollasync on your own infrastructure — private cloud, on-premise or air-gapped. Encrypted meetings, webinars, recordings and deal rooms where media, files and data never leave servers you control.';
+
+const models = [
+  { icon: 'globe', tag: 'Fastest', title: 'Managed · EU', body: 'We host and operate it for you in the EU (Frankfurt). Zero infrastructure to run; your data stays in the EU and your messaging stays end-to-end encrypted.' },
+  { icon: 'layers', tag: 'Isolated', title: 'Single-tenant', body: 'A dedicated instance operated by us but isolated to your organisation — your own database, storage and media relay, in the region you choose.' },
+  { icon: 'server', tag: 'Sovereign', title: 'On-premise', body: 'The full platform deployed inside your datacenter or private cloud. You hold the keys, the storage and the network. We never touch it.' },
+  { icon: 'shield', tag: 'Highest assurance', title: 'Air-gapped', body: 'No inbound or outbound internet required for meetings. Runs entirely on an isolated network for the most sensitive environments.' },
+];
+
+const stack = [
+  { icon: 'network', title: 'Application & API', body: 'The core service — rooms, deals, documents, tokens and the messaging delivery service. Speaks only to components you run.' },
+  { icon: 'video', title: 'Media relay (SFU)', body: 'Forwards live audio and video between participants. Self-hosted, so meeting media stays on your network — not a third party’s.' },
+  { icon: 'file-lock', title: 'Encrypted object storage', body: 'Holds recordings and document blobs on storage you control, with encryption at rest per your disk/volume configuration.' },
+  { icon: 'fingerprint', title: 'Identity & SSO', body: 'Self-hosted sign-in with email, magic-link, passkeys, TOTP and OIDC single sign-on to your own IdP. No third-party identity SaaS required.' },
+];
+
+const boundary = [
+  'Meeting media, recordings and documents never leave infrastructure you operate.',
+  'Your existing controls, audits, DPAs and retention policies apply unchanged — there is no external subprocessor to justify.',
+  'Data residency is exactly wherever you deploy — a region, a country, or a disconnected network.',
+  'Access is governed by your own identity provider and your directory, via OIDC single sign-on.',
+];
+
+const requirements = [
+  { k: 'Runtime', v: 'Standard Linux hosts with a container runtime. Orchestrate with your existing tooling.' },
+  { k: 'Footprint', v: 'Starts small — a handful of CPU cores — and scales horizontally with concurrent meeting load.' },
+  { k: 'Transport', v: 'TLS 1.3 everywhere; you supply certificates for your own domain.' },
+  { k: 'Identity', v: 'Bring your own OIDC provider (Okta, Entra ID, Google Workspace…) or use the built-in accounts.' },
+  { k: 'Updates', v: 'Versioned container images. You choose when to pull and roll forward — including in disconnected environments.' },
+  { k: 'Backups', v: 'Durable state is in a standard SQL database you back up with your normal processes.' },
+];
+
+const faq = [
+  { q: 'Do you have any access to a self-hosted instance?', a: 'No. When you run Ollasync on-premise, it talks only to the components you operate. We have no tunnel into your deployment, no telemetry back-channel is required, and we hold none of your keys, media or documents.' },
+  { q: 'Can it run fully air-gapped?', a: 'Yes. Meetings, messaging and deal rooms work on an isolated network with no internet access. You pull versioned container images through your normal offline software process and deploy them internally.' },
+  { q: 'How do updates work on-premise?', a: 'We publish versioned images. You decide when to update and roll forward on your own schedule — nothing auto-updates without your action, which is essential for change-controlled and air-gapped environments.' },
+  { q: 'Where does data reside when self-hosted?', a: 'Entirely wherever you deploy. There is no default egress to us. Media stays on your media relay, recordings and documents on your storage, and durable state in your database — in the jurisdiction and network you choose.' },
+  { q: 'Is messaging still end-to-end encrypted when self-hosted?', a: 'Yes. Messaging uses the IETF MLS standard (RFC 9420) with keys generated on devices — that’s true whether we host it or you do. Self-hosting additionally keeps meeting media and documents inside your own trust boundary.' },
+  { q: 'What does self-hosting cost?', a: 'On-premise and single-tenant deployments are priced per deployment, not per seat, with a support agreement. Talk to us about your scale and we’ll size it with you.' },
+];
+---
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Self-hosted · on-premise · air-gapped"
+    eyebrowIcon="server"
+    crumbs={[{ label: 'Self-hosted' }]}
+    title="Run it on infrastructure"
+    titleAccent="you control"
+    lead="Ollasync is designed to be deployed on your own servers — private cloud, on-premise, or fully air-gapped. Encrypted meetings, webinars, recordings and deal rooms, where the media, the files and the data never leave your walls."
+  >
+    <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
+      <a href="/contact" class="btn btn-primary">Talk to sales <span class="arrow">→</span></a>
+      <a href="/security" class="btn btn-ghost">Read the security model</a>
+    </div>
+  </PageHero>
+
+  <!-- DEPLOYMENT MODELS -->
+  <section class="section" style="padding-top:36px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Deployment models</span>
+        <h2 class="h2" style="margin-top:12px">From fully managed to fully sovereign</h2>
+        <p class="kicker" style="margin-top:14px">The same platform ships four ways. Move along the spectrum as your assurance requirements grow — the product experience stays identical.</p>
+      </div>
+      <div class="grid grid-4" data-reveal>
+        {models.map((m) => (
+          <div class="card card--hover">
+            <div class="model-tag mono">{m.tag}</div>
+            <div class="card__icon" style="margin-top:10px"><Icon name={m.icon} size={20} /></div>
+            <h3 class="h3">{m.title}</h3>
+            <p>{m.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT RUNS IN YOUR ENV -->
+  <section class="section">
+    <div class="container split">
+      <div data-reveal>
+        <span class="eyebrow-label">Your environment</span>
+        <h2 class="h2" style="margin-top:12px">What runs inside your network</h2>
+        <p class="lead" style="margin-top:16px;max-width:50ch">A small set of components, all operated by you. Every one speaks only to the others — there is no dependency on a service we run.</p>
+        <div class="stack-list" style="margin-top:26px">
+          {stack.map((s) => (
+            <div class="stack-item">
+              <div class="card__icon" style="margin-bottom:0"><Icon name={s.icon} size={20} /></div>
+              <div>
+                <h3 style="font-size:17px;font-weight:600">{s.title}</h3>
+                <p class="muted" style="font-size:14.5px;margin-top:3px">{s.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="panel diagram" data-reveal aria-hidden="true">
+        <div class="diagram__ring">Your network / datacenter</div>
+        <div class="diagram__nodes">
+          <div class="dnode"><Icon name="users" size={16} /> Browsers</div>
+          <div class="dline"></div>
+          <div class="dnode dnode--core"><Icon name="network" size={16} /> App &amp; API</div>
+          <div class="dnode-row">
+            <div class="dnode"><Icon name="video" size={16} /> Media relay</div>
+            <div class="dnode"><Icon name="file-lock" size={16} /> Storage</div>
+          </div>
+          <div class="dnode-row">
+            <div class="dnode"><Icon name="fingerprint" size={16} /> Identity / SSO</div>
+            <div class="dnode"><Icon name="server" size={16} /> Database</div>
+          </div>
+        </div>
+        <div class="diagram__foot mono">no egress to us required</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE BOUNDARY -->
+  <section class="section">
+    <div class="container">
+      <div class="boundary panel" data-reveal>
+        <div>
+          <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={13} stroke="#a9f2d1" /> Your compliance boundary</span>
+          <h2 class="h2" style="margin-top:16px;max-width:18ch">The compliance story is simple: the data never leaves</h2>
+          <p class="lead" style="margin-top:14px;max-width:52ch">When the software runs on your estate, regulated data stays inside the controls you already have certified. There is no third party to add to your audit scope.</p>
+        </div>
+        <ul class="check-list boundary__list">
+          {boundary.map((b) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{b}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Footprint</span>
+        <h2 class="h2" style="margin-top:12px">Straightforward to run</h2>
+        <p class="kicker" style="margin-top:14px">Built on standard infrastructure your ops team already knows. No exotic dependencies.</p>
+      </div>
+      <div class="req-grid" data-reveal>
+        {requirements.map((r) => (
+          <div class="req">
+            <div class="req__k mono">{r.k}</div>
+            <div class="req__v">{r.v}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} title="Self-hosting questions" />
+  <Cta
+    title="Deploy it in your own datacenter."
+    sub="Tell us about your environment — region, air-gap, identity provider, scale — and we’ll help you stand up a proof of concept on your infrastructure."
+    primary={{ label: 'Talk to sales', href: '/contact' }}
+    secondary={{ label: 'See the security model', href: '/security' }}
+  />
+</Base>
+
+<style>
+  .model-tag { display: inline-block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #a9f2d1; background: var(--teal-050); border: 1px solid var(--teal-150); padding: 3px 9px; border-radius: 100px; }
+  .split { display: grid; grid-template-columns: 1fr .95fr; gap: 48px; align-items: center; }
+  .stack-list { display: grid; gap: 18px; }
+  .stack-item { display: flex; gap: 15px; align-items: flex-start; }
+  .stack-item .card__icon { flex: none; }
+
+  .diagram { padding: 30px; }
+  .diagram__ring { text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1px dashed var(--line-2); border-radius: 12px; padding: 8px; margin-bottom: 22px; }
+  .diagram__nodes { display: grid; gap: 12px; place-items: center; }
+  .dnode { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink-2); padding: 10px 14px; border: 1px solid var(--line-2); border-radius: 10px; background: rgba(255,255,255,.03); }
+  .dnode--core { color: #fff; border-color: var(--violet-300); background: var(--violet-050); }
+  .dnode-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .dline { width: 2px; height: 18px; background: linear-gradient(var(--violet), transparent); }
+  .diagram__foot { text-align: center; margin-top: 20px; font-size: 11px; color: var(--teal); }
+
+  .boundary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); }
+  .boundary__list { gap: 14px; }
+
+  .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .req { border: 1px solid var(--line); border-radius: var(--r); padding: 20px; background: rgba(255,255,255,.02); }
+  .req__k { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--iris); }
+  .req__v { margin-top: 8px; color: var(--ink-2); font-size: 14.5px; line-height: 1.55; }
+
+  @media (max-width: 900px) {
+    .split, .boundary { grid-template-columns: 1fr; gap: 32px; }
+    .req-grid { grid-template-columns: 1fr; }
+  }
+</style>

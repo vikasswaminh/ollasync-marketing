@@ -1,0 +1,121 @@
+---
+title: "Secure Zoom alternatives (2026): a buyer's guide"
+description: "A practical 2026 buyer's guide to secure Zoom alternatives: the six criteria that matter for sensitive work — self-hosting, default E2EE, data residency, server-blind messaging, deal rooms and open standards."
+pubDate: 2026-07-24
+category: "Comparisons"
+cover: "/blog-cover-alternatives.png"
+pillar: true
+readTime: 10
+author: "The Ollasync team"
+authorRole: "Security & product"
+takeaways:
+  - "The big platforms are capable and most now offer optional E2EE — but it's opt-in, cloud-operated, and rarely the default."
+  - "For regulated teams the deciding factors are self-hosting, data residency and jurisdiction, not just whether a tick-box says 'encrypted'."
+  - "Score any alternative against six concrete criteria: self-hosting, default E2EE, residency, server-blind messaging, deal rooms and open standards."
+  - "Ollasync is the self-hosted-first option: a relay you can own, server-blind messaging by default, and native confidential deal rooms."
+keywords: ["secure Zoom alternatives", "encrypted Zoom alternative", "private video conferencing", "secure video conferencing"]
+---
+
+"Secure Zoom alternative" is one of the most searched phrases in enterprise software, and most of the results are unhelpful — either thinly veiled ads or feature lists that never define what "secure" actually means. This guide fixes that. It sets out the criteria that make a video tool genuinely secure for sensitive work, applies them fairly to the major platforms, and shows where a self-hosted-first option fits.
+
+We'll be even-handed. Zoom, Microsoft Teams, Google Meet and Cisco Webex are capable, well-engineered products, and most of them now offer an optional end-to-end encryption mode. The question isn't whether they're "insecure" — it's whether their security *model* matches the risk you're carrying. For a lot of teams it does. For regulated, cross-border or highly confidential work, the gaps are specific and worth naming.
+
+## First, define "secure"
+
+Security isn't a single switch. For real-time collaboration it breaks into distinct questions, and a tool can score well on one while scoring poorly on another. Before comparing products, get clear on which of these actually matter for your use case.
+
+1. **Where does it run?** Self-hosting, single-tenant, on-premise or air-gapped versus multi-tenant SaaS.
+2. **Is content end-to-end encrypted — and by default?** Optional E2EE you have to remember to enable is not the same as default protection.
+3. **Which jurisdiction reaches the data?** Data residency controls *where* bytes sit; jurisdiction controls *who can compel* them.
+4. **Is messaging server-blind?** Chat, files and DMs are often the softest target and the least scrutinised.
+5. **Can it handle confidential documents natively?** Sensitive meetings usually come with sensitive files — NDAs, data rooms, due diligence.
+6. **Is it built on open standards?** Open, audited protocols beat proprietary black boxes you can't inspect.
+
+Let's take each in turn.
+
+### 1. Self-hosting and deployment control
+
+This is the criterion the mainstream platforms are least able to meet, and it's often the one that matters most.
+
+If your meeting carries protected health information, privileged legal advice or material non-public information, the single biggest security variable is *whose servers it runs on*. A multi-tenant cloud — however well run — puts a third-party operator in the data path. Self-hosting removes them: the media relay, the recordings and the documents stay on infrastructure you operate.
+
+Zoom, Teams and Meet are cloud-first by design. Some incumbents offer an on-premise or connector option, but it tends to be a deprecated, bolt-on path rather than the primary product. A [self-hosted-first](/self-hosted) platform is architected the other way round: the same experience, deployable on your private cloud, in your datacenter, or fully air-gapped.
+
+### 2. End-to-end encryption — and whether it's the default
+
+Here's where fairness matters, because the popular claim that "Zoom isn't encrypted" is simply wrong.
+
+- **Zoom** encrypts meetings in transit and at rest by default, and offers an *optional* end-to-end encryption mode using AES-256-GCM that you enable per meeting. Turning it on disables some cloud features, and Zoom still operates the cloud the meeting runs on.
+- **Microsoft Teams** offers *opt-in* end-to-end encryption for 1:1 calls.
+- **Google Meet** offers client-side encryption on some enterprise/education tiers.
+- **Cisco Webex** offers an *opt-in* end-to-end encryption mode.
+
+So the honest picture is: E2EE is *available* across the board, but it's **opt-in**, often limited in scope (1:1 only, or specific tiers), and it's operated within the vendor's cloud. The gap for regulated teams isn't "no encryption" — it's that the strongest mode is off by default, narrow, and still runs on infrastructure the vendor controls. We hold ourselves to the same honesty: our *messaging* is E2EE and server-blind by default, but our instant meetings are encrypted in transit to a relay (per-frame E2EE for meetings is a mode and a roadmap default, not something we'll claim is universal today). See our [security page](/security) for the line-by-line breakdown.
+
+### 3. Data residency and jurisdiction
+
+These two get conflated constantly, and the difference is the whole point.
+
+**Residency** is geography: which region your data physically sits in. Most large platforms now offer regional residency options. **Jurisdiction** is legal reach: which government can compel access to that data. A dataset can sit in a European datacenter and *still* be reachable by foreign legal process if the operator is subject to that jurisdiction — the concern many organisations raise about the **US CLOUD Act**, which can reach data held by US-headquartered providers regardless of where the servers are.
+
+For cross-border and sovereignty-sensitive work, "we'll store it in your region" doesn't fully answer the question. Non-US operation, or self-hosting under your own legal control, does.
+
+### 4. Server-blind messaging
+
+Meetings get the security headlines; the chat alongside them often doesn't. Yet DMs, group threads and shared files can be the most sensitive artefacts of all — and on many platforms they're encrypted in transit and at rest but readable by the operator.
+
+**Server-blind** messaging means the provider genuinely cannot read message content, because it never holds the keys. This is where an [IETF MLS](/security)-based system built on RFC 9420 stands apart: messaging is end-to-end encrypted and server-blind *by default*, using an independently audited open-source library. We can't read your messages. (To be precise: metadata such as room membership, message size and timing is still visible to the infrastructure — E2EE protects content, not the fact that a conversation happened.)
+
+### 5. Confidential deal rooms
+
+Sensitive meetings rarely travel alone. A fundraise, an M&A process, a board pack or a due-diligence exercise brings documents that need controlled, auditable, often NDA-gated access. Bolting a general file-share onto a video tool isn't the same as a purpose-built confidential space.
+
+Native **deal rooms** — access-controlled, NDA-gated, with a clear audit trail — are something the mainstream conferencing platforms simply don't offer as a first-class feature. Being honest about our own model: deal-room documents are encrypted in transit and access-controlled, but they are **not** client-side end-to-end encrypted yet — so we don't claim they are. What they *are* is confidential-by-design and, when self-hosted, resident entirely on your storage.
+
+### 6. Open standards
+
+Proprietary encryption you can't inspect asks you to trust a vendor's word. Open standards let you — or independent researchers — verify the design. The building blocks worth looking for are named and public: **IETF MLS (RFC 9420)** for group messaging, **DTLS-SRTP** and **SFrame** for media, **Opus** for audio, **OIDC/SSO** for identity. A platform built on these is one you can reason about, rather than a black box.
+
+## The criteria, side by side
+
+Use this as a scoring sheet for any tool you evaluate — including ours. The mainstream columns reflect optional, cloud-operated capabilities; the point isn't that they're absent, but that the security model differs.
+
+| Criterion | Mainstream cloud platforms | Ollasync (self-hosted-first) |
+| --- | --- | --- |
+| **Self-host / on-prem / air-gap** | Rare; usually a bolt-on if offered | Primary deployment model |
+| **E2EE for meetings** | Optional, opt-in, cloud-operated | Transit-encrypted by default; per-frame E2EE mode (default on roadmap) |
+| **Server-blind messaging** | Generally readable by operator | Default, IETF MLS, no keys held by us |
+| **Data residency** | Regional options available | Your infrastructure, your region |
+| **Jurisdiction** | Often US-reachable (CLOUD Act) | Non-US operation or your own legal control |
+| **Confidential deal rooms** | Not a first-class feature | Native, access-controlled, NDA-gated |
+| **Open standards** | Varies; often proprietary modes | MLS, DTLS-SRTP, SFrame, Opus, OIDC |
+
+No single tool "wins" every row for every buyer. A marketing team running public webinars has very different needs from a law firm handling privileged files. The value of the table is that it forces the question *which rows matter to us?* before a procurement decision, not after.
+
+## Where the mainstream platforms are genuinely strong
+
+To keep this fair: if your requirement is scale, ecosystem depth and ubiquity, the incumbents are hard to beat. Teams is deeply woven into Microsoft 365. Meet is frictionless for anyone with a Google account. Zoom's reliability at large scale is a real engineering achievement, and Webex has a long enterprise track record. If your meetings aren't especially sensitive and your organisation lives inside one of those ecosystems, "switch for security" may be solving a problem you don't have.
+
+The case for an alternative is specific: it's for the meetings, messages and documents where *whose cloud it runs on* is itself the risk.
+
+## Where Ollasync fits
+
+We built Ollasync for exactly that case, and we differentiate on four things we can stand behind honestly:
+
+- **Self-hosting first.** Own the relay, the storage and the trust boundary. Deploy on your cloud, your datacenter, or air-gapped.
+- **Server-blind messaging by default.** IETF MLS, an independently audited library, no keys held by us.
+- **Native confidential deal rooms.** Access-controlled and NDA-gated, resident on your storage when self-hosted.
+- **Non-US operation.** Run outside the reach of foreign legal process, or under your own jurisdiction entirely.
+
+We're equally clear about what we don't claim: instant-meeting media is encrypted in transit rather than end-to-end by default, documents aren't client-side E2EE yet, and we don't hold any compliance certification we haven't earned. Controls, a DPA and the self-host boundary are what we offer today; a formal audit is a roadmap target, not a badge we wear. You can read the unvarnished version on our [security page](/security).
+
+## How to choose
+
+Score your top candidates against the six criteria, weighted for your own risk. Then go deeper on the platforms that clear your bar:
+
+- [Ollasync vs Zoom](/vs/zoom) — self-hosting and default server-blind messaging versus optional cloud E2EE.
+- [Ollasync vs Microsoft Teams](/vs/microsoft-teams) — leaving the Microsoft cloud trust boundary.
+- [Ollasync vs Google Meet](/vs/google-meet) — client-side encryption tiers versus self-hosted-first.
+- [Ollasync vs Cisco Webex](/vs/webex) — enterprise incumbency versus data sovereignty.
+
+The right answer isn't "always leave the incumbents." It's to match the security *model* to the sensitivity of the work — and, for the work where the infrastructure itself is the risk, to run it somewhere you control. If that's you, [talk to us about self-hosting](/self-hosted).

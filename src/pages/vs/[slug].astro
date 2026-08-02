@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import Compare from '../../components/Compare.astro';
+import { COMPETITORS } from '../../data/vs';
+
+export function getStaticPaths() {
+  return COMPETITORS.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+---
+<Base title={c.metaTitle} description={c.metaDescription}>
+  <PageHero
+    eyebrow={c.eyebrow}
+    eyebrowIcon="layers"
+    crumbs={[{ label: 'Compare', href: '/vs' }, { label: `vs ${c.name}` }]}
+    title="The secure, self-hostable"
+    titleAccent={`${c.name} alternative`}
+    lead={c.intro}
+  >
+    <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
+      <a href="/contact" class="btn btn-primary">Book a demo <span class="arrow">→</span></a>
+      <a href="/self-hosted" class="btn btn-ghost">See self-hosting</a>
+    </div>
+  </PageHero>
+
+  <!-- FAIRNESS -->
+  <section class="section" style="padding-top:24px">
+    <div class="container">
+      <div class="fair panel" data-reveal>
+        <span class="badge-soft">Where {c.name} is strong</span>
+        <p class="lead" style="margin-top:14px;max-width:74ch">{c.fair}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Side by side</span>
+        <h2 class="h2" style="margin-top:12px">Ollasync vs {c.name}, capability by capability</h2>
+      </div>
+      <div data-reveal><Compare competitor={c} /></div>
+    </div>
+  </section>
+
+  <!-- WHY SWITCH -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Why teams switch</span>
+        <h2 class="h2" style="margin-top:12px">When Ollasync is the better fit</h2>
+      </div>
+      <ul class="switch-list" data-reveal>
+        {c.switchReasons.map((r) => (
+          <li class="card"><span class="tick"><Icon name="check" size={13} stroke="#3ddc97" /></span>{r}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Faq items={c.faq} title={`Ollasync vs ${c.name} — FAQ`} />
+  <Cta
+    title={`Move your confidential meetings off ${c.name}.`}
+    sub="Keep the one-click experience your team expects — add self-hosting, server-blind messaging and deal rooms. See it on your own infrastructure."
+    primary={{ label: 'Book a demo', href: '/contact' }}
+    secondary={{ label: 'See self-hosting', href: '/self-hosted' }}
+  />
+</Base>
+
+<style>
+  .fair { padding: clamp(22px,3vw,32px); }
+  .switch-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; list-style: none; }
+  .switch-list li { display: flex; gap: 13px; align-items: flex-start; font-size: 15px; color: var(--ink-2); }
+  .switch-list .tick { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 7px; background: var(--teal-150); flex: none; margin-top: 1px; }
+  @media (max-width: 760px) { .switch-list { grid-template-columns: 1fr; } }
+</style>

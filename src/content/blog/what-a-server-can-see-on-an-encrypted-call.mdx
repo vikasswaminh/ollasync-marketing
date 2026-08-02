@@ -1,0 +1,91 @@
+---
+title: "What a server can actually see on an encrypted call"
+description: "The honest content-versus-metadata breakdown: what a server can and can't see when messaging is end-to-end encrypted and meeting media rides an encrypted transit relay."
+pubDate: 2026-07-14
+category: "Cryptography"
+cover: "/blog-cover-server-blind.png"
+pillarSlug: "end-to-end-encrypted-video-conferencing"
+readTime: 7
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["what a server can see encrypted call", "server-blind messaging", "metadata vs content encryption", "encrypted call metadata"]
+takeaways:
+  - "End-to-end encryption hides content, not the routing metadata a server needs to deliver it — room, membership, size and timing stay visible."
+  - "\"Server-blind\" is an honest, useful claim: we can't read your messages. \"We know nothing\" is not."
+  - "For live meeting media, a hosted relay handles encrypted transit; self-host and the relay is yours, so no third party is in the path."
+  - "The right design goal is to make the server structurally unable to read what it doesn't need to."
+---
+
+When people ask whether a call is "encrypted", they usually mean one thing: *can someone else read what I'm saying?* That's the right instinct, but the honest answer has two halves — **content** and **metadata** — and any vendor who only tells you about the first is leaving out the part that's harder to hide. This post is the straight version: what a server can and can't see on an encrypted call, and how we design so it sees as little as possible.
+
+If you've read the [end-to-end encrypted video conferencing pillar](/blog/end-to-end-encrypted-video-conferencing), think of this as the deep dive on one uncomfortable line in it: server-blind is not "zero-knowledge".
+
+## Content vs metadata
+
+**Content** is the *what*: the words in your message, the pixels in your video, the audio of your voice. **Metadata** is the *about*: which conversation a message belongs to, who's in it, how big it was, and when it was sent.
+
+Encryption is very good at hiding content. It is much harder — often impossible — to hide metadata entirely, because a server needs *some* of it just to deliver anything at all. You can't route a message to a room without knowing which room. You can't forward a video stream to the other participants without knowing there are participants.
+
+So the honest framing isn't "encrypted means the server sees nothing". It's: **encryption removes the server's access to content; metadata is what's left, and good design minimises it.**
+
+## What the server sees for end-to-end encrypted messaging
+
+Our messaging is end-to-end encrypted by default. Your device encrypts each message; the server stores and forwards only ciphertext; we hold no message keys. So the content column below is genuinely closed to us.
+
+Here's the honest split:
+
+| What | Can the server read it? |
+| --- | --- |
+| Message text / attachments (content) | **No** — ciphertext only, we hold no keys |
+| Which room/conversation a message belongs to | Yes — needed to route it |
+| Who the members of a conversation are | Yes — needed to deliver to them |
+| Approximate message size | Yes — it's the size of the ciphertext |
+| Timing — when a message was sent | Yes |
+
+That table is why our precise claim is **"we can't read your messages"** and never "we know nothing". The content is unreadable to us. The routing metadata — room, membership, size, timing — is visible because it's the machinery of delivery. Anyone who tells you a networked messaging system reveals *literally nothing* is either redefining "nothing" or overselling.
+
+<div class="callout">
+"Server-blind" is a claim about <strong>content</strong>: the operator holds ciphertext and no keys, so it can't read what you write. It is not a claim that no information exists at the server at all. We think saying this out loud is a feature, not a weakness — a vendor who won't distinguish content from metadata is a vendor to be sceptical of.
+</div>
+
+## What the server sees for live meeting media
+
+Live audio and video works differently from messaging, and the honest picture is different too.
+
+In a standard instant meeting, your media is **encrypted in transit** (WebRTC's DTLS-SRTP, with signalling over TLS 1.3) to a **Selective Forwarding Unit (SFU)** — a relay that forwards each participant's stream to the others. To route those packets, the relay terminates the transport encryption, which means a *hosted* relay is, in principle, positioned to access decrypted media. That's why we will never tell you "every video call is always end-to-end encrypted" — for the default instant-meeting path, it isn't, and the same is true of most competitors' defaults.
+
+There are two honest things we *can* say:
+
+- **A per-frame end-to-end encryption mode exists.** With insertable streams and SFrame-style per-frame encryption, media can be encrypted so even the relay only forwards ciphertext. It's real, but it's an opt-in mode with trade-offs, not the default.
+- **When you self-host, the relay is yours.** This is the one that resolves the whole question for most regulated buyers: if you [self-host](/self-hosted) the SFU, there is no third-party operator in the media path at all. The relay still sees who's connected and for how long — that's unavoidable routing metadata — but it's *your* infrastructure seeing it, inside your own trust boundary.
+
+Even for encrypted media, then, some metadata is inherent: that a call is happening, between how many endpoints, for how long, at roughly what bandwidth. What changes with self-hosting isn't the existence of that metadata — it's *whose* servers hold it.
+
+## Documents: a different control set, stated plainly
+
+To keep the picture complete: documents shared in a deal room are **encrypted in transit and access-controlled**, with NDA gating and audit logging of who opened what. They are **not** client-side end-to-end encrypted in the current web flow — that's on our roadmap, and we won't imply otherwise. So for documents, the server *can* process the content (to preview, index, watermark and permission it), and the protection comes from strict access control rather than server-blindness. Different layer, different honest answer. We spell this out on the [deal-rooms feature page](/features/deal-rooms).
+
+## The design principle: structurally unable, not merely promising
+
+Notice the pattern across all three layers. The strongest privacy claim isn't "we promise not to look". It's **"we built the system so we can't."**
+
+- For messaging, we don't hold the keys, so reading content isn't a policy we choose to honour — it's something the architecture makes impossible for us.
+- For media, self-hosting removes us from the path entirely, so there's no operator who *could* be compelled to produce content they never had.
+- Everywhere, we try to design so the server handles the *minimum* metadata delivery requires, and no more.
+
+This is a more durable guarantee than trust, because it survives changes of ownership, jurisdiction and pressure. A promise depends on who's making it; a structural property doesn't. It's the same reasoning behind self-hosting in general, which we cover in the [self-hosted guide](/self-hosted), and behind how we describe our controls honestly on the [security page](/security).
+
+## What to ask any vendor
+
+Use this the next time someone tells you a call is "encrypted":
+
+1. **Content:** which channels are end-to-end encrypted so the operator can't read them — messaging, media, documents? Get it per channel.
+2. **Metadata:** what does the server still see even when content is encrypted? A trustworthy answer names room, membership, size and timing — not "nothing".
+3. **Media path:** who operates the relay, and can I run it myself?
+4. **Documents:** is it truly client-side E2EE, or in-transit-plus-access-control? Both can be legitimate — but they're different, and the vendor should say which.
+
+## The bottom line
+
+An encrypted call keeps your **content** private; it does not — and honestly cannot — erase the **metadata** that delivery depends on. That's why we say "we can't read your messages" rather than "we know nothing", why we won't pretend every meeting is end-to-end encrypted by default, and why self-hosting matters so much: it's the cleanest way to make sure the metadata that must exist lives on *your* servers, not someone else's.
+
+For the full layered picture — messaging, media and documents together — head back to the [end-to-end encrypted video conferencing pillar](/blog/end-to-end-encrypted-video-conferencing).

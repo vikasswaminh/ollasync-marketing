@@ -1,0 +1,49 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+<LegalLayout
+  title="Privacy Policy"
+  description="How Ollasync handles your data: EU-hosted, end-to-end encrypted messaging, no selling of data, and your rights under the GDPR."
+  updated="1 August 2026"
+  crumb="Privacy"
+>
+  <p>This policy explains what data Ollasync processes when you use our hosted service, and your rights over it. If you self-host Ollasync, you are the operator and controller of your deployment — this policy covers our managed service.</p>
+
+  <h2>The short version</h2>
+  <ul>
+    <li>We host our managed service in the <strong>EU (Frankfurt)</strong>.</li>
+    <li>Encrypted messaging is <strong>end-to-end encrypted</strong> — we store only ciphertext and cannot read its content.</li>
+    <li>We <strong>do not sell your data</strong> and we do not use it to train advertising or third-party models.</li>
+    <li>You can request access to, or deletion of, your personal data at any time.</li>
+  </ul>
+
+  <h2>What we process</h2>
+  <h3>Account data</h3>
+  <p>Your name, email address, organisation and authentication details (including 2FA and passkey metadata) so you can sign in and we can operate your workspace.</p>
+  <h3>Content</h3>
+  <p>Encryption differs by data type, as described on our <a href="/security">security page</a>. For <strong>end-to-end encrypted messaging</strong>, we store only opaque ciphertext and hold no keys. For meetings, media is encrypted in transit and relayed; for deal-room documents, content is encrypted in transit and access-controlled. We process this content only to deliver the service.</p>
+  <h3>Metadata</h3>
+  <p>To route and secure the service we necessarily process routing and operational metadata — for example room identifiers, membership, connection times, and message size and timing. For encrypted messaging, this metadata does not reveal message content.</p>
+  <h3>Logs</h3>
+  <p>We keep security and audit logs (sign-ins, invites, NDA acceptance, document access) to protect accounts and support your own compliance needs.</p>
+
+  <h2>Why we process it</h2>
+  <p>To provide and secure the service, to authenticate you, to prevent abuse, and to meet legal obligations. Our lawful bases under the GDPR are the performance of our contract with you, our legitimate interest in operating a secure service, and, where applicable, your consent.</p>
+
+  <h2>Sub-processors & data sharing</h2>
+  <p>We use a small set of infrastructure providers to operate the hosted service. They are listed, with their roles and locations, in our <a href="/dpa">Data Processing Agreement</a>, available on request. We do not share your data with advertisers or data brokers.</p>
+
+  <h2>Retention</h2>
+  <p>We keep account and content data for as long as your workspace is active. Rooms can be closed and purged, and per-room disappearing-message TTLs are supported. On request or on account closure, we delete personal data within a reasonable period, subject to legal retention obligations.</p>
+
+  <h2>Your rights</h2>
+  <p>Under the GDPR you have the right to access, correct, delete, restrict or port your personal data, and to object to certain processing. Contact <a href="mailto:privacy@ollasync.com">privacy@ollasync.com</a> and we will respond within the timeframes the law requires. You may also complain to your data-protection authority.</p>
+
+  <h2>Cookies</h2>
+  <p>Our marketing site uses no third-party advertising or tracking cookies. The application uses first-party cookies strictly necessary to keep you signed in.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy or your data: <a href="mailto:privacy@ollasync.com">privacy@ollasync.com</a>. Security matters: <a href="mailto:security@ollasync.com">security@ollasync.com</a>.</p>
+
+  <p class="note">This policy reflects how the product works today and will be updated as the service evolves. It is provided for transparency and should be reviewed alongside your contract and DPA.</p>
+</LegalLayout>

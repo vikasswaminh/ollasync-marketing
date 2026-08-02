@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { SITE } from '../consts';
+
+const title = 'Pricing — encrypted meetings & deal rooms';
+const description =
+  'Simple per-seat pricing for encrypted meetings and deal rooms, EU-hosted by default. Move to single-tenant or self-hosted at any tier. Enterprise and self-host priced per deployment.';
+
+const tiers = [
+  {
+    name: 'Team', price: '€12', unit: '/ user · mo', tag: '',
+    blurb: 'For small teams that need private calls today.',
+    cta: { label: 'Start free', href: SITE.appUrl }, primary: false,
+    features: ['Up to 25 members', 'Encrypted calls up to 20 participants', 'Server-blind encrypted chat', '1 active deal room', 'Passkeys & 2FA', 'EU hosting (Frankfurt)'],
+  },
+  {
+    name: 'Business', price: '€29', unit: '/ user · mo', tag: 'Most popular',
+    blurb: 'For firms running deals, cases and diligence.',
+    cta: { label: 'Start free', href: SITE.appUrl }, primary: true,
+    features: ['Everything in Team', 'Unlimited deal rooms', 'Access-controlled recording', 'SSO — OIDC & SAML', 'Audit logs & view-only watermarks', 'Priority support'],
+  },
+  {
+    name: 'Enterprise & Self-host', price: 'Custom', unit: '', tag: '',
+    blurb: 'Run it your way, in your jurisdiction.',
+    cta: { label: 'Talk to sales', href: '/contact' }, primary: false,
+    features: ['Everything in Business', 'Single-tenant or fully self-hosted', 'Choose your data jurisdiction', 'On-premise & air-gapped options', 'DPA, custom SLA', 'Onboarding & deployment support'],
+  },
+];
+
+const faq = [
+  { q: 'Is there a free trial?', a: 'Yes — you can start on our EU-hosted service with no credit card. Team and Business tiers begin free so you can try encrypted calls, chat and a deal room before you commit.' },
+  { q: 'How is self-hosting priced?', a: 'On-premise and single-tenant deployments are priced per deployment with a support agreement — not per seat. Tell us your scale and requirements and we’ll size it with you.' },
+  { q: 'Can we move to self-host later?', a: 'Yes. You can start EU-hosted and move to single-tenant or fully self-hosted at any tier — the product experience is identical across deployment models.' },
+  { q: 'Where is our data hosted?', a: 'In the EU (Frankfurt) by default. Enterprise and self-host let you choose the jurisdiction entirely, including on-premise and air-gapped.' },
+];
+
+const offerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Ollasync',
+  description: description,
+  brand: { '@type': 'Brand', name: 'Ollasync' },
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'EUR',
+    lowPrice: '12',
+    highPrice: '29',
+    offerCount: '3',
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+<Base title={title} description={description} schema={offerSchema}>
+  <PageHero
+    eyebrow="Pricing"
+    eyebrowIcon="key"
+    crumbs={[{ label: 'Pricing' }]}
+    title="Priced for teams that"
+    titleAccent="keep secrets"
+    lead="EU-hosted by default. Move to single-tenant or self-host at any tier. No credit card to try it."
+    align="center"
+  />
+  <section class="section" style="padding-top:24px">
+    <div class="container">
+      <div class="tiers" data-reveal>
+        {tiers.map((t) => (
+          <div class={`tier ${t.primary ? 'tier--pop' : ''}`}>
+            {t.tag && <span class="tier__tag mono">{t.tag}</span>}
+            <h2 class="h3">{t.name}</h2>
+            <div class="tier__price"><span class="tier__amount">{t.price}</span>{t.unit && <span class="tier__unit">{t.unit}</span>}</div>
+            <p class="muted" style="font-size:14px;min-height:40px">{t.blurb}</p>
+            <a href={t.cta.href} class={`btn ${t.primary ? 'btn-primary' : 'btn-ghost'}`} style="width:100%;margin-block:6px 20px">{t.cta.label}</a>
+            <ul class="check-list">
+              {t.features.map((f) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{f}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="center muted" style="margin-top:26px;font-size:14px">All plans include end-to-end encrypted messaging and EU hosting. Prices exclude VAT. <a href="/self-hosted" style="color:var(--iris)">Self-hosting →</a></p>
+    </div>
+  </section>
+  <Faq items={faq} title="Pricing questions" />
+  <Cta />
+</Base>
+
+<style>
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
+  .tier { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; background: linear-gradient(180deg, var(--panel), var(--bg-3)); position: relative; }
+  .tier--pop { border-color: var(--violet-300); background: linear-gradient(180deg, rgba(124,92,255,.1), var(--bg-3)); box-shadow: 0 24px 60px -34px rgba(124,92,255,.5); }
+  .tier__tag { position: absolute; top: -11px; left: 28px; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--grad-accent); padding: 4px 11px; border-radius: 100px; }
+  .tier__price { margin: 12px 0 8px; display: flex; align-items: baseline; gap: 6px; }
+  .tier__amount { font-size: 38px; font-weight: 660; letter-spacing: -.03em; }
+  .tier__unit { color: var(--muted); font-size: 14px; }
+  .tier .check-list li { font-size: 14px; }
+  @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
+</style>

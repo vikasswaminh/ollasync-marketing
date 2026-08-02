@@ -1,0 +1,80 @@
+---
+title: "Is Zoom end-to-end encrypted? A fair, accurate answer"
+description: "Is Zoom end-to-end encrypted? Yes and no: meetings are encrypted in transit and at rest by default, with an optional AES-256-GCM E2EE mode you enable per meeting. Here's what that means."
+pubDate: 2026-07-10
+category: "Comparisons"
+cover: "/og-ollasync.png"
+pillarSlug: "secure-zoom-alternatives"
+readTime: 7
+author: "The Ollasync team"
+authorRole: "Security & product"
+takeaways:
+  - "By default, Zoom encrypts meetings in transit and at rest — but that's not end-to-end encryption; Zoom's cloud can process the media."
+  - "Zoom also offers an optional end-to-end encryption mode using AES-256-GCM that you enable per meeting, which disables some features when on."
+  - "Even with E2EE on, Zoom still operates the cloud your meeting runs on — the operator and jurisdiction don't change."
+  - "For meetings where the infrastructure itself is the risk, a self-hostable, server-blind alternative changes the model, not just the setting."
+keywords: ["is Zoom end to end encrypted", "Zoom E2EE", "Zoom encryption", "Zoom end to end encryption"]
+---
+
+"Is Zoom end-to-end encrypted?" is one of those questions where both "yes" and "no" are misleading on their own. The accurate answer is: *Zoom encrypts your meetings by default, but that default isn't end-to-end encryption — and Zoom does offer a separate, optional end-to-end mode you can turn on.* Let's unpack that precisely, without the FUD that usually surrounds this topic.
+
+## The short version
+
+By **default**, Zoom meetings are encrypted **in transit** (between your device and Zoom's servers) and **at rest** (when stored, such as cloud recordings). That's real, meaningful encryption — it protects your meeting from network eavesdroppers and from data-at-rest exposure. But it is **not** end-to-end encryption, because Zoom's infrastructure terminates that encryption to route and process the media. In that default mode, the operator is technically in a position to access content.
+
+Separately, Zoom offers an **optional end-to-end encryption mode** that you enable per meeting. When it's on, the meeting's content keys are held by participants rather than Zoom, using AES-256-GCM. Turning it on disables some features that depend on the cloud touching your media. So Zoom *can* be end-to-end encrypted — you just have to choose it, meeting by meeting, and accept the trade-offs.
+
+## Transit encryption vs end-to-end encryption
+
+The gap between "encrypted" and "end-to-end encrypted" is the crux, and it's worth making concrete.
+
+- **Encrypted in transit** means the connection between you and the server is protected. Anyone sniffing the network — public Wi-Fi, your ISP — sees ciphertext. But the *server* decrypts to do its job, so the operator can, in principle, access the content.
+- **End-to-end encrypted (E2EE)** means only the participants hold the keys. The content is encrypted on your device and decrypted on the other participants' devices, and the server in the middle only ever handles ciphertext it can't read.
+
+Zoom's default is the first kind. Its optional mode is the second. Both are legitimately "encryption" — they just defend against different threats. Transit encryption defends against the network. E2EE defends against *the infrastructure operator itself*.
+
+<div class="callout">
+The practical rule of thumb: if your threat model includes the cloud provider being compromised, compelled, or simply curious, transit encryption isn't enough — you need end-to-end encryption <em>and</em> you need to think about who operates the cloud.
+</div>
+
+## What Zoom's optional E2EE does and doesn't change
+
+Give Zoom fair credit: shipping an opt-in E2EE mode with participant-held AES-256-GCM keys is a genuine security feature, and plenty of meetings benefit from it. When you enable it, Zoom's servers forward encrypted media they can't decrypt for that meeting.
+
+What it **doesn't** change is the deployment model. Even with E2EE switched on:
+
+- Zoom still **operates the cloud** the meeting runs on. The relay is Zoom's infrastructure, in Zoom's jurisdiction.
+- It's **opt-in and per-meeting**, so protection depends on someone remembering to enable it every time.
+- It **disables features** that need the cloud to see media — the usual honest trade-off of true E2EE, which affects things like certain cloud recording and processing paths.
+- **Metadata remains visible** to the operator: who joined, when, and for how long. E2EE protects content, not the fact that the meeting happened.
+
+None of this is a Zoom-specific failing — it's inherent to running E2EE on top of someone else's cloud. The same caveats apply to the optional E2EE modes in Microsoft Teams, Google Meet and Cisco Webex. The point is simply that "turn on E2EE" answers *who can read the media* without answering *whose infrastructure it runs on*.
+
+## So when is Zoom's encryption enough?
+
+For a great many meetings, it's entirely sufficient. Internal stand-ups, customer demos, webinars, most day-to-day calls — transit-and-at-rest encryption by default is a sensible baseline, and flipping on E2EE for the occasional sensitive conversation covers a lot of ground.
+
+Zoom's encryption is likely **not** enough when:
+
+- The meeting carries regulated data — PHI, privileged legal advice, material non-public information — where a compelled or compromised cloud operator is part of your threat model.
+- You operate under **data-sovereignty** requirements and can't have content reachable by foreign legal process. Data can sit in your region and still be reachable via statutes like the US CLOUD Act if the operator is US-headquartered.
+- You need protection to be the **default**, not a per-meeting checkbox someone has to remember.
+- The sensitive **chat and documents** around the meeting matter as much as the video — and need to be genuinely unreadable by the operator too.
+
+In those cases the deciding factor isn't a setting inside Zoom. It's the deployment model itself.
+
+## When you'd want a self-hostable, server-blind alternative
+
+If the infrastructure operator is part of your risk, the most direct fix is to change who the operator is. That's where a [self-hostable](/self-hosted) platform changes the model rather than just the setting.
+
+- **Own the relay.** When you self-host, meeting media is encrypted in transit to a relay that is *yours* — inside your trust boundary and jurisdiction. There's no third-party cloud in the path to compel or compromise in the first place.
+- **Server-blind messaging by default.** The chat, DMs and files alongside the meeting can be end-to-end encrypted and server-blind out of the box, built on the open [IETF MLS standard](/security) — no keys held by the operator, no per-meeting toggle to forget.
+- **Non-US operation and residency you control.** Sidestep the jurisdiction question entirely by running where you choose, under your own legal control.
+
+We hold ourselves to the same honesty we'd want from any vendor: our instant-meeting media is encrypted in transit by default (a per-frame end-to-end mode exists and default-on is on our roadmap), and our documents are access-controlled and encrypted in transit rather than client-side E2EE. What self-hosting adds isn't a bigger claim — it's a smaller trust surface. You can read exactly what each layer protects on our [security page](/security).
+
+## The bottom line
+
+Is Zoom end-to-end encrypted? By default, no — it's encrypted in transit and at rest, which is real but not E2EE. Optionally, yes — you can enable a per-meeting AES-256-GCM end-to-end mode, at the cost of some features, while Zoom still runs the cloud. For most meetings that's a perfectly reasonable model. For the meetings where the cloud operator itself is the risk, the answer isn't a better checkbox — it's infrastructure you control.
+
+For the full comparison, see [Ollasync vs Zoom](/vs/zoom), or step back to the buyer's guide on [secure Zoom alternatives](/blog/secure-zoom-alternatives).

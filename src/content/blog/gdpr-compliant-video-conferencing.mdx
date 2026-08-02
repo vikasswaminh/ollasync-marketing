@@ -1,0 +1,112 @@
+---
+title: "GDPR and video conferencing: data residency, done right"
+description: "GDPR-compliant video conferencing isn't a badge you buy — it's controller and processor roles, a DPA, lawful transfers and real data residency. Here's how EU hosting and self-hosting resolve sovereignty."
+pubDate: 2026-07-20
+category: "Compliance"
+cover: "/blog-cover-gdpr.png"
+pillar: true
+readTime: 10
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["GDPR video conferencing", "GDPR compliant video calls", "EU data residency video conferencing", "GDPR video meetings"]
+takeaways:
+  - "Under GDPR you are the data controller; your video vendor is a processor — and a DPA between you is required, not optional."
+  - "Data residency (where bytes sit) is not the same as sovereignty (whose laws reach the operator) — the US CLOUD Act is why."
+  - "EU-region hosting plus a DPA and SCCs is a solid baseline; self-hosting gives you full residency and jurisdiction control."
+  - "GDPR compliance is a property of your deployment and processes — no software is 'GDPR compliant' on its own."
+---
+
+"Is your video conferencing GDPR compliant?" is one of the most common questions European buyers ask — and one of the most commonly mis-answered. The honest response is that **no software is GDPR compliant by itself.** The General Data Protection Regulation places obligations on *organisations* that process personal data, not on the tools they use. A video platform can give you the controls, the contracts and the hosting choices that make compliance achievable. Whether you are actually compliant depends on how you deploy and operate it.
+
+This guide is the straight version: what GDPR asks of a video call, who plays which role, why the Data Processing Agreement matters, and — the part that trips everyone up — how data residency, international transfers and sovereignty actually interact. If you handle EU personal data on video, this is the map. For the residency question specifically, the companion piece is [EU data residency, actually explained](/blog/eu-data-residency-explained).
+
+## Controller, processor, and why the distinction runs everything
+
+GDPR assigns roles, and almost every obligation flows from them.
+
+- **You are the controller.** You decide *why* and *how* personal data is processed — the purposes and the means. When your team holds a meeting, records it, or shares a document, you are determining what happens to that personal data. That makes you the controller, and the controller carries the primary accountability under GDPR.
+- **Your video vendor is a processor.** A hosted platform processes personal data *on your behalf and on your instructions*. That makes it a processor. Processors have their own direct obligations under GDPR, but they act within the controller's remit.
+
+Why does this matter so much? Because Article 28 of GDPR says a controller may only use a processor that provides "sufficient guarantees", and the relationship **must** be governed by a written contract with specific mandatory terms. That contract is the DPA.
+
+## The DPA is mandatory, not a nicety
+
+A **Data Processing Agreement (DPA)** is the Article 28 contract between controller and processor. It is legally required whenever a processor handles personal data on your behalf. A proper DPA sets out:
+
+- the subject matter, duration, nature and purpose of the processing;
+- the types of personal data and categories of data subjects;
+- the processor's obligation to act only on documented instructions;
+- confidentiality, security measures, and breach-notification duties;
+- rules for engaging **sub-processors** (and your right to object);
+- assistance with data-subject requests and with your own compliance duties;
+- what happens to data at the end — deletion or return;
+- the transfer mechanism for any data leaving the EEA.
+
+Ollasync provides a DPA for hosted deployments. If a vendor cannot or will not sign one, they cannot lawfully process EU personal data on your behalf — that is a hard stop, not a negotiating point.
+
+## Lawful basis, in one paragraph
+
+GDPR requires a **lawful basis** for processing personal data (Article 6). For most business video conferencing, that basis is *legitimate interests* (running your operations) or *contract* (delivering a service the person signed up for), rather than consent. The platform does not choose your lawful basis — you do, as controller — but it should not force processing you cannot justify. The practical implication for tooling: minimise what is collected, keep retention short, and make it easy to honour data-subject rights (below).
+
+## Data residency vs sovereignty: the part everyone gets wrong
+
+Here is where most "GDPR-compliant" marketing quietly falls apart. There are **three different questions**, and they are not the same:
+
+| Question | What it asks | GDPR relevance |
+| --- | --- | --- |
+| **Residency** | *Where* do the bytes physically sit? | Where data is stored and processed. |
+| **Operator** | *Who* runs the servers and holds the access? | Who can reach the data, and who can be compelled. |
+| **Jurisdiction** | *Whose laws* reach the operator? | Whether a foreign government can lawfully demand the data. |
+
+A vendor can truthfully say "your data is stored in an EU region" while the servers are still operated by a company subject to **US law**. And under the **US CLOUD Act**, a US-based provider can be compelled to produce data it controls *regardless of where in the world that data is stored.* This is the concern the European Court of Justice crystallised in the **Schrems II** ruling, which invalidated the previous EU–US transfer framework and put a spotlight on whether foreign surveillance law undermines EU protections in practice.
+
+So "EU region on a US-operated cloud" solves residency but **not** sovereignty. The bytes are in Frankfurt; the legal reach is still transatlantic. For many organisations that is an acceptable risk with the right contracts. For public-sector bodies, regulated finance and anyone handling especially sensitive data, it is not — which is why [government](/use-cases/government) and [finance](/use-cases/finance) teams so often move to genuinely EU-operated or self-hosted deployments. We unpack this distinction in depth in the [residency explainer](/blog/eu-data-residency-explained).
+
+## International transfers: SCCs and the transfer mechanism
+
+If EU personal data is going to be processed outside the EEA, GDPR (Chapter V) requires a valid **transfer mechanism**. In practice that usually means **Standard Contractual Clauses (SCCs)** — pre-approved contract terms — often paired with a transfer impact assessment and supplementary safeguards such as strong encryption. SCCs are workable, but post-Schrems II they come with homework: you have to assess whether the destination's laws actually undermine the protection the SCCs promise.
+
+The cleanest way to sidestep the transfer problem is to **not transfer.** If EU personal data stays on EU infrastructure — or on your own — there is no Chapter V transfer to justify. Ollasync's hosted service runs in the EU (Frankfurt) and offers SCCs where any transfer is genuinely involved. Self-hosting removes the question entirely: the data is wherever *you* put it.
+
+## Data-subject rights the platform must not obstruct
+
+GDPR gives individuals enforceable rights, and your tooling has to let you honour them:
+
+- **Access** — provide a copy of the personal data you hold about someone.
+- **Rectification** — correct inaccurate data.
+- **Erasure** ("right to be forgotten") — delete personal data when there is no lawful reason to keep it.
+- **Restriction and objection** — pause or stop certain processing.
+- **Portability** — export data in a usable format.
+
+For video, the awkward artefacts are usually **recordings and messages**, which can contain a lot of personal data. You need to be able to find, export and *delete* them on request. That means real retention controls and genuine deletion — not soft-delete that leaves copies behind.
+
+<div class="callout">
+A quiet advantage of default-on end-to-end encrypted, server-blind messaging: for that content, the operator holds no keys and cannot read it, which sharply narrows what a processor is even capable of exposing. It does not remove your controller obligations — routing metadata still exists — but it is a strong data-minimisation posture by design.
+</div>
+
+## Retention and minimisation, by design
+
+Two GDPR principles — **data minimisation** and **storage limitation** — translate directly into product settings you should insist on:
+
+- Recordings and messages should have **configurable retention** and reliable automatic deletion.
+- Collection should be **minimal**: no unnecessary telemetry, no analytics that quietly build profiles of participants.
+- Deletion should be **real and demonstrable**, so you can evidence erasure to a regulator or a data subject.
+
+When you self-host, these become entirely your policy to set and prove, on storage you control.
+
+## How Ollasync fits — stated honestly
+
+Because this is a compliance topic, the exact framing matters:
+
+- We do **not** describe Ollasync as "GDPR certified" or "GDPR compliant" as a product property. GDPR compliance is a property of *your* deployment and *your* processes. We supply the controls and contracts that make it achievable.
+- For **hosted** use, Ollasync acts as a **processor**, offers a **DPA**, hosts in the **EU (Frankfurt)**, and provides **SCCs** for any transfer that genuinely applies.
+- **Messaging** is fully end-to-end encrypted, server-blind and default-on, built on the open [IETF MLS standard (RFC 9420)](/security) via an independently audited library — we hold no keys.
+- **Meeting media** is encrypted in transit (TLS 1.3 / DTLS-SRTP) to a self-hostable relay; a per-frame end-to-end mode exists but is not the default. **Documents** are encrypted in transit and access-controlled, not client-side end-to-end encrypted. We do not claim otherwise.
+- When you **self-host**, you get full control of residency and jurisdiction: the data sits where you put it, operated by you, under your law. See [self-hosted](/self-hosted).
+- We hold **no** external certification today; **SOC 2 Type 1 is a stated roadmap target, not a badge we currently hold.** The MLS library is independently audited; our overall integration is not audited yet.
+
+## The bottom line
+
+GDPR-compliant video conferencing is not a product you buy — it is a programme you run, using tools that give you the right roles, contracts and hosting. Get the roles right (you are the controller), sign the DPA, understand the difference between where your data *sits* and whose laws *reach* it, and choose a deployment that matches your risk. For most EU teams, EU-region hosting with a DPA and SCCs is a solid baseline. For sovereignty-sensitive workloads, self-hosting is the answer that removes the foreign-jurisdiction question altogether.
+
+Go deeper on the residency question in [EU data residency, actually explained](/blog/eu-data-residency-explained), see [how we approach compliance](/compliance), or explore [running it on your own infrastructure](/self-hosted).

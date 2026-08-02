@@ -1,0 +1,89 @@
+---
+title: "How MLS encryption works (RFC 9420), explained simply"
+description: "An accessible guide to how IETF MLS (RFC 9420) encrypts group messaging: the ratchet tree, forward secrecy, post-compromise security, and why it beats bolting pairwise protocols together."
+pubDate: 2026-07-18
+category: "Cryptography"
+cover: "/blog-cover-mls.png"
+pillarSlug: "end-to-end-encrypted-video-conferencing"
+readTime: 8
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["how MLS encryption works", "IETF MLS RFC 9420", "messaging layer security", "group end-to-end encryption"]
+takeaways:
+  - "MLS (RFC 9420) is an IETF standard for end-to-end encrypted group messaging that scales to large groups efficiently."
+  - "Its ratchet tree lets a group of N members re-key in log(N) work instead of N pairwise updates."
+  - "MLS gives forward secrecy and post-compromise security: past messages stay safe after a compromise, and the group heals going forward."
+  - "We use an independently audited open-source MLS library rather than rolling our own crypto."
+---
+
+If you've read our [pillar on end-to-end encrypted video conferencing](/blog/end-to-end-encrypted-video-conferencing), you'll know that our messaging layer is end-to-end encrypted and server-blind by default. The thing doing the heavy lifting underneath is a standard called **MLS — Messaging Layer Security**, published by the IETF as **RFC 9420**. This post explains what MLS is and why it's the right foundation for group encryption, without assuming you're a cryptographer.
+
+## The problem MLS solves
+
+End-to-end encryption for two people is a solved problem. Protocols in the Signal family use a "double ratchet" to give each one-to-one conversation strong guarantees, and they work beautifully — for a pair.
+
+Groups are where it gets hard. The naive way to encrypt a group chat is to treat it as many pairwise conversations: if there are N members, every message gets separately encrypted N-1 times, once for each other member. That works for a handful of people. It falls apart for a team of 200, a webinar audience, or an organisation-wide channel, because the cost of every operation grows with the size of the group. Adding or removing a member, in particular, means re-keying against *everyone*, one pair at a time.
+
+MLS was designed by the IETF specifically to make **group** end-to-end encryption efficient, standard and interoperable. Instead of N separate pairwise relationships, the group shares a common cryptographic state that can be updated cheaply as people join and leave.
+
+## The ratchet tree, intuitively
+
+The core idea in MLS is a **ratchet tree**. Picture the group's members as the leaves of a binary tree. Every leaf has a key; every internal node has a key derived from the nodes beneath it; and the node at the very top gives the group a shared secret that everyone can compute but no outsider can.
+
+The clever part is what happens when someone needs to change the keys — because they joined, left, or simply because it's time to rotate. Rather than touching every member individually, a member only updates the keys along the **path from their leaf up to the root**. In a balanced tree, that path has about **log₂(N)** nodes. So re-keying a group of:
+
+| Group size (N) | Pairwise updates | MLS path updates (~log₂N) |
+| --- | --- | --- |
+| 8 | 7 | 3 |
+| 64 | 63 | 6 |
+| 1,024 | 1,023 | 10 |
+| 8,192 | 8,191 | 13 |
+
+The difference between "thousands" and "about a dozen" is the difference between group E2EE that's a nice demo and group E2EE that works at organisation scale. That single design choice — updating a *path* in a tree rather than a *list* of pairs — is most of why MLS exists.
+
+<div class="callout">
+You don't need to track any of this as a user. The ratchet tree is machinery inside the protocol; from the outside, joining a large encrypted group is just as instant as joining a small one, because the work grows with the <em>logarithm</em> of the group size, not the size itself.
+</div>
+
+## Two guarantees worth understanding
+
+MLS isn't just efficient — it's designed around two properties that matter enormously if a device is ever compromised. They sound similar but protect different directions in time.
+
+### Forward secrecy — protecting the past
+
+**Forward secrecy** means that if an attacker steals your keys *today*, they still can't decrypt the messages you sent *yesterday*. MLS continuously "ratchets" its keys forward: old keys are derived, used, and then thrown away, so there's nothing left to recover past traffic with. A compromise is bad, but it doesn't retroactively unlock your history.
+
+### Post-compromise security — healing the future
+
+**Post-compromise security** (sometimes called future secrecy) is the mirror image. Suppose an attacker did compromise a member's device and learn its keys. Once that member performs a normal key update — which happens routinely as the group ratchets — the group state moves to fresh keys the attacker never saw, and they're locked out again. The group **heals**. This is exactly the property that pairwise-per-member schemes struggle to deliver cheaply, and it's built into MLS.
+
+Together these mean a compromise is contained in time: it can't reach backwards past the last ratchet, and it can't reach forwards past the next update.
+
+## Why MLS beats bolting pairwise protocols together
+
+You *can* build group encryption by gluing many one-to-one channels together, and some products do. But you inherit a pile of problems that MLS was designed to avoid:
+
+- **Cost that grows with the group.** Every send and every membership change scales with N, not log(N).
+- **Consistency headaches.** With many independent pairwise sessions, it's genuinely hard to guarantee everyone agrees on exactly who's in the group and which key is current. MLS gives the whole group a single, agreed cryptographic state.
+- **Slow, expensive membership changes.** Removing a member from a pairwise mesh means re-keying against everyone individually; in MLS it's a single path update.
+- **No standard, no interoperability.** A bespoke group scheme is a bespoke thing to audit and maintain. MLS is an open IETF standard (RFC 9420) with a public specification and multiple implementations.
+
+That last point is a security argument as much as an engineering one. Standard, well-reviewed cryptography beats clever in-house cryptography almost every time.
+
+## We don't roll our own crypto
+
+Which is exactly why we don't. Our messaging is built on an **independently audited open-source MLS library**, not a protocol we invented in-house. The strongest thing a team can do with cryptography is usually to *not* write it themselves: use a public standard, lean on an implementation that specialists have reviewed, and keep your own code focused on wiring it in correctly.
+
+We want to be precise about what that does and doesn't claim. The MLS *library* we build on has been independently audited; that is a statement about the library. It is **not** a claim that our overall platform, integration or deployment has been independently audited — that's a different and larger thing, and we won't imply we hold it when we don't. What we *can* say plainly is that the underlying group-messaging cryptography is a public IETF standard implemented by a reviewed open-source library, which is a far better foundation than a proprietary black box.
+
+## Where this shows up in the product
+
+For you as a user, all of this collapses into one honest sentence: **we can't read your messages.** Messages are encrypted on your device using MLS, the server stores and forwards only ciphertext, and we hold no message keys. The efficiency of the ratchet tree is what lets that hold true whether you're in a two-person chat or a large team channel.
+
+The one caveat we always attach — because honesty is the whole point — is that server-blind content is not the same as total invisibility. The server still handles routing metadata like which room a message belongs to, group membership, and message timing and size. We break that distinction down in [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call).
+
+## The takeaway
+
+MLS is the grown-up answer to group end-to-end encryption: an IETF standard (RFC 9420) whose ratchet tree makes re-keying scale with the logarithm of the group, with forward secrecy protecting the past and post-compromise security healing the future. Building on an independently audited open-source MLS library — rather than inventing our own — is how we make server-blind messaging a default rather than a slogan.
+
+To see how the messaging layer fits alongside encrypted media and access-controlled documents, head back to the [end-to-end encrypted video conferencing pillar](/blog/end-to-end-encrypted-video-conferencing), or read the plain-English summary on our [security page](/security) and the [messaging feature page](/features/messaging).

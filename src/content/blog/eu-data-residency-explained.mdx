@@ -1,0 +1,89 @@
+---
+title: "EU data residency, actually explained"
+description: "Data residency, operator and jurisdiction are three different things — and confusing them is how 'EU-hosted' still ends up under foreign law. Here's what really gives you EU sovereignty."
+pubDate: 2026-06-21
+category: "Compliance"
+cover: "/blog-cover-eu-residency.png"
+pillarSlug: "gdpr-compliant-video-conferencing"
+readTime: 7
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["EU data residency explained", "data residency vs data sovereignty", "video conferencing data residency", "EU data sovereignty"]
+takeaways:
+  - "Residency (where bytes sit) is not the same as jurisdiction (whose laws reach the operator) — the CLOUD Act is the gap."
+  - "An 'EU region' on a US-operated cloud gives you residency but not sovereignty."
+  - "Genuine EU residency means EU storage AND an EU operator under EU law."
+  - "Self-hosting settles the question entirely: the data is where you put it, run by you, under your jurisdiction."
+---
+
+"Our data is hosted in the EU." It sounds like a complete answer to data-sovereignty concerns. It usually isn't. The phrase quietly collapses three separate questions into one, and the gap between them is exactly where a lot of well-intentioned compliance work springs a leak.
+
+This is the short, clear version. Three definitions, one common trap, and what genuinely gives you EU control. It's the companion to our pillar on [GDPR and video conferencing](/blog/gdpr-compliant-video-conferencing) — start there for the full regulatory picture.
+
+## Three questions that are not the same
+
+When someone says "EU data residency", they could be answering any of three distinct questions. Compliance depends on all three, but only one usually gets checked.
+
+| Concept | The question it answers | Who controls it |
+| --- | --- | --- |
+| **Residency** | *Where* do the bytes physically sit? | The region you select. |
+| **Operator** | *Who* runs the servers and holds the keys and access? | The company operating the service. |
+| **Jurisdiction** | *Whose laws* can legally reach that operator? | The operator's legal home, not the datacentre's location. |
+
+**Residency** is about geography — the physical location of storage and processing. It is the easiest thing to buy: pick "Frankfurt" from a dropdown and your bytes are in Germany.
+
+**Operator** is about who is actually in control of the running system — who can access it, who holds the administrative keys, who could be served with a legal order.
+
+**Jurisdiction** is the one that surprises people. It is not determined by where the datacentre sits. It is determined by which country's laws the *operator* is subject to. And a company can be subject to a country's laws no matter where in the world it stores data.
+
+## The trap: EU region, non-EU operator
+
+Here is the scenario that catches organisations out.
+
+A provider offers an "EU region". Your data really is stored in Frankfurt — residency, genuinely satisfied. But the provider is a **US company**. That means it falls under **US jurisdiction**, and specifically under the **US CLOUD Act**, which can compel a US-based provider to produce data *within its control regardless of where that data is physically stored.*
+
+So the honest picture is:
+
+- Residency: EU. ✅
+- Operator: US company. ⚠️
+- Jurisdiction: US law reaches it. ❌
+
+The bytes are in Germany; the legal reach is transatlantic. This is precisely the tension the European Court of Justice examined in the **Schrems II** ruling, which turned on whether foreign surveillance law undermines EU data protection in practice. "Stored in the EU" did not, on its own, resolve it.
+
+<div class="callout">
+Data residency is necessary but not sufficient for sovereignty. Where the bytes sit tells you nothing about whose government can lawfully demand them. To answer that, you have to ask who operates the servers and under whose law.
+</div>
+
+None of this makes EU-region-on-a-US-cloud "non-compliant" by default. With the right contracts — Standard Contractual Clauses, a transfer impact assessment, strong encryption — many organisations run on exactly that footing and are fine. The point is narrower and more important: **don't mistake residency for sovereignty.** If your threat model includes foreign legal process, residency alone doesn't cover it.
+
+## What genuine EU data residency looks like
+
+If you need sovereignty and not just geography, the bar is higher. Genuine EU residency means **all three** align:
+
+- **Storage in the EU** — the bytes sit in an EU datacentre.
+- **An EU operator** — the company running the service is established under EU law.
+- **EU jurisdiction end-to-end** — no foreign statute can reach into the operator to compel disclosure of your data.
+
+When those line up, "our data is in the EU" finally means what people assume it means. For public-sector and [government](/use-cases/government) workloads, this alignment is frequently a hard requirement, not a preference.
+
+## Self-hosting settles it completely
+
+There is one deployment model where all three questions collapse into a single, obvious answer: **run it yourself.**
+
+When you self-host the platform on infrastructure *you* operate — your private cloud, your datacentre, an isolated network — then:
+
+- **Residency** is wherever you choose to run it.
+- **Operator** is you.
+- **Jurisdiction** is your own — there is no third-party company for a foreign government to compel, because no third party holds your data in the first place.
+
+That's the strongest possible position on sovereignty: you can't be asked to hand over what only you control, and no foreign statute reaches a server you run under your own law. It's the core of [our self-hosted offering](/self-hosted), and it's why sovereignty-sensitive teams gravitate to it. A browser-first, no-download experience means you don't trade usability for that control.
+
+## How Ollasync approaches it — plainly
+
+For **hosted** use, Ollasync runs in the **EU (Frankfurt)** and provides a DPA, with SCCs where any transfer genuinely applies. For workloads where operator and jurisdiction must be yours too, **self-hosting** puts residency, operation and jurisdiction entirely under your control. We won't tell you that picking an EU region on someone else's cloud is the same thing as sovereignty — because it isn't, and pretending otherwise is how compliance programmes get surprised.
+
+## The bottom line
+
+"EU data residency" is a real and useful property — but it answers only one of three questions. Residency is *where*; operator is *who*; jurisdiction is *whose law*. An EU region on a US-operated cloud gives you the first and not the third. Genuine EU sovereignty needs EU storage, an EU operator and EU jurisdiction to line up — and self-hosting delivers all three by definition.
+
+Read the full regulatory picture in [GDPR and video conferencing](/blog/gdpr-compliant-video-conferencing), see [how we handle compliance](/compliance), or explore [running it on your own infrastructure](/self-hosted).

@@ -1,0 +1,82 @@
+---
+title: "Secure video conferencing for law firms: a confidentiality checklist"
+description: "A practical checklist for law firms and in-house counsel on secure video and document collaboration, and what to require to protect client confidentiality."
+pubDate: 2026-07-16
+category: "Compliance"
+cover: "/blog-cover-legal.png"
+pillarSlug: "end-to-end-encrypted-video-conferencing"
+readTime: 8
+author: "The Ollasync team"
+authorRole: "Security & product"
+takeaways:
+  - "Consumer video tools put privileged conversations and documents on a vendor's cloud — a real confidentiality and privilege exposure for law firms."
+  - "Require server-blind E2EE messaging, encrypted meetings, NDA-gated deal rooms, view-only watermarking, audit logs and self-host or EU residency."
+  - "Be precise: messaging is E2EE and server-blind; meeting media is encrypted in transit to a relay you can own; documents are access-controlled and NDA-gated, not client-side E2EE yet."
+  - "The strongest posture keeps privileged material inside your own trust boundary — self-hosted or EU-resident — with the operator out of the path."
+keywords: ["secure video conferencing for law firms", "video conferencing for lawyers", "law firm video security", "legal video confidentiality"]
+---
+
+For a law firm, a video call is rarely just a video call. It's privileged advice, deal terms, settlement strategy, or a client's most sensitive facts — the kind of material where a single leak isn't an inconvenience but a breach of confidentiality, and potentially a waiver of privilege. Yet a great deal of legal work still runs over consumer-grade tools chosen for convenience rather than confidentiality.
+
+This is a checklist-style guide for practitioners and in-house counsel: the specific confidentiality risks of everyday tools, and the concrete controls to require before a platform touches privileged work. It's also honest about what "encrypted" does and doesn't mean, because overclaiming here is its own kind of risk.
+
+## The privilege problem with consumer tools
+
+Attorney-client privilege depends on confidentiality being maintained. The mainstream video and chat tools most firms reach for weren't designed around that obligation, and the gaps show up in predictable places.
+
+- **Content lives on a vendor's cloud.** Meetings, recordings and shared files are processed and stored on infrastructure the vendor operates, in the vendor's jurisdiction. Even with strong security, the provider is a third party in possession of — or in the path of — privileged material.
+- **The operator can, in principle, be compelled.** A cloud operator that holds your data can receive legal process for it. That's a materially different exposure from an operator that never holds decryptable content at all.
+- **Cross-border data flows.** For firms outside the US, routing privileged communications through US-operated clouds raises well-known concerns about foreign legal reach — a recurring theme in client and regulator questions alike.
+- **Convenience features that quietly widen exposure.** Cloud recording, auto-transcription and broad default sharing all create more copies of sensitive material in more places, each a new thing to govern.
+
+None of this means consumer tools are "insecure" in a general sense. It means their *trust model* — trust the vendor's cloud — is a poor fit for material protected by privilege. The question a firm should ask isn't only "is it encrypted?" but "who holds the data, and who could be made to produce it?"
+
+## The checklist: what to require
+
+Use the following as a procurement checklist. Each item maps to a specific confidentiality risk above.
+
+| Requirement | What it protects | What to verify |
+| --- | --- | --- |
+| **Server-blind E2EE messaging** | Privileged chat the provider genuinely can't read | Default-on end-to-end encryption where the operator holds no keys |
+| **Encrypted meetings** | Live calls against network and, ideally, operator exposure | Encryption in transit as a floor; a relay you can own or an E2EE mode for the sensitive matters |
+| **NDA-gated deal rooms** | Documents shared only with parties who've accepted terms | Enforced NDA acceptance before access; per-user, revocable permissions |
+| **View-only + watermarking** | Deterrence against re-sharing and screenshots | Per-viewer visible watermarks and download-disabled view-only modes |
+| **Audit logs** | Defensible record of who accessed what, when | Access and activity logs you can export for review |
+| **Self-host or EU residency** | Keeping privileged material out of a foreign cloud | The option to run on your own infrastructure or in a chosen region |
+
+<div class="callout">
+A useful test for any tool a firm is evaluating: <em>if the provider received a subpoena tomorrow, what could they actually produce?</em> The best answer for privileged content is "nothing readable, because we hold no keys and, where you self-host, none of the data." Design your requirements around that answer.
+</div>
+
+## Be precise about what "encrypted" means
+
+Vendors — including us — should never wave the word "encrypted" over an entire product. Different parts of any real platform protect different things in different ways, and for privileged work you need to know exactly which is which. Here is the honest breakdown for Ollasync:
+
+- **Messaging is end-to-end encrypted and server-blind by default.** It's built on the open [IETF MLS standard (RFC 9420)](/security) via an independently audited open-source library. We hold no keys and cannot read message content. Note that message *metadata* — who is in a conversation, and when — is still visible to the service; E2EE protects content, not the fact that a conversation happened.
+- **Meeting media is encrypted in transit** with DTLS-SRTP to the media relay. When you self-host, that relay is *yours*, so the media never reaches an outside operator. A per-frame end-to-end encryption mode exists for keeping even the relay blind; it is a deliberate mode, **not** the default, so we won't claim all video is always E2EE.
+- **Documents in deal rooms are encrypted in transit, access-controlled and NDA-gated** — but they are **not** client-side end-to-end encrypted yet. That means the service can, technically, access document contents to enforce permissions and watermarking. Access controls, NDA gating and audit logs are strong confidentiality tools, but they're a different guarantee from E2EE, and counsel should treat them as such.
+
+We keep this breakdown current on the [security](/security) page precisely so that no one on your side has to guess. For privileged work, the distinction between "the provider can't read it" and "the provider is contractually and technically restricted from reading it" is exactly the sort of thing that belongs in your risk assessment.
+
+## Where the strongest protection comes from
+
+Encryption controls *who can read* content. Self-hosting controls *who holds the infrastructure*. For privileged material, combining them is what tightens the boundary the most.
+
+When a firm runs the platform on its own infrastructure — or on a single-tenant, EU-resident instance — privileged calls, deal-room documents and audit trails stay inside controls the firm already governs. There's no external operator to compel, no default egress, and no cross-border cloud in the path. That's the posture we point law firms toward, and it composes cleanly with the server-blind messaging above: the operator can't read your privileged chat, and when you self-host, the operator isn't in your media or document path at all.
+
+For matters that involve outside parties — opposing counsel, buyers in a transaction, expert witnesses — the [deal rooms](/features/deal-rooms) add the NDA gate, per-viewer watermarking and revocable, logged access that make it defensible to share sensitive documents without losing control of them.
+
+## Putting it into practice
+
+A pragmatic rollout for a firm looks like this:
+
+1. **Map your matters to sensitivity.** Routine scheduling calls and privileged strategy sessions don't need the same controls; decide which matters demand the full checklist.
+2. **Set defaults that fail safe.** Server-blind messaging on by default, view-only and watermarking on by default in deal rooms, recording off unless explicitly chosen.
+3. **Decide your deployment boundary.** For the most sensitive practices, choose self-hosted or EU-resident single-tenant so privileged material never sits on a foreign cloud.
+4. **Keep the audit trail.** Ensure access logs are retained and exportable, so you can demonstrate who touched privileged material and when.
+
+## The bottom line
+
+Protecting client confidentiality in a video-and-documents world isn't about finding a tool that says "encrypted" on the box. It's about matching the trust model to the obligation: server-blind messaging the provider can't read, meetings encrypted to a relay you can own, deal rooms that gate documents behind NDAs with watermarking and logs, and a deployment boundary — self-hosted or EU-resident — that keeps privileged material out of a foreign cloud. Insist on precision about what each control actually guarantees, and privilege stays protected by design rather than by hope.
+
+For the deeper technical picture, read the pillar guide to [end-to-end encrypted video conferencing](/blog/end-to-end-encrypted-video-conferencing). To see how this maps to legal practice, visit the [legal use case](/use-cases/legal), explore [deal rooms](/features/deal-rooms) for NDA-gated document sharing, and check exactly what each layer protects on our [security](/security) page.

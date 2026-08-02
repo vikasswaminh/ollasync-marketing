@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+
+const title = 'Compliance & data protection';
+const description =
+  'Ollasync’s honest compliance posture: GDPR data-processor position with a DPA, EU hosting, encryption controls, and a clear certification roadmap. Self-host to keep regulated data in your own boundary.';
+
+const have = [
+  { icon: 'globe', title: 'EU hosting & residency', body: 'Our managed service is hosted in the EU (Frankfurt). Self-host and you choose the jurisdiction entirely — including air-gapped.' },
+  { icon: 'lock', title: 'Encryption controls', body: 'End-to-end encrypted, server-blind messaging (IETF MLS / RFC 9420); encrypted transport everywhere; access control, NDA gating and audit logging.' },
+  { icon: 'doc', title: 'GDPR & a DPA', body: 'We operate as a data processor for the metadata and non-E2EE content we handle, with a data-processing agreement covering sub-processors, residency, retention and breach notification.' },
+  { icon: 'server', title: 'Self-host = your boundary', body: 'Deploy on your own estate and regulated data stays inside the controls you have already certified — no external subprocessor to add to scope.' },
+];
+
+const roadmap = [
+  { status: 'now', title: 'GDPR data-processor posture + DPA', body: 'Available today for the hosted service.' },
+  { status: 'now', title: 'Security whitepaper', body: 'A review-ready document describing exactly what is protected and how — available on request.' },
+  { status: 'next', title: 'Independent audit of our integration', body: 'The MLS library we use is independently audited; an independent audit of our own integration, deployment and the meeting E2EE path is our top security investment with design partners.' },
+  { status: 'next', title: 'SOC 2 Type 1', body: 'Our first formal certification target as we land regulated design partners.' },
+  { status: 'later', title: 'ISO 27001 & sector schemes', body: 'ISO 27001 and sector-specific schemes follow, prioritised by the industries we serve.' },
+];
+
+const faq = [
+  { q: 'Is Ollasync SOC 2 or ISO 27001 certified?', a: 'Not yet, and we won’t imply otherwise. We provide the technical controls and a DPA that a compliance programme needs, and self-hosting keeps regulated data inside your own certified environment. SOC 2 Type 1 is our first certification target.' },
+  { q: 'Can Ollasync support a HIPAA or GDPR programme?', a: 'Yes — as controls, not a certificate. Encryption, access control, audit logging, EU or on-premise hosting and a DPA give your programme what it needs. When you self-host, regulated data never leaves your audited environment.' },
+  { q: 'Who are your sub-processors?', a: 'For the hosted service, sub-processors and their roles are listed in the DPA. When you self-host, there are effectively no sub-processors in the data path — you operate everything.' },
+  { q: 'Can we get the security whitepaper and DPA?', a: 'Yes. Both are available on request for your security and legal review — just contact us.' },
+];
+---
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Compliance & data protection"
+    eyebrowIcon="shield-check"
+    crumbs={[{ label: 'Compliance' }]}
+    title="Honest about where we"
+    titleAccent="are — and aren’t"
+    lead="Serious buyers reward a vendor who draws the line clearly. Here’s exactly what we offer today for your compliance programme, and what’s on the roadmap — no badges we don’t hold."
+  />
+
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Today</span>
+        <h2 class="h2" style="margin-top:12px">What we give your programme now</h2>
+      </div>
+      <div class="grid grid-4" data-reveal>
+        {have.map((h) => (
+          <div class="card card--hover">
+            <div class="card__icon card__icon--teal"><Icon name={h.icon} size={20} /></div>
+            <h3 class="h3">{h.title}</h3>
+            <p>{h.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Certification roadmap</span>
+        <h2 class="h2" style="margin-top:12px">Where we’re headed, in order</h2>
+        <p class="kicker" style="margin-top:14px">We publish the roadmap rather than imply a status. Design partners move it forward.</p>
+      </div>
+      <div class="road" data-reveal>
+        {roadmap.map((r) => (
+          <div class={`road__item road__item--${r.status}`}>
+            <span class="road__badge mono">{r.status === 'now' ? 'Available' : r.status === 'next' ? 'In progress' : 'Planned'}</span>
+            <h3 style="font-size:17px;font-weight:600;margin-top:10px">{r.title}</h3>
+            <p class="muted" style="font-size:14px;margin-top:6px">{r.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} title="Compliance questions" />
+  <Cta
+    title="Bring us your security review."
+    sub="Request the security whitepaper and DPA for your legal and compliance teams, or talk to us about a self-hosted deployment inside your own boundary."
+    primary={{ label: 'Request whitepaper & DPA', href: '/contact' }}
+    secondary={{ label: 'Read the security model', href: '/security' }}
+  />
+</Base>
+
+<style>
+  .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .road__item { border: 1px solid var(--line); border-radius: var(--r); padding: 20px; background: rgba(255,255,255,.02); }
+  .road__item--now { border-color: var(--teal-150); background: linear-gradient(180deg, var(--teal-050), transparent); }
+  .road__badge { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .road__item--now .road__badge { color: #a9f2d1; }
+  @media (max-width: 1000px) { .road { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .road { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,242 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+
+const title = 'Security & encryption model';
+const description =
+  'How Ollasync protects your conversations — the honest, layered picture. End-to-end encrypted server-blind messaging (IETF MLS / RFC 9420), encrypted media over a relay you can self-host, and exactly what we do and don’t claim.';
+
+const matrix = [
+  {
+    icon: 'chat', title: 'Messaging & shared files',
+    status: 'End-to-end encrypted', tone: 'teal',
+    body: 'Uses the open IETF MLS standard (RFC 9420) via an independently audited MLS library. Keys are generated and stay on participants’ devices; the server stores only ciphertext and cannot read the content. Server-blind.',
+  },
+  {
+    icon: 'video', title: 'Live meeting video & audio',
+    status: 'Encrypted in transit', tone: 'violet',
+    body: 'Sent over WebRTC with DTLS-SRTP to a media relay (SFU) you can self-host — so on-premise, the relay is inside your own network. A per-frame end-to-end encryption mode is available when a meeting is provisioned with a shared key; it is not the default for instant meetings.',
+  },
+  {
+    icon: 'file-lock', title: 'Deal-room documents',
+    status: 'Encrypted in transit + access-controlled', tone: 'neutral',
+    body: 'Uploaded over TLS and gated by role and NDA, with short-lived signed access links. At-rest encryption follows your storage configuration. Client-side end-to-end document encryption is on the roadmap — we don’t claim it today.',
+  },
+  {
+    icon: 'play', title: 'Recordings',
+    status: 'Access-controlled · your storage', tone: 'neutral',
+    body: 'When enabled, recordings are written to object storage you control and restricted to authorised viewers. Self-host and recordings never leave your infrastructure.',
+  },
+];
+
+const serverSees = {
+  cannot: [
+    'The content of your messages and shared files (end-to-end encrypted)',
+    'Your message keys — they never leave participants’ devices',
+    'On self-host: meeting media, recordings and documents at all',
+  ],
+  can: [
+    'Routing metadata for messaging: room identifier, membership, message size, timing and ordering',
+    'Who is connected to a meeting, and when',
+    'On our hosted service: meeting media passes through the relay in encrypted transit',
+  ],
+};
+
+const access = [
+  { icon: 'fingerprint', title: 'Strong identity', body: 'Self-hosted sign-in with email + password, magic-link, TOTP two-factor and passkeys (WebAuthn/FIDO2). OIDC single sign-on to your own IdP — Okta, Entra ID, Google Workspace and more.' },
+  { icon: 'lock', title: 'Rooms default-closed', body: 'A guest needs an invite, and the host must approve the join request before anything flows. Room tokens are short-lived and scoped to a single room with a role.' },
+  { icon: 'doc', title: 'Role & NDA gating', body: 'Deal roles govern who sees which folders. A deal can require NDA acceptance before any document can be downloaded — audited, and the admin is notified.' },
+  { icon: 'eye-off', title: 'View-only (deterrence)', body: 'View-only documents render in-browser with a per-viewer watermark and no download. We call this what it is: deterrence against casual leakage, not DRM.' },
+];
+
+const transparency = [
+  { title: 'No SOC 2 / ISO 27001 / ANSSI / HDS certification yet', body: 'These are on our roadmap; SOC 2 Type 1 is the first target as we land regulated design partners. We would rather tell you than imply a badge we don’t hold.' },
+  { title: 'Our integration is not independently audited yet', body: 'The MLS cryptography library we build on is independently audited. An independent audit of our own integration, deployment and the meeting end-to-end path is not yet done — it is our top security investment with committed design partners.' },
+  { title: 'Meeting E2EE is not on by default', body: 'The instant-meeting flow relies on encrypted transit to a relay you can self-host. Making end-to-end encryption the default for meetings (group-key distribution) is on the hardening roadmap.' },
+  { title: 'Documents are not client-side E2EE today', body: 'In the current web flow, deal-room documents are encrypted in transit and access-controlled, but not end-to-end encrypted in the browser. Client-side document encryption is a roadmap item.' },
+];
+
+const verify = [
+  { icon: 'shield-check', title: 'Server-blind, proven', body: 'An automated two-browser test runs real messages through the live delivery service and asserts the plaintext never appears in anything the server stores — while each peer decrypts the exact message.' },
+  { icon: 'layers', title: 'Tenant isolation', body: 'An automated test asserts one organisation cannot read or even list another organisation’s data.' },
+  { icon: 'gauge', title: 'Nightly end-to-end suites', body: 'Identity, deal-room, cross-org access and the full in-call feature set run every night against the live stack, with results emailed on failure.' },
+  { icon: 'route', title: 'Contract conformance', body: 'Every API route is checked against its documented contract on every build.' },
+];
+
+const faq = [
+  { q: 'What encryption does Ollasync use for messaging?', a: 'The IETF MLS standard (RFC 9420) — a published, modern group-messaging protocol — via an independently audited open-source library. It provides forward secrecy and post-compromise security, and all key material stays on devices.' },
+  { q: 'Is the meeting video end-to-end encrypted?', a: 'Meeting media is encrypted in transit (TLS 1.3 / DTLS-SRTP) to a media relay you can self-host. A per-frame end-to-end encryption mode exists and is used when a meeting is provisioned with a shared key, but it is not the default for instant meetings — we state this plainly rather than imply blanket E2EE.' },
+  { q: 'Do you hold any of my keys?', a: 'For messaging, no — keys are generated on devices and never sent to us. For meeting media on our hosted service, transport keys are negotiated per WebRTC session; self-host and the relay handling them is entirely yours.' },
+  { q: 'Are you certified (SOC 2, ISO 27001, HIPAA)?', a: 'Not yet, and we say so. We provide the technical controls a compliance programme needs and a DPA, and self-hosting keeps regulated data inside your own certified environment. SOC 2 Type 1 is our first certification target.' },
+  { q: 'Can a court compel you to hand over message content?', a: 'For end-to-end encrypted messaging, we have no keys and store only ciphertext, so there is no readable content for us to produce. We can only ever describe routing metadata, not message contents.' },
+];
+
+const secSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'Ollasync security & encryption model',
+  description: description,
+  about: ['End-to-end encryption', 'IETF MLS', 'RFC 9420', 'Server-blind messaging', 'Self-hosted video conferencing security'],
+};
+---
+<Base title={title} description={description} schema={secSchema}>
+  <PageHero
+    eyebrow="The honest, layered picture"
+    eyebrowIcon="shield-check"
+    crumbs={[{ label: 'Security' }]}
+    title="Security you can"
+    titleAccent="actually verify"
+    lead="We won’t tell you “everything is end-to-end encrypted” and leave it there. Here is exactly what each part of Ollasync protects, how, and what we don’t claim yet — written to survive a buyer’s security review."
+  />
+
+  <!-- ENCRYPTION MATRIX -->
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Encryption model</span>
+        <h2 class="h2" style="margin-top:12px">Protection, data type by data type</h2>
+      </div>
+      <div class="grid grid-2" data-reveal>
+        {matrix.map((m) => (
+          <div class="card matrix">
+            <div class="matrix__head">
+              <div class={`card__icon ${m.tone === 'teal' ? 'card__icon--teal' : ''}`} style="margin-bottom:0"><Icon name={m.icon} size={20} /></div>
+              <span class={`status status--${m.tone}`}>{m.status}</span>
+            </div>
+            <h3 class="h3" style="margin-top:16px">{m.title}</h3>
+            <p style="margin-top:8px">{m.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT THE SERVER SEES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Trust boundary</span>
+        <h2 class="h2" style="margin-top:12px">What the server can — and can’t — see</h2>
+        <p class="kicker" style="margin-top:14px">For end-to-end encrypted messaging the precise claim is “we can’t read your messages,” not “we know nothing.” Metadata still has to be routed. Here’s the honest split.</p>
+      </div>
+      <div class="sees" data-reveal>
+        <div class="sees__col sees__col--no">
+          <h3 class="h3"><span class="sees__mark sees__mark--no"><Icon name="eye-off" size={16} stroke="#a9f2d1" /></span>Can’t see</h3>
+          <ul class="check-list" style="margin-top:18px">
+            {serverSees.cannot.map((i) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{i}</li>)}
+          </ul>
+        </div>
+        <div class="sees__col sees__col--yes">
+          <h3 class="h3"><span class="sees__mark sees__mark--yes"><Icon name="globe" size={16} stroke="#ffb4b4" /></span>Necessarily sees</h3>
+          <ul class="plain-list" style="margin-top:18px">
+            {serverSees.can.map((i) => <li>{i}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS CONTROL -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Identity & access</span>
+        <h2 class="h2" style="margin-top:12px">Who gets in, and to what</h2>
+      </div>
+      <div class="grid grid-4" data-reveal>
+        {access.map((a) => (
+          <div class="card">
+            <div class="card__icon"><Icon name={a.icon} size={20} /></div>
+            <h3 class="h3">{a.title}</h3>
+            <p>{a.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENCY -->
+  <section class="section">
+    <div class="container">
+      <div class="transp panel" data-reveal>
+        <div class="transp__head">
+          <span class="eyebrow eyebrow--teal"><Icon name="fingerprint" size={13} stroke="#a9f2d1" /> Radical transparency</span>
+          <h2 class="h2" style="margin-top:16px;max-width:20ch">What we do <em>not</em> claim yet</h2>
+          <p class="lead" style="margin-top:14px;max-width:52ch">Stated plainly, because hiding it is worse. A serious buyer rewards a vendor who draws the line honestly — so here it is.</p>
+        </div>
+        <div class="transp__grid">
+          {transparency.map((t) => (
+            <div class="transp__item">
+              <span class="transp__dot"><Icon name="arrow" size={14} stroke="#8f7bff" /></span>
+              <div>
+                <h3 style="font-size:16px;font-weight:600">{t.title}</h3>
+                <p class="muted" style="font-size:14px;margin-top:5px">{t.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFY -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Don’t take our word</span>
+        <h2 class="h2" style="margin-top:12px">How a reviewer can check the claims</h2>
+        <p class="kicker" style="margin-top:14px">Every guarantee above is backed by an automated proof that runs against the live system.</p>
+      </div>
+      <div class="grid grid-4" data-reveal>
+        {verify.map((v) => (
+          <div class="card card--hover">
+            <div class="card__icon card__icon--teal"><Icon name={v.icon} size={20} /></div>
+            <h3 class="h3">{v.title}</h3>
+            <p>{v.body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="muted center" style="margin-top:28px;font-size:14px">Building a compliance programme on this? See our <a href="/compliance" style="color:var(--iris)">compliance posture</a> and request the security whitepaper and DPA.</p>
+    </div>
+  </section>
+
+  <Faq items={faq} title="Security questions" />
+  <Cta
+    title="Put it through your security review."
+    sub="We wrote our security model to be defensible line by line. Request the whitepaper and DPA, or bring your questions to a call."
+    primary={{ label: 'Request the whitepaper', href: '/contact' }}
+    secondary={{ label: 'Compliance posture', href: '/compliance' }}
+  />
+</Base>
+
+<style>
+  .matrix__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .status { font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em; padding: 5px 11px; border-radius: 100px; border: 1px solid; text-align: right; }
+  .status--teal { color: #a9f2d1; background: var(--teal-050); border-color: var(--teal-150); }
+  .status--violet { color: #cfc6ff; background: var(--violet-050); border-color: var(--violet-300); }
+  .status--neutral { color: var(--ink-2); background: rgba(255,255,255,.03); border-color: var(--line-2); }
+
+  .sees { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .sees__col { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; }
+  .sees__col--no { background: linear-gradient(180deg, var(--teal-050), transparent); border-color: var(--teal-150); }
+  .sees__col--yes { background: rgba(255,255,255,.02); }
+  .sees__col h3 { display: flex; align-items: center; gap: 11px; }
+  .sees__mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; }
+  .sees__mark--no { background: var(--teal-150); }
+  .sees__mark--yes { background: rgba(255,120,120,.14); }
+  .plain-list { list-style: none; display: grid; gap: 12px; }
+  .plain-list li { position: relative; padding-left: 18px; color: var(--muted); font-size: 15px; }
+  .plain-list li::before { content: "–"; position: absolute; left: 0; color: var(--muted-2); }
+
+  .transp { padding: clamp(28px,4vw,44px); display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; }
+  .transp__grid { display: grid; gap: 18px; }
+  .transp__item { display: flex; gap: 13px; align-items: flex-start; }
+  .transp__dot { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: var(--violet-050); border: 1px solid var(--violet-300); flex: none; margin-top: 2px; }
+
+  @media (max-width: 900px) {
+    .sees, .transp { grid-template-columns: 1fr; }
+  }
+</style>

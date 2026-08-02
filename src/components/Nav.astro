@@ -1,0 +1,75 @@
+---
+import { NAV, SITE } from '../consts';
+import Icon from './Icon.astro';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (g: typeof NAV[number]) => {
+  if (g.href) return path === g.href || path.startsWith(g.href + '/');
+  return (g.items || []).some((i) => path === i.href || path.startsWith(i.href + '/'));
+};
+---
+<header class="nav" id="siteNav">
+  <div class="container nav__inner">
+    <a href="/" class="brand" aria-label="Ollasync home">
+      <span class="brand__mark">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.6" stroke="#fff" stroke-width="1.9"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#fff" stroke-width="1.9"/></svg>
+      </span>
+      {SITE.name}
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {NAV.map((g) => g.items ? (
+        <div class="nav__group">
+          <a href={g.items[0].href} aria-current={isActive(g) ? 'page' : undefined}>{g.label}</a>
+          <div class="nav__menu">
+            {g.items.map((i) => (
+              <a href={i.href}>{i.label}{i.desc && <span class="desc">{i.desc}</span>}</a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <a href={g.href} aria-current={isActive(g) ? 'page' : undefined}>{g.label}</a>
+      ))}
+    </nav>
+
+    <div class="nav__cta">
+      <a href={SITE.appUrl} class="btn-ghost btn btn-sm">Log in</a>
+      <a href="/contact" class="btn btn-primary btn-sm">Book a demo</a>
+      <button class="nav__toggle btn-ghost btn btn-sm" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <Icon name="layers" size={18} />
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__mobile" id="navMobile" hidden>
+    <div class="container">
+      {NAV.flatMap((g) => g.items ? g.items : [{ label: g.label, href: g.href! }]).map((i) => (
+        <a href={i.href}>{i.label}</a>
+      ))}
+      <div class="nav__mobile-cta">
+        <a href={SITE.appUrl} class="btn btn-ghost">Log in</a>
+        <a href="/contact" class="btn btn-primary">Book a demo</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav__mobile { border-top: 1px solid var(--line); background: rgba(8,9,11,.96); backdrop-filter: blur(14px); padding-block: 14px; }
+  .nav__mobile a { display: block; padding: 11px 0; font-size: 16px; color: var(--ink-2); border-bottom: 1px solid var(--line-soft); }
+  .nav__mobile-cta { display: grid; gap: 10px; margin-top: 16px; }
+  .nav__mobile-cta a { border-bottom: 0; justify-content: center; }
+</style>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  const onScroll = () => nav?.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  const t = document.getElementById('navToggle');
+  const m = document.getElementById('navMobile');
+  t?.addEventListener('click', () => {
+    const open = m?.hasAttribute('hidden');
+    if (open) m?.removeAttribute('hidden'); else m?.setAttribute('hidden', '');
+    t.setAttribute('aria-expanded', String(!!open));
+  });
+</script>

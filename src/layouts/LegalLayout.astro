@@ -1,0 +1,26 @@
+---
+import Base from './Base.astro';
+import PageHero from '../components/PageHero.astro';
+interface Props { title: string; description: string; updated: string; crumb: string; }
+const { title, description, updated, crumb } = Astro.props;
+---
+<Base title={title} description={description}>
+  <PageHero eyebrow="Legal" eyebrowIcon="doc" crumbs={[{ label: crumb }]} title={title} lead={`Last updated ${updated}.`} />
+  <section class="section" style="padding-top:20px">
+    <div class="container legal" data-reveal>
+      <slot />
+    </div>
+  </section>
+</Base>
+<style is:global>
+  .legal { max-width: 760px; }
+  .legal h2 { font-size: 20px; margin-top: 40px; }
+  .legal h2:first-child { margin-top: 0; }
+  .legal h3 { font-size: 16.5px; margin-top: 26px; color: var(--ink); }
+  .legal p, .legal li { color: var(--ink-2); font-size: 15.5px; line-height: 1.7; }
+  .legal p { margin-top: 12px; }
+  .legal ul { margin: 12px 0 0 20px; display: grid; gap: 8px; }
+  .legal a { color: var(--iris); }
+  .legal strong { color: var(--ink); }
+  .legal .note { margin-top: 16px; padding: 14px 16px; border: 1px solid var(--line-2); border-left: 3px solid var(--iris); border-radius: 8px; background: var(--violet-050); font-size: 14px; }
+</style>

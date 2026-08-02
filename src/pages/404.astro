@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+const title = 'Page not found';
+const description = 'The page you’re looking for doesn’t exist.';
+---
+<Base title={title} description={description} noindex={true}>
+  <section class="section center" style="padding-block:120px 100px">
+    <div class="container" style="max-width:560px">
+      <div class="mono" style="font-size:64px;color:var(--iris);letter-spacing:-.04em">404</div>
+      <h1 class="h2" style="margin-top:12px">This page slipped out of the room</h1>
+      <p class="lead" style="margin-top:14px">The link may be broken or the page may have moved. Let’s get you back.</p>
+      <div style="margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="/" class="btn btn-primary">Back to home</a>
+        <a href="/security" class="btn btn-ghost">Security model</a>
+      </div>
+    </div>
+  </section>
+</Base>
