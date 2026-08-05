@@ -15,7 +15,8 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/thanks'),
+      // /licenses is noindex (OSS attribution page) — keep it out of the sitemap too.
+      filter: (page) => !page.includes('/thanks') && !page.includes('/licenses'),
       serialize(item) {
         item.lastmod = BUILD_DATE;
         item.changefreq = item.url === 'https://www.ollasync.com/' ? 'weekly' : 'monthly';

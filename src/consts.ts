@@ -100,6 +100,7 @@ export const FOOTER: { title: string; links: NavItem[] }[] = [
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
       { label: 'DPA', href: '/dpa' },
+      { label: 'Open-source licenses', href: '/licenses' },
       { label: 'security.txt', href: '/.well-known/security.txt' },
     ],
   },

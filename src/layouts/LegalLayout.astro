@@ -1,10 +1,10 @@
 ---
 import Base from './Base.astro';
 import PageHero from '../components/PageHero.astro';
-interface Props { title: string; description: string; updated: string; crumb: string; }
-const { title, description, updated, crumb } = Astro.props;
+interface Props { title: string; description: string; updated: string; crumb: string; noindex?: boolean; }
+const { title, description, updated, crumb, noindex = false } = Astro.props;
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} noindex={noindex}>
   <PageHero eyebrow="Legal" eyebrowIcon="doc" crumbs={[{ label: crumb }]} title={title} lead={`Last updated ${updated}.`} />
   <section class="section" style="padding-top:20px">
     <div class="container legal" data-reveal>

@@ -1,0 +1,99 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+// Client-bundled open-source components (distributed to the browser → attribution owed).
+const client = [
+  { name: 'LiveKit Client SDK', pkg: 'livekit-client', license: 'Apache-2.0', holder: '© LiveKit, Inc.' },
+  { name: 'LiveKit Track Processors', pkg: '@livekit/track-processors', license: 'Apache-2.0', holder: '© LiveKit, Inc.' },
+  { name: 'Preact', pkg: 'preact', license: 'MIT', holder: '© The Preact Authors' },
+  { name: 'Preact Signals', pkg: '@preact/signals', license: 'MIT', holder: '© The Preact Authors' },
+  { name: 'Noble Ciphers', pkg: '@noble/ciphers', license: 'MIT', holder: '© Paul Miller' },
+  { name: 'Noble Curves', pkg: '@noble/curves', license: 'MIT', holder: '© Paul Miller' },
+  { name: 'HPKE (ChaCha20-Poly1305)', pkg: '@hpke/chacha20poly1305', license: 'MIT', holder: '© Daisuke Ajitomi' },
+  { name: 'Web Noise Suppressor', pkg: '@sapphi-red/web-noise-suppressor', license: 'MIT', holder: '© sapphi-red' },
+  { name: 'DeepFilterNet3 Noise Filter', pkg: 'deepfilternet3-noise-filter', license: 'Apache-2.0 OR MIT', holder: '© the DeepFilterNet authors' },
+];
+
+// Server-side platform components — operated as part of the service (credited).
+const platform = [
+  { name: 'LiveKit (media server / SFU)', license: 'Apache-2.0', holder: '© LiveKit, Inc.' },
+  { name: 'NATS', license: 'Apache-2.0', holder: '© The NATS Authors' },
+  { name: 'PostgreSQL', license: 'The PostgreSQL License', holder: '© The PostgreSQL Global Development Group' },
+  { name: 'Go', license: 'BSD-3-Clause', holder: '© The Go Authors' },
+  { name: 'Rust', license: 'Apache-2.0 OR MIT', holder: '© The Rust Project Developers' },
+];
+
+const licenseLinks: Record<string, string> = {
+  'Apache-2.0': 'https://www.apache.org/licenses/LICENSE-2.0',
+  'MIT': 'https://opensource.org/license/mit',
+  'Apache-2.0 OR MIT': 'https://opensource.org/license/mit',
+  'BSD-3-Clause': 'https://opensource.org/license/bsd-3-clause',
+  'The PostgreSQL License': 'https://opensource.org/license/postgresql',
+};
+---
+<LegalLayout
+  title="Open-source licenses"
+  description="Third-party open-source software included in the Ollasync client and service, with licenses and attributions."
+  updated="5 August 2026"
+  crumb="Open-source licenses"
+  noindex={true}
+>
+  <p>Ollasync is built with open-source software. The components below are included, in whole or in part, in the
+  Ollasync web client and/or the service that runs it. We are grateful to their authors and reproduce their
+  licenses and copyright notices here.</p>
+
+  <h2>In the Ollasync web client</h2>
+  <p>These components are delivered to your browser as part of the application.</p>
+  <table class="oss">
+    <thead><tr><th>Component</th><th>Package</th><th>License</th><th>Copyright</th></tr></thead>
+    <tbody>
+      {client.map((c) => (
+        <tr>
+          <td>{c.name}</td>
+          <td><code>{c.pkg}</code></td>
+          <td><a href={licenseLinks[c.license]} rel="noopener">{c.license}</a></td>
+          <td>{c.holder}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <p class="note">Our end-to-end-encryption (MLS / RFC 9420) library’s notice is being finalised and will be
+  added to this page shortly.</p>
+
+  <h2>Platform components</h2>
+  <p>These open-source components are operated as part of the Ollasync service.</p>
+  <table class="oss">
+    <thead><tr><th>Component</th><th>License</th><th>Copyright</th></tr></thead>
+    <tbody>
+      {platform.map((c) => (
+        <tr>
+          <td>{c.name}</td>
+          <td><a href={licenseLinks[c.license]} rel="noopener">{c.license}</a></td>
+          <td>{c.holder}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>License texts</h2>
+  <p>Full texts of the licenses referenced above:
+    <a href="https://www.apache.org/licenses/LICENSE-2.0" rel="noopener">Apache-2.0</a>,
+    <a href="https://opensource.org/license/mit" rel="noopener">MIT</a>,
+    <a href="https://opensource.org/license/bsd-3-clause" rel="noopener">BSD-3-Clause</a>,
+    <a href="https://opensource.org/license/postgresql" rel="noopener">The PostgreSQL License</a>.
+    Each package also ships its own <code>LICENSE</code> file with its distribution.</p>
+
+  <h2>Requests</h2>
+  <p>This page lists the principal third-party components. For a complete, generated dependency-level notice, or
+  any licensing question, contact <a href="mailto:hello@ollasync.com">hello@ollasync.com</a>.</p>
+</LegalLayout>
+
+<style>
+  .oss { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14.5px; display: block; overflow-x: auto; }
+  .oss th, .oss td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; white-space: nowrap; }
+  .oss td:first-child { white-space: normal; }
+  .oss th { background: rgba(255,255,255,.03); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-2); font-weight: 600; }
+  .oss code { font-family: var(--font-mono); font-size: 12.5px; background: rgba(255,255,255,.06); padding: 2px 6px; border-radius: 5px; color: #cfc6ff; }
+  .oss a { color: var(--iris); }
+</style>
