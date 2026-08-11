@@ -7,10 +7,10 @@ interface Props {
   secondary?: { label: string; href: string };
 }
 const {
-  title = 'Bring your meetings in-house.',
-  sub = 'Start encrypted in one click on our EU-hosted service — or run the whole platform on your own infrastructure. No plaintext ever touches a server you don’t control.',
-  primary = { label: 'Book a demo', href: '/contact' },
-  secondary = { label: 'See self-hosting', href: '/self-hosted' },
+  title = 'Start encrypted in one click.',
+  sub = 'EU-hosted and server-blind by design — messaging is end-to-end encrypted, so we only ever see ciphertext. Self-host the whole platform when you need to.',
+  primary = { label: 'Start free', href: SITE.appUrl },
+  secondary = { label: 'Book a demo', href: '/contact' },
 } = Astro.props;
 ---
 <section class="section">

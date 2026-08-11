@@ -7,9 +7,9 @@ export const SITE = {
   // Canonical host is www (apex 301-redirects to www). Drives canonicals/OG/schema.
   url: 'https://www.ollasync.com',
   appUrl: 'https://login.ollasync.com',
-  tagline: 'Self-hosted, end-to-end encrypted video meetings & deal rooms',
+  tagline: 'Encrypted video meetings & deal rooms — a secure Zoom alternative',
   description:
-    'Ollasync is end-to-end encrypted video meetings, webinars, recordings and confidential deal rooms — self-hostable, EU-hosted, server-blind by design. A secure Zoom alternative for teams that can’t trust the cloud.',
+    'Ollasync is EU-hosted, end-to-end encrypted messaging with encrypted video meetings, webinars, recordings and confidential deal rooms — server-blind by design. A secure Zoom alternative for teams that can’t trust the cloud. Self-host optional.',
   ogImage: '/og-ollasync.png',
   email: 'hello@ollasync.com',
   salesEmail: 'sales@ollasync.com',
@@ -32,11 +32,11 @@ export const NAV: NavGroup[] = [
   {
     label: 'Solutions',
     items: [
-      { label: 'Self-hosted', href: '/self-hosted', desc: 'Run it on your own infrastructure' },
       { label: 'Healthcare', href: '/use-cases/healthcare', desc: 'Private telehealth & PHI' },
       { label: 'Legal', href: '/use-cases/legal', desc: 'Privileged client comms' },
       { label: 'Finance', href: '/use-cases/finance', desc: 'Confidential deal & advisory calls' },
       { label: 'Government', href: '/use-cases/government', desc: 'Sovereign, on-premise' },
+      { label: 'Self-hosted', href: '/self-hosted', desc: 'Run it on your own infrastructure' },
     ],
   },
   {
@@ -68,11 +68,11 @@ export const FOOTER: { title: string; links: NavItem[] }[] = [
   {
     title: 'Solutions',
     links: [
-      { label: 'Self-hosted', href: '/self-hosted' },
       { label: 'Healthcare', href: '/use-cases/healthcare' },
       { label: 'Legal', href: '/use-cases/legal' },
       { label: 'Finance', href: '/use-cases/finance' },
       { label: 'Government', href: '/use-cases/government' },
+      { label: 'Self-hosted', href: '/self-hosted' },
     ],
   },
   {

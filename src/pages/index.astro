@@ -13,15 +13,15 @@ const latestPosts = (await getCollection('blog'))
   .slice(0, 3);
 const fmtDate = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 
-const title = 'Self-hosted, end-to-end encrypted video meetings & deal rooms';
+const title = 'Encrypted video meetings & deal rooms — a secure Zoom alternative';
 const description =
-  'Ollasync is end-to-end encrypted video meetings, webinars, recordings and confidential deal rooms — self-hostable or EU-hosted, server-blind by design. A secure Zoom alternative for teams that can’t trust the cloud.';
+  'Ollasync is EU-hosted, end-to-end encrypted messaging with encrypted video meetings, webinars, recordings and confidential deal rooms — server-blind by design. A secure Zoom alternative for teams that can’t trust the cloud. Self-host optional.';
 
-const whySelfHost = [
-  { icon: 'server', title: 'Your keys, your servers', body: 'Run the entire platform inside your own datacenter or private cloud. Media, recordings and documents never leave infrastructure you control.' },
-  { icon: 'globe', title: 'Data residency you decide', body: 'Pin every byte to a jurisdiction of your choosing. EU-hosted by default in Frankfurt, or on-premise anywhere — including fully air-gapped.' },
-  { icon: 'shield-check', title: 'Your compliance boundary', body: 'When the software runs on your estate, regulated data stays inside your existing controls, audits and DPAs. No third-party subprocessor to explain away.' },
-  { icon: 'eye-off', title: 'Server-blind either way', body: 'Content is encrypted in the browser before it ever hits the wire. Even on our hosted service, we only ever see ciphertext — never your calls, files or messages.' },
+const whyOllasync = [
+  { icon: 'eye-off', title: 'Server-blind by design', body: 'Content is encrypted in your browser before it hits the wire. Even on our hosted service, we only ever see ciphertext — never your messages, calls or files.' },
+  { icon: 'globe', title: 'EU data residency', body: 'Hosted in the EU (Frankfurt) by default. Your data stays in-region under EU law — no US cloud, no CLOUD Act reach.' },
+  { icon: 'shield-check', title: 'Your compliance boundary', body: 'Encryption, access control and audit logging give your HIPAA or GDPR programme the controls it needs — no certification theatre.' },
+  { icon: 'server', title: 'Self-host when you need it', body: 'Run the whole platform in your own datacenter, private cloud or air-gapped — media, recordings and documents never leave infrastructure you control.' },
 ];
 
 const features = [
@@ -40,12 +40,12 @@ const verticals = [
 ];
 
 const faq = [
-  { q: 'Is Ollasync end-to-end encrypted?', a: 'Messaging is: it uses the open IETF MLS standard (RFC 9420), keys stay on participants’ devices, and the server only ever stores ciphertext — so we can’t read your messages. Video runs over a media relay (SFU) that you can self-host, encrypted in transit (TLS 1.3 / DTLS-SRTP), with an end-to-end encryption mode available. We describe exactly what is protected, and how, on our security page — no blanket claims.' },
-  { q: 'Can I self-host Ollasync?', a: 'Yes. The whole platform can run on your own servers, private cloud or an air-gapped network. When you self-host, meeting media, recordings and documents never leave infrastructure you control — the software becomes part of your existing compliance boundary.' },
-  { q: 'Where is my data stored?', a: 'On our managed service, data is hosted in the EU (Frankfurt). If you self-host, you choose the jurisdiction entirely — including a fully air-gapped network. Your messages stay end-to-end encrypted regardless, so location decides where the data lives, and self-hosting decides who operates the servers it lives on.' },
-  { q: 'Can Ollasync read my meetings or messages?', a: 'We can’t read your messages — they’re end-to-end encrypted and we hold no keys. For video on our hosted service, media passes through a relay in encrypted transit; if you self-host, that relay is yours, so meeting media never leaves your control. We never mine or sell your data, and we tell you plainly what the server can and can’t see.' },
-  { q: 'How is Ollasync different from Zoom?', a: 'Ollasync is fully self-hostable, EU-hosted, and built around server-blind encrypted messaging — for teams whose meetings and documents are too sensitive to sit on a US cloud they can’t inspect. See our detailed Zoom comparison for a feature-by-feature breakdown.' },
-  { q: 'Is Ollasync HIPAA or GDPR compliant?', a: 'Compliance is a property of your deployment, not a checkbox we sell. Ollasync gives you the technical controls a HIPAA or GDPR programme needs — encryption, EU or on-premise hosting, access control, audit logging and a data-processing agreement. When you self-host, regulated data stays inside your own audited environment. We hold no SOC 2 or ISO 27001 certification yet, and we say so.' },
+  { q: 'Is Ollasync end-to-end encrypted?', a: 'Messaging is — it uses the open IETF MLS standard (RFC 9420), keys stay on your devices, and the server only ever stores ciphertext. Video runs over a media relay encrypted in transit (TLS 1.3 / DTLS-SRTP), with an opt-in end-to-end mode; we spell out exactly what’s protected on our security page.' },
+  { q: 'Where is my data stored?', a: 'On our managed service, in the EU (Frankfurt) by default. If you self-host, you choose the jurisdiction entirely — up to a fully air-gapped network.' },
+  { q: 'Can Ollasync read my meetings or messages?', a: 'We can’t read your messages — they’re end-to-end encrypted and we hold no keys. Meeting video passes through a relay in encrypted transit; we never mine or sell your data, and we tell you plainly what the server can and can’t see.' },
+  { q: 'How is Ollasync different from Zoom?', a: 'EU-hosted, server-blind encrypted messaging, and confidential deal rooms — built for teams whose calls and documents are too sensitive for a US cloud they can’t inspect. See our Zoom comparison for the feature-by-feature breakdown.' },
+  { q: 'Can I self-host Ollasync?', a: 'Yes — the whole platform can run on your own servers, private cloud or an air-gapped network, so meeting media, recordings and documents never leave your control. Self-hosting is available on the Enterprise plan.' },
+  { q: 'Is Ollasync HIPAA or GDPR compliant?', a: 'Compliance is a property of your deployment, not a checkbox we sell. We give you the controls a HIPAA or GDPR programme needs — encryption, EU or on-premise hosting, access control, audit logging and a DPA. We hold no SOC 2 or ISO 27001 certification yet, and we say so.' },
 ];
 
 const homeSchema = {
@@ -53,15 +53,15 @@ const homeSchema = {
   '@type': 'SoftwareApplication',
   name: SITE.name,
   applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web browser, self-hosted (Linux)',
+  operatingSystem: 'Web browser',
   description: description,
   featureList: [
-    'End-to-end encrypted video meetings',
+    'Encrypted video meetings',
     'Encrypted webinars',
     'Encryption-gated recordings',
     'Confidential deal rooms',
     'Server-blind messaging (IETF MLS / RFC 9420)',
-    'Self-hosting and EU data residency',
+    'EU data residency and optional self-hosting',
   ],
   url: SITE.url,
 };
@@ -71,21 +71,22 @@ const homeSchema = {
   <section class="section" style="padding-top:64px;padding-bottom:44px">
     <div class="container hero">
       <div class="hero__copy">
-        <span class="eyebrow" data-reveal><Icon name="lock" size={13} stroke="#cfc6ff" /> Encrypted · self-hostable · server-blind messaging</span>
+        <span class="eyebrow" data-reveal><Icon name="lock" size={13} stroke="#cfc6ff" /> Encrypted · EU-hosted · server-blind messaging</span>
         <h1 class="display" data-reveal style="margin-top:22px">
-          Self-hosted, end-to-end encrypted <span class="gradient-text">video meetings &amp; deal rooms</span> for teams that can’t trust the cloud
+          Encrypted <span class="gradient-text">video meetings &amp; deal rooms</span> for teams that can’t trust the cloud
         </h1>
         <p class="lead" data-reveal style="margin-top:22px;max-width:56ch">
-          Encrypted video, webinars, recording and confidential document rooms — running on infrastructure <em>you</em> control, or hosted for you in the EU. Messaging is end-to-end encrypted and server-blind; self-host the rest and your meetings never leave your walls.
+          Encrypted video, webinars, recordings and confidential deal rooms — EU-hosted and ready in one click. Messaging is end-to-end encrypted and server-blind, so we only ever see ciphertext. Need total control? Self-host the whole platform.
         </p>
         <div class="hero__cta" data-reveal>
-          <a href="/contact" class="btn btn-primary">Book a demo <span class="arrow">→</span></a>
-          <a href="/self-hosted" class="btn btn-ghost">See self-hosting</a>
+          <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
+          <a href="/contact" class="btn btn-ghost">Book a demo</a>
+          <a href="/self-hosted" class="hero__selfhost">or self-host it →</a>
         </div>
         <ul class="hero__ticks" data-reveal>
+          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Ready in one click — no install</li>
           <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Server-blind encrypted messaging</li>
-          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>EU data residency (Frankfurt)</li>
-          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Self-host or on-premise</li>
+          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>EU data residency — self-host optional</li>
         </ul>
       </div>
       <div class="hero__art" data-reveal>
@@ -102,7 +103,7 @@ const homeSchema = {
           <span>
             <span class="chip"><Icon name="lock" size={14} stroke="#3ddc97" /> End-to-end encrypted</span>
             <span class="chip"><Icon name="globe" size={14} stroke="#8f7bff" /> EU-hosted · Frankfurt</span>
-            <span class="chip"><Icon name="server" size={14} stroke="#8f7bff" /> Self-host ready</span>
+            <span class="chip"><Icon name="server" size={14} stroke="#8f7bff" /> Self-host optional</span>
             <span class="chip"><Icon name="video" size={14} stroke="#3ddc97" /> Native 4K video</span>
             <span class="chip"><Icon name="mic" size={14} stroke="#8f7bff" /> Opus 48 kHz · AI noise suppression</span>
             <span class="chip"><Icon name="fingerprint" size={14} stroke="#3ddc97" /> IETF MLS · RFC 9420</span>
@@ -116,12 +117,12 @@ const homeSchema = {
   <section class="section">
     <div class="container">
       <div class="section-head" data-reveal>
-        <span class="eyebrow-label">The wedge</span>
-        <h2 class="h2" style="margin-top:12px">Built for the meetings you can’t put on someone else’s cloud</h2>
-        <p class="kicker" style="margin-top:14px">Most video tools ask you to trust a vendor with your most sensitive conversations. Ollasync is designed so you don’t have to — either the content is unreadable to us, or the whole system runs on hardware you own.</p>
+        <span class="eyebrow-label">Why Ollasync</span>
+        <h2 class="h2" style="margin-top:12px">Secure by default — hosted for you, self-hosted when you need it</h2>
+        <p class="kicker" style="margin-top:14px">Most video tools ask you to trust a vendor with your most sensitive calls. Ollasync is built so you don’t have to — either the content is unreadable to us, or it runs on hardware you own.</p>
       </div>
       <div class="grid grid-4" data-reveal>
-        {whySelfHost.map((c) => (
+        {whyOllasync.map((c) => (
           <div class="card card--hover">
             <div class="card__icon"><Icon name={c.icon} size={20} /></div>
             <h3 class="h3">{c.title}</h3>
@@ -159,7 +160,7 @@ const homeSchema = {
       <div data-reveal>
         <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={13} stroke="#a9f2d1" /> Two ways your content stays yours</span>
         <h2 class="h2" style="margin-top:18px">Either we can’t read it — or it never reaches us at all</h2>
-        <p class="lead" style="margin-top:16px;max-width:52ch">Ollasync is built on two guarantees. Messaging is end-to-end encrypted, so we hold no keys and see only ciphertext. And because the whole platform is self-hostable, you can keep meetings, recordings and documents entirely inside your own network.</p>
+        <p class="lead" style="margin-top:16px;max-width:52ch">Your content stays yours two ways. Messaging is end-to-end encrypted — we hold no keys and see only ciphertext. Video and documents are encrypted in transit to a relay you can keep in-region, or self-host entirely.</p>
         <div class="guarantees">
           <div class="guarantee">
             <div class="card__icon card__icon--teal"><Icon name="eye-off" size={20} /></div>
@@ -171,8 +172,8 @@ const homeSchema = {
           <div class="guarantee">
             <div class="card__icon"><Icon name="server" size={20} /></div>
             <div>
-              <h3 class="h3">Self-host everything else</h3>
-              <p class="muted" style="font-size:14.5px;margin-top:4px">Run the media relay, storage and app on your own infrastructure. Meeting video and documents stay inside your trust boundary — never a third party’s.</p>
+              <h3 class="h3">You choose where it runs</h3>
+              <p class="muted" style="font-size:14.5px;margin-top:4px">EU-hosted in Frankfurt by default — or run the media relay, storage and app on your own infrastructure, so meeting video and documents stay inside your trust boundary.</p>
             </div>
           </div>
         </div>
@@ -212,15 +213,15 @@ const homeSchema = {
       <div class="vs-teaser panel" data-reveal>
         <div>
           <span class="eyebrow-label">Switching from Zoom?</span>
-          <h2 class="h2" style="margin-top:12px;max-width:20ch">The encrypted, self-hostable Zoom alternative</h2>
+          <h2 class="h2" style="margin-top:12px;max-width:20ch">The encrypted Zoom alternative</h2>
           <p class="lead" style="margin-top:14px;max-width:48ch">Same one-click, no-download meetings your team already expects — without handing your most sensitive calls to a cloud you can’t inspect.</p>
           <a href="/vs/zoom" class="btn btn-primary" style="margin-top:22px">Compare Ollasync vs Zoom <span class="arrow">→</span></a>
         </div>
         <ul class="vs-teaser__list">
-          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>End-to-end encrypted by default</li>
-          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Self-host or EU-hosted</li>
+          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>End-to-end encrypted messaging by default</li>
+          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>EU-hosted — no US CLOUD Act</li>
           <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Server-blind — no vendor access to content</li>
-          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>No app install for guests</li>
+          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Self-host available when you need it</li>
         </ul>
       </div>
     </div>
@@ -259,7 +260,9 @@ const homeSchema = {
 
 <style>
   .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; }
-  .hero__cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero__cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .hero__selfhost { align-self: center; font-size: 14px; color: var(--muted); transition: color var(--dur) ease; }
+  .hero__selfhost:hover { color: var(--iris); }
   .hero__ticks { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px 24px; list-style: none; }
 
   .feature-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
