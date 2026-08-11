@@ -5,6 +5,7 @@ import Icon from '../../components/Icon.astro';
 import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import { USE_CASES } from '../../data/useCases';
+import { SITE } from '../../consts';
 
 export function getStaticPaths() {
   return USE_CASES.map((u) => ({ params: { slug: u.slug }, props: { uc: u } }));
@@ -31,8 +32,8 @@ const schema = {
     lead={uc.lead}
   >
     <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
-      <a href="/contact" class="btn btn-primary">Book a demo <span class="arrow">→</span></a>
-      <a href="/self-hosted" class="btn btn-ghost">See self-hosting</a>
+      <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
+      <a href="/contact" class="btn btn-ghost">Book a demo</a>
     </div>
   </PageHero>
 
@@ -105,10 +106,10 @@ const schema = {
 
   <Faq items={uc.faq} title={`${uc.label} — common questions`} />
   <Cta
-    title={`Bring ${uc.label.toLowerCase()} conversations in-house.`}
-    sub="See it on your own infrastructure. Tell us your environment and requirements, and we’ll size a proof of concept with you."
-    primary={{ label: 'Book a demo', href: '/contact' }}
-    secondary={{ label: 'See self-hosting', href: '/self-hosted' }}
+    title={`Start encrypted ${uc.label.toLowerCase()} in one click.`}
+    sub="EU-hosted and server-blind by design. Need it inside your own environment? Self-host the whole platform — tell us your requirements and we’ll size a proof of concept."
+    primary={{ label: 'Start free', href: SITE.appUrl }}
+    secondary={{ label: 'Book a demo', href: '/contact' }}
   />
 </Base>
 

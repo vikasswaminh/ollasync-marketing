@@ -6,6 +6,7 @@ import Faq from '../../components/Faq.astro';
 import Cta from '../../components/Cta.astro';
 import Compare from '../../components/Compare.astro';
 import { COMPETITORS } from '../../data/vs';
+import { SITE } from '../../consts';
 
 export function getStaticPaths() {
   return COMPETITORS.map((c) => ({ params: { slug: c.slug }, props: { c } }));
@@ -17,13 +18,13 @@ const { c } = Astro.props;
     eyebrow={c.eyebrow}
     eyebrowIcon="layers"
     crumbs={[{ label: 'Compare', href: '/vs' }, { label: `vs ${c.name}` }]}
-    title="The secure, self-hostable"
+    title="The encrypted, EU-hosted"
     titleAccent={`${c.name} alternative`}
     lead={c.intro}
   >
     <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
-      <a href="/contact" class="btn btn-primary">Book a demo <span class="arrow">→</span></a>
-      <a href="/self-hosted" class="btn btn-ghost">See self-hosting</a>
+      <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
+      <a href="/contact" class="btn btn-ghost">Book a demo</a>
     </div>
   </PageHero>
 
@@ -66,9 +67,9 @@ const { c } = Astro.props;
   <Faq items={c.faq} title={`Ollasync vs ${c.name} — FAQ`} />
   <Cta
     title={`Move your confidential meetings off ${c.name}.`}
-    sub="Keep the one-click experience your team expects — add self-hosting, server-blind messaging and deal rooms. See it on your own infrastructure."
-    primary={{ label: 'Book a demo', href: '/contact' }}
-    secondary={{ label: 'See self-hosting', href: '/self-hosted' }}
+    sub="Keep the one-click experience your team expects — EU-hosted and server-blind, with deal rooms and optional self-hosting. Start free, or see it on your own infrastructure."
+    primary={{ label: 'Start free', href: SITE.appUrl }}
+    secondary={{ label: 'Book a demo', href: '/contact' }}
   />
 </Base>
 
