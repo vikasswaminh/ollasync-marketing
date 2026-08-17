@@ -1,3 +1,8 @@
 node_modules/
 dist/
 .astro/
+
+# secrets — provide at deploy time, NEVER commit
+cf.txt
+.env
+.env.*
