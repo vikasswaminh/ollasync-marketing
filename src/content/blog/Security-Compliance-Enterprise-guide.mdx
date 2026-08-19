@@ -2,7 +2,7 @@
 title: "Zero-Trust Video Conferencing: What It Is and Why Enterprise IT Teams Are Switching"
 description: "How modern enterprise IT teams eliminate vendor trust, enforce cryptographic media boundaries, and secure real-time communications against supply-chain threats."
 pubDate: 2026-08-19
-category: "Security & Compliance"
+category: "Compliance"
 cover: "/blog-cover-self-host.png"
 pillar: false
 readTime: 35
@@ -23,9 +23,9 @@ However, the threat landscape of 2026 has rendered that assumption obsolete.
 
 Sophisticated nation-state supply-chain attacks, aggressive data scraping for AI model training, expanded extraterritorial surveillance statutes (such as the US CLOUD Act, NIS2, and the EU AI Act), and high-profile insider breaches at major SaaS providers have exposed a fundamental flaw in traditional video conferencing. When you rely on standard multi-tenant cloud vendors, the vendor retains root administrative access to the servers that decrypt, route, and assemble your audio and video streams in memory.
 
-In response, Chief Information Security Officers (CISOs), Enterprise IT Architects, and Compliance Directors are abandoning traditional vendor-trust models. They are migrating to Zero-Trust Video Conferencing — an architecture built on the explicit security posture: "Never trust, always verify, and never grant an infrastructure operator access to unencrypted payload media."
+In response, Chief Information Security Officers (CISOs), Enterprise IT Architects, and Compliance Directors are abandoning traditional vendor-trust models. They are migrating to Zero-Trust Video Conferencing — an architecture built on the explicit security posture: "Never trust, always verify, and never grant an infrastructure operator access to unencrypted payload media." For an understanding of threat boundaries, read our breakdown of [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call).
 
-This guide explains what Zero-Trust Video Conferencing actually is, breaks down its core architectural pillars, provides detailed threat models, outlines regulatory compliance implications, and presents an enterprise operational blueprint for deploying zero-trust real-time infrastructure.
+This guide explains what Zero-Trust Video Conferencing actually is, breaks down its core architectural pillars, provides detailed threat models, outlines regulatory compliance implications, and presents an enterprise operational blueprint for deploying zero-trust real-time infrastructure. For the foundational concepts of browser-level encryption, see our guide on [end-to-end encrypted video conferencing](/blog/end-to-end-encrypted-video-conferencing).
 
 ## Defining Zero-Trust in Real-Time Communications
 
@@ -74,7 +74,7 @@ Modern zero-trust real-time communications platforms rest upon five foundational
 
 ### 1. End-to-End Payload Encryption (E2EE) via Insertable Streams
 
-Video and audio frames are encrypted on the participant's local device (inside the browser or native app) before being handed to the WebRTC transport engine. The SFU server receives encrypted payloads, inspects only unencrypted routing headers, and routes packets to authorized participants without accessing unencrypted frame data.
+Video and audio frames are encrypted on the participant's local device (inside the browser or native app) before being handed to the WebRTC transport engine. The SFU server receives encrypted payloads, inspects only unencrypted routing headers, and routes packets to authorized participants without accessing unencrypted frame data. Learn how this works in practice in our technical guide to [per-frame media encryption](/blog/per-frame-media-encryption-explained).
 
 ### 2. Sovereign Cryptographic Key Governance
 
@@ -109,7 +109,7 @@ A common point of confusion among IT procurement teams is conflating simple End-
 | **Infrastructure Authority** | Hosted on vendor multi-tenant cloud | Sovereign control: Private cloud VPC, On-Prem, or Air-Gapped |
 | **Feature Availability** | Breakout rooms & recording disabled | Server composite recording via dedicated sovereign worker nodes |
 
-Relying solely on an E2EE toggle offered by a multi-tenant cloud SaaS provider leaves signaling, authentication, metadata logging, and key escrow under third-party vendor control. True zero-trust architecture enforces security across all three core planes: the data plane (media packets), the control plane (signaling & key exchange), and the identity plane (authentication & authorization).
+Relying solely on an E2EE toggle offered by a multi-tenant cloud SaaS provider leaves signaling, authentication, metadata logging, and key escrow under third-party vendor control. True zero-trust architecture enforces security across all three core planes: the data plane (media packets), the control plane (signaling & key exchange), and the identity plane (authentication & authorization). Discover our full [security posture](/security) and deployment models on our [self-hosted solutions page](/self-hosted).
 
 To understand the shortcomings of standard commercial E2EE add-ons, security teams must examine how key escrow functions in multi-tenant cloud models. Many cloud platforms offering optional "E2EE modes" generate room encryption keys on central vendor control servers and distribute them to participants over standard TLS signaling channels. Under this key escrow arrangement, the vendor retains the technical ability to intercept key generation handshakes, extract key material, and decrypt media sessions on demand. True zero-trust platforms reject centralized key escrow entirely, mandating that key derivation algorithms execute exclusively within the client memory space of verified session participants.
 
@@ -135,7 +135,7 @@ Furthermore, ephemeral authorization frameworks enforce dynamic session re-authe
 
 Managing cryptographic keys in multi-party video calls historically presented severe performance challenges. Early E2EE implementations required pairwise key exchanges, causing exponential computational overhead (O(N²) scaling) as participant counts grew.
 
-Modern zero-trust platforms utilize Messaging Layer Security (MLS) (IETF RFC 9420) combined with WebRTC Insertable Streams to deliver scalable O(log N) key management for large enterprise meetings.
+Modern zero-trust platforms utilize Messaging Layer Security (MLS) (IETF RFC 9420) combined with WebRTC Insertable Streams to deliver scalable O(log N) key management for large enterprise meetings. For our detailed protocol analysis, read [how MLS encryption works](/blog/how-mls-encryption-works) and how it powers [server-blind messaging](/features/messaging).
 
 ### How MLS Powers Zero-Trust Video
 
@@ -153,7 +153,7 @@ Regulatory mandates across Europe, North America, and Asia-Pacific have shifted 
 
 ### 1. General Data Protection Regulation (GDPR) & Schrems II
 
-Following the CJEU Schrems II ruling and subsequent European Data Protection Board (EDPB) guidelines, transferring personal data — including facial imagery, voice patterns, IP addresses, and metadata — to third-party cloud infrastructure subject to foreign surveillance laws creates substantial compliance risk. Zero-trust video platforms ensure media streams remain mathematically protected against third-party access, satisfying EDPB Supplementary Measures for international transfers.
+Following the CJEU Schrems II ruling and subsequent European Data Protection Board (EDPB) guidelines, transferring personal data — including facial imagery, voice patterns, IP addresses, and metadata — to third-party cloud infrastructure subject to foreign surveillance laws creates substantial compliance risk. Zero-trust video platforms ensure media streams remain mathematically protected against third-party access, satisfying EDPB Supplementary Measures for international transfers. For a full breakdown, explore our [GDPR video conferencing guide](/blog/gdpr-compliant-video-conferencing) and our [compliance overview](/compliance).
 
 Furthermore, Article 32 of the GDPR explicitly mandates that data controllers and processors implement technical and organizational measures appropriate to risk, including pseudonymization and frame-level payload encryption. Traditional video conferencing solutions that terminate encryption on cloud servers fail to provide adequate technical safeguards when processing high-risk categories of personal data, such as biometric voiceprints or clinical patient assessments. Zero-trust architecture ensures that biometric media payloads remain encrypted end-to-end, guaranteeing that personal data processed during real-time collaboration remains immune to external data breaches and unlawful regulatory access.
 
@@ -165,7 +165,7 @@ Under DORA frameworks, financial institutions must maintain complete operational
 
 ### 3. Health Insurance Portability and Accountability Act (HIPAA)
 
-For healthcare providers delivering telemedicine services, transmitting protected health information (PHI) across commercial video platforms requires signing Business Associate Agreements (BAAs) and auditing vendor data practices. Zero-trust architectures ensure that video consultations containing patient medical assessments remain fully encrypted end-to-end, keeping raw PHI isolated from server relays.
+For healthcare providers delivering telemedicine services, transmitting protected health information (PHI) across commercial video platforms requires signing Business Associate Agreements (BAAs) and auditing vendor data practices. Zero-trust architectures ensure that video consultations containing patient medical assessments remain fully encrypted end-to-end, keeping raw PHI isolated from server relays. See how this is applied in our [HIPAA video conferencing guide](/blog/hipaa-compliant-video-conferencing) and [healthcare use case](/use-cases/healthcare).
 
 Under the HIPAA Security Rule, covered entities must implement technical access controls, transmission security measures, and strict audit logs for all electronic PHI (ePHI). When telemedicine sessions operate over traditional multi-tenant cloud platforms, raw video feeds containing clinical patient evaluations exist in cleartext inside server memory, creating potential exposure risks during multi-tenant host exploits. Zero-trust video platforms resolve this compliance challenge by ensuring that media streams are encrypted on provider endpoints prior to transmission and remain encrypted until rendered on authorized patient devices. Because zero-knowledge server relays cannot decrypt, view, or record patient media feeds, the underlying cloud infrastructure is insulated from ePHI exposure, simplifying HIPAA audit verification and risk management compliance.
 
@@ -239,7 +239,7 @@ Phase 4 establishes real-time operational visibility, security monitoring, and c
 
 ## Total Cost of Ownership: Zero-Trust vs. Multi-Tenant SaaS
 
-A common myth among IT procurement teams is that advanced zero-trust architecture requires prohibitive capital expenditure. In practice, eliminating recurring commercial per-seat licensing fees yields dramatic financial savings at scale.
+A common myth among IT procurement teams is that advanced zero-trust architecture requires prohibitive capital expenditure. In practice, eliminating recurring commercial per-seat licensing fees yields dramatic financial savings at scale. Review our [transparent pricing tiers](/pricing) and see how we compare to market alternatives in our [Zoom vs Ollasync](/vs/zoom) and [Microsoft Teams vs Ollasync](/vs/microsoft-teams) guides.
 
 ### Financial Analysis (2,500-User Enterprise Deployment)
 
