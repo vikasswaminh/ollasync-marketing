@@ -14,7 +14,7 @@ interface Props {
 const { post, headings, related } = Astro.props;
 const d = post.data;
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
-const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const toc = headings.filter((h) => h.depth === 2);
 const cover = d.cover || '/og-ollasync.png';
 
 const schema = {
