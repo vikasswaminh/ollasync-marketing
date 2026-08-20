@@ -16,154 +16,180 @@ takeaways:
   - "OllaSync is built self-hosted-first: you can run the media relay, storage, and trust boundary on your own infrastructure with default server-blind IETF MLS messaging."
 ---
 
-Why "secure video conferencing" means something different now
-Somewhere around 2020, "video call" quietly became the default meeting room for the entire economy. Doctors moved consultations into it. Lawyers moved privileged conversations into it. Boards moved fundraising discussions into it. Governments moved classified briefings — carefully — into it. And almost nobody who made that switch stopped to ask a question that would have seemed obvious in the physical world: whose building is this meeting actually happening in?
-If you were negotiating an acquisition in 2015, you'd have booked a conference room, and you'd have known exactly who held the key to that room, who could walk past the glass wall, and who was legally allowed to bug it. In 2026, the equivalent question — who operates the servers this conversation passes through, and which government can compel them to hand over what they have — gets asked far less often than it should, mostly because the interface is so smooth that the infrastructure underneath disappears from view.
-That's not a criticism of Zoom or Microsoft Teams. Both are remarkable feats of engineering — reliable at a scale that's genuinely hard to build, and used by hundreds of millions of people every week without most of them thinking twice. The criticism, if there is one, is aimed at the industry-wide habit of using the word "secure" as a single, binary label, as if a platform either has security or doesn't. It doesn't work that way. Security is a bundle of separate design decisions, and a platform can score brilliantly on some of them while quietly punting on others.
-This piece exists to pull that bundle apart. We're going to look at OllaSync, Zoom, and Microsoft Teams side by side, using criteria that matter specifically to teams carrying real risk — protected health information, privileged legal advice, material non-public financial information, sovereign government data — rather than generic marketing checklists. We'll be fair to the incumbents, because they've earned it. And we'll be just as honest about where OllaSync's own model has real limits, because a comparison that only flatters the author isn't worth the pixels it's written on.
+## Why "secure video conferencing" means something different now
 
+Somewhere around 2020, "video call" quietly became the default meeting room for the entire economy. Doctors moved consultations into it. Lawyers moved privileged conversations into it. Boards moved fundraising discussions into it. Governments moved classified briefings into it. 
 
-## Meet the Three Platforms
+And almost nobody who made that switch stopped to ask a question that would have seemed obvious in the physical world: **whose building is this meeting actually happening in?**
 
-Before the scorecards, a quick, honest sketch of each contender — what it is, who it's for, and what it was actually built to optimize.
-Zoom started as a video-calling company and, over a decade, became the verb people use for "let's hop on a call." It's cloud-native, consumer-friendly, and engineered for reliability at enormous scale — the platform that, more than any other, proved video calling could just work, even on bad Wi-Fi, even for people who'd never touched conferencing software before. Its security posture has matured significantly since the scrutiny it faced in 2020, and it now offers an optional end-to-end encrypted meeting mode. But it remains, at its core, a multi-tenant SaaS product operated entirely on Zoom's own cloud.
-Microsoft Teams is less a video app and more the connective tissue of Microsoft 365 — chat, files, calendar, calls, and meetings stitched into one workspace that most large enterprises already live inside. Its strength is depth of integration: if your organization runs on Outlook, SharePoint, and Entra ID, Teams is often already the path of least resistance. Its security model inherits Microsoft's considerable enterprise investment — compliance certifications, an EU Data Boundary, granular admin controls — but it, too, is fundamentally a cloud service Microsoft operates on your behalf, not infrastructure you control.
-OllaSync takes the opposite starting point. Instead of "cloud service with optional security add-ons," it's built self-hosted-first: the same one-click, no-download meeting experience, but deployable on your own private cloud, your own datacenter, or fully air-gapped if that's what the work demands. Messaging is end-to-end encrypted and server-blind by default using the IETF's MLS protocol (RFC 9420), and it includes native [confidential deal rooms](/features/deal-rooms) — something neither Zoom nor Teams offers as a first-class feature. It's also the newest and smallest of the three, which matters: it doesn't carry decades of enterprise integrations, and it says so plainly rather than pretending otherwise.
-Three different products, three different bets about what "secure enough" means. Let's define the terms properly before scoring anything.
+If you were negotiating an acquisition in 2015, you'd have booked a physical conference room. You'd have known exactly who held the key, who could walk past the glass wall, and who was legally allowed to access it. 
 
+In 2026, the equivalent question — who operates the servers this conversation passes through, and which government can compel them to hand over what they have — gets asked far less often than it should. The user interface is so smooth that the infrastructure underneath disappears from view.
 
-## The Seven Criteria That Actually Decide "Secure"
+That is not a criticism of Zoom or Microsoft Teams. Both are remarkable feats of engineering — reliable at a scale that's genuinely hard to build, and used by hundreds of millions of people every week. 
 
-A vendor comparison chart with a column of green checkmarks tells you almost nothing unless you know what each checkmark is actually certifying. So before any table, here's the breakdown we're going to hold every platform to — seven separate, concrete questions, each of which can be true or false independently of the others.
-1. Where does it actually run?
-This is the single biggest lever for regulated or sensitive work, and it's the one mainstream platforms are least able to pull. Self-hosted, single-tenant, on-premise, or air-gapped deployment means the media servers, recordings, and stored documents sit on infrastructure you operate. Multi-tenant cloud SaaS — no matter how well engineered — puts a third-party operator permanently in the data path. That operator might be trustworthy, well-audited, and well-intentioned. But "trustworthy" and "not in the loop at all" are different risk postures, and only one of them removes a party from the equation entirely.
-2. Is encryption end-to-end — and is it the default?
-Here's where nuance actually matters, because a lot of online commentary flattens this into "Zoom isn't encrypted" or "Teams isn't encrypted," which is simply inaccurate. Both platforms encrypt data in transit and at rest as standard practice. The real question is narrower: is the strongest protection — true end-to-end encryption, where even the platform operator can't read the content — switched on by default, or is it a mode you have to remember to enable, that often trims away features when you do?
-3. Which jurisdiction can actually reach the data?
-Residency and jurisdiction get conflated constantly, and the difference is the whole ballgame. Residency is about geography — which physical region your bytes sit in. Jurisdiction is about legal reach — which government can compel access to that data regardless of where it's stored. A dataset sitting in a Frankfurt data center can still be reachable by a foreign legal order if the company operating it is headquartered somewhere that order applies — the exact concern raised repeatedly about the U.S. CLOUD Act with respect to American-headquartered cloud providers. "We store it in your region" answers half the question. It doesn't answer the other half.
-4. Is the messaging layer server-blind?
-Meetings get all the security headlines. The chat sitting right next to them — DMs, group threads, shared files — is often the softer, less-scrutinized target, and it can carry the most sensitive content of all: the casual aside that never would have been said on the record, the file nobody wanted going through a formal channel. "Server-blind" means the operator genuinely cannot decrypt message content because it never holds the keys — not "we promise not to look," but "we structurally can't."
-5. Can it handle confidential documents natively?
-Sensitive meetings rarely travel alone. An acquisition, a fundraising round, a clinical trial review, a due-diligence process — all of these generate documents that need controlled, auditable, often NDA-gated access alongside the conversation. A generic file-sharing bolt-on isn't the same as a purpose-built confidential room with access logging and revocable permissions.
-6. Is the cryptography built on open, auditable standards?
-Proprietary encryption you can't inspect asks you to trust a vendor's word on faith. Open standards — IETF MLS (RFC 9420) for group messaging, DTLS-SRTP and SFrame for encrypted media, Opus for audio, OIDC for identity — let independent researchers actually verify the design rather than take a marketing page's claims at face value.
-7. How tightly is identity and access controlled?
-Even perfect encryption is only as strong as the door in front of it. Single sign-on via your existing identity provider, granular role-based permissions, session controls, and audit logging determine whether the wrong person getting a login is a minor inconvenience or a serious breach.
-With those seven questions defined, let's put all three platforms on the same table.
+<div class="callout">
+<strong>The Security Myth:</strong> Security is not a binary label where a platform either "has security" or "doesn't." Security is a bundle of separate architectural decisions. A platform can score brilliantly on transit encryption while quietly punting on data sovereignty and key escrow.
+</div>
 
+This comparison pulls that bundle apart. We look at OllaSync, Zoom, and Microsoft Teams side by side, using criteria that matter specifically to teams carrying real risk — protected health information, privileged legal advice, material non-public financial information, and sovereign government data.
 
-## The Master Comparison Table
+## Meet the three platforms
 
-Use this as your own scoring sheet, weighted for whatever risk your organization is actually carrying — a marketing team running public webinars needs almost none of this; a law firm handling privileged client files needs most of it.
+Before the scorecards, here is a quick, honest sketch of each contender — what it is, who it is for, and what it was built to optimize:
+
+- **Zoom:** Started as a video-calling company and became the verb for meeting online. Cloud-native, consumer-friendly, and engineered for high reliability at massive scale. It offers an optional per-meeting end-to-end encrypted mode, but remains a multi-tenant SaaS product operated entirely on Zoom's cloud.
+- **Microsoft Teams:** The connective tissue of Microsoft 365 — chat, files, calendar, calls, and meetings stitched into one workspace. Its strength is depth of enterprise integration (Outlook, SharePoint, Entra ID). Its security model features compliance certifications and an EU Data Boundary, but it is fundamentally a cloud service Microsoft operates on your behalf.
+- **OllaSync:** Built <a href="/self-hosted">self-hosted-first</a>. Instead of a multi-tenant cloud with optional security add-ons, OllaSync provides a one-click meeting experience deployable on your private cloud, on-premise datacenter, or air-gapped network. Group messaging is end-to-end encrypted and server-blind by default using IETF MLS (RFC 9420), paired with native <a href="/features/deal-rooms">confidential deal rooms</a>.
+
+## The seven criteria that actually decide "secure"
+
+A vendor comparison chart with a column of green checkmarks tells you almost nothing unless you know what each checkmark is certifying. Here are the seven concrete criteria we hold every platform to:
+
+1. **Where does it actually run?** 
+   Self-hosted, single-tenant, on-premise, or air-gapped deployment means media servers, recordings, and documents sit on infrastructure you operate. Multi-tenant cloud SaaS puts a third-party operator permanently in the data path.
+2. **Is encryption end-to-end — and is it the default?** 
+   All three platforms encrypt in transit and at rest. The real question: is true end-to-end encryption (where the operator cannot read the content) on by default, or an opt-in mode that disables key features?
+3. **Which jurisdiction can actually reach the data?** 
+   Data residency is geography (which city stores the bytes). Jurisdiction is legal reach (which government can compel access under statutes like the US CLOUD Act). A US-headquartered provider storing data in Frankfurt is still subject to US court orders.
+4. **Is the messaging layer server-blind?** 
+   "Server-blind" means the operator structurally cannot decrypt message content because endpoints derive and hold the keys out of band.
+5. **Can it handle confidential documents natively?** 
+   Sensitive meetings generate documents requiring controlled, NDA-gated access with audit logging, rather than unmonitored file-share links.
+6. **Is the cryptography built on open, auditable standards?** 
+   Open standards (IETF MLS RFC 9420, DTLS-SRTP, SFrame, Opus, OIDC) allow independent verification rather than blind trust in proprietary code.
+7. **How tightly is identity and access controlled?** 
+   Single sign-on via your existing IdP (OIDC/SAML), role-based access control, ephemeral session tokens, and SIEM audit logging.
+
+## The master comparison table
+
+Use this matrix to evaluate which platform matches your organization's threat model:
+
 | Criterion | Zoom | Microsoft Teams | OllaSync |
 | :--- | :--- | :--- | :--- |
-| **Self-hosted / On-Premise / Air-Gapped** | — Cloud SaaS only | — Microsoft 365 cloud only | **Private cloud, on-prem, or air-gapped** |
-| **You Operate the Media Servers** | — Zoom operates the cloud | — Microsoft operates it | **Self-host the relay (SFU) yourself** |
-| **End-to-End Encrypted Meetings** | ~ Optional, per-meeting, disables some features | ~ 1:1 calls only, opt-in | **Per-frame E2EE mode; transit-encrypted by default** |
-| **Server-Blind E2EE Messaging by Default** | ~ Team Chat has optional E2EE | — Channels/chat encrypted, not E2EE | **✓ IETF MLS (RFC 9420), on by default** |
-| **Data Residency Options** | ~ Some regional options | ~ EU Data Boundary | **EU-hosted (Frankfurt), or your own datacenter** |
-| **Non-US Jurisdiction Control** | — US company (CLOUD Act) | — US company (CLOUD Act) | **Self-host, or EU-governed operator** |
-| **Native Confidential Deal Rooms** | — No native data room | — No native data room | **✓ Role- & NDA-gated, with live video** |
-| **Built on Open Standards** | ~ Proprietary E2EE mode | ~ Proprietary, closed | **✓ MLS, DTLS-SRTP, SFrame, Opus, OIDC** |
-| **SSO / Enterprise Identity (OIDC)** | ✓ SAML / SSO | ✓ Native Entra ID | **✓ Any OIDC provider (Entra, Okta, Keycloak)** |
-| **Scale for Large Public Webinars** | ✓ Proven at massive scale | ✓ Strong live events | ~ Built for confidential meetings, not mass broadcast |
-| **Ecosystem Depth (Office/Email)** | ~ Good, growing | ✓ Deepest (Microsoft 365) | ~ Focused product, connects via SSO/APIs |
-✓ = fully offered · ~ = partial or conditional · — = not offered
-Nobody wins every row, and that's the point of laying it out this way — it forces you to decide which rows are actually load-bearing for your organization before you sign a contract, not six months after an incident.
+| **Self-Hosted / On-Premise / Air-Gapped** | Multi-tenant cloud SaaS only | Microsoft 365 cloud only | **Private cloud, on-prem, or air-gapped** |
+| **You Operate the Media Servers** | Zoom operates the cloud | Microsoft operates the cloud | **Self-host the relay (SFU) yourself** |
+| **End-to-End Encrypted Meetings** | Optional per-meeting (disables some features) | 1:1 calls only (opt-in) | **Per-frame E2EE mode; transit-encrypted by default** |
+| **Server-Blind Messaging by Default** | Team Chat has optional E2EE | Channels & chat not E2EE | **IETF MLS (RFC 9420), on by default** |
+| **Data Residency & Boundary** | Regional data storage options | EU Data Boundary | **EU-hosted (Frankfurt) or own datacenter** |
+| **Non-US Jurisdiction Control** | US entity (CLOUD Act scope) | US entity (CLOUD Act scope) | **Self-host or EU-governed operator** |
+| **Native Confidential Deal Rooms** | No native data room | No native data room | **Role- & NDA-gated, with live video** |
+| **Built on Open Standards** | Proprietary E2EE mode | Proprietary closed stack | **MLS, DTLS-SRTP, SFrame, Opus, OIDC** |
+| **SSO / Enterprise Identity (OIDC)** | SAML / SSO | Native Entra ID | **Any OIDC provider (Entra, Okta, Authentik)** |
+| **Large Scale Public Webinars** | Proven at massive scale | Strong live events | **Built for confidential group meetings** |
+| **Productivity Ecosystem Depth** | Good third-party apps | Deepest (Microsoft 365) | **Focused tool, connects via SSO & APIs** |
 
+## Deep dive: OllaSync vs. Zoom
 
-## Deep Dive: OllaSync vs. Zoom
+Zoom earned its dominance by making video calling frictionless and exceptionally reliable. It encrypts meetings in transit and at rest as standard, and offers an optional AES-256-GCM end-to-end encryption mode you can toggle per meeting.
 
-Zoom earned its dominance honestly. It was the platform that made video calling frictionless for people who'd never used conferencing software before, and it remains extraordinarily reliable at a scale most competitors can only aspire to. It also deserves credit it doesn't always get: Zoom encrypts meetings in transit and at rest as standard, and it offers a genuine end-to-end encryption mode using AES-256-GCM that you can switch on per meeting.
-The catch is in the details of that sentence. It's optional — you have to remember to turn it on, meeting by meeting. Enabling it disables some cloud features, including certain recording and dial-in options, which creates a real trade-off between "maximum security" and "full functionality" that most users will resolve in favor of functionality, because that's what defaults do to human behavior. And even with E2EE switched on, Zoom still operates the cloud infrastructure the meeting runs through — there's no path to running Zoom itself inside your own datacenter.
-For a sales call, an internal standup, or a webinar, none of this matters much. For a telehealth session covering protected health information, a privileged attorney-client conversation, or a live due-diligence call during an acquisition, it matters quite a lot — not because Zoom is insecure in some sloppy sense, but because its security model assumes you're comfortable with a third party operating the infrastructure, and that assumption doesn't hold for every kind of conversation.
-OllaSync approaches the same problem from the opposite direction. Self-hosting isn't a bolt-on add-on tier; it's the primary deployment model — you can run the relay (the media server that routes video and audio) on your own private cloud, on-premise, or fully air-gapped, meaning no external network path exists at all. Messaging is end-to-end encrypted and server-blind by default, not an opt-in toggle, built on the independently auditable IETF MLS standard rather than a proprietary black box. And where Zoom has no native confidential-document feature, OllaSync includes role- and NDA-gated deal rooms with live video built in, aimed squarely at the kind of due-diligence and negotiation work that currently gets stitched together from three different tools.
-To be fair in the other direction: OllaSync's instant meetings are, today, encrypted in transit to the relay rather than end-to-end by default — a per-frame E2EE mode exists and is a default on the roadmap, but it isn't the universal baseline yet, and we say so rather than blur the distinction. Zoom's polish, breadth of integrations, and sheer years of scale-testing are real advantages that a newer, security-first product hasn't had time to match. If your primary need is running flawless webinars for ten thousand attendees, Zoom's track record there is longer than anyone else's in this comparison.
-The honest summary: Zoom is a superb general-purpose meeting tool with a genuinely capable optional security mode. OllaSync is a narrower, security-first tool built for the slice of meetings where the infrastructure itself is the risk. Different jobs, different tools — and knowing which job you actually have is most of the decision.
+The catch lies in the operational friction of that toggle:
+- **It is opt-in:** Users must remember to enable it before each call.
+- **It disables features:** Cloud recording, PSTN dial-in, and certain breakout features are disabled when E2EE is active.
+- **Third-party cloud infrastructure:** Even with E2EE active, Zoom operates the servers routing the packets.
 
+For a sales demo or company standup, this model is fine. For a telehealth session with protected health information or a privileged attorney-client discussion, third-party infrastructure operation introduces foreign jurisdiction risks.
 
-## Deep Dive: OllaSync vs. Microsoft Teams
+OllaSync makes self-hosting its foundational architecture. You run the media relay on your own private cloud or bare metal with zero external data paths. Messaging is server-blind by default using IETF MLS, and native NDA-gated deal rooms keep sensitive documents attached directly to confidential video rooms.
 
-Microsoft Teams solves a different problem than Zoom solves, and it's worth being precise about that. Teams isn't really competing to be the best video call — it's competing to be the operating system of enterprise collaboration, where video is one tab among chat, files, calendar, and a hundred integrated line-of-business apps. If your organization already lives inside Microsoft 365 — Outlook for email, SharePoint for files, Entra ID for identity — Teams is often the path of least resistance, and that integration depth is a genuine, hard-to-replicate strength.
-On security specifically, Microsoft has invested heavily: a wide range of compliance certifications, granular admin and conditional-access controls, and an EU Data Boundary that addresses a meaningful chunk of European residency requirements by keeping data processing within the EU. Teams also offers end-to-end encryption — but only for one-to-one calls. Group meetings, channels, and chat — arguably where the majority of substantive business conversation actually happens — are encrypted in transit and at rest, but not end-to-end. Microsoft, not just an attacker who breached Microsoft, can technically access that content if compelled to.
-And "compelled to" is the operative phrase, because the EU Data Boundary addresses residency without fully resolving jurisdiction. Microsoft remains a U.S.-headquartered company, and data physically stored in Europe can still, in principle, be reached by U.S. legal process directed at the company rather than the servers — the exact CLOUD Act concern that keeps coming up for sovereignty-sensitive government, defense, and critical-infrastructure work. For a lot of organizations this is an acceptable, well-understood trade-off. For governments and regulated industries explicitly trying to keep data outside U.S. jurisdictional reach, it's a structural gap that a data-boundary feature, however well engineered, doesn't close.
-OllaSync's pitch here is narrower and more pointed than "replace Teams." Nobody credibly proposes ripping Microsoft 365 out of an enterprise that's built years of workflow around it. The proposal is additive: keep Teams for everyday collaboration, and route the specific slice of conversations — the ones with real regulatory or confidentiality weight — through a platform where group messaging is server-blind by default, not limited to 1:1 calls, and where self-hosting or a non-U.S. operator is available for teams that need it. OllaSync integrates with Entra ID via standard OIDC single sign-on specifically so a "Microsoft shop" doesn't have to choose one platform exclusively; it can use both, each for what it's actually good at.
-What Teams still does better, and does by a wide margin: it's the deeper, richer collaboration hub, with mature integrations across the entire Microsoft ecosystem that a focused, security-first product isn't trying to replicate. If your organization's real need is "one workspace that does everything," Teams' breadth is hard to argue with. OllaSync isn't trying to be that. It's trying to be the room you step into when the conversation is too sensitive for the everyday workspace, whatever that workspace is.
+<div class="callout">
+<strong>The Honest Summary:</strong> Zoom is a market-leading general meeting tool with a capable optional security mode. OllaSync is a focused, security-first platform built for meetings where the infrastructure itself is part of the threat model.
+</div>
 
+## Deep dive: OllaSync vs. Microsoft Teams
 
-## Zoom vs. Microsoft Teams: The Fight Nobody Frames Honestly
+Microsoft Teams is the operating system of enterprise collaboration, integrating video directly alongside Outlook, SharePoint, OneDrive, and Entra ID.
 
-Since this comparison sits between two incumbents as well as against a challenger, it's worth a short, direct look at how Zoom and Teams stack up against each other on the security dimensions that matter here — because most head-to-head content on this topic gets buried in feature-list minutiae (backgrounds, breakout rooms, whiteboard tools) that has nothing to do with the risk profile of the conversation itself.
-Stripped down to the criteria that matter for sensitive work, the two are closer to each other than either is to a self-hosted model. Both are U.S.-headquartered, multi-tenant cloud services, both subject to the same CLOUD Act jurisdictional question, and both offer end-to-end encryption as a partial, opt-in feature rather than a universal default — Zoom scoped to meetings you manually enable it for, Teams scoped to one-to-one calls only. Where they diverge is less about security architecture and more about shape: Zoom is built to be the best possible video call, full stop, with reliability at massive scale as its calling card; Teams is built to be the best possible all-in-one workspace, with video as one component of a much larger integrated suite.
-Practically, that means the choice between them usually isn't a security decision at all — it's an ecosystem decision. Teams tends to win by default inside organizations already committed to Microsoft 365, because the integration friction of not using it outweighs most other considerations. Zoom tends to win where the primary need is dependable, high-quality video at scale and the organization isn't locked into a single productivity suite. Neither choice meaningfully changes your exposure on self-hosting, jurisdiction, or server-blind messaging — for organizations where those specific criteria are the deciding factor, the more relevant comparison isn't Zoom-versus-Teams at all; it's either of them versus a self-hosted-first alternative.
+On security, Microsoft provides robust enterprise controls and an EU Data Boundary. However, two structural trade-offs exist:
 
+1. **E2EE is limited to 1:1 calls:** Group meetings, team channels, and group chats are encrypted in transit and at rest, but are not end-to-end encrypted. Microsoft technically holds the keys to decrypt that data.
+2. **Jurisdiction vs. Residency:** The EU Data Boundary keeps data physically in Europe, but Microsoft remains a US-headquartered corporation subject to the extraterritorial reach of the US CLOUD Act.
 
-## Where Zoom and Teams Are Genuinely Strong
+OllaSync does not propose replacing Microsoft 365 across the entire company. The pragmatic approach is **additive**: keep Teams for everyday company-wide collaboration, and route high-risk conversations (M&A, legal, executive, clinical) through OllaSync. 
 
-It would be easy, writing a comparison like this, to quietly stack the deck. It's more useful — and more honest — to say plainly where the incumbents win outright, because pretending otherwise would make the rest of this piece less trustworthy, not more persuasive.
-Scale. Zoom's ability to hold a webinar with tens of thousands of concurrent attendees, without the platform visibly straining, is the product of a decade of infrastructure investment that a newer entrant simply hasn't had time to replicate. If your primary use case is large public broadcasts, that track record is a real asset.
-Ecosystem depth. Teams' integration with Outlook, SharePoint, and the rest of Microsoft 365 means meeting scheduling, file collaboration, and follow-up all happen inside one connected workspace rather than across separate tools. For an organization already standardized on Microsoft, that friction reduction is not a small thing.
-Familiarity and adoption cost. Both platforms are things most professionals already know how to use. There's real, if underrated, value in "everyone on this call already knows exactly how the software works" — training cost and change-management friction are genuine business costs, and neither should be waved away in the name of a theoretically better security posture.
-Maturity of the surrounding feature set. Backgrounds, breakout rooms, live transcription, polling, whiteboard tools, meeting analytics — both platforms have had years to build out the long tail of features that make day-to-day meetings smoother. A security-first, self-hosted-oriented product is, almost by definition, going to have a narrower feature surface for a while.
-If your organization's meetings aren't carrying outsized regulatory or confidentiality risk, "switch platforms for security" is very often solving a problem you don't actually have. The case for something like OllaSync isn't universal — it's specific, aimed squarely at the subset of conversations where the operator of the infrastructure is itself part of the threat model.
+Because OllaSync integrates directly with Entra ID via standard OIDC single sign-on, employees log in with their existing corporate credentials without workflow disruption.
 
+## Zoom vs. Microsoft Teams: the fight nobody frames honestly
 
-## Real-World Scenarios: Who Should Actually Pick What
+Head-to-head comparisons between Zoom and Teams often get bogged down in feature lists (virtual backgrounds, whiteboard tools, breakout rooms) that have little to do with the actual risk profile of a conversation.
 
-Abstract criteria are useful for scoring, but decisions get made against real situations. Here's how the calculus tends to play out across a handful of common ones.
-A 40-person marketing team running weekly standups and public webinars. Neither self-hosting nor server-blind messaging is doing much work here — the content isn't sensitive, and the priority is reliability and reach. Zoom, or Teams if you're already on Microsoft 365, is the sensible default. Introducing a self-hosted platform for this use case adds operational overhead without a corresponding risk reduction.
-A telehealth practice handling protected health information across multiple states. This is squarely the case self-hosting and default encryption were built for. The question isn't "does the vendor promise confidentiality" — it's "can protected health information technically leave our controlled environment at all." A self-hosted deployment, or at minimum a platform with default E2EE and a clear data-processing agreement, is the right starting point, not an optional upgrade.
-A law firm running privileged client calls and sharing discovery documents. Privilege doesn't survive well when a third-party cloud operator can technically access the content, even if it never does. Server-blind messaging by default and a confidential deal room for document sharing directly address the two weakest points in a typical legal workflow: the chat aside nobody wanted logged, and the document dump that currently goes through a separate, less-controlled tool.
-A mid-market company running an acquisition process. This is the deal-room scenario almost by definition — NDA-gated access, an audit trail of who viewed what and when, and live video for negotiation calls, all in one place rather than stitched together from a video tool, an email thread, and a generic file-share link. Neither Zoom nor Teams offers this natively; it's a genuine capability gap, not a matter of preference.
-A government agency handling sovereign or classified-adjacent data. Jurisdiction, not just residency, is the deciding factor, and it usually rules out U.S.-headquartered cloud operators regardless of where their servers physically sit. Air-gapped or fully self-hosted deployment under the agency's own legal and physical control is generally a hard requirement, not a preference — this is the clearest case where "cloud, even a well-secured one" doesn't clear the bar.
-A large enterprise already standardized on Microsoft 365 with a small, high-sensitivity legal or M&A team inside it. This is the "use both" scenario. Teams stays as the everyday collaboration layer for the other 95% of the organization; the specific team handling privileged or market-moving work routes its confidential meetings and documents through a self-hosted or server-blind platform instead, connected via the same Entra ID login so it doesn't feel like a separate, disconnected system.
+Stripped down to security fundamentals, the two are very similar:
+- Both are US-headquartered, multi-tenant cloud platforms.
+- Both fall under the same CLOUD Act jurisdictional reach.
+- Both treat E2EE as an optional feature (Zoom per meeting, Teams for 1:1 calls only).
 
+The real choice between Zoom and Teams is an **ecosystem decision**, not a security architecture decision. Teams wins where deep Microsoft 365 integration matters; Zoom wins where standalone video polish and large-scale webinar reliability are paramount. Neither changes your exposure on self-hosting or jurisdictional isolation.
 
-## Total Cost of Ownership: The Number Nobody Puts on the Pricing Page
+## Where Zoom and Teams are genuinely strong
 
-Here's a conversation that rarely happens early enough: self-hosting isn't free, and pretending otherwise does nobody any favors. Running your own relay, storage, and infrastructure means someone on your team is responsible for provisioning, patching, monitoring, and scaling it — costs that a pure SaaS subscription bakes invisibly into a per-seat price instead of asking you to carry directly.
-The honest way to think about it is a trade, not a discount. A multi-tenant cloud subscription is operationally simple and predictable, but it means you're permanently paying — in trust, not just money — for someone else to sit in the data path. Self-hosting shifts that cost from "trust in a third party" to "internal engineering time," and for organizations with existing infrastructure teams and compliance obligations that already require that kind of operational overhead elsewhere, it's often close to a wash rather than a large new expense. For a five-person startup with no infrastructure team at all, standing up self-hosted video conferencing from scratch is a genuinely bigger lift, and a cloud-hosted option — whether that's Zoom, Teams, or a hosted OllaSync deployment — is usually the more sensible starting point until the risk profile changes.
-The way to reason about it: don't ask "what does self-hosting cost." Ask "what does not self-hosting cost if the third party in the data path is ever compelled, breached, or subpoenaed" — and weigh that, honestly, against your actual likelihood of that scenario mattering. For most teams, it doesn't. For the ones it does, the calculation flips quickly.
+A fair comparison acknowledges where incumbents excel:
 
+- **Massive broadcast scale:** Zoom's ability to host webinars with tens of thousands of concurrent attendees is backed by a decade of global CDN infrastructure.
+- **Ecosystem integration:** Teams' seamless connectivity with SharePoint, OneDrive, and Outlook reduces administrative friction for Microsoft-centric enterprises.
+- **Familiarity and adoption:** Hundreds of millions of users already know how to use both tools, eliminating employee training costs.
+- **Feature depth:** Polling, live automated transcription, whiteboards, and breakout rooms have been refined over years of production feedback.
 
-## Migrating Without Disrupting the Team That Just Got Comfortable
+If your meetings carry standard risk, switching platforms for security adds operational overhead you may not need. The case for a self-hosted alternative applies specifically when the infrastructure operator itself represents a compliance or confidentiality vulnerability.
 
-One of the quiet reasons organizations stay on a platform long after its security model stops fitting their risk is simple inertia: nobody wants to be the person who makes four hundred employees relearn how to join a meeting. That's a legitimate concern, not a lazy one — and it's worth addressing directly rather than pretending change management is free.
-The practical path that tends to work is narrow and incremental rather than sweeping. Start with the highest-risk workflow, not the whole organization — the legal team's privileged calls, the clinical team's patient sessions, the deal team's live negotiations — and move just that group first. Keep single sign-on tied to the identity provider people already use, so logging in doesn't feel like adopting new infrastructure, just a new tab. Run the new platform alongside the old one for a defined period rather than flipping a hard switch, so the team most exposed to risk gets comfortable before anyone asks the rest of the company to change habits. And measure the thing that actually matters — did the sensitive workflow move off infrastructure you don't control — rather than a vanity metric like total logins, which tells you about adoption, not about risk reduction.
-Done this way, migration reads less like "we're replacing your meeting tool" and more like "the three calls a month that actually matter now happen somewhere safer" — a much easier sentence to say to a team that's otherwise perfectly happy with what they already have.
+## Real-world scenarios: who should actually pick what
 
+| Scenario | Recommended Choice | Primary Rationale |
+| :--- | :--- | :--- |
+| **Marketing team running public webinars** | **Zoom** or **Teams** | High broadcast scale, zero confidentiality risk, lowest adoption friction. |
+| **Telehealth provider handling PHI** | **OllaSync** (Self-Hosted) | Guarantees patient health data never touches third-party cloud relays. |
+| **Law firm on privileged client matters** | **OllaSync** | Server-blind messaging and NDA-gated deal rooms protect attorney-client privilege. |
+| **Enterprise running an M&A deal** | **OllaSync** | Native deal rooms with audit logs prevent leaks during due diligence. |
+| **Government agency or defense team** | **OllaSync** (Air-Gapped) | Total jurisdictional isolation from foreign court orders (CLOUD Act). |
+| **Enterprise standardized on M365** | **Hybrid: Teams + OllaSync** | Keep Teams for general work; route privileged matters through OllaSync via Entra ID SSO. |
 
-## Five Myths About Self-Hosted Video Conferencing
+## Total cost of ownership: the number nobody puts on the pricing page
 
-"Self-hosting means giving up reliability." It means taking on the responsibility for reliability yourself, which is different. A well-run self-hosted deployment on solid infrastructure can be just as stable as a cloud service — the difference is who's accountable when something breaks, not an inherent gap in quality.
-"If it's end-to-end encrypted, the provider can see nothing at all." E2EE protects content, not metadata. Even server-blind messaging typically leaves visible who's in a conversation, roughly when messages were sent, and how large they were — the fact that a conversation happened is usually still observable, even when its content isn't. Any vendor claiming otherwise is oversimplifying.
-"Self-hosted tools are automatically more secure than cloud ones." Only if they're actually deployed and maintained correctly. An under-patched self-hosted server can be considerably riskier than a well-run cloud service. Self-hosting removes one specific risk — a third-party operator in the data path — it doesn't remove the need for competent operations.
-"Data residency and jurisdiction are the same thing." They aren't, and conflating them is probably the single most common mistake in this entire category. Storing data in-region addresses geography. It does not, by itself, address which government can legally compel access to it.
-"Open standards mean less secure, because attackers can read the code." The opposite is generally closer to true. Widely reviewed, publicly specified protocols like IETF MLS get scrutinized by far more independent researchers than a proprietary scheme ever will, and vulnerabilities in open standards tend to surface and get patched faster precisely because nobody has to take the design on faith.
+Self-hosting is a trade, not a free discount. Running your own relay, storage, and infrastructure requires internal engineering time for provisioning, patching, and capacity planning.
 
+- **Multi-tenant SaaS:** Operationally hands-off with predictable monthly per-seat licensing, but places a third-party operator in your data path.
+- **Self-hosted private infrastructure:** Shifts costs from recurring per-seat vendor fees to fixed server compute and internal DevOps.
 
-## Frequently Asked Questions
+For an organization with existing infrastructure teams and compliance mandates, self-hosting often reduces total communications spend by over 90% while eliminating regulatory exposure. 
 
-### Is Zoom actually end-to-end encrypted? Partially, and only if you turn it on. Zoom encrypts meetings in transit and at rest by default, and separately offers an optional end-to-end encryption mode (AES-256-GCM) you enable per meeting, which disables some features when active. It is not the default state, and Zoom continues to operate the cloud the meeting runs on either way.
-### Does Microsoft Teams have end-to-end encryption? Only for one-to-one calls, and only when manually enabled. Group meetings, channels, and chat are encrypted in transit and at rest but are not end-to-end encrypted, meaning Microsoft can technically access that content.
-### Can Zoom or Teams be self-hosted? No. Both are cloud services operated entirely by their respective vendors; there is no path to running either inside your own datacenter or air-gapped environment. This is the core structural difference between them and a self-hosted-first platform.
-### Is OllaSync a realistic drop-in replacement for Zoom or Teams? For the core meeting experience — one-click, browser-based calls with screen sharing, recording, and chat — yes, broadly. What it adds is self-hosting, server-blind messaging by default, and native confidential deal rooms, which neither incumbent offers. What it doesn't yet match is either platform's breadth of ancillary features and, for Teams specifically, deep native integration with the rest of Microsoft 365.
-### Do we have to abandon Microsoft 365 or our existing Zoom subscription? No — and for most organizations, that's not the recommended path anyway. Using an identity-provider-based single sign-on (OIDC, including Entra ID) lets a security-focused platform sit alongside existing tools, handling the specific slice of conversations that carry real regulatory or confidentiality weight while everyday collaboration continues wherever it already happens.
-### What's the actual difference between data residency and jurisdiction? Residency tells you which country your data is physically stored in. Jurisdiction tells you which country's courts and law enforcement can legally force the company holding that data to hand it over, regardless of where the servers sit. A U.S.-headquartered company storing data in Europe can, in principle, still be compelled by U.S. legal process — which is the specific concern behind the U.S. CLOUD Act that keeps surfacing in these conversations.
-### Is a self-hosted platform automatically more secure than a well-run cloud service? Not automatically — only if it's deployed and maintained competently. Self-hosting removes one specific category of risk (a third-party operator sitting in your data path), but it introduces the responsibility of running that infrastructure well. For organizations without existing operational capacity, a well-audited cloud service can outperform a poorly maintained self-hosted deployment.
+For a small team without sysadmin resources, a cloud-hosted deployment is the more practical starting point.
 
+## Migrating without disrupting the team that just got comfortable
 
-## How to Actually Choose
+Employee inertia is the primary reason organizations stay on legacy platforms. The solution is an **incremental migration**:
 
-There's no universally correct answer here, and any comparison that hands you one should be treated with suspicion. What there is, instead, is a repeatable process: take the seven criteria above, weight each one for the actual risk your organization carries — not the risk a vendor's sales page assumes you carry — and score your shortlist honestly against them, including whichever platform you're currently using.
-For most day-to-day business communication, Zoom and Microsoft Teams remain sensible, well-engineered choices, and "switch for security" is often a solution in search of a problem. The case for a self-hosted-first alternative is narrower and more specific: it's for the meetings, the messages, and the documents where the question "whose infrastructure is this running on" is itself the risk you're trying to manage — the telehealth session, the privileged client call, the live acquisition negotiation, the sovereign government briefing. For that slice of work, matching the platform's security model to the sensitivity of the conversation, rather than defaulting to whatever the rest of the organization already uses, is the decision that actually holds up under scrutiny later.
-Score your own shortlist. Ask each vendor the seven questions directly, in writing, and see how many they'll answer without hedging. The answers you get back will tell you more than any comparison table — including this one.
+1. **Start with high-risk groups:** Move only the legal, clinical, executive, or M&A teams first.
+2. **Federate single sign-on:** Connect OIDC/Entra ID so logging in requires zero new passwords.
+3. **Run side by side:** Keep everyday collaboration on Teams/Zoom while establishing OllaSync for confidential sessions.
+4. **Measure risk reduction:** Track whether sensitive workflows are successfully contained within your sovereign boundary.
 
+## Five myths about self-hosted video conferencing
 
-## Related Reading
+- **"Self-hosting means giving up reliability":** A well-provisioned SFU cluster on modern bare-metal delivers identical stability and lower latency than distant multi-tenant cloud hubs.
+- **"If it's E2EE, the provider sees nothing":** E2EE protects media payloads, but transport metadata (IPs, call duration, participant rosters) remains visible to the server operator.
+- **"Self-hosted tools are automatically secure":** Self-hosting removes vendor trust risk, but requires active patching, TLS configuration, and proper access controls.
+- **"Data residency and jurisdiction are identical":** Storing data in Frankfurt satisfies geographical residency, but does not shield a US-owned vendor from CLOUD Act extraction warrants.
+- **"Open standards are less secure because code is public":** Open standards (IETF MLS, WebRTC) receive continuous scrutiny from global cryptographers, ensuring faster vulnerability remediation.
 
-•	Is Zoom end-to-end encrypted? A fair, accurate answer — Meetings are encrypted in transit and at rest by default, with an optional E2EE mode that changes what you can and can't use during a call.
-•	The self-hosted Zoom alternative: what it actually means — Why Zoom itself can't be self-hosted, and what a genuinely self-hostable alternative looks like in practice.
-•	End-to-end encrypted video conferencing: what it really means — An honest breakdown of what E2EE actually protects, and what encrypted-in-transit still leaves exposed.
+## FAQ
 
-This comparison reflects publicly available information about Zoom and Microsoft Teams' security features as of 2026, alongside OllaSync's own documented capabilities and limitations. Security postures change — verify current details directly with each vendor before making a procurement decision.
+### Is Zoom actually end-to-end encrypted?
+Partially. Zoom encrypts meetings in transit and at rest by default, and offers an optional AES-256-GCM E2EE mode you toggle per meeting. When enabled, certain cloud recording and dial-in features are disabled.
+
+### Does Microsoft Teams have end-to-end encryption?
+Only for one-to-one calls when manually enabled. Group meetings, team channels, and group chats are encrypted in transit and at rest, but not end-to-end.
+
+### Can Zoom or Teams be self-hosted?
+No. Both are proprietary cloud services operated exclusively by their respective vendors. Neither can be deployed on private bare-metal or air-gapped networks.
+
+### Is OllaSync a drop-in replacement for Zoom or Teams?
+For core meetings, screen sharing, and group chat, yes. OllaSync adds self-hosting, default server-blind MLS messaging, and native deal rooms, but is designed for high-security workflows rather than replacing massive productivity suites.
+
+### What is the real difference between data residency and jurisdiction?
+Residency defines the physical country where data is stored. Jurisdiction defines which country's judicial system can compel the vendor to hand over data regardless of physical server location.
+
+## How to actually choose
+
+There is no single universal answer. The sound approach is to score your shortlist against the seven criteria:
+1. Identify which conversations carry regulatory, legal, or competitive risk.
+2. Determine whether third-party cloud operation is acceptable for those workflows.
+3. Choose general cloud tools (Zoom/Teams) for everyday collaboration, and sovereign self-hosted infrastructure (OllaSync) for your high-security perimeter.
