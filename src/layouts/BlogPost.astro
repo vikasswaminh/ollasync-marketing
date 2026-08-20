@@ -58,6 +58,7 @@ const schema = {
             <nav>
               <ul>
                 {toc.map((h) => <li class={h.depth === 3 ? 'sub' : ''}><a href={`#${h.slug}`}>{h.text}</a></li>)}
+                {related.length > 0 && <li><a href="#related-reading">Related reading</a></li>}
               </ul>
             </nav>
           </div>
@@ -82,7 +83,7 @@ const schema = {
     {related.length > 0 && (
       <section class="section" style="padding-top:40px">
         <div class="container" style="max-width:960px">
-          <h2 class="h3" style="margin-bottom:20px">Related reading</h2>
+          <h2 class="h3" id="related-reading" style="margin-bottom:20px;scroll-margin-top:96px">Related reading</h2>
           <div class="related">
             {related.map((r) => (
               <a href={`/blog/${r.slug}`} class="card card--hover related__card">
