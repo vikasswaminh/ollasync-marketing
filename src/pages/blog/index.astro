@@ -15,7 +15,16 @@ const posts = (await getCollection('blog'))
 
 const featured = posts.find((p) => p.data.pillar) || posts[0];
 const rest = posts.filter((p) => p.slug !== featured?.slug);
-const categories = [...new Set(posts.map((p) => p.data.category))];
+const ALL_CATEGORIES = [
+  "Self-Hosted",
+  "Cryptography",
+  "Comparisons",
+  "Compliance",
+  "Guides",
+  "Security",
+  "Infrastructure & Performance",
+  "Enterprise Use Cases",
+];
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 <Base title={title} description={description}>
@@ -30,12 +39,10 @@ const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', mont
 
   <section class="section" style="padding-top:24px">
     <div class="container">
-      {categories.length > 1 && (
-        <div class="cat-filter" data-reveal>
-          <button class="chip is-active" data-cat="all">All</button>
-          {categories.map((c) => <button class="chip" data-cat={c}>{c}</button>)}
-        </div>
-      )}
+      <div class="cat-filter" data-reveal>
+        <button class="chip is-active" data-cat="all">All</button>
+        {ALL_CATEGORIES.map((c) => <button class="chip" data-cat={c}>{c}</button>)}
+      </div>
 
       {featured && (
         <a href={`/blog/${featured.slug}`} class="feat card--hover" data-reveal data-cat={featured.data.category}>
@@ -76,7 +83,11 @@ const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', mont
     btns.forEach((x) => x.classList.toggle('is-active', x === b));
     cards.forEach((c) => {
       if (c.classList.contains('chip')) return;
-      const show = cat === 'all' || c.getAttribute('data-cat') === cat;
+      const cardCat = c.getAttribute('data-cat') || '';
+      const normCard = cardCat.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const normFilter = (cat || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const isSelfHost = normFilter === 'selfhosted' && (normCard === 'selfhosted' || normCard === 'selfhosting');
+      const show = cat === 'all' || normCard === normFilter || isSelfHost;
       (c as HTMLElement).style.display = show ? '' : 'none';
     });
   }));
