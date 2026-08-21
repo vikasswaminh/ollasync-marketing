@@ -1,0 +1,208 @@
+---
+title: "Why Government Agencies and Defense Contractors Need Secure Video Conferencing"
+description: "Nation-state actors, CMMC audits, ITAR data, and CUI on unmanaged laptops — why standard video conferencing tools are a liability for government and defense, and what a defensible alternative actually requires."
+pubDate: 2026-08-21
+category: "Compliance"
+cover: "/blog-cover-legal.png"
+pillar: false
+readTime: 11
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["secure video conferencing for government", "defense contractor video conferencing", "CMMC video conferencing", "ITAR compliant video conferencing", "air-gapped video conferencing", "CUI secure communication"]
+takeaways:
+  - "Government and defense video calls routinely carry CUI, ITAR-controlled technical data, and pre-decisional deliberations — content that consumer and even mainstream enterprise tools were never architected to protect against a nation-state adversary."
+  - "The real risk isn't only hacking. It's routine legal process, foreign subprocessors, cloud jurisdiction (the CLOUD Act and its foreign equivalents), and vendor telemetry — exposure that exists even when nothing goes wrong."
+  - "Require server-blind end-to-end encrypted messaging, encrypted meeting media with a relay you can own, NDA-gated document rooms with watermarking, exportable audit logs, and the option to self-host or run fully air-gapped."
+  - "Be precise: messaging can be genuinely E2EE and server-blind; meeting media is encrypted in transit to a relay; documents are access-controlled and audit-logged. Know which guarantee you're actually getting."
+  - "The strongest posture combines encryption with a deployment boundary — self-hosted or air-gapped on infrastructure the agency or contractor already controls — so there's no foreign operator in the path at all."
+---
+
+There's a particular kind of silence that falls over a room when someone realizes a sensitive briefing just happened on the wrong platform. Maybe it was a contractor dial-in that defaulted to cloud recording. Maybe it was a program review where someone shared a screen full of export-controlled schematics over a consumer app. Nobody did anything malicious. The call just... went out over infrastructure nobody had actually vetted for that conversation. And by the time anyone thought to ask "wait, where does this data actually go?", the meeting was already over, the recording was already synced to a cloud somewhere, and the question had become a lot harder to answer.
+
+That scenario plays out more often than most agencies and contractors would like to admit, and it's the reason this piece exists. Video conferencing has quietly become one of the primary channels through which government and defense organizations move their most consequential information — deliberations, technical data, personnel matters, program details — and a lot of that traffic is still riding on tools chosen for convenience, not for the threat model these organizations actually face. See our [government use case](/use-cases/government) for an overview of these requirements.
+
+## The meeting that isn't just a meeting
+
+In most industries, a video call is just a video call. If it leaks, it's embarrassing. In government and defense, a video call is frequently one of the following, wearing a video call's clothing:
+
+- **A pre-decisional policy discussion** that, if it leaked, could move markets, tip off a foreign counterpart, or blow up a negotiating position before it's finalized.
+- **A program review touching Controlled Unclassified Information (CUI)** — cost data, requirements, vulnerabilities in a system still in development.
+- **A technical exchange involving ITAR- or EAR-controlled data**, where the wrong participant on the call, even just listening, can constitute an unauthorized export.
+- **An interagency briefing** where the sensitivity comes not from any single fact but from the pattern — who's talking to whom, about what, and how often.
+- **A contractor coordination call** where a prime and several subs discuss a weapons system's design margins, supply chain, or test results.
+
+None of these are edge cases. They are Tuesday. And each one carries a different flavor of consequence if the channel underneath it is compromised, monitored, or simply logged somewhere it shouldn't be. That's the gap this piece is about: the distance between "the tool works fine" and "the tool is actually defensible for what we're using it for."
+
+## Who is actually listening
+
+It helps to be concrete about the threat model, because "we need better security" means something different depending on who you're actually worried about:
+
+- **Nation-state intelligence services.** Government and defense communications are, by definition, targets of interest to foreign intelligence services with substantial resources, patience, and a specific mandate to collect exactly this kind of traffic. This isn't a hypothetical; it's the baseline assumption any serious security program starts from.
+- **Advanced persistent threat groups tied to strategic competitors.** These actors specialize in exactly the kind of long-dwell, low-noise access that turns "we had a video call" into "someone had a standing window into our calls." Compromised credentials, supply-chain implants, and misconfigured cloud tenancy are the usual doors.
+- **Criminal ransomware operators**, who increasingly treat government and defense contractors as high-value targets precisely because the data has resale value to nation-state buyers and the operational disruption creates urgency to pay.
+- **Insiders, witting or not** — a staffer forwarding a recording to the wrong distribution list, a contractor's laptop with an unmanaged cloud sync client, a briefing screen-shared to a room that includes an uncleared attendee.
+- **The vendor itself, as a matter of routine legal exposure rather than malice.** A cloud video provider that holds decryptable content can be compelled to produce it through entirely lawful process — a subpoena, a national security letter, a foreign government's equivalent — and the organization on the other end of that call may never even find out it happened. For a clear breakdown of server access limits, see [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call).
+
+That last category is the one most procurement processes underweight. It's not about whether the vendor is trustworthy. It's about whether the vendor is even in a position to be forced to hand something over, because if the data sits on their infrastructure in a form they can read, that position exists whether anyone intends to misuse it or not.
+
+## Why "it's just a video call" is the wrong frame
+
+A useful reframe: a video conferencing platform isn't a single thing you either trust or don't. It's a stack — signaling, media transport, storage, recording, chat, screen share, identity — and each layer has its own exposure. Consumer and mainstream enterprise tools were built to optimize for reach, ease of use, and features like searchable transcripts and cloud recording. Those are good product decisions for a sales team. They are close to the opposite of what a classified-adjacent workflow needs.
+
+A few patterns show up again and again when government bodies and defense contractors lean on general-purpose tools:
+
+- **Data lands on infrastructure outside the organization's control**, often in a foreign jurisdiction, simply because that's where the vendor's default cloud region happens to be.
+- **The operator can, in principle, be compelled to produce meeting content**, recordings, or chat logs, because the platform's trust model assumes the vendor holds readable data in the first place.
+- **Cross-border routing sends media and metadata through data centers** in countries with legal regimes an agency's counsel never signed off on — a live concern under statutes like the US CLOUD Act and its equivalents elsewhere. For more on jurisdictional boundaries, read our guide on [EU data residency explained](/blog/eu-data-residency-explained).
+- **Convenience features multiply copies.** Auto-transcription, cloud recording, and default file sharing all quietly create additional places where sensitive material now lives, each one a fresh thing someone has to track, secure, and eventually delete.
+- **Identity sprawl.** Consumer-grade sign-in flows often mean yet another third-party identity provider sits in the authentication path for a system holding government data — one more party with visibility into who's on a call and when.
+
+None of this requires assuming any vendor is acting in bad faith. It's simply that a platform's trust model — who holds the data, in what form, under whose jurisdiction — is a poor fit for anything more sensitive than scheduling logistics. The right diagnostic question isn't "is it encrypted?" (almost everything claims that). It's "if this vendor received a legal order tomorrow, what could they actually hand over — and to whom?"
+
+## The checklist: what to require
+
+Procurement teams evaluating video conferencing for government or defense use should treat the following as a baseline, not a wish list. Each row maps to a specific exposure described above.
+
+| Requirement | What it protects against | What to verify |
+| --- | --- | --- |
+| **Server-blind, end-to-end encrypted messaging** | Chat and file-share content the operator genuinely cannot read, even under legal compulsion | Default-on E2EE built on an open, auditable standard, with the operator holding no decryption keys |
+| **Encrypted meeting media, relay you can own** | Interception in transit and, when self-hosted, operator exposure to live call content | Encryption in transit as a floor; the option to run the media relay on infrastructure you control |
+| **NDA-gated, access-controlled document rooms** | Uncontrolled onward sharing of CUI, technical data, or program documents | Enforced acceptance of terms before access; per-user, revocable, time-bound permissions |
+| **View-only mode with per-viewer watermarking** | Screenshots and re-distribution of sensitive slides or drawings | Visible, per-recipient watermarks and download-disabled viewing for the most sensitive material |
+| **Exportable, tamper-evident audit logs** | The inability to answer "who saw this, and when" after the fact | Access and activity logs you can pull for an inspector general, a customer audit, or an incident review |
+| **Self-hosted or air-gapped deployment option** | Foreign cloud jurisdiction, default egress to a vendor, and internet dependency in the most sensitive environments | The genuine ability to run the full stack — app, media relay, storage, identity — on infrastructure your organization owns |
+| **Your own identity provider (OIDC/SSO)** | A third-party identity service becoming a dependency for accessing government systems | Native integration with your existing directory, with no forced reliance on an external identity SaaS |
+| **Recording off by default** | Uncontrolled proliferation of sensitive recordings across a vendor's cloud | Recording as an opt-in decision per meeting, not a silent default |
+
+<div class="callout">
+A blunt but useful test, borrowed from how counsel evaluates privileged communications tools: <em>if the vendor received a subpoena — or its foreign-government equivalent — tomorrow, what could they actually produce, and to whom would they be legally obligated to produce it?</em> For genuinely sensitive government and defense traffic, the only acceptable answer is "nothing readable, because we hold no keys," or, better still, "nothing at all, because it never touched our infrastructure in the first place." Every item in the table above exists to make that answer true.
+</div>
+
+## Be precise about what "secure" means
+
+Here's where a lot of vendor marketing quietly overreaches, and where government buyers — trained by years of FedRAMP paperwork to be skeptical of unqualified claims — tend to ask the sharper follow-up question anyway. "Secure" and "encrypted" are not single facts about a platform. They're a set of claims about specific layers, and those layers deserve to be evaluated separately.
+
+Here's the honest breakdown, using the same standard we hold ourselves to across the platform:
+
+- **Messaging is end-to-end encrypted and server-blind by default.** It runs on the open [IETF MLS standard (RFC 9420)](/blog/how-mls-encryption-works), implemented through an independently audited open-source library. The operator holds no keys and cannot read message content — not "won't," but structurally can't. Worth being precise here too: E2EE protects content, not metadata. Who's in a channel and when they're active is still visible to the service operating it, which is exactly why the deployment boundary discussed below matters as much as the encryption itself.
+- **Meeting media is encrypted in transit using DTLS-SRTP** to the media relay that routes the call. When an agency or contractor self-hosts, that relay sits on infrastructure they own — so live call media never reaches an outside operator at all. A per-frame end-to-end encryption mode, built on WebRTC insertable streams, exists for scenarios where even a self-owned relay should stay blind to content (detailed in our guide to [per-frame media encryption](/blog/per-frame-media-encryption-explained)); it's a deliberate, opt-in mode, not a default, and any vendor claiming "all video is always fully E2EE" without qualification is worth a harder look.
+- **Document rooms are encrypted in transit, access-controlled, and gated behind acceptance of terms** — but they are not, as of today, client-side end-to-end encrypted. That means the platform can technically access document content in order to enforce permissions, apply watermarks, and generate audit logs. Access control, gating, and logging via [deal rooms](/features/deal-rooms) are meaningful protections. They are a different guarantee from end-to-end encryption, and a program office should record that distinction in its own risk assessment rather than assume "encrypted" covers it.
+
+This kind of precision matters more in government and defense procurement than almost anywhere else, because these are organizations whose entire operating model runs on documented, verifiable claims rather than marketing language. A platform that can't tell you exactly which layer protects what, in writing, isn't ready for a program that will eventually be audited. We keep this breakdown current on our [security architecture page](/security) for exactly that reason — so a program security officer never has to take a claim on faith.
+
+## The compliance layer: CMMC, FedRAMP, ITAR, and friends
+
+Encryption architecture is necessary, but it isn't the whole story for government and defense buyers, who are also working against a specific stack of regulatory obligations. A secure video conferencing decision touches several of them at once.
+
+### CMMC and NIST SP 800-171
+For defense contractors handling Controlled Unclassified Information, the Cybersecurity Maturity Model Certification framework — built on the practices in NIST SP 800-171 — sets expectations around access control, audit and accountability, system and communications protection, and where CUI is allowed to live. A video platform that stores recordings and chat transcripts on an uncontrolled foreign cloud, with no exportable audit trail, is a difficult starting point for a CMMC assessment, no matter how good its encryption marketing sounds. Requirements like access logging, encrypted transmission, and boundary protection map directly onto the checklist above.
+
+### FedRAMP and its state/local and international equivalents
+Federal agencies generally can't procure cloud services without an authorization to operate under a recognized framework. Even where a video conferencing vendor isn't itself pursuing that authorization, agencies need to understand exactly where data flows, who the subprocessors are, and whether a self-hosted deployment lets them sidestep the question entirely by keeping the system inside a boundary they already control and have already accredited.
+
+### ITAR and the EAR
+Technical data related to defense articles is export-controlled, and that control doesn't pause for a video call. A screen-share, a shared file, or even a participant simply being present and listening can constitute a "deemed export" if that person isn't authorized to receive the information. Platforms with murky data residency or foreign-hosted infrastructure add a second layer of risk on top of the human factor: it's not just about who's in the meeting, but about where the bits touched down on their way there.
+
+### Impact Levels (IL2–IL6) and classification boundaries
+DoD's cloud computing security requirements define specific impact levels tied to data sensitivity, up through systems authorized for higher classification levels. Commercial video tools generally sit comfortably at the lower end of that scale, if at all — which is fine for routine coordination, and exactly why the most sensitive conversations need a deployment model that doesn't depend on a commercial cloud tenancy at all.
+
+### Data sovereignty mandates
+Both national and cross-border agreements govern where information is permitted to reside for allied nations working with US programs. This is where the government use case becomes less about a single country's rules and more about a general principle: data sovereignty requirements tend to converge on the same answer — keep it inside infrastructure you control, in a jurisdiction you chose on purpose, not one a vendor's default region happened to land in. See our overview on [enterprise compliance](/compliance).
+
+None of these frameworks are satisfied by a vendor saying "we're secure." They're satisfied by specific, documented controls that map cleanly onto an audit checklist — which is precisely why the checklist earlier in this piece is written the way it is.
+
+## Where the strongest protection comes from
+
+Encryption answers who can read the content. Deployment boundary answers who holds the infrastructure in the first place. For government and defense work, the second question turns out to matter just as much as the first, and combining both is what actually closes the gap.
+
+Consider two organizations running the identical encryption stack. One runs it as a tenant on a vendor's multi-tenant commercial cloud, in a data center the vendor chose, under a jurisdiction the vendor's incorporation determines. The other runs the exact same software on its own infrastructure — inside its own data center, its own cloud tenancy, or a fully isolated network with no internet connectivity at all. Both organizations get the same cryptography. Only one of them has actually removed a foreign or third-party operator from the path entirely.
+
+That's the distinction behind [self-hosting](/blog/self-hosted-video-conferencing): running the full platform — application, media relay, storage, and identity — on infrastructure the agency or contractor already owns, secures, and has already put through its own accreditation process. Learn more about our [self-hosted architecture](/self-hosted). There's no default egress to an outside operator. There's no vendor cloud tenancy that has to be separately risk-assessed. And for environments that can't tolerate any internet dependency at all, the same stack runs air-gapped — meetings, document rooms, and messaging all functioning on a fully isolated network, with software updates arriving as signed images through whatever offline change-control process the organization already runs, rather than a live connection back to a vendor.
+
+This is also where the server-blind messaging architecture and the deployment boundary reinforce each other rather than duplicating effort. Encryption means the operator can't read message content even if they wanted to. Self-hosting or air-gapping means there's no outside operator in the picture to begin with. One is a cryptographic guarantee; the other is an architectural one. Government and defense environments are exactly the case where you want both, because the adversaries in this threat model are sophisticated enough, and patient enough, that relying on a single layer of protection is a bet most program security officers would rather not make.
+
+For work that necessarily involves outside parties — coalition partners, subcontractors down several tiers, outside technical evaluators — the same document rooms that gate legal deal terms behind an NDA in the private sector do the equivalent job here: access is scoped per person, time-bound, revocable, watermarked, and logged, so sharing a technical package with a subcontractor doesn't mean losing track of where it ends up.
+
+## What this looks like for a defense contractor, specifically
+
+It's worth pausing on defense contractors as a distinct category from agencies themselves, because their exposure has an extra dimension: they're private companies, often mid-sized, holding government-grade sensitivity without government-scale security budgets or in-house SOCs.
+
+A typical prime or sub juggles several overlapping realities at once:
+
+- **CUI moves constantly between organizations.** A design review with a customer, a status call with a subcontractor two tiers down, a proposal discussion with teaming partners — each one may touch CUI, and each one crosses an organizational boundary where nobody fully controls the other side's tooling choices.
+- **CMMC assessments are coming, and they're specific.** "We use a well-known video tool" is not an answer that satisfies an assessor asking where CUI is stored, who can access it, and how that access is logged. Contractors need to be able to point to concrete controls, not brand recognition.
+- **Smaller contractors are the softer target.** Adversaries interested in a prime's technology increasingly find it easier to go through a smaller subcontractor with weaker security posture and then pivot inward — which is exactly why flowing strong communication security requirements down the supply chain, not just applying them at the top, has become a program-level concern rather than a company-level one.
+- **Budget and headcount are real constraints.** A 200-person engineering firm supporting a DoD program doesn't have the security engineering staff of a prime, which makes "run it ourselves with a small, well-defined footprint" a genuinely more achievable target than "build an enterprise security program from scratch."
+
+This is precisely the gap a deployable, self-hostable platform is meant to close: a contractor doesn't need to build a communications security program from first principles. They need a platform that arrives with the right architecture already built in — server-blind messaging, encrypted media, access-gated document sharing, exportable logs — and the option to run it inside their own accredited boundary when a program requires it. That turns "prove your video conferencing is defensible" from an open-ended engineering problem into a checklist a compliance lead can actually walk through.
+
+## Three scenarios worth thinking through
+
+Abstractions like "threat model" and "trust boundary" tend to land better with a concrete picture attached. Here are three situations that show up regularly in government and defense environments, and why the difference between a commercial cloud tool and a properly architected platform actually changes the outcome.
+
+### Scenario one: the multi-agency working group
+A cross-agency task force needs to coordinate on a sensitive policy question ahead of a public announcement. The group spans several departments, each with its own IT policies, none of which necessarily line up with the others'. The instinct is to default to whatever consumer tool everyone already has installed, because getting six agencies to agree on new software feels harder than the security question itself. But that default is exactly how pre-decisional material ends up sitting in a commercial cloud recording nobody remembers exists, discoverable well after the policy has already been announced and the sensitivity has, in theory, expired — except now it's sitting there indefinitely, in a jurisdiction nobody chose, waiting to be the subject of a records request or a leak investigation. A server-blind messaging channel with recording off by default and an exportable audit log turns this from an open liability into a documented, bounded one.
+
+### Scenario two: the technical exchange with a foreign partner
+A defense contractor holds a technical exchange with an allied nation's program office to discuss integration requirements for a joint system. Some of the material is ITAR-controlled; participation has to be limited to specifically authorized individuals, and the platform itself needs to not become an unintended export pathway. A commercial tool with unclear data residency and a habit of routing media through whichever regional data center is closest doesn't give counsel a clean answer about where the technical data actually traveled. A platform with document rooms gated behind explicit access lists, per-viewer watermarking, and a defined data residency — or better, a self-hosted deployment that never leaves the contractor's own infrastructure — gives the export control officer something concrete to sign off on instead of a shrug.
+
+### Scenario three: the classified-adjacent program review, air-gapped
+A program office runs its most sensitive design reviews on a network that's deliberately disconnected from the internet, because the impact level of the information involved doesn't tolerate any external connectivity at all. This is where the conversation about video conferencing changes shape entirely — it's no longer about which cloud vendor to trust, because no cloud vendor is in scope. The requirement becomes: can the entire platform — video, messaging, document sharing, identity — run on the isolated network itself, with updates arriving only through the same signed, offline change-control process used for every other piece of software in that environment? Most consumer and even enterprise video platforms simply can't answer yes to that question, because they were never built with a disconnected deployment in mind. That's a different category of requirement than encryption strength, and it's one program offices increasingly ask about first.
+
+Each of these scenarios has the same shape underneath: the sensitivity of the conversation determines the deployment model that's actually defensible, and “we have strong encryption” is necessary but not sufficient in any of them.
+
+## Frequently asked questions
+
+**Does end-to-end encryption alone satisfy CMMC or FedRAMP requirements?**  
+No, and it's worth being direct about that. Encryption in transit and at rest satisfies specific technical controls within those frameworks, but CMMC and FedRAMP both extend well beyond cryptography — into access control, audit logging, incident response, personnel security, and configuration management, among others. A platform that offers strong encryption and an exportable audit log gives a compliance team a much stronger starting position, but the assessment itself covers the organization's full implementation, not just the tool.
+
+**Is self-hosting realistic for a smaller defense contractor without a large IT team?**  
+It depends on scope. A platform built to be self-hosted as a defined, containerized deployment — rather than a sprawling enterprise install — is a materially smaller lift than standing up a full communications security program from scratch. Many contractors start with a hosted, server-blind deployment for day-to-day work and reserve self-hosting or air-gapping for the specific programs that require it, rather than treating it as all-or-nothing.
+
+**What's the difference between "encrypted in transit" and genuinely server-blind?**  
+Encrypted in transit means the data can't be read by someone intercepting it on the network between two points — a real and necessary protection, but the endpoint (often the vendor's server) still decrypts and can read the content. Server-blind, end-to-end encrypted means the operator itself never holds the keys needed to decrypt the content at all, so even a compelled disclosure from the vendor produces nothing readable. Both matter; they are not the same guarantee, and a vendor should be able to tell you which one applies to which part of their product without hedging.
+
+**Can a platform be both cloud-hosted for daily use and air-gapped for the most sensitive work?**  
+Yes, and this is a common and sensible pattern. Most day-to-day coordination doesn't need air-gapped infrastructure, and forcing every meeting through the most restrictive deployment model tends to just push people back toward whatever convenient tool they can find instead. A platform that offers a hosted, server-blind option for routine work and a self-hosted or air-gapped deployment for programs that require it lets the deployment model match the actual sensitivity of the conversation, rather than applying one setting to everything.
+
+**Does self-hosting actually remove CLOUD Act exposure?**  
+When an agency or contractor self-hosts on infrastructure it owns, there is no US-operated cloud sitting in the path and no default egress back to an outside vendor — the data stays under the organization's own jurisdiction and control by design. That said, this is ultimately a legal determination, not just a technical one, and an organization's own counsel should make the final call for its specific circumstances. What the architecture can guarantee is that the vendor is structurally out of the path; what it can't do is substitute for a legal opinion.
+
+**What happens to metadata even when messaging is end-to-end encrypted?**  
+End-to-end encryption protects the content of a message — what was said — but it doesn't automatically hide the fact that a conversation happened. Who was in a channel, when they were active, and how often two parties communicate can still be visible to whoever operates the service, even when they can't read a single word of the actual content. This is exactly why the deployment boundary matters as much as the encryption itself: self-hosting or air-gapping removes an outside operator from seeing that metadata at all, not just the message content.
+
+**Can we require vendors to name their subprocessors and data residency in writing?**  
+Yes, and for government and defense procurement this should be a standard, non-negotiable line item rather than an optional ask. A vendor that can't produce a clear, current list of subprocessors, hosting regions, and what each one can technically access isn't ready for a program that will eventually face an audit, an assessor, or an inspector general's questions. Get it in writing before the contract is signed, not after an incident forces the question.
+
+**Does using a secure video platform replace the need for staff training?**  
+No. Architecture reduces the ways a platform itself can become the point of failure, but a well-secured tool can still be undermined by a staffer who screen-shares the wrong window, forwards a recording to the wrong list, or joins a sensitive call from an unmanaged personal device. The checklist in this piece is necessary infrastructure, not a substitute for the same access-discipline and training programs already require for handling CUI and classified material in any other form.
+
+**How does this differ from just requiring a FedRAMP-authorized tool?**  
+FedRAMP authorization is a meaningful signal for federal agencies procuring cloud services, but it isn't the whole answer for every scenario in this piece. It typically applies to a specific hosted offering, doesn't automatically cover self-hosted or air-gapped deployments, and doesn't by itself tell you whether messaging is genuinely server-blind or whether meeting media reaches an outside operator. Treat a FedRAMP authorization as one useful data point among the requirements in the checklist above, not as a replacement for asking the more specific architecture questions directly.
+
+## Putting it into practice
+
+A workable rollout, whether for an agency IT security office or a contractor's facility security officer, tends to follow the same shape:
+
+1. **Classify your meetings, not just your data.** Not every call needs the full stack. Routine scheduling and public-facing outreach can run on lighter controls; anything touching CUI, ITAR data, pre-decisional deliberation, or personnel matters should default to the full checklist above. Build the mapping once, and make it easy for staff to know which bucket a given meeting falls into.
+2. **Set defaults that fail safe, not defaults that fail convenient.** Server-blind messaging on by default. Recording off unless someone deliberately turns it on for a specific, justified reason. Watermarking and view-only mode on by default for document rooms holding technical data.
+3. **Decide the deployment boundary before you decide the vendor.** For the most sensitive programs, the question isn't "does this vendor have good encryption" — it's "can this run entirely inside infrastructure we already control, including with no internet connection if the program requires it." Answer that question first, and it narrows the field considerably. See our guide on [how to run a self-hosted video conferencing stack](/blog/run-a-self-hosted-video-conferencing-stack).
+4. **Bring your own identity.** Wire the platform into the agency's or contractor's existing OIDC identity provider rather than standing up a parallel identity system. One fewer external dependency is one fewer thing an assessor has to evaluate separately.
+5. **Keep the audit trail exportable, not just present.** Logging that exists but can't be pulled into an inspector general's review or a CMMC assessment is logging in name only. Confirm early that access logs export cleanly into whatever format your compliance team actually uses.
+6. **Flow the requirement down the supply chain.** If a program's data is only as protected as its weakest participant's tooling, the checklist needs to travel with the contract — down to subcontractors, teaming partners, and outside evaluators who'll be on these calls too.
+7. **Rehearse the subpoena question.** Periodically ask, for whatever platform is in use: if the vendor received a legal order tomorrow, what would they actually be able to produce? If the honest answer makes anyone in the room uncomfortable, that's the signal to revisit the deployment model, not just the encryption settings.
+
+## The bottom line
+
+Government agencies and defense contractors don't get to treat video conferencing as a commodity purchasing decision, because the traffic running over it — pre-decisional deliberations, CUI, export-controlled technical data, program details that matter to adversaries with real resources and real patience — simply doesn't tolerate the trust model that consumer and mainstream enterprise tools were built around. The question was never really "is this encrypted." It's "who holds the data, under whose jurisdiction, and what could they be compelled to produce."
+
+Getting this right isn't about finding a platform with the most reassuring marketing copy. It's about matching the tool to the obligation: server-blind messaging the operator genuinely cannot read, meeting media encrypted to a relay the organization can own outright, document rooms that gate sensitive material behind access controls and watermarking with a defensible audit trail, and — for the conversations that matter most — a deployment boundary that's self-hosted or fully air-gapped, so there's no foreign or third-party operator anywhere in the path. Insist on precision about what each layer actually guarantees, require the option to run the whole stack on infrastructure already under the organization's own control, and secure communication stops being a hope and starts being a property of the architecture itself.
+
+To see how the encryption architecture behind these claims actually works, read the pillar guide to [end-to-end encrypted video conferencing](/blog/end-to-end-encrypted-video-conferencing). To see how this maps specifically to the public sector and defense, visit the [government use case](/use-cases/government), explore [deal rooms](/features/deal-rooms) for NDA-gated, watermarked document sharing, look at [self-hosting](/self-hosted) for running the full platform on your own infrastructure, and check exactly what each layer protects on our [security page](/security).
+
+## Related reading
+
+- **[Cryptography]** [End-to-end encrypted video conferencing: what it really means](/blog/end-to-end-encrypted-video-conferencing) — An honest guide to what E2EE actually protects, encrypted-in-transit vs. true E2EE, and where the line sits.
+- **[Cryptography]** [How MLS encryption works (RFC 9420), explained simply](/blog/how-mls-encryption-works) — An accessible walkthrough of the IETF MLS standard behind server-blind group messaging: the ratchet tree, forward secrecy, and post-compromise security.
+- **[Cryptography]** [Per-frame media encryption, explained: how to keep an SFU in the dark](/blog/per-frame-media-encryption-explained) — How per-frame media encryption uses WebRTC insertable streams and SFrame-style framing to hand a relay ciphertext it can route but never read.
+- **[Compliance]** [Secure video conferencing for law firms: a confidentiality checklist](/blog/secure-video-conferencing-for-law-firms) — The same checklist approach applied to attorney-client privilege, for programs that also work with outside counsel.

@@ -1,0 +1,200 @@
+---
+title: "Self-Hosted vs. Cloud Video Meetings: Total Cost of Ownership (TCO) and Security Breakdown"
+description: "A practical breakdown of what self-hosted and cloud video conferencing actually cost over three years, and how their security models differ — for teams trying to make a defensible, not just a cheap, decision."
+pubDate: 2026-08-21
+category: "Self-hosting"
+cover: "/blog-cover-self-host.png"
+pillar: false
+readTime: 12
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["self-hosted vs cloud video conferencing", "video conferencing TCO", "self-hosted video meetings", "cloud vs on-premise video conferencing", "secure video conferencing cost", "video conferencing total cost of ownership"]
+takeaways:
+  - "Cloud video conferencing looks cheaper on the price page and often is cheaper in year one — but per-seat licensing compounds at scale in a way that flat infrastructure costs don't."
+  - "Self-hosting trades a subscription line item for an infrastructure and operations line item; the crossover point where it becomes cheaper depends heavily on headcount, not on ideology."
+  - "Security and cost aren't actually two separate questions — the deployment model that lowers your compliance scope is often the same one that changes the TCO math, because audit and subprocessor overhead has a real dollar cost."
+  - "Encryption controls who can read the content; deployment boundary controls who holds the infrastructure. Cloud tools can offer strong encryption and still put a vendor in the trust and cost path at the same time."
+  - "The right decision isn't which is cheaper in the abstract — it's which is cheaper for an organization with our headcount, our compliance obligations, and our tolerance for operating infrastructure ourselves."
+---
+
+Every finance team that has ever sat through a video conferencing renewal negotiation knows the feeling: the per-seat price looks reasonable until someone multiplies it by three years and the actual headcount, and suddenly the "affordable" tool is a six-figure line item that nobody remembers approving at that size. And every IT team that has ever floated "what if we just ran this ourselves" knows the other feeling: the moment someone asks who's going to patch the servers at 2 a.m. when the media relay falls over during a board call, the enthusiasm for self-hosting cools off fast.
+
+Both instincts are right, and both are incomplete. The honest answer to "self-hosted or cloud" was never going to be a single number on a spreadsheet, because the two models don't just cost differently — they distribute the cost differently, across different line items, on different timelines, and with different security consequences attached to each dollar. This piece tries to lay out that full picture: what each model actually costs over a realistic time horizon, what security guarantee you're actually buying at each price point, and how to work out which one fits an organization that isn't a hypothetical.
+
+## The question everyone asks wrong
+
+"Which is cheaper, self-hosted or cloud?" is the wrong first question, for the same reason "which car is cheaper, a sedan or a truck" is the wrong first question before anyone's told you what you're hauling. The honest version has three parts, and all three need answering before a number means anything:
+
+- **Cheaper at what scale?** A twelve-person startup and a four-thousand-person enterprise get completely different answers, because licensing costs scale linearly with headcount while a lot of infrastructure costs don't.
+- **Cheaper over what time horizon?** Self-hosting almost always loses in month one, because there's setup cost before there's any usage. It frequently wins by year three, because a subscription renews at the same or a higher rate every single year while owned infrastructure mostly just needs maintenance.
+- **Cheaper including which costs?** The subscription price on a cloud vendor's [pricing page](/pricing) is the tip of the iceberg. The server bill for a self-hosted deployment is the tip of a different iceberg. Both have submerged costs that only show up once you've actually made the decision.
+
+This piece walks through all three, because a defensible decision — the kind a finance lead and a security lead can both sign off on — needs the real number, not the sticker price.
+
+## What "cloud" actually costs
+
+Cloud video conferencing is billed the way most SaaS is billed: a monthly or annual fee per named user, sometimes with tiers that gate features like larger meeting caps, recording storage, or admin controls behind a higher price point (as explored in our [Zoom vs Ollasync breakdown](/vs/zoom)). That structure is genuinely attractive for a reason — there's no upfront infrastructure spend, no capacity planning, and a new hire is a line added to an invoice rather than a provisioning ticket.
+
+But the visible subscription fee is only one part of the real cost. A fuller accounting includes:
+
+- **Per-seat licensing that scales with headcount, not with usage.** A hundred-person company pays for a hundred licenses whether those hundred people are in back-to-back calls all day or barely touch video at all. The price scales with who might need it, not with what gets used.
+- **Feature-gated tiers.** The functions that matter for a regulated or sensitive workflow — larger meeting sizes, extended cloud recording retention, advanced admin controls, sometimes even meaningful encryption modes — are frequently locked behind the more expensive tier, turning a per-seat number into a per-seat-times-tier number.
+- **Storage overage fees.** Cloud recording is convenient until the storage bill for a year of retained meetings shows up as its own line item, especially for organizations with retention obligations that require keeping recordings far longer than a default policy assumes.
+- **Add-on modules.** Webinars, large-scale broadcast, e-signature, transcription, and advanced analytics are frequently sold as separate add-ons on top of the base subscription, each with its own per-seat or per-use pricing.
+- **Compliance and audit overhead that doesn't show up on the invoice at all.** Every cloud subprocessor a security or compliance team has to evaluate, document, and re-assess annually costs real hours — hours that have a fully loaded cost even though no vendor invoice reflects them.
+- **Renewal creep.** Multi-year SaaS contracts have a well-documented habit of increasing at renewal, sometimes well above general inflation, once a vendor knows switching costs and migration pain make renewal the path of least resistance.
+
+None of this makes cloud video conferencing a bad deal — for a huge number of organizations, the convenience and the low upfront cost are exactly the right trade. But "the license is $15 a seat a month" is not the total cost of cloud video conferencing. It's the cost of the part that's easiest to put a number on.
+
+## What "self-hosted" actually costs
+
+Self-hosting flips the cost structure: instead of a recurring per-seat fee, the organization pays for infrastructure, the engineering time to run it, and — usually — a licensing or support fee to the software vendor itself, which self-hosting doesn't eliminate so much as change the shape of. For technical operational details, see our guide on [how to run a self-hosted video conferencing stack](/blog/run-a-self-hosted-video-conferencing-stack).
+
+A realistic accounting includes:
+
+- **Infrastructure spend.** Servers (owned or cloud-rented), storage for recordings and documents, and bandwidth for media traffic. This scales with concurrent usage and call volume more than with raw headcount, which is a meaningfully different curve than per-seat licensing.
+- **Setup and integration engineering time.** Standing up an application server, a media relay (SFU), object storage, an identity integration, and a database takes real engineering hours up front — typically measured in days to a few weeks for a team that already runs infrastructure, longer for one that doesn't.
+- **Ongoing operations.** Patching, monitoring, capacity planning, and incident response don't stop after go-live. Someone owns uptime for the media relay the same way they'd own it for any other production service, and that's an ongoing, not a one-time, cost.
+- **The software license or support contract itself.** Self-hosting the software doesn't usually mean the software is free — most serious self-hostable platforms still charge a license or support fee, just structured around infrastructure or a flat organizational rate rather than a strict per-seat count.
+- **Redundancy and disaster recovery.** A single self-hosted media relay with no failover is a single point of failure for every meeting the organization holds. Doing this properly means budgeting for redundancy, which is an additional infrastructure line, not an afterthought.
+- **The opportunity cost of engineering time.** Every hour an engineer spends keeping a video platform healthy is an hour not spent on something else. For an organization with a lean infrastructure team, this is often the single largest real cost of self-hosting, and it's the one most spreadsheets leave out entirely.
+
+The upside that offsets all of this: infrastructure and operations costs don't scale linearly with headcount the way per-seat licensing does. Adding the two-hundredth employee to a [self-hosted deployment](/blog/self-hosted-video-conferencing) costs close to nothing incremental. Adding the two-hundredth employee to a per-seat cloud subscription costs exactly what the two-hundred-and-first seat costs.
+
+## A worked TCO comparison, three years out
+
+Numbers here are illustrative, not a quote — actual pricing varies by vendor, region, and negotiated terms. But the shape of this comparison holds up consistently across real deployments, and it's the shape that matters for decision-making.
+
+| Dimension | Cloud (per-seat SaaS) | Self-hosted |
+| --- | --- | --- |
+| **Year 1, 100 users** | Subscription fees dominate; low setup cost; fast time-to-value | Setup and integration cost front-loaded; infrastructure spend begins; typically higher than cloud in year one |
+| **Year 1, 500 users** | Subscription cost scales linearly with the extra 400 seats | Infrastructure cost rises modestly, not linearly, with the extra users; setup cost is largely fixed regardless of headcount |
+| **Ongoing (years 2–3)** | Renews at the same or a higher rate every year; feature-gated add-ons often grow over time as usage matures | Mostly maintenance and operations cost; no per-seat renewal shock; redundancy and scaling costs are the main growth driver |
+| **Compliance/audit overhead** | A recurring, ongoing cost: every cloud subprocessor needs annual re-assessment | Largely a one-time cost: the deployment becomes part of infrastructure already inside the existing compliance boundary |
+| **Cost driver that matters most** | Headcount | Concurrent usage and engineering capacity |
+| **Where it tends to win** | Smaller teams, fast growth, no in-house infrastructure capacity, short time horizon | Larger or steady-state headcount, existing infrastructure and ops capability, multi-year time horizon, compliance-heavy environment |
+
+The pattern that shows up again and again: cloud tends to win the sprint, self-hosted tends to win the marathon — and the crossover point depends far more on headcount and time horizon than on which platform has the nicer feature list. A twenty-person company evaluating a three-month pilot should not be self-hosting. A two-thousand-person regulated enterprise planning for the next five years should, at minimum, be running the numbers seriously.
+
+There's a second, quieter factor that changes this table for a specific class of organization: when compliance and audit overhead is already high — because the organization is in [healthcare](/use-cases/healthcare), [finance](/use-cases/finance), [legal](/use-cases/legal), or [government](/use-cases/government) — the "compliance/audit overhead" row above isn't a minor adjustment. It can be the single largest hidden cost of the cloud column, because every new cloud subprocessor in scope for CUI, PHI, or privileged material adds real, recurring hours to a security team's workload regardless of how small the per-seat subscription fee looks.
+
+## The security breakdown: what changes and what doesn't
+
+Cost and security are usually presented as two separate conversations. They're not, and treating them separately is exactly how organizations end up buying either "cheap and under-secured" or "secure and needlessly expensive" when a better-matched option existed the whole time.
+
+Here's what actually changes between the two models, and — just as importantly — what doesn't.
+
+### What changes: who holds the infrastructure
+This is the real, structural difference. On a cloud platform, meeting media, recordings, and often chat content are processed and stored on infrastructure the vendor operates, in a jurisdiction the vendor chose. On a self-hosted deployment, that infrastructure sits inside a boundary the organization already owns, secures, and — critically — has usually already put through its own accreditation or audit process.
+
+### What changes: who could be compelled to produce the data
+A cloud operator that holds decryptable content can, in principle, receive legal process for it — a subpoena, a national security letter, a foreign jurisdiction's equivalent — and comply without the organization on the other end ever finding out. Self-hosting removes that operator from the path entirely: there's no third party in possession of the data to be compelled in the first place.
+
+### What changes: audit and compliance scope
+Every external service that touches regulated data is a subprocessor that needs to be assessed, documented, and defended to an auditor. A self-hosted deployment that lives inside infrastructure already covered by an existing compliance program adds nothing new to that scope — the video platform just becomes another internal system, not a new external dependency.
+
+### What doesn't change: the need for genuinely strong encryption
+Self-hosting is not, on its own, an encryption strategy. A poorly secured self-hosted deployment — unpatched, misconfigured, running outdated cryptographic libraries — can be considerably less secure than a well-built cloud platform with strong encryption and a mature security program. Owning the infrastructure means owning the responsibility for securing it properly, not an automatic security upgrade.
+
+### What doesn't change: the risk of human error
+Whether hosted or self-hosted, a meeting can still be screen-shared to the wrong audience, a recording forwarded to the wrong list, or an access-controlled document downloaded by someone who shouldn't have had permission in the first place. Deployment model changes where the data lives, not whether people using it make mistakes.
+
+### What doesn't change: the value of encryption applying regardless of deployment
+A platform with genuinely strong, server-blind messaging and encrypted meeting media is more secure than one without it — on either deployment model. The two properties compound rather than substitute for each other, which is exactly why the strongest posture combines both instead of treating them as alternatives.
+
+## Be precise about what each model actually guarantees
+
+This is where a lot of vendor marketing — on both sides of the self-hosted-versus-cloud debate — quietly overreaches. "Self-hosted" doesn't automatically mean "secure," and "cloud" doesn't automatically mean "someone else's problem." Here's the honest breakdown, using the same standard we hold ourselves to across the platform:
+
+- **Messaging is end-to-end encrypted and server-blind by default, on either deployment model.** It runs on the open [IETF MLS standard (RFC 9420)](/blog/how-mls-encryption-works), implemented through an independently audited open-source library. The operator — us, on the hosted service, or nobody, on a self-hosted deployment — holds no keys and cannot read message content. That guarantee doesn't depend on where the servers sit; it's a property of the encryption architecture itself.
+- **Meeting media is encrypted in transit with DTLS-SRTP to the media relay that routes the call.** On the hosted service, that relay is ours, in the EU. When self-hosted, that same relay runs on infrastructure the organization owns — so live call media never reaches an outside operator at all. A per-frame end-to-end encryption mode exists for keeping even a self-owned relay blind to content; it's a deliberate, opt-in mode on either deployment, not a default.
+- **Document rooms are encrypted in transit, access-controlled, and gated behind acceptance of terms** — but not, as of today, client-side end-to-end encrypted, on either deployment. That means the platform can technically access document content to enforce permissions and watermarking. Access control, gating, and audit logging via [deal rooms](/features/deal-rooms) are meaningful protections in their own right; they're a different guarantee from end-to-end encryption, and it's worth keeping that distinction straight regardless of who's running the servers.
+- **Self-hosting changes who is in the trust path, not the underlying cryptography.** Running the platform on owned infrastructure removes an outside operator from ever holding the data at all — a genuine architectural improvement for organizations with sovereignty or compliance requirements. It doesn't retroactively make the encryption stronger than it already is on the hosted service; it removes a party from the equation entirely.
+
+We keep this breakdown current on our [security architecture page](/security) precisely so that neither claim gets oversold — the encryption story and the deployment story are both real, and they're both worth understanding on their own terms rather than as a single marketing bullet.
+
+## Where the two models genuinely diverge
+
+Stripped of the marketing language on both sides, here's what actually separates self-hosted from cloud once the encryption question is held constant:
+
+- **Data residency.** On a self-hosted deployment, data physically sits wherever the organization puts it — a specific datacenter, a specific region, a disconnected network — because there's no third party holding it anywhere else. On a cloud platform, residency is a setting the vendor offers and the organization trusts, not a physical guarantee the organization directly controls. Read more in our guide on [EU data residency explained](/blog/eu-data-residency-explained).
+- **Compliance scope.** Self-hosted infrastructure that already lives inside an organization's accredited boundary adds nothing new to audit scope. A cloud subprocessor, however well-secured, is a new external dependency that has to be separately assessed, year after year. See our [compliance overview](/compliance).
+- **Operator exposure.** Self-hosting removes the operator from the data path entirely — there's no vendor who could be compelled to produce content they never held. Cloud hosting, even with strong encryption on messaging, still puts a vendor's infrastructure and jurisdiction in the picture for whatever isn't end-to-end encrypted by design.
+- **Air-gapped operation.** The most sensitive environments — defense, intelligence, some critical infrastructure — can't rely on any internet-connected service at all, full stop. That requirement is met only by a platform genuinely designed to self-host, because by definition it rules out every cloud-hosted option regardless of price or encryption strength.
+- **Operational burden.** Cloud hosting means someone else owns uptime, patching, and capacity planning for the video platform. Self-hosting means the organization owns all of it — a real cost, but one that composes with infrastructure and expertise the organization may already have for everything else it runs.
+
+Neither list is a verdict. They're the actual trade-offs, and which ones matter most depends entirely on what an organization is optimizing for.
+
+## Two organizations, two right answers
+
+Numbers and frameworks help, but a decision usually clicks faster with a concrete picture. Here are two organizations that ran through the same evaluation and landed in opposite places — both correctly.
+
+### The fast-growing SaaS company
+A software company at 80 employees, growing toward 200 within eighteen months, evaluates video conferencing as part of a broader tools stack refresh. It has no dedicated infrastructure team — its three-person platform group is fully occupied keeping the product itself running. Its compliance obligations are real but modest: SOC 2 for enterprise customers, no CUI, no PHI, no privileged legal material flowing through video calls. When this team runs the numbers, cloud wins clearly. The per-seat cost at 200 people is real money, but it's still less than the fully loaded cost of pulling an engineer off product work to run a media relay, and the compliance overhead of one well-vetted cloud subprocessor is manageable for a lean team. Self-hosting isn't wrong here — it's just optimizing for a problem this company doesn't have yet.
+
+### The regional healthcare network
+A network of clinics with about 1,200 staff evaluates the same category of tool, but for a different reason: PHI moves through nearly every clinical video consultation, and existing HIPAA compliance obligations mean every new cloud subprocessor has to go through a Business Associate Agreement review and a fresh risk assessment. This organization already runs its own data center for its electronic health records system, with a mature infrastructure and on-call team in place. When this team runs the same evaluation, self-hosting wins clearly, for reasons that have almost nothing to do with the sticker price. The video platform slots into infrastructure and compliance controls that already exist, rather than opening a new BAA negotiation and a new item on next year's audit. The per-seat savings at 1,200 users are real, but they're not even the deciding factor — the deciding factor is that self-hosting turns "new vendor to assess" into "another service on infrastructure we've already accredited."
+
+Same evaluation framework, same six-step process, two entirely different — and entirely correct — outcomes. That's the point: there isn't a universally right answer, only a right answer for a specific organization's headcount, existing capability, and compliance load.
+
+## How to actually decide
+
+A workable process, for a team trying to move past "self-hosted feels more secure" or "cloud feels cheaper" and into an actual decision:
+
+1. **Get a real headcount and growth number, not a guess.** The crossover point between the two models depends heavily on how many people are using the platform now and over the next three years. A number pulled from HR planning is worth more here than intuition.
+2. **Price both models honestly, including the hidden costs above.** Get the actual per-seat quote from cloud vendors at the tier that includes the features actually needed, and get an actual infrastructure and engineering-time estimate for self-hosting — not a vendor's best-case number, a realistic one from the team that would actually run it.
+3. **Separate the cost question from the compliance question, then put them back together.** Work out what regulatory or sovereignty obligations exist first — CUI, PHI, privileged communications, national data residency — because those often determine whether self-hosting is required regardless of cost, which changes the whole calculation from "which is cheaper" to "what does the required option cost."
+4. **Check whether the organization already has infrastructure and ops capability.** A team that already runs its own Kubernetes clusters and on-call rotations absorbs self-hosting far more cheaply than a team that would be standing up that capability from scratch just for video.
+5. **Ask the subpoena question either way.** For whichever model is on the table: if the vendor — or, for self-hosted, if the underlying software vendor — received a legal order tomorrow, what could actually be produced, and by whom? The answer should inform the decision as much as the price does.
+6. **Consider a hybrid path before committing fully to either extreme.** Many organizations start hosted for speed, then move specific workloads — the ones with real compliance weight — to a self-hosted or single-tenant deployment once the requirement is proven, rather than treating it as an irreversible, all-or-nothing choice on day one.
+
+## How Ollasync is positioned
+
+We built Ollasync to make this decision less of a fork in the road and more of a dial. The same platform, from one codebase, runs three ways:
+
+1. **Hosted on EU infrastructure**, for teams that want to move fast and prove the workflow with real users before committing to anything heavier.
+2. **Single-tenant**, a dedicated, isolated instance in a chosen region — a middle path for organizations that want a cleaner compliance boundary without operating servers themselves.
+3. **Fully self-hosted**, up to and including air-gapped, for the environments where that's not a preference but a requirement.
+
+Because the product experience is identical across all three, moving from hosted to self-hosted changes the deployment boundary and the cost structure without changing what users actually see or how they use it — no retraining, no feature gap, no "the self-hosted version is the stripped-down one." And the encryption story stays precise across every deployment: messaging is end-to-end encrypted and server-blind by default; meeting media is encrypted in transit to a relay that, when self-hosted, is entirely yours; document rooms in [deal rooms](/features/deal-rooms) are access-controlled, NDA-gated, and watermarked, with an honest accounting of what that guarantee is and isn't. Full specifics live on our [security page](/security), and the deployment mechanics live on our [self-hosted deployment page](/self-hosted) — both written to be checked, not just trusted.
+
+## The bottom line
+
+"Self-hosted or cloud" was never a question with one right answer, and any vendor telling you otherwise is selling a conclusion rather than helping with a decision. Cloud video conferencing genuinely is the better economic and operational choice for a large share of organizations — fast to deploy, low upfront cost, no infrastructure to run, well suited to smaller teams and shorter time horizons. Self-hosting genuinely is the better choice for a different, equally real set of organizations — larger or steady-state headcount, existing infrastructure capability, multi-year planning horizons, and compliance or sovereignty obligations that turn "cheaper" into a secondary question behind "permitted at all."
+
+The honest way to decide is to price both models completely, including the costs that don't show up on a subscription invoice or a server bill, and to hold the security question separately from — but connected to — the cost question, because the deployment model that lowers audit scope is very often the same one that changes the multi-year math. Get precise about what each model actually guarantees, run the real numbers for the organization's actual headcount and actual compliance obligations, and the decision tends to make itself.
+
+To see the fuller architecture behind the encryption claims in this piece, read the pillar guide to [end-to-end encrypted video conferencing](/blog/end-to-end-encrypted-video-conferencing). To understand exactly what running the platform yourself involves, read our guide on the [self-hosted Zoom alternative](/blog/self-hosted-zoom-alternative), explore the [self-hosted platform page](/self-hosted) directly, or check exactly what each layer protects on our [security architecture page](/security).
+
+## FAQs
+
+**Is self-hosted video conferencing always cheaper than cloud in the long run?**  
+Not always — it depends heavily on headcount and how much infrastructure capability the organization already has. For a large, steady-state team with existing operations capacity, self-hosting frequently becomes cheaper by year two or three because infrastructure costs don't scale linearly with headcount the way per-seat licensing does. For a small or fast-growing team with no in-house infrastructure expertise, cloud can remain cheaper for much longer, because the engineering time required to run self-hosted infrastructure well has a real cost that a small team may not be able to absorb efficiently.
+
+**What's the single biggest hidden cost people miss on the cloud side?**  
+Compliance and audit overhead. It doesn't appear as a line item on a vendor invoice, but every cloud subprocessor that touches regulated data has to be assessed, documented, and re-reviewed on an ongoing basis by a security or compliance team — hours that have a real, fully loaded cost even though no bill reflects them directly.
+
+**What's the single biggest hidden cost people miss on the self-hosted side?**  
+The opportunity cost of engineering time. Standing up and maintaining a self-hosted deployment properly — including redundancy, patching, and incident response — takes ongoing hours from people who could otherwise be working on something else. Organizations that don't already run infrastructure tend to underestimate this the most.
+
+**Does self-hosting automatically mean better security?**  
+No. Self-hosting changes who holds the infrastructure and who could be compelled to produce data, which is a genuine architectural improvement for sovereignty and compliance purposes. But a poorly secured self-hosted deployment — unpatched, misconfigured, running weak encryption — can be less secure than a well-built cloud platform with a mature security program. Owning the infrastructure means owning the responsibility to secure it correctly, not an automatic upgrade.
+
+**Can an organization run some workloads on the cloud and others self-hosted?**  
+Yes, and this is increasingly common. A hybrid approach — hosted for day-to-day, general-purpose meetings, self-hosted or single-tenant for the specific programs or teams with real compliance weight — lets an organization match the deployment model to the actual sensitivity of each workload instead of applying one setting to everything. This works cleanly on a platform built for it from the start, rather than one where self-hosting is a bolted-on afterthought.
+
+**How long does a self-hosted deployment typically take to set up?**  
+For a team that already runs infrastructure, standing up the core components — application server, media relay, object storage, identity integration, and database — typically takes days to a few weeks, not months. Teams without existing infrastructure experience should budget for a longer runway, since they're also building the operational capability, not just the deployment itself.
+
+**Does moving to self-hosted mean giving up features or a worse user experience?**  
+Not on a platform designed to be self-hosted from day one. The gap shows up on platforms where self-hosting is a legacy, bolted-on option — those versions are frequently a step behind the cloud product in features and polish. A platform built self-hosted-first can offer an identical experience across hosted, single-tenant, and fully on-premise deployments, so the choice becomes purely about infrastructure and cost, not about which version users are stuck with.
+
+**Is a dedicated single-tenant cloud instance the same thing as self-hosting?**  
+No, and this distinction gets conflated often enough that it's worth stating plainly. A single-tenant instance is still operated by the vendor — their team has administrative and often physical access to the infrastructure, even if it's isolated from other customers. True self-hosting means the organization's own team runs the servers. Single-tenant is a useful middle ground for organizations that want a cleaner compliance boundary without taking on operational responsibility, but it doesn't remove the vendor from the trust path the way genuine self-hosting does.
+
+## Related reading
+
+- **[Comparisons]** [The self-hosted Zoom alternative: what it actually means](/blog/self-hosted-zoom-alternative) — Why Zoom itself can't really be self-hosted, what a genuinely self-hostable alternative looks like, and the residency and compliance benefits of owning it.
+- **[Comparisons]** [Secure Zoom alternatives (2026): a buyer's guide](/blog/secure-zoom-alternatives) — A practical buyer's guide to secure Zoom alternatives: the six criteria that matter for sensitive work.
+- **[Cryptography]** [End-to-end encrypted video conferencing: what it really means](/blog/end-to-end-encrypted-video-conferencing) — An honest guide to what E2EE actually protects, encrypted-in-transit vs. true E2EE, and where the line sits.
+- **[Compliance]** [Secure video conferencing for law firms: a confidentiality checklist](/blog/secure-video-conferencing-for-law-firms) — The same "who holds the data, and who could be compelled to produce it" framing, applied to attorney-client privilege.
