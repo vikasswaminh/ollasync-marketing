@@ -58,7 +58,7 @@ const postsJson = JSON.stringify(
       </div>
 
       {featured && (
-        <a href={`/blog/${featured.slug}`} id="featuredHero" class="feat card--hover" data-reveal data-cat={featured.data.category} data-slug={featured.slug}>
+        <a href={`/blog/${featured.slug}`} id="featuredHero" class="feat card--hover" data-reveal data-cat={featured.data.category} data-slug={featured.slug} style="display:none">
           <div class="feat__media"><img id="featuredImg" src={featured.data.cover || '/og-ollasync.png'} alt={featured.data.title} width="640" height="420" loading="eager" /></div>
           <div class="feat__body">
             <span id="featuredCat" class="chip cat">{featured.data.category}{featured.data.pillar && <> · Pillar guide</>}</span>
@@ -72,7 +72,7 @@ const postsJson = JSON.stringify(
 
       <div class="posts" id="postGrid" data-reveal>
         {posts.map((p) => (
-          <a href={`/blog/${p.slug}`} class="post-card card card--hover" data-cat={p.data.category} data-slug={p.slug} style={p.slug === featured?.slug ? 'display:none' : ''}>
+          <a href={`/blog/${p.slug}`} class="post-card card card--hover" data-cat={p.data.category} data-slug={p.slug}>
             <div class="post-card__media"><img src={p.data.cover || '/og-ollasync.png'} alt={p.data.title} width="420" height="240" loading="lazy" /></div>
             <div class="post-card__body">
               <span class="chip cat">{p.data.category}</span>
@@ -126,6 +126,12 @@ const postsJson = JSON.stringify(
 
   function filterBy(cat: string) {
     btns.forEach((x) => x.classList.toggle('is-active', x.getAttribute('data-cat') === cat));
+
+    if (cat === 'all') {
+      if (featuredHero) featuredHero.style.display = 'none';
+      gridCards.forEach((c) => (c.style.display = ''));
+      return;
+    }
 
     const matched = allPosts.filter((p) => matchesCategory(p.category, cat));
 
