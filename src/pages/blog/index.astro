@@ -13,8 +13,8 @@ const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const featured = posts.find((p) => p.data.pillar) || posts[0];
-const rest = posts.filter((p) => p.slug !== featured?.slug);
+const featured = posts[0];
+const rest = posts.slice(1);
 const ALL_CATEGORIES = [
   "Self-Hosted",
   "Cryptography",
@@ -26,6 +26,19 @@ const ALL_CATEGORIES = [
   "Enterprise Use Cases",
 ];
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const postsJson = JSON.stringify(
+  posts.map((p) => ({
+    slug: p.slug,
+    title: p.data.title,
+    description: p.data.description,
+    category: p.data.category,
+    cover: p.data.cover || '/og-ollasync.png',
+    pubDate: fmt(p.data.pubDate),
+    readTime: p.data.readTime,
+    pillar: p.data.pillar,
+  }))
+);
 ---
 <Base title={title} description={description}>
   <PageHero
@@ -45,21 +58,21 @@ const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', mont
       </div>
 
       {featured && (
-        <a href={`/blog/${featured.slug}`} class="feat card--hover" data-reveal data-cat={featured.data.category}>
-          <div class="feat__media"><img src={featured.data.cover || '/og-ollasync.png'} alt={featured.data.title} width="640" height="420" loading="eager" /></div>
+        <a href={`/blog/${featured.slug}`} id="featuredHero" class="feat card--hover" data-reveal data-cat={featured.data.category} data-slug={featured.slug}>
+          <div class="feat__media"><img id="featuredImg" src={featured.data.cover || '/og-ollasync.png'} alt={featured.data.title} width="640" height="420" loading="eager" /></div>
           <div class="feat__body">
-            <span class="chip cat">{featured.data.category}{featured.data.pillar && <> · Pillar guide</>}</span>
-            <h2 class="h2" style="margin-top:14px;font-size:clamp(24px,3vw,32px)">{featured.data.title}</h2>
-            <p class="lead" style="margin-top:12px">{featured.data.description}</p>
-            <div class="post-meta">{fmt(featured.data.pubDate)} · {featured.data.readTime} min read</div>
+            <span id="featuredCat" class="chip cat">{featured.data.category}{featured.data.pillar && <> · Pillar guide</>}</span>
+            <h2 id="featuredTitle" class="h2" style="margin-top:14px;font-size:clamp(24px,3vw,32px)">{featured.data.title}</h2>
+            <p id="featuredDesc" class="lead" style="margin-top:12px">{featured.data.description}</p>
+            <div id="featuredMeta" class="post-meta">{fmt(featured.data.pubDate)} · {featured.data.readTime} min read</div>
             <span class="feat__more mono">Read the guide <Icon name="arrow" size={15} /></span>
           </div>
         </a>
       )}
 
       <div class="posts" id="postGrid" data-reveal>
-        {rest.map((p) => (
-          <a href={`/blog/${p.slug}`} class="post-card card card--hover" data-cat={p.data.category}>
+        {posts.map((p) => (
+          <a href={`/blog/${p.slug}`} class="post-card card card--hover" data-cat={p.data.category} data-slug={p.slug} style={p.slug === featured?.slug ? 'display:none' : ''}>
             <div class="post-card__media"><img src={p.data.cover || '/og-ollasync.png'} alt={p.data.title} width="420" height="240" loading="lazy" /></div>
             <div class="post-card__body">
               <span class="chip cat">{p.data.category}</span>
@@ -75,22 +88,90 @@ const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', mont
   <Cta />
 </Base>
 
+<script id="blog-data-script" type="application/json" set:html={postsJson}></script>
+
 <script>
+  const dataScript = document.getElementById('blog-data-script');
+  const allPosts: Array<{
+    slug: string;
+    title: string;
+    description: string;
+    category: string;
+    cover: string;
+    pubDate: string;
+    readTime: number;
+    pillar?: boolean;
+  }> = dataScript ? JSON.parse(dataScript.textContent || '[]') : [];
+
   const btns = document.querySelectorAll('.cat-filter .chip');
-  const cards = document.querySelectorAll('[data-cat]');
-  btns.forEach((b) => b.addEventListener('click', () => {
-    const cat = b.getAttribute('data-cat');
-    btns.forEach((x) => x.classList.toggle('is-active', x === b));
-    cards.forEach((c) => {
-      if (c.classList.contains('chip')) return;
-      const cardCat = c.getAttribute('data-cat') || '';
-      const normCard = cardCat.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const normFilter = (cat || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-      const isSelfHost = normFilter === 'selfhosted' && (normCard === 'selfhosted' || normCard === 'selfhosting');
-      const show = cat === 'all' || normCard === normFilter || isSelfHost;
-      (c as HTMLElement).style.display = show ? '' : 'none';
+  const featuredHero = document.getElementById('featuredHero') as HTMLAnchorElement | null;
+  const featuredImg = document.getElementById('featuredImg') as HTMLImageElement | null;
+  const featuredCat = document.getElementById('featuredCat') as HTMLElement | null;
+  const featuredTitle = document.getElementById('featuredTitle') as HTMLElement | null;
+  const featuredDesc = document.getElementById('featuredDesc') as HTMLElement | null;
+  const featuredMeta = document.getElementById('featuredMeta') as HTMLElement | null;
+  const gridCards = document.querySelectorAll('#postGrid .post-card') as NodeListOf<HTMLElement>;
+
+  function norm(str: string) {
+    return (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  function matchesCategory(postCat: string, filterCat: string) {
+    if (!filterCat || filterCat === 'all') return true;
+    const nCard = norm(postCat);
+    const nFilter = norm(filterCat);
+    if (nFilter === 'selfhosted' && (nCard === 'selfhosted' || nCard === 'selfhosting')) return true;
+    return nCard === nFilter;
+  }
+
+  function filterBy(cat: string) {
+    btns.forEach((x) => x.classList.toggle('is-active', x.getAttribute('data-cat') === cat));
+
+    const matched = allPosts.filter((p) => matchesCategory(p.category, cat));
+
+    if (matched.length === 0) {
+      if (featuredHero) featuredHero.style.display = 'none';
+      gridCards.forEach((c) => (c.style.display = 'none'));
+      return;
+    }
+
+    const top = matched[0];
+    if (featuredHero && featuredImg && featuredCat && featuredTitle && featuredDesc && featuredMeta) {
+      featuredHero.href = `/blog/${top.slug}`;
+      featuredHero.setAttribute('data-cat', top.category);
+      featuredHero.setAttribute('data-slug', top.slug);
+      featuredImg.src = top.cover;
+      featuredImg.alt = top.title;
+      featuredCat.textContent = top.category + (top.pillar ? ' · Pillar guide' : '');
+      featuredTitle.textContent = top.title;
+      featuredDesc.textContent = top.description;
+      featuredMeta.textContent = `${top.pubDate} · ${top.readTime} min read`;
+      featuredHero.style.display = '';
+    }
+
+    const restSlugs = new Set(matched.slice(1).map((p) => p.slug));
+    gridCards.forEach((card) => {
+      const slug = card.getAttribute('data-slug');
+      if (slug && restSlugs.has(slug)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
     });
-  }));
+  }
+
+  btns.forEach((b) =>
+    b.addEventListener('click', () => {
+      const cat = b.getAttribute('data-cat') || 'all';
+      filterBy(cat);
+    })
+  );
+
+  // Check URL param on load
+  const urlParam = new URLSearchParams(window.location.search).get('category');
+  if (urlParam) {
+    filterBy(urlParam);
+  }
 </script>
 
 <style>
