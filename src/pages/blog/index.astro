@@ -181,15 +181,15 @@ const postsJson = JSON.stringify(
 </script>
 
 <style>
-  .cat { font-family: var(--font-mono); font-size: 11px; color: var(--purple); border-color: rgba(124, 58, 237, 0.25); background: rgba(124, 58, 237, 0.06); }
+  .cat { font-family: var(--font-mono); font-size: 11px; color: #cfc6ff; border-color: rgba(124, 58, 237, 0.35); background: rgba(124, 58, 237, 0.1); }
   .cat-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
-  .cat-filter .chip { cursor: pointer; background: #ffffff; border: 1px solid var(--border); color: var(--ink-2); font-weight: 550; transition: all var(--dur) var(--ease); }
-  .cat-filter .chip:hover { border-color: var(--cyan); color: var(--ink); }
+  .cat-filter .chip { cursor: pointer; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--ink-2); font-weight: 550; transition: all var(--dur) var(--ease); }
+  .cat-filter .chip:hover { border-color: var(--cyan); color: #ffffff; background: rgba(255, 255, 255, 0.08); }
   .cat-filter .chip.is-active { background: var(--grad-brand); color: #ffffff; border-color: transparent; box-shadow: 0 4px 14px rgba(0, 191, 165, 0.25); font-weight: 650; }
   .post-meta { font-size: 12.5px; color: var(--muted); margin-top: 12px; font-family: var(--font-mono); }
 
-  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; background: #ffffff; margin-bottom: 30px; transition: all var(--dur) var(--ease); min-height: 380px; box-shadow: var(--sh-card); }
-  .feat:hover { border-color: var(--cyan); box-shadow: var(--sh-float); }
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--r-xl); overflow: hidden; background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)); margin-bottom: 30px; transition: all var(--dur) var(--ease); min-height: 380px; }
+  .feat:hover { border-color: var(--cyan); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3); }
   .feat__media { position: relative; width: 100%; height: 100%; overflow: hidden; min-height: 380px; }
   .feat__media img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
   .feat__body { padding: clamp(24px,3vw,36px); display: flex; flex-direction: column; justify-content: center; }
@@ -198,9 +198,9 @@ const postsJson = JSON.stringify(
   .feat__more { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; font-size: 13px; color: var(--cyan); font-weight: 650; }
 
   .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .post-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; background: #ffffff; border: 1px solid var(--border); border-radius: var(--r); box-shadow: var(--sh-card); transition: all var(--dur) var(--ease); }
-  .post-card:hover { border-color: var(--cyan); box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08); transform: translateY(-3px); }
-  .post-card__media img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid var(--border); }
+  .post-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--r); transition: all var(--dur) var(--ease); }
+  .post-card:hover { border-color: var(--cyan); box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3); transform: translateY(-3px); }
+  .post-card__media img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .post-card__body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
   .post-card__body h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--ink); font-weight: 750; }
   .post-card__body p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--muted); }
