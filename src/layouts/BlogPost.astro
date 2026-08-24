@@ -119,19 +119,19 @@ const schema = {
 
 <style>
   .post__head-container {
-    max-width: 1080px;
-    margin-inline: auto;
+    max-width: 1040px;
+    margin-inline: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
   .post__title {
     font-size: clamp(32px, 4.6vw, 54px);
     margin-top: 18px;
     max-width: 1040px;
     line-height: 1.12;
-    text-align: center;
+    text-align: left;
     text-wrap: balance;
   }
   .post__desc {
@@ -139,7 +139,7 @@ const schema = {
     max-width: 920px;
     font-size: clamp(16px, 1.4vw, 19.5px);
     line-height: 1.6;
-    text-align: center;
+    text-align: left;
     color: var(--muted);
     text-wrap: pretty;
   }
@@ -148,11 +148,11 @@ const schema = {
   .cat--cryptography { color: var(--purple); border-color: rgba(124, 58, 237, 0.25); background: rgba(124, 58, 237, 0.06); }
   .cat--compliance { color: #0f766e; border-color: rgba(0, 191, 165, 0.3); background: rgba(0, 191, 165, 0.08); }
   .cat--self-hosting, .cat--self-hosted { color: #0369a1; border-color: rgba(2, 132, 199, 0.25); background: rgba(2, 132, 199, 0.06); }
-  .post__meta { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 22px; font-size: 14px; color: var(--muted); }
+  .post__meta { display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-top: 22px; font-size: 14px; color: var(--muted); }
   .post__meta .dot { color: var(--border); }
   
-  .post__cover-wrap { max-width: 1320px; margin-top: 36px; }
-  .post__cover { width: 100%; border-radius: var(--r-lg); border: 1px solid var(--border); box-shadow: 0 10px 36px rgba(15, 23, 42, 0.07); aspect-ratio: 21/9; object-fit: cover; }
+  .post__cover-wrap { max-width: 860px; margin-inline: 0; margin-top: 32px; }
+  .post__cover { width: 100%; border-radius: var(--r-lg); border: 1px solid rgba(255, 255, 255, 0.08); aspect-ratio: 16/9; max-height: 420px; object-fit: cover; }
   
   /* Grid & Layout - Expanded to 1320px width */
   .post__grid { max-width: 1320px; display: grid; grid-template-columns: 240px 1fr; gap: 52px; margin-top: 52px; align-items: start; }
