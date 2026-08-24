@@ -34,8 +34,10 @@ const schema = {
   <article class="post">
     <header class="post__head section" style="padding-block:48px 16px">
       <div class="container post__head-container">
-        <div style="margin-bottom:18px"><Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: d.category, href: `/blog?category=${d.category}` }, { label: d.title }]} /></div>
-        <span class={`chip cat cat--${d.category.toLowerCase()}`}>{d.category}{d.pillar && <> · Pillar guide</>}</span>
+        <div class="post__top-nav">
+          <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: d.category, href: `/blog?category=${d.category}` }, { label: d.title }]} />
+          <span class={`chip cat cat--${d.category.toLowerCase()}`}>{d.category}{d.pillar && <> · Pillar guide</>}</span>
+        </div>
         <h1 class="display post__title">{d.title}</h1>
         <p class="lead post__desc">{d.description}</p>
         <div class="post__meta">
@@ -119,16 +121,25 @@ const schema = {
 
 <style>
   .post__head-container {
-    max-width: 1040px;
+    max-width: 1320px;
     margin-inline: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
+  .post__top-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 24px;
+    gap: 14px;
+  }
   .post__title {
     font-size: clamp(32px, 4.6vw, 54px);
-    margin-top: 18px;
+    margin-top: 0;
     max-width: 1040px;
     line-height: 1.12;
     text-align: center;
