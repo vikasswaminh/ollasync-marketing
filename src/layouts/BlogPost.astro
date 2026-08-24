@@ -171,13 +171,13 @@ const schema = {
   .post__toc::-webkit-scrollbar { width: 4px; }
   .post__toc::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
   
-  .post__toc-inner { background: transparent; padding: 0; border: none; box-shadow: none; }
+  .post__toc-inner { background: rgba(255, 255, 255, 0.02); padding: 16px 14px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--r, 12px); }
   
-  .toc-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .toc-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .toc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px rgba(0, 191, 165, 0.7); flex: none; }
   .post__toc .eyebrow-label { font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); }
   
-  .toc-list { list-style: none; display: grid; gap: 2px; margin: 0; padding: 0; border-left: 2px solid var(--border); }
+  .toc-list { list-style: none; display: grid; gap: 3px; margin: 0; padding: 0; border-left: 2px solid rgba(255, 255, 255, 0.08); }
   .toc-link { display: block; font-size: 12.5px; font-weight: 550; color: var(--muted); padding: 5px 10px; margin-left: -2px; border-left: 2px solid transparent; border-radius: 0 4px 4px 0; transition: all var(--dur) var(--ease); line-height: 1.4; text-decoration: none; }
   .toc-bar { display: none; }
   .toc-link:hover { background: rgba(0, 191, 165, 0.08); color: var(--cyan); border-left-color: var(--cyan); font-weight: 650; }
@@ -211,8 +211,8 @@ const schema = {
   .prose-post h3 { font-size: 20px; color: var(--ink); margin-top: 34px; scroll-margin-top: 96px; font-weight: 750; }
   .prose-post h4 { font-size: 17px; color: var(--ink); margin-top: 24px; scroll-margin-top: 96px; font-weight: 700; }
   .prose-post p { color: var(--ink-2); }
-  .prose-post a { color: var(--blue-bright); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(37, 99, 235, 0.4); font-weight: 550; }
-  .prose-post a:hover { color: var(--purple); text-decoration-color: var(--purple); }
+  .prose-post a { color: #5b92ff; text-decoration: none; font-weight: 550; transition: color var(--dur) ease; }
+  .prose-post a:hover { color: #82adff; text-decoration: underline; }
   .prose-post strong { color: var(--ink); font-weight: 700; }
   .prose-post ul, .prose-post ol { padding-left: 22px; display: grid; gap: 10px; }
   .prose-post li { color: var(--ink-2); }
