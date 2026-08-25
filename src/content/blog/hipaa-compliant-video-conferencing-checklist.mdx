@@ -488,26 +488,65 @@ Self-hosting gives healthcare systems absolute control over their compliance bou
 
 ## Frequently Asked Questions
 
-### What is HIPAA-compliant video conferencing?
-HIPAA-compliant video conferencing refers to video communication technology deployed and operated by covered entities and business associates in accordance with the HIPAA Privacy, Security, and Breach Notification Rules. Compliance is achieved through a combination of secure technology, executed BAAs, proper configuration, strict access controls, and workforce policies.
+<details>
+  <summary>1. What is HIPAA-compliant video conferencing?</summary>
+  <p>HIPAA-compliant video conferencing refers to video communication technology deployed and operated by covered entities and business associates in accordance with the HIPAA Privacy, Security, and Breach Notification Rules. Compliance is not a single software feature—it is achieved through a combination of secure technology, executed BAAs, proper configuration, strict access controls, workforce policies, and ongoing risk analysis.</p>
+</details>
 
-### Is Zoom HIPAA compliant?
-Zoom offers a healthcare-specific tier that includes a Business Associate Agreement and specific security settings. However, Zoom is not automatically compliant out of the box; healthcare providers must execute a BAA, configure waiting rooms and access controls, enforce SSO/MFA, and manage recordings properly. For an in-depth breakdown, read our [Ollasync vs Zoom comparison](/vs/zoom).
+<details>
+  <summary>2. Is Zoom HIPAA compliant?</summary>
+  <p>Zoom offers healthcare-specific tiers that include a Business Associate Agreement (BAA) and specialized security settings. However, Zoom is not automatically compliant out of the box; healthcare providers must execute a BAA, configure waiting rooms and access controls, enforce SSO/MFA, and manage recordings properly. For an in-depth breakdown, read our <a href="/vs/zoom">Ollasync vs Zoom comparison</a>.</p>
+</details>
 
-### Does HIPAA require end-to-end encryption for telehealth?
-The HIPAA Security Rule does not mandate specific cryptographic algorithms, but it does require transmission security safeguards (§ 164.312(e)) to protect ePHI against unauthorized interception. Modern standards require robust transport encryption (DTLS-SRTP and TLS 1.3), while per-frame E2EE provides additional protection for high-risk clinical discussions.
+<details>
+  <summary>3. Does HIPAA require end-to-end encryption for telehealth?</summary>
+  <p>The HIPAA Security Rule does not mandate a specific encryption algorithm, but it does require transmission security safeguards (§ 164.312(e)) to protect ePHI against unauthorized interception. Modern standards require robust transport encryption (DTLS-SRTP and TLS 1.3), while per-frame E2EE provides additional protection for high-risk clinical discussions.</p>
+</details>
 
-### Does a video conferencing vendor always need to sign a BAA?
-Yes, whenever the vendor creates, receives, maintains, or transmits PHI on behalf of a covered entity. While pure conduit telecommunications services may be exempt under narrow circumstances, any platform that stores recordings, transcripts, or user metadata containing PHI operates as a Business Associate and requires an executed BAA.
+<details>
+  <summary>4. Does a video conferencing vendor always need to sign a BAA?</summary>
+  <p>Yes, whenever the vendor creates, receives, maintains, or transmits PHI on behalf of a covered entity. While pure conduit telecommunications services may be exempt under narrow circumstances, any platform that stores recordings, transcripts, or user metadata containing PHI operates as a Business Associate and requires an executed BAA.</p>
+</details>
 
-### Are video recordings and transcripts considered PHI?
-Yes. If a recording or transcript contains individually identifiable health information (e.g., patient face, voice, name, symptoms, diagnosis), it constitutes ePHI and must be protected with full administrative, technical, and physical safeguards under HIPAA.
+<details>
+  <summary>5. Are video recordings considered PHI?</summary>
+  <p>Yes. If a recording contains individually identifiable health information (such as patient face, voice, clinical notes, symptoms, or diagnoses), it constitutes ePHI and must be protected with full administrative, technical, and physical safeguards under HIPAA.</p>
+</details>
 
-### Can healthcare providers use free video conferencing tools for telehealth?
-Generally, no. Free consumer video tools rarely offer executed Business Associate Agreements, enterprise audit logging, or centralized administrative controls. Transmitting PHI through a platform without an executed BAA directly violates federal HIPAA regulations.
+<details>
+  <summary>6. Are telehealth transcripts considered PHI?</summary>
+  <p>Yes. Transcripts capture verbatim clinical discussions, medication names, symptoms, and diagnoses. HHS specifically identifies transcripts and recordings as ePHI that must be evaluated and protected during telehealth risk assessments.</p>
+</details>
 
-### Does self-hosting video conferencing make you automatically HIPAA compliant?
-No. While [self-hosting video conferencing](/self-hosted) keeps PHI inside your own data center and eliminates vendor subprocessor risks, your organization is still responsible for securing the underlying servers, managing access controls, applying software patches, and maintaining audit trails.
+<details>
+  <summary>7. Can healthcare providers use video conferencing for telehealth?</summary>
+  <p>Yes. HHS explicitly recognizes the use of remote communication technologies for telehealth, provided covered entities and health plans implement them in full alignment with applicable HIPAA Privacy, Security, and Breach Notification requirements.</p>
+</details>
+
+<details>
+  <summary>8. Is a free video conferencing platform suitable for healthcare?</summary>
+  <p>Generally, no. Free consumer video tools rarely offer executed Business Associate Agreements, enterprise audit logging, or centralized administrative controls. Transmitting PHI through a platform without an executed BAA directly violates federal HIPAA regulations.</p>
+</details>
+
+<details>
+  <summary>9. Does self-hosting video conferencing make you automatically HIPAA compliant?</summary>
+  <p>No. While <a href="/self-hosted">self-hosting video conferencing</a> keeps PHI inside your own data center and eliminates vendor subprocessor risks, your organization is still responsible for securing the underlying servers, managing access controls, applying software patches, and maintaining audit trails.</p>
+</details>
+
+<details>
+  <summary>10. What should healthcare providers look for in a HIPAA video conferencing platform?</summary>
+  <p>At minimum, healthcare providers should evaluate: BAA availability, transmission and at-rest encryption, SSO/MFA authentication, granular RBAC access controls, virtual waiting rooms, recording and transcript governance, automated retention schedules, immutable audit logging, incident response SLAs, and workforce training capabilities.</p>
+</details>
+
+<details>
+  <summary>11. How often should HIPAA video conferencing security be reviewed?</summary>
+  <p>Security should not be treated as a one-time vendor evaluation. Regulated entities must maintain documentation required by the Security Rule and periodically review and update safeguards as technology, operational workflows, or security threats evolve.</p>
+</details>
+
+<details>
+  <summary>12. Is HIPAA compliance enough for healthcare video conferencing?</summary>
+  <p>Not necessarily. Healthcare organizations may have additional requirements from state privacy laws, international regulations (such as GDPR), professional ethical obligations, internal data governance policies, or cyber insurance mandates.</p>
+</details>
 
 ## Final Takeaway
 

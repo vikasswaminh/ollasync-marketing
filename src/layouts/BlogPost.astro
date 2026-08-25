@@ -239,4 +239,14 @@ const schema = {
   .prose-post th, .prose-post td { border: 1px solid var(--border); padding: 12px 14px; text-align: left; }
   .prose-post th { background: rgba(255,255,255,0.04); color: var(--ink); font-weight: 750; }
   .prose-post td { background: transparent; color: var(--ink-2); }
+
+  /* FAQ Accordion & Dropdown Details */
+  .prose-post details { border: 1px solid var(--border); border-radius: var(--r, 10px); background: rgba(255, 255, 255, 0.02); margin-block: 12px; overflow: hidden; transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease); }
+  .prose-post details[open] { border-color: rgba(0, 191, 165, 0.4); background: rgba(0, 191, 165, 0.03); }
+  .prose-post details summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; font-weight: 650; font-size: 16.5px; color: var(--ink); user-select: none; transition: color var(--dur) var(--ease); }
+  .prose-post details summary::-webkit-details-marker { display: none; }
+  .prose-post details summary::after { content: '+'; font-size: 20px; font-weight: 500; color: var(--cyan); flex-shrink: 0; transition: transform var(--dur) var(--ease); line-height: 1; }
+  .prose-post details[open] summary::after { content: '−'; color: var(--cyan); }
+  .prose-post details summary:hover { color: var(--cyan); }
+  .prose-post details > p, .prose-post details > div, .prose-post details > ul { padding: 0 20px 18px; margin: 0; font-size: 15.5px; line-height: 1.7; color: var(--ink-2); }
 </style>
