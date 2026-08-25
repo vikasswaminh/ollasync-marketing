@@ -170,22 +170,32 @@ Employee inertia is the primary reason organizations stay on legacy platforms. T
 - **"Data residency and jurisdiction are identical":** Storing data in Frankfurt satisfies geographical residency, but does not shield a US-owned vendor from CLOUD Act extraction warrants.
 - **"Open standards are less secure because code is public":** Open standards (IETF MLS, WebRTC) receive continuous scrutiny from global cryptographers, ensuring faster vulnerability remediation.
 
-## FAQ
+## Frequently Asked Questions (FAQ)
 
-### Is Zoom actually end-to-end encrypted?
-Partially. Zoom encrypts meetings in transit and at rest by default, and offers an optional AES-256-GCM E2EE mode you toggle per meeting. When enabled, certain cloud recording and dial-in features are disabled.
+<details>
+  <summary>1. Is Zoom actually end-to-end encrypted?</summary>
+  <p>Partially. Zoom encrypts meetings in transit and at rest by default, and offers an optional AES-256-GCM E2EE mode you toggle per meeting. When enabled, certain cloud recording and dial-in features are disabled.</p>
+</details>
 
-### Does Microsoft Teams have end-to-end encryption?
-Only for one-to-one calls when manually enabled. Group meetings, team channels, and group chats are encrypted in transit and at rest, but not end-to-end.
+<details>
+  <summary>2. Does Microsoft Teams have end-to-end encryption?</summary>
+  <p>Only for one-to-one calls when manually enabled. Group meetings, team channels, and group chats are encrypted in transit and at rest, but not end-to-end.</p>
+</details>
 
-### Can Zoom or Teams be self-hosted?
-No. Both are proprietary cloud services operated exclusively by their respective vendors. Neither can be deployed on private bare-metal or air-gapped networks.
+<details>
+  <summary>3. Can Zoom or Teams be self-hosted?</summary>
+  <p>No. Both are proprietary cloud services operated exclusively by their respective vendors. Neither can be deployed on private bare-metal or air-gapped networks.</p>
+</details>
 
-### Is OllaSync a drop-in replacement for Zoom or Teams?
-For core meetings, screen sharing, and group chat, yes. OllaSync adds self-hosting, default server-blind MLS messaging, and native deal rooms, but is designed for high-security workflows rather than replacing massive productivity suites.
+<details>
+  <summary>4. Is Ollasync a drop-in replacement for Zoom or Teams?</summary>
+  <p>For core meetings, screen sharing, and group chat, yes. Ollasync adds self-hosting, default server-blind MLS messaging, and native deal rooms, but is designed for high-security workflows rather than replacing massive productivity suites.</p>
+</details>
 
-### What is the real difference between data residency and jurisdiction?
-Residency defines the physical country where data is stored. Jurisdiction defines which country's judicial system can compel the vendor to hand over data regardless of physical server location.
+<details>
+  <summary>5. What is the real difference between data residency and jurisdiction?</summary>
+  <p>Residency defines the physical country where data is stored. Jurisdiction defines which country's judicial system can compel the vendor to hand over data regardless of physical server location.</p>
+</details>
 
 ## How to actually choose
 

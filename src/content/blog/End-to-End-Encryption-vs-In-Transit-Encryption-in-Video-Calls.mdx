@@ -357,23 +357,35 @@ When evaluating vendor claims regarding video call security, procurement and sec
 
 ## Frequently Asked Questions (FAQs)
 
-### 1. Does standard WebRTC include End-to-End Encryption by default?
-No. Standard WebRTC enforces mandatory in-transit encryption (DTLS-SRTP) for all media traffic. However, in multi-party calls routed through an SFU relay server, this transport encryption terminates at the SFU server, where media frames are decrypted in RAM. Achieving true E2EE in WebRTC requires implementing application-layer payload encryption using APIs like WebRTC Insertable Streams and standards like SFrame (RFC 9642).
+<details>
+  <summary>1. Does standard WebRTC include End-to-End Encryption by default?</summary>
+  <p>No. Standard WebRTC enforces mandatory in-transit encryption (DTLS-SRTP) for all media traffic. However, in multi-party calls routed through an SFU relay server, this transport encryption terminates at the SFU server, where media frames are decrypted in RAM. Achieving true E2EE in WebRTC requires implementing application-layer payload encryption using APIs like WebRTC Insertable Streams and standards like SFrame (RFC 9642).</p>
+</details>
 
-### 2. Can a cloud server operator tap an E2EE video call?
-No. Under true End-to-End Encryption, decryption keys are generated exclusively on participant client devices and are never transmitted to the cloud operator. The cloud server processes and routes opaque ciphertext. Without access to client private keys, the cloud operator cannot decrypt or tap live media feeds.
+<details>
+  <summary>2. Can a cloud server operator tap an E2EE video call?</summary>
+  <p>No. Under true End-to-End Encryption, decryption keys are generated exclusively on participant client devices and are never transmitted to the cloud operator. The cloud server processes and routes opaque ciphertext. Without access to client private keys, the cloud operator cannot decrypt or tap live media feeds.</p>
+</details>
 
-### 3. Does End-to-End Encryption hide my IP address and meeting attendance?
-No. E2EE protects call content (audio samples, video pixels, screen shares, and chat payloads), but it does not obscure network metadata. Intermediate servers must process participant IP addresses, sequence numbers, and packet timestamps to route traffic across the internet. To conceal network IP parameters, users must pair E2EE applications with onion routing or VPN tunnels.
+<details>
+  <summary>3. Does End-to-End Encryption hide my IP address and meeting attendance?</summary>
+  <p>No. E2EE protects call content (audio samples, video pixels, screen shares, and chat payloads), but it does not obscure network metadata. Intermediate servers must process participant IP addresses, sequence numbers, and packet timestamps to route traffic across the internet. To conceal network IP parameters, users must pair E2EE applications with onion routing or VPN tunnels.</p>
+</details>
 
-### 4. Why don't all video conferencing platforms use E2EE by default?
-Implementing E2EE introduces complex engineering requirements. Server-side feature suites — such as legacy cloud recording, server-based AI transcription, PSTN dial-in bridges, and traditional active speaker switching — rely on reading plaintext media on central servers. Shifting these capabilities to client devices requires advanced browser APIs, local AI models, and sophisticated key management standards like MLS.
+<details>
+  <summary>4. Why don't all video conferencing platforms use E2EE by default?</summary>
+  <p>Implementing E2EE introduces complex engineering requirements. Server-side feature suites — such as legacy cloud recording, server-based AI transcription, PSTN dial-in bridges, and traditional active speaker switching — rely on reading plaintext media on central servers. Shifting these capabilities to client devices requires advanced browser APIs, local AI models, and sophisticated key management standards like MLS.</p>
+</details>
 
-### 5. How does SFrame encryption differ from standard SRTP transport encryption?
-SRTP (Secure Real-time Transport Protocol) encrypts media packets at the network transport layer between a client and a server node. When an SFU receives an SRTP packet, it decrypts the frame to process its contents. SFrame (Securing Framing for Media) encrypts the underlying media frame payload *before* packetization occurs. Even when SRTP transport encryption is stripped by an intermediate server, the underlying SFrame media payload remains fully encrypted.
+<details>
+  <summary>5. How does SFrame encryption differ from standard SRTP transport encryption?</summary>
+  <p>SRTP (Secure Real-time Transport Protocol) encrypts media packets at the network transport layer between a client and a server node. When an SFU receives an SRTP packet, it decrypts the frame to process its contents. SFrame (Securing Framing for Media) encrypts the underlying media frame payload <em>before</em> packetization occurs. Even when SRTP transport encryption is stripped by an intermediate server, the underlying SFrame media payload remains fully encrypted.</p>
+</details>
 
-### 6. Can E2EE support large multi-party video calls with dozens of users?
-Yes. Historical E2EE systems struggled with scalability because group key exchanges scaled poorly. However, modern implementations leveraging Messaging Layer Security (MLS - RFC 9420) utilize TreeKEM binary structures that handle key distribution with $O(\log N)$ logarithmic efficiency, allowing E2EE calls to scale smoothly to over 100 simultaneous participants.
+<details>
+  <summary>6. Can E2EE support large multi-party video calls with dozens of users?</summary>
+  <p>Yes. Historical E2EE systems struggled with scalability because group key exchanges scaled poorly. However, modern implementations leveraging Messaging Layer Security (MLS - RFC 9420) utilize TreeKEM binary structures that handle key distribution with $O(\log N)$ logarithmic efficiency, allowing E2EE calls to scale smoothly to over 100 simultaneous participants.</p>
+</details>
 
 ## The Bottom Line & Related Reading
 

@@ -261,25 +261,30 @@ In contrast, zero-trust video architectures operate on underlying server compute
 
 ## Frequently Asked Questions (FAQs)
 
-**What is the primary difference between traditional WebRTC encryption and Zero-Trust Video Conferencing?**
+<details>
+  <summary>1. What is the primary difference between traditional WebRTC encryption and Zero-Trust Video Conferencing?</summary>
+  <p>Traditional WebRTC relies on hop-by-hop DTLS-SRTP transport encryption. While packets are encrypted across public internet links, media payloads are decrypted in RAM on the vendor's Selective Forwarding Unit (SFU) server. Zero-Trust Video Conferencing adds client-side payload encryption (via WebRTC Insertable Streams or MLS), ensuring that media frames remain encrypted while passing through SFU servers. The server routes packets without holding the keys to decrypt video or audio content.</p>
+</details>
 
-Traditional WebRTC relies on hop-by-hop DTLS-SRTP transport encryption. While packets are encrypted across public internet links, media payloads are decrypted in RAM on the vendor's Selective Forwarding Unit (SFU) server. Zero-Trust Video Conferencing adds client-side payload encryption (via WebRTC Insertable Streams or MLS), ensuring that media frames remain encrypted while passing through SFU servers. The server routes packets without holding the keys to decrypt video or audio content.
+<details>
+  <summary>2. Can zero-trust video calls run inside a standard browser without installing desktop software?</summary>
+  <p>Yes. Modern web browsers (Google Chrome, Microsoft Edge, Mozilla Firefox, Apple Safari) natively support WebRTC Insertable Streams and WebAssembly (WASM). Clients join zero-trust encrypted calls directly in their browser without downloading executable installers, software plugins, or desktop clients.</p>
+</details>
 
-**Can zero-trust video calls run inside a standard browser without installing desktop software?**
+<details>
+  <summary>3. Does zero-trust video conferencing break features like server-side recording or AI transcription?</summary>
+  <p>No, but it alters where those processing functions execute. In a zero-trust model, cloud servers cannot automatically read media feeds. Server-side recording or automated AI speech transcription is performed by provisioning dedicated, isolated worker nodes operating inside your organization's private security boundary. These sovereign worker nodes join the meeting as authenticated, encrypted endpoints, receiving authorized decryption keys to process media locally without exposing unencrypted feeds to third-party networks.</p>
+</details>
 
-Yes. Modern web browsers (Google Chrome, Microsoft Edge, Mozilla Firefox, Apple Safari) natively support WebRTC Insertable Streams and WebAssembly (WASM). Clients join zero-trust encrypted calls directly in their browser without downloading executable installers, software plugins, or desktop clients.
+<details>
+  <summary>4. How does zero-trust video protect against third-party vendor subpoena requests?</summary>
+  <p>Because key exchange and media encryption occur directly on client endpoints or within your sovereign security perimeter, third-party cloud infrastructure providers do not possess the cryptographic keys needed to decrypt your calls. If a cloud vendor receives a legal subpoena or court order, any network traffic intercepted from their servers consists entirely of unreadable, AES-GCM encrypted binary blocks.</p>
+</details>
 
-**Does zero-trust video conferencing break features like server-side recording or AI transcription?**
-
-No, but it alters where those processing functions execute. In a zero-trust model, cloud servers cannot automatically read media feeds. Server-side recording or automated AI speech transcription is performed by provisioning dedicated, isolated worker nodes operating inside your organization's private security boundary. These sovereign worker nodes join the meeting as authenticated, encrypted endpoints, receiving authorized decryption keys to process media locally without exposing unencrypted feeds to third-party networks.
-
-**How does zero-trust video protect against third-party vendor subpoena requests?**
-
-Because key exchange and media encryption occur directly on client endpoints or within your sovereign security perimeter, third-party cloud infrastructure providers do not possess the cryptographic keys needed to decrypt your calls. If a cloud vendor receives a legal subpoena or court order, any network traffic intercepted from their servers consists entirely of unreadable, AES-GCM encrypted binary blocks.
-
-**Is zero-trust video conferencing suitable for air-gapped or high-security networks?**
-
-Yes. Zero-trust architectures are designed for complete operational isolation. Because authentication, key management, media routing, and storage components operate as self-contained microservices, the entire platform can be deployed within air-gapped local networks, private data centers, or secure military facilities with zero external internet dependencies.
+<details>
+  <summary>5. Is zero-trust video conferencing suitable for air-gapped or high-security networks?</summary>
+  <p>Yes. Zero-trust architectures are designed for complete operational isolation. Because authentication, key management, media routing, and storage components operate as self-contained microservices, the entire platform can be deployed within air-gapped local networks, private data centers, or secure military facilities with zero external internet dependencies.</p>
+</details>
 
 ## The bottom line
 

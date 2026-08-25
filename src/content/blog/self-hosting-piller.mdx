@@ -296,25 +296,30 @@ Phased adoption allows IT and security teams to gain operational experience mana
 
 ## Frequently Asked Questions (FAQs)
 
-**What is the difference between cloud data residency and self-hosted infrastructure?**
+<details>
+  <summary>1. What is the difference between cloud data residency and self-hosted infrastructure?</summary>
+  <p>Cloud data residency options allow you to choose where static database records reside at rest, but the cloud service provider still owns, manages, and retains master access to the physical server hosts routing live packet streams. Self-hosted infrastructure puts complete operational control in your hands: your team runs the operating system, manages the host networks, controls access permissions, and maintains sole custody of cryptographic keys.</p>
+</details>
 
-Cloud data residency options allow you to choose where static database records reside at rest, but the cloud service provider still owns, manages, and retains master access to the physical server hosts routing live packet streams. Self-hosted infrastructure puts complete operational control in your hands: your team runs the operating system, manages the host networks, controls access permissions, and maintains sole custody of cryptographic keys.
+<details>
+  <summary>2. Can guests join a self-hosted meeting without installing third-party software?</summary>
+  <p>Yes. Modern self-hosted video platforms rely on standard WebRTC standards integrated natively into modern desktop and mobile browsers, including Google Chrome, Mozilla Firefox, Microsoft Edge, and Apple Safari. External guests join meetings by clicking a secure URL link, without downloading browser extensions, desktop clients, or executable software.</p>
+</details>
 
-**Can guests join a self-hosted meeting without installing third-party software?**
+<details>
+  <summary>3. Does self-hosting video conferencing require custom telecommunications hardware?</summary>
+  <p>No. Modern WebRTC media relays (SFUs) are lightweight software applications that run on standard Linux environments and standard cloud infrastructure (such as AWS, GCP, Azure, or bare-metal host providers). Specialized telecommunications hardware, dedicated ISDN lines, or proprietary hardware gateways are not required.</p>
+</details>
 
-Yes. Modern self-hosted video platforms rely on standard WebRTC standards integrated natively into modern desktop and mobile browsers, including Google Chrome, Mozilla Firefox, Microsoft Edge, and Apple Safari. External guests join meetings by clicking a secure URL link, without downloading browser extensions, desktop clients, or executable software.
+<details>
+  <summary>4. How does a self-hosted setup handle weak mobile connections or low bandwidth?</summary>
+  <p>Self-hosted SFU engines use WebRTC simulcast and Scalable Video Coding (SVC). When a participant experiences limited mobile network throughput, the server automatically routes lower-resolution video streams to that specific endpoint without impacting HD video quality delivered to other participants in the meeting room.</p>
+</details>
 
-**Does self-hosting video conferencing require custom telecommunications hardware?**
-
-No. Modern WebRTC media relays (SFUs) are lightweight software applications that run on standard Linux environments and standard cloud infrastructure (such as AWS, GCP, Azure, or bare-metal host providers). Specialized telecommunications hardware, dedicated ISDN lines, or proprietary hardware gateways are not required.
-
-**How does a self-hosted setup handle weak mobile connections or low bandwidth?**
-
-Self-hosted SFU engines use WebRTC simulcast and Scalable Video Coding (SVC). When a participant experiences limited mobile network throughput, the server automatically routes lower-resolution video streams to that specific endpoint without impacting HD video quality delivered to other participants in the meeting room.
-
-**Is it possible to deploy self-hosted video conferencing inside an air-gapped network?**
-
-Yes. Modern open-source media engines can operate entirely isolated from the internet. By deploying identity management (OIDC/SAML), signaling controllers, TURN relays, and media infrastructure within your private network, your team can run secure real-time communications in completely air-gapped facilities.
+<details>
+  <summary>5. Is it possible to deploy self-hosted video conferencing inside an air-gapped network?</summary>
+  <p>Yes. Modern media engines can operate entirely isolated from the internet. By deploying identity management (OIDC/SAML), signaling controllers, TURN relays, and media infrastructure within your private network, your team can run secure real-time communications in completely air-gapped facilities.</p>
+</details>
 
 ## The bottom line
 

@@ -151,34 +151,52 @@ A program office runs its most sensitive design reviews on a network that's deli
 
 Each of these scenarios has the same shape underneath: the sensitivity of the conversation determines the deployment model that's actually defensible, and “we have strong encryption” is necessary but not sufficient in any of them.
 
-## Frequently asked questions
+## Frequently Asked Questions (FAQs)
 
-**Does end-to-end encryption alone satisfy CMMC or FedRAMP requirements?**  
-No, and it's worth being direct about that. Encryption in transit and at rest satisfies specific technical controls within those frameworks, but CMMC and FedRAMP both extend well beyond cryptography — into access control, audit logging, incident response, personnel security, and configuration management, among others. A platform that offers strong encryption and an exportable audit log gives a compliance team a much stronger starting position, but the assessment itself covers the organization's full implementation, not just the tool.
+<details>
+  <summary>1. Does end-to-end encryption alone satisfy CMMC or FedRAMP requirements?</summary>
+  <p>No, and it's worth being direct about that. Encryption in transit and at rest satisfies specific technical controls within those frameworks, but CMMC and FedRAMP both extend well beyond cryptography — into access control, audit logging, incident response, personnel security, and configuration management, among others. A platform that offers strong encryption and an exportable audit log gives a compliance team a much stronger starting position, but the assessment itself covers the organization's full implementation, not just the tool.</p>
+</details>
 
-**Is self-hosting realistic for a smaller defense contractor without a large IT team?**  
-It depends on scope. A platform built to be self-hosted as a defined, containerized deployment — rather than a sprawling enterprise install — is a materially smaller lift than standing up a full communications security program from scratch. Many contractors start with a hosted, server-blind deployment for day-to-day work and reserve self-hosting or air-gapping for the specific programs that require it, rather than treating it as all-or-nothing.
+<details>
+  <summary>2. Is self-hosting realistic for a smaller defense contractor without a large IT team?</summary>
+  <p>It depends on scope. A platform built to be self-hosted as a defined, containerized deployment — rather than a sprawling enterprise install — is a materially smaller lift than standing up a full communications security program from scratch. Many contractors start with a hosted, server-blind deployment for day-to-day work and reserve self-hosting or air-gapping for the specific programs that require it, rather than treating it as all-or-nothing.</p>
+</details>
 
-**What's the difference between "encrypted in transit" and genuinely server-blind?**  
-Encrypted in transit means the data can't be read by someone intercepting it on the network between two points — a real and necessary protection, but the endpoint (often the vendor's server) still decrypts and can read the content. Server-blind, end-to-end encrypted means the operator itself never holds the keys needed to decrypt the content at all, so even a compelled disclosure from the vendor produces nothing readable. Both matter; they are not the same guarantee, and a vendor should be able to tell you which one applies to which part of their product without hedging.
+<details>
+  <summary>3. What's the difference between "encrypted in transit" and genuinely server-blind?</summary>
+  <p>Encrypted in transit means the data can't be read by someone intercepting it on the network between two points — a real and necessary protection, but the endpoint (often the vendor's server) still decrypts and can read the content. Server-blind, end-to-end encrypted means the operator itself never holds the keys needed to decrypt the content at all, so even a compelled disclosure from the vendor produces nothing readable. Both matter; they are not the same guarantee, and a vendor should be able to tell you which one applies to which part of their product without hedging.</p>
+</details>
 
-**Can a platform be both cloud-hosted for daily use and air-gapped for the most sensitive work?**  
-Yes, and this is a common and sensible pattern. Most day-to-day coordination doesn't need air-gapped infrastructure, and forcing every meeting through the most restrictive deployment model tends to just push people back toward whatever convenient tool they can find instead. A platform that offers a hosted, server-blind option for routine work and a self-hosted or air-gapped deployment for programs that require it lets the deployment model match the actual sensitivity of the conversation, rather than applying one setting to everything.
+<details>
+  <summary>4. Can a platform be both cloud-hosted for daily use and air-gapped for the most sensitive work?</summary>
+  <p>Yes, and this is a common and sensible pattern. Most day-to-day coordination doesn't need air-gapped infrastructure, and forcing every meeting through the most restrictive deployment model tends to just push people back toward whatever convenient tool they can find instead. A platform that offers a hosted, server-blind option for routine work and a self-hosted or air-gapped deployment for programs that require it lets the deployment model match the actual sensitivity of the conversation, rather than applying one setting to everything.</p>
+</details>
 
-**Does self-hosting actually remove CLOUD Act exposure?**  
-When an agency or contractor self-hosts on infrastructure it owns, there is no US-operated cloud sitting in the path and no default egress back to an outside vendor — the data stays under the organization's own jurisdiction and control by design. That said, this is ultimately a legal determination, not just a technical one, and an organization's own counsel should make the final call for its specific circumstances. What the architecture can guarantee is that the vendor is structurally out of the path; what it can't do is substitute for a legal opinion.
+<details>
+  <summary>5. Does self-hosting actually remove CLOUD Act exposure?</summary>
+  <p>When an agency or contractor self-hosts on infrastructure it owns, there is no US-operated cloud sitting in the path and no default egress back to an outside vendor — the data stays under the organization's own jurisdiction and control by design. That said, this is ultimately a legal determination, not just a technical one, and an organization's own counsel should make the final call for its specific circumstances. What the architecture can guarantee is that the vendor is structurally out of the path; what it can't do is substitute for a legal opinion.</p>
+</details>
 
-**What happens to metadata even when messaging is end-to-end encrypted?**  
-End-to-end encryption protects the content of a message — what was said — but it doesn't automatically hide the fact that a conversation happened. Who was in a channel, when they were active, and how often two parties communicate can still be visible to whoever operates the service, even when they can't read a single word of the actual content. This is exactly why the deployment boundary matters as much as the encryption itself: self-hosting or air-gapping removes an outside operator from seeing that metadata at all, not just the message content.
+<details>
+  <summary>6. What happens to metadata even when messaging is end-to-end encrypted?</summary>
+  <p>End-to-end encryption protects the content of a message — what was said — but it doesn't automatically hide the fact that a conversation happened. Who was in a channel, when they were active, and how often two parties communicate can still be visible to whoever operates the service, even when they can't read a single word of the actual content. This is exactly why the deployment boundary matters as much as the encryption itself: self-hosting or air-gapping removes an outside operator from seeing that metadata at all, not just the message content.</p>
+</details>
 
-**Can we require vendors to name their subprocessors and data residency in writing?**  
-Yes, and for government and defense procurement this should be a standard, non-negotiable line item rather than an optional ask. A vendor that can't produce a clear, current list of subprocessors, hosting regions, and what each one can technically access isn't ready for a program that will eventually face an audit, an assessor, or an inspector general's questions. Get it in writing before the contract is signed, not after an incident forces the question.
+<details>
+  <summary>7. Can we require vendors to name their subprocessors and data residency in writing?</summary>
+  <p>Yes, and for government and defense procurement this should be a standard, non-negotiable line item rather than an optional ask. A vendor that can't produce a clear, current list of subprocessors, hosting regions, and what each one can technically access isn't ready for a program that will eventually face an audit, an assessor, or an inspector general's questions. Get it in writing before the contract is signed, not after an incident forces the question.</p>
+</details>
 
-**Does using a secure video platform replace the need for staff training?**  
-No. Architecture reduces the ways a platform itself can become the point of failure, but a well-secured tool can still be undermined by a staffer who screen-shares the wrong window, forwards a recording to the wrong list, or joins a sensitive call from an unmanaged personal device. The checklist in this piece is necessary infrastructure, not a substitute for the same access-discipline and training programs already require for handling CUI and classified material in any other form.
+<details>
+  <summary>8. Does using a secure video platform replace the need for staff training?</summary>
+  <p>No. Architecture reduces the ways a platform itself can become the point of failure, but a well-secured tool can still be undermined by a staffer who screen-shares the wrong window, forwards a recording to the wrong list, or joins a sensitive call from an unmanaged personal device. The checklist in this piece is necessary infrastructure, not a substitute for the same access-discipline and training programs already require for handling CUI and classified material in any other form.</p>
+</details>
 
-**How does this differ from just requiring a FedRAMP-authorized tool?**  
-FedRAMP authorization is a meaningful signal for federal agencies procuring cloud services, but it isn't the whole answer for every scenario in this piece. It typically applies to a specific hosted offering, doesn't automatically cover self-hosted or air-gapped deployments, and doesn't by itself tell you whether messaging is genuinely server-blind or whether meeting media reaches an outside operator. Treat a FedRAMP authorization as one useful data point among the requirements in the checklist above, not as a replacement for asking the more specific architecture questions directly.
+<details>
+  <summary>9. How does this differ from just requiring a FedRAMP-authorized tool?</summary>
+  <p>FedRAMP authorization is a meaningful signal for federal agencies procuring cloud services, but it isn't the whole answer for every scenario in this piece. It typically applies to a specific hosted offering, doesn't automatically cover self-hosted or air-gapped deployments, and doesn't by itself tell you whether messaging is genuinely server-blind or whether meeting media reaches an outside operator. Treat a FedRAMP authorization as one useful data point among the requirements in the checklist above, not as a replacement for asking the more specific architecture questions directly.</p>
+</details>
 
 ## Putting it into practice
 
