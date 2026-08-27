@@ -181,35 +181,33 @@ const postsJson = JSON.stringify(
           <div class="sidebar-pricing-section">
             <h4 class="action-box-title">Ready for Sovereign Video?</h4>
             <p class="action-box-desc">Transparent pricing and dedicated deployment support for regulated organizations.</p>
-            <a href="/pricing" class="sidebar-pricing-item">
-              <div class="pricing-item-icon">🏢</div>
-              <div class="pricing-item-info">
-                <span class="pricing-item-name">Business</span>
-                <span class="pricing-item-desc">For growing teams</span>
+            <div class="sidebar-pricing-list">
+              <div class="sidebar-pricing-item">
+                <div class="pricing-item-icon">🏢</div>
+                <div class="pricing-item-info">
+                  <span class="pricing-item-name">Business</span>
+                  <span class="pricing-item-desc">For growing teams</span>
+                </div>
               </div>
-              <span class="pricing-item-arrow">&rarr;</span>
-            </a>
-            <a href="/pricing" class="sidebar-pricing-item">
-              <div class="pricing-item-icon">🏛️</div>
-              <div class="pricing-item-info">
-                <span class="pricing-item-name">Enterprise</span>
-                <span class="pricing-item-desc">On-prem & air-gapped</span>
+              <div class="sidebar-pricing-item">
+                <div class="pricing-item-icon">🏛️</div>
+                <div class="pricing-item-info">
+                  <span class="pricing-item-name">Enterprise</span>
+                  <span class="pricing-item-desc">On-prem & air-gapped</span>
+                </div>
               </div>
-              <span class="pricing-item-arrow">&rarr;</span>
-            </a>
-            <a href="/pricing" class="sidebar-pricing-item">
-              <div class="pricing-item-icon">🔒</div>
-              <div class="pricing-item-info">
-                <span class="pricing-item-name">Government</span>
-                <span class="pricing-item-desc">FedRAMP & IL5 ready</span>
+              <div class="sidebar-pricing-item">
+                <div class="pricing-item-icon">🔒</div>
+                <div class="pricing-item-info">
+                  <span class="pricing-item-name">Government</span>
+                  <span class="pricing-item-desc">FedRAMP & IL5 ready</span>
+                </div>
               </div>
-              <span class="pricing-item-arrow">&rarr;</span>
+            </div>
+            <a href="/pricing" class="sidebar-view-all">
+              <span>Compare All Plans &rarr;</span>
             </a>
           </div>
-
-          <a href="/pricing" class="sidebar-view-all">
-            <span>Compare All Plans &rarr;</span>
-          </a>
 
           <!-- Contact CTA Card -->
           <div class="sidebar-consult-card">
@@ -483,13 +481,17 @@ const postsJson = JSON.stringify(
     background-clip: padding-box, border-box;
     box-shadow: 0 4px 18px -2px rgba(2, 132, 199, 0.12), 0 0 12px rgba(3, 221, 190, 0.08);
   }
+  .sidebar-pricing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
   .sidebar-pricing-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 10px;
+    padding: 8px 10px;
     border-radius: 10px;
-    text-decoration: none;
     transition: all 0.18s ease;
     border: 1.5px solid transparent;
   }
@@ -524,16 +526,6 @@ const postsJson = JSON.stringify(
   .pricing-item-desc {
     font-size: 11px;
     color: var(--muted);
-  }
-  .pricing-item-arrow {
-    font-size: 12px;
-    color: #6C08FB;
-    font-weight: 700;
-    transition: transform 0.18s ease;
-    flex-shrink: 0;
-  }
-  .sidebar-pricing-item:hover .pricing-item-arrow {
-    transform: translateX(2px);
   }
 
   /* Right Sidebar Consultation Card */
