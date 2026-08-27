@@ -41,37 +41,37 @@ const faq = [
     lead="Serious buyers reward a vendor who draws the line clearly. Here’s exactly what we offer today for your compliance programme, and what’s on the roadmap — no badges we don’t hold."
   />
 
-  <section class="section" style="padding-top:32px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Today</span>
         <h2 class="h2" style="margin-top:12px">What we give your programme now</h2>
       </div>
-      <div class="grid grid-4" data-reveal>
+      <div class="grid grid-4" data-reveal style="margin-top:24px">
         {have.map((h) => (
           <div class="card card--hover">
             <div class="card__icon card__icon--teal"><Icon name={h.icon} size={20} /></div>
             <h3 class="h3">{h.title}</h3>
-            <p>{h.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55">{h.body}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Certification roadmap</span>
         <h2 class="h2" style="margin-top:12px">Where we’re headed, in order</h2>
         <p class="kicker" style="margin-top:14px">We publish the roadmap rather than imply a status. Design partners move it forward.</p>
       </div>
-      <div class="road" data-reveal>
+      <div class="road" data-reveal style="margin-top:24px">
         {roadmap.map((r) => (
           <div class={`road__item road__item--${r.status}`}>
             <span class="road__badge mono">{r.status === 'now' ? 'Available' : r.status === 'next' ? 'In progress' : 'Planned'}</span>
-            <h3 style="font-size:17px;font-weight:600;margin-top:10px">{r.title}</h3>
-            <p class="muted" style="font-size:14px;margin-top:6px">{r.body}</p>
+            <h3 style="font-size:16.5px;font-weight:700;margin-top:10px;color:var(--ink)">{r.title}</h3>
+            <p class="muted" style="font-size:14px;margin-top:6px;line-height:1.5">{r.body}</p>
           </div>
         ))}
       </div>
@@ -88,11 +88,13 @@ const faq = [
 </Base>
 
 <style>
-  .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-  .road__item { border: 1px solid var(--line); border-radius: var(--r); padding: 20px; background: rgba(255,255,255,.02); }
-  .road__item--now { border-color: var(--teal-150); background: linear-gradient(180deg, var(--teal-050), transparent); }
-  .road__badge { font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-  .road__item--now .road__badge { color: #a9f2d1; }
+  .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .road__item { border: 1.5px solid #e2e8f0; border-radius: var(--r-lg); padding: 22px; background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); }
+  .road__item--now { border-color: rgba(0, 191, 165, 0.4); background: linear-gradient(180deg, rgba(0, 191, 165, 0.07) 0%, #ffffff 100%); }
+  .road__badge { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); font-weight: 700; }
+  .road__item--now .road__badge { color: #0f766e; }
+  .road__item--next { border-color: rgba(124, 58, 237, 0.35); background: linear-gradient(180deg, rgba(124, 58, 237, 0.05) 0%, #ffffff 100%); }
+  .road__item--next .road__badge { color: #6d28d9; }
   @media (max-width: 1000px) { .road { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .road { grid-template-columns: 1fr; } }
 </style>

@@ -38,17 +38,17 @@ const schema = {
   </PageHero>
 
   <!-- PAINS -->
-  <section class="section" style="padding-top:34px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">The problem</span>
         <h2 class="h2" style="margin-top:12px">Why the usual tools don’t fit</h2>
       </div>
-      <div class="grid grid-3" data-reveal>
+      <div class="grid grid-3" data-reveal style="margin-top:24px">
         {uc.pains.map((p) => (
-          <div class="card pain">
+          <div class="card card--hover pain">
             <h3 class="h3">{p.title}</h3>
-            <p>{p.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14.5px;line-height:1.55">{p.body}</p>
           </div>
         ))}
       </div>
@@ -56,19 +56,19 @@ const schema = {
   </section>
 
   <!-- HELPS -->
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">How Ollasync helps</span>
         <h2 class="h2" style="margin-top:12px">Confidentiality that fits your workflow</h2>
       </div>
-      <div class="grid grid-2" data-reveal>
+      <div class="grid grid-2" data-reveal style="margin-top:24px">
         {uc.helps.map((h) => (
           <div class="card feature-row card--hover">
             <div class="card__icon"><Icon name={h.icon} size={20} /></div>
             <div>
               <h3 class="h3">{h.title}</h3>
-              <p style="margin-top:6px">{h.body}</p>
+              <p style="margin-top:8px;color:var(--muted);font-size:14.5px;line-height:1.55">{h.body}</p>
             </div>
           </div>
         ))}
@@ -77,7 +77,7 @@ const schema = {
   </section>
 
   <!-- SCENARIO -->
-  <section class="section" style="padding-top:12px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="scenario panel" data-reveal>
         <span class="badge-soft">In practice</span>
@@ -88,17 +88,17 @@ const schema = {
   </section>
 
   <!-- COMPLIANCE -->
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-block:48px">
     <div class="container">
       <div class="boundary panel" data-reveal>
         <div>
-          <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={13} stroke="#a9f2d1" /> Compliance posture</span>
+          <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={14} stroke="#0d9488" /> Compliance posture</span>
           <h2 class="h2" style="margin-top:16px;max-width:18ch">{uc.complianceTitle}</h2>
           <p class="lead" style="margin-top:14px;max-width:50ch">We give you controls, not a badge we don’t hold — and self-hosting keeps regulated data inside your own boundary.</p>
           <a href="/compliance" class="btn btn-ghost" style="margin-top:22px">Full compliance posture <span class="arrow">→</span></a>
         </div>
         <ul class="check-list boundary__list">
-          {uc.compliance.map((c) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{c}</li>)}
+          {uc.compliance.map((c) => <li><span class="tick"><Icon name="check" size={12} stroke="#0d9488" /></span>{c}</li>)}
         </ul>
       </div>
     </div>
@@ -114,10 +114,11 @@ const schema = {
 </Base>
 
 <style>
-  .pain h3 { font-size: 17px; }
-  .pain p { margin-top: 8px; }
-  .scenario { padding: clamp(26px,4vw,40px); }
-  .boundary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); }
+  .pain { padding: 24px; border: 1.5px solid #e2e8f0; border-radius: var(--r-lg); background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); }
+  .feature-row { display: flex; gap: 18px; align-items: flex-start; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); padding: 24px; }
+  .feature-row .card__icon { margin-bottom: 0; flex: none; }
+  .scenario { padding: clamp(26px,4vw,40px); border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05); }
+  .boundary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05); }
   .boundary__list { gap: 14px; }
   @media (max-width: 900px) { .boundary { grid-template-columns: 1fr; gap: 28px; } }
 </style>

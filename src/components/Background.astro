@@ -1,10 +1,60 @@
 ---
-// Ambient aurora + grid background. Purely decorative.
+// Luminous light gradient mesh and delicate grid background
 ---
-<div class="aurora" aria-hidden="true">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-  <div class="grid-mask"></div>
-  <div class="fade"></div>
+<div class="bg-system" aria-hidden="true">
+  <div class="aurora-orb aurora-cyan"></div>
+  <div class="aurora-orb aurora-purple"></div>
+  <div class="bg-grid"></div>
 </div>
+
+<style>
+  .bg-system {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .aurora-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .aurora-cyan {
+    width: 650px;
+    height: 650px;
+    top: -150px;
+    left: 15%;
+    background: radial-gradient(circle, rgba(0, 191, 165, 0.12) 0%, rgba(2, 132, 199, 0.06) 60%, transparent 75%);
+  }
+
+  .aurora-purple {
+    width: 600px;
+    height: 600px;
+    top: 20%;
+    right: -100px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, rgba(192, 38, 211, 0.04) 60%, transparent 75%);
+  }
+
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 50% 25%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 75%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 25%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 75%, transparent 100%);
+  }
+</style>
+
+

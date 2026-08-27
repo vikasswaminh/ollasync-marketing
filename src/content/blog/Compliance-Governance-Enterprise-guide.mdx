@@ -255,20 +255,40 @@ Self-hosted sovereign infrastructure decouples licensing costs from hardware com
 
 ## Frequently Asked Questions (FAQs)
 
-### What is the precise legal definition of data sovereignty in video conferencing?
+<details class="faq-item">
+<summary>What is the precise legal definition of data sovereignty in video conferencing?</summary>
+
 Data sovereignty means that real-time video feeds, audio packets, participant metadata, room rosters, transcripts, and saved recordings are legally governed exclusively by the statutes of the physical country where the infrastructure resides. It requires that physical hardware, network relays, administrative controls, and encryption keys remain isolated from foreign corporate ownership and foreign judicial extractions.
 
-### How does sovereign video infrastructure protect against the US CLOUD Act?
+</details>
+
+<details class="faq-item">
+<summary>How does sovereign video infrastructure protect against the US CLOUD Act?</summary>
+
 The US CLOUD Act applies to US-based technology companies, allowing US courts to compel them to provide data stored on their global servers. Sovereign video infrastructure mitigates CLOUD Act risk by utilizing open-source software running on hardware owned or leased by local corporate entities, operated by local personnel, and authenticated via local key management systems. Because no foreign corporate entity holds root access or encryption keys, foreign extraction orders cannot be served or enforced against the platform.
 
-### Can external international partners join meetings hosted on a sovereign video platform?
+</details>
+
+<details class="faq-item">
+<summary>Can external international partners join meetings hosted on a sovereign video platform?</summary>
+
 Yes. External international guests can join meetings hosted on sovereign infrastructure via standard web browsers using HTTPS/WSS links. The guest's browser establishes an encrypted WebRTC session directly with your local sovereign media server. The signaling, media processing, and encryption key exchanges occur entirely within your sovereign perimeter, ensuring that external attendees can participate without exposing meeting data to foreign cloud intermediaries.
 
-### Does enforcing data sovereignty impact real-time video call performance or latency?
+</details>
+
+<details class="faq-item">
+<summary>Does enforcing data sovereignty impact real-time video call performance or latency?</summary>
+
 No. In fact, sovereign infrastructure frequently improves video quality and reduces latency. By hosting media servers and TURN relays locally within regional data centers or private corporate backbones, media packets travel over shorter physical network paths compared to commercial SaaS platforms that route traffic through multi-tenant cloud hubs. Using modern codecs like AV1 alongside Scalable Video Coding (SVC) ensures crisp HD video rendering even over constrained connections.
 
-### Is it possible to deploy sovereign video conferencing in an air-gapped environment?
+</details>
+
+<details class="faq-item">
+<summary>Is it possible to deploy sovereign video conferencing in an air-gapped environment?</summary>
+
 Yes. Open-source WebRTC platforms can operate entirely isolated from the public internet. By hosting identity authentication (OIDC/SAML), signaling gateways, media relays, and local object storage on internal local area networks (LANs), organizations run secure real-time communications in completely air-gapped environments.
+
+</details>
 
 ## The bottom line
 

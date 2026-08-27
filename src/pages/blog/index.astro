@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import PageHero from '../../components/PageHero.astro';
 import Icon from '../../components/Icon.astro';
 import Cta from '../../components/Cta.astro';
 
@@ -9,26 +8,57 @@ const title = 'Blog — encrypted, self-hosted video conferencing';
 const description =
   'Guides and deep dives on end-to-end encryption, self-hosting, data residency and secure video conferencing — from the team building Ollasync.';
 
-const posts = (await getCollection('blog'))
+const allPosts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const featured = posts[0];
-const rest = posts.slice(1);
+// Featured / Important Guides for left sidebar (only 4)
+const featuredLeftSlugs = [
+  'compliance-governance-enterprise-guide',
+  'self-hosting-piller',
+  'end-to-end-encrypted-video-conferencing',
+  'self-hosted-vs-cloud-video-meetings',
+];
+const featuredPosts = featuredLeftSlugs
+  .map((slug) => allPosts.find((p) => p.slug === slug))
+  .filter(Boolean);
+
+// Security & Architecture deep dives for right sidebar
+const rightSidebarSlugs = [
+  'are-cloud-ai-video-transcripts-safe',
+  'end-to-end-encryption-vs-in-transit-encryption-in-video-calls',
+  'how-mls-encryption-works',
+  'what-a-server-can-see-on-an-encrypted-call',
+  'per-frame-media-encryption-explained',
+  'eu-data-residency-explained',
+  'gdpr-compliant-video-conferencing',
+  'hipaa-compliant-video-conferencing',
+];
+const rightSidebarPosts = rightSidebarSlugs
+  .map((slug) => allPosts.find((p) => p.slug === slug))
+  .filter(Boolean);
+
+// Hero / Newest article
+const newestPost = allPosts[0];
+// Rest of the articles (all remaining without images)
+const remainingPosts = allPosts.slice(1);
+
 const ALL_CATEGORIES = [
-  "Self-Hosted",
+  "All",
+  "Self-Hosting",
   "Cryptography",
   "Comparisons",
+  "Enterprise Use Cases",
   "Compliance",
-  "Guides",
   "Security",
   "Infrastructure & Performance",
-  "Enterprise Use Cases",
+  "Guides",
 ];
+
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 
 const postsJson = JSON.stringify(
-  posts.map((p) => ({
+  allPosts.map((p) => ({
     slug: p.slug,
     title: p.data.title,
     description: p.data.description,
@@ -40,51 +70,165 @@ const postsJson = JSON.stringify(
   }))
 );
 ---
+
 <Base title={title} description={description}>
-  <PageHero
-    eyebrow="Blog"
-    eyebrowIcon="doc"
-    crumbs={[{ label: 'Blog' }]}
-    title="On encryption, self-hosting"
-    titleAccent="& data sovereignty"
-    lead="Practical, honest writing about building — and buying — video conferencing you can actually trust."
-  />
-
-  <section class="section" style="padding-top:24px">
-    <div class="container">
-      <div class="cat-filter" data-reveal>
-        <button class="chip is-active" data-cat="all">All</button>
-        {ALL_CATEGORIES.map((c) => <button class="chip" data-cat={c}>{c}</button>)}
-      </div>
-
-      {featured && (
-        <a href={`/blog/${featured.slug}`} id="featuredHero" class="feat card--hover" data-reveal data-cat={featured.data.category} data-slug={featured.slug} style="display:none">
-          <div class="feat__media"><img id="featuredImg" src={featured.data.cover || '/og-ollasync.png'} alt={featured.data.title} width="640" height="420" loading="eager" /></div>
-          <div class="feat__body">
-            <span id="featuredCat" class="chip cat">{featured.data.category}{featured.data.pillar && <> · Pillar guide</>}</span>
-            <h2 id="featuredTitle" class="h2" style="margin-top:14px;font-size:clamp(24px,3vw,32px)">{featured.data.title}</h2>
-            <p id="featuredDesc" class="lead" style="margin-top:12px">{featured.data.description}</p>
-            <div id="featuredMeta" class="post-meta">{fmt(featured.data.pubDate)} · {featured.data.readTime} min read</div>
-            <span class="feat__more mono">Read the guide <Icon name="arrow" size={15} /></span>
+  <div class="blog-hub-page">
+    <div class="container blog-hub-container">
+      
+      <!-- LEFT SIDEBAR: FEATURED ARTICLES & PRICING/CONTACT -->
+      <aside class="blog-sidebar blog-sidebar--left">
+        <div class="sidebar-sticky-wrap">
+          <div class="sidebar-badge badge--teal">
+            <Icon name="star" size={13} stroke="#0f766e" />
+            <span>FEATURED GUIDES</span>
           </div>
-        </a>
-      )}
 
-      <div class="posts" id="postGrid" data-reveal>
-        {posts.map((p) => (
-          <a href={`/blog/${p.slug}`} class="post-card card card--hover" data-cat={p.data.category} data-slug={p.slug}>
-            <div class="post-card__media"><img src={p.data.cover || '/og-ollasync.png'} alt={p.data.title} width="420" height="240" loading="lazy" /></div>
-            <div class="post-card__body">
-              <span class="chip cat">{p.data.category}</span>
-              <h3 style="font-size:18px;font-weight:600;margin-top:12px">{p.data.title}</h3>
-              <p class="muted" style="font-size:14px;margin-top:8px">{p.data.description.slice(0, 120)}…</p>
-              <div class="post-meta">{fmt(p.data.pubDate)} · {p.data.readTime} min</div>
+          <div class="sidebar-featured-section">
+            <nav class="sidebar-links-list">
+              {featuredPosts.map((p) => p && (
+                <a href={`/blog/${p.slug}`} class="sidebar-link-item">
+                  <span class="sli-title">{p.data.title}</span>
+                </a>
+              ))}
+            </nav>
+
+            <a href="/self-hosted" class="sidebar-view-all">
+              <span>Explore Self-Hosted Architecture &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER / MAIN CONTENT -->
+      <main class="blog-main-feed">
+        <!-- Main Hub Header -->
+        <header class="feed-header">
+          <div class="cat-pill-row">
+            <div class="section-label-chip">
+              <Icon name="zap" size={13} stroke="#00bfa5" />
+              <span>NEWEST ARTICLES</span>
             </div>
+            <span class="label-subtext">Latest from our security engineering team</span>
+          </div>
+        </header>
+
+        <!-- HIGHLIGHTED NEWEST HERO ARTICLE (WITH IMAGE) -->
+        {newestPost && (
+          <article class="hero-post-card" id="heroPostCard" data-slug={newestPost.slug} data-cat={newestPost.data.category}>
+            <a href={`/blog/${newestPost.slug}`} class="hero-post-link">
+              <div class="hero-post-image-wrap">
+                <img id="heroCoverImg" src={newestPost.data.cover || '/og-ollasync.png'} alt={newestPost.data.title} width="680" height="380" loading="eager" />
+              </div>
+              <div class="hero-post-content">
+                <div class="hero-post-top">
+                  <span id="heroCatTag" class="badge-cat">{newestPost.data.category}{newestPost.data.pillar && ' · Pillar'}</span>
+                  <span class="badge-new">NEW</span>
+                </div>
+                <h2 id="heroPostTitle" class="hero-post-title">{newestPost.data.title}</h2>
+                <p id="heroPostDesc" class="hero-post-desc">{newestPost.data.description}</p>
+                <div class="hero-post-footer">
+                  <span id="heroPostMeta" class="meta-time">{newestPost.data.readTime} min read</span>
+                  <span class="meta-dot">·</span>
+                  <span class="read-action">Read article &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        )}
+
+        <!-- CATEGORY FILTER CHIPS -->
+        <div class="category-filters" id="catFilterRow">
+          {ALL_CATEGORIES.map((cat, idx) => (
+            <button class={`filter-btn ${idx === 0 ? 'is-active' : ''}`} data-cat={cat.toLowerCase().replace(/[^a-z0-9]/g, '')}>
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <!-- REMAINING ARTICLES (NO IMAGES, 3-COLUMN COMPACT CARDS) -->
+        <div class="compact-posts-grid" id="compactPostGrid">
+          {allPosts.map((p, idx) => (
+            <a
+              href={`/blog/${p.slug}`}
+              class="compact-card"
+              data-cat={p.data.category.toLowerCase().replace(/[^a-z0-9]/g, '')}
+              data-slug={p.slug}
+              style={idx === 0 ? 'display:none;' : ''}
+            >
+              <div class="compact-card-top">
+                <span class="badge-cat">{p.data.category}</span>
+              </div>
+              <h3 class="compact-card-title">{p.data.title}</h3>
+              <p class="compact-card-desc">{p.data.description}</p>
+              <div class="compact-card-footer">
+                <span class="compact-card-time">{p.data.readTime} min read</span>
+                <span class="compact-card-arrow">&rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </main>
+
+      <!-- RIGHT SIDEBAR: PRICING & CONTACT -->
+      <aside class="blog-sidebar blog-sidebar--right">
+        <div class="sidebar-sticky-wrap">
+          <div class="sidebar-badge badge--blue">
+            <Icon name="shield" size={13} stroke="#0284c7" />
+            <span>SECURITY & ARCHITECTURE</span>
+          </div>
+
+          <!-- Pricing & Plans -->
+          <div class="sidebar-pricing-section">
+            <h4 class="action-box-title">Ready for Sovereign Video?</h4>
+            <p class="action-box-desc">Transparent pricing and dedicated deployment support for regulated organizations.</p>
+            <a href="/pricing" class="sidebar-pricing-item">
+              <div class="pricing-item-icon">🏢</div>
+              <div class="pricing-item-info">
+                <span class="pricing-item-name">Business</span>
+                <span class="pricing-item-desc">For growing teams</span>
+              </div>
+              <span class="pricing-item-arrow">&rarr;</span>
+            </a>
+            <a href="/pricing" class="sidebar-pricing-item">
+              <div class="pricing-item-icon">🏛️</div>
+              <div class="pricing-item-info">
+                <span class="pricing-item-name">Enterprise</span>
+                <span class="pricing-item-desc">On-prem & air-gapped</span>
+              </div>
+              <span class="pricing-item-arrow">&rarr;</span>
+            </a>
+            <a href="/pricing" class="sidebar-pricing-item">
+              <div class="pricing-item-icon">🔒</div>
+              <div class="pricing-item-info">
+                <span class="pricing-item-name">Government</span>
+                <span class="pricing-item-desc">FedRAMP & IL5 ready</span>
+              </div>
+              <span class="pricing-item-arrow">&rarr;</span>
+            </a>
+          </div>
+
+          <a href="/pricing" class="sidebar-view-all">
+            <span>Compare All Plans &rarr;</span>
           </a>
-        ))}
-      </div>
+
+          <!-- Contact CTA Card -->
+          <div class="sidebar-consult-card">
+            <div class="consult-badge">
+              <span class="pulse-dot"></span>
+              <span>GET IN TOUCH</span>
+            </div>
+            <h4 class="consult-title">Need a custom deployment or have questions?</h4>
+            <p class="consult-desc">Talk directly with our solutions engineering team.</p>
+            <a href="/contact" class="btn-consult">
+              <Icon name="message" size={15} />
+              <span>Contact Team</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
     </div>
-  </section>
+  </div>
   <Cta />
 </Base>
 
@@ -103,60 +247,57 @@ const postsJson = JSON.stringify(
     pillar?: boolean;
   }> = dataScript ? JSON.parse(dataScript.textContent || '[]') : [];
 
-  const btns = document.querySelectorAll('.cat-filter .chip');
-  const featuredHero = document.getElementById('featuredHero') as HTMLAnchorElement | null;
-  const featuredImg = document.getElementById('featuredImg') as HTMLImageElement | null;
-  const featuredCat = document.getElementById('featuredCat') as HTMLElement | null;
-  const featuredTitle = document.getElementById('featuredTitle') as HTMLElement | null;
-  const featuredDesc = document.getElementById('featuredDesc') as HTMLElement | null;
-  const featuredMeta = document.getElementById('featuredMeta') as HTMLElement | null;
-  const gridCards = document.querySelectorAll('#postGrid .post-card') as NodeListOf<HTMLElement>;
+  const filterButtons = document.querySelectorAll('.category-filters .filter-btn');
+  const heroCard = document.getElementById('heroPostCard');
+  const heroImg = document.getElementById('heroCoverImg') as HTMLImageElement | null;
+  const heroCat = document.getElementById('heroCatTag');
+  const heroTitle = document.getElementById('heroPostTitle');
+  const heroDesc = document.getElementById('heroPostDesc');
+  const heroMeta = document.getElementById('heroPostMeta');
+  const compactCards = document.querySelectorAll('#compactPostGrid .compact-card') as NodeListOf<HTMLElement>;
 
   function norm(str: string) {
     return (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   }
 
-  function matchesCategory(postCat: string, filterCat: string) {
-    if (!filterCat || filterCat === 'all') return true;
-    const nCard = norm(postCat);
-    const nFilter = norm(filterCat);
-    if (nFilter === 'selfhosted' && (nCard === 'selfhosted' || nCard === 'selfhosting')) return true;
-    return nCard === nFilter;
-  }
+  function filterPosts(targetCat: string) {
+    filterButtons.forEach((btn) => {
+      btn.classList.toggle('is-active', btn.getAttribute('data-cat') === targetCat);
+    });
 
-  function filterBy(cat: string) {
-    btns.forEach((x) => x.classList.toggle('is-active', x.getAttribute('data-cat') === cat));
+    const isAll = targetCat === 'all' || !targetCat;
 
-    if (cat === 'all') {
-      if (featuredHero) featuredHero.style.display = 'none';
-      gridCards.forEach((c) => (c.style.display = ''));
+    if (isAll) {
+      if (allPosts.length > 0) {
+        const top = allPosts[0];
+        updateHero(top);
+        if (heroCard) heroCard.style.display = '';
+      }
+      compactCards.forEach((c, idx) => {
+        c.style.display = idx === 0 ? 'none' : '';
+      });
       return;
     }
 
-    const matched = allPosts.filter((p) => matchesCategory(p.category, cat));
+    const matched = allPosts.filter((p) => {
+      const nP = norm(p.category);
+      if ((targetCat === 'selfhosted' || targetCat === 'selfhosting') && (nP === 'selfhosted' || nP === 'selfhosting')) return true;
+      return nP === targetCat;
+    });
 
     if (matched.length === 0) {
-      if (featuredHero) featuredHero.style.display = 'none';
-      gridCards.forEach((c) => (c.style.display = 'none'));
+      if (heroCard) heroCard.style.display = 'none';
+      compactCards.forEach((c) => (c.style.display = 'none'));
       return;
     }
 
     const top = matched[0];
-    if (featuredHero && featuredImg && featuredCat && featuredTitle && featuredDesc && featuredMeta) {
-      featuredHero.href = `/blog/${top.slug}`;
-      featuredHero.setAttribute('data-cat', top.category);
-      featuredHero.setAttribute('data-slug', top.slug);
-      featuredImg.src = top.cover;
-      featuredImg.alt = top.title;
-      featuredCat.textContent = top.category + (top.pillar ? ' · Pillar guide' : '');
-      featuredTitle.textContent = top.title;
-      featuredDesc.textContent = top.description;
-      featuredMeta.textContent = `${top.pubDate} · ${top.readTime} min read`;
-      featuredHero.style.display = '';
-    }
+    updateHero(top);
+    if (heroCard) heroCard.style.display = '';
 
-    const restSlugs = new Set(matched.slice(1).map((p) => p.slug));
-    gridCards.forEach((card) => {
+    const matchedSlugs = new Set(matched.map((p) => p.slug));
+    const restSlugs = matched.length > 1 ? new Set(matched.slice(1).map((p) => p.slug)) : matchedSlugs;
+    compactCards.forEach((card) => {
       const slug = card.getAttribute('data-slug');
       if (slug && restSlugs.has(slug)) {
         card.style.display = '';
@@ -166,47 +307,643 @@ const postsJson = JSON.stringify(
     });
   }
 
-  btns.forEach((b) =>
-    b.addEventListener('click', () => {
-      const cat = b.getAttribute('data-cat') || 'all';
-      filterBy(cat);
-    })
-  );
+  function updateHero(post: any) {
+    if (heroCard && heroImg && heroCat && heroTitle && heroDesc && heroMeta) {
+      const link = heroCard.querySelector('.hero-post-link') as HTMLAnchorElement;
+      if (link) link.href = `/blog/${post.slug}`;
+      heroImg.src = post.cover || '/og-ollasync.png';
+      heroImg.alt = post.title;
+      heroCat.textContent = post.category + (post.pillar ? ' · Pillar' : '');
+      heroTitle.textContent = post.title;
+      heroDesc.textContent = post.description;
+      heroMeta.textContent = `${post.readTime} min read`;
+    }
+  }
 
-  // Check URL param on load
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-cat') || 'all';
+      filterPosts(cat);
+    });
+  });
+
   const urlParam = new URLSearchParams(window.location.search).get('category');
   if (urlParam) {
-    filterBy(urlParam);
+    filterPosts(norm(urlParam));
   }
 </script>
 
 <style>
-  .cat { font-family: var(--font-mono); font-size: 11px; color: #cfc6ff; border-color: var(--violet-300); background: var(--violet-050); }
-  .cat-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
-  .cat-filter .chip { cursor: pointer; background: rgba(255,255,255,.03); }
-  .cat-filter .chip.is-active { background: var(--grad-accent); color: #fff; border-color: transparent; }
-  .post-meta { font-size: 12.5px; color: var(--muted-2); margin-top: 12px; font-family: var(--font-mono); }
+  .blog-hub-page {
+    background: #ffffff;
+    padding-block: 12px 80px;
+    border-bottom: 1px solid #eae7df;
+  }
 
-  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--r-xl); overflow: hidden; background: linear-gradient(180deg, var(--panel), var(--bg-3)); margin-bottom: 30px; transition: border-color var(--dur) ease; min-height: 380px; }
-  .feat:hover { border-color: var(--violet-300); }
-  .feat__media { position: relative; width: 100%; height: 100%; overflow: hidden; min-height: 380px; }
-  .feat__media img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-  .feat__body { padding: clamp(24px,3vw,36px); display: flex; flex-direction: column; justify-content: center; }
-  .feat__body .h2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .feat__body .lead { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .feat__more { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; font-size: 13px; color: var(--iris); }
+  .blog-hub-container {
+    max-width: 1480px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr) 240px;
+    gap: 36px;
+    align-items: start;
+  }
 
-  .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .post-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
-  .post-card__media img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid var(--line); }
-  .post-card__body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-  .post-card__body h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .post-card__body p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .post-card__body .post-meta { margin-top: auto; padding-top: 12px; }
-  @media (max-width: 900px) {
-    .feat { grid-template-columns: 1fr; min-height: auto; }
-    .feat__media { position: relative; min-height: 220px; height: 220px; }
-    .feat__media img { position: relative; height: 220px; }
-    .posts { grid-template-columns: 1fr; }
+  /* ---- SIDEBARS (LEFT & RIGHT) ---- */
+  .blog-sidebar {
+    position: sticky;
+    top: 88px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #c4d6e0 transparent;
+    padding-right: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .blog-sidebar::-webkit-scrollbar { width: 4px; }
+  .blog-sidebar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+
+  .sidebar-sticky-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sidebar-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  .badge--teal {
+    color: #0ACEBE;
+    background: linear-gradient(135deg, rgba(10, 206, 190, 0.14) 0%, rgba(108, 8, 251, 0.08) 100%);
+    border: 1.5px solid rgba(10, 206, 190, 0.45);
+  }
+  .badge--blue {
+    color: #6C08FB;
+    background: linear-gradient(135deg, rgba(108, 8, 251, 0.08) 0%, rgba(10, 206, 190, 0.12) 100%);
+    border: 1.5px solid rgba(108, 8, 251, 0.3);
+  }
+
+  /* Left Sidebar Featured Section Card */
+  .sidebar-featured-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 4px 16px -2px rgba(113, 40, 245, 0.1), 0 0 12px rgba(3, 221, 190, 0.06);
+  }
+
+  .sidebar-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .sidebar-link-item {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-link-item:hover {
+    background: rgba(108, 8, 251, 0.04);
+    border-left-color: #6C08FB;
+  }
+  .sli-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    line-height: 1.4;
+    transition: color 0.18s ease;
+  }
+  .sidebar-link-item:hover .sli-title {
+    color: #6C08FB;
+    font-weight: 700;
+  }
+
+  .sidebar-view-all {
+    font-size: 12px;
+    font-weight: 750;
+    color: #6C08FB;
+    text-decoration: none;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-top: 1px solid #f1f5f9;
+    margin-top: 4px;
+    transition: all 0.18s ease;
+    display: inline-block;
+  }
+  .sidebar-view-all:hover {
+    color: #0ACEBE;
+    transform: translateX(2px);
+  }
+
+  /* Action Box (now in right sidebar) */
+  .action-box-title {
+    font-size: 13.5px;
+    font-weight: 750;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .action-box-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+
+  /* Right Sidebar Pricing Section */
+  .sidebar-pricing-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 4px 16px -2px rgba(113, 40, 245, 0.1), 0 0 12px rgba(3, 221, 190, 0.06);
+  }
+  .sidebar-pricing-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    border: 1.5px solid transparent;
+  }
+  .sidebar-pricing-item:hover {
+    background: rgba(108, 8, 251, 0.04);
+    border-color: rgba(108, 8, 251, 0.15);
+  }
+  .pricing-item-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(108, 8, 251, 0.07), rgba(10, 206, 190, 0.07));
+  }
+  .pricing-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1;
+    min-width: 0;
+  }
+  .pricing-item-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+  }
+  .pricing-item-desc {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .pricing-item-arrow {
+    font-size: 12px;
+    color: #6C08FB;
+    font-weight: 700;
+    transition: transform 0.18s ease;
+    flex-shrink: 0;
+  }
+  .sidebar-pricing-item:hover .pricing-item-arrow {
+    transform: translateX(2px);
+  }
+
+  /* Right Sidebar Consultation Card */
+  .sidebar-consult-card {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 4px 16px -2px rgba(113, 40, 245, 0.1), 0 0 12px rgba(3, 221, 190, 0.06);
+  }
+  .consult-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    color: #6C08FB;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0ACEBE;
+    box-shadow: 0 0 0 2px rgba(10, 206, 190, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(10, 206, 190, 0.3); }
+    50% { box-shadow: 0 0 0 5px rgba(108, 8, 251, 0.15); }
+  }
+  .consult-title {
+    font-size: 13.5px;
+    font-weight: 750;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .consult-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .btn-consult {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 750;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    box-shadow: 0 3px 10px rgba(113, 40, 245, 0.25);
+  }
+  .btn-consult:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(3, 221, 190, 0.35);
+  }
+
+  /* ---- CENTER FEED ---- */
+  .blog-main-feed {
+    min-width: 0;
+    padding-top: 0;
+  }
+
+  .feed-header {
+    margin-bottom: 8px;
+  }
+  .feed-title {
+    font-size: clamp(24px, 2.5vw, 32px);
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .feed-subtitle {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .cat-pill-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 0;
+    flex-wrap: wrap;
+  }
+  .section-label-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #6C08FB 0%, #0ACEBE 100%);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    font-family: var(--font-mono);
+    padding: 5px 12px;
+    border-radius: 100px;
+    box-shadow: 0 2px 8px rgba(108, 8, 251, 0.2);
+  }
+  .label-subtext {
+    font-size: 13px;
+    color: var(--muted-2);
+    font-weight: 500;
+  }
+
+  /* HIGHLIGHTED HERO ARTICLE (WITH IMAGE) */
+  .hero-post-card {
+    margin-bottom: 16px;
+  }
+  .hero-post-link {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-decoration: none;
+    color: inherit;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    box-shadow: 0 4px 20px -2px rgba(108, 8, 251, 0.12);
+    transition: all 0.22s ease;
+  }
+  .hero-post-link:hover {
+    border-color: rgba(108, 8, 251, 0.4);
+    background: linear-gradient(145deg, #ffffff 0%, rgba(108, 8, 251, 0.03) 50%, rgba(10, 206, 190, 0.04) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px -4px rgba(108, 8, 251, 0.2);
+  }
+  .hero-post-image-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    overflow: hidden;
+    background: #0f172a;
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .hero-post-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .hero-post-card:hover .hero-post-image-wrap img {
+    transform: scale(1.03);
+  }
+  .hero-post-content {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-row: 1;
+    grid-column: 2;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(145deg, #ffffff 0%, #faf5ff 100%);
+  }
+  .hero-post-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .badge-cat {
+    font-size: 11px;
+    font-weight: 800;
+    color: #6C08FB;
+    background: rgba(108, 8, 251, 0.08);
+    border: 1px solid rgba(108, 8, 251, 0.25);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-new {
+    font-size: 10px;
+    font-weight: 900;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6C08FB 0%, #0ACEBE 100%);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+  }
+  .hero-post-title {
+    font-size: clamp(18px, 1.8vw, 23px);
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hero-post-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hero-post-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--muted-2);
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+  .meta-dot { color: #cbd5e1; }
+  .read-action {
+    color: #6C08FB;
+    font-weight: 750;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+  .hero-post-card:hover .read-action {
+    color: #0ACEBE;
+    transform: translateX(3px);
+  }
+
+  /* CATEGORY FILTERS */
+  .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: inherit;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    color: #334155;
+    padding: 7px 18px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    outline: none;
+  }
+  .filter-btn:hover {
+    background: #ffffff;
+    border-color: #7128F5;
+    color: #7128F5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(113, 40, 245, 0.18);
+  }
+  .filter-btn.is-active {
+    background: linear-gradient(45deg, #7128F5 0%, #03DDBE 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8.5px 19.5px !important;
+    font-weight: 800;
+    box-shadow: 0 3px 12px rgba(113, 40, 245, 0.3) !important;
+  }
+
+  /* COMPACT ARTICLES GRID (NO IMAGES, 3 COLUMNS) */
+  .compact-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .compact-card {
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    background: #ffffff;
+    padding: 18px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.03);
+    position: relative;
+  }
+  .compact-card:hover {
+    border-color: rgba(108, 8, 251, 0.3);
+    background: linear-gradient(145deg, #ffffff 0%, rgba(108, 8, 251, 0.03) 50%, rgba(10, 206, 190, 0.04) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px rgba(108, 8, 251, 0.12);
+  }
+  .compact-card-top {
+    margin-bottom: 10px;
+  }
+  .compact-card-title {
+    font-size: 15px;
+    font-weight: 750;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.18s ease;
+  }
+  .compact-card:hover .compact-card-title {
+    color: #6C08FB;
+  }
+  .compact-card-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .compact-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+  }
+  .compact-card-time {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted-2);
+    font-family: var(--font-mono);
+  }
+  .compact-card-arrow {
+    font-size: 13px;
+    font-weight: 750;
+    color: #6C08FB;
+    transition: transform 0.2s ease;
+  }
+  .compact-card:hover .compact-card-arrow {
+    color: #0ACEBE;
+    transform: translateX(3px);
+  }
+
+  /* ---- RESPONSIVE BREAKPOINTS ---- */
+  @media (max-width: 1280px) {
+    .blog-hub-container {
+      grid-template-columns: 210px minmax(0, 1fr) 210px;
+      gap: 24px;
+    }
+    .compact-posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 1060px) {
+    .blog-hub-container {
+      grid-template-columns: 220px minmax(0, 1fr);
+    }
+    .blog-sidebar--right {
+      grid-column: 1 / -1;
+      position: static;
+      max-height: none;
+      margin-top: 32px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-hub-container {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .blog-sidebar--left {
+      position: static;
+      max-height: none;
+    }
+    .hero-post-link {
+      grid-template-columns: 1fr;
+    }
+    .hero-post-image-wrap {
+      min-height: 180px;
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .hero-post-content {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .compact-posts-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

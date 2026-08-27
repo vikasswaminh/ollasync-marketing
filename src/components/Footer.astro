@@ -6,10 +6,7 @@ import { FOOTER, SITE } from '../consts';
     <div class="footer__grid">
       <div>
         <a href="/" class="brand" aria-label="Ollasync home">
-          <span class="brand__mark">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.6" stroke="#fff" stroke-width="1.9"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#fff" stroke-width="1.9"/></svg>
-          </span>
-          {SITE.name}
+          <img src="/ollasync-logo.png" alt="Ollasync" class="brand__logo" height="30" width="130" style="height:30px;width:auto;display:block;" />
         </a>
         <p class="muted" style="margin-top:16px;font-size:14px;max-width:290px;line-height:1.6">
           EU-hosted, end-to-end encrypted messaging with encrypted meetings, webinars and deal rooms.
@@ -32,7 +29,23 @@ import { FOOTER, SITE } from '../consts';
     </div>
     <div class="footer__bottom">
       <span>© {new Date().getFullYear()} {SITE.name}. Built for teams that can’t trust the cloud.</span>
-      <span class="mono" style="font-size:12px">Encrypted in your browser · we only ever see ciphertext</span>
+      <span class="mono" style="font-size:12px;color:var(--cyan)">Encrypted in your browser · Server-blind ciphertext only</span>
     </div>
   </div>
 </footer>
+
+<style>
+  .badge-soft {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cyan);
+    background: rgba(0, 245, 212, 0.08);
+    border: 1px solid rgba(0, 245, 212, 0.25);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+</style>
+

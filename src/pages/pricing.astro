@@ -64,7 +64,7 @@ const offerSchema = {
     lead="EU-hosted by default. Move to single-tenant or self-host at any tier. No credit card to try it."
     align="center"
   />
-  <section class="section" style="padding-top:24px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="tiers" data-reveal>
         {tiers.map((t) => (
@@ -75,12 +75,12 @@ const offerSchema = {
             <p class="muted" style="font-size:14px;min-height:40px">{t.blurb}</p>
             <a href={t.cta.href} class={`btn ${t.primary ? 'btn-primary' : 'btn-ghost'}`} style="width:100%;margin-block:6px 20px">{t.cta.label}</a>
             <ul class="check-list">
-              {t.features.map((f) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{f}</li>)}
+              {t.features.map((f) => <li><span class="tick"><Icon name="check" size={12} stroke="#0d9488" /></span>{f}</li>)}
             </ul>
           </div>
         ))}
       </div>
-      <p class="center muted" style="margin-top:26px;font-size:14px">All plans include end-to-end encrypted messaging and EU hosting. Prices exclude VAT. <a href="/self-hosted" style="color:var(--iris)">Self-hosting →</a></p>
+      <p class="center muted" style="margin-top:28px;font-size:14.5px">All plans include end-to-end encrypted messaging and EU hosting. Prices exclude VAT. <a href="/self-hosted" style="color:var(--blue);font-weight:600">Self-hosting →</a></p>
     </div>
   </section>
   <Faq items={faq} title="Pricing questions" />
@@ -88,13 +88,14 @@ const offerSchema = {
 </Base>
 
 <style>
-  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: start; }
-  .tier { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; background: linear-gradient(180deg, var(--panel), var(--bg-3)); position: relative; }
-  .tier--pop { border-color: var(--violet-300); background: linear-gradient(180deg, rgba(124,92,255,.1), var(--bg-3)); box-shadow: 0 24px 60px -34px rgba(124,92,255,.5); }
-  .tier__tag { position: absolute; top: -11px; left: 28px; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--grad-accent); padding: 4px 11px; border-radius: 100px; }
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .tier { border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); padding: 32px 28px; background: #ffffff; box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05); position: relative; display: flex; flex-direction: column; }
+  .tier--pop { border: 2px solid #7c3aed; background: #ffffff; box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.15); transform: translateY(-4px); }
+  .tier__tag { position: absolute; top: -12px; left: 28px; font-size: 11px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--grad-brand); padding: 4px 12px; border-radius: 100px; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3); }
   .tier__price { margin: 12px 0 8px; display: flex; align-items: baseline; gap: 6px; }
-  .tier__amount { font-size: 38px; font-weight: 660; letter-spacing: -.03em; }
+  .tier__amount { font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); }
   .tier__unit { color: var(--muted); font-size: 14px; }
+  .tier .check-list { margin-top: auto; }
   .tier .check-list li { font-size: 14px; }
-  @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } .tier--pop { transform: none; } }
 </style>

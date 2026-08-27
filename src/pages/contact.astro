@@ -24,7 +24,7 @@ const channels = [
     lead="Tell us about your team and what you need to keep confidential. We’ll set up a demo and, if you’re evaluating, share the security whitepaper and DPA."
   />
 
-  <section class="section" style="padding-top:28px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container contact">
       <form class="contact__form panel" id="contactForm" data-reveal>
         <div class="frow">
@@ -47,7 +47,7 @@ const channels = [
           <textarea name="message" rows="4" placeholder="A few words on your team, industry and requirements…"></textarea>
         </label>
         <button type="submit" class="btn btn-primary" style="align-self:flex-start">Send message <span class="arrow">→</span></button>
-        <p class="muted" style="font-size:12.5px;margin-top:2px">This opens your email client addressed to our sales team. Prefer to write directly? <a href={`mailto:${SITE.salesEmail}`} style="color:var(--iris)">{SITE.salesEmail}</a></p>
+        <p class="muted" style="font-size:13px;margin-top:4px">This opens your email client addressed to our sales team. Prefer to write directly? <a href={`mailto:${SITE.salesEmail}`} style="color:var(--blue);font-weight:600">{SITE.salesEmail}</a></p>
       </form>
 
       <aside class="contact__side" data-reveal>
@@ -55,7 +55,7 @@ const channels = [
           <a href={`mailto:${c.email}`} class="card card--hover contact__card">
             <div class="card__icon"><Icon name={c.icon} size={20} /></div>
             <h2 class="h3">{c.title}</h2>
-            <p>{c.body}</p>
+            <p style="color:var(--muted);font-size:14px;margin-top:6px;line-height:1.5">{c.body}</p>
             <span class="mono contact__email">{c.email}</span>
           </a>
         ))}
@@ -77,14 +77,14 @@ const channels = [
 
 <style>
   .contact { display: grid; grid-template-columns: 1.4fr .9fr; gap: 28px; align-items: start; }
-  .contact__form { padding: clamp(24px,3vw,34px); display: flex; flex-direction: column; gap: 16px; }
+  .contact__form { padding: clamp(28px,3vw,38px); display: flex; flex-direction: column; gap: 18px; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); }
   .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  label { display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; color: var(--ink-2); }
-  input, select, textarea { background: rgba(255,255,255,.03); border: 1px solid var(--line-2); border-radius: 9px; padding: 11px 13px; color: var(--ink); font: inherit; font-size: 15px; }
-  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--iris); background: rgba(124,92,255,.06); }
+  label { display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
+  input, select, textarea { background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px 14px; color: var(--ink); font: inherit; font-size: 14.5px; transition: all var(--dur) ease; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: #0284c7; background: #ffffff; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); }
   textarea { resize: vertical; }
-  .contact__side { display: grid; gap: 14px; }
-  .contact__card { display: block; }
-  .contact__email { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--iris); }
+  .contact__side { display: grid; gap: 16px; }
+  .contact__card { display: block; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); padding: 24px; }
+  .contact__email { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 700; color: #0284c7; }
   @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } .frow { grid-template-columns: 1fr; } }
 </style>

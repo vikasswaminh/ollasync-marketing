@@ -99,15 +99,15 @@ const secSchema = {
         <span class="eyebrow-label">Encryption model</span>
         <h2 class="h2" style="margin-top:12px">Protection, data type by data type</h2>
       </div>
-      <div class="grid grid-2" data-reveal>
+      <div class="grid grid-2" data-reveal style="margin-top:20px">
         {matrix.map((m) => (
-          <div class="card matrix">
+          <div class="card card--hover matrix">
             <div class="matrix__head">
-              <div class={`card__icon ${m.tone === 'teal' ? 'card__icon--teal' : ''}`} style="margin-bottom:0"><Icon name={m.icon} size={20} /></div>
+              <div class={`card__icon ${m.tone === 'teal' ? 'card__icon--teal' : 'card__icon--purple'}`} style="margin-bottom:0"><Icon name={m.icon} size={20} /></div>
               <span class={`status status--${m.tone}`}>{m.status}</span>
             </div>
             <h3 class="h3" style="margin-top:16px">{m.title}</h3>
-            <p style="margin-top:8px">{m.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14.5px">{m.body}</p>
           </div>
         ))}
       </div>
@@ -115,22 +115,22 @@ const secSchema = {
   </section>
 
   <!-- WHAT THE SERVER SEES -->
-  <section class="section">
+  <section class="section section--tan">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Trust boundary</span>
         <h2 class="h2" style="margin-top:12px">What the server can — and can’t — see</h2>
         <p class="kicker" style="margin-top:14px">For end-to-end encrypted messaging the precise claim is “we can’t read your messages,” not “we know nothing.” Metadata still has to be routed. Here’s the honest split.</p>
       </div>
-      <div class="sees" data-reveal>
+      <div class="sees" data-reveal style="margin-top:24px">
         <div class="sees__col sees__col--no">
-          <h3 class="h3"><span class="sees__mark sees__mark--no"><Icon name="eye-off" size={16} stroke="#a9f2d1" /></span>Can’t see</h3>
+          <h3 class="h3"><span class="sees__mark sees__mark--no"><Icon name="eye-off" size={16} stroke="#0d9488" /></span>Can’t see</h3>
           <ul class="check-list" style="margin-top:18px">
-            {serverSees.cannot.map((i) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{i}</li>)}
+            {serverSees.cannot.map((i) => <li><span class="tick"><Icon name="check" size={12} stroke="#0d9488" /></span>{i}</li>)}
           </ul>
         </div>
         <div class="sees__col sees__col--yes">
-          <h3 class="h3"><span class="sees__mark sees__mark--yes"><Icon name="globe" size={16} stroke="#ffb4b4" /></span>Necessarily sees</h3>
+          <h3 class="h3"><span class="sees__mark sees__mark--yes"><Icon name="globe" size={16} stroke="#dc2626" /></span>Necessarily sees</h3>
           <ul class="plain-list" style="margin-top:18px">
             {serverSees.can.map((i) => <li>{i}</li>)}
           </ul>
@@ -146,12 +146,12 @@ const secSchema = {
         <span class="eyebrow-label">Identity & access</span>
         <h2 class="h2" style="margin-top:12px">Who gets in, and to what</h2>
       </div>
-      <div class="grid grid-4" data-reveal>
+      <div class="grid grid-4" data-reveal style="margin-top:20px">
         {access.map((a) => (
-          <div class="card">
+          <div class="card card--hover">
             <div class="card__icon"><Icon name={a.icon} size={20} /></div>
             <h3 class="h3">{a.title}</h3>
-            <p>{a.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14px">{a.body}</p>
           </div>
         ))}
       </div>
@@ -159,21 +159,21 @@ const secSchema = {
   </section>
 
   <!-- TRANSPARENCY -->
-  <section class="section">
+  <section class="section section--tan">
     <div class="container">
       <div class="transp panel" data-reveal>
         <div class="transp__head">
-          <span class="eyebrow eyebrow--teal"><Icon name="fingerprint" size={13} stroke="#a9f2d1" /> Radical transparency</span>
+          <span class="eyebrow eyebrow--teal"><Icon name="fingerprint" size={14} stroke="#0d9488" /> Radical transparency</span>
           <h2 class="h2" style="margin-top:16px;max-width:20ch">What we do <em>not</em> claim yet</h2>
           <p class="lead" style="margin-top:14px;max-width:52ch">Stated plainly, because hiding it is worse. A serious buyer rewards a vendor who draws the line honestly — so here it is.</p>
         </div>
         <div class="transp__grid">
           {transparency.map((t) => (
             <div class="transp__item">
-              <span class="transp__dot"><Icon name="arrow" size={14} stroke="#8f7bff" /></span>
+              <span class="transp__dot"><Icon name="arrow" size={14} stroke="#7c3aed" /></span>
               <div>
-                <h3 style="font-size:16px;font-weight:600">{t.title}</h3>
-                <p class="muted" style="font-size:14px;margin-top:5px">{t.body}</p>
+                <h3 style="font-size:16px;font-weight:700;color:var(--ink)">{t.title}</h3>
+                <p class="muted" style="font-size:14px;margin-top:5px;line-height:1.55">{t.body}</p>
               </div>
             </div>
           ))}
@@ -190,16 +190,16 @@ const secSchema = {
         <h2 class="h2" style="margin-top:12px">How a reviewer can check the claims</h2>
         <p class="kicker" style="margin-top:14px">Every guarantee above is backed by an automated proof that runs against the live system.</p>
       </div>
-      <div class="grid grid-4" data-reveal>
+      <div class="grid grid-4" data-reveal style="margin-top:20px">
         {verify.map((v) => (
           <div class="card card--hover">
             <div class="card__icon card__icon--teal"><Icon name={v.icon} size={20} /></div>
             <h3 class="h3">{v.title}</h3>
-            <p>{v.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14px">{v.body}</p>
           </div>
         ))}
       </div>
-      <p class="muted center" style="margin-top:28px;font-size:14px">Building a compliance programme on this? See our <a href="/compliance" style="color:var(--iris)">compliance posture</a> and request the security whitepaper and DPA.</p>
+      <p class="muted center" style="margin-top:28px;font-size:14.5px">Building a compliance programme on this? See our <a href="/compliance" style="color:var(--blue);font-weight:600">compliance posture</a> and request the security whitepaper and DPA.</p>
     </div>
   </section>
 
@@ -214,27 +214,27 @@ const secSchema = {
 
 <style>
   .matrix__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .status { font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em; padding: 5px 11px; border-radius: 100px; border: 1px solid; text-align: right; }
-  .status--teal { color: #a9f2d1; background: var(--teal-050); border-color: var(--teal-150); }
-  .status--violet { color: #cfc6ff; background: var(--violet-050); border-color: var(--violet-300); }
-  .status--neutral { color: var(--ink-2); background: rgba(255,255,255,.03); border-color: var(--line-2); }
+  .status { font-family: var(--font-mono); font-size: 11px; letter-spacing: .02em; padding: 5px 12px; border-radius: 100px; border: 1px solid; text-align: right; font-weight: 700; }
+  .status--teal { color: #0f766e; background: rgba(0, 191, 165, 0.1); border-color: rgba(0, 191, 165, 0.3); }
+  .status--violet { color: #6d28d9; background: rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.3); }
+  .status--neutral { color: var(--ink-2); background: #f1f5f9; border-color: #cbd5e1; }
 
-  .sees { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .sees__col { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; }
-  .sees__col--no { background: linear-gradient(180deg, var(--teal-050), transparent); border-color: var(--teal-150); }
-  .sees__col--yes { background: rgba(255,255,255,.02); }
+  .sees { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .sees__col { border: 1.5px solid #e2e8f0; border-radius: var(--r-lg); padding: 28px; background: #ffffff; box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05); }
+  .sees__col--no { background: linear-gradient(180deg, rgba(0, 191, 165, 0.05) 0%, #ffffff 100%); border-color: rgba(0, 191, 165, 0.35); }
+  .sees__col--yes { background: #ffffff; }
   .sees__col h3 { display: flex; align-items: center; gap: 11px; }
-  .sees__mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; }
-  .sees__mark--no { background: var(--teal-150); }
-  .sees__mark--yes { background: rgba(255,120,120,.14); }
+  .sees__mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; }
+  .sees__mark--no { background: rgba(0, 191, 165, 0.15); color: #0d9488; }
+  .sees__mark--yes { background: rgba(239, 68, 68, 0.12); color: #dc2626; }
   .plain-list { list-style: none; display: grid; gap: 12px; }
   .plain-list li { position: relative; padding-left: 18px; color: var(--muted); font-size: 15px; }
   .plain-list li::before { content: "–"; position: absolute; left: 0; color: var(--muted-2); }
 
-  .transp { padding: clamp(28px,4vw,44px); display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; }
+  .transp { padding: clamp(28px,4vw,44px); display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05); }
   .transp__grid { display: grid; gap: 18px; }
   .transp__item { display: flex; gap: 13px; align-items: flex-start; }
-  .transp__dot { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: var(--violet-050); border: 1px solid var(--violet-300); flex: none; margin-top: 2px; }
+  .transp__dot { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.25); flex: none; margin-top: 2px; }
 
   @media (max-width: 900px) {
     .sees, .transp { grid-template-columns: 1fr; }

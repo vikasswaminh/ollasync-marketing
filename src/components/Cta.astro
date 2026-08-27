@@ -7,37 +7,129 @@ interface Props {
   secondary?: { label: string; href: string };
 }
 const {
-  title = 'Start encrypted in one click.',
-  sub = 'EU-hosted and server-blind by design — messaging is end-to-end encrypted, so we only ever see ciphertext. Self-host the whole platform when you need to.',
-  primary = { label: 'Start free', href: SITE.appUrl },
-  secondary = { label: 'Book a demo', href: '/contact' },
+  title = 'Ready to make your confidential calls untraceable?',
+  sub = 'Deploy mathematically sovereign 4K video meetings, confidential deal rooms, and IETF MLS encrypted messaging. Start free in one click — or deploy on-premise.',
+  primary = { label: 'Launch Free Encrypted Room', href: SITE.appUrl },
+  secondary = { label: 'Schedule Sovereign Demo', href: '/contact' },
 } = Astro.props;
 ---
-<section class="section">
+<section class="section section-cta section--white">
   <div class="container">
-    <div class="cta-band" data-reveal>
-      <div class="cta-band__glow" aria-hidden="true"></div>
-      <h2 class="h2" style="max-width:16ch">{title}</h2>
-      <p class="lead" style="margin-top:14px;max-width:52ch">{sub}</p>
-      <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:14px">
-        <a href={primary.href} class="btn btn-primary">{primary.label} <span class="arrow">→</span></a>
-        <a href={secondary.href} class="btn btn-ghost">{secondary.label}</a>
+    <div class="cta-launchpad" data-reveal>
+      <div class="cta-launchpad__ambient"></div>
+      <div class="cta-launchpad__inner">
+        <div class="cta-badge mono">
+          <span>ZERO-KNOWLEDGE DEPLOYMENT</span>
+        </div>
+        <h2 class="h2 cta-title">{title}</h2>
+        <p class="lead cta-sub">{sub}</p>
+        
+        <div class="cta-actions">
+          <a href={primary.href} class="btn btn-primary btn-cta">
+            <span>{primary.label}</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href={secondary.href} class="btn btn-ghost btn-cta">{secondary.label}</a>
+        </div>
+
+        <div class="cta-meta mono">
+          <span>✓ Instant Browser WebRTC</span>
+          <span>✓ Zero Data Retention</span>
+          <span>✓ EU Frankfurt or On-Prem</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .cta-band {
-    position: relative; overflow: hidden;
-    border: 1px solid var(--line-2); border-radius: var(--r-xl);
-    padding: clamp(32px, 5vw, 60px);
-    background: linear-gradient(140deg, rgba(124,92,255,.14), rgba(59,110,255,.08) 55%, rgba(14,15,19,.6));
-    box-shadow: var(--sh-card);
+  .section-cta {
+    position: relative;
+    padding-block: 48px 72px;
   }
-  .cta-band__glow {
-    position: absolute; top: -40%; right: -10%; width: 420px; height: 420px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(124,92,255,.45), transparent 60%); filter: blur(30px);
-    animation: pulseGlow 7s ease-in-out infinite; pointer-events: none;
+  .cta-launchpad {
+    position: relative;
+    border-radius: var(--r-xl, 24px);
+    overflow: hidden;
+    box-shadow: 0 24px 60px -12px rgba(2, 6, 23, 0.35);
+  }
+  .cta-launchpad__ambient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.22) 0%, rgba(113, 40, 245, 0.08) 45%, transparent 75%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+  .cta-launchpad__inner {
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: var(--r-xl, 24px);
+    padding: clamp(36px, 5vw, 56px) clamp(20px, 4vw, 48px);
+    background: radial-gradient(ellipse at 50% -10%, #0d1e38 0%, #060a12 55%, #03060c 100%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 750;
+    color: #38bdf8;
+    background: rgba(2, 132, 199, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 5px 14px;
+    border-radius: var(--r-pill, 9999px);
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+  }
+  .cta-title {
+    max-width: 22ch;
+    color: #ffffff;
+    font-weight: 800;
+  }
+  .cta-sub {
+    margin-top: 14px;
+    max-width: 58ch;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+  .cta-actions {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .btn-cta {
+    padding: 13px 26px;
+    font-size: 14.5px;
+  }
+  .cta-actions .btn-ghost {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .cta-actions .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .cta-meta {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 600;
   }
 </style>
+

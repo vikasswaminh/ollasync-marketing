@@ -25,28 +25,28 @@ const principles = [
     lead="Most video tools ask you to hand your most sensitive conversations to a vendor and hope for the best. We started Ollasync because some teams simply can’t — and shouldn’t have to."
   />
 
-  <section class="section" style="padding-top:28px">
-    <div class="container" style="max-width:760px">
-      <div class="prose" data-reveal style="font-size:17px;line-height:1.7">
+  <section class="section section--tan" style="padding-block:48px">
+    <div class="container" style="max-width:820px">
+      <div class="prose panel" data-reveal style="padding:clamp(28px,4vw,44px);border:1.5px solid #e2e8f0;border-radius:var(--r-xl);background:#ffffff;box-shadow:0 4px 18px -2px rgba(15,23,42,0.05);font-size:16.5px;line-height:1.75;display:grid;gap:18px;color:var(--ink-2)">
         <p>Healthcare teams, law firms, banks and public bodies all share a problem: the tools everyone uses for meetings put their most confidential conversations on infrastructure they don’t control, in jurisdictions they didn’t choose, operated by companies they can’t audit.</p>
-        <p>Ollasync is our answer. It’s an encrypted platform for meetings, webinars, recordings, messaging and confidential deal rooms — designed from the start to be <strong>server-blind where it matters</strong> and <strong>self-hostable everywhere else</strong>. Either we can’t read your content, or it never reaches us at all.</p>
+        <p>Ollasync is our answer. It’s an encrypted platform for meetings, webinars, recordings, messaging and confidential deal rooms — designed from the start to be <strong style="color:var(--ink)">server-blind where it matters</strong> and <strong style="color:var(--ink)">self-hostable everywhere else</strong>. Either we can’t read your content, or it never reaches us at all.</p>
         <p>We’re just as committed to being honest about the limits. Our security page and whitepaper describe precisely what each part of the product protects, what’s encrypted end-to-end and what’s encrypted in transit, and which certifications we don’t yet hold. We’d rather tell you than let a badge imply something untrue.</p>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">What we believe</span>
         <h2 class="h2" style="margin-top:12px">The principles behind the product</h2>
       </div>
-      <div class="grid grid-4" data-reveal>
+      <div class="grid grid-4" data-reveal style="margin-top:24px">
         {principles.map((p) => (
           <div class="card card--hover">
             <div class="card__icon"><Icon name={p.icon} size={20} /></div>
             <h3 class="h3">{p.title}</h3>
-            <p>{p.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55">{p.body}</p>
           </div>
         ))}
       </div>

@@ -18,14 +18,14 @@ const description =
     titleAccent="a headline"
     lead="The same platform, tuned to the confidentiality and sovereignty demands of the industries that feel them most."
   />
-  <section class="section" style="padding-top:32px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="grid grid-2" data-reveal>
         {USE_CASES.map((u) => (
           <a href={`/use-cases/${u.slug}`} class="card card--hover uc-card">
             <div class="card__icon card__icon--teal"><Icon name={u.icon} size={22} /></div>
             <h2 class="h3">{u.label}</h2>
-            <p>{u.lead}</p>
+            <p style="color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:8px">{u.lead}</p>
             <span class="uc-more mono">Explore {u.label.toLowerCase()} <Icon name="arrow" size={15} /></span>
           </a>
         ))}
@@ -35,7 +35,7 @@ const description =
   <Cta />
 </Base>
 <style>
-  .uc-card { display: flex; flex-direction: column; }
+  .uc-card { display: flex; flex-direction: column; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); padding: 28px; }
   .uc-card p { flex: 1; }
-  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-size: 13px; color: var(--iris); }
+  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; font-size: 13px; font-weight: 700; color: #0284c7; }
 </style>

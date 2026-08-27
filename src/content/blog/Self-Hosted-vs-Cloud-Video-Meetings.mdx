@@ -168,26 +168,58 @@ To see the fuller architecture behind the encryption claims in this piece, read 
 
 ## FAQs
 
-**Is self-hosted video conferencing always cheaper than cloud in the long run?**  
+<details class="faq-item">
+<summary>Is self-hosted video conferencing always cheaper than cloud in the long run?</summary>
+
 Not always — it depends heavily on headcount and how much infrastructure capability the organization already has. For a large, steady-state team with existing operations capacity, self-hosting frequently becomes cheaper by year two or three because infrastructure costs don't scale linearly with headcount the way per-seat licensing does. For a small or fast-growing team with no in-house infrastructure expertise, cloud can remain cheaper for much longer, because the engineering time required to run self-hosted infrastructure well has a real cost that a small team may not be able to absorb efficiently.
 
-**What's the single biggest hidden cost people miss on the cloud side?**  
+</details>
+
+<details class="faq-item">
+<summary>What's the single biggest hidden cost people miss on the cloud side?</summary>
+
 Compliance and audit overhead. It doesn't appear as a line item on a vendor invoice, but every cloud subprocessor that touches regulated data has to be assessed, documented, and re-reviewed on an ongoing basis by a security or compliance team — hours that have a real, fully loaded cost even though no bill reflects them directly.
 
-**What's the single biggest hidden cost people miss on the self-hosted side?**  
+</details>
+
+<details class="faq-item">
+<summary>What's the single biggest hidden cost people miss on the self-hosted side?</summary>
+
 The opportunity cost of engineering time. Standing up and maintaining a self-hosted deployment properly — including redundancy, patching, and incident response — takes ongoing hours from people who could otherwise be working on something else. Organizations that don't already run infrastructure tend to underestimate this the most.
 
-**Does self-hosting automatically mean better security?**  
+</details>
+
+<details class="faq-item">
+<summary>Does self-hosting automatically mean better security?</summary>
+
 No. Self-hosting changes who holds the infrastructure and who could be compelled to produce data, which is a genuine architectural improvement for sovereignty and compliance purposes. But a poorly secured self-hosted deployment — unpatched, misconfigured, running weak encryption — can be less secure than a well-built cloud platform with a mature security program. Owning the infrastructure means owning the responsibility to secure it correctly, not an automatic upgrade.
 
-**Can an organization run some workloads on the cloud and others self-hosted?**  
+</details>
+
+<details class="faq-item">
+<summary>Can an organization run some workloads on the cloud and others self-hosted?</summary>
+
 Yes, and this is increasingly common. A hybrid approach — hosted for day-to-day, general-purpose meetings, self-hosted or single-tenant for the specific programs or teams with real compliance weight — lets an organization match the deployment model to the actual sensitivity of each workload instead of applying one setting to everything. This works cleanly on a platform built for it from the start, rather than one where self-hosting is a bolted-on afterthought.
 
-**How long does a self-hosted deployment typically take to set up?**  
+</details>
+
+<details class="faq-item">
+<summary>How long does a self-hosted deployment typically take to set up?</summary>
+
 For a team that already runs infrastructure, standing up the core components — application server, media relay, object storage, identity integration, and database — typically takes days to a few weeks, not months. Teams without existing infrastructure experience should budget for a longer runway, since they're also building the operational capability, not just the deployment itself.
 
-**Does moving to self-hosted mean giving up features or a worse user experience?**  
+</details>
+
+<details class="faq-item">
+<summary>Does moving to self-hosted mean giving up features or a worse user experience?</summary>
+
 Not on a platform designed to be self-hosted from day one. The gap shows up on platforms where self-hosting is a legacy, bolted-on option — those versions are frequently a step behind the cloud product in features and polish. A platform built self-hosted-first can offer an identical experience across hosted, single-tenant, and fully on-premise deployments, so the choice becomes purely about infrastructure and cost, not about which version users are stuck with.
 
-**Is a dedicated single-tenant cloud instance the same thing as self-hosting?**  
+</details>
+
+<details class="faq-item">
+<summary>Is a dedicated single-tenant cloud instance the same thing as self-hosting?</summary>
+
 No, and this distinction gets conflated often enough that it's worth stating plainly. A single-tenant instance is still operated by the vendor — their team has administrative and often physical access to the infrastructure, even if it's isolated from other customers. True self-hosting means the organization's own team runs the servers. Single-tenant is a useful middle ground for organizations that want a cleaner compliance boundary without taking on operational responsibility, but it doesn't remove the vendor from the trust path the way genuine self-hosting does.
+
+</details>

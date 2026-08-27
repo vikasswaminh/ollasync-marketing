@@ -32,28 +32,28 @@ const quickstart = [
     lead="However you deploy, the product works the same. Pick your path below, or follow the quickstart."
   />
 
-  <section class="section" style="padding-top:28px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="grid grid-3" data-reveal>
         {paths.map((p) => (
-          <div class="card card--hover" style="display:flex;flex-direction:column">
+          <div class="card card--hover" style="display:flex;flex-direction:column;padding:26px">
             <div class="card__icon"><Icon name={p.icon} size={20} /></div>
             <h2 class="h3">{p.title}</h2>
-            <p style="flex:1">{p.body}</p>
-            <a href={p.cta.href} class="btn btn-ghost btn-sm" style="align-self:flex-start;margin-top:16px">{p.cta.label} <span class="arrow">→</span></a>
+            <p style="flex:1;color:var(--muted);font-size:14.5px;margin-top:8px;line-height:1.55">{p.body}</p>
+            <a href={p.cta.href} class="btn btn-ghost btn-sm" style="align-self:flex-start;margin-top:20px">{p.cta.label} <span class="arrow">→</span></a>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-block:48px">
     <div class="container" style="max-width:760px">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Quickstart</span>
         <h2 class="h2" style="margin-top:12px">Your first encrypted meeting</h2>
       </div>
-      <ol class="quickstart" data-reveal>
+      <ol class="quickstart" data-reveal style="margin-top:24px">
         {quickstart.map((q, i) => (
           <li><span class="quickstart__n mono">{i + 1}</span><span>{q}</span></li>
         ))}
@@ -64,6 +64,6 @@ const quickstart = [
 
 <style>
   .quickstart { list-style: none; display: grid; gap: 14px; counter-reset: q; }
-  .quickstart li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--r); background: rgba(255,255,255,.02); color: var(--ink-2); font-size: 15.5px; }
-  .quickstart__n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--violet-050); border: 1px solid var(--violet-300); color: #cfc6ff; font-size: 13px; flex: none; }
+  .quickstart li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 22px; border: 1.5px solid #e2e8f0; border-radius: var(--r-lg); background: #ffffff; box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04); color: var(--ink-2); font-size: 15.5px; line-height: 1.55; }
+  .quickstart__n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.25); color: #6d28d9; font-size: 13px; font-weight: 800; flex: none; }
 </style>

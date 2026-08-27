@@ -12,21 +12,25 @@ const faqSchema = {
   })),
 };
 ---
-<section class="section" aria-labelledby="faq-h">
+<section class="section section-faq section--tan" aria-labelledby="faq-h">
   <div class="container" style="max-width:820px">
     <div class="section-head center" data-reveal>
-      <span class="eyebrow-label">FAQ</span>
-      <h2 class="h2" id="faq-h" style="margin-top:12px">{title}</h2>
+      <span class="eyebrow-label" style="color:#0d9488;font-weight:700;letter-spacing:0.12em">FAQ</span>
+      <h2 class="h2" id="faq-h" style="margin-top:10px;font-size:clamp(28px, 3vw, 38px);font-weight:800;color:#0f172a">{title}</h2>
     </div>
-    <div class="faq" data-reveal>
-      {items.map((i) => (
-        <details class="faq__item">
-          <summary>
+    <div class="faq" data-reveal id="faqAccordion" style={`--item-count: ${items.length};`}>
+      {items.map((i, idx) => (
+        <div class={`faq__item ${idx === 0 ? 'is-active' : ''}`} data-faq-index={idx}>
+          <button class="faq__q" type="button" aria-expanded={idx === 0 ? 'true' : 'false'}>
             <span>{i.q}</span>
-            <span class="faq__chevron"><Icon name="arrow" size={18} /></span>
-          </summary>
-          <div class="faq__a"><p>{i.a}</p></div>
-        </details>
+            <span class="faq__chevron"><Icon name="arrow" size={16} /></span>
+          </button>
+          <div class="faq__body">
+            <div class="faq__body-inner">
+              <div class="faq__a" data-lenis-prevent><p>{i.a}</p></div>
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   </div>
@@ -34,14 +38,182 @@ const faqSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <style>
-  .faq { display: grid; gap: 10px; }
-  .faq__item { border: 1px solid var(--line); border-radius: var(--r); background: rgba(255,255,255,.02); overflow: hidden; }
-  .faq__item[open] { border-color: var(--violet-300); background: var(--violet-050); }
-  summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; font-weight: 550; font-size: 16px; color: var(--ink); }
-  summary::-webkit-details-marker { display: none; }
-  .faq__chevron { color: var(--muted); transition: transform var(--dur) ease; flex: none; }
-  .faq__chevron :global(svg) { transform: rotate(90deg); }
-  .faq__item[open] .faq__chevron { transform: rotate(90deg); color: var(--iris); }
-  .faq__a { padding: 0 20px 20px; }
-  .faq__a p { color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 68ch; }
+  .section-faq {
+    position: relative;
+    background: transparent;
+    padding-block: 56px;
+  }
+  
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 28px;
+    height: calc(var(--item-count, 5) * 58px + 80px + (var(--item-count, 5) - 1) * 12px);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 640px) {
+    .faq {
+      height: calc(var(--item-count, 5) * 64px + 84px + (var(--item-count, 5) - 1) * 12px);
+    }
+  }
+
+  .faq__item {
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .faq__item.is-active {
+    border-color: rgba(3, 221, 190, 0.55);
+    background: #ffffff;
+    box-shadow: 0 8px 24px -4px rgba(3, 221, 190, 0.08);
+  }
+
+  .faq__q {
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    font-weight: 700;
+    font-size: 15.5px;
+    color: #0f172a;
+    text-align: left;
+    user-select: none;
+    font-family: inherit;
+  }
+
+  .faq__chevron {
+    color: #64748b;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+    flex: none;
+    display: grid;
+    place-items: center;
+  }
+
+  /* Default collapsed state: arrow points down ↓ */
+  .faq__chevron :global(svg) {
+    transform: rotate(90deg);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Active state: arrow points right → in teal */
+  .faq__item.is-active .faq__chevron {
+    color: #0d9488;
+  }
+
+  .faq__item.is-active .faq__chevron :global(svg) {
+    transform: rotate(0deg);
+  }
+
+  /* Smooth Transition with Strict Fixed Expanded Height */
+  .faq__body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .faq__item.is-active .faq__body {
+    max-height: 80px;
+  }
+
+  .faq__body-inner {
+    height: 80px;
+  }
+
+  .faq__a {
+    padding: 0 22px 14px;
+    height: 80px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(3, 221, 190, 0.5) rgba(0, 0, 0, 0.04);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .faq__a::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .faq__a::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+  }
+
+  .faq__a::-webkit-scrollbar-thumb {
+    background: rgba(3, 221, 190, 0.5);
+    border-radius: 4px;
+  }
+
+  .faq__item.is-active .faq__a {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.04s;
+  }
+
+  .faq__a p {
+    color: #475569;
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 72ch;
+    margin: 0;
+  }
 </style>
+
+<script>
+  function initFaqHover() {
+    const accordion = document.getElementById('faqAccordion');
+    if (!accordion) return;
+
+    const items = accordion.querySelectorAll<HTMLElement>('.faq__item');
+    let hoverTimer: any = null;
+
+    const activateItem = (targetItem: HTMLElement) => {
+      items.forEach((item) => {
+        const btn = item.querySelector('.faq__q');
+        if (item === targetItem) {
+          item.classList.add('is-active');
+          btn?.setAttribute('aria-expanded', 'true');
+        } else {
+          item.classList.remove('is-active');
+          btn?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    };
+
+    items.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(() => {
+          activateItem(item);
+        }, 40); // 40ms hover-intent: cancels accidental sweeps across items
+      });
+
+      item.addEventListener('click', () => {
+        clearTimeout(hoverTimer);
+        activateItem(item);
+      });
+    });
+
+    accordion.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer);
+    });
+  }
+
+  initFaqHover();
+  document.addEventListener('astro:page-load', initFaqHover);
+</script>

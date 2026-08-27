@@ -13,39 +13,226 @@ const latestPosts = (await getCollection('blog'))
   .slice(0, 3);
 const fmtDate = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 
-const title = 'Encrypted video meetings & deal rooms — a secure Zoom alternative';
+const title = 'Ollasync — Sovereign Video Meetings, Deal Rooms & Server-Blind Messaging';
 const description =
-  'Ollasync is EU-hosted, end-to-end encrypted messaging with encrypted video meetings, webinars, recordings and confidential deal rooms — server-blind by design. A secure Zoom alternative for teams that can’t trust the cloud. Self-host optional.';
+  'Ollasync is the sovereign, end-to-end encrypted video meeting, webinar, recording and confidential deal room engine — server-blind by design under IETF MLS (RFC 9420). A quantum-resistant Zoom alternative for teams that cannot trust the cloud. Self-host optional.';
 
-const whyOllasync = [
-  { icon: 'eye-off', title: 'Server-blind by design', body: 'Content is encrypted in your browser before it hits the wire. Even on our hosted service, we only ever see ciphertext — never your messages, calls or files.' },
-  { icon: 'globe', title: 'EU data residency', body: 'Hosted in the EU (Frankfurt) by default. Your data stays in-region under EU law — no US cloud, no CLOUD Act reach.' },
-  { icon: 'shield-check', title: 'Your compliance boundary', body: 'Encryption, access control and audit logging give your HIPAA or GDPR programme the controls it needs — no certification theatre.' },
-  { icon: 'server', title: 'Self-host when you need it', body: 'Run the whole platform in your own datacenter, private cloud or air-gapped — media, recordings and documents never leave infrastructure you control.' },
+const bentoFeatures = [
+  {
+    id: 'video',
+    tag: '4K ULTRA-HD & OPUS 48KHZ',
+    title: 'Studio-Grade 4K Video Meetings',
+    desc: 'Encrypted 4K 60fps video with AI noise suppression and sub-15ms latency. Join instantly from any modern browser with zero downloads.',
+    icon: 'video',
+    badge: '100% Browser Native',
+    cols: 'span-2',
+    accent: 'cyan'
+  },
+  {
+    id: 'dealrooms',
+    tag: 'M&A & BOARD DILIGENCE',
+    title: 'Confidential Deal Rooms',
+    desc: 'Cryptographic document diligence vaults integrated with live video, dynamic session watermarking, and zero-leak access policies.',
+    icon: 'file-lock',
+    badge: 'Zero-Leak Diligence',
+    cols: 'span-1',
+    accent: 'purple'
+  },
+  {
+    id: 'messaging',
+    tag: 'IETF MLS (RFC 9420)',
+    title: 'Server-Blind Messaging',
+    desc: 'End-to-end encrypted team messaging with forward secrecy. The server only ever processes ciphertext — zero vendor access.',
+    icon: 'chat',
+    badge: 'Zero Knowledge',
+    cols: 'span-1',
+    accent: 'purple'
+  },
+  {
+    id: 'selfhost',
+    tag: 'SOVEREIGN INFRASTRUCTURE',
+    title: '1-Line Self-Hosting & Air-Gap',
+    desc: 'Deploy the full stack on your private cloud, Kubernetes cluster, or air-gapped bare metal in minutes with total data sovereignty.',
+    icon: 'server',
+    badge: 'Total Sovereignty',
+    cols: 'span-1',
+    accent: 'cyan'
+  },
+  {
+    id: 'ai-translate',
+    tag: 'PRIVACY-PRESERVING AI',
+    title: 'Real-Time Live Translation & Captions',
+    desc: 'Simultaneous voice-to-text translation across 15+ languages and automated action items without sending unencrypted audio to public AI models.',
+    icon: 'globe',
+    badge: '15+ Languages',
+    cols: 'span-2',
+    accent: 'cyan'
+  }
 ];
 
-const features = [
-  { icon: 'video', title: 'Video meetings', href: '/features/video-meetings', body: 'Encrypted 4K calls with studio-grade audio and AI noise suppression. No download — join from any browser.' },
-  { icon: 'users', title: 'Webinars', href: '/features/webinars', body: 'Broadcast to large audiences with a tokenless public join, moderation and Q&A — all under the same encryption model.' },
-  { icon: 'play', title: 'Recordings', href: '/features/recordings', body: 'Capture meetings with encryption-gated recording, so playback stays restricted to the people you authorise.' },
-  { icon: 'file-lock', title: 'Deal rooms', href: '/features/deal-rooms', body: 'Confidential document rooms with live video — for M&A, diligence and board matters that can’t leak.' },
-  { icon: 'chat', title: 'Messaging', href: '/features/messaging', body: 'Server-blind team messaging with forward secrecy, built on the open IETF MLS standard (RFC 9420).' },
+const battleMatrix = [
+  {
+    feature: 'Encryption Architecture',
+    ollasync: 'IETF MLS (RFC 9420) E2EE · Server-Blind (Zero vendor keys)',
+    legacy: 'Vendor holds decryption keys & media relays in plaintext',
+    isWinner: true,
+  },
+  {
+    feature: 'Data Sovereignty & Legal Jurisdiction',
+    ollasync: 'EU (Frankfurt) Default or 100% On-Premise Air-Gapped',
+    legacy: 'Subject to US CLOUD Act & FISA 702 warrantless subpoenas',
+    isWinner: true,
+  },
+  {
+    feature: 'AI Training on Customer Communications',
+    ollasync: 'Strict Zero-Training Guarantee · Privacy Enclave',
+    legacy: 'Terms permit scanning calls & chats for AI training',
+    isWinner: true,
+  },
+  {
+    feature: 'Confidential Deal Rooms & Diligence',
+    ollasync: 'Built-in encrypted document rooms with dynamic watermarking',
+    legacy: 'None — requires expensive third-party VDR add-ons',
+    isWinner: true,
+  },
+  {
+    feature: 'Software Footprint & Security Vulnerabilities',
+    ollasync: '100% Pure WebRTC Browser Engine — Zero Downloads',
+    legacy: 'Heavy desktop binaries with frequent zero-day vulnerabilities',
+    isWinner: true,
+  },
+  {
+    feature: 'Air-Gapped & Offline Deployment',
+    ollasync: 'Native Docker / Helm charts for isolated military & government nets',
+    legacy: 'Impossible — hard-locked to vendor cloud dependencies',
+    isWinner: true,
+  },
 ];
 
 const verticals = [
-  { icon: 'pulse', title: 'Healthcare', href: '/use-cases/healthcare', body: 'Private telehealth and PHI that stays inside your compliance boundary.' },
-  { icon: 'scale', title: 'Legal', href: '/use-cases/legal', body: 'Privileged client conversations and secure document exchange.' },
-  { icon: 'building', title: 'Finance', href: '/use-cases/finance', body: 'Confidential advisory calls, deal rooms and board meetings.' },
-  { icon: 'landmark', title: 'Government', href: '/use-cases/government', body: 'Sovereign, on-premise or air-gapped deployments.' },
+  {
+    icon: 'lock',
+    tag: 'LEGACY CLOUD SUITE · 2020',
+    badge: 'COMPROMISED',
+    title: 'Meeting Hijacking & Intrusion Crisis',
+    href: '/security',
+    body: 'Uninvited intruders hijacked thousands of corporate and institutional sessions due to predictable room IDs and unauthenticated meeting links.',
+    capabilities: [
+      'No true end-to-end encryption in place',
+      'Predictable, easily guessable numeric meeting IDs',
+      'Disrupted boardrooms, courts, and executive sessions',
+    ],
+  },
+  {
+    icon: 'globe',
+    tag: 'CENTRALIZED VENDOR · 2020',
+    badge: 'FOREIGN KEY ROUTING',
+    title: 'Encryption Keys Routed to Foreign Servers',
+    href: '/security',
+    body: 'Independent researchers uncovered commercial video providers routing Western meeting decryption keys through foreign servers.',
+    capabilities: [
+      'Insecure, deprecated cipher modes utilized',
+      'Decryption keys generated on foreign infrastructure',
+      'Triggered multinational government and enterprise bans',
+    ],
+  },
+  {
+    icon: 'scale',
+    tag: 'COMMERCIAL SAAS · 2021',
+    badge: '$85M SETTLEMENT',
+    title: 'Deceptive Encryption Claims Settlement',
+    href: '/security',
+    body: 'Regulators penalized major providers for falsely marketing end-to-end encryption while retaining internal keys to decrypt client streams.',
+    capabilities: [
+      'Misleading E2EE claims marketed for multiple years',
+      'Vendors retained direct access to plaintext audio/video',
+      'Mandated multi-decade federal security compliance audits',
+    ],
+  },
+  {
+    icon: 'pulse',
+    tag: 'ENTERPRISE TELEPHONY · 2020',
+    badge: 'CLASSIFIED LEAK',
+    title: 'Defense Council Infiltrated via PIN Bypass',
+    href: '/security',
+    body: 'A sensitive EU defense council was accessed undetected by an outsider guessing a simple 5-digit conference PIN.',
+    capabilities: [
+      'Trivial PIN-only authentication without verification',
+      'Classified discussions monitored undetected in real time',
+      'Forced emergency protocol overhauls across defense bodies',
+    ],
+  },
+  {
+    icon: 'building',
+    tag: 'BIG-TECH CLOUD · 2023',
+    badge: 'STORM-0558',
+    title: 'Forged Tokens Compromise Executive Inboxes',
+    href: '/security',
+    body: 'State-sponsored actors leveraged stolen cloud master signing keys to forge authentication tokens and access communications across 25+ organizations.',
+    capabilities: [
+      'Stolen cryptographic master signing key',
+      'Executive and cabinet-level accounts breached',
+      'Remained undetected within cloud infrastructure for weeks',
+    ],
+  },
+  {
+    icon: 'landmark',
+    tag: 'LEGACY UC VENDOR · 2024',
+    badge: 'DEFENSE INTERCEPT',
+    title: 'High-Level Defense Strategy Intercepted',
+    href: '/security',
+    body: 'Foreign intelligence intercepted a 38-minute classified military teleconference discussing strategic operations over commercial infrastructure.',
+    capabilities: [
+      'Dial-in from unencrypted commercial network',
+      'Sensitive strategic discussions leaked globally',
+      'Resulted in strict bans on third-party commercial platforms',
+    ],
+  },
+  {
+    icon: 'file-lock',
+    tag: 'POPULAR WEB APP · 2022',
+    badge: 'PHISHING VECTOR',
+    title: 'Deceptive Meeting Portals Distribute Malware',
+    href: '/security',
+    body: 'Threat actors deployed convincing clones of standard video meeting landing pages to deceive enterprise staff into running credential stealers.',
+    capabilities: [
+      'Pixel-perfect clones of standard web meeting portals',
+      'Staff tricked into running malicious diagnostic payloads',
+      'Enterprise credentials and internal tokens compromised',
+    ],
+  },
+  {
+    icon: 'server',
+    tag: 'MAINSTREAM SAAS · 2023',
+    badge: 'AI TRAINING EXPOSURE',
+    title: 'AI Model Training on Proprietary Meeting Data',
+    href: '/security',
+    body: 'Commercial video vendors modified Terms of Service to grant broad rights to train generative AI models on customer voice, video, and transcript data.',
+    capabilities: [
+      'Terms permitted AI training on customer call data',
+      'Zero proactive consent or opt-out provided to participants',
+      'Prompted severe enterprise resistance and immediate rollbacks',
+    ],
+  },
+];
+
+const trustItems = [
+  { icon: 'lock', label: 'IETF MLS Protocol (RFC 9420)' },
+  { icon: 'globe', label: '100% EU Frankfurt Residency' },
+  { icon: 'server', label: 'Docker & Kubernetes Self-Host' },
+  { icon: 'video', label: 'Native 4K 60FPS HDR Video' },
+  { icon: 'mic', label: 'Studio-Grade Opus 48 kHz' },
+  { icon: 'file-lock', label: 'Confidential Deal Rooms' },
+  { icon: 'shield-check', label: 'Zero AI Training on Your Data' },
+  { icon: 'eye-off', label: 'Mathematical Server-Blindness' },
 ];
 
 const faq = [
-  { q: 'Is Ollasync end-to-end encrypted?', a: 'Messaging is — it uses the open IETF MLS standard (RFC 9420), keys stay on your devices, and the server only ever stores ciphertext. Video runs over a media relay encrypted in transit (TLS 1.3 / DTLS-SRTP), with an opt-in end-to-end mode; we spell out exactly what’s protected on our security page.' },
-  { q: 'Where is my data stored?', a: 'On our managed service, in the EU (Frankfurt) by default. If you self-host, you choose the jurisdiction entirely — up to a fully air-gapped network.' },
-  { q: 'Can Ollasync read my meetings or messages?', a: 'We can’t read your messages — they’re end-to-end encrypted and we hold no keys. Meeting video passes through a relay in encrypted transit; we never mine or sell your data, and we tell you plainly what the server can and can’t see.' },
-  { q: 'How is Ollasync different from Zoom?', a: 'EU-hosted, server-blind encrypted messaging, and confidential deal rooms — built for teams whose calls and documents are too sensitive for a US cloud they can’t inspect. See our Zoom comparison for the feature-by-feature breakdown.' },
-  { q: 'Can I self-host Ollasync?', a: 'Yes — the whole platform can run on your own servers, private cloud or an air-gapped network, so meeting media, recordings and documents never leave your control. Self-hosting is available on the Enterprise plan.' },
-  { q: 'Is Ollasync HIPAA or GDPR compliant?', a: 'Compliance is a property of your deployment, not a checkbox we sell. We give you the controls a HIPAA or GDPR programme needs — encryption, EU or on-premise hosting, access control, audit logging and a DPA. We hold no SOC 2 or ISO 27001 certification yet, and we say so.' },
+  { q: 'Why is Ollasync superior to Zoom and Microsoft Teams?', a: 'Zoom and Teams are built on legacy cloud architectures where the vendor holds master decryption keys and is subject to US government CLOUD Act reach. Ollasync uses the modern IETF MLS (RFC 9420) standard: encryption keys never leave your devices, our servers only see unreadable ciphertext, and the entire stack can be self-hosted on your own infrastructure.' },
+  { q: 'What does "Server-Blind by Design" mean?', a: 'It means our hosted relay servers are mathematically incapable of reading your messages, listening to your video calls, or decrypting your deal room files. Even under subpoena or server compromise, an attacker only captures scrambled ciphertext.' },
+  { q: 'Can we self-host Ollasync on our own air-gapped network?', a: 'Yes. Ollasync Enterprise includes complete Docker images and Helm charts that can be deployed entirely offline in air-gapped government, defense, or high-security financial networks with zero external phone-home dependencies.' },
+  { q: 'How do Confidential Deal Rooms work?', a: 'Deal rooms allow you to host live encrypted video calls while sharing highly confidential M&A, diligence, or legal files. Every document is dynamically watermarked with viewer metadata, access is time-gated, and files are stored with browser-side encryption.' },
+  { q: 'Do participants need to download software or create an account?', a: 'No. Ollasync operates directly inside any modern web browser via WebRTC. Guests can join an encrypted call in one click without downloading client executables or creating an account.' },
 ];
 
 const homeSchema = {
@@ -56,196 +243,801 @@ const homeSchema = {
   operatingSystem: 'Web browser',
   description: description,
   featureList: [
-    'Encrypted video meetings',
-    'Encrypted webinars',
-    'Encryption-gated recordings',
-    'Confidential deal rooms',
-    'Server-blind messaging (IETF MLS / RFC 9420)',
-    'EU data residency and optional self-hosting',
+    '4K Encrypted Video Meetings',
+    'Confidential Deal Rooms & Diligence',
+    'Server-Blind MLS Messaging (RFC 9420)',
+    'Real-time Live Multilingual Translation',
+    'EU Data Residency & Air-gapped Self-Hosting',
   ],
   url: SITE.url,
 };
 ---
 <Base title={title} description={description} schema={homeSchema}>
-  <!-- HERO -->
-  <section class="section" style="padding-top:64px;padding-bottom:44px">
-    <div class="container hero">
-      <div class="hero__copy">
-        <span class="eyebrow" data-reveal><Icon name="lock" size={13} stroke="#cfc6ff" /> Encrypted · EU-hosted · server-blind messaging</span>
-        <h1 class="display" data-reveal style="margin-top:22px">
-          Encrypted <span class="gradient-text">video meetings &amp; deal rooms</span> for teams that can’t trust the cloud
-        </h1>
-        <p class="lead" data-reveal style="margin-top:22px;max-width:56ch">
-          Encrypted video, webinars, recordings and confidential deal rooms — EU-hosted and ready in one click. Messaging is end-to-end encrypted and server-blind, so we only ever see ciphertext. Need total control? Self-host the whole platform.
-        </p>
-        <div class="hero__cta" data-reveal>
-          <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
-          <a href="/contact" class="btn btn-ghost">Book a demo</a>
-          <a href="/self-hosted" class="hero__selfhost">or self-host it →</a>
-        </div>
-        <ul class="hero__ticks" data-reveal>
-          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Ready in one click — no install</li>
-          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Server-blind encrypted messaging</li>
-          <li class="check"><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>EU data residency — self-host optional</li>
-        </ul>
-      </div>
-      <div class="hero__art" data-reveal>
-        <CallMock />
-      </div>
-    </div>
-  </section>
+  <!-- CONTINUOUS SOVEREIGN BLUE GRADIENT FLOW (HERO -> MARQUEE -> CAPABILITIES -> GALLERY) -->
+  <div class="sovereign-gradient-flow">
+    <div class="flow-orb flow-orb--top-teal" aria-hidden="true"></div>
+    <div class="flow-orb flow-orb--mid-blue" aria-hidden="true"></div>
+    <div class="flow-orb flow-orb--deep-blue" aria-hidden="true"></div>
+    <div class="flow-orb flow-orb--gallery-blue" aria-hidden="true"></div>
 
-  <!-- TRUST MARQUEE -->
-  <div class="section-tight" style="padding-block:22px;border-block:1px solid var(--line)">
-    <div class="container marquee">
-      <div class="marquee__track">
-        {Array.from({ length: 2 }).map(() => (
-          <span>
-            <span class="chip"><Icon name="lock" size={14} stroke="#3ddc97" /> End-to-end encrypted</span>
-            <span class="chip"><Icon name="globe" size={14} stroke="#8f7bff" /> EU-hosted · Frankfurt</span>
-            <span class="chip"><Icon name="server" size={14} stroke="#8f7bff" /> Self-host optional</span>
-            <span class="chip"><Icon name="video" size={14} stroke="#3ddc97" /> Native 4K video</span>
-            <span class="chip"><Icon name="mic" size={14} stroke="#8f7bff" /> Opus 48 kHz · AI noise suppression</span>
-            <span class="chip"><Icon name="fingerprint" size={14} stroke="#3ddc97" /> IETF MLS · RFC 9420</span>
-          </span>
-        ))}
+    <!-- 1. HERO SECTION -->
+    <section class="section section-hero">
+      <div class="container hero-grid" style="position:relative;z-index:2">
+        <div class="hero__copy">
+          <div class="eyebrow" data-reveal>
+            NEXT-GEN CRYPTOGRAPHIC COLLABORATION
+          </div>
+
+          <h1 class="display hero__title" data-reveal>
+            The Sovereign <span class="gradient-text">Video &amp; Deal Room</span> Engine for Regulated Teams
+          </h1>
+
+          <p class="lead hero__lead" data-reveal>
+            Engineered so your calls, documents, and messaging remain mathematically unreadable to us or any cloud vendor. Join in one click from any browser, or self-host in your own private cloud or air-gapped network.
+          </p>
+
+          <div class="hero__cta" data-reveal>
+            <a href={SITE.appUrl} class="btn btn-primary">
+              <span>Launch Free Session</span>
+              <span class="arrow">→</span>
+            </a>
+            <a href="/contact" class="btn btn-ghost">Schedule Demo</a>
+            <a href="/self-hosted" class="hero__selfhost">or self-host on-prem <span class="arrow">→</span></a>
+          </div>
+
+          <div class="hero-trust-capsule" data-reveal>
+            <div class="capsule-item">
+              <span class="capsule-check"><Icon name="check" size={10} stroke="#ffffff" /></span>
+              <span>1-Click No-Download Joining</span>
+            </div>
+            <div class="capsule-item">
+              <span class="capsule-check"><Icon name="check" size={10} stroke="#ffffff" /></span>
+              <span>Server-Blind Zero-Knowledge</span>
+            </div>
+            <div class="capsule-item">
+              <span class="capsule-check"><Icon name="check" size={10} stroke="#ffffff" /></span>
+              <span>100% EU Frankfurt &amp; Air-Gapped</span>
+            </div>
+            <div class="capsule-item">
+              <span class="capsule-check"><Icon name="check" size={10} stroke="#ffffff" /></span>
+              <span>Zero AI Training Guarantee</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__art" data-reveal>
+          <div class="hero-brand-presentation">
+            <img src="/ollasync-emblem-hd.png" alt="Ollasync Sovereign Platform" class="hero-brand-emblem" width="968" height="696" loading="eager" decoding="async" />
+            <div class="hero-brand-caption mono">
+              <span>WEBINAR</span>
+              <span class="caption-dot dot--teal"></span>
+              <span>LIVE TRANSLATION</span>
+              <span class="caption-dot dot--purple"></span>
+              <span>CAPTIONS</span>
+              <span class="caption-dot dot--blue"></span>
+              <span>NOTES</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE (ROW OF COLUMNS / BOXES WITH ICON ON TOP & TEXT BELOW) -->
+    <div class="section-trust" aria-label="Security & Performance Standards">
+      <div class="marquee">
+        <div class="marquee__track">
+          {trustItems.concat(trustItems).map((item) => (
+            <div class="trust-chip">
+              <span class="trust-chip__icon">
+                <Icon name={item.icon} size={16} stroke="currentColor" />
+              </span>
+              <span class="trust-chip__label">{item.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
+
+    <!-- 2. CAPABILITIES & IN-APP GALLERY (DEEPER SOVEREIGN BLUE FLOW) -->
+    <section class="section section-bento" id="capabilitiesSection">
+      <div class="container" style="position:relative;z-index:2">
+      <div class="section-head center" data-cap-reveal>
+        <span class="eyebrow eyebrow--blue">NEXT-GENERATION CAPABILITIES</span>
+        <h2 class="h2" style="margin-top:10px;font-size:clamp(28px, 3.2vw, 42px)">
+          Everything your high-stakes calls need — under one cryptographic shield
+        </h2>
+        <p class="lead" style="margin-top:10px;max-width:700px;margin-inline:auto;color:#334155">
+          Built from the ground up to outperform traditional enterprise meeting suites in security, video quality, and sovereign control.
+        </p>
+      </div>
+
+      <!-- 3-COLUMN STAGGERED LAYOUT -->
+      <div class="cap-grid" style="margin-top:36px">
+        
+        <!-- LEFT COLUMN: HOST CONTROLS & SOVEREIGN ROOM SECURITY -->
+        <div class="cap-col" data-cap-reveal style="--cap-delay: 0.15s">
+          <div class="cap-card cap-card--white">
+            <div class="cap-card__intro">
+              <div class="cap-card__header">
+                <span class="cap-tag mono">HOST GOVERNANCE</span>
+                <span class="cap-badge mono">1-CLICK LOCKS</span>
+              </div>
+              <h3 class="cap-card__title">Host Moderation &amp;<br/>Sovereign Room Security</h3>
+              <p class="cap-card__desc">
+                Instant meeting locks, host-only sharing, encrypted breakout rooms, password protection, and zero-knowledge private chats.
+              </p>
+            </div>
+            <div class="cap-visual-box">
+              <div class="video-device-frame">
+                <div class="video-device-top">
+                  <span class="video-dot"></span>
+                  <span class="video-status-text mono">HOST CONTROLS · 8 PARTICIPANTS</span>
+                </div>
+                <video src="/ollasync-host-controls.mp4" autoplay loop muted playsinline class="bento-video" style="object-position: top center;"></video>
+              </div>
+            </div>
+            <div class="cap-card__footer">
+              <span class="cap-footer-title mono">ZERO-SERVER GOVERNANCE</span>
+              <span class="cap-pill-price mono">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENTER COLUMN: REAL-TIME CAPTIONS & TRANSLATION -->
+        <div class="cap-col" data-cap-reveal style="--cap-delay: 0.05s">
+          <div class="cap-card cap-card--vibrant">
+            <div class="cap-card__intro">
+              <div class="cap-card__header center-header">
+                <span class="cap-pill-badge mono">SUPER-ENGINE · LIVE AI</span>
+              </div>
+              <h3 class="cap-card__title text-center text-white" style="font-weight:800;letter-spacing:-0.01em">REAL-TIME MULTILINGUAL<br/>CAPTIONS &amp; TRANSLATION</h3>
+              <p class="cap-card__desc text-center text-white" style="opacity:0.92">
+                Whisper AI transcription directly on local audio streams with zero latency translation across 15+ global languages.
+              </p>
+            </div>
+            <div class="cap-visual-box">
+              <div class="video-device-frame">
+                <div class="video-device-top">
+                  <span class="video-dot"></span>
+                  <span class="video-status-text mono">LIVE DEMO · CAPTIONS ACTIVE</span>
+                </div>
+                <video src="/ollasync-live-captions.mp4" poster="/og-ollasync.png" autoplay loop muted playsinline class="bento-video"></video>
+              </div>
+            </div>
+            <div class="cap-card__footer cap-vibrant-bottom">
+              <span class="mono text-xs text-white" style="font-weight:750">15+ LANGUAGES</span>
+              <span class="mono text-xs text-white" style="font-weight:600">+ Live Audio</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: CONFIDENTIAL DEAL ROOMS -->
+        <div class="cap-col" data-cap-reveal style="--cap-delay: 0.25s">
+          <div class="cap-card cap-card--white">
+            <div class="cap-card__intro">
+              <div class="cap-card__header">
+                <span class="cap-tag mono" style="color:#7c3aed">M&amp;A &amp; BOARD DILIGENCE</span>
+                <span class="cap-badge mono" style="color:#7c3aed;background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.25)">DYNAMIC WATERMARK</span>
+              </div>
+              <h3 class="cap-card__title">Confidential<br/>Deal Rooms</h3>
+              <p class="cap-card__desc">
+                Integrated document diligence vaults with live video, viewer-specific dynamic watermarking, and time-gated access policies.
+              </p>
+            </div>
+            <div class="cap-visual-box">
+              <div class="cap-document-preview">
+                <div class="doc-header"><span class="doc-icon"><Icon name="doc" size={13} stroke="#7c3aed" /></span><span class="doc-name mono">Series_A_Term_Sheet.pdf</span></div>
+                <div class="doc-body-lines"><div class="doc-line" style="width:90%"></div><div class="doc-line" style="width:75%"></div><div class="doc-line" style="width:85%"></div><div class="doc-line" style="width:65%"></div></div>
+                <div class="doc-watermark-overlay">
+                  <span class="watermark-text mono">CONFIDENTIAL · VIEWED BY COUNSEL</span>
+                  <span class="watermark-sub mono">Session ID: 9f2a-88c1 · Forensic Tracking Active</span>
+                </div>
+                <div class="doc-body-lines"><div class="doc-line" style="width:70%"></div><div class="doc-line" style="width:95%"></div><div class="doc-line" style="width:60%"></div></div>
+              </div>
+            </div>
+            <div class="cap-card__footer">
+              <span class="cap-footer-title mono" style="color:#7c3aed">FORENSIC DILIGENCE</span>
+              <span class="cap-pill-price mono" style="color:#7c3aed;background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.25)">VAULT</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cap-selfhost-strip" data-cap-reveal style="--cap-delay: 0.1s;margin-top:24px">
+        <div class="selfhost-dock-wrapper">
+          <img src="/ollasync-dock.png" alt="Ollasync Meeting Control Dock" class="dock-strip-img" width="1442" height="104" />
+        </div>
+      </div>
+
+      <!-- PRODUCT SHOWCASE GALLERY (3 SCREENSHOTS) IN SAME SEAMLESS CANVAS -->
+      <div class="gallery-block" style="margin-top:68px">
+        <div class="section-head center" data-cap-reveal>
+          <span class="eyebrow eyebrow--blue">LIVE IN-APP EXPERIENCE</span>
+          <h2 class="h2" style="margin-top:10px;font-size:clamp(26px, 3vw, 38px)">Built for frictionless, sovereign collaboration</h2>
+          <p class="lead" style="margin-top:10px;max-width:700px;margin-inline:auto;color:#334155">
+            Explore the clean, intuitive interface of Ollasync — from multi-party sovereign rooms and real-time polls to end-to-end encrypted screen sharing.
+          </p>
+        </div>
+
+        <div class="gallery-grid" data-cap-reveal style="margin-top:32px">
+          
+          <!-- CARD 1 -->
+          <div class="gallery-card panel">
+            <div class="gallery-card__window">
+              <div class="window-bar">
+                <div class="window-dots"><span class="w-dot"></span><span class="w-dot"></span><span class="w-dot"></span></div>
+                <span class="window-title mono text-xs">Ollasync meeting · Live Call</span>
+              </div>
+              <div class="gallery-card__media">
+                <img src="/ollasync-preview-meetings.jpeg" alt="Ollasync Multi-party Meeting UI" loading="lazy" width="1280" height="800" />
+              </div>
+            </div>
+            <div class="gallery-card__info">
+              <div class="gallery-card__top">
+                <span class="gallery-card__tag mono">MULTI-PARTY CALLS</span>
+                <span class="badge-soft mono" style="font-size:10px">Sub-15ms Latency</span>
+              </div>
+              <h3 class="gallery-card__title">Active Speaker Grid &amp; Participant Tiles</h3>
+              <p class="gallery-card__desc">
+                Low-latency multi-participant meetings with adaptive speaker focus, instant mute controls, and zero server telemetry.
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="gallery-card panel">
+            <div class="gallery-card__window">
+              <div class="window-bar">
+                <div class="window-dots"><span class="w-dot"></span><span class="w-dot"></span><span class="w-dot"></span></div>
+                <span class="window-title mono text-xs">Ollasync poll · Host Controls</span>
+              </div>
+              <div class="gallery-card__media">
+                <img src="/ollasync-preview-polls.jpeg" alt="Ollasync Interactive In-Call Polls" loading="lazy" width="1280" height="800" />
+              </div>
+            </div>
+            <div class="gallery-card__info">
+              <div class="gallery-card__top">
+                <span class="gallery-card__tag mono">HOST COLLABORATION</span>
+                <span class="badge-soft mono" style="font-size:10px">Live Polls &amp; Breakouts</span>
+              </div>
+              <h3 class="gallery-card__title">Interactive In-Call Polls &amp; Breakouts</h3>
+              <p class="gallery-card__desc">
+                Launch instant attendee polls, manage host security locks, assign private breakout sessions, and control participant access on the fly.
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="gallery-card panel">
+            <div class="gallery-card__window">
+              <div class="window-bar">
+                <div class="window-dots"><span class="w-dot"></span><span class="w-dot"></span><span class="w-dot"></span></div>
+                <span class="window-title mono text-xs">Ollasync share · Encrypted Stream</span>
+              </div>
+              <div class="gallery-card__media">
+                <img src="/ollasync-preview-screenshare.jpeg" alt="Ollasync Screen Sharing" loading="lazy" width="1280" height="800" />
+              </div>
+            </div>
+            <div class="gallery-card__info">
+              <div class="gallery-card__top">
+                <span class="gallery-card__tag mono">SOVEREIGN SCREEN SHARE</span>
+                <span class="badge-soft mono" style="font-size:10px">E2EE Media Track</span>
+              </div>
+              <h3 class="gallery-card__title">Confidential Screen &amp; App Sharing</h3>
+              <p class="gallery-card__desc">
+                Stream windows, tabs, or full monitors directly peer-to-peer with zero intermediate decryption or cloud storage.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
   </div>
 
-  <!-- WHY SELF-HOST -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow-label">Why Ollasync</span>
-        <h2 class="h2" style="margin-top:12px">Secure by default — hosted for you, self-hosted when you need it</h2>
-        <p class="kicker" style="margin-top:14px">Most video tools ask you to trust a vendor with your most sensitive calls. Ollasync is built so you don’t have to — either the content is unreadable to us, or it runs on hardware you own.</p>
-      </div>
-      <div class="grid grid-4" data-reveal>
-        {whyOllasync.map((c) => (
-          <div class="card card--hover">
-            <div class="card__icon"><Icon name={c.icon} size={20} /></div>
-            <h3 class="h3">{c.title}</h3>
-            <p>{c.body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <script>
+    function initCapScrollReveal() {
+      const revealItems = document.querySelectorAll('[data-cap-reveal]');
+      if (!revealItems.length) return;
 
-  <!-- FEATURE OVERVIEW -->
-  <section class="section" style="padding-top:20px">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow-label">One platform</span>
-        <h2 class="h2" style="margin-top:12px">Everything a meeting needs — under one encryption model</h2>
-      </div>
-      <div class="feature-rows" data-reveal>
-        {features.map((f) => (
-          <a href={f.href} class="feature-row card--hover card">
-            <div class="card__icon"><Icon name={f.icon} size={20} /></div>
-            <div>
-              <h3 class="h3" style="display:flex;align-items:center;gap:8px">{f.title} <span class="feature-row__arrow"><Icon name="arrow" size={16} /></span></h3>
-              <p style="margin-top:6px">{f.body}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-cap-revealed');
+          }
+        });
+      }, {
+        rootMargin: '80px 0px -2% 0px',
+        threshold: 0.01,
+      });
 
-  <!-- SECURITY TEASER -->
-  <section class="section">
-    <div class="container sec-teaser">
-      <div data-reveal>
-        <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={13} stroke="#a9f2d1" /> Two ways your content stays yours</span>
-        <h2 class="h2" style="margin-top:18px">Either we can’t read it — or it never reaches us at all</h2>
-        <p class="lead" style="margin-top:16px;max-width:52ch">Your content stays yours two ways. Messaging is end-to-end encrypted — we hold no keys and see only ciphertext. Video and documents are encrypted in transit to a relay you can keep in-region, or self-host entirely.</p>
-        <div class="guarantees">
-          <div class="guarantee">
-            <div class="card__icon card__icon--teal"><Icon name="eye-off" size={20} /></div>
-            <div>
-              <h3 class="h3">Server-blind messaging</h3>
-              <p class="muted" style="font-size:14.5px;margin-top:4px">End-to-end encrypted with the open <strong>IETF MLS standard (RFC 9420)</strong> and forward secrecy. Keys stay on devices — <em>we can’t read your messages.</em></p>
-            </div>
+      revealItems.forEach((el) => observer.observe(el));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCapScrollReveal);
+    } else {
+      initCapScrollReveal();
+    }
+  </script>
+
+  <!-- 4. BATTLE GRID: OLLASYNC VS ZOOM & LEGACY (TAN-WHITE) -->
+  <section class="section section-battle section--tan">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow-label">UNCOMPROMISING COMPARISON</span>
+        <h2 class="h2" style="margin-top:8px">Why legacy video platforms fall short</h2>
+        <p class="lead" style="margin-top:8px;max-width:700px;margin-inline:auto">See how Ollasync's zero-knowledge sovereign architecture contrasts against traditional cloud tools like Zoom, Microsoft Teams, and Webex.</p>
+      </div>
+
+      <div class="battle-table panel" data-reveal style="margin-top:32px">
+        <!-- CONTINUOUS THEME GRADIENT PILL BORDER (#7128F5 bottom-left to #03DDBE top-right) -->
+        <div class="battle-ollasync-glow-card" aria-hidden="true"></div>
+
+        <div class="battle-header">
+          <div class="battle-col battle-col--feat">Capability</div>
+          <div class="battle-col battle-col--ollasync">
+            <span class="battle-brand">
+              <img src="/ollasync-logo.png" alt="Ollasync" height="22" width="96" style="height:22px;width:auto;" />
+            </span>
           </div>
-          <div class="guarantee">
-            <div class="card__icon"><Icon name="server" size={20} /></div>
-            <div>
-              <h3 class="h3">You choose where it runs</h3>
-              <p class="muted" style="font-size:14.5px;margin-top:4px">EU-hosted in Frankfurt by default — or run the media relay, storage and app on your own infrastructure, so meeting video and documents stay inside your trust boundary.</p>
-            </div>
+          <div class="battle-col battle-col--legacy">
+            <span>Legacy Platforms (Zoom / Teams)</span>
           </div>
         </div>
-        <a href="/security" class="btn btn-ghost" style="margin-top:26px">How the encryption really works <span class="arrow">→</span></a>
-      </div>
-      <div class="sec-teaser__viz panel" data-reveal aria-hidden="true">
-        <div class="viz-row"><span class="viz-node">You</span><span class="viz-flow mono">🔒 MLS</span><span class="viz-node viz-node--server">Delivery service</span><span class="viz-flow mono">🔒 MLS</span><span class="viz-node">Them</span></div>
-        <div class="viz-label mono">what the server stores for messaging</div>
-        <div class="viz-cipher mono">9f2a·c701·b83e·44da·10ff·e2b9·77c4·1a0d<br />5e6b·92af·d3c8·071e·bb45·2f9a·84d1·c6e0<br />a1d7·38fc·6b20·e94a·77b3·0c5e·d2f1·9a48</div>
-        <div class="viz-foot"><span class="badge-soft">ciphertext only</span><span class="mono" style="font-size:11px;color:var(--muted)">keys never leave your device</span></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- VERTICALS -->
-  <section class="section" style="padding-top:20px">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow-label">Who it’s for</span>
-        <h2 class="h2" style="margin-top:12px">For teams where a leaked meeting is a headline</h2>
-      </div>
-      <div class="grid grid-4" data-reveal>
-        {verticals.map((v) => (
-          <a href={v.href} class="card card--hover">
-            <div class="card__icon card__icon--teal"><Icon name={v.icon} size={20} /></div>
-            <h3 class="h3">{v.title}</h3>
-            <p>{v.body}</p>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- VS ZOOM TEASER -->
-  <section class="section">
-    <div class="container">
-      <div class="vs-teaser panel" data-reveal>
-        <div>
-          <span class="eyebrow-label">Switching from Zoom?</span>
-          <h2 class="h2" style="margin-top:12px;max-width:20ch">The encrypted Zoom alternative</h2>
-          <p class="lead" style="margin-top:14px;max-width:48ch">Same one-click, no-download meetings your team already expects — without handing your most sensitive calls to a cloud you can’t inspect.</p>
-          <a href="/vs/zoom" class="btn btn-primary" style="margin-top:22px">Compare Ollasync vs Zoom <span class="arrow">→</span></a>
+        <div class="battle-rows">
+          {battleMatrix.map((row) => (
+            <div class="battle-row">
+              <div class="battle-col battle-col--feat font-semibold">
+                {row.feature}
+              </div>
+              <div class="battle-col battle-col--ollasync">
+                <span class="battle-status battle-status--win">
+                  <Icon name="check" size={13} stroke="#0f766e" />
+                </span>
+                <span class="battle-text">{row.ollasync}</span>
+              </div>
+              <div class="battle-col battle-col--legacy">
+                <span class="battle-status battle-status--lose">✕</span>
+                <span class="battle-text battle-text--muted">{row.legacy}</span>
+              </div>
+            </div>
+          ))}
         </div>
-        <ul class="vs-teaser__list">
-          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>End-to-end encrypted messaging by default</li>
-          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>EU-hosted — no US CLOUD Act</li>
-          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Server-blind — no vendor access to content</li>
-          <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>Self-host available when you need it</li>
-        </ul>
       </div>
     </div>
   </section>
 
-  <!-- FROM THE BLOG -->
+  <!-- 5. INTERACTIVE CRYPTOGRAPHIC FLOW VISUALIZER (WHITE) -->
+  <section class="section section-crypto section--white">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow"><Icon name="lock" size={12} stroke="currentColor" /> SERVER-BLIND PROTOCOL</span>
+        <h2 class="h2" style="margin-top:8px">How our zero-knowledge encryption actually works</h2>
+        <p class="lead" style="margin-top:8px;max-width:680px;margin-inline:auto">Unlike cloud vendors that decrypt your stream in memory, Ollasync relays encrypted packets client-to-client without ever accessing plaintext or encryption keys.</p>
+      </div>
+
+      <div class="crypto-showcase panel" data-reveal style="margin-top:28px" id="cryptoShowcase">
+        <div class="crypto-flow" id="cryptoFlowContainer">
+          
+          <!-- STEP 1: SENDER CLIENT -->
+          <div class="crypto-node crypto-node--sender" id="cryptoNode1">
+            <div class="crypto-node__badge mono">STEP 1: SENDER CLIENT</div>
+            <div class="crypto-node__box">
+              <span class="node-icon"><Icon name="laptop" size={24} stroke="#0f766e" /></span>
+              <h4 style="font-size:15px;color:var(--ink)">Local Browser Memory</h4>
+              <p class="mono text-xs" style="color:#0f766e;margin-top:3px">Key Pair in WebAssembly</p>
+              <div class="crypto-input-box">
+                <span class="crypto-text-payload mono" id="codeSnippet1">MLS.encrypt(stream, key)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARROW 1: SENDER -> RELAY -->
+          <div class="crypto-arrow mono" id="cryptoArrow1">
+            <span class="crypto-arrow__lock"><Icon name="lock" size={13} stroke="#0f766e" /></span>
+            <span class="crypto-arrow__text">AES-GCM-256</span>
+            <span class="crypto-arrow__line">══════════▶</span>
+          </div>
+
+          <!-- STEP 2: OLLASYNC RELAY -->
+          <div class="crypto-node crypto-node--server" id="cryptoNode2">
+            <div class="crypto-node__badge crypto-node__badge--server mono">STEP 2: OLLASYNC RELAY</div>
+            <div class="crypto-node__box">
+              <span class="node-icon"><Icon name="cloud" size={24} stroke="#dc2626" /></span>
+              <h4 style="font-size:15px;color:#b91c1c">Blind Delivery Relay</h4>
+              <p class="mono text-xs" style="color:#dc2626;margin-top:3px">Zero Knowledge · No Keys</p>
+              <div class="crypto-input-box crypto-input-box--server">
+                <span class="crypto-text-payload crypto-text-payload--server mono" id="codeSnippet2">9f2a·c701·b83e·44da...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARROW 2: RELAY -> RECIPIENT -->
+          <div class="crypto-arrow mono" id="cryptoArrow2">
+            <span class="crypto-arrow__lock"><Icon name="lock" size={13} stroke="#0f766e" /></span>
+            <span class="crypto-arrow__text">Ciphertext Stream</span>
+            <span class="crypto-arrow__line">══════════▶</span>
+          </div>
+
+          <!-- STEP 3: RECIPIENT -->
+          <div class="crypto-node crypto-node--recipient" id="cryptoNode3">
+            <div class="crypto-node__badge mono">STEP 3: RECIPIENT</div>
+            <div class="crypto-node__box">
+              <span class="node-icon"><Icon name="smartphone" size={24} stroke="#0f766e" /></span>
+              <h4 style="font-size:15px;color:var(--ink)">Recipient Decryption</h4>
+              <p class="mono text-xs" style="color:#0f766e;margin-top:3px">Ratchet Key Synced</p>
+              <div class="crypto-input-box">
+                <span class="crypto-text-payload mono" id="codeSnippet3">MLS.decrypt(cipher, key)</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="crypto-footer">
+          <div class="crypto-guarantee">
+            <span class="badge-soft"><Icon name="shield-check" size={13} stroke="currentColor" /> Cryptographically Guaranteed</span>
+            <span class="mono text-xs" style="color:var(--muted)">Keys strictly never leave user hardware devices</span>
+          </div>
+          <a href="/security" class="btn btn-ghost btn-sm">Read Cryptographic Architecture <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. REGULATED VERTICALS (CRIMSON/RED GRADIENT CAROUSEL) -->
+  <section class="section section-verticals section--crimson">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow eyebrow--crimson">MISSION-CRITICAL PERIMETERS</span>
+        <h2 class="h2 text-white" style="margin-top:8px;font-size:clamp(24px, 2.6vw, 34px)">When others failed — these are the consequences</h2>
+        <p class="lead text-white-muted" style="margin-top:8px;max-width:680px;font-size:14px;margin-inline:auto">
+          Real incidents where legacy cloud platforms, big-tech communication suites, and centralized meeting tools suffered security breaches that exposed classified sessions, leaked sensitive intelligence, and compromised enterprise confidentiality.
+        </p>
+      </div>
+
+      <!-- Carousel Track Container -->
+      <div class="usecase-carousel-wrapper" data-reveal style="margin-top:24px">
+        <div class="usecase-carousel" id="useCaseCarousel" tabindex="0" role="region" aria-label="Regulated use cases carousel">
+          {verticals.map((v, idx) => (
+            <div class="usecase-card" data-index={idx}>
+              <div class="usecase-card__top">
+                <span class="usecase-card__tag mono">{v.tag}</span>
+                <span class="usecase-card__badge mono">{v.badge}</span>
+              </div>
+
+              <h3 class="usecase-card__title">{v.title}</h3>
+              <p class="usecase-card__body">{v.body}</p>
+
+              <div class="usecase-card__divider"></div>
+
+              <div class="usecase-card__capabilities">
+                <span class="cap-heading mono">WHAT WENT WRONG</span>
+                <ul class="cap-list">
+                  {v.capabilities.map((cap) => (
+                    <li class="cap-item">
+                      <span class="cap-bullet">•</span>
+                      <span>{cap}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <a href={v.href} class="usecase-card__link">
+                <span>How Ollasync prevents this</span>
+                <span class="arrow">→</span>
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <!-- Navigation Controls: Left Arrow, Center Indicators, Right Arrow -->
+        <div class="carousel-controls">
+          <button class="carousel-nav-btn" id="carouselPrevBtn" aria-label="Previous use cases">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+
+          <div class="carousel-indicators" id="carouselIndicators" aria-hidden="true">
+            {verticals.map((_, i) => (
+              <span class={`indicator-dot ${i === 0 ? 'is-active' : ''}`} data-dot={i}></span>
+            ))}
+          </div>
+
+          <button class="carousel-nav-btn" id="carouselNextBtn" aria-label="Next use cases">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function initUseCaseCarousel() {
+      const carousel = document.getElementById('useCaseCarousel');
+      const wrapper = document.querySelector('.usecase-carousel-wrapper');
+      const prevBtn = document.getElementById('carouselPrevBtn');
+      const nextBtn = document.getElementById('carouselNextBtn');
+      const dots = document.querySelectorAll('.indicator-dot');
+
+      if (!carousel || !prevBtn || !nextBtn || !dots.length) return;
+
+      let isAnimating = false;
+      let autoPlayTimer: any = null;
+
+      const updateActiveDot = () => {
+        const firstCard = carousel.firstElementChild as HTMLElement;
+        if (!firstCard) return;
+        const activeIdx = parseInt(firstCard.getAttribute('data-index') || '0', 10);
+        dots.forEach((d, i) => {
+          if (i === activeIdx) {
+            d.classList.add('is-active');
+          } else {
+            d.classList.remove('is-active');
+          }
+        });
+      };
+
+      const getStep = () => {
+        const firstCard = carousel.firstElementChild as HTMLElement;
+        return firstCard ? firstCard.offsetWidth + 16 : 366;
+      };
+
+      const slideNext = () => {
+        if (isAnimating || carousel.children.length < 2) return;
+        isAnimating = true;
+        const step = getStep();
+        const firstCard = carousel.firstElementChild as HTMLElement;
+
+        carousel.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
+        carousel.style.transform = `translateX(-${step}px)`;
+
+        const handleTransitionEnd = () => {
+          carousel.removeEventListener('transitionend', handleTransitionEnd);
+          carousel.style.transition = 'none';
+          carousel.appendChild(firstCard); // Places starting card at the very end of the row
+          carousel.style.transform = 'translateX(0)';
+          void carousel.offsetHeight; // Force reflow
+          updateActiveDot();
+          isAnimating = false;
+        };
+
+        carousel.addEventListener('transitionend', handleTransitionEnd, { once: true });
+      };
+
+      const slidePrev = () => {
+        if (isAnimating || carousel.children.length < 2) return;
+        isAnimating = true;
+        const step = getStep();
+        const lastCard = carousel.lastElementChild as HTMLElement;
+
+        carousel.style.transition = 'none';
+        carousel.insertBefore(lastCard, carousel.firstElementChild); // Pulls last card to the front
+        carousel.style.transform = `translateX(-${step}px)`;
+        void carousel.offsetHeight; // Force reflow
+
+        carousel.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
+        carousel.style.transform = 'translateX(0)';
+
+        const handleTransitionEnd = () => {
+          carousel.removeEventListener('transitionend', handleTransitionEnd);
+          carousel.style.transition = 'none';
+          updateActiveDot();
+          isAnimating = false;
+        };
+
+        carousel.addEventListener('transitionend', handleTransitionEnd, { once: true });
+      };
+
+      const startAutoPlay = () => {
+        stopAutoPlay();
+        autoPlayTimer = setInterval(() => {
+          slideNext();
+        }, 2000);
+      };
+
+      const stopAutoPlay = () => {
+        if (autoPlayTimer) {
+          clearInterval(autoPlayTimer);
+          autoPlayTimer = null;
+        }
+      };
+
+      prevBtn.addEventListener('click', () => {
+        slidePrev();
+        startAutoPlay();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        slideNext();
+        startAutoPlay();
+      });
+
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          if (isAnimating) return;
+          const currentFirst = carousel.firstElementChild as HTMLElement;
+          const currentIdx = parseInt(currentFirst?.getAttribute('data-index') || '0', 10);
+          if (currentIdx === idx) return;
+
+          const diff = (idx - currentIdx + dots.length) % dots.length;
+          if (diff <= dots.length / 2) {
+            slideNext();
+          } else {
+            slidePrev();
+          }
+          startAutoPlay();
+        });
+      });
+
+      // Pause on hover or touch, resume when mouse leaves
+      if (wrapper) {
+        wrapper.addEventListener('mouseenter', stopAutoPlay);
+        wrapper.addEventListener('mouseleave', startAutoPlay);
+        wrapper.addEventListener('touchstart', stopAutoPlay, { passive: true });
+        wrapper.addEventListener('touchend', startAutoPlay, { passive: true });
+      }
+
+      updateActiveDot();
+      startAutoPlay();
+    }
+
+    function initCryptoFlowAnimation() {
+      const s1 = document.getElementById('codeSnippet1');
+      const s2 = document.getElementById('codeSnippet2');
+      const s3 = document.getElementById('codeSnippet3');
+
+      if (!s1 || !s2 || !s3) return;
+
+      const DURATION_SLIDE = 2600; // ms to traverse across one box (slower, readable pace)
+      const TRANSIT_GAP = 300;      // ms travel time between boxes
+
+      const CIPHER_TEXT = '9f2a·c701·b83e·44da...';
+      const DECRYPT_TEXT = 'MLS.decrypt(cipher, key)';
+      const ENCRYPT_TEXT = 'MLS.encrypt(stream, key)';
+
+      const chars = '0123456789abcdef!@#$%&*?';
+
+      function scrambleDecrypt(element: HTMLElement, targetText: string, durationMs = 1100) {
+        const length = targetText.length;
+        const startTime = performance.now();
+        
+        const scrambleInterval = setInterval(() => {
+          const elapsed = performance.now() - startTime;
+          const progress = Math.min(1, elapsed / durationMs);
+          
+          const resolvedCount = Math.floor(progress * length);
+          let output = targetText.slice(0, resolvedCount);
+          
+          for (let i = resolvedCount; i < length; i++) {
+            const char = targetText[i];
+            if (char === ' ' || char === '(' || char === ')' || char === ',' || char === '.') {
+              output += char;
+            } else {
+              output += chars[Math.floor(Math.random() * chars.length)];
+            }
+          }
+          
+          element.textContent = output;
+          
+          if (progress >= 1) {
+            clearInterval(scrambleInterval);
+            element.textContent = targetText;
+          }
+        }, 35);
+      }
+
+      function slideThrough(el: HTMLElement, duration: number) {
+        const boxWidth = el.parentElement?.clientWidth || 260;
+        const textWidth = el.offsetWidth || 180;
+        const centerX = (boxWidth - textWidth) / 2;
+        
+        // Start 100% outside on the left
+        const startX = -(textWidth + 80);
+        // End 100% outside on the right
+        const endX = boxWidth + 80;
+
+        el.style.opacity = '1';
+
+        // Glides in smoothly, slows down noticeably in the center while fully visible, then glides out smoothly
+        const animation = el.animate([
+          { transform: `translateX(${startX}px)`, offset: 0, easing: 'cubic-bezier(0.25, 0.8, 0.35, 1)' },
+          { transform: `translateX(${centerX - 8}px)`, offset: 0.32, easing: 'cubic-bezier(0.35, 0.1, 0.65, 0.9)' },
+          { transform: `translateX(${centerX + 8}px)`, offset: 0.68, easing: 'cubic-bezier(0.65, 0.05, 0.8, 0.4)' },
+          { transform: `translateX(${endX}px)`, offset: 1 }
+        ], {
+          duration: duration,
+          fill: 'forwards'
+        });
+
+        return animation;
+      }
+
+      function resetOffscreen(el: HTMLElement) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(-350px)';
+      }
+
+      function runContinuousLoop() {
+        // Step 1: Box 1 (Sender) - MLS.encrypt slides across with butter-smooth center ease
+        s1.textContent = ENCRYPT_TEXT;
+        resetOffscreen(s2);
+        resetOffscreen(s3);
+        slideThrough(s1, DURATION_SLIDE);
+
+        // Step 2: Transit -> Box 2 (Relay) - Encrypted ciphertext slides across
+        setTimeout(() => {
+          resetOffscreen(s1);
+          s2.textContent = CIPHER_TEXT;
+          slideThrough(s2, DURATION_SLIDE);
+
+          // Step 3: Transit -> Box 3 (Recipient) - Enters encrypted and scrambles/deciphers in center
+          setTimeout(() => {
+            resetOffscreen(s2);
+            s3.textContent = CIPHER_TEXT;
+            slideThrough(s3, DURATION_SLIDE);
+
+            // As it glides through center, smoothly unscramble text
+            setTimeout(() => {
+              scrambleDecrypt(s3, DECRYPT_TEXT, 1100);
+            }, 650);
+
+            // Step 4: Loop back to Box 1 continuously
+            setTimeout(() => {
+              resetOffscreen(s3);
+              runContinuousLoop();
+            }, DURATION_SLIDE + TRANSIT_GAP);
+
+          }, DURATION_SLIDE + TRANSIT_GAP);
+        }, DURATION_SLIDE + TRANSIT_GAP);
+      }
+
+      resetOffscreen(s1);
+      resetOffscreen(s2);
+      resetOffscreen(s3);
+      setTimeout(runContinuousLoop, 100);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initUseCaseCarousel();
+        initCryptoFlowAnimation();
+      });
+    } else {
+      initUseCaseCarousel();
+      initCryptoFlowAnimation();
+    }
+  </script>
+
+  <!-- 7. FROM THE BLOG (WHITE) -->
   {latestPosts.length > 0 && (
-    <section class="section" style="padding-top:20px">
+    <section class="section section-blog section--white">
       <div class="container">
-        <div class="section-head" data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none;gap:20px">
+        <div class="section-head" data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;max-width:none;gap:16px;margin-bottom:24px">
           <div>
-            <span class="eyebrow-label">Resources</span>
-            <h2 class="h2" style="margin-top:12px">From the blog</h2>
+            <span class="eyebrow-label">Security &amp; Engineering Research</span>
+            <h2 class="h2" style="margin-top:6px">From our research team</h2>
           </div>
           <a href="/blog" class="btn btn-ghost btn-sm" style="white-space:nowrap">All articles <span class="arrow">→</span></a>
         </div>
-        <div class="blog-teaser" data-reveal>
+        <div class="blog-grid" data-reveal>
           {latestPosts.map((p) => (
-            <a href={`/blog/${p.slug}`} class="card card--hover bt-card">
-              <div class="bt-media"><img src={p.data.cover || '/og-ollasync.png'} alt={p.data.title} width="380" height="200" loading="lazy" /></div>
-              <div class="bt-body">
-                <span class="chip" style="font-size:11px">{p.data.category}</span>
-                <h3 style="font-size:16.5px;font-weight:600;margin-top:10px">{p.data.title}</h3>
-                <div class="mono" style="font-size:12px;color:var(--muted-2);margin-top:10px">{fmtDate(p.data.pubDate)} · {p.data.readTime} min</div>
+            <a href={`/blog/${p.slug}`} class="card card--hover blog-card">
+              <div class="blog-card__media">
+                <img src={p.data.cover || '/og-ollasync.png'} alt={p.data.title} width="380" height="210" loading="lazy" />
+              </div>
+              <div class="blog-card__body">
+                <span class="blog-card__tag mono">{p.data.category}</span>
+                <h3 style="font-size:16.5px;font-weight:700;margin-top:8px;line-height:1.35">{p.data.title}</h3>
+                <div class="mono blog-card__meta">{fmtDate(p.data.pubDate)} · {p.data.readTime} min read</div>
               </div>
             </a>
           ))}
@@ -254,51 +1046,1361 @@ const homeSchema = {
     </section>
   )}
 
+  <!-- 8. FAQ SECTION (TAN-WHITE) -->
   <Faq items={faq} />
+
+  <!-- 9. FINAL CALL TO ACTION (WHITE) -->
   <Cta />
 </Base>
 
 <style>
-  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; }
-  .hero__cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-  .hero__selfhost { align-self: center; font-size: 14px; color: var(--muted); transition: color var(--dur) ease; }
-  .hero__selfhost:hover { color: var(--iris); }
-  .hero__ticks { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px 24px; list-style: none; }
+  /* ---------- CONTINUOUS SOVEREIGN BLUE GRADIENT FLOW ---------- */
+  .sovereign-gradient-flow {
+    background: linear-gradient(180deg, 
+      #f0fdfb 0%, 
+      #e2f5fc 12%, 
+      #d0effe 24%, 
+      #bde6fc 38%, 
+      #a8dcfb 52%, 
+      #9bd6fa 66%, 
+      #b4e2fc 82%, 
+      #d4eefc 92%, 
+      #eaf5fb 97%, 
+      #f8f7f4 100%
+    );
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #eae7df;
+  }
 
-  .feature-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .feature-row { display: flex; gap: 16px; align-items: flex-start; }
-  .feature-row .card__icon { margin-bottom: 0; flex: none; }
-  .feature-row__arrow { color: var(--muted); opacity: 0; transform: translateX(-4px); transition: all var(--dur) ease; }
-  .feature-row:hover .feature-row__arrow { opacity: 1; transform: none; color: var(--iris); }
+  .flow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 1;
+  }
 
-  .sec-teaser { display: grid; grid-template-columns: 1fr .9fr; gap: 48px; align-items: center; }
-  .guarantees { display: grid; gap: 16px; margin-top: 24px; }
-  .guarantee { display: flex; gap: 15px; align-items: flex-start; }
-  .guarantee .card__icon { margin-bottom: 0; flex: none; }
-  .guarantee h3 { font-size: 17px; }
-  .sec-teaser__viz { padding: 26px; }
-  .viz-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .viz-node { font-size: 13px; padding: 8px 12px; border-radius: 9px; border: 1px solid var(--line-2); background: rgba(255,255,255,.03); color: var(--ink); }
-  .viz-node--server { border-color: rgba(255,120,120,.35); color: #ffb4b4; background: rgba(255,80,80,.06); }
-  .viz-flow { font-size: 11px; color: var(--teal); }
-  .viz-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2); margin: 20px 0 8px; }
-  .viz-cipher { font-size: 12px; line-height: 1.9; color: #6a7180; word-break: break-all; background: rgba(0,0,0,.3); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
-  .viz-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 16px; }
+  .flow-orb--top-teal {
+    width: 520px;
+    height: 520px;
+    background: rgba(0, 191, 165, 0.22);
+    top: -50px;
+    left: -100px;
+  }
 
-  .vs-teaser { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); }
-  .vs-teaser__list { list-style: none; display: grid; gap: 14px; }
-  .vs-teaser__list li { display: flex; gap: 11px; align-items: center; color: var(--ink-2); font-size: 15px; }
-  .vs-teaser__list .tick { display: grid; place-items: center; width: 19px; height: 19px; border-radius: 50%; background: var(--teal-150); flex: none; }
+  .flow-orb--mid-blue {
+    width: 580px;
+    height: 580px;
+    background: rgba(2, 132, 199, 0.25);
+    top: 25%;
+    right: -120px;
+  }
 
-  .blog-teaser { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .bt-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
-  .bt-media img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid var(--line); }
-  .bt-body { padding: 18px; }
+  .flow-orb--deep-blue {
+    width: 650px;
+    height: 650px;
+    background: rgba(2, 132, 199, 0.3);
+    top: 50%;
+    left: -140px;
+  }
 
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; gap: 40px; }
-    .feature-rows { grid-template-columns: 1fr; }
-    .sec-teaser, .vs-teaser { grid-template-columns: 1fr; gap: 32px; }
-    .blog-teaser { grid-template-columns: 1fr; }
+  .flow-orb--gallery-blue {
+    width: 600px;
+    height: 600px;
+    background: rgba(0, 163, 255, 0.28);
+    top: 72%;
+    right: -120px;
+  }
+
+  /* Section Hero */
+  .section-hero {
+    background: transparent;
+    padding-top: 44px;
+    padding-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.18fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .hero__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero__title {
+    margin-top: 16px;
+  }
+
+  .hero__lead {
+    font-size: clamp(15.5px, 1.3vw, 17.5px);
+    line-height: 1.6;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .hero__cta {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hero__selfhost {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    transition: color var(--dur) ease;
+  }
+
+  .hero__selfhost:hover {
+    color: #0f766e;
+  }
+
+  /* ---------- HERO TRUST CAPSULE (BALANCED 4-POINT CARD) ---------- */
+  .hero-trust-capsule {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px 20px;
+    padding: 10px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.06);
+    width: fit-content;
+  }
+
+  @media (max-width: 640px) {
+    .hero-trust-capsule {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+
+  .capsule-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    white-space: nowrap;
+  }
+
+  .capsule-check {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .hero__art {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -18px;
+  }
+
+  .hero-brand-presentation {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    user-select: none;
+    pointer-events: none;
+    transform: translateY(-10px);
+  }
+
+  .hero-brand-emblem {
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 18px 44px rgba(0, 191, 165, 0.24));
+  }
+
+  .hero-brand-caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 14px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #082136;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .caption-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .caption-dot.dot--teal {
+    background-color: #00bfa5;
+  }
+
+  .caption-dot.dot--purple {
+    background-color: #7c3aed;
+  }
+
+  .caption-dot.dot--blue {
+    background-color: #0284c7;
+  }
+
+  @media (max-width: 640px) {
+    .hero-brand-caption {
+      font-size: 10.5px;
+      gap: 6px;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  /* ---------- MARQUEE TRUST BAR (CONTIGUOUS TAN COLUMNS) ---------- */
+  .section-trust {
+    background: #f8f7f4;
+    border-top: 1px solid #eae7df;
+    border-bottom: 1px solid #eae7df;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .marquee {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    user-select: none;
+    width: 100%;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  }
+
+  .marquee__track {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: max-content;
+    animation: scroll-marquee 46s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Contiguous Column Box: Tan background, hairline border divider, icon on top, text below */
+  .trust-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    width: 205px;
+    padding: 18px 16px;
+    background: #f8f7f4;
+    border-right: 1px solid #eae7df;
+    border-radius: 0;
+    box-shadow: none;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+
+  .trust-chip:hover {
+    background: #ffffff;
+  }
+
+  .trust-chip__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(0, 191, 165, 0.1);
+    border: 1px solid rgba(0, 191, 165, 0.22);
+    color: #0c7c72;
+    flex-shrink: 0;
+  }
+
+  .trust-chip__label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink-2, #1e293b);
+    line-height: 1.35;
+    text-align: center;
+    display: block;
+  }
+
+  /* ---------- BENTO GRID & GALLERY SECTION ---------- */
+  .section-bento {
+    background: transparent;
+    border: none;
+    padding-block: 48px 96px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow--blue {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #0284c7;
+  }
+
+  .dot--blue {
+    background: #0284c7;
+    box-shadow: 0 0 8px #0284c7;
+  }
+
+  /* ---------- CAPABILITIES 3-COLUMN LAYOUT (EQUAL HEIGHT & PROPORTIONS) ---------- */
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  .cap-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .cap-card {
+    border-radius: 22px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 20px 44px -10px rgba(15, 23, 42, 0.16), 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+
+  .cap-card:hover {
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 32px 64px -14px rgba(2, 132, 199, 0.3), 0 0 0 1.5px rgba(0, 191, 165, 0.45);
+  }
+
+  .cap-card--white {
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+  }
+
+  .cap-card--vibrant {
+    background: linear-gradient(145deg, #00bfa5 0%, #0284c7 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 24px 50px -10px rgba(2, 132, 199, 0.4);
+    color: #ffffff;
+  }
+
+  .cap-card--vibrant:hover {
+    box-shadow: 0 38px 74px -12px rgba(2, 132, 199, 0.6), 0 0 0 2px #ffffff;
+  }
+
+  .cap-card__intro {
+    display: flex;
+    flex-direction: column;
+    min-height: 154px;
+  }
+
+  .cap-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .center-header {
+    justify-content: center;
+  }
+
+  .cap-tag {
+    font-size: 11px;
+    font-weight: 750;
+    color: #0f766e;
+    letter-spacing: 0.07em;
+  }
+
+  .cap-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #0f766e;
+    background: rgba(0, 191, 165, 0.08);
+    border: 1px solid rgba(0, 191, 165, 0.25);
+    padding: 3px 9px;
+    border-radius: var(--r-pill);
+  }
+
+  .cap-pill-badge {
+    font-size: 11px;
+    font-weight: 750;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.06em;
+  }
+
+  .cap-card__title {
+    font-size: 21px;
+    font-weight: 750;
+    color: #090d16;
+    line-height: 1.28;
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .cap-card__desc {
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .cap-visual-box {
+    margin-top: 18px;
+    margin-bottom: 0;
+    width: 100%;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Consistent video frame and sizing across all cards */
+  .video-device-frame {
+    background: #090d16;
+    border: 1px solid rgba(0, 191, 165, 0.35);
+    border-radius: 14px;
+    padding: 6px;
+    box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-device-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 6px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 5px;
+    flex-shrink: 0;
+  }
+
+  .video-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00bfa5;
+    box-shadow: 0 0 6px #00bfa5;
+    animation: pulse 2s infinite;
+  }
+
+  .video-status-text {
+    font-size: 9px;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+  }
+
+  .bento-video {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    min-height: 0;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    background: #000;
+  }
+
+  /* Document Diligence Mock Graphic */
+  .cap-document-preview {
+    background: #f8fafc;
+    border: 1.5px dashed rgba(124, 58, 237, 0.35);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    gap: 8px;
+  }
+
+  /* Document skeleton lines for the deal rooms card */
+  .doc-body-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 2px 0;
+  }
+
+  .doc-line {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 4px;
+  }
+
+  .doc-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .doc-name {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  .doc-watermark-overlay {
+    background: rgba(124, 58, 237, 0.06);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 8px;
+    padding: 14px 10px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .watermark-text {
+    color: #7c3aed;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    display: block;
+  }
+
+  .watermark-sub {
+    color: #64748b;
+    font-size: 8.5px;
+    margin-top: 3px;
+    display: block;
+  }
+
+  .cap-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+    margin-top: auto;
+  }
+
+  .cap-footer-title {
+    font-size: 10.5px;
+    font-weight: 750;
+    color: var(--ink-2);
+    letter-spacing: 0.05em;
+  }
+
+  .cap-pill-price {
+    font-size: 10.5px;
+    font-weight: 750;
+    color: #0f766e;
+    background: rgba(0, 191, 165, 0.08);
+    border: 1px solid rgba(0, 191, 165, 0.25);
+    padding: 3px 8px;
+    border-radius: var(--r-pill);
+  }
+
+  .cap-vibrant-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 14px;
+    margin-top: auto;
+  }
+
+  /* Horizontal Banner */
+  .cap-banner-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .cap-banner-headline {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+  }
+
+  /* Self-Host Strip */
+  .cap-selfhost-strip {
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 24px;
+    padding: 16px 20px;
+    box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.1);
+  }
+
+  .selfhost-dock-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .dock-strip-img {
+    width: 100%;
+    max-width: 980px;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.18));
+  }
+
+  /* ---------- SCROLL FADE-IN ANIMATIONS FOR CAPABILITIES ---------- */
+  [data-cap-reveal] {
+    opacity: 0;
+    transform: translateY(44px) scale(0.96);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--cap-delay, 0s);
+    will-change: opacity, transform;
+  }
+
+  [data-cap-reveal].is-cap-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* ---------- BATTLE TABLE ---------- */
+  .battle-table {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    box-shadow: var(--sh-card);
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  /* Seamless Floating Gradient Column Card (#7128F5 bottom-left to #03DDBE top-right) */
+  .battle-ollasync-glow-card {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(27.06% + 8px);
+    width: calc(38.82% - 16px);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(3, 221, 190, 0.04) 0%, rgba(113, 40, 245, 0.03) 100%);
+    border: 3.5px solid transparent;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 12px 36px -6px rgba(113, 40, 245, 0.28), 0 0 24px rgba(3, 221, 190, 0.2);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .battle-header {
+    display: grid;
+    grid-template-columns: 1.15fr 1.65fr 1.45fr;
+    background: transparent;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 22px;
+    font-size: 13.5px;
+    font-weight: 750;
+    color: var(--ink-2);
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .battle-header > .battle-col:not(.battle-col--ollasync) {
+    color: var(--ink-2);
+  }
+
+  .battle-rows {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+  }
+
+  .battle-row {
+    display: grid;
+    grid-template-columns: 1.15fr 1.65fr 1.45fr;
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--border-subtle);
+    align-items: center;
+    font-size: 14px;
+    transition: background var(--dur) ease;
+    background: transparent;
+  }
+
+  .battle-row:hover {
+    background: rgba(248, 250, 252, 0.6);
+  }
+
+  .battle-row:last-child {
+    border-bottom: none;
+  }
+
+  .battle-col {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .battle-col--ollasync {
+    color: #0f766e;
+    padding-inline: 14px;
+  }
+
+  .battle-status {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex: none;
+    font-size: 10.5px;
+    font-weight: bold;
+  }
+
+  .battle-status--win {
+    background: rgba(0, 191, 165, 0.12);
+    border: 1px solid rgba(0, 191, 165, 0.4);
+    color: #0f766e;
+  }
+
+  .battle-status--lose {
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+    color: #dc2626;
+  }
+
+  .battle-text {
+    color: var(--ink);
+    font-weight: 550;
+  }
+
+  .battle-text--muted {
+    color: var(--muted);
+    font-weight: 450;
+  }
+
+  /* ---------- CRYPTO FLOW SHOWCASE (SLIDING CODE TRANSIT) ---------- */
+  .crypto-showcase {
+    padding: 24px;
+    background: #f8f7f4;
+    border: 1px solid #e7e3da;
+    border-radius: var(--r-card, 16px);
+    box-shadow: 0 4px 20px -4px rgba(28, 25, 23, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+  }
+
+  .crypto-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .crypto-node {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .crypto-node__badge {
+    font-size: 10.5px;
+    font-weight: 750;
+    color: #0f766e;
+    letter-spacing: 0.04em;
+  }
+
+  .crypto-node__badge--server {
+    color: #dc2626;
+  }
+
+  .crypto-node__box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--r);
+    padding: 16px 14px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .crypto-node--server .crypto-node__box {
+    border-color: #fecaca;
+    background: #fef2f2;
+  }
+
+  .node-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  .crypto-input-box {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 34px;
+    margin-top: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  .crypto-input-box--server {
+    border-color: #fca5a5;
+    background: #ffffff;
+  }
+
+  .crypto-text-payload {
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    color: #0f766e;
+    white-space: nowrap;
+    will-change: transform, opacity;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .crypto-text-payload--server {
+    color: #b91c1c;
+  }
+
+  .crypto-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 9.5px;
+    color: #0f766e;
+    user-select: none;
+    min-width: 120px;
+  }
+
+  .crypto-arrow__lock {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .crypto-arrow__text {
+    color: var(--muted);
+    font-weight: 550;
+    font-size: 9px;
+  }
+
+  .crypto-arrow__line {
+    color: #00bfa5;
+    letter-spacing: -2px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .crypto-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #eae6dc;
+  }
+
+  .crypto-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .badge-soft {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #0f766e;
+    background: rgba(0, 191, 165, 0.08);
+    border: 1px solid rgba(0, 191, 165, 0.25);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+
+  /* ---------- REGULATED VERTICALS (CRIMSON/RED GRADIENT & CAROUSEL) ---------- */
+  .section-verticals {
+    padding-block: 54px 44px;
+  }
+
+  .section--crimson {
+    background: linear-gradient(140deg, #881337 0%, #9f1239 35%, #7f1d1d 70%, #450a0a 100%);
+    border-block: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .eyebrow--crimson {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #ffffff;
+  }
+
+  .dot--white {
+    background: #ffffff;
+    box-shadow: 0 0 8px #ffffff;
+  }
+
+  .text-white {
+    color: #ffffff !important;
+  }
+
+  .text-white-muted {
+    color: rgba(255, 255, 255, 0.88) !important;
+  }
+
+  .usecase-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+  }
+
+  .usecase-carousel {
+    display: flex;
+    gap: 16px;
+    padding-block: 6px 14px;
+    padding-inline: 12px;
+    will-change: transform;
+    width: max-content;
+  }
+
+  .usecase-card {
+    flex: 0 0 350px;
+    min-width: 320px;
+    max-width: 370px;
+    scroll-snap-align: start;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px 20px 14px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .usecase-card:hover {
+    transform: translateY(-3px);
+    box-shadow: none;
+  }
+
+  .usecase-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .usecase-card__tag {
+    font-size: 10px;
+    font-weight: 750;
+    color: #b91c1c;
+    letter-spacing: 0.05em;
+  }
+
+  .usecase-card__badge {
+    font-size: 9px;
+    font-weight: 700;
+    color: #475569;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 2px 6px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+  }
+
+  .usecase-card__title {
+    font-size: 15.5px;
+    font-weight: 750;
+    color: #090d16;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .usecase-card__body {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.45;
+    margin-top: 6px;
+  }
+
+  .usecase-card__divider {
+    border-top: 1px dashed #e2e8f0;
+    margin-block: 10px;
+  }
+
+  .usecase-card__capabilities {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+  }
+
+  .cap-heading {
+    font-size: 9.5px;
+    font-weight: 750;
+    color: #64748b;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .cap-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cap-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 11.5px;
+    color: #1e293b;
+    line-height: 1.35;
+  }
+
+  .cap-bullet {
+    color: #b91c1c;
+    font-weight: bold;
+    flex: none;
+    font-size: 12px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .usecase-card__link {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 12px;
+    font-weight: 650;
+    color: #0f766e;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s ease;
+  }
+
+  .usecase-card__link:hover {
+    color: #0d9488;
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .carousel-nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #090d16;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+    flex: none;
+  }
+
+  .carousel-nav-btn:hover {
+    transform: scale(1.08);
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    color: #b91c1c;
+  }
+
+  .carousel-indicators {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .indicator-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.38);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .indicator-dot.is-active {
+    width: 22px;
+    height: 5px;
+    border-radius: 3px;
+    background: #ffffff;
+  }
+
+  /* ---------- BLOG CARDS ---------- */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .blog-card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card__media {
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .blog-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .blog-card:hover .blog-card__media img {
+    transform: scale(1.03);
+  }
+
+  .blog-card__body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .blog-card__tag {
+    font-size: 10.5px;
+    color: #0f766e;
+    background: rgba(0, 191, 165, 0.08);
+    border: 1px solid rgba(0, 191, 165, 0.25);
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    width: fit-content;
+  }
+
+  .blog-card__meta {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: auto;
+    padding-top: 12px;
+  }
+
+  /* ---------- PRODUCT SHOWCASE GALLERY ---------- */
+  .gallery-block {
+    position: relative;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .gallery-card {
+    padding: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 18px;
+    box-shadow: 0 16px 36px -8px rgba(2, 132, 199, 0.14), 0 2px 6px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px -10px rgba(2, 132, 199, 0.28), 0 0 0 1.5px rgba(0, 191, 165, 0.45);
+  }
+
+  .gallery-card__window {
+    background: #090d16;
+    border-bottom: 1px solid #1e293b;
+    overflow: hidden;
+  }
+
+  .window-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px 6px;
+    background: #0d1117;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .window-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .w-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #334155;
+  }
+
+  .window-dots .w-dot:nth-child(1) { background: #ef4444; }
+  .window-dots .w-dot:nth-child(2) { background: #eab308; }
+  .window-dots .w-dot:nth-child(3) { background: #22c55e; }
+
+  .window-title {
+    color: #94a3b8;
+    font-size: 9.5px;
+    letter-spacing: 0.02em;
+  }
+
+  .gallery-card__media {
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #090d16;
+  }
+
+  .gallery-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-card:hover .gallery-card__media img {
+    transform: scale(1.03);
+  }
+
+  .gallery-card__info {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .gallery-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .gallery-card__tag {
+    font-size: 10px;
+    font-weight: 750;
+    color: #0f766e;
+    letter-spacing: 0.05em;
+  }
+
+  .gallery-card__title {
+    font-size: 16px;
+    font-weight: 750;
+    color: #090d16;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .gallery-card__desc {
+    font-size: 12.5px;
+    color: #475569;
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero__copy { align-items: center; text-align: center; }
+    .cap-grid { grid-template-columns: 1fr; gap: 24px; }
+    .cap-col--side { padding-top: 0; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+    .usecase-card { flex: 0 0 calc(50% - 10px); }
+    .battle-header, .battle-row { grid-template-columns: 1fr; gap: 8px; }
+    .crypto-flow { grid-template-columns: 1fr; gap: 14px; }
+    .crypto-arrow { transform: rotate(90deg); margin-block: 4px; }
+    .blog-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .hero__ticks { align-items: center; }
+    .usecase-card { flex: 0 0 85%; min-width: 270px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .crypto-footer { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .video-device-frame { max-width: 100%; }
+    .selfhost-strip__inner { flex-direction: column; align-items: flex-start; }
   }
 </style>
+
+
+

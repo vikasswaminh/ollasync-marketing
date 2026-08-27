@@ -1,0 +1,246 @@
+---
+title: "Are Cloud AI Video Transcripts Safe? The Hidden Privacy Risks of Automated Meeting Notes"
+description: "That friendly little bot that joins your call and quietly writes up the minutes isn't just taking notes — it's creating a permanent, searchable, third-party copy of everything said in the room. Here's what actually happens to that copy, and what 'safe' really means."
+pubDate: 2026-08-27
+category: "Security"
+cover: "/blog-cover-server-blind.png"
+pillar: false
+readTime: 22
+author: "The Ollasync team"
+authorRole: "Security & product"
+takeaways:
+  - "An AI meeting transcript is not a convenience feature — it is a durable, searchable, third-party copy of your conversation that usually leaves your organization's control the moment it's generated."
+  - "Most 'free' AI notetaking tools fund themselves by reusing customer content to train or fine-tune models, unless you specifically opt out — and many enterprise tiers still permit it by default."
+  - "The real exposure isn't one villain, it's a chain: the meeting vendor, the transcription engine, the summarization model, the storage layer, and every integration you connect it to (CRM, Slack, project trackers) — each one is a separate subprocessor with its own retention and access rules."
+  - "Regulated industries — healthcare, legal, finance, government — face outsized risk because a transcript turns spoken PHI, privileged conversation, or MNPI into a permanent, greppable text record."
+  - "'Safe' AI notetaking is achievable, but it requires deliberate choices: no training on your content by default, clear retention limits, granular access control, and — for the most sensitive meetings — processing that never leaves infrastructure you control."
+keywords: ["AI meeting transcripts", "AI notetaking privacy", "automated meeting notes security", "cloud transcription privacy risks", "AI meeting bot security", "HIPAA AI transcription", "self-hosted AI transcription", "Ollasync security", "secure video conferencing"]
+---
+
+Picture a fairly ordinary Tuesday. You join a video call, a small icon appears saying "Recording and transcribing," and twenty minutes later a tidy summary lands in your inbox with action items neatly bolded. It feels efficient. It feels almost invisible. Nobody in that meeting stopped to ask: *where does this text actually go?*
+
+That's the interesting thing about automated meeting notes — the feature is designed to feel weightless, but underneath it is one of the more consequential data-handling decisions a team makes every single day. This post walks through what's actually happening when a cloud AI tool transcribes your video call, the privacy risks that rarely make it into the marketing copy, and what genuinely safe automated meeting notes look like in practice.
+
+## The moment nobody thinks twice about
+
+Ask a room full of employees whether they'd forward a sensitive email to a stranger, and every hand stays down. Ask the same room whether they'd let an AI bot silently listen to, transcribe, and summarize a confidential planning call, and most hands go up without a second of hesitation — because it doesn't feel like the same action.
+
+But structurally, it is very close to the same action. A transcript is a document. Once it exists, it behaves like any other document: it can be copied, indexed, searched, exported, subpoenaed, and — if the vendor's terms allow it — used to train a model that has nothing to do with your business.
+
+The friendliness of the interface is precisely what makes this risk easy to miss. A single click enables the feature. A single click turns off the "raise your hand" awkwardness of manual note-taking. But that click also authorizes a new set of servers, sometimes belonging to a company you've never directly signed a contract with, to receive a stream of your organization's spoken words and turn them into permanent text.
+
+None of this means automated meeting notes are a bad idea — they're genuinely useful, and most teams aren't going back to a world of scribbled notepads. It means the convenience deserves the same scrutiny you'd give any other place where sensitive company information gets copied outside the room it was spoken in.
+
+## What actually happens when you turn on "AI notes"
+
+To understand the risk, it helps to understand the pipeline, because most privacy exposure lives in the handoffs between stages rather than in any single step.
+
+1. **Capture.** A bot or an embedded client joins the call as a participant (sometimes visibly, sometimes not) and pulls the raw audio and video stream, or the meeting platform captures it server-side.
+2. **Speech-to-text.** The raw audio is sent to a transcription engine — sometimes built by the same company, very often outsourced to a third-party speech API — which converts it into raw text with speaker labels and timestamps.
+3. **Summarization.** The raw transcript is fed into a large language model, which condenses it into a summary, extracts action items, and sometimes tags topics or sentiment. This step usually happens on a different company's infrastructure than the transcription step.
+4. **Storage and indexing.** Both the raw transcript and the generated summary are written to a database so they can be searched later, surfaced in an "AI assistant," or referenced across other meetings.
+5. **Distribution.** The summary gets emailed, posted to Slack, synced into a CRM record, or pushed into a project management tool — each destination now holding its own copy, governed by its own access rules.
+
+Every one of those five steps is, technically, a separate data processing event, often on separate infrastructure, sometimes across separate legal jurisdictions. A single one-hour meeting can generate a raw video file, a raw audio file, a raw transcript, a cleaned transcript, an AI summary, an embeddings vector used for semantic search, and half a dozen downstream copies pushed into other tools — all before lunch.
+
+That's not a criticism of any particular product. It's simply what "AI notes" means under the hood, and it's worth sitting with for a second before assuming a transcript is a lightweight, disposable thing.
+
+## Why the feature spread so fast, so quietly
+
+It's worth understanding the incentives, because they explain why privacy controls are so often an afterthought rather than a starting point.
+
+Automated notetaking is an extremely effective growth feature. It's visible in every meeting, it produces a tangible artifact people actually read, and it creates a habit loop — once a team gets used to searchable transcripts, they don't want to go back. That makes it a priority for product teams to ship fast, and speed usually means defaulting to the vendor's own AI infrastructure (or whichever third-party model API is cheapest and quickest to integrate) rather than building a privacy-first pipeline from day one.
+
+There's also a simple economic reality: training and improving large language models is expensive, and customer conversation data is valuable training material — natural language, real-world phrasing, real business context. Unless a vendor's business model is explicitly built around not using your content that way, the default incentive points toward reuse, not restraint. That doesn't make every vendor a bad actor. It does mean the burden falls on the buyer to check the setting rather than assume the polite default is the private one.
+
+## The hidden privacy risks of automated meeting transcripts
+
+This is the part that rarely makes it past the first paragraph of a vendor's marketing page. Below are the risks worth actually walking through before you approve a tool for your organization.
+
+### Risk 1: Your words can become someone else's training data
+
+The single biggest hidden risk is also the simplest to explain: many AI notetaking tools reserve the right, somewhere in their terms of service, to use transcript content to train, fine-tune, or evaluate their models — unless the customer specifically opts out, and sometimes even then for certain tiers. That means a strategy discussion, a performance review, a customer complaint, or a legal negotiation can end up as anonymized (or not-so-anonymized) training material feeding a model that will eventually generate outputs for other customers entirely.
+
+"Anonymization" here is doing a lot of work it can't always support. Names get stripped, but context frequently doesn't — a transcript that says *"the Q3 numbers from the Austin facility acquisition are down 12%"* is functionally identifiable even without a name attached, especially to anyone who already knows the shape of the deal.
+
+### Risk 2: A subprocessor chain you never actually reviewed
+
+When you sign up for a video platform's AI notes feature, you're not signing one data processing agreement — you're implicitly accepting a chain of them. The video vendor. The speech-to-text engine (frequently a separate company). The summarization model provider (frequently a different separate company). The storage and search infrastructure. Each of these is a subprocessor with its own retention policy, its own security posture, its own jurisdiction, and its own incident history.
+
+Most buyers review the primary vendor's security page and stop there. Almost nobody reads the subprocessor list — if one is published at all — to see which third-party AI APIs are actually touching the raw audio of their board meetings. Auditors, when they do this exercise properly, are often surprised at how long the list turns out to be for a "single" feature.
+
+### Risk 3: Retention periods nobody reads
+
+"How long is a transcript kept?" is a question almost every organization assumes it knows the answer to and almost none actually check. Defaults vary wildly — some tools keep transcripts indefinitely by design, because a growing searchable archive is the entire value proposition of an "AI meeting assistant." Others purge after a fixed period, but only for the summary, while the raw transcript used to generate embeddings for search sits in a separate table with no expiry at all.
+
+The practical effect is that a comment made in a heated moment two years ago — something you'd assume was long forgotten — can resurface in a semantic search, an eDiscovery request, or a breach dump, fully intact, fully attributed, and fully searchable.
+
+### Risk 4: Cross-border data transfers you didn't sign off on
+
+Speech-to-text and summarization models are frequently hosted in a small number of regions, often the United States, regardless of where your meeting participants are sitting. For a European company handling personal data under GDPR, or a UK healthcare provider, or a government agency with data residency obligations, that's not a minor technicality — it's the difference between a compliant deployment and a real regulatory exposure. (For more on territorial data boundaries, explore our guide to [EU data residency explained](/blog/eu-data-residency-explained)).
+
+The tricky part is that this transfer often happens invisibly, several steps into the pipeline described above. Your primary vendor might be EU-hosted, but the transcription API it quietly calls in the background may not be. Nobody signs a form for that particular hop; it's buried in a "subject to change" line in the terms.
+
+### Risk 5: Access sprawl inside your own company
+
+Even assuming every external vendor behaves impeccably, transcripts create a second, quieter risk entirely inside your own walls: access sprawl. A transcript that used to live only in the memory of the people on the call is now a searchable document that, depending on default sharing settings, might be visible to an entire workspace, indexed by an internal AI assistant that answers questions across every meeting a company has ever had, or synced automatically into a CRM record that dozens of sales reps can browse.
+
+The people who spoke in that meeting rarely get asked whether they're comfortable with that level of internal distribution. The default is usually "shared with the team" rather than "restricted to attendees," because broad visibility is what makes an AI assistant feel powerful in a product demo.
+
+### Risk 6: The silent bot and the consent gap
+
+Two-party and all-party consent laws for recording conversations exist in a meaningful number of jurisdictions, and video platforms have made recording so frictionless that consent has, in practice, become a formality rather than a genuine choice. A small on-screen notice satisfies the letter of some policies, but it rarely amounts to informed consent — especially for external guests, candidates in an interview, or a customer on a support call who didn't choose the tool and may not even notice the notice.
+
+This becomes sharper still with "silent" notetaking bots that join as a named participant but don't visibly record video — some attendees genuinely don't register that a transcript is being produced at all, and find out only when a full write-up of their comments shows up in a shared document afterward.
+
+### Risk 7: Breach blast radius
+
+A transcript archive is, from an attacker's perspective, an extraordinarily efficient target. Instead of needing to compromise dozens of individual conversations, an attacker who breaches a single AI notetaking vendor's database gets a searchable, plain-text archive of thousands of customers' internal meetings in one place — strategy discussions, salary conversations, unreleased product plans, legal deliberations, all indexed and ready to query.
+
+This is exactly the pattern that makes SaaS supply-chain breaches so damaging: the value isn't in any one customer's data, it's in the aggregation. A meeting platform that stores raw video encrypted but hands the transcript pipeline to a less-scrutinized third party has effectively created a second, weaker door into the same house. To understand how servers interact with media streams, read our breakdown of [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call).
+
+### Risk 8: AI assistants that blur meeting boundaries
+
+The newest wrinkle is the cross-meeting AI assistant — a chat interface that lets anyone in the company ask a natural-language question and get an answer synthesized from every transcript the AI has ever ingested. It's a genuinely useful feature, and it's also a genuinely novel privacy problem: it means information shared in a confidential one-on-one, a sensitive HR conversation, or a due-diligence call intended for three people can now surface as an answer to someone who was never in the room, phrased in a way that doesn't even reveal which meeting it came from.
+
+Access controls that were designed for individual documents — "who can open this file" — don't map cleanly onto a system that stitches information across hundreds of files to answer a single question. That gap is where a lot of quiet, unintentional oversharing happens.
+
+## A scenario worth sitting with
+
+Imagine a mid-sized company running a Tuesday all-hands, a Wednesday performance review cycle, and a Thursday board call, all through the same AI-notetaking-enabled video platform. By Friday, three very different categories of conversation — public company updates, confidential HR feedback, and privileged board deliberation — are sitting in the same transcript database, distinguished only by a folder label and a permissions setting someone configured once, months ago, and probably hasn't revisited since.
+
+Now add a new hire in sales who's been given broad workspace access because their role touches customer accounts across departments. If the AI assistant's search index wasn't carefully scoped, a completely innocent question — *"what did we decide about pricing last quarter?"* — can surface a paraphrased answer built from context that includes the board call, without the assistant ever showing which meeting it pulled from or who was in the room.
+
+Nobody did anything malicious. The system just did exactly what it was built to do: make information easy to find. That's the uncomfortable part of transcript-driven AI assistants — the failure mode isn't a hacker, it's the tool working as designed against a permissions model that was never really built for cross-meeting synthesis in the first place.
+
+This is why "who can see this transcript" needs to be treated as a first-class decision at the moment a meeting is scheduled, not a setting buried three menus deep that defaults to "everyone."
+
+## Why this hits regulated industries hardest
+
+For a casual internal sync, most of the risks above are inconvenient rather than catastrophic. For regulated sectors, they're existential.
+
+### Healthcare
+A telehealth consultation transcribed by a general-purpose AI notetaking tool turns spoken protected health information into a permanent text record the moment the call ends — a record that now needs its own Business Associate Agreement (BAA), its own access logging, and its own retention policy, or the provider is out of compliance before the patient has even logged off. See how this plays out in practice on our [healthcare use case page](/use-cases/healthcare) and in our guide to [HIPAA compliant video conferencing](/blog/hipaa-compliant-video-conferencing).
+
+### Legal
+Privilege depends on confidentiality. A transcript of a client call sitting in a third-party AI vendor's database, potentially reviewable by that vendor's own staff or swept into a training pipeline, is a genuine argument an opposing counsel can make to challenge privilege. Firms handling privileged client communications increasingly treat "does this tool transcribe by default" as a disqualifying question during procurement. Discover our dedicated architecture on the [legal solution page](/use-cases/legal) and our deep dive on [secure video conferencing for law firms](/blog/secure-video-conferencing-for-law-firms).
+
+### Finance
+Advisory calls, board meetings, and deal negotiations routinely contain material non-public information (MNPI). A summarization model with a broad internal access policy, or a retention window that outlives the deal itself, creates exactly the kind of leak surface that confidential deal and advisory work can't tolerate. Explore our [finance solutions](/use-cases/finance) and how native [confidential deal rooms](/features/deal-rooms) isolate strategic transactions.
+
+### Government & Public Sector
+Sovereignty requirements mean the question isn't just "is this encrypted" but "which country's servers processed this text, and under which country's legal reach." A transcription API that silently calls out to infrastructure outside the required jurisdiction can undo an otherwise well-designed sovereign deployment in a single background API call. Learn more on our [government use case page](/use-cases/government).
+
+## What the regulations actually require
+
+Regulators haven't been quiet about this — the frameworks that already govern data protection apply directly to AI-generated transcripts, even though most of them predate the current wave of meeting-note tools.
+
+- **GDPR (Articles 9 & 32):** A voice recording and its transcript both count as personal data, and if the content touches health, biometric characteristics, or other special categories, it may trigger the higher protections under Article 9. Article 32 requires "appropriate technical and organizational measures," and sending raw audio to a third-party model provider without a proper data processing agreement — or without assessing where that provider actually processes the data — is a straightforward compliance gap, not a gray area. Read more in our [GDPR compliant video conferencing guide](/blog/gdpr-compliant-video-conferencing) and broader [security and compliance overview](/security).
+- **HIPAA:** Any AI vendor touching a telehealth transcript that contains PHI needs a signed Business Associate Agreement, and the covered entity remains responsible for verifying that the vendor's downstream subprocessors — including whichever model does the summarizing — are covered by that same agreement, not just the primary platform.
+- **CCPA / CPRA:** California's framework treats voice recordings and their derived transcripts as personal information subject to consumer rights, including the right to know what's collected and the right to delete it — which is a real operational challenge if a transcript has already been folded into training data that can't easily be un-trained.
+- **The wider AI governance shift (EU AI Act):** Frameworks like the EU AI Act are pushing toward explicit obligations around transparency and data minimization for AI systems that process personal conversations, and regulators in multiple jurisdictions have signaled that "the AI vendor did it, not us" is not going to be an accepted defense for the company that turned the feature on in the first place.
+
+The throughline across all of these frameworks is the same: responsibility doesn't transfer just because the processing happens to be automated. If your organization enabled the feature, your organization owns the compliance question.
+
+## Reading the fine print: what to actually look for
+
+Most privacy commitments live in three documents, and almost nobody reads all three before signing up: the terms of service, the privacy policy, and — if you're lucky enough that one exists — a separate AI or subprocessor addendum. Each tends to answer a different question, and vendors rarely make it easy to find the one you actually need.
+
+1. **The Terms of Service** usually cover ownership and licensing — specifically, whether the vendor claims a license to use your content, and for what purposes. Look for language granting rights to use customer content *"to improve our services"* or *"to train and develop machine learning models."* That phrase, wherever it appears, is the single most important sentence in the entire document for this particular question, and it's frequently written broadly enough to cover far more than most customers assume.
+2. **The Privacy Policy** tends to cover retention and third-party sharing — how long data is kept, and which categories of partners it might be shared with. Vague phrasing like *"trusted service providers"* or *"as necessary to provide the service"* is a signal to ask a direct follow-up question rather than assume the answer is favorable.
+3. **A dedicated AI or subprocessor addendum**, when a vendor publishes one, is usually the most useful document of the three, because it tends to name actual companies rather than describe categories. If a vendor can't produce this list on request, that's worth treating as an answer in itself — a mature security program can usually name its subprocessors without much friction.
+
+None of this requires a legal background to check. It requires roughly fifteen minutes and a habit of searching the document for the words "train," "improve," "third party," and "retain" before assuming the defaults are the safe choice.
+
+## Ten questions to ask before you turn on AI notetaking
+
+Before flipping on automated transcription for your team, it's worth running through a short, concrete checklist rather than relying on a vendor's reassurance in the abstract.
+
+1. Does the vendor use meeting content to train or fine-tune AI models by default, and is opting out actually available on your plan — not just on paper?
+2. How many distinct companies (subprocessors) touch the raw audio, the transcript, and the summary, and is that list published anywhere?
+3. What is the exact retention period for the raw transcript versus the generated summary versus any search index or embeddings built from it?
+4. Can a specific transcript be permanently deleted on request, including from backups and any downstream integrations it synced into?
+5. Where geographically is transcription and summarization actually processed — and does that match your data residency requirements, not just your video hosting requirements?
+6. Who inside your own organization can see a given transcript by default, and can that be restricted to only the meeting's actual attendees?
+7. Does a cross-meeting AI assistant exist, and if so, can specific meetings be excluded from what it's allowed to search?
+8. Is there a visible, unambiguous notice to every participant — including external guests — before recording or transcription starts?
+9. What happens during a security incident — does the vendor commit to a specific notification timeline, and have they had a publicly disclosed breach before?
+10. For your most sensitive meetings, is there an option to run transcription entirely inside infrastructure you control, rather than sending audio to any third party at all?
+
+If a vendor can't answer most of these clearly and specifically, that's itself useful information.
+
+## What "safe" actually looks like
+
+Put the risks and the checklist together, and a workable definition of "safe" automated meeting notes starts to take shape. It isn't about avoiding AI notetaking altogether — it's about a handful of deliberate design choices:
+
+- **No training on your content, by default, not by request.** The safest posture is a contractual commitment that customer conversations are never used to improve models unless the customer explicitly opts in — not the reverse.
+- **A minimized, disclosed subprocessor chain.** Fewer hops between your meeting and the final summary means fewer places for something to go wrong, and a vendor that actually publishes its subprocessor list is signaling it has nothing to hide there.
+- **Retention you control, not retention set by default.** Clear, configurable expiry for raw transcripts, summaries, and search indexes — with real deletion, not just a "hidden from view" flag.
+- **Attendee-scoped access as the default, not workspace-wide.** A transcript should start out visible only to the people who were actually in the room, with broader sharing as a deliberate choice rather than the starting condition.
+- **Processing that can move on-premise for the meetings that need it.** For the calls that genuinely can't tolerate any third-party exposure — board meetings, patient consultations, privileged legal calls — the option to run the entire transcription and summarization pipeline on infrastructure you operate, rather than sending audio anywhere external at all, is the only architecture that removes the risk instead of managing it. This is the same logic behind why a genuinely [self-hosted platform](/self-hosted) matters for video in the first place — the reasoning applies just as directly to what happens to that video afterward.
+
+## How Ollasync approaches transcripts
+
+We built our [recordings feature](/features/recordings) around the same principle that shapes the rest of the platform: compliance is a property of your deployment, not a checkbox we sell you. We never mine or sell customer data, and we're explicit about what each layer of the product can and can't see — no blanket claims, just a plain description on our [security page](/security) of exactly what's protected and how.
+
+Because Ollasync is [self-hosted-first](/self-hosted), the same platform runs three ways from one codebase: hosted on our EU infrastructure to get started quickly, single-tenant in your chosen region, or fully on-premise up to and including air-gapped. For teams whose meetings are sensitive enough that no third party should ever touch the audio at all, that third option means recording, transcription, and notetaking can run entirely inside a boundary you control — the same posture that underpins our approach for healthcare, legal, finance, and government teams who can't afford to hand their most consequential conversations to a cloud they can't inspect. Review our transparent [pricing tiers](/pricing) to compare deployment models.
+
+[Messaging](/features/messaging) on the platform is end-to-end encrypted and server-blind by default, built on the open [IETF MLS standard (RFC 9420)](/blog/how-mls-encryption-works), and meeting media is encrypted in transit — with a [self-hosted deployment](/self-hosted) keeping the relay itself out of any outside operator's hands entirely. We hold no SOC 2 or ISO 27001 certification yet, and we say so plainly, because compliance built on a deployment you own and audit yourself doesn't depend on taking our word for it.
+
+## Frequently Asked Questions (FAQs)
+
+<details class="faq-item">
+<summary>Are AI meeting transcripts a bigger privacy risk than recording the video itself?</summary>
+
+In some ways, yes. A video recording is bulky, hard to search, and usually stays where it's stored. A transcript is compact, instantly searchable, easy to copy into other systems, and — critically — the format AI models actually train on. That makes it more portable and more likely to travel beyond the meeting it came from, which is exactly what makes it worth extra scrutiny.
+
+</details>
+
+<details class="faq-item">
+<summary>Can I ask a vendor to delete a specific meeting transcript, and will that actually remove it everywhere?</summary>
+
+Most vendors will delete a transcript from the primary interface on request, but "everywhere" is the harder question. Check specifically whether deletion also removes the content from search indexes, embeddings used by AI assistants, backups, and any tool it synced into (CRM, Slack, project trackers). A vendor that can answer this precisely is more trustworthy than one that gives a general reassurance.
+
+</details>
+
+<details class="faq-item">
+<summary>Does turning off "AI notes" for one meeting actually stop transcription?</summary>
+
+Usually, yes, for that specific meeting — but check whether the underlying call is still being processed for other features (like live captions or a separate "smart search" capability) that might generate a transcript-like artifact under a different name. Read the feature list, not just the toggle label.
+
+</details>
+
+<details class="faq-item">
+<summary>Is it legal to record and transcribe a meeting without every participant's explicit consent?</summary>
+
+It depends heavily on jurisdiction — some regions require only one party to consent, others require all parties to be informed and agree. A visible on-screen notice satisfies some legal requirements but not all, and external guests, candidates, or customers who didn't choose the platform deserve a clear, upfront explanation rather than a small icon they may not notice.
+
+</details>
+
+<details class="faq-item">
+<summary>What's the safest option for a meeting too sensitive for any AI transcription at all?</summary>
+
+Turn the feature off entirely for that specific call, and if notes are still needed, take them manually inside infrastructure you already trust rather than through a bot that leaves the room. For organizations that need transcription capability without ever sending audio to a third party, running the entire pipeline on [self-hosted infrastructure](/self-hosted) is the only approach that removes third-party exposure rather than just managing it.
+
+</details>
+
+<details class="faq-item">
+<summary>Does encryption in transit mean my transcript is automatically safe?</summary>
+
+No — encryption in transit protects the data while it's moving between servers, but it says nothing about what happens once the audio reaches the transcription and summarization engines, where it's typically decrypted to be processed. The more important questions are what happens to the content after it arrives, how long it's kept, and whether it's used for anything beyond generating your notes.
+
+</details>
+
+## The bottom line
+
+Automated meeting notes aren't going away, and they shouldn't — the productivity gain is real. But "AI transcribed my meeting" is a data processing event with a full chain of custody behind it, not a neutral convenience, and it deserves the same due diligence a company would apply to any other place sensitive information leaves the building. The fix isn't paranoia, it's specificity: know exactly who touches the audio, how long the text lives, who inside your own company can find it later, and whether your most sensitive conversations have an option that never sends the recording anywhere at all.
+
+Ask the ten questions above before your next procurement conversation. For the meetings that can't take the risk, look at what a genuinely [self-hostable platform](/self-hosted) changes about that equation, compare the landscape in our [secure Zoom alternatives guide](/blog/secure-zoom-alternatives) and [Ollasync vs Zoom](/vs/zoom) comparison, or see the specifics on our [security page](/security).
+
+## Related reading
+
+- [The Self-Hosted Zoom Alternative: What It Actually Means](/blog/self-hosted-zoom-alternative) — Why Zoom itself can't really be self-hosted, what a genuinely self-hostable alternative looks like, and the residency and compliance benefits of owning your stack.
+- [Secure Zoom Alternatives (2026): A Buyer's Guide](/blog/secure-zoom-alternatives) — A practical 2026 buyer's guide to secure Zoom alternatives: the six criteria that matter for sensitive work — self-hosting, encryption defaults, and more.
+- [Zero-Trust Video Conferencing: What It Is and Why Enterprise IT Teams Are Switching](/blog/Security-Compliance-Enterprise-guide) — How modern enterprise IT teams eliminate vendor trust, enforce cryptographic media boundaries, and secure real-time communications.
+- [What a Server Can Actually See on an Encrypted Call](/blog/what-a-server-can-see-on-an-encrypted-call) — A detailed breakdown of packet headers, metadata exposure, and routing observability on encrypted meetings.
+- [HIPAA-Compliant Video Conferencing: Technical & Legal Blueprint](/blog/hipaa-compliant-video-conferencing) — Architecture guide for telehealth, BAAs, patient data protection, and audit controls.

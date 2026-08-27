@@ -64,20 +64,20 @@ const faq = [
   </PageHero>
 
   <!-- DEPLOYMENT MODELS -->
-  <section class="section" style="padding-top:36px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Deployment models</span>
         <h2 class="h2" style="margin-top:12px">From fully managed to fully sovereign</h2>
         <p class="kicker" style="margin-top:14px">The same platform ships four ways. Move along the spectrum as your assurance requirements grow — the product experience stays identical.</p>
       </div>
-      <div class="grid grid-4" data-reveal>
+      <div class="grid grid-4" data-reveal style="margin-top:24px">
         {models.map((m) => (
           <div class="card card--hover">
             <div class="model-tag mono">{m.tag}</div>
-            <div class="card__icon" style="margin-top:10px"><Icon name={m.icon} size={20} /></div>
+            <div class="card__icon" style="margin-top:12px"><Icon name={m.icon} size={20} /></div>
             <h3 class="h3">{m.title}</h3>
-            <p>{m.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55">{m.body}</p>
           </div>
         ))}
       </div>
@@ -85,7 +85,7 @@ const faq = [
   </section>
 
   <!-- WHAT RUNS IN YOUR ENV -->
-  <section class="section">
+  <section class="section" style="padding-block:48px">
     <div class="container split">
       <div data-reveal>
         <span class="eyebrow-label">Your environment</span>
@@ -96,8 +96,8 @@ const faq = [
             <div class="stack-item">
               <div class="card__icon" style="margin-bottom:0"><Icon name={s.icon} size={20} /></div>
               <div>
-                <h3 style="font-size:17px;font-weight:600">{s.title}</h3>
-                <p class="muted" style="font-size:14.5px;margin-top:3px">{s.body}</p>
+                <h3 style="font-size:17px;font-weight:700;color:var(--ink)">{s.title}</h3>
+                <p class="muted" style="font-size:14.5px;margin-top:4px;line-height:1.5">{s.body}</p>
               </div>
             </div>
           ))}
@@ -124,30 +124,30 @@ const faq = [
   </section>
 
   <!-- COMPLIANCE BOUNDARY -->
-  <section class="section">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="boundary panel" data-reveal>
         <div>
-          <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={13} stroke="#a9f2d1" /> Your compliance boundary</span>
+          <span class="eyebrow eyebrow--teal"><Icon name="shield-check" size={14} stroke="#0d9488" /> Your compliance boundary</span>
           <h2 class="h2" style="margin-top:16px;max-width:18ch">The compliance story is simple: the data never leaves</h2>
           <p class="lead" style="margin-top:14px;max-width:52ch">When the software runs on your estate, regulated data stays inside the controls you already have certified. There is no third party to add to your audit scope.</p>
         </div>
         <ul class="check-list boundary__list">
-          {boundary.map((b) => <li><span class="tick"><Icon name="check" size={12} stroke="#3ddc97" /></span>{b}</li>)}
+          {boundary.map((b) => <li><span class="tick"><Icon name="check" size={12} stroke="#0d9488" /></span>{b}</li>)}
         </ul>
       </div>
     </div>
   </section>
 
   <!-- REQUIREMENTS -->
-  <section class="section" style="padding-top:20px">
+  <section class="section" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Footprint</span>
         <h2 class="h2" style="margin-top:12px">Straightforward to run</h2>
         <p class="kicker" style="margin-top:14px">Built on standard infrastructure your ops team already knows. No exotic dependencies.</p>
       </div>
-      <div class="req-grid" data-reveal>
+      <div class="req-grid" data-reveal style="margin-top:24px">
         {requirements.map((r) => (
           <div class="req">
             <div class="req__k mono">{r.k}</div>
@@ -168,27 +168,27 @@ const faq = [
 </Base>
 
 <style>
-  .model-tag { display: inline-block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #a9f2d1; background: var(--teal-050); border: 1px solid var(--teal-150); padding: 3px 9px; border-radius: 100px; }
+  .model-tag { display: inline-block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #0f766e; background: rgba(0, 191, 165, 0.1); border: 1px solid rgba(0, 191, 165, 0.3); padding: 4px 10px; border-radius: 100px; font-weight: 750; }
   .split { display: grid; grid-template-columns: 1fr .95fr; gap: 48px; align-items: center; }
   .stack-list { display: grid; gap: 18px; }
   .stack-item { display: flex; gap: 15px; align-items: flex-start; }
   .stack-item .card__icon { flex: none; }
 
-  .diagram { padding: 30px; }
-  .diagram__ring { text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1px dashed var(--line-2); border-radius: 12px; padding: 8px; margin-bottom: 22px; }
+  .diagram { padding: 32px; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05); }
+  .diagram__ring { text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1.5px dashed #cbd5e1; border-radius: 12px; padding: 8px; margin-bottom: 22px; font-weight: 700; }
   .diagram__nodes { display: grid; gap: 12px; place-items: center; }
-  .dnode { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink-2); padding: 10px 14px; border: 1px solid var(--line-2); border-radius: 10px; background: rgba(255,255,255,.03); }
-  .dnode--core { color: #fff; border-color: var(--violet-300); background: var(--violet-050); }
+  .dnode { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); padding: 10px 16px; border: 1.5px solid #e2e8f0; border-radius: 10px; background: #f8fafc; }
+  .dnode--core { color: #6d28d9; border-color: rgba(124, 58, 237, 0.35); background: rgba(124, 58, 237, 0.1); font-weight: 750; }
   .dnode-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
   .dline { width: 2px; height: 18px; background: linear-gradient(var(--violet), transparent); }
-  .diagram__foot { text-align: center; margin-top: 20px; font-size: 11px; color: var(--teal); }
+  .diagram__foot { text-align: center; margin-top: 20px; font-size: 11.5px; color: #0f766e; font-weight: 700; }
 
-  .boundary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); }
+  .boundary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: clamp(28px,4vw,44px); border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05); }
   .boundary__list { gap: 14px; }
 
-  .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .req { border: 1px solid var(--line); border-radius: var(--r); padding: 20px; background: rgba(255,255,255,.02); }
-  .req__k { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--iris); }
+  .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .req { border: 1.5px solid #e2e8f0; border-radius: var(--r-lg); padding: 22px; background: #ffffff; box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04); }
+  .req__k { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #0284c7; font-weight: 750; }
   .req__v { margin-top: 8px; color: var(--ink-2); font-size: 14.5px; line-height: 1.55; }
 
   @media (max-width: 900px) {

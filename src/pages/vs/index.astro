@@ -18,13 +18,13 @@ const description =
     titleAccent="alternative"
     lead="We compare fairly — the big platforms are fast and capable, and we say where they’re strong. But if you need to control where your meetings run and who can reach the data, here’s how Ollasync stacks up."
   />
-  <section class="section" style="padding-top:32px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="grid grid-2" data-reveal>
         {COMPETITORS.map((c) => (
           <a href={`/vs/${c.slug}`} class="card card--hover uc-card">
             <h2 class="h3">Ollasync vs {c.name}</h2>
-            <p>{c.intro.split('.')[0]}.</p>
+            <p style="color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:8px">{c.intro.split('.')[0]}.</p>
             <span class="uc-more mono">See the comparison <Icon name="arrow" size={15} /></span>
           </a>
         ))}
@@ -34,7 +34,7 @@ const description =
   <Cta />
 </Base>
 <style>
-  .uc-card { display: flex; flex-direction: column; }
+  .uc-card { display: flex; flex-direction: column; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); padding: 28px; }
   .uc-card p { flex: 1; color: var(--muted); }
-  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-size: 13px; color: var(--iris); }
+  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; font-size: 13px; font-weight: 750; color: #0284c7; }
 </style>

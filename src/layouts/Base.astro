@@ -63,9 +63,14 @@ const schemas = [orgSchema, siteSchema, ...extra];
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
-  <meta name="theme-color" content="#08090b" />
-  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0a0f1d" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="generator" content={Astro.generator} />
+
+  <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
 
   <!-- Open Graph -->
   <meta property="og:type" content={ogType} />
@@ -83,7 +88,7 @@ const schemas = [orgSchema, siteSchema, ...extra];
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageURL} />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237c5cff'/%3E%3Crect x='9' y='15' width='14' height='9' rx='2.3' fill='none' stroke='white' stroke-width='2.2'/%3E%3Cpath d='M12 15v-2.5a4 4 0 0 1 8 0V15' fill='none' stroke='white' stroke-width='2.2'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
 
   {schemas.map((s) => (
     <script type="application/ld+json" set:html={JSON.stringify(s)} />
@@ -101,23 +106,73 @@ const schemas = [orgSchema, siteSchema, ...extra];
   <Footer />
 
   <script>
-    // Reveal-on-scroll (progressive enhancement).
+    // 1. Reveal-on-scroll (progressive enhancement) - execute immediately
     const els = Array.from(document.querySelectorAll('[data-reveal]'));
-    const revealAll = () => els.forEach((el) => el.classList.add('in'));
+    const revealVisible = () => {
+      const vh = window.innerHeight;
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 1.05) el.classList.add('in');
+      });
+    };
+    revealVisible();
+
     if ('IntersectionObserver' in window && els.length) {
       const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '80px 0px -2% 0px', threshold: 0.01 });
       els.forEach((el) => io.observe(el));
-      // Safety net: nothing should ever stay invisible. If the observer never
-      // fires for an element (instant jumps, tab restore, edge cases), reveal
-      // whatever is left shortly after load.
-      window.addEventListener('load', () => setTimeout(() => {
-        els.forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < window.innerHeight * 1.1) el.classList.add('in'); });
-      }, 400));
-      setTimeout(revealAll, 3000);
+      
+      setTimeout(revealVisible, 50);
+      window.addEventListener('load', () => setTimeout(revealVisible, 200));
     } else {
-      revealAll();
+      els.forEach((el) => el.classList.add('in'));
+    }
+
+    // 2. Smooth momentum scrolling with Lenis
+    try {
+      import('lenis').then(({ default: Lenis }) => {
+        const lenis = new Lenis({
+          duration: 1.15,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 0.95,
+          touchMultiplier: 1.4,
+          infinite: false,
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Sync reveal on Lenis scroll
+        lenis.on('scroll', revealVisible);
+
+        // Smooth anchor link scrolling
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener('click', (e) => {
+            const href = anchor.getAttribute('href');
+            if (href && href !== '#' && href.length > 1) {
+              const target = document.querySelector(href);
+              if (target) {
+                e.preventDefault();
+                lenis.scrollTo(target as HTMLElement, { offset: -80 });
+              }
+            }
+          });
+        });
+      }).catch((e) => console.warn('Lenis failed to load', e));
+    } catch (e) {
+      console.warn('Lenis fallback', e);
     }
   </script>
 </body>

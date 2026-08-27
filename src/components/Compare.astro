@@ -23,13 +23,13 @@ const cell = (c: { state: string; note?: string }) => c;
             <th scope="row" class="cmp__feature">{dim}</th>
             <td class="cmp__olla">
               <span class={`state state--${o.state}`}>
-                {o.state === 'yes' ? <Icon name="check" size={15} stroke="#3ddc97" /> : o.state === 'partial' ? '~' : '—'}
+                {o.state === 'yes' ? <Icon name="check" size={15} stroke="#0d9488" /> : o.state === 'partial' ? '~' : '—'}
               </span>
               {o.note && <span class="cmp__note">{o.note}</span>}
             </td>
             <td>
               <span class={`state state--${c.state}`}>
-                {c.state === 'yes' ? <Icon name="check" size={15} stroke="#3ddc97" /> : c.state === 'partial' ? '~' : '—'}
+                {c.state === 'yes' ? <Icon name="check" size={15} stroke="#0d9488" /> : c.state === 'partial' ? '~' : '—'}
               </span>
               {c.note && <span class="cmp__note">{c.note}</span>}
             </td>
@@ -39,27 +39,27 @@ const cell = (c: { state: string; note?: string }) => c;
     </tbody>
   </table>
   <p class="cmp__legend mono">
-    <span class="state state--yes"><Icon name="check" size={13} stroke="#3ddc97" /></span> yes
+    <span class="state state--yes"><Icon name="check" size={13} stroke="#0d9488" /></span> yes
     <span class="state state--partial">~</span> partial / conditional
     <span class="state state--no">—</span> not offered
   </p>
 </div>
 
 <style>
-  .cmp-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .cmp-wrap { overflow-x: auto; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05); }
   .cmp { width: 100%; border-collapse: collapse; min-width: 640px; }
-  .cmp th, .cmp td { text-align: left; padding: 15px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  .cmp thead th { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-2); background: rgba(255,255,255,.02); }
-  .cmp thead .cmp__olla { color: #cfc6ff; }
-  .cmp__feature { color: var(--ink-2); font-weight: 500; font-size: 14.5px; width: 42%; }
+  .cmp th, .cmp td { text-align: left; padding: 16px 20px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+  .cmp thead th { font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); background: #f8fafc; font-weight: 750; }
+  .cmp thead .cmp__olla { color: #0f766e; background: rgba(0, 191, 165, 0.08); font-weight: 800; }
+  .cmp__feature { color: var(--ink); font-weight: 650; font-size: 14.5px; width: 42%; }
   .cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: 0; }
-  .cmp__olla { background: linear-gradient(180deg, var(--violet-050), transparent); }
-  .cmp td { font-size: 14px; }
-  .state { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; font-family: var(--font-mono); font-size: 14px; vertical-align: middle; }
-  .state--yes { background: var(--teal-150); }
-  .state--partial { background: var(--violet-050); color: var(--iris); border: 1px solid var(--violet-300); }
-  .state--no { background: rgba(255,255,255,.04); color: var(--muted-2); }
-  .cmp__note { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
-  .cmp__legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 14px 18px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
-  .cmp__legend .state { width: 18px; height: 18px; }
+  .cmp__olla { background: rgba(0, 191, 165, 0.03); }
+  .cmp td { font-size: 14px; color: var(--ink-2); }
+  .state { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; font-family: var(--font-mono); font-size: 14px; vertical-align: middle; }
+  .state--yes { background: rgba(0, 191, 165, 0.15); color: #0d9488; }
+  .state--partial { background: rgba(124, 58, 237, 0.1); color: #6d28d9; border: 1px solid rgba(124, 58, 237, 0.25); font-weight: 700; }
+  .state--no { background: #f1f5f9; color: #94a3b8; font-weight: 700; }
+  .cmp__note { display: block; margin-top: 5px; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+  .cmp__legend { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 20px; font-size: 12px; color: var(--muted); border-top: 1px solid #e2e8f0; background: #f8fafc; }
+  .cmp__legend .state { width: 20px; height: 20px; }
 </style>

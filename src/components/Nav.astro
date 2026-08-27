@@ -10,24 +10,29 @@ const isActive = (g: typeof NAV[number]) => {
 <header class="nav" id="siteNav">
   <div class="container nav__inner">
     <a href="/" class="brand" aria-label="Ollasync home">
-      <span class="brand__mark">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="10.5" width="16" height="10" rx="2.6" stroke="#fff" stroke-width="1.9"/><path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#fff" stroke-width="1.9"/></svg>
-      </span>
-      {SITE.name}
+      <img src="/ollasync-logo.png" alt="Ollasync" class="brand__logo" height="42" width="180" style="height:42px;width:auto;display:block;" />
     </a>
 
     <nav class="nav__links" aria-label="Primary">
       {NAV.map((g) => g.items ? (
         <div class="nav__group">
-          <a href={g.items[0].href} aria-current={isActive(g) ? 'page' : undefined}>{g.label}</a>
+          <a href={g.items[0].href} class="nav__item" aria-current={isActive(g) ? 'page' : undefined}>
+            <span>{g.label}</span>
+            <Icon name="chevron-down" size={11} class="nav__chevron" stroke="currentColor" />
+          </a>
           <div class="nav__menu">
             {g.items.map((i) => (
-              <a href={i.href}>{i.label}{i.desc && <span class="desc">{i.desc}</span>}</a>
+              <a href={i.href} class="nav__menu-link">
+                <span class="nav__menu-label">{i.label}</span>
+                {i.desc && <span class="desc">{i.desc}</span>}
+              </a>
             ))}
           </div>
         </div>
       ) : (
-        <a href={g.href} aria-current={isActive(g) ? 'page' : undefined}>{g.label}</a>
+        <a href={g.href} class="nav__item" aria-current={isActive(g) ? 'page' : undefined}>
+          <span>{g.label}</span>
+        </a>
       ))}
     </nav>
 
@@ -54,10 +59,32 @@ const isActive = (g: typeof NAV[number]) => {
 </header>
 
 <style>
-  .nav__mobile { border-top: 1px solid var(--line); background: rgba(8,9,11,.96); backdrop-filter: blur(14px); padding-block: 14px; }
-  .nav__mobile a { display: block; padding: 11px 0; font-size: 16px; color: var(--ink-2); border-bottom: 1px solid var(--line-soft); }
-  .nav__mobile-cta { display: grid; gap: 10px; margin-top: 16px; }
-  .nav__mobile-cta a { border-bottom: 0; justify-content: center; }
+  .nav__mobile {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(6, 10, 22, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding-block: 18px;
+  }
+  .nav__mobile a {
+    display: block;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .nav__mobile a:hover {
+    color: var(--cyan);
+  }
+  .nav__mobile-cta {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .nav__mobile-cta a {
+    border-bottom: 0;
+    justify-content: center;
+  }
 </style>
 
 <script>

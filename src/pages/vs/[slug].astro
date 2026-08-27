@@ -29,36 +29,36 @@ const { c } = Astro.props;
   </PageHero>
 
   <!-- FAIRNESS -->
-  <section class="section" style="padding-top:24px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="fair panel" data-reveal>
         <span class="badge-soft">Where {c.name} is strong</span>
-        <p class="lead" style="margin-top:14px;max-width:74ch">{c.fair}</p>
+        <p class="lead" style="margin-top:14px;max-width:74ch;color:var(--ink-2)">{c.fair}</p>
       </div>
     </div>
   </section>
 
   <!-- TABLE -->
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Side by side</span>
         <h2 class="h2" style="margin-top:12px">Ollasync vs {c.name}, capability by capability</h2>
       </div>
-      <div data-reveal><Compare competitor={c} /></div>
+      <div data-reveal style="margin-top:24px"><Compare competitor={c} /></div>
     </div>
   </section>
 
   <!-- WHY SWITCH -->
-  <section class="section" style="padding-top:12px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Why teams switch</span>
         <h2 class="h2" style="margin-top:12px">When Ollasync is the better fit</h2>
       </div>
-      <ul class="switch-list" data-reveal>
+      <ul class="switch-list" data-reveal style="margin-top:24px">
         {c.switchReasons.map((r) => (
-          <li class="card"><span class="tick"><Icon name="check" size={13} stroke="#3ddc97" /></span>{r}</li>
+          <li class="card"><span class="tick"><Icon name="check" size={13} stroke="#0d9488" /></span><span>{r}</span></li>
         ))}
       </ul>
     </div>
@@ -74,9 +74,9 @@ const { c } = Astro.props;
 </Base>
 
 <style>
-  .fair { padding: clamp(22px,3vw,32px); }
+  .fair { padding: clamp(24px,3vw,36px); border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05); }
   .switch-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; list-style: none; }
-  .switch-list li { display: flex; gap: 13px; align-items: flex-start; font-size: 15px; color: var(--ink-2); }
-  .switch-list .tick { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 7px; background: var(--teal-150); flex: none; margin-top: 1px; }
+  .switch-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; color: var(--ink-2); line-height: 1.5; border: 1.5px solid #e2e8f0; border-radius: var(--r-lg); background: #ffffff; box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04); padding: 20px; }
+  .switch-list .tick { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: rgba(0, 191, 165, 0.15); color: #0d9488; flex: none; margin-top: 1px; }
   @media (max-width: 760px) { .switch-list { grid-template-columns: 1fr; } }
 </style>

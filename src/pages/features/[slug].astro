@@ -28,18 +28,18 @@ const others = FEATURES.filter((x) => x.slug !== f.slug);
   </PageHero>
 
   <!-- CAPABILITIES -->
-  <section class="section" style="padding-top:34px">
+  <section class="section section--tan" style="padding-block:48px">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Capabilities</span>
         <h2 class="h2" style="margin-top:12px">What you get</h2>
       </div>
-      <div class="grid grid-3" data-reveal>
+      <div class="grid grid-3" data-reveal style="margin-top:24px">
         {f.capabilities.map((c) => (
           <div class="card card--hover">
             <div class="card__icon"><Icon name={c.icon} size={20} /></div>
             <h3 class="h3">{c.title}</h3>
-            <p>{c.body}</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14.5px;line-height:1.55">{c.body}</p>
           </div>
         ))}
       </div>
@@ -47,7 +47,7 @@ const others = FEATURES.filter((x) => x.slug !== f.slug);
   </section>
 
   <!-- SECURITY NOTE -->
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-block:48px">
     <div class="container">
       <div class="secnote panel" data-reveal>
         <div class="card__icon card__icon--teal" style="margin-bottom:0"><Icon name="shield-check" size={22} /></div>
@@ -63,10 +63,10 @@ const others = FEATURES.filter((x) => x.slug !== f.slug);
   <Faq items={f.faq} title={`${f.label} — questions`} />
 
   <!-- EXPLORE MORE -->
-  <section class="section" style="padding-top:12px">
+  <section class="section" style="padding-top:20px">
     <div class="container">
       <div class="section-head" data-reveal><h2 class="h3">Explore the rest of the platform</h2></div>
-      <div class="explore" data-reveal>
+      <div class="explore" data-reveal style="margin-top:18px">
         {others.map((o) => (
           <a href={`/features/${o.slug}`} class="chip explore__chip"><Icon name={o.icon} size={15} /> {o.label}</a>
         ))}
@@ -78,10 +78,10 @@ const others = FEATURES.filter((x) => x.slug !== f.slug);
 </Base>
 
 <style>
-  .secnote { display: flex; gap: 20px; align-items: flex-start; padding: clamp(24px,3vw,36px); }
+  .secnote { display: flex; gap: 20px; align-items: flex-start; padding: clamp(24px,3vw,36px); border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05); }
   .secnote .card__icon { flex: none; }
   .explore { display: flex; flex-wrap: wrap; gap: 12px; }
-  .explore__chip { padding: 10px 16px; font-size: 14px; }
-  .explore__chip:hover { border-color: var(--violet-300); color: var(--ink); }
+  .explore__chip { padding: 10px 18px; font-size: 14px; font-weight: 600; border: 1px solid #cbd5e1; background: #ffffff; color: var(--ink-2); box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+  .explore__chip:hover { border-color: var(--cyan); color: #0f766e; background: rgba(0, 191, 165, 0.04); }
   @media (max-width: 640px) { .secnote { flex-direction: column; } }
 </style>
