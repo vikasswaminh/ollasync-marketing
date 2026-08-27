@@ -1,0 +1,567 @@
+---
+title: "The Ultimate Checklist for HIPAA-Compliant Video Conferencing for Healthcare Providers"
+description: "Use this practical HIPAA-compliant video conferencing checklist for healthcare. Learn what to evaluate for BAAs, encryption, access controls, recordings, audit logs, data retention, and telehealth security."
+pubDate: 2026-08-25
+category: "Compliance"
+cover: "/blog-cover-eu-residency.png"
+pillar: false
+pillarSlug: "hipaa-compliant-video-conferencing"
+readTime: 22
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["HIPAA-compliant video conferencing checklist", "telehealth video conferencing security", "HIPAA BAA video conferencing", "telemedicine video security", "HIPAA technical safeguards video", "healthcare video conferencing"]
+takeaways:
+  - "HIPAA compliance is an organizational and operational governance framework, not an off-the-shelf software certification or product badge."
+  - "A signed Business Associate Agreement (BAA) is legally required whenever a technology vendor creates, receives, maintains, or transmits PHI."
+  - "Encryption in transit and at rest is essential, but must be paired with strict role-based access controls, MFA, and comprehensive audit logging."
+  - "Meeting recordings, chat logs, and automated transcripts constitute ePHI and introduce significant retention and disclosure liabilities."
+  - "Self-hosting video infrastructure eliminates third-party subprocessor risk by keeping patient streams entirely within your established compliance boundary."
+---
+
+Healthcare providers have a straightforward requirement when using video for telehealth: patient information needs to remain protected before, during, and after the appointment.
+
+Choosing a video conferencing platform that supports that goal requires far more than looking for a "HIPAA compliant" marketing label.
+
+HIPAA compliance involves policies, technical safeguards, contracts, risk analysis, access controls, incident procedures, and the exact manner in which technology is configured and used. Guidance from the U.S. Department of Health and Human Services (HHS) specifically notes that covered healthcare providers and health plans using telehealth technologies must address applicable HIPAA requirements, and technology vendors must enter into Business Associate Agreements (BAAs) when they handle Protected Health Information (PHI).
+
+That makes video conferencing an infrastructure and governance decision, not simply a meeting-software choice.
+
+This comprehensive checklist walks healthcare providers through the technical, administrative, and operational questions to ask before selecting or deploying a video conferencing platform for telehealth.
+
+<div class="callout">
+<strong>Important Note:</strong> This article is an educational technology guide, not legal advice or a certification of compliance. HIPAA obligations depend on your organization, workflows, vendors, contracts, and use of protected health information (PHI). Healthcare organizations should involve qualified compliance, privacy, security, and legal professionals when making compliance decisions. For specific healthcare workflows, consult our <a href="/use-cases/healthcare">telehealth and healthcare use case</a> and our comprehensive <a href="/blog/hipaa-compliant-video-conferencing">HIPAA-compliant video conferencing pillar guide</a>.
+</div>
+
+## Quick Answer: What Makes Video Conferencing HIPAA Compliant?
+
+There is no single toggle or standalone feature that makes a video conferencing platform "HIPAA compliant."
+
+A healthcare provider needs to evaluate the entire ecosystem: technology, network configuration, legal contracts, administrative policies, workforce training, and telehealth clinical workflows.
+
+At a practical level, a HIPAA-focused video conferencing setup must address:
+
+- **Protected Health Information (PHI):** Identifying all voice, video, text, metadata, and document flows.
+- **Business Associate Relationships:** Defining vendor obligations under the HIPAA Privacy and Security Rules.
+- **Business Associate Agreements (BAAs):** Formalizing contractual liability and breach notification timelines.
+- **Encryption:** Protecting data in transit (DTLS-SRTP, TLS 1.3) and at rest (AES-256).
+- **Authentication:** Enforcing Single Sign-On (SSO) and Multi-Factor Authentication (MFA).
+- **Access Control:** Enforcing Role-Based Access Control (RBAC) and least-privilege authorization.
+- **Meeting Security:** Utilizing virtual waiting rooms, meeting passwords, and host admission controls.
+- **Recording & Transcript Security:** Locking down media artifacts and transcription pipelines.
+- **Data Retention & Lifecycle:** Establishing automated data deletion and purging schedules.
+- **Audit Logging:** Maintaining tamper-proof records of room access, admin changes, and file downloads.
+- **Incident Response:** Testing contingency procedures for credential compromise and data leaks.
+- **Risk Analysis:** Conducting continuous risk assessments against changing threats.
+- **Workforce Training:** Educating clinicians on screen-sharing hygiene and endpoint safety.
+- **Patient Privacy:** Guiding patients on physical privacy and secure personal device use.
+- **Subprocessor Governance:** Auditing third-party transcription, AI, and cloud storage vendors.
+- **Business Continuity:** Designing redundant systems to maintain clinical availability during outages.
+
+HHS states that the HIPAA Security Rule requires covered entities and business associates to implement appropriate administrative, physical, and technical safeguards for electronic protected health information (ePHI). Documentation, policies, risk assessments, incident procedures, and business associate contracts are all integral components of this compliance framework.
+
+So the better question isn't *"Is this video conferencing platform HIPAA compliant?"*
+
+Ask instead: **"Can this platform, together with our configuration, contracts, policies, and operational controls, support our HIPAA obligations?"**
+
+## What Does HIPAA Require From Telehealth Video Conferencing?
+
+HIPAA protects individually identifiable health information held or transmitted by covered entities and their business associates. In telehealth, that encompasses information exchanged through real-time video, audio streams, text chats, whiteboard sessions, shared documents, meeting recordings, automated transcripts, and appointment metadata.
+
+HHS explains that covered healthcare providers and health plans must utilize technology vendors that comply with applicable HIPAA requirements and, when the vendor is acting as a business associate, execute a formal Business Associate Agreement.
+
+The exact obligations depend on how your organization and vendors process and handle PHI. Two healthcare organizations can deploy the exact same video platform but maintain completely different compliance postures because their workflows, integrations, retention schedules, and data flows differ.
+
+For example, consider a routine video consultation. The session might involve:
+
+- Patient identity and demographic data
+- Medical history and clinical notes
+- Diagnostic assessments and treatment plans
+- Electronic prescriptions and lab orders
+- Screen-shared X-rays and MRI scans
+- Uploaded medical records and PDF reports
+- Real-time in-call chat messages
+- Appointment scheduling metadata and IP addresses
+- Audio/video recordings of the consultation
+- Automated AI-generated clinical transcripts
+
+Every additional data artifact introduces a separate security and governance consideration. That is why healthcare providers must evaluate the full telehealth lifecycle rather than just the live video call.
+
+## The 20-Point HIPAA-Compliant Video Conferencing Checklist
+
+Use the following checklist when evaluating a video conferencing platform for healthcare. Rather than enabling every feature blindly, determine which safeguards directly align with your organization's risk profile and clinical workflows.
+
+### 1. Confirm Whether PHI Is Involved
+
+Start with the fundamental question: **Will the video conferencing platform handle PHI?**
+
+If clinicians discuss patient-specific health information during a video consultation, the answer is yes. PHI extends far beyond spoken audio:
+
+- Live video and audio feeds
+- In-meeting text chats and file uploads
+- Screen-shared EHR records and diagnostic images
+- Stored session recordings and cloud transcripts
+- Patient names, phone numbers, and email addresses in meeting invites
+- Appointment timestamps and connection metadata
+
+HHS guidance specifically advises organizations to evaluate whether ePHI created or stored during telehealth could be accessed by unauthorized parties.
+
+<div class="callout">
+<strong>Checklist Actions:</strong>
+<ul>
+  <li>Identify every point where PHI enters the video workflow.</li>
+  <li>Document all network paths where PHI is transmitted.</li>
+  <li>Map all physical and cloud storage locations where PHI resides.</li>
+  <li>Identify all users and system processes authorized to access it.</li>
+  <li>Maintain comprehensive data flow diagrams for compliance audits.</li>
+</ul>
+</div>
+
+### 2. Determine Whether the Video Vendor Is a Business Associate
+
+A vendor qualifies as a business associate when it creates, receives, maintains, or transmits PHI on behalf of a covered entity. HHS mandates that covered entities establish appropriate written agreements with business associates.
+
+However, not every technology provider shares the same relationship. HHS notes that a telecommunications provider acting purely as a transient **conduit** for data transmission without persistent storage might not require a BAA in certain narrow circumstances. Conversely, any vendor that stores meeting recordings, retains chat logs, or processes automated transcripts containing PHI is definitively a Business Associate.
+
+<div class="callout">
+<strong>Checklist Actions:</strong>
+<ul>
+  <li>Determine whether the vendor operates as a conduit or a business associate.</li>
+  <li>Verify whether the vendor stores recordings, transcripts, or chat logs.</li>
+  <li>Audit whether vendor support staff can access live streams or stored data.</li>
+  <li>Have legal and compliance teams formally review the vendor relationship.</li>
+</ul>
+</div>
+
+### 3. Sign a Business Associate Agreement (BAA)
+
+If the vendor acts as a business associate, an executed BAA is non-negotiable under federal law. A BAA legally establishes responsibilities for handling, safeguarding, and reporting breaches of PHI.
+
+Under HHS rules, a BAA must establish permitted uses and disclosures, mandate administrative and technical safeguards, require prompt security incident and breach notification, govern subprocessor compliance, and dictate data destruction upon termination.
+
+<div class="callout">
+<strong>Checklist Actions:</strong>
+<ul>
+  <li>Verify that a customized BAA is available before sending PHI through the platform.</li>
+  <li>Confirm that all platform components and add-ons are covered under the BAA scope.</li>
+  <li>Review breach notification timelines (e.g., within 24–72 hours).</li>
+  <li>Audit subcontractor and subprocessor contractual obligations.</li>
+  <li>Review procedures for returning or destroying PHI upon contract termination.</li>
+</ul>
+</div>
+
+### 4. Verify Encryption (In Transit and At Rest)
+
+Encryption is one of the most critical technical safeguards under the HIPAA Security Rule (§ 164.312(a)(2)(iv) and § 164.312(e)(2)(ii)).
+
+You must evaluate encryption across two distinct states:
+
+1. **Encryption in Transit:** Protects audio, video, and data packets as they travel across public and private networks between participants and media servers (e.g., DTLS-SRTP for media, TLS 1.3 for signaling and control).
+2. **Encryption at Rest:** Protects stored session recordings, transcripts, uploaded files, and database records using robust algorithms such as AES-256.
+
+Don't settle for high-level marketing buzzwords. Dive deeper into the cryptographic architecture:
+
+- What specific data streams are encrypted?
+- Where does cryptographic key termination occur?
+- Who controls the master encryption keys?
+- Can the service provider access plaintext in memory?
+- Are database backups and log files encrypted at rest?
+
+To understand how cryptographic boundaries work in enterprise communication, read our deep dive on [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call) and explore our [security architecture](/security).
+
+### 5. Review Role-Based Access Controls (RBAC)
+
+The HIPAA Security Rule mandates that covered entities implement technical policies and procedures to allow only authorized persons to access ePHI.
+
+A clinician needs access to clinical consultations, an IT administrator needs configuration access, a compliance officer needs audit logs, and a receptionist only requires scheduling access.
+
+Look for granular access management:
+
+- Role-based access control (RBAC) with least-privilege defaults
+- Distinct administrative, host, participant, and guest roles
+- Fine-grained permissions for recording, transcript generation, and file sharing
+- Organizational-level policy enforcement
+
+Restricting access is especially vital when session recordings or transcripts are archived, as those artifacts contain high concentrations of sensitive patient data.
+
+### 6. Enable Strong Authentication & Single Sign-On (SSO)
+
+A secure platform is vulnerable if accessible through weak or compromised credentials. Privileged administrator accounts represent high-value targets; an attacker with admin credentials could modify security policies, access archived recordings, or intercept active sessions.
+
+Evaluate authentication mechanisms across all user tiers:
+
+- Enterprise Single Sign-On (SSO) via SAML 2.0 or OIDC (e.g., Okta, Azure AD)
+- Mandatory Multi-Factor Authentication (MFA) for clinicians and administrators
+- Strict password complexity and rotation policies
+- Automated session timeouts and inactivity disconnects
+- Granular account recovery and credential revocation workflows
+
+### 7. Control Meeting Access & Room Privacy
+
+A telehealth consultation should never operate like a public webinar. Meeting rooms must be strictly controlled to prevent unauthorized eavesdropping or accidental intrusions.
+
+Essential meeting access controls include:
+
+- **Virtual Waiting Rooms:** Hosts manually verify and admit patients.
+- **Unique Meeting IDs & Passwords:** Rotating credentials for every session.
+- **Authenticated Access:** Requiring patients or clinicians to log in or verify identity.
+- **Meeting Locks:** Hosts lock the room once all legitimate participants arrive.
+- **Participant Ejection:** Immediate removal of unauthorized or unrecognized attendees.
+- **Restricted Screen Sharing:** Host-only sharing permissions by default to prevent accidental PHI exposure.
+
+### 8. Secure Recordings and Transcripts
+
+Session recordings and automated AI transcripts create persistent, high-risk copies of sensitive clinical discussions. Before enabling recording features, healthcare providers must ask: **Do we have a legitimate clinical or legal requirement to record this session?**
+
+If recording is required, establish strict governance:
+
+- Store recordings in encrypted, access-controlled repositories.
+- Restrict recording initiation permissions exclusively to designated hosts.
+- Display visible and audible recording notifications to all participants.
+- Prohibit direct downloads to unmanaged local devices.
+- Apply automated data retention and scheduled deletion policies.
+- Audit third-party speech-to-text AI transcription pipelines for BAA coverage.
+
+<div class="callout">
+<strong>Golden Rule:</strong> Never generate an additional copy of PHI unless you have a documented clinical necessity, an executed BAA with the processing vendor, and a clear data retention policy.
+</div>
+
+### 9. Review Data Storage, Retention, and Purging
+
+Where does your telehealth data live, and how long does it remain there? Data retention is often overlooked during procurement, leading to unnecessary liability.
+
+Evaluate your vendor's storage architecture:
+
+- Geographic location of primary data centers and replica nodes
+- Storage boundaries for video recordings, transcripts, chats, and uploaded files
+- Automated retention rules that purge meeting data after designated periods (e.g., 30, 60, or 90 days)
+- Cryptographic data erasure and certified destruction upon account termination
+- Complete data export capabilities in standard formats for medical archiving
+
+Retaining data indefinitely increases compliance risk. Match data retention periods directly to your organization's legal, clinical, and regulatory mandates.
+
+### 10. Check Comprehensive Audit Logging
+
+The HIPAA Security Rule (§ 164.312(b)) requires hardware, software, and procedural mechanisms that record and examine activity in information systems containing or utilizing ePHI.
+
+Audit logs provide essential forensic visibility during security investigations and regulatory audits:
+
+- User authentication events (successful logins, failed attempts, MFA challenges)
+- Meeting lifecycle events (creation, participant join/leave times, IP addresses)
+- Administrative actions (role changes, policy modifications, security toggles)
+- Data access events (recording views, downloads, transcript exports)
+- Immutable, tamper-evident log storage
+- Real-time SIEM integration (e.g., Splunk, Datadog) via API
+
+### 11. Evaluate Centralized Administrative Controls
+
+Security cannot rely on individual clinicians configuring their own meeting settings. Centralized administrative governance ensures consistency across the entire healthcare system.
+
+Administrators must be able to globally enforce:
+
+- Default-on encryption and waiting rooms
+- Universal SSO and MFA enforcement
+- Mandatory session watermarking
+- Restricted file transfer protocols
+- Automated user provisioning and deprovisioning via SCIM
+- Domain restrictions for invited attendees
+
+Centralized control eliminates accidental clinician misconfigurations and ensures organizational compliance standards are universally maintained.
+
+### 12. Protect Clinician and Patient Endpoints
+
+A secure video platform cannot protect patient information if an endpoint device is compromised with malware or left unattended.
+
+Healthcare organizations must secure clinician hardware:
+
+- Full-disk encryption (e.g., BitLocker, FileVault) on all workstations
+- Automated screen locks with short inactivity timeouts
+- Centralized Mobile Device Management (MDM) enforcement
+- Modern browser and OS patch management
+- Endpoint Detection and Response (EDR) software
+- Prohibition of telehealth sessions over untrusted public Wi-Fi networks
+
+HHS recommends incorporating device authentication, session termination, and inactivity controls into telehealth risk assessments.
+
+### 13. Secure Screen Sharing and File Transfers
+
+During a telehealth session, clinicians frequently share diagnostic images, lab results, EHR screens, and prescription details. Screen sharing is a common source of accidental PHI disclosure.
+
+Mitigate screen-sharing exposure risks:
+
+- Restrict screen sharing to specific application windows rather than entire desktops.
+- Disable notifications, messaging alerts, and email pop-ups during consultations.
+- Restrict file transfer permissions to prevent malware propagation.
+- Ensure all uploaded medical documents are encrypted in transit and scanned for threats.
+- Restrict file download capabilities to authorized medical staff.
+
+### 14. Audit Third-Party Integrations and AI Subprocessors
+
+Modern telehealth platforms frequently integrate with Electronic Health Records (EHRs), scheduling tools, patient portals, cloud storage, and AI clinical scribes.
+
+Every integrated third-party service represents a potential expansion of your compliance boundary:
+
+- Does the third-party integration receive, process, or store PHI?
+- Has a separate Business Associate Agreement been executed with each integration provider?
+- Are automated AI transcription models trained on patient consultation data? (Ensure zero-data-retention and no model training clauses.)
+- Are API tokens and webhooks transmitted over encrypted channels?
+
+### 15. Understand Data Residency and Cross-Border Data Flows
+
+Healthcare providers must maintain complete visibility into where patient data travels and where it is physically stored.
+
+Key data flow considerations:
+
+- Physical geographic locations of signaling servers, media relays, and storage clusters
+- Prevention of cross-border data routing through high-risk foreign jurisdictions
+- Compliance with regional sovereignty regulations (e.g., state-specific health privacy statutes, GDPR, EU data residency)
+- Transparency regarding third-party cloud infrastructure providers (e.g., AWS, GCP, Azure)
+
+For organizations navigating international compliance frameworks, read our guide on [EU data residency explained](/blog/eu-data-residency-explained) and our [enterprise compliance & governance guide](/blog/Compliance-Governance-Enterprise-guide).
+
+### 16. Prepare Incident Response and Breach Notification Plans
+
+Even robust security environments must prepare for potential security incidents. Healthcare organizations must establish documented incident response workflows:
+
+- Protocol for reporting unauthorized meeting intrusions or credential compromise
+- Rapid revocation procedures for compromised user accounts and active sessions
+- Immediate containment workflows for improperly exposed recordings or transcripts
+- Vendor notification SLAs defining breach reporting timelines under HIPAA rules
+- Post-incident forensic investigation and corrective action documentation
+
+### 17. Evaluate System Availability and Business Continuity
+
+The HIPAA Security Rule includes contingency planning requirements (§ 164.308(a)(7)) to ensure critical health systems remain available during emergencies.
+
+A telehealth outage during an acute clinical consultation can directly compromise patient care. Evaluate:
+
+- High-availability infrastructure architecture with automated failover
+- Network redundancy across multiple data centers and cloud availability zones
+- Documented clinical fallback procedures (e.g., secure telephone bridge)
+- Vendor Service Level Agreements (SLAs) with uptime commitments (e.g., 99.99%)
+- Disaster recovery and backup restoration procedures
+
+### 18. Train Clinical and Administrative Staff
+
+Technology cannot compensate for human error. A clinician may inadvertently cause a data breach by sharing the wrong screen, emailing a meeting link to the wrong patient, or discussing sensitive diagnoses within earshot of others.
+
+Workforce training must address:
+
+- Proper verification of patient identity before discussing PHI
+- Safe screen-sharing protocols and notification muting
+- Strict guidelines on when recording is permitted
+- Physical privacy precautions when conducting calls from home or shared offices
+- Immediate procedures for reporting suspicious activity or misdirected links
+
+### 19. Protect Patient Privacy and Provide Guidance
+
+Telehealth security is a shared responsibility between healthcare providers and patients. Patients may connect to video appointments from cars, shared households, workplaces, or public spaces.
+
+Providers should supply patients with clear pre-visit guidance:
+
+- Connect from a private, quiet room with closed doors.
+- Use wired or wireless headphones to prevent others from overhearing clinical discussions.
+- Position camera screens away from windows and public view.
+- Connect over private, password-protected home Wi-Fi rather than public hotspots.
+- Avoid using public or shared computers for telehealth consultations.
+
+### 20. Document and Regularly Review Risk Assessments
+
+HIPAA compliance requires comprehensive documentation. Security controls that cannot be evidenced during an audit or regulatory investigation leave the organization exposed to substantial penalties.
+
+Maintain an audit-ready compliance binder containing:
+
+- Formal HIPAA Security Rule Risk Assessments and updates
+- Executed Business Associate Agreements with all vendors and subprocessors
+- Written technical configuration standards and access policies
+- Staff security training records and attendance logs
+- Incident response protocols and tabletop exercise results
+- Periodic reviews reflecting changes in technology, threats, and clinical workflows
+
+## HIPAA Video Conferencing Checklist: Quick Scorecard
+
+Use this quick scorecard to evaluate telehealth video conferencing platforms during procurement:
+
+| Evaluation Area | Critical Assessment Question | Status |
+| :--- | :--- | :---: |
+| **PHI Scope** | Have we identified all PHI entry points, audio/video streams, and storage locations? | [ ] |
+| **Vendor Role** | Have we determined whether the vendor operates as a Business Associate or conduit? | [ ] |
+| **BAA Execution** | Is a signed Business Associate Agreement in place covering all platform components? | [ ] |
+| **Encryption** | Is ePHI encrypted in transit (DTLS-SRTP/TLS 1.3) and at rest (AES-256)? | [ ] |
+| **Authentication** | Are SAML 2.0 SSO and Multi-Factor Authentication (MFA) enforced for all staff? | [ ] |
+| **Access Control** | Can administrators enforce granular Role-Based Access Control (RBAC)? | [ ] |
+| **Meeting Privacy** | Are virtual waiting rooms, meeting passwords, and host locks enabled by default? | [ ] |
+| **Recordings** | Are session recordings restricted, encrypted, access-logged, and governed by policy? | [ ] |
+| **Transcripts** | Are automated AI transcripts treated as ePHI and protected under strict boundaries? | [ ] |
+| **Data Retention** | Can the organization enforce automated purging and custom data retention lifecycles? | [ ] |
+| **Audit Logging** | Are administrative actions, user logins, and data access recorded in immutable logs? | [ ] |
+| **Integrations** | Have all connected EHRs, cloud storage buckets, and APIs executed BAAs? | [ ] |
+| **Data Flows** | Do we understand exact packet routing paths and geographical data residency locations? | [ ] |
+| **Incident Response** | Is there a tested, documented protocol for security incidents and breach notifications? | [ ] |
+| **Continuity** | Is there a documented business continuity and uptime plan for service outages? | [ ] |
+| **Staff Training** | Has the clinical and administrative workforce completed telehealth security training? | [ ] |
+| **Patient Privacy** | Are patients provided with practical privacy and device security guidance? | [ ] |
+| **Risk Analysis** | Has the organization documented a formal HIPAA Security Rule risk assessment? | [ ] |
+| **Periodic Review** | Are technical and administrative safeguards reviewed and re-evaluated periodically? | [ ] |
+
+## Common HIPAA Video Conferencing Mistakes
+
+Avoid these frequent pitfalls when implementing telehealth video systems:
+
+### Mistake 1: Treating "HIPAA Compliant" as a Product Feature
+Compliance is not a checkbox you buy from a vendor. A platform may provide strong technical capabilities, but your organization remains responsible for user access, policies, device security, and lawful disclosures.
+
+### Mistake 2: Assuming Encryption Solves Everything
+Encryption protects data on the wire and on disk. It does not prevent unauthorized access resulting from weak passwords, missing MFA, misconfigured meeting permissions, unmanaged endpoint malware, or rogue insiders.
+
+### Mistake 3: Recording Every Clinical Consultation
+Archiving video consultations creates massive repositories of high-risk ePHI. If recording is not clinically or legally necessary, disable it entirely.
+
+### Mistake 4: Overlooking Automated AI Transcripts
+Transcripts contain verbatim records of patient symptoms, diagnoses, and personal details. Treating transcripts as secondary text rather than sensitive ePHI is a severe compliance oversight.
+
+### Mistake 5: Ignoring Third-Party Add-Ons and Integrations
+Connecting an unvetted transcription bot, cloud backup service, or CRM tool to your video platform without a signed BAA can instantly violate HIPAA regulations.
+
+### Mistake 6: Neglecting Patient Environment Privacy
+Clinicians must actively remind patients to find private spaces and use headphones to protect their own privacy during appointments.
+
+### Mistake 7: Failing to Enforce Centralized Meeting Policies
+Allowing individual clinicians to customize security settings leads to inconsistent protection and accidental data exposure.
+
+### Mistake 8: Storing Data Indefinitely Without Retention Rules
+Accumulating years of unpurged video recordings and chat logs expands your liability surface in the event of a security breach.
+
+### Mistake 9: Using Consumer-Grade Tools for Healthcare
+Using consumer video applications without enterprise security controls, audit logs, and an executed BAA violates federal privacy rules. For an analysis of commercial video tools, see our [Ollasync vs Zoom](/vs/zoom) and [Ollasync vs Microsoft Teams](/vs/teams) comparisons.
+
+## What to Ask a Video Conferencing Vendor
+
+Before signing a contract, present these direct technical questions to your video conferencing vendor:
+
+### Compliance & Contracts
+- Will you execute a formal Business Associate Agreement (BAA) covering all features?
+- Which specific subprocessors and third-party vendors handle or store customer data?
+- What is your guaranteed notification timeline in the event of a security incident or breach?
+
+### Encryption & Architecture
+- Is real-time media encrypted in transit using DTLS-SRTP and signaling protected by TLS 1.3?
+- Is stored data (recordings, transcripts, metadata) encrypted at rest using AES-256?
+- Who generates, manages, and stores encryption keys?
+- Can vendor employees or automated systems access plaintext session data in memory?
+
+### Identity & Access Control
+- Does the platform support SAML 2.0 / OIDC Single Sign-On and enforce MFA?
+- What granular Role-Based Access Control (RBAC) permissions are available for admins vs. clinicians?
+- Does the system support automated user lifecycle management via SCIM?
+
+### Meeting Governance & Artifacts
+- Are virtual waiting rooms, meeting locks, and unique PINs configurable as global defaults?
+- Can administrators globally disable recording, local downloads, and AI transcription?
+- What automated retention and data purging schedules are supported?
+
+### Audit Logging & Monitoring
+- What specific events are captured in audit logs, and are logs immutable?
+- Can audit logs be exported to external SIEM systems via real-time APIs?
+- How long are system logs retained within the platform?
+
+## Can End-to-End Encryption Make Video Conferencing HIPAA Compliant?
+
+**No.** End-to-end encryption (E2EE) is an exceptionally strong technical safeguard, but E2EE alone does not equal HIPAA compliance.
+
+HIPAA compliance requires a comprehensive framework of administrative policies, physical safeguards, access controls, BAAs, audit logging, incident response plans, and workforce training. A platform could theoretically feature mathematically unbreakable encryption, but if it lacks a signed BAA, permits weak passwords, maintains no audit logs, or allows unauthorized attendees into meetings, it fails HIPAA requirements.
+
+However, modern cryptographic architectures like the [IETF Messaging Layer Security (MLS)](/security) and per-frame media encryption provide substantial advantages for high-security healthcare environments. By ensuring that media relays and cloud infrastructure operate strictly in a "server-blind" capacity, organizations drastically minimize the exposure of ePHI within the vendor's trust boundary.
+
+To explore the mechanics of modern cryptography in real-time communication, read our guide to [end-to-end encrypted video conferencing](/blog/end-to-end-encrypted-video-conferencing).
+
+## How Ollasync Approaches Secure Healthcare Video Conferencing
+
+Ollasync approaches healthcare communication through an infrastructure-first, privacy-by-design architecture:
+
+- **Complete Data Sovereignty:** Deploy Ollasync on your own private cloud or on-premise infrastructure via our [self-hosted video conferencing platform](/self-hosted), ensuring patient video, audio, and documents never leave your physical and legal boundaries.
+- **Server-Blind Architecture:** Built-in support for open cryptographic standards, ensuring intermediary servers cannot inspect confidential medical communications.
+- **Zero-Trust Access Controls:** Enterprise SSO, mandatory MFA, granular RBAC, and virtual waiting rooms enforced by default.
+- **Full Compliance Alignment:** Comprehensive audit logging, customizable data retention schedules, and formal Business Associate Agreements (BAAs).
+- **No Third-Party AI Ingestion:** Real-time collaboration without unauthorized data scraping, automated training, or unvetted AI subprocessors.
+
+Self-hosting gives healthcare systems absolute control over their compliance boundary, eliminating third-party subprocessor risks while maintaining a seamless, browser-based user experience. Explore our [transparent deployment pricing](/pricing) and read our [healthcare use case](/use-cases/healthcare) to learn more.
+
+## Frequently Asked Questions
+
+<details>
+  <summary>1. What is HIPAA-compliant video conferencing?</summary>
+  <p>HIPAA-compliant video conferencing refers to video communication technology deployed and operated by covered entities and business associates in accordance with the HIPAA Privacy, Security, and Breach Notification Rules. Compliance is not a single software feature—it is achieved through a combination of secure technology, executed BAAs, proper configuration, strict access controls, workforce policies, and ongoing risk analysis.</p>
+</details>
+
+<details>
+  <summary>2. Is Zoom HIPAA compliant?</summary>
+  <p>Zoom offers healthcare-specific tiers that include a Business Associate Agreement (BAA) and specialized security settings. However, Zoom is not automatically compliant out of the box; healthcare providers must execute a BAA, configure waiting rooms and access controls, enforce SSO/MFA, and manage recordings properly. For an in-depth breakdown, read our <a href="/vs/zoom">Ollasync vs Zoom comparison</a>.</p>
+</details>
+
+<details>
+  <summary>3. Does HIPAA require end-to-end encryption for telehealth?</summary>
+  <p>The HIPAA Security Rule does not mandate a specific encryption algorithm, but it does require transmission security safeguards (§ 164.312(e)) to protect ePHI against unauthorized interception. Modern standards require robust transport encryption (DTLS-SRTP and TLS 1.3), while per-frame E2EE provides additional protection for high-risk clinical discussions.</p>
+</details>
+
+<details>
+  <summary>4. Does a video conferencing vendor always need to sign a BAA?</summary>
+  <p>Yes, whenever the vendor creates, receives, maintains, or transmits PHI on behalf of a covered entity. While pure conduit telecommunications services may be exempt under narrow circumstances, any platform that stores recordings, transcripts, or user metadata containing PHI operates as a Business Associate and requires an executed BAA.</p>
+</details>
+
+<details>
+  <summary>5. Are video recordings considered PHI?</summary>
+  <p>Yes. If a recording contains individually identifiable health information (such as patient face, voice, clinical notes, symptoms, or diagnoses), it constitutes ePHI and must be protected with full administrative, technical, and physical safeguards under HIPAA.</p>
+</details>
+
+<details>
+  <summary>6. Are telehealth transcripts considered PHI?</summary>
+  <p>Yes. Transcripts capture verbatim clinical discussions, medication names, symptoms, and diagnoses. HHS specifically identifies transcripts and recordings as ePHI that must be evaluated and protected during telehealth risk assessments.</p>
+</details>
+
+<details>
+  <summary>7. Can healthcare providers use video conferencing for telehealth?</summary>
+  <p>Yes. HHS explicitly recognizes the use of remote communication technologies for telehealth, provided covered entities and health plans implement them in full alignment with applicable HIPAA Privacy, Security, and Breach Notification requirements.</p>
+</details>
+
+<details>
+  <summary>8. Is a free video conferencing platform suitable for healthcare?</summary>
+  <p>Generally, no. Free consumer video tools rarely offer executed Business Associate Agreements, enterprise audit logging, or centralized administrative controls. Transmitting PHI through a platform without an executed BAA directly violates federal HIPAA regulations.</p>
+</details>
+
+<details>
+  <summary>9. Does self-hosting video conferencing make you automatically HIPAA compliant?</summary>
+  <p>No. While <a href="/self-hosted">self-hosting video conferencing</a> keeps PHI inside your own data center and eliminates vendor subprocessor risks, your organization is still responsible for securing the underlying servers, managing access controls, applying software patches, and maintaining audit trails.</p>
+</details>
+
+<details>
+  <summary>10. What should healthcare providers look for in a HIPAA video conferencing platform?</summary>
+  <p>At minimum, healthcare providers should evaluate: BAA availability, transmission and at-rest encryption, SSO/MFA authentication, granular RBAC access controls, virtual waiting rooms, recording and transcript governance, automated retention schedules, immutable audit logging, incident response SLAs, and workforce training capabilities.</p>
+</details>
+
+<details>
+  <summary>11. How often should HIPAA video conferencing security be reviewed?</summary>
+  <p>Security should not be treated as a one-time vendor evaluation. Regulated entities must maintain documentation required by the Security Rule and periodically review and update safeguards as technology, operational workflows, or security threats evolve.</p>
+</details>
+
+<details>
+  <summary>12. Is HIPAA compliance enough for healthcare video conferencing?</summary>
+  <p>Not necessarily. Healthcare organizations may have additional requirements from state privacy laws, international regulations (such as GDPR), professional ethical obligations, internal data governance policies, or cyber insurance mandates.</p>
+</details>
+
+## Final Takeaway
+
+Selecting a video conferencing platform for healthcare is not about finding the software with the flashiest marketing badge. It is about understanding the entire data lifecycle surrounding the patient encounter:
+
+- Who can enter the clinical room?
+- Where are video streams routed?
+- Who holds the cryptographic keys?
+- Are session recordings and AI transcripts strictly controlled?
+- Is an executed Business Associate Agreement in place?
+- How quickly can your team detect and respond to an unauthorized access event?
+
+Telehealth creates more than a temporary screen connection—it generates an active stream of electronic protected health information flowing across devices, servers, networks, and databases.
+
+A resilient telehealth strategy combines:
+**Secure Architecture + Executed BAAs + Enforced Access Controls + Documented Policies + Continuous Risk Management.**
+
+Use this 20-point checklist to evaluate your telehealth infrastructure, protect patient confidentiality, and ensure comprehensive regulatory compliance.
