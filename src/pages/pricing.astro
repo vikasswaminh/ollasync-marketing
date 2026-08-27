@@ -89,8 +89,32 @@ const offerSchema = {
 
 <style>
   .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
-  .tier { border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); padding: 32px 28px; background: #ffffff; box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05); position: relative; display: flex; flex-direction: column; }
-  .tier--pop { border: 2px solid #7c3aed; background: #ffffff; box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.15); transform: translateY(-4px); }
+  .tier {
+    border: 1.5px solid rgba(2, 132, 199, 0.22);
+    border-radius: var(--r-xl);
+    padding: 32px 28px;
+    background: linear-gradient(180deg, #f0f7ff 0%, #e6f2fe 100%);
+    box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.08);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .tier:hover {
+    transform: translateY(-4px);
+    border-color: rgba(2, 132, 199, 0.45);
+    box-shadow: 0 12px 30px -4px rgba(2, 132, 199, 0.16);
+  }
+  .tier--pop {
+    border: 2px solid #0284c7;
+    background: linear-gradient(180deg, #e4f2ff 0%, #d8ecfe 100%);
+    box-shadow: 0 16px 36px -8px rgba(2, 132, 199, 0.22), 0 0 0 1px rgba(2, 132, 199, 0.2);
+    transform: translateY(-4px);
+  }
+  .tier--pop:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 44px -6px rgba(2, 132, 199, 0.3), 0 0 0 1.5px #0284c7;
+  }
   .tier__tag { position: absolute; top: -12px; left: 28px; font-size: 11px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--grad-brand); padding: 4px 12px; border-radius: 100px; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3); }
   .tier__price { margin: 12px 0 8px; display: flex; align-items: baseline; gap: 6px; }
   .tier__amount { font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); }

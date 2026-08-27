@@ -394,18 +394,19 @@ const postsJson = JSON.stringify(
     border: 1.5px solid rgba(108, 8, 251, 0.3);
   }
 
-  /* Left Sidebar Featured Section Card */
-  .sidebar-featured-section {
+  /* Featured Guides (Left Sidebar) */
+  .sidebar-featured-section,
+  .sidebar-featured-guides {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 16px;
     border-radius: 14px;
     border: 2px solid transparent;
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    background-image: linear-gradient(180deg, #f0f7ff 0%, #e6f2fe 100%), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
     background-origin: padding-box, border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 4px 16px -2px rgba(113, 40, 245, 0.1), 0 0 12px rgba(3, 221, 190, 0.06);
+    box-shadow: 0 4px 18px -2px rgba(2, 132, 199, 0.12), 0 0 12px rgba(3, 221, 190, 0.08);
   }
 
   .sidebar-links-list {
@@ -422,8 +423,9 @@ const postsJson = JSON.stringify(
     border-left: 2px solid transparent;
   }
   .sidebar-link-item:hover {
-    background: rgba(108, 8, 251, 0.04);
-    border-left-color: #6C08FB;
+    background: rgba(255, 255, 255, 0.85);
+    border-left-color: #0284c7;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08);
   }
   .sli-title {
     font-size: 13px;
@@ -433,7 +435,7 @@ const postsJson = JSON.stringify(
     transition: color 0.18s ease;
   }
   .sidebar-link-item:hover .sli-title {
-    color: #6C08FB;
+    color: #0284c7;
     font-weight: 700;
   }
 
@@ -444,7 +446,7 @@ const postsJson = JSON.stringify(
     text-decoration: none;
     padding-top: 10px;
     padding-left: 10px;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid rgba(2, 132, 199, 0.15);
     margin-top: 4px;
     transition: all 0.18s ease;
     display: inline-block;
@@ -476,10 +478,10 @@ const postsJson = JSON.stringify(
     padding: 16px;
     border-radius: 14px;
     border: 2px solid transparent;
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    background-image: linear-gradient(180deg, #f0f7ff 0%, #e6f2fe 100%), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
     background-origin: padding-box, border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 4px 16px -2px rgba(113, 40, 245, 0.1), 0 0 12px rgba(3, 221, 190, 0.06);
+    box-shadow: 0 4px 18px -2px rgba(2, 132, 199, 0.12), 0 0 12px rgba(3, 221, 190, 0.08);
   }
   .sidebar-pricing-item {
     display: flex;
@@ -492,8 +494,9 @@ const postsJson = JSON.stringify(
     border: 1.5px solid transparent;
   }
   .sidebar-pricing-item:hover {
-    background: rgba(108, 8, 251, 0.04);
-    border-color: rgba(108, 8, 251, 0.15);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(2, 132, 199, 0.3);
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.08);
   }
   .pricing-item-icon {
     font-size: 20px;
@@ -539,10 +542,10 @@ const postsJson = JSON.stringify(
     padding: 16px;
     border-radius: 14px;
     border: 2px solid transparent;
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
+    background-image: linear-gradient(180deg, #f0f7ff 0%, #e6f2fe 100%), linear-gradient(45deg, #7128F5 0%, #03DDBE 100%);
     background-origin: padding-box, border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 4px 16px -2px rgba(113, 40, 245, 0.1), 0 0 12px rgba(3, 221, 190, 0.06);
+    box-shadow: 0 4px 18px -2px rgba(2, 132, 199, 0.12), 0 0 12px rgba(3, 221, 190, 0.08);
   }
   .consult-badge {
     display: flex;
