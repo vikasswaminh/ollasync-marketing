@@ -1,0 +1,1980 @@
+{
+  "_about": "Editorial manifest of the content engine (policy 50_article_plan). Statuses: planned → researching → drafting → review → repair → approved → published | blocked. The engine (marketing-site/content-engine/engine/run.mjs) is the only writer of status/score/cost fields; the editorial fields are human-authored.",
+  "version": 1,
+  "created": "2026-09-13",
+  "items": [
+    {
+      "id": "b1-01",
+      "status": "approved",
+      "batch": 1,
+      "scheduledDay": 1,
+      "slug": "what-is-a-virtual-classroom",
+      "title": "What Is a Virtual Classroom? A Practical Guide for Trainers",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "what is a virtual classroom",
+      "secondaryQueries": [
+        "virtual classroom meaning",
+        "virtual classroom for trainers",
+        "virtual classroom examples"
+      ],
+      "searchIntent": "informational: a trainer wants to understand what a virtual classroom is and whether they need one",
+      "audience": "professional trainers new to teaching online",
+      "funnelStage": "awareness",
+      "uniqueAngle": "Defined through the trainer's workflow — before, during and after a class — instead of a dictionary definition; concrete situations from paid training, not school",
+      "requiredOriginalInsights": [
+        "First-join friction: learners join from a browser link with no install or account (F08), and the invitation carries the host's own message (F09) — what that changes for a first session with strangers",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/",
+        "/features/video-meetings/",
+        "/pricing/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": 96,
+      "writerModel": "deepseek/deepseek-v4-flash-0731",
+      "reviewerModel": "qwen/qwen3-32b",
+      "cost": 0.0236,
+      "attempts": [],
+      "blockedReason": null,
+      "finalTitle": "What Is a Virtual Classroom? A Practical Guide for Trainers",
+      "approvedAt": "2026-09-12T10:19:54.084Z",
+      "sitePath": null,
+      "collision": null,
+      "sources": []
+    },
+    {
+      "id": "b1-02",
+      "status": "blocked",
+      "batch": 1,
+      "scheduledDay": 1,
+      "slug": "virtual-classroom-vs-video-conferencing",
+      "title": "Virtual Classroom vs Video Conferencing: What Changes for Teaching?",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "virtual classroom vs video conferencing",
+      "secondaryQueries": [
+        "difference between virtual classroom and video conferencing",
+        "video conferencing for teaching"
+      ],
+      "searchIntent": "informational-comparison: is a meeting tool enough for teaching, or does a classroom change something real",
+      "audience": "trainers and tutors currently teaching on a meeting tool",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Works through one two-hour class on a meeting tool and the same class in a classroom, artefact by artefact; honest about where a meeting tool is enough",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/video-meetings/",
+        "/features/recordings/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": 94,
+      "writerModel": "deepseek/deepseek-v4-flash-0731",
+      "reviewerModel": "qwen/qwen3-32b",
+      "cost": 0.0039,
+      "attempts": [],
+      "blockedReason": "re-judged: ANSWER_LENGTH: the paragraph directly under \"When should I stick with a plain meeting tool?\" is 148 words — split it: keep a standalone 40–100-word answer as the first paragraph and move the rest into a second paragraph"
+    },
+    {
+      "id": "b1-03",
+      "status": "blocked",
+      "batch": 1,
+      "scheduledDay": 1,
+      "slug": "virtual-classroom-vs-lms",
+      "title": "Virtual Classroom vs LMS: Which Layer Does a Training Business Need?",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "virtual classroom vs lms",
+      "secondaryQueries": [
+        "lms vs virtual classroom",
+        "do i need an lms for live training",
+        "live training platform vs lms"
+      ],
+      "searchIntent": "informational: which layer a training business needs — the live layer, the content layer, or both",
+      "audience": "training businesses and academies",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Two layers, not two competitors: the live class and the course shelf; states plainly that Ollasync is the live layer and where an LMS still belongs",
+      "requiredOriginalInsights": [
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/academies/",
+        "/features/recordings/",
+        "/features/ai/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": 92,
+      "writerModel": "deepseek/deepseek-v4-flash-0731",
+      "reviewerModel": "qwen/qwen3-32b",
+      "cost": 0.004,
+      "attempts": [],
+      "blockedReason": "re-judged: ANSWER_LENGTH: the paragraph directly under \"Do I need an LMS for live training?\" is 157 words — split it: keep a standalone 40–100-word answer as the first paragraph and move the rest into a second paragraph; ANSWER_LENGTH: the paragraph directly under \"Can a virtual classroom replace an LMS?\" is 144 words — split it: keep a standalone 40–100-word answer as the first paragraph and move the rest into a second paragraph; ANSWER_LENGTH: the paragraph directly under \"What should I buy first: an LMS or a virtual classroom?\" is 163 words — split it: keep a standalone 40–100-word answer as the first paragraph and move the rest into a second paragraph"
+    },
+    {
+      "id": "b1-04",
+      "status": "blocked",
+      "batch": 1,
+      "scheduledDay": 1,
+      "slug": "how-to-run-a-live-online-class",
+      "title": "How to Run a Live Online Class: A Trainer's Checklist",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "how to run a live online class",
+      "secondaryQueries": [
+        "live online class checklist",
+        "online class setup for trainers",
+        "run an online training session"
+      ],
+      "searchIntent": "how-to: a practical checklist a trainer can follow for the next live class",
+      "audience": "professional trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "A checklist ordered by time (a week before, an hour before, during, after), with the classroom-specific items a generic meeting checklist misses",
+      "requiredOriginalInsights": [
+        "A reusable class link with a passcode on the invitation and its calendar file (F10): recurring cohorts without a new link per session",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/",
+        "/features/video-meetings/",
+        "/features/ai/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": 95,
+      "writerModel": "deepseek/deepseek-v4-flash-0731",
+      "reviewerModel": "qwen/qwen3-32b",
+      "cost": 0.0034,
+      "attempts": [],
+      "blockedReason": "human review: invented mechanism: the section 'Browser-based infrastructure and multilingual delivery' claims translation runs in the browser with local rendering; no fact describes the mechanism (translation is not browser-side). Regenerate or remove the section before publication.",
+      "finalTitle": "How to Run a Live Online Class: A Trainer's Checklist",
+      "approvedAt": "2026-09-12T10:33:52.498Z",
+      "rejudged": true,
+      "sources": [],
+      "humanBlockedAt": "2026-09-12T10:35:53.497Z"
+    },
+    {
+      "id": "b1-05",
+      "status": "blocked",
+      "batch": 1,
+      "scheduledDay": 1,
+      "slug": "virtual-classroom-features-for-trainers",
+      "title": "Best Virtual Classroom Features for Professional Trainers",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "virtual classroom features",
+      "secondaryQueries": [
+        "best virtual classroom features",
+        "virtual classroom software features for trainers",
+        "features to look for in a virtual classroom"
+      ],
+      "searchIntent": "commercial-informational: which features matter for paid, professional training",
+      "audience": "professional trainers and small academies",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Ranks features by what they save a trainer per class and per cohort, and names the limits (five languages per session, machine translation) instead of a feature list",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/",
+        "/use-cases/trainers/",
+        "/pricing/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": 90,
+      "writerModel": "deepseek/deepseek-v4-flash-0731",
+      "reviewerModel": "qwen/qwen3-32b",
+      "cost": 0.0035,
+      "attempts": [],
+      "blockedReason": "re-judged: ANSWER_LENGTH: the paragraph directly under \"Can learners join without installing software or creating an account?\" is only 24 words — make it a standalone answer of about 40–100 words; BOLD: 13 bold spans; UNSUPPORTED_CLAIM: unsupported number claim: \"20 sessions per month saving 8 hours monthly with AI notes\"; UNSUPPORTED_CLAIM: unsupported number claim: \"10 hours monthly post-class work without automation\""
+    },
+    {
+      "id": "b2-01",
+      "status": "planned",
+      "batch": 2,
+      "scheduledDay": 2,
+      "slug": "interactive-online-classes-without-more-tools",
+      "title": "How to Make Online Classes More Interactive Without More Tools",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "how to make online classes more interactive",
+      "secondaryQueries": [
+        "interactive online class ideas",
+        "engage learners in live online training"
+      ],
+      "searchIntent": "how-to: raise participation in live classes with what the classroom already has",
+      "audience": "trainers running cohorts of 10–100",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Interaction by class size: conversation and whiteboard in a small class, moderated Q&A, polls and quizzes in a large one; captions in a learner's own language as participation",
+      "requiredOriginalInsights": [
+        "Large-class mechanics: stage and audience, moderated Q&A, polls and quizzes, handouts, an OBS/RTMPS broadcast feed (F20) versus the conversation of a small class (F21)",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "First-join friction: learners join from a browser link with no install or account (F08), and the invitation carries the host's own message (F09) — what that changes for a first session with strangers"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/webinars/",
+        "/features/video-meetings/",
+        "/features/live-captions/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b2-02",
+      "status": "planned",
+      "batch": 2,
+      "scheduledDay": 2,
+      "slug": "record-online-classes-without-cloud-costs",
+      "title": "How to Record Online Classes Without Driving Up Cloud Costs",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "how to record online classes",
+      "secondaryQueries": [
+        "record online training sessions",
+        "class recording storage cost",
+        "online class replay"
+      ],
+      "searchIntent": "how-to: record classes so replays are useful and storage does not sprawl",
+      "audience": "trainers and academies with long sessions",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Recording as an economic decision: what to keep, for whom, for how long; local recording on the learner's device as the alternative to cloud replays",
+      "requiredOriginalInsights": [
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "Local recording on the learner's device in the language they are listening to, with nothing uploaded (F19): what it means for replays, bandwidth and consent",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/recordings/",
+        "/features/local-recording/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b2-03",
+      "status": "planned",
+      "batch": 2,
+      "scheduledDay": 2,
+      "slug": "browser-based-virtual-classroom",
+      "title": "Browser-Based Virtual Classrooms: Benefits and Tradeoffs",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "browser based virtual classroom",
+      "secondaryQueries": [
+        "virtual classroom no download",
+        "join online class without installing app",
+        "browser virtual classroom benefits"
+      ],
+      "searchIntent": "informational: benefits and tradeoffs of a browser-only classroom",
+      "audience": "trainers teaching external learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Written from the first-session failure modes (a learner who cannot install anything, a locked-down corporate laptop, a phone) and honest about browser limits",
+      "requiredOriginalInsights": [
+        "First-join friction: learners join from a browser link with no install or account (F08), and the invitation carries the host's own message (F09) — what that changes for a first session with strangers",
+        "Local recording on the learner's device in the language they are listening to, with nothing uploaded (F19): what it means for replays, bandwidth and consent",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/video-meetings/",
+        "/use-cases/trainers/",
+        "/features/local-recording/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b2-04",
+      "status": "planned",
+      "batch": 2,
+      "scheduledDay": 2,
+      "slug": "choose-virtual-classroom-software-training-academy",
+      "title": "How to Choose Virtual Classroom Software for a Training Academy",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "virtual classroom software for training academy",
+      "secondaryQueries": [
+        "choose virtual classroom software",
+        "virtual classroom for academies",
+        "training academy online platform"
+      ],
+      "searchIntent": "commercial: how an academy should evaluate classroom software",
+      "audience": "training companies and academies",
+      "funnelStage": "decision",
+      "uniqueAngle": "Evaluation by cohort arithmetic: seats vs learners, replay libraries per cohort, languages per session; includes when a meeting suite is the right answer",
+      "requiredOriginalInsights": [
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/academies/",
+        "/pricing/",
+        "/features/webinars/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b2-05",
+      "status": "planned",
+      "batch": 2,
+      "scheduledDay": 2,
+      "slug": "virtual-classroom-for-tutors",
+      "title": "Virtual Classrooms for Tutors: What Matters for 1:1 and Small Groups",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "virtual classroom for tutors",
+      "secondaryQueries": [
+        "online tutoring platform features",
+        "virtual classroom one to one",
+        "small group online tutoring software"
+      ],
+      "searchIntent": "commercial-informational: what matters for 1:1 and small-group tutoring",
+      "audience": "independent tutors and coaches",
+      "funnelStage": "consideration",
+      "uniqueAngle": "The tutoring practice's language ceiling and the after-lesson recap as the two things that change a tutor's income; not a feature tour",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/tutors/",
+        "/features/ai/",
+        "/pricing/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b3-01",
+      "status": "planned",
+      "batch": 3,
+      "scheduledDay": 3,
+      "slug": "virtual-classroom-corporate-training",
+      "title": "Virtual Classroom for Corporate Training: Live Layer vs LMS",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "virtual classroom for corporate training",
+      "secondaryQueries": [
+        "corporate training virtual classroom",
+        "live training layer corporate",
+        "employee training live online"
+      ],
+      "searchIntent": "commercial: where a live classroom fits next to the LMS in corporate L&D",
+      "audience": "HR and L&D teams",
+      "funnelStage": "consideration",
+      "uniqueAngle": "The onboarding cohort across countries as the running example: live layer for the sessions, LMS for the record; distinct from the generic LMS-vs-classroom article by staying inside corporate L&D",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/onboarding/",
+        "/features/ai/",
+        "/features/recordings/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b3-02",
+      "status": "planned",
+      "batch": 3,
+      "scheduledDay": 3,
+      "slug": "scale-live-training-multiple-cohorts",
+      "title": "How to Scale Live Training Across Multiple Cohorts",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "scale live training across cohorts",
+      "secondaryQueries": [
+        "run multiple training cohorts online",
+        "scale instructor-led training",
+        "training cohorts different languages"
+      ],
+      "searchIntent": "how-to: teach the same programme to more cohorts without more trainer hours",
+      "audience": "training businesses",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Teach once, deliver to several markets in one session versus one session per market; the arithmetic of seats and the five-language cap",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training",
+        "A reusable class link with a passcode on the invitation and its calendar file (F10): recurring cohorts without a new link per session"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/academies/",
+        "/features/webinars/",
+        "/pricing/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b3-03",
+      "status": "planned",
+      "batch": 3,
+      "scheduledDay": 3,
+      "slug": "reduce-tool-sprawl-online-teaching",
+      "title": "How to Reduce Tool Sprawl in Online Teaching",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "tool sprawl online teaching",
+      "secondaryQueries": [
+        "too many tools for online teaching",
+        "consolidate online training tools",
+        "one platform for live classes notes recordings"
+      ],
+      "searchIntent": "informational: what a trainer can retire when class, notes, attendance and replays come from one place",
+      "audience": "trainers and small academies",
+      "funnelStage": "consideration",
+      "uniqueAngle": "An honest inventory: what one workspace replaces (meeting tool, note-taker, attendance sheet, replay links) and what it does not (an LMS, a payment tool)",
+      "requiredOriginalInsights": [
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/features/recordings/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b3-04",
+      "status": "planned",
+      "batch": 3,
+      "scheduledDay": 3,
+      "slug": "ai-classroom-vs-virtual-classroom",
+      "title": "AI Classroom vs Virtual Classroom: What's the Difference?",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "ai classroom",
+      "secondaryQueries": [
+        "ai classroom vs virtual classroom",
+        "what is an ai classroom",
+        "ai virtual classroom"
+      ],
+      "searchIntent": "informational: what AI adds to a virtual classroom and what it does not",
+      "audience": "trainers evaluating AI features",
+      "funnelStage": "awareness",
+      "uniqueAngle": "Names exactly what AI does in a class (translation, captions, notes) and what it never does (teach, grade, run on an encrypted class); refuses the hype",
+      "requiredOriginalInsights": [
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/features/live-translation/",
+        "/features/live-captions/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b3-05",
+      "status": "planned",
+      "batch": 3,
+      "scheduledDay": 3,
+      "slug": "virtual-classroom-software-buying-checklist",
+      "title": "Virtual Classroom Software Buying Checklist for 2026",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "virtual classroom software checklist",
+      "secondaryQueries": [
+        "virtual classroom buying checklist 2026",
+        "questions to ask virtual classroom vendors",
+        "virtual classroom requirements"
+      ],
+      "searchIntent": "commercial: a checklist of questions to ask before buying",
+      "audience": "training businesses",
+      "funnelStage": "decision",
+      "uniqueAngle": "Questions to put to any vendor (where do the AI notes run, what happens to a recording of an encrypted class, who pays for learner seats), with Ollasync's own answers stated plainly",
+      "requiredOriginalInsights": [
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/pricing/",
+        "/security/",
+        "/use-cases/academies/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b4-01",
+      "status": "planned",
+      "batch": 4,
+      "scheduledDay": 4,
+      "slug": "zoom-alternatives-for-online-teaching",
+      "title": "Zoom Alternatives for Online Teaching: What Trainers Should Compare",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "zoom alternatives for online teaching",
+      "secondaryQueries": [
+        "zoom alternative for teachers",
+        "best zoom alternative for online classes",
+        "zoom alternative for trainers"
+      ],
+      "searchIntent": "commercial: what to compare when leaving a meeting tool for teaching",
+      "audience": "trainers and teachers on Zoom",
+      "funnelStage": "consideration",
+      "uniqueAngle": "A comparison framework (learners' language, what survives the class, who pays per seat) rather than a listicle; says when staying on Zoom is right",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/",
+        "/pricing/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b4-02",
+      "status": "planned",
+      "batch": 4,
+      "scheduledDay": 4,
+      "slug": "zoom-vs-ollasync-live-training",
+      "title": "Zoom vs Ollasync for Live Training",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "zoom vs ollasync",
+      "secondaryQueries": [
+        "ollasync vs zoom for training",
+        "zoom or ollasync for live classes"
+      ],
+      "searchIntent": "commercial-comparison: a direct, fair comparison for live training",
+      "audience": "trainers choosing between the two",
+      "funnelStage": "decision",
+      "uniqueAngle": "A session-by-session comparison of one training day; different from the /vs/zoom page by walking a real day rather than a feature table; explicit 'when Zoom is the better choice'",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/",
+        "/features/recordings/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b4-03",
+      "status": "planned",
+      "batch": 4,
+      "scheduledDay": 4,
+      "slug": "zoom-vs-google-meet-vs-ollasync-online-classes",
+      "title": "Zoom vs Google Meet vs Ollasync for Online Classes",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "zoom vs google meet for online classes",
+      "secondaryQueries": [
+        "zoom vs google meet teaching",
+        "google meet vs zoom vs ollasync"
+      ],
+      "searchIntent": "commercial-comparison: three tools for online classes",
+      "audience": "tutors and trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Three-way comparison built on verified claims about Meet's captions; honest that Meet and Zoom win on suite integration",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "First-join friction: learners join from a browser link with no install or account (F08), and the invitation carries the host's own message (F09) — what that changes for a first session with strangers",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/vs/google-meet/",
+        "/virtual-classroom-software/",
+        "/use-cases/tutors/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom",
+          "Google Meet"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b4-04",
+      "status": "planned",
+      "batch": 4,
+      "scheduledDay": 4,
+      "slug": "zoom-vs-virtual-classroom-software",
+      "title": "Zoom vs Virtual Classroom Software: Which Fits Teaching Better?",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "zoom vs virtual classroom software",
+      "secondaryQueries": [
+        "is zoom a virtual classroom",
+        "zoom for teaching vs classroom software"
+      ],
+      "searchIntent": "informational-comparison: is Zoom a classroom, and when does it stop being enough",
+      "audience": "trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Starts from what Zoom is genuinely good at for teaching and marks the exact points where a classroom tool diverges",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/virtual-classroom-software/",
+        "/features/video-meetings/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b4-05",
+      "status": "planned",
+      "batch": 4,
+      "scheduledDay": 4,
+      "slug": "when-zoom-is-the-better-choice-for-training",
+      "title": "When Zoom Is Still the Better Choice for Training",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "when to use zoom for training",
+      "secondaryQueries": [
+        "should i keep zoom for training",
+        "zoom better than alternatives training"
+      ],
+      "searchIntent": "informational: the honest cases where Zoom should stay",
+      "audience": "trainers considering a switch",
+      "funnelStage": "consideration",
+      "uniqueAngle": "The whole article is the 'when the competitor is better' section: internal meetings, suites, existing licences, single-language cohorts; then the narrow cases where a classroom earns a switch",
+      "requiredOriginalInsights": [
+        "Machine translation is right for following a lesson and not a substitute for certified interpretation (F05): when to say so to a client",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/",
+        "/pricing/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b5-01",
+      "status": "planned",
+      "batch": 5,
+      "scheduledDay": 5,
+      "slug": "move-online-classes-from-zoom-to-ollasync",
+      "title": "How to Move Recurring Online Classes from Zoom to Ollasync",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "switch from zoom to ollasync",
+      "secondaryQueries": [
+        "move classes from zoom",
+        "migrate recurring classes new platform",
+        "switching video platforms for teaching"
+      ],
+      "searchIntent": "how-to: move recurring classes with the least disruption",
+      "audience": "trainers switching",
+      "funnelStage": "decision",
+      "uniqueAngle": "A migration plan by cohort: reusable link and passcode, invite notes, what learners see on day one, what to tell them about recordings",
+      "requiredOriginalInsights": [
+        "A reusable class link with a passcode on the invitation and its calendar file (F10): recurring cohorts without a new link per session",
+        "First-join friction: learners join from a browser link with no install or account (F08), and the invitation carries the host's own message (F09) — what that changes for a first session with strangers",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/",
+        "/features/video-meetings/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b5-02",
+      "status": "planned",
+      "batch": 5,
+      "scheduledDay": 5,
+      "slug": "zoom-alternative-with-live-voice-translation",
+      "title": "Zoom Alternative with Live Voice Translation: What to Look For",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "zoom alternative with live translation",
+      "secondaryQueries": [
+        "video meetings with live voice translation",
+        "zoom alternative translation"
+      ],
+      "searchIntent": "commercial: evaluate live translation specifically when leaving Zoom",
+      "audience": "multilingual trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Translation-specific evaluation only: spoken vs captions, languages per session, how numbers and terms behave, interpreter-like lag — the questions a demo should answer",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/features/live-translation/",
+        "/languages/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b5-03",
+      "status": "planned",
+      "batch": 5,
+      "scheduledDay": 5,
+      "slug": "video-conferencing-for-multilingual-training",
+      "title": "Video Conferencing for Multilingual Training: What Actually Matters?",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "video conferencing for multilingual training",
+      "secondaryQueries": [
+        "multilingual training platform",
+        "video conferencing with translation for training",
+        "multilingual live training"
+      ],
+      "searchIntent": "informational: what actually matters for a multilingual cohort",
+      "audience": "training businesses with international learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Multilingual delivery as a workflow (who chooses what, what the trainer hears back, where machine translation stops) rather than a feature",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Machine translation is right for following a lesson and not a substitute for certified interpretation (F05): when to say so to a client",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/virtual-classroom-software/",
+        "/use-cases/academies/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b5-04",
+      "status": "planned",
+      "batch": 5,
+      "scheduledDay": 5,
+      "slug": "google-meet-alternatives-for-trainers",
+      "title": "Google Meet Alternatives for Professional Trainers",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "google meet alternative for trainers",
+      "secondaryQueries": [
+        "google meet alternative for teaching",
+        "google meet for online classes limitations"
+      ],
+      "searchIntent": "commercial: alternatives for professional trainers on Meet",
+      "audience": "trainers on Google Workspace",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Built on verified Meet caption facts; honest about when Meet inside Workspace is the right tool",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/vs/google-meet/",
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Google Meet"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b5-05",
+      "status": "planned",
+      "batch": 5,
+      "scheduledDay": 5,
+      "slug": "bigbluebutton-vs-ollasync",
+      "title": "BigBlueButton vs Ollasync for Training Teams",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "bigbluebutton vs ollasync",
+      "secondaryQueries": [
+        "bigbluebutton alternative",
+        "bigbluebutton hosted alternative"
+      ],
+      "searchIntent": "commercial-comparison: open-source classroom vs a cloud classroom",
+      "audience": "academies and IT-minded trainers",
+      "funnelStage": "decision",
+      "uniqueAngle": "Open-source self-run versus a hosted service: who runs it, who pays, what each does live; explicit about BigBlueButton's strengths (open source, whiteboards)",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)"
+      ],
+      "internalLinkTargets": [
+        "/vs/bigbluebutton/",
+        "/virtual-classroom-software/",
+        "/use-cases/academies/",
+        "/pricing/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "BigBlueButton"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b6-01",
+      "status": "planned",
+      "batch": 6,
+      "scheduledDay": 6,
+      "slug": "microsoft-teams-vs-ollasync-external-training",
+      "title": "Microsoft Teams vs Ollasync for External Training",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "microsoft teams vs ollasync",
+      "secondaryQueries": [
+        "teams for external training",
+        "microsoft teams alternative for training"
+      ],
+      "searchIntent": "commercial-comparison: internal suite vs external training",
+      "audience": "trainers delivering to clients outside their own tenant",
+      "funnelStage": "decision",
+      "uniqueAngle": "External learners as the deciding factor (guests, tenants, installs) against Teams' verified caption strengths; says when Teams should stay",
+      "requiredOriginalInsights": [
+        "First-join friction: learners join from a browser link with no install or account (F08), and the invitation carries the host's own message (F09) — what that changes for a first session with strangers",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)"
+      ],
+      "internalLinkTargets": [
+        "/vs/microsoft-teams/",
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/",
+        "/features/video-meetings/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Microsoft Teams"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b6-02",
+      "status": "planned",
+      "batch": 6,
+      "scheduledDay": 6,
+      "slug": "zoom-alternative-for-tutors-and-coaches",
+      "title": "What Should Tutors and Coaches Look for in a Zoom Alternative?",
+      "primaryPillar": "pillar_2",
+      "primaryQuery": "zoom alternative for tutors",
+      "secondaryQueries": [
+        "zoom alternative for coaches",
+        "tutoring platform instead of zoom"
+      ],
+      "searchIntent": "commercial: what a tutor or coach should look for",
+      "audience": "independent tutors and coaches",
+      "funnelStage": "consideration",
+      "uniqueAngle": "The 1:1 and small-group lens only: language reach, the recap, replays for a paying student, per-seat cost for a solo practice",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training"
+      ],
+      "internalLinkTargets": [
+        "/vs/zoom/",
+        "/use-cases/tutors/",
+        "/virtual-classroom-software/",
+        "/pricing/"
+      ],
+      "researchRequired": true,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "comparison": {
+        "competitors": [
+          "Zoom"
+        ],
+        "requireWhenBetter": true
+      }
+    },
+    {
+      "id": "b6-03",
+      "status": "blocked",
+      "batch": 6,
+      "scheduledDay": 6,
+      "slug": "how-live-voice-translation-works-in-an-online-class",
+      "title": "How Live Voice Translation Works in an Online Class",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "how live voice translation works",
+      "secondaryQueries": [
+        "live voice translation online class"
+      ],
+      "searchIntent": "informational",
+      "audience": "trainers",
+      "funnelStage": "awareness",
+      "uniqueAngle": "—",
+      "requiredOriginalInsights": [
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "collision": {
+        "path": "/blog/how-live-voice-translation-works-in-class/",
+        "decision": "consolidate",
+        "reason": "an existing post has this title and intent — expand /blog/how-live-voice-translation-works-in-class/ instead of a new URL"
+      },
+      "blockedReason": "an existing post has this title and intent — expand /blog/how-live-voice-translation-works-in-class/ instead of a new URL"
+    },
+    {
+      "id": "b6-04",
+      "status": "planned",
+      "batch": 6,
+      "scheduledDay": 6,
+      "slug": "live-voice-translation-vs-captions",
+      "title": "Live Voice Translation vs Captions: What's the Difference?",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "live voice translation vs captions",
+      "secondaryQueries": [
+        "spoken translation vs captions",
+        "translated captions vs voice translation"
+      ],
+      "searchIntent": "informational: which mode suits which learner and class",
+      "audience": "trainers and academies",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Mode by situation: who reads, who listens, a phone on a train, a noisy room; the same learner switching between the two",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/features/live-captions/",
+        "/languages/",
+        "/virtual-classroom-software/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b6-05",
+      "status": "planned",
+      "batch": 6,
+      "scheduledDay": 6,
+      "slug": "teach-students-who-speak-different-languages",
+      "title": "How to Teach Students Who Speak Different Languages",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "how to teach students who speak different languages",
+      "secondaryQueries": [
+        "teaching a multilingual class online",
+        "students speak different languages online class"
+      ],
+      "searchIntent": "how-to: run one class for learners of several languages",
+      "audience": "tutors and trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Classroom practice first (pace, checking understanding, technical terms), translation second; honest about the interpreter-like lag and what machine translation cannot do",
+      "requiredOriginalInsights": [
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "Machine translation is right for following a lesson and not a substitute for certified interpretation (F05): when to say so to a client",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/use-cases/tutors/",
+        "/languages/",
+        "/virtual-classroom-software/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b7-01",
+      "status": "planned",
+      "batch": 7,
+      "scheduledDay": 7,
+      "slug": "how-to-run-a-multilingual-online-class",
+      "title": "How to Run a Multilingual Online Class",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "multilingual online class",
+      "secondaryQueries": [
+        "run a multilingual class online",
+        "multilingual classroom setup"
+      ],
+      "searchIntent": "how-to: the operational setup of a multilingual class",
+      "audience": "trainers and academies",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Operational, not a tour of languages: choosing the five languages of a session, telling learners how to pick, what the trainer sees, recordings per language",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/languages/",
+        "/use-cases/academies/",
+        "/virtual-classroom-software/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b7-02",
+      "status": "planned",
+      "batch": 7,
+      "scheduledDay": 7,
+      "slug": "real-time-translation-for-teachers",
+      "title": "Real-Time Translation for Teachers: What Actually Matters?",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "real-time translation for teachers",
+      "secondaryQueries": [
+        "real time translation teaching",
+        "live translation for teachers online"
+      ],
+      "searchIntent": "informational: what matters on the teacher's side",
+      "audience": "teachers and trainers",
+      "funnelStage": "awareness",
+      "uniqueAngle": "The teacher's side only: speaking pace, pauses, numbers, names, questions coming back; not the learner's experience",
+      "requiredOriginalInsights": [
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "Machine translation is right for following a lesson and not a substitute for certified interpretation (F05): when to say so to a client"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/virtual-classroom-software/",
+        "/use-cases/tutors/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b7-03",
+      "status": "planned",
+      "batch": 7,
+      "scheduledDay": 7,
+      "slug": "english-to-hindi-live-translation-online-classes",
+      "title": "English-to-Hindi Live Translation for Online Classes",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "english to hindi live translation",
+      "secondaryQueries": [
+        "hindi translation for online classes",
+        "teach in english students hear hindi"
+      ],
+      "searchIntent": "informational-commercial: English classes followed in Hindi",
+      "audience": "trainers with Hindi-speaking learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Hindi-specific: technical vocabulary that stays English, numbers and acronyms unchanged, the sentence-order lag, classroom phrases",
+      "requiredOriginalInsights": [
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/languages/hi/",
+        "/use-cases/trainers/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "languageSpecifics": {
+        "code": "hi",
+        "language": "Hindi",
+        "notes": [
+          "Hindi is written in Devanagari; verbs come at the end of the sentence (subject–object–verb), so a translated sentence completes a beat after the English one",
+          "Technical learners commonly keep English terms inside Hindi speech; numbers, addresses and ports come through as spoken and Latin-script acronyms normally survive (F06)",
+          "Formal address (आप) is the classroom default",
+          "Useful classroom phrases: 'क्या यह समझ में आया?' (did that make sense?), 'एक बार फिर से' (once more)",
+          "Verb forms carry gender; a machine translation of a trainer's voice picks one — learners notice, and it does not affect the lesson"
+        ]
+      }
+    },
+    {
+      "id": "b7-04",
+      "status": "planned",
+      "batch": 7,
+      "scheduledDay": 7,
+      "slug": "english-to-spanish-live-translation-training",
+      "title": "English-to-Spanish Live Translation for Training",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "english to spanish live translation",
+      "secondaryQueries": [
+        "spanish translation for online training",
+        "live translation english spanish class"
+      ],
+      "searchIntent": "informational-commercial: English training followed in Spanish",
+      "audience": "trainers with Spanish-speaking learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Spanish-specific: formal usted vs tú, Spain and Latin American vocabulary in one cohort, gender agreement, long sentences",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/languages/es/",
+        "/use-cases/academies/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "languageSpecifics": {
+        "code": "es",
+        "language": "Spanish",
+        "notes": [
+          "Formal 'usted' versus informal 'tú' — a training cohort usually expects the formal register",
+          "Vocabulary differs between Spain and Latin America (ordenador/computadora); one cohort can contain both",
+          "Adjectives and articles agree in gender and number, which lengthens sentences slightly",
+          "Numbers, addresses and ports come through as spoken and Latin-script acronyms normally survive (F06); decimal commas versus points are a written matter, not spoken",
+          "Classroom phrases: '¿Se entiende?', 'Vamos a repasarlo'"
+        ]
+      }
+    },
+    {
+      "id": "b7-05",
+      "status": "planned",
+      "batch": 7,
+      "scheduledDay": 7,
+      "slug": "english-to-french-live-translation-online-classes",
+      "title": "English-to-French Live Translation for Online Classes",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "english to french live translation",
+      "secondaryQueries": [
+        "french translation for online classes",
+        "live translation english french training"
+      ],
+      "searchIntent": "informational-commercial: English classes followed in French",
+      "audience": "trainers with French-speaking learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "French-specific: vous as default, anglicisms in tech, numbers unchanged, the sentence-completion lag",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/languages/fr/",
+        "/use-cases/trainers/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "languageSpecifics": {
+        "code": "fr",
+        "language": "French",
+        "notes": [
+          "Formal 'vous' is the professional-training default",
+          "Technical French borrows many English terms; Latin-script product names and acronyms normally survive, numbers come through as spoken (F06)",
+          "Numbers come through as spoken, which avoids French number forms such as quatre-vingt-dix",
+          "Classroom phrases: 'Est-ce que c’est clair ?', 'On reprend'",
+          "Accents and gendered nouns are handled in the caption text; learners listening to audio never see them"
+        ]
+      }
+    },
+    {
+      "id": "b8-01",
+      "status": "planned",
+      "batch": 8,
+      "scheduledDay": 8,
+      "slug": "english-to-kannada-live-translation-training",
+      "title": "English-to-Kannada Live Translation for Training",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "english to kannada live translation",
+      "secondaryQueries": [
+        "kannada translation online class",
+        "teach in english learners hear kannada"
+      ],
+      "searchIntent": "informational-commercial: English training followed in Kannada",
+      "audience": "trainers with Kannada-speaking learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Kannada-specific: script, sentence order, honorific plural, technical English terms",
+      "requiredOriginalInsights": [
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/languages/kn/",
+        "/use-cases/trainers/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "languageSpecifics": {
+        "code": "kn",
+        "language": "Kannada",
+        "notes": [
+          "Kannada uses its own script; verbs come last (subject–object–verb), so a sentence completes after the English one",
+          "A respectful plural is the classroom register",
+          "Technical terms are commonly English inside Kannada speech; numbers, addresses and ports come through as spoken and Latin-script acronyms normally survive (F06)",
+          "Classroom phrases: 'ಅರ್ಥ ಆಯ್ತಾ?' (did you understand?), 'ಇನ್ನೊಮ್ಮೆ' (once more)"
+        ]
+      }
+    },
+    {
+      "id": "b8-02",
+      "status": "planned",
+      "batch": 8,
+      "scheduledDay": 8,
+      "slug": "english-to-tamil-live-translation-online-classes",
+      "title": "English-to-Tamil Live Translation for Online Classes",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "english to tamil live translation",
+      "secondaryQueries": [
+        "tamil translation online class",
+        "live translation english tamil training"
+      ],
+      "searchIntent": "informational-commercial: English classes followed in Tamil",
+      "audience": "trainers with Tamil-speaking learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Tamil-specific: script, agglutination and longer sentences, formal register, English technical terms",
+      "requiredOriginalInsights": [
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/languages/ta/",
+        "/use-cases/trainers/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "languageSpecifics": {
+        "code": "ta",
+        "language": "Tamil",
+        "notes": [
+          "Tamil has its own script; verbs come last (subject–object–verb)",
+          "Suffixes stack onto words, so Tamil sentences run longer than the English they translate",
+          "A formal register is standard in teaching; technical terms are often English inside Tamil speech",
+          "Numbers, addresses and ports come through as spoken; Latin-script acronyms normally survive (F06)",
+          "Classroom phrases: 'புரிகிறதா?' (is it clear?), 'மீண்டும் ஒரு முறை' (once more)"
+        ]
+      }
+    },
+    {
+      "id": "b8-03",
+      "status": "planned",
+      "batch": 8,
+      "scheduledDay": 8,
+      "slug": "english-to-telugu-live-translation-online-training",
+      "title": "English-to-Telugu Live Translation for Online Training",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "english to telugu live translation",
+      "secondaryQueries": [
+        "telugu translation online training",
+        "live translation english telugu class"
+      ],
+      "searchIntent": "informational-commercial: English training followed in Telugu",
+      "audience": "trainers with Telugu-speaking learners",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Telugu-specific: script, sentence order, respectful forms, English technical vocabulary",
+      "requiredOriginalInsights": [
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/languages/te/",
+        "/use-cases/trainers/",
+        "/languages/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": [],
+      "languageSpecifics": {
+        "code": "te",
+        "language": "Telugu",
+        "notes": [
+          "Telugu has its own script; verbs come last (subject–object–verb)",
+          "Respectful forms of address are the classroom norm",
+          "Technical vocabulary is commonly English inside Telugu speech; numbers, addresses and ports come through as spoken and Latin-script acronyms normally survive (F06)",
+          "Classroom phrases: 'అర్థమైందా?' (did you understand?), 'మరోసారి' (once more)"
+        ]
+      }
+    },
+    {
+      "id": "b8-04",
+      "status": "planned",
+      "batch": 8,
+      "scheduledDay": 8,
+      "slug": "technical-terms-in-live-classroom-translation",
+      "title": "How Technical Terms Behave in Live Classroom Translation",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "technical terms live translation",
+      "secondaryQueries": [
+        "technical training translation",
+        "translating technical terms live class",
+        "networking terms translation"
+      ],
+      "searchIntent": "informational: how technical vocabulary behaves in live translation",
+      "audience": "technical trainers (IT, networking, engineering)",
+      "funnelStage": "consideration",
+      "uniqueAngle": "A technical class as the running example: which words should not be translated, how learners hear them, where a trainer should spell or slow down",
+      "requiredOriginalInsights": [
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "Machine translation is right for following a lesson and not a substitute for certified interpretation (F05): when to say so to a client"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/use-cases/trainers/",
+        "/languages/",
+        "/virtual-classroom-software/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b8-05",
+      "status": "planned",
+      "batch": 8,
+      "scheduledDay": 8,
+      "slug": "numbers-acronyms-product-names-live-translation",
+      "title": "How Numbers, Acronyms and Product Names Should Work in Live Translation",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "numbers and acronyms in live translation",
+      "secondaryQueries": [
+        "ip addresses translation class",
+        "acronyms live translation",
+        "product names translation training"
+      ],
+      "searchIntent": "informational: the rule for numbers, acronyms and names, and why it matters",
+      "audience": "technical trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Only the number/acronym/name behaviour: IP addresses, port numbers and version numbers as spoken, Latin-script acronyms and product names, and the vocabulary that keeps multi-word phrases in English — with its limits; distinct from the broader technical-terms article",
+      "requiredOriginalInsights": [
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/use-cases/trainers/",
+        "/languages/",
+        "/features/live-captions/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b9-01",
+      "status": "planned",
+      "batch": 9,
+      "scheduledDay": 9,
+      "slug": "latency-in-live-voice-translation",
+      "title": "Latency in Live Voice Translation: What Learners Actually Notice",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "live translation latency",
+      "secondaryQueries": [
+        "voice translation delay",
+        "how much delay live translation class"
+      ],
+      "searchIntent": "informational: what the lag is like and what learners notice",
+      "audience": "trainers evaluating translation",
+      "funnelStage": "consideration",
+      "uniqueAngle": "No numbers (none are published): the interpreter analogy, captions-first-then-refine, how to pace a class around it, when the lag matters (Q&A) and when it does not (lecture)",
+      "requiredOriginalInsights": [
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that",
+        "Numbers, IP addresses and port numbers come through as spoken, Latin-script acronyms and product names normally survive, and common technical phrases rely on a built-in vocabulary with no guarantee for every term (F06): what that means for a technical class",
+        "Machine translation is right for following a lesson and not a substitute for certified interpretation (F05): when to say so to a client"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/features/live-captions/",
+        "/virtual-classroom-software/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b9-02",
+      "status": "planned",
+      "batch": 9,
+      "scheduledDay": 9,
+      "slug": "voice-translation-vs-subtitles-online-training",
+      "title": "Voice Translation vs Subtitles for Online Training",
+      "primaryPillar": "pillar_3",
+      "primaryQuery": "voice translation vs subtitles",
+      "secondaryQueries": [
+        "subtitles vs voice translation training",
+        "dubbing vs subtitles live class"
+      ],
+      "searchIntent": "informational-comparison: spoken translation versus reading",
+      "audience": "training businesses",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Reading load versus listening load for a two-hour session; recordings and local recording per language; which mode to recommend to which learner",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "Local recording on the learner's device in the language they are listening to, with nothing uploaded (F19): what it means for replays, bandwidth and consent",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that"
+      ],
+      "internalLinkTargets": [
+        "/features/live-translation/",
+        "/features/live-captions/",
+        "/features/local-recording/",
+        "/use-cases/academies/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b9-03",
+      "status": "planned",
+      "batch": 9,
+      "scheduledDay": 9,
+      "slug": "ai-class-notes-post-class-workflow",
+      "title": "How AI Class Notes Change the Post-Class Workflow",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "ai class notes workflow",
+      "secondaryQueries": [
+        "what to do after online class",
+        "post-class workflow trainers",
+        "ai notes after training session"
+      ],
+      "searchIntent": "informational: how the hour after class changes",
+      "audience": "professional trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "The hour after class, minute by minute: attendance arrives, notes are generated, notes go to everyone, the replay is shared — and what still needs a human",
+      "requiredOriginalInsights": [
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/use-cases/trainers/",
+        "/features/recordings/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b9-04",
+      "status": "planned",
+      "batch": 9,
+      "scheduledDay": 9,
+      "slug": "ai-notes-vs-transcripts",
+      "title": "AI Notes vs Transcripts: What Do Trainers Actually Need?",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "ai notes vs transcripts",
+      "secondaryQueries": [
+        "transcript vs summary training",
+        "do trainers need transcripts",
+        "class transcript or notes"
+      ],
+      "searchIntent": "informational: which artefact a trainer actually needs",
+      "audience": "trainers and tutors",
+      "funnelStage": "consideration",
+      "uniqueAngle": "Uses of each artefact (a transcript for disputes and search, notes for learners, action items for follow-up) and the opt-in and encryption limits",
+      "requiredOriginalInsights": [
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/features/recordings/",
+        "/use-cases/tutors/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b9-05",
+      "status": "planned",
+      "batch": 9,
+      "scheduledDay": 9,
+      "slug": "turn-a-live-class-into-notes-summary-and-replay",
+      "title": "How to Turn a Live Class into Notes, Summary and Replay",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "turn a live class into notes and replay",
+      "secondaryQueries": [
+        "class recording to notes",
+        "online class summary and replay",
+        "record class and send notes"
+      ],
+      "searchIntent": "how-to: the recipe from live class to notes, summary and replay",
+      "audience": "trainers",
+      "funnelStage": "consideration",
+      "uniqueAngle": "A step-by-step recipe with the switches to turn on, what each produces and how long the learner waits; the encrypted-class exception",
+      "requiredOriginalInsights": [
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/features/recordings/",
+        "/use-cases/trainers/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b10-01",
+      "status": "planned",
+      "batch": 10,
+      "scheduledDay": 10,
+      "slug": "ai-reduce-admin-work-for-trainers",
+      "title": "How AI Can Reduce Admin Work for Professional Trainers",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "ai admin work trainers",
+      "secondaryQueries": [
+        "reduce admin for trainers",
+        "ai for training business admin",
+        "automate training admin"
+      ],
+      "searchIntent": "informational: which admin AI actually removes for a trainer",
+      "audience": "professional trainers",
+      "funnelStage": "awareness",
+      "uniqueAngle": "An honest inventory of admin tasks: which ones the classroom removes (notes, attendance, replay sharing), which ones AI cannot (billing, curriculum)",
+      "requiredOriginalInsights": [
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/use-cases/trainers/",
+        "/pricing/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b10-02",
+      "status": "planned",
+      "batch": 10,
+      "scheduledDay": 10,
+      "slug": "what-should-ai-do-during-a-live-class",
+      "title": "AI Classroom: What Should AI Do During a Live Class?",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "ai during live class",
+      "secondaryQueries": [
+        "ai in live classroom",
+        "ai classroom features during class",
+        "real time ai teaching"
+      ],
+      "searchIntent": "informational: what AI should and should not do while a class is live",
+      "audience": "trainers and academies",
+      "funnelStage": "awareness",
+      "uniqueAngle": "A position: during class, AI translates and captions; after class, it writes notes; it never teaches or grades, and it never runs on an encrypted class",
+      "requiredOriginalInsights": [
+        "The five-languages-per-session limit (F02) as a real planning constraint for multilingual cohorts, and how learners choose captions or spoken audio individually (F01, F07)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/live-translation/",
+        "/features/ai/",
+        "/features/live-captions/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b10-03",
+      "status": "planned",
+      "batch": 10,
+      "scheduledDay": 10,
+      "slug": "use-ai-without-making-teaching-feel-automated",
+      "title": "How to Use AI Without Making Online Teaching Feel Automated",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "ai online teaching feel automated",
+      "secondaryQueries": [
+        "human online teaching with ai",
+        "ai in teaching without losing the human",
+        "ai teaching tools trainers trust"
+      ],
+      "searchIntent": "informational: keep the class human while using AI",
+      "audience": "trainers and coaches",
+      "funnelStage": "awareness",
+      "uniqueAngle": "Concrete practices: what the trainer keeps doing, what learners are told about translation and notes, opt-in and visibility of recording",
+      "requiredOriginalInsights": [
+        "Machine translation is right for following a lesson and not a substitute for certified interpretation (F05): when to say so to a client",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "The translation runs a beat behind the speaker like an interpreter, captions appear first and refine (F04): how a trainer paces speech, pauses and questions around that"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/use-cases/tutors/",
+        "/features/live-translation/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b10-04",
+      "status": "planned",
+      "batch": 10,
+      "scheduledDay": 10,
+      "slug": "design-a-better-post-class-learning-experience",
+      "title": "How to Design a Better Post-Class Learning Experience",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "post-class learning experience",
+      "secondaryQueries": [
+        "after class learning follow up",
+        "improve online course follow-up",
+        "learning after live session"
+      ],
+      "searchIntent": "informational: design the after-class experience",
+      "audience": "academies and L&D teams",
+      "funnelStage": "consideration",
+      "uniqueAngle": "What learners get after class (notes in their language of the class, a replay they can open, attendance for the record) and how to sequence it",
+      "requiredOriginalInsights": [
+        "The after-class artefacts come out of the session itself: attendance per session (F11), a wrap-up email to the host (F12), AI notes sent to everyone (F13, F14) — each a switch the host controls (F25)",
+        "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/use-cases/academies/",
+        "/use-cases/onboarding/",
+        "/features/recordings/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    },
+    {
+      "id": "b10-05",
+      "status": "planned",
+      "batch": 10,
+      "scheduledDay": 10,
+      "slug": "ai-classroom-software-buying-guide",
+      "title": "AI Classroom Software Buying Guide for Training Businesses",
+      "primaryPillar": "pillar_1",
+      "primaryQuery": "ai classroom software",
+      "secondaryQueries": [
+        "ai classroom software buying guide",
+        "choose ai classroom platform",
+        "ai virtual classroom for training business"
+      ],
+      "searchIntent": "commercial: how to buy AI classroom software",
+      "audience": "training businesses",
+      "funnelStage": "decision",
+      "uniqueAngle": "Only the AI-specific questions (where notes run, opt-in, encrypted classes, translation limits, who pays for learners) — the generic checklist lives in the earlier buying-checklist article",
+      "requiredOriginalInsights": [
+        "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
+        "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway",
+        "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training"
+      ],
+      "internalLinkTargets": [
+        "/virtual-classroom-software/",
+        "/features/ai/",
+        "/pricing/",
+        "/security/"
+      ],
+      "researchRequired": false,
+      "publishedUrl": null,
+      "qualityScore": null,
+      "writerModel": null,
+      "reviewerModel": null,
+      "cost": 0,
+      "attempts": []
+    }
+  ]
+}

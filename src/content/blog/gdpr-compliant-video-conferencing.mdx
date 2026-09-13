@@ -66,7 +66,7 @@ So "EU region on a US-operated cloud" solves residency but **not** sovereignty. 
 
 If EU personal data is going to be processed outside the EEA, GDPR (Chapter V) requires a valid **transfer mechanism**. In practice that usually means **Standard Contractual Clauses (SCCs)** — pre-approved contract terms — often paired with a transfer impact assessment and supplementary safeguards such as strong encryption. SCCs are workable, but post-Schrems II they come with homework: you have to assess whether the destination's laws actually undermine the protection the SCCs promise.
 
-The cleanest way to sidestep the transfer problem is to **not transfer.** If EU personal data stays on EU infrastructure — or on your own — there is no Chapter V transfer to justify. Ollasync's hosted service runs in the EU (Frankfurt) and offers SCCs where any transfer is genuinely involved. Self-hosting removes the question entirely: the data is wherever *you* put it.
+The cleanest way to sidestep the transfer problem is to **not transfer.** If EU personal data stays on EU infrastructure — or on your own — there is no Chapter V transfer to justify. Ollasync's managed service is not EU-only: application data is processed in the United States and live media in Germany, with SCCs where a transfer is genuinely involved — the DPA says exactly that. Self-hosting removes the question entirely: the data is wherever *you* put it.
 
 ## Data-subject rights the platform must not obstruct
 
@@ -99,7 +99,7 @@ When you self-host, these become entirely your policy to set and prove, on stora
 Because this is a compliance topic, the exact framing matters:
 
 - We do **not** describe Ollasync as "GDPR certified" or "GDPR compliant" as a product property. GDPR compliance is a property of *your* deployment and *your* processes. We supply the controls and contracts that make it achievable.
-- For **hosted** use, Ollasync acts as a **processor**, offers a **DPA**, hosts in the **EU (Frankfurt)**, and provides **SCCs** for any transfer that genuinely applies.
+- For **hosted** use, Ollasync acts as a **processor**, offers a **DPA** and **SCCs** for any transfer that genuinely applies, and states where data is processed (application data in the United States, live media in Germany). We do not claim EU hosting for the managed service.
 - **Messaging** is fully end-to-end encrypted, server-blind and default-on, built on the open [IETF MLS standard (RFC 9420)](/security) via an independently audited library — we hold no keys.
 - **Meeting media** is encrypted in transit (TLS 1.3 / DTLS-SRTP) to a self-hostable relay; a per-frame end-to-end mode exists but is not the default. **Documents** are encrypted in transit and access-controlled, not client-side end-to-end encrypted. We do not claim otherwise.
 - When you **self-host**, you get full control of residency and jurisdiction: the data sits where you put it, operated by you, under your law. See [self-hosted](/self-hosted).

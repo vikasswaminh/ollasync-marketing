@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Cost-effective global reach",
+    "body": "Reach volunteers in 19+ languages without spending donor funds on interpreters."
+  },
+  {
+    "title": "Rapid crisis response",
+    "body": "Deploy training immediately to international teams during emergencies."
+  },
+  {
+    "title": "Low-bandwidth mode",
+    "body": "Optimized for volunteers connecting from regions with poor internet infrastructure."
+  }
+];
+const faqs = [
+  {
+    "question": "Do you offer non-profit pricing?",
+    "answer": "Yes, we offer specialized pricing tiers for registered NGOs and non-profits."
+  }
+];
+---
+<SeoPage 
+  title="Non-Profit Global Volunteer Training Software" 
+  description="Coordinate and train international NGO volunteers without the budget for human interpreters." 
+  category="Industries" 
+  intro="Non-profits operate globally but often lack the budget for professional translation services. Ollasync democratizes access to training for volunteers worldwide." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

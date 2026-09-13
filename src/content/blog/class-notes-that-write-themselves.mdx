@@ -1,0 +1,49 @@
+---
+title: "Class notes that write themselves"
+description: "How AI class notes work in a live classroom: streaming transcript, structured summary, action items and an assistant you can ask about any session — plus the deliberate exception for end-to-end encrypted classes."
+pubDate: 2026-08-31
+category: "Product"
+cover: "/og-classroom.jpg"
+readTime: 5
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["ai class notes", "automatic lecture notes", "ai meeting notes for training", "class transcript and summary"]
+takeaways:
+  - "Every recorded class produces a transcript, a structured summary and its action items — without a scribe."
+  - "The notes are attached to the session and its replay, so a course builds its own archive as it runs."
+  - "You can ask the assistant about any past session — 'what did we say about the retake policy?' — and get an answer grounded in the transcript."
+  - "End-to-end encrypted sessions are excluded from AI processing by design: E2EE means nobody in the middle can read the class, including the note-taker."
+---
+
+The person who teaches a class is the worst-placed person to take its notes. Teaching *is* the attention; the recap always loses. So most live courses end with either no notes, a student's partial notes, or a trainer spending their evening reconstructing what they said that morning.
+
+Here's how the [AI classroom](/) removes that job — and the one place it deliberately refuses to.
+
+## From audio to a record, automatically
+
+When a class is recorded, three artifacts are produced without anyone doing anything:
+
+**The transcript.** The same streaming recognition that powers [live translation](/blog/how-live-voice-translation-works-in-class/) produces a full text of the session, attributed to speakers. It's searchable — which turns "I know we covered this in week 3" from a memory exercise into a lookup.
+
+**The summary.** A structured recap of what was actually taught: the topics in order, the key explanations, what was assigned. It reads like the notes of a diligent student who never got distracted.
+
+**The action items.** The "for next time" layer — exercises set, documents promised, questions parked — pulled out separately so they don't drown in prose.
+
+All three attach to the session and its replay in your workspace. A ten-week course accumulates ten of each, [access-controlled](/features/recordings) to the cohort, forming the course archive as a side effect of simply teaching it.
+
+## Ask the course a question
+
+The assistant can answer questions against your recorded sessions: *"What did we tell the March cohort about the certification retake policy?"* — answered from the transcript, not from anyone's memory. For trainers running many cohorts, this replaces the "search your own inbox and hope" workflow entirely.
+
+## The deliberate exception: E2EE classes are AI-free
+
+Some sessions run [end-to-end encrypted](/security) — video, chat and screen share readable only by the participants. In those sessions, **no AI processing happens, by design**. That's not a limitation we apologise for; it's the definition holding: if a server-side system could transcribe your class, your class wouldn't be end-to-end encrypted. You choose per session — a public cohort class with full notes, or a sensitive internal session where nothing in the middle can read anything.
+
+## What this replaces
+
+- The unpaid evening job of writing recaps.
+- The dedicated note-taker in corporate training sessions.
+- The "can you send the notes?" thread after every class.
+- The compliance guesswork of *what was this cohort actually told?* — the summary is the record.
+
+Notes are included with [every plan](/pricing), per trainer seat — the learners who benefit from them don't need paid seats at all. The full feature set is on the [AI class notes page](/features/ai).

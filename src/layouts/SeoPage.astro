@@ -1,0 +1,83 @@
+---
+import Base from './Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Cta from '../components/Cta.astro';
+import { SITE } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow?: string;
+  category?: string;
+  intro: string;
+  benefits: { title: string; body: string }[];
+  faqs?: { question: string; answer: string }[];
+}
+
+const { title, description, eyebrow = 'Ollasync platform', category = 'Solutions', intro, benefits, faqs = [] } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: `Ollasync — ${title}`,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web browser',
+  description,
+  url: new URL(Astro.url.pathname, SITE.url).href,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Base title={title} description={description} schema={schema}>
+  <section class="section seo-hero">
+    <div class="container">
+      <Breadcrumb items={[{ label: category, href: `/${category.toLowerCase().replace(/\s+/g, '-')}` }, { label: title }]} />
+      <span class="eyebrow-label" data-reveal>{eyebrow}</span>
+      <h1 class="display" data-reveal>{title}</h1>
+      <p class="lead seo-intro" data-reveal>{intro}</p>
+      <p class="seo-proof" data-reveal><strong>Zero localization costs.</strong> Reach every learner in <strong>19+ languages</strong> with Ollasync.</p>
+      <div class="hero__cta" data-reveal>
+        <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
+        <a href="/contact" class="btn btn-ghost">Book a demo</a>
+      </div>
+    </div>
+  </section>
+  <section class="section seo-body">
+    <div class="container">
+      <div class="grid grid-3">
+        {benefits.map((benefit) => (
+          <article class="card card--hover" data-reveal>
+            <h2 class="h3">{benefit.title}</h2>
+            <p>{benefit.body}</p>
+          </article>
+        ))}
+      </div>
+      <div class="panel seo-callout" data-reveal>
+        <h2 class="h2">One live experience, every language</h2>
+        <p class="lead">Ollasync translates voice and captions live, so teams can teach, sell, and collaborate globally without producing duplicate recordings or paying for localization. Invite people in a browser and let each person choose their language.</p>
+      </div>
+      {faqs.length > 0 && (
+        <div class="seo-faq">
+          <h2 class="h2">Frequently asked questions</h2>
+          {faqs.map((faq) => <details><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}
+        </div>
+      )}
+    </div>
+  </section>
+  <Cta />
+</Base>
+
+<style>
+  .seo-hero { padding-top: 48px; padding-bottom: 42px; }
+  .seo-hero h1 { max-width: 900px; margin-top: 18px; }
+  .seo-intro { max-width: 760px; margin-top: 18px; }
+  .seo-proof { color: var(--teal); margin-top: 20px; font-size: 17px; }
+  .hero__cta { display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
+  .seo-body { padding-top: 30px; }
+  .seo-body .card p { margin-top: 10px; }
+  .seo-callout { margin-top: 40px; padding: clamp(26px,4vw,42px); }
+  .seo-callout p { margin-top: 12px; max-width: 70ch; }
+  .seo-faq { max-width: 800px; margin: 54px auto 0; }
+  .seo-faq h2 { margin-bottom: 18px; }
+  details { border-top: 1px solid var(--line); padding: 16px 0; }
+  summary { cursor:pointer; font-weight: 700; color: var(--ink); }
+  details p { margin-top: 10px; }
+</style>

@@ -5,9 +5,10 @@ import BlogPost from '../../layouts/BlogPost.astro';
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
   return posts.map((post) => {
-    // related: same pillar cluster first, then same category
-    const related = posts
-      .filter((p) => p.slug !== post.slug)
+    // related: the post's explicit `related` slugs first, then same pillar cluster, then same category
+    const explicit = post.data.related.map((s) => posts.find((p) => p.slug === s)).filter((p): p is typeof post => !!p && p.slug !== post.slug);
+    const scored = posts
+      .filter((p) => p.slug !== post.slug && !explicit.includes(p))
       .map((p) => {
         let score = 0;
         if (post.data.pillarSlug && (p.slug === post.data.pillarSlug || p.data.pillarSlug === post.data.pillarSlug)) score += 3;
@@ -15,8 +16,8 @@ export async function getStaticPaths() {
         return { p, score };
       })
       .sort((a, b) => b.score - a.score)
-      .slice(0, 3)
       .map((x) => x.p);
+    const related = [...explicit, ...scored].slice(0, 3);
     return { params: { slug: post.slug }, props: { post, related } };
   });
 }

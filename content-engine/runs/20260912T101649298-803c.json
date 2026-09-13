@@ -1,0 +1,182 @@
+{
+  "id": "20260912T101649298-803c",
+  "started": "2026-09-12T10:16:49.298Z",
+  "finished": "2026-09-12T10:19:54.100Z",
+  "istDate": "2026-09-12",
+  "args": {
+    "dryRun": true,
+    "batch": null,
+    "limit": 5,
+    "only": null,
+    "retry": "b1-01",
+    "fresh": "b1-01",
+    "promote": null,
+    "publish": "none",
+    "openPr": false,
+    "report": false,
+    "help": false
+  },
+  "attempted": [
+    "b1-01"
+  ],
+  "approved": [
+    "b1-01"
+  ],
+  "published": [],
+  "blocked": [],
+  "refused": null,
+  "calls": [
+    {
+      "articleId": "b1-01",
+      "stage": "write",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 3312,
+      "out": 2733,
+      "cost": 0.00035112,
+      "latencyMs": 18225,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-01",
+      "stage": "edit",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5828,
+      "out": 3322,
+      "cost": 0.0013964000000000001,
+      "latencyMs": 81634,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-01",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5645,
+      "out": 1531,
+      "cost": 0.0008802800000000001,
+      "latencyMs": 37431,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-01",
+      "stage": "repair",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 5874,
+      "out": 2877,
+      "cost": 0.00046512,
+      "latencyMs": 10371,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-01",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5774,
+      "out": 1560,
+      "cost": 0.00089872,
+      "latencyMs": 36782,
+      "finish": "stop",
+      "status": "ok"
+    }
+  ],
+  "totals": {
+    "in": 26433,
+    "out": 12023,
+    "costUsd": 0.004,
+    "calls": 5
+  },
+  "articles": {
+    "b1-01": {
+      "slug": "what-is-a-virtual-classroom",
+      "title": "What Is a Virtual Classroom? A Practical Guide for Trainers",
+      "status": "approved",
+      "reason": null,
+      "score": 96,
+      "repaired": true,
+      "tokens": {
+        "in": 26433,
+        "out": 12023
+      },
+      "costUsd": 0.004,
+      "stages": {
+        "write": {
+          "in": 3312,
+          "out": 2733,
+          "costUsd": 0.00035,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        },
+        "edit": {
+          "in": 5828,
+          "out": 3322,
+          "costUsd": 0.0014,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "review": {
+          "in": 11419,
+          "out": 3091,
+          "costUsd": 0.00178,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "repair": {
+          "in": 5874,
+          "out": 2877,
+          "costUsd": 0.00047,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        }
+      },
+      "draft": "C:\\Users\\test\\Downloads\\quick\\marketing-site\\content-engine\\drafts\\what-is-a-virtual-classroom.md"
+    }
+  },
+  "models": {
+    "content_writer": [
+      {
+        "route": "openrouter",
+        "id": "deepseek/deepseek-v4-flash-0731",
+        "in": 0.04,
+        "out": 0.08
+      },
+      {
+        "route": "openrouter",
+        "id": "google/gemini-2.5-flash-lite",
+        "in": 0.1,
+        "out": 0.4
+      }
+    ],
+    "content_reviewer": [
+      {
+        "route": "openrouter",
+        "id": "qwen/qwen3-32b",
+        "in": 0.08,
+        "out": 0.28
+      },
+      {
+        "route": "openrouter",
+        "id": "google/gemini-2.5-flash-lite",
+        "in": 0.1,
+        "out": 0.4
+      }
+    ]
+  }
+}

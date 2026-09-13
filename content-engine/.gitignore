@@ -1,0 +1,6 @@
+# per-run intermediates (resumable stage artifacts) and caches — never content
+work/
+.cache/
+.lock
+# raw Search Console exports and their summary: private ranking data, read locally, never committed
+analytics/

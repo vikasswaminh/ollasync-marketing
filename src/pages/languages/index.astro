@@ -1,0 +1,94 @@
+---
+// The languages hub: every shipped live-translation language, each linking to its own page. The list IS
+// data/languages.ts — the product picker — so this page can never advertise a language that does not ship.
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Cta from '../../components/Cta.astro';
+import { LANGUAGES, LANG_COUNT, LANGS_PER_SESSION } from '../../data/languages';
+import { SITE } from '../../consts';
+
+const title = `${LANG_COUNT} Languages for Live Class Translation`; // + " · Ollasync" from the layout
+const description = `Every language Ollasync translates live. Learners pick captions or spoken audio per person, up to ${LANGS_PER_SESSION} languages in one session; you teach in English.`; // ≤ 160 — the full language list is on the page itself
+const global = LANGUAGES.filter((l) => l.region === 'global');
+const india = LANGUAGES.filter((l) => l.region === 'india');
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Live translation languages',
+  itemListElement: LANGUAGES.map((l, i) => ({ '@type': 'ListItem', position: i + 1, name: l.name, url: new URL(l.code === 'en' ? '/languages/' : `/languages/${l.code}/`, SITE.url).href })),
+};
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero
+    eyebrow="Languages"
+    eyebrowIcon="globe"
+    crumbs={[{ label: 'Languages' }]}
+    title={`${LANG_COUNT} languages.`}
+    titleAccent="One class."
+    lead={`Every language below is shipped today as live captions and as spoken translated audio. Each learner picks their own; one live session runs up to ${LANGS_PER_SESSION} different languages at once.`}
+  >
+    <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
+      <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
+      <a href="/features/live-translation" class="btn btn-ghost">How live translation works</a>
+    </div>
+  </PageHero>
+
+  <section class="section" style="padding-top:34px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">India</span>
+        <h2 class="h2" style="margin-top:12px">Ten Indian languages, including Hindi</h2>
+      </div>
+      <ul class="langs" data-reveal>
+        {india.map((l) => (
+          <li><a href={`/languages/${l.code}`} class="card card--hover lang" lang={l.code} dir={l.rtl ? 'rtl' : undefined}>
+            <span class="lang__native">{l.native}</span>
+            <span class="lang__name" dir="ltr">{l.name}</span>
+            <span class="lang__sample" lang={l.code}>{l.sample}</span>
+          </a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Global</span>
+        <h2 class="h2" style="margin-top:12px">Nine global languages</h2>
+      </div>
+      <ul class="langs" data-reveal>
+        {global.map((l) => (
+          <li>{l.code === 'en'
+            ? <div class="card lang lang--src" lang="en"><span class="lang__native">{l.native}</span><span class="lang__name">The language most trainers teach in — also a translation target</span><span class="lang__sample" lang={l.code}>{l.sample}</span></div>
+            : <a href={`/languages/${l.code}`} class="card card--hover lang" lang={l.code} dir={l.rtl ? 'rtl' : undefined}><span class="lang__native">{l.native}</span><span class="lang__name" dir="ltr">{l.name}</span><span class="lang__sample" lang={l.code}>{l.sample}</span></a>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section band" style="padding-top:34px;padding-bottom:34px">
+    <div class="container">
+      <div class="deep" data-reveal>
+        <div><span class="eyebrow-label">How the list grows</span><h2 class="h2" style="margin-top:12px;max-width:20ch">We list what ships, not what we plan.</h2></div>
+        <div><p class="lead" style="max-width:62ch">Every language here is available today as captions and spoken audio. When a language is added to the product, it appears on this page the same day — and never before. <a href="/contact">Tell us which language your learners need next.</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+
+<style>
+  .langs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .lang { display: grid; gap: 4px; text-decoration: none; color: var(--ink); }
+  .lang--src { background: var(--tint-blue); border-color: var(--violet-300); }
+  .lang__native { font-size: 24px; font-weight: 900; line-height: 1.2; }
+  .lang__name { font-size: 13px; color: var(--muted); }
+  .lang__sample { margin-top: 6px; font-size: 14px; color: var(--ink-2); }
+  .deep { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: start; }
+  .band { background: var(--bg-2); border-block: 1px solid var(--line); }
+  @media (max-width: 900px) { .deep { grid-template-columns: 1fr; gap: 16px; } }
+</style>

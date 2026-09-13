@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Higher product adoption",
+    "body": "Clients use your software more effectively when they fully understand the training."
+  },
+  {
+    "title": "Reduce support tickets",
+    "body": "Clear, native-language instruction prevents user confusion and reduces support load."
+  },
+  {
+    "title": "Global community building",
+    "body": "Host user groups where clients from different countries can interact seamlessly."
+  }
+];
+const faqs = [
+  {
+    "question": "Do clients need to install anything?",
+    "answer": "No, clients join directly from their browser with zero friction."
+  }
+];
+---
+<SeoPage 
+  title="Customer Success Webinar Platform for Global Audiences" 
+  description="Train international clients and reduce churn with translated customer success webinars." 
+  category="Roles" 
+  intro="Customer Success teams need to educate users to drive adoption. Ollasync lets you host global training webinars where every client learns in their preferred language." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

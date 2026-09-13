@@ -1,0 +1,10 @@
+<!-- Ollasync ring mark — same glyph/geometry as src/components/BrandMark.astro and the product's
+     web/favicon.svg. Hosted as a real FILE (plus favicon.ico / apple-touch-icon.png) because Google's
+     SERP favicon fetcher and bookmark/touch-icon consumers cannot read the inline data: URI the layout
+     used to rely on — that's why search results kept showing the retired mark. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <g stroke="#3B8EF5" stroke-width="5" fill="none">
+    <path d="M8.807 9.053A10 10 0 1 0 23.771 22.293"/>
+    <path d="M24.572 21.151A10 10 0 0 0 9.707 8.229"/>
+  </g>
+</svg>

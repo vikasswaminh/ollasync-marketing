@@ -1,0 +1,759 @@
+{
+  "name": "ollasync_seo_content_engine_master_policy",
+  "version": "1.0",
+  "mode": "persistent_project_instruction",
+  "priority": "critical",
+  "scope": "All SEO, blog, comparison, landing-page, pillar-page, AI-search and content-generation work for Ollasync",
+  "mission": "Build and operate a high-quality organic acquisition engine for Ollasync that earns rankings in Google and visibility/citations in AI search systems such as ChatGPT by publishing genuinely useful, original, evidence-driven content rooted in Ollasync's real product and engineering experience.",
+  "non_negotiable_rule": "Never optimize for appearing human merely to evade AI detection. Optimize for genuinely useful, natural, specific, first-hand, expert-level editorial content. Never publish generic mass-produced AI SEO content.",
+  "repository_first_policy": {
+    "rule": "Before implementing anything, inspect the existing repository and reuse existing infrastructure.",
+    "must_inspect": [
+      "AI Notes implementation",
+      "existing OpenRouter integration",
+      "model gateway",
+      "model registry",
+      "environment variables",
+      "retry and timeout logic",
+      "token accounting",
+      "cost telemetry",
+      "blog architecture",
+      "CMS or MDX/Markdown architecture",
+      "database models",
+      "SEO metadata components",
+      "canonical generation",
+      "structured-data components",
+      "sitemap generation",
+      "robots.txt",
+      "existing cron or scheduler",
+      "analytics",
+      "product documentation",
+      "existing use-case pages",
+      "existing feature pages",
+      "existing comparison pages"
+    ],
+    "reuse_existing_openrouter_path": true,
+    "existing_reference": "OpenRouter is already wired for Ollasync AI Notes. Reuse that same provider/client/gateway abstraction.",
+    "forbidden": [
+      "creating a duplicate OpenRouter client",
+      "creating a second unrelated model gateway",
+      "duplicating secret handling",
+      "duplicating HTTP retry infrastructure",
+      "introducing a complex new stack when existing project infrastructure is sufficient"
+    ]
+  },
+  "brand_positioning": {
+    "primary_category": "AI virtual classroom",
+    "primary_identity": "Multilingual virtual classroom for professional trainers, tutors and academies",
+    "primary_audiences": [
+      "professional trainers",
+      "tutors",
+      "training academies",
+      "coaches",
+      "training businesses"
+    ],
+    "primary_differentiator": "Real-time live voice translation for online classes",
+    "secondary_differentiators": [
+      "AI class notes",
+      "live captions",
+      "browser-based joining",
+      "recording",
+      "webinars",
+      "AI summaries",
+      "multilingual delivery"
+    ],
+    "competitive_message": "Zoom is general-purpose meeting software. Ollasync is designed around the live teaching workflow.",
+    "rule": "Do not reduce Ollasync to a generic Zoom clone."
+  },
+  "seo_pillar_strategy": {
+    "pillar_1": {
+      "name": "Virtual Classroom Software",
+      "url": "/virtual-classroom-software/",
+      "role": "Primary category authority page",
+      "queries": [
+        "virtual classroom software",
+        "AI virtual classroom",
+        "virtual classroom platform",
+        "live classroom software",
+        "virtual classroom for trainers",
+        "virtual classroom for tutors"
+      ]
+    },
+    "pillar_2": {
+      "name": "Zoom Alternative for Teaching",
+      "url": "/vs/zoom/",
+      "role": "Commercial comparison and switching-intent pillar",
+      "queries": [
+        "Zoom alternative for teaching",
+        "Zoom alternative for trainers",
+        "Zoom alternative for teachers",
+        "Zoom alternative for online classes",
+        "Zoom alternative with live translation"
+      ]
+    },
+    "pillar_3": {
+      "name": "Live Translation for Online Classes",
+      "url": "/features/live-translation/",
+      "role": "Problem-solution and unique-product-moat pillar",
+      "queries": [
+        "live translation for online classes",
+        "live voice translation",
+        "real-time translation for teachers",
+        "AI translation for online teaching",
+        "multilingual virtual classroom"
+      ]
+    },
+    "audience_spokes": [
+      "/use-cases/trainers/",
+      "/use-cases/tutors/",
+      "/use-cases/academies/"
+    ],
+    "rule": "Every new article must belong to exactly one primary pillar and have a clearly different search intent from existing pages."
+  },
+  "content_engine": {
+    "total_initial_articles": 50,
+    "batch_size": 5,
+    "planned_days": 10,
+    "daily_execution_time": "10:00",
+    "timezone": "Asia/Kolkata",
+    "cron": "0 10 * * *",
+    "rule": "Attempt up to five articles each day. Do not force publication of five articles if any fail quality requirements.",
+    "scheduler_requirements": [
+      "reuse existing scheduler when available",
+      "otherwise implement a simple production-safe cron-callable script",
+      "idempotent execution",
+      "no duplicate publishing",
+      "safe recovery after interruption",
+      "locking to prevent overlapping runs",
+      "persist run history",
+      "support dry-run mode",
+      "support single-article execution",
+      "support --limit N",
+      "support resume"
+    ]
+  },
+  "model_policy": {
+    "provider": "Existing OpenRouter implementation already used by Ollasync AI Notes",
+    "default_writer": "google/gemini-2.5-flash-lite",
+    "reviewer_preference": "Use a different inexpensive model where practical",
+    "approved_fallback_candidates": [
+      "deepseek/deepseek-v4-flash",
+      "qwen/qwen3-32b"
+    ],
+    "maximum_output_price_usd_per_million_tokens": 1.0,
+    "pricing_rule": "Check current OpenRouter model pricing through existing model metadata functionality before use whenever available.",
+    "never_silently_use_expensive_model": true,
+    "configuration_rule": "Model IDs must be configurable. Do not hard-code the same model name throughout the codebase.",
+    "telemetry_required": [
+      "model",
+      "provider",
+      "input tokens",
+      "output tokens",
+      "estimated cost",
+      "latency",
+      "generation status"
+    ],
+    "generation_settings": {
+      "writer_temperature": 0.45,
+      "maximum_repair_passes": 1,
+      "avoid_multiple_unused_drafts": true,
+      "cache_shared_product_context": true
+    }
+  },
+  "editorial_voice_policy": {
+    "objective": "Write like an experienced trainer, product operator and technical practitioner who understands online education.",
+    "tone": [
+      "clear",
+      "direct",
+      "practical",
+      "specific",
+      "experienced",
+      "credible"
+    ],
+    "avoid": [
+      "generic corporate prose",
+      "academic essay tone",
+      "SEO filler",
+      "sales-heavy copy",
+      "overly polished repetitive AI cadence",
+      "hype"
+    ],
+    "forbidden_phrases_and_patterns": [
+      "In today's fast-paced digital world",
+      "In today's rapidly evolving landscape",
+      "It is important to note that",
+      "It is worth noting that",
+      "Let's dive in",
+      "Let's explore",
+      "game-changer",
+      "revolutionize",
+      "seamlessly",
+      "robust solution",
+      "cutting-edge",
+      "ever-evolving",
+      "unlock the power of",
+      "take your teaching to the next level",
+      "As technology continues to evolve",
+      "In conclusion"
+    ],
+    "style_rules": [
+      "Vary sentence length naturally.",
+      "Vary paragraph length naturally.",
+      "Do not give every article the same introduction structure.",
+      "Do not use the same conclusion structure across articles.",
+      "Do not mechanically use three-item lists.",
+      "Do not begin every section with a definition.",
+      "Do not force exact-match keywords into headings.",
+      "Do not repeat the primary query unnaturally.",
+      "Do not add paragraphs merely to increase word count.",
+      "Do not overuse bullets.",
+      "Do not overuse bold formatting.",
+      "Do not overuse em dashes.",
+      "Use concrete teaching situations.",
+      "Explain tradeoffs.",
+      "Acknowledge limitations.",
+      "State when Ollasync is not the best choice.",
+      "Use domain vocabulary naturally."
+    ]
+  },
+  "first_hand_experience_policy": {
+    "minimum_original_insight_sections_per_article": 2,
+    "goal": "Each important article should contain useful information that cannot be produced by simply summarizing generic search results.",
+    "preferred_material": [
+      "real Ollasync workflows",
+      "verified product behavior",
+      "implementation lessons",
+      "architecture decisions",
+      "real trainer workflow observations",
+      "translation edge cases",
+      "verified latency findings",
+      "verified recording economics",
+      "numbers and acronym handling",
+      "browser-joining considerations",
+      "multilingual technical-training examples",
+      "known limitations",
+      "engineering tradeoffs"
+    ],
+    "examples_of_good_original_insight": [
+      "Technical classes create special translation problems because numbers, acronyms, product names and networking terminology must survive recognition and translation accurately.",
+      "Browser joining matters particularly for external training because many students interact with the platform for the first time.",
+      "A two-hour training session creates different recording and infrastructure economics than a short corporate meeting."
+    ],
+    "verification_rule": "Never publish internal engineering information unless it is approved and factually verified."
+  },
+  "factual_integrity": {
+    "hard_rule": "Never invent facts.",
+    "never_invent": [
+      "Ollasync features",
+      "customer names",
+      "customer quotes",
+      "case studies",
+      "benchmarks",
+      "latency numbers",
+      "market statistics",
+      "competitor functionality",
+      "competitor pricing",
+      "security claims",
+      "language support numbers",
+      "performance results"
+    ],
+    "ollasync_sources": [
+      "verified product pages",
+      "product documentation",
+      "source code and configuration",
+      "release notes",
+      "approved engineering facts",
+      "approved product-facts manifest"
+    ],
+    "competitor_rule": "For current competitor capabilities or pricing, use fresh authoritative research when research tooling is available. Prefer official product documentation.",
+    "fallback_rule": "If current competitor information cannot be verified, omit unstable details rather than relying on model memory."
+  },
+  "research_policy": {
+    "research_before_writing_when_needed": true,
+    "especially_for": [
+      "competitor comparisons",
+      "current product capabilities",
+      "pricing",
+      "industry trends",
+      "standards",
+      "current statistics"
+    ],
+    "preferred_sources": [
+      "official product documentation",
+      "official company pages",
+      "primary research",
+      "standards organizations",
+      "authoritative technical documentation"
+    ],
+    "store_with_article": [
+      "source URL",
+      "publisher",
+      "access date",
+      "claim supported"
+    ]
+  },
+  "article_structure": {
+    "rule": "Do not force every article into the exact same template.",
+    "required": [
+      "one H1",
+      "clear primary intent",
+      "useful introduction",
+      "logical H2/H3 hierarchy",
+      "natural internal links",
+      "appropriate CTA",
+      "metadata",
+      "canonical",
+      "author",
+      "publish date",
+      "modified date when appropriate"
+    ],
+    "typical_length": "1200-2400 words",
+    "word_count_rule": "Length must follow subject complexity rather than an SEO word-count target.",
+    "introduction_rule": "Answer or frame the reader's core need within approximately the first 150 words.",
+    "optional_elements": [
+      "key takeaways",
+      "comparison table",
+      "decision checklist",
+      "workflow",
+      "examples",
+      "FAQ-style questions",
+      "technical explanation",
+      "sources section"
+    ]
+  },
+  "question_answer_strategy_for_google_and_ai_search": {
+    "goal": "Create passages that are easy for humans and AI search systems to understand, retrieve and cite.",
+    "rule": "Questions must reflect genuine user intent, not artificial SEO variations.",
+    "format": [
+      "Use a natural user question as an H2 or H3 when appropriate.",
+      "Immediately answer it in approximately 40-100 words.",
+      "Make the answer understandable without surrounding context.",
+      "Follow with evidence, examples, tradeoffs or implementation detail.",
+      "Use clear entity names rather than ambiguous pronouns in important answer passages."
+    ],
+    "do_not": [
+      "turn every article into a FAQ page",
+      "create dozens of trivial question variants",
+      "repeat the same FAQ across articles",
+      "add FAQ structured data just to chase rankings"
+    ],
+    "comparison_question_rule": "When comparing products, answer both where Ollasync is stronger and where the competitor is stronger."
+  },
+  "chatgpt_discovery_policy": {
+    "goal": "Make public Ollasync content accessible and useful to AI search systems.",
+    "requirements": [
+      "Ensure OAI-SearchBot can crawl intended public content.",
+      "Do not confuse OAI-SearchBot with GPTBot.",
+      "Do not change GPTBot policy unless explicitly requested.",
+      "Keep article content in crawlable HTML.",
+      "Use descriptive headings.",
+      "Use clear direct answers.",
+      "Use original first-hand information.",
+      "Use identifiable entities.",
+      "Use evidence-backed claims.",
+      "Provide useful source context where appropriate."
+    ],
+    "warning": "There is no guaranteed ChatGPT ranking trick or special schema. Optimize for crawlability, relevance, originality, reliability and citation-worthy information."
+  },
+  "internal_linking": {
+    "rules": [
+      "Every article must link naturally to its primary pillar.",
+      "Every mature article should link to 2-4 genuinely related Ollasync articles.",
+      "Link to one relevant audience/use-case page when useful.",
+      "Prefer descriptive anchors.",
+      "Do not use click-here style anchors.",
+      "Do not insert irrelevant links just to increase link count.",
+      "Update older articles when a new article creates an important contextual link."
+    ],
+    "maximum_blog_internal_links": 8,
+    "primary_pillar_link_required": true
+  },
+  "cannibalization_and_duplicate_protection": {
+    "rule": "Never create a new URL merely because a keyword variation exists.",
+    "before_generation": [
+      "compare proposed topic with all existing site pages",
+      "compare with blog manifest",
+      "compare search intent",
+      "compare expected answer",
+      "calculate semantic similarity"
+    ],
+    "semantic_similarity_block_threshold": 0.82,
+    "on_collision": "Expand, consolidate or improve the existing page instead of publishing a new competing page.",
+    "forbidden_patterns": [
+      "teacher/trainer/tutor pages with substantially identical copy",
+      "language pages produced by only swapping language names",
+      "near-identical comparison articles",
+      "doorway pages"
+    ]
+  },
+  "language_specific_content_rule": {
+    "rule": "Language-targeted articles must contain genuine language-specific usefulness.",
+    "possible_unique_elements": [
+      "terminology examples",
+      "number pronunciation/recognition issues",
+      "acronym handling",
+      "technical vocabulary",
+      "script differences",
+      "real classroom phrases",
+      "translation challenges",
+      "language-specific demonstrations"
+    ]
+  },
+  "comparison_content_policy": {
+    "objective": "Produce trustworthy buyer guidance rather than propaganda.",
+    "requirements": [
+      "state where competitor is stronger",
+      "state where Ollasync is stronger",
+      "explain use cases",
+      "use verified facts",
+      "avoid fake scoring systems",
+      "avoid blanket claims",
+      "include a section such as 'When Zoom may be the better choice' when relevant"
+    ]
+  },
+  "technical_seo": {
+    "titles": "Unique, descriptive and aligned to intent. Do not optimize around a rigid character count at the expense of clarity.",
+    "meta_descriptions": "Unique and useful, generally concise enough for search snippets.",
+    "canonical": "Self-referencing for every unique indexable article.",
+    "html": [
+      "semantic article markup",
+      "crawlable server-rendered or statically generated primary content where compatible with existing architecture",
+      "one H1",
+      "meaningful heading hierarchy",
+      "descriptive internal anchors",
+      "useful image alt attributes"
+    ],
+    "structured_data": [
+      "BlogPosting",
+      "BreadcrumbList"
+    ],
+    "structured_data_rule": "Structured data must exactly match visible page content.",
+    "sitemap": [
+      "include published indexable posts",
+      "exclude drafts",
+      "exclude blocked posts",
+      "exclude noindex posts",
+      "use meaningful lastmod values"
+    ],
+    "robots": [
+      "do not accidentally block Googlebot",
+      "do not accidentally block OAI-SearchBot from intended public content"
+    ],
+    "do_not_use_as_ranking_hack": [
+      "llms.txt",
+      "FAQ schema",
+      "keyword stuffing",
+      "hidden text"
+    ]
+  },
+  "generation_pipeline": [
+    "Select next manifest item.",
+    "Check cannibalization.",
+    "Load Ollasync verified product context.",
+    "Research external facts if required.",
+    "Create content brief.",
+    "Generate initial article with writer model.",
+    "Run factual verification.",
+    "Run SEO quality check.",
+    "Run independent editorial review with a different model where practical.",
+    "Run human-style/natural-language review.",
+    "Run duplication/originality check.",
+    "Run internal-link validation.",
+    "Run structured-data validation.",
+    "Allow at most one controlled repair pass.",
+    "Publish only if all hard gates pass.",
+    "Log result, cost and review scores."
+  ],
+  "editorial_review": {
+    "minimum_score": 85,
+    "score_out_of": 100,
+    "dimensions": {
+      "search_intent_satisfaction": 15,
+      "factual_accuracy": 20,
+      "original_first_hand_value": 20,
+      "natural_human_editorial_quality": 15,
+      "specificity": 10,
+      "clarity": 5,
+      "non_duplicate_topic_value": 5,
+      "internal_linking": 5,
+      "technical_seo": 5
+    },
+    "review_questions": [
+      "Could this article be published by any SaaS company merely by replacing the product name?",
+      "Does it contain genuinely Ollasync-specific insight?",
+      "Does the writer appear to understand online training?",
+      "Does any section exist only to contain keywords?",
+      "Is the prose repetitive or mechanically templated?",
+      "Are there unsupported claims?",
+      "Does each major section add information?",
+      "Are user questions natural?",
+      "Are tradeoffs explained?",
+      "Is the article substantially different from other Ollasync articles?",
+      "Would a professional trainer learn something useful from this page?"
+    ],
+    "repair_policy": {
+      "score_85_or_higher": "APPROVE",
+      "score_75_to_84": "ONE_REPAIR_PASS",
+      "score_below_75": "BLOCK",
+      "after_failed_repair": "BLOCK_AND_KEEP_AS_DRAFT"
+    }
+  },
+  "human_editor_pass": {
+    "rule": "The editor is allowed to remove substantial unnecessary content rather than merely paraphrasing the draft.",
+    "editor_may": [
+      "delete filler",
+      "combine redundant sections",
+      "rewrite introduction",
+      "change heading order",
+      "remove keyword-driven headings",
+      "shorten conclusion",
+      "replace abstract statements with concrete examples",
+      "remove repetitive bullet lists",
+      "rewrite generic SaaS language"
+    ],
+    "target": "A strong article may become 20-30 percent shorter after editing if that improves quality."
+  },
+  "hard_publication_blockers": [
+    "fabricated fact",
+    "fabricated statistic",
+    "fabricated customer",
+    "fabricated quote",
+    "invented product capability",
+    "unverified current competitor pricing",
+    "near-duplicate page",
+    "keyword-stuffed copy",
+    "generic mass-produced AI copy",
+    "no original value",
+    "quality score below threshold",
+    "broken pillar link",
+    "missing canonical",
+    "missing title",
+    "missing meta description",
+    "invalid structured data",
+    "placeholder text",
+    "TODO markers",
+    "model error text",
+    "broken internal links",
+    "unresolved factual verification issue"
+  ],
+  "editorial_manifest": {
+    "required_fields_per_article": [
+      "id",
+      "status",
+      "batch",
+      "scheduledDay",
+      "slug",
+      "title",
+      "primaryPillar",
+      "primaryQuery",
+      "secondaryQueries",
+      "searchIntent",
+      "audience",
+      "funnelStage",
+      "uniqueAngle",
+      "requiredOriginalInsights",
+      "internalLinkTargets",
+      "researchRequired",
+      "publishedUrl",
+      "qualityScore",
+      "writerModel",
+      "reviewerModel",
+      "cost"
+    ],
+    "statuses": [
+      "planned",
+      "researching",
+      "drafting",
+      "review",
+      "repair",
+      "approved",
+      "published",
+      "blocked"
+    ]
+  },
+  "50_article_plan": {
+    "batch_1_virtual_classroom_foundation": [
+      "What Is a Virtual Classroom? A Practical Guide for Trainers",
+      "Virtual Classroom vs Video Conferencing: What Changes for Teaching?",
+      "Virtual Classroom vs LMS: Which Layer Does a Training Business Need?",
+      "How to Run a Live Online Class: A Trainer's Checklist",
+      "Best Virtual Classroom Features for Professional Trainers"
+    ],
+    "batch_2_virtual_classroom_operations": [
+      "How to Make Online Classes More Interactive Without More Tools",
+      "How to Record Online Classes Without Driving Up Cloud Costs",
+      "Browser-Based Virtual Classrooms: Benefits and Tradeoffs",
+      "How to Choose Virtual Classroom Software for a Training Academy",
+      "Virtual Classrooms for Tutors: What Matters for 1:1 and Small Groups"
+    ],
+    "batch_3_virtual_classroom_buying": [
+      "Virtual Classroom for Corporate Training: Live Layer vs LMS",
+      "How to Scale Live Training Across Multiple Cohorts",
+      "How to Reduce Tool Sprawl in Online Teaching",
+      "AI Classroom vs Virtual Classroom: What's the Difference?",
+      "Virtual Classroom Software Buying Checklist for 2026"
+    ],
+    "batch_4_zoom_comparison": [
+      "Zoom Alternatives for Online Teaching: What Trainers Should Compare",
+      "Zoom vs Ollasync for Live Training",
+      "Zoom vs Google Meet vs Ollasync for Online Classes",
+      "Zoom vs Virtual Classroom Software: Which Fits Teaching Better?",
+      "When Zoom Is Still the Better Choice for Training"
+    ],
+    "batch_5_switching_intent": [
+      "How to Move Recurring Online Classes from Zoom to Ollasync",
+      "Zoom Alternative with Live Voice Translation: What to Look For",
+      "Video Conferencing for Multilingual Training: What Actually Matters?",
+      "Google Meet Alternatives for Professional Trainers",
+      "BigBlueButton vs Ollasync for Training Teams"
+    ],
+    "batch_6_competitors_and_translation": [
+      "Microsoft Teams vs Ollasync for External Training",
+      "What Should Tutors and Coaches Look for in a Zoom Alternative?",
+      "How Live Voice Translation Works in an Online Class",
+      "Live Voice Translation vs Captions: What's the Difference?",
+      "How to Teach Students Who Speak Different Languages"
+    ],
+    "batch_7_translation_use_cases": [
+      "How to Run a Multilingual Online Class",
+      "Real-Time Translation for Teachers: What Actually Matters?",
+      "English-to-Hindi Live Translation for Online Classes",
+      "English-to-Spanish Live Translation for Training",
+      "English-to-French Live Translation for Online Classes"
+    ],
+    "batch_8_indian_languages_and_translation_quality": [
+      "English-to-Kannada Live Translation for Training",
+      "English-to-Tamil Live Translation for Online Classes",
+      "English-to-Telugu Live Translation for Online Training",
+      "How Technical Terms Behave in Live Classroom Translation",
+      "How Numbers, Acronyms and Product Names Should Work in Live Translation"
+    ],
+    "batch_9_translation_and_ai_notes": [
+      "Latency in Live Voice Translation: What Learners Actually Notice",
+      "Voice Translation vs Subtitles for Online Training",
+      "How AI Class Notes Change the Post-Class Workflow",
+      "AI Notes vs Transcripts: What Do Trainers Actually Need?",
+      "How to Turn a Live Class into Notes, Summary and Replay"
+    ],
+    "batch_10_ai_classroom_authority": [
+      "How AI Can Reduce Admin Work for Professional Trainers",
+      "AI Classroom: What Should AI Do During a Live Class?",
+      "How to Use AI Without Making Online Teaching Feel Automated",
+      "How to Design a Better Post-Class Learning Experience",
+      "AI Classroom Software Buying Guide for Training Businesses"
+    ]
+  },
+  "analytics_feedback_loop": {
+    "use_existing_analytics_stack": true,
+    "track": [
+      "organic impressions",
+      "organic clicks",
+      "CTR",
+      "average search position when available",
+      "article conversions",
+      "Start Free clicks",
+      "demo clicks",
+      "pillar-assisted conversions",
+      "article-assisted conversions",
+      "ChatGPT referral traffic where identifiable",
+      "traffic from AI search/referral sources"
+    ],
+    "after_initial_50": [
+      "Do not automatically generate another 50 articles.",
+      "Use Search Console data to determine next topics.",
+      "Improve high-impression low-CTR pages.",
+      "Improve articles ranking near page one.",
+      "Consolidate cannibalizing content.",
+      "Refresh competitor comparisons when products change.",
+      "Add new articles only when search demand or topical gaps justify them.",
+      "Prioritize articles that generate signups, demos or meaningful assisted conversions."
+    ]
+  },
+  "cost_reporting": {
+    "per_article": [
+      "writer model",
+      "reviewer model",
+      "input tokens",
+      "output tokens",
+      "research cost if any",
+      "writer cost",
+      "review cost",
+      "repair cost",
+      "total estimated cost"
+    ],
+    "per_daily_run": [
+      "attempted articles",
+      "approved articles",
+      "published articles",
+      "blocked articles",
+      "total tokens",
+      "total estimated cost"
+    ]
+  },
+  "mandatory_tests": [
+    "Existing AI Notes OpenRouter path is reused.",
+    "No duplicate OpenRouter client exists.",
+    "Configured models respect output-price ceiling.",
+    "Batch size cannot exceed five.",
+    "Scheduler runs at 10:00 Asia/Kolkata.",
+    "Daily execution is idempotent.",
+    "Interrupted jobs resume safely.",
+    "Blocked articles cannot publish.",
+    "Every published article contains one H1.",
+    "Every article has title, description and canonical.",
+    "BlogPosting JSON-LD validates.",
+    "BreadcrumbList validates.",
+    "Published pages appear in sitemap.",
+    "Draft pages do not appear in sitemap.",
+    "OAI-SearchBot is not unintentionally blocked.",
+    "Primary pillar link exists.",
+    "No broken internal links.",
+    "Cannibalization detector blocks near-duplicates.",
+    "Current competitor claims contain verified sources.",
+    "Article body is crawlable in rendered HTML.",
+    "No invented Ollasync feature appears.",
+    "Human-editor quality threshold works.",
+    "Generic AI filler is rejected."
+  ],
+  "required_initial_execution": {
+    "do_not_stop_at_plan": true,
+    "steps": [
+      "Inspect repository.",
+      "Map existing architecture.",
+      "Implement reusable content engine.",
+      "Create 50-item manifest.",
+      "Implement scheduling.",
+      "Implement quality gates.",
+      "Implement human editorial review.",
+      "Implement cost controls.",
+      "Implement SEO technical layer.",
+      "Implement AI-search crawl checks.",
+      "Run tests.",
+      "Run Batch 1 in dry-run mode.",
+      "Review generated five articles.",
+      "Fix implementation problems discovered during dry run.",
+      "Do not publish Batch 1 automatically unless explicitly configured for production publishing."
+    ]
+  },
+  "persistent_instruction": "Treat this configuration as the permanent editorial and SEO policy for the Ollasync content engine. Future content-generation work must inherit these rules unless a newer explicit project policy overrides them.",
+  "final_report_required": [
+    "architecture used",
+    "existing components reused",
+    "files changed",
+    "manifest location",
+    "scheduler configuration",
+    "models configured",
+    "cost-control implementation",
+    "quality-gate implementation",
+    "human-editor implementation",
+    "cannibalization protection",
+    "OAI-SearchBot status",
+    "technical SEO status",
+    "dry-run results for first five articles",
+    "estimated cost per article",
+    "estimated cost for all 50 articles",
+    "test results",
+    "remaining risks"
+  ],
+  "final_instruction": "Implement this as a maintainable production system, not as a one-off script. Favor factual quality, first-hand Ollasync knowledge, search-intent satisfaction and original usefulness over publishing volume. If an article cannot meet the quality bar, do not publish it."
+}

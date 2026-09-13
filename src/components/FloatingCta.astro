@@ -1,0 +1,27 @@
+---
+// Persistent CTA, bottom-right — the pattern networkershome uses for "Get Free Counselling".
+// CSS-only: no JS, no dismiss state. Hidden on small screens so it never sits on top of
+// mobile content or competes with the thumb zone.
+import { SITE } from '../consts';
+---
+<a class="fcta" href={SITE.appUrl}>Start free <span aria-hidden="true">→</span></a>
+
+<style>
+  .fcta {
+    position: fixed; right: 22px; bottom: 22px; z-index: 55;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: var(--r-pill);
+    background: var(--red); color: #fff;
+    font-size: 14.5px; font-weight: 700;
+    box-shadow: 0 10px 26px rgba(218, 41, 28, .3);
+    transition: background var(--dur) ease, transform var(--dur) ease;
+  }
+  .fcta:hover { background: var(--red-dark); color: #fff; transform: translateY(-2px); }
+  .fcta span { transition: transform var(--dur) ease; }
+  .fcta:hover span { transform: translateX(3px); }
+
+  /* On a phone the sticky header already carries "Start free" — a floating pill would
+     just cover content. */
+  @media (max-width: 640px) { .fcta { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .fcta, .fcta span { transition: none; } }
+</style>

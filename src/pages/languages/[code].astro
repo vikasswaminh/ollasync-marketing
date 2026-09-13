@@ -1,0 +1,122 @@
+---
+// One page per shipped language: "Teach in English, learners follow in <Language>". Every fact comes from
+// data/languages.ts (the product picker), the per-session cap, and the honest translation notes — no speaker
+// counts, no vendor names, no claims beyond what ships.
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import Cta from '../../components/Cta.astro';
+import { LANGUAGES, LANG_COUNT, LANGS_PER_SESSION } from '../../data/languages';
+import { SITE } from '../../consts';
+
+export function getStaticPaths() {
+  return LANGUAGES.filter((l) => l.code !== 'en').map((l) => ({ params: { code: l.code }, props: { l } }));
+}
+const { l } = Astro.props;
+const indian = l.region === 'india';
+const title = `Live ${l.name} Translation for Online Classes`; // + " · Ollasync" from the layout → ≤ 60 for every language name
+const description = `Teach in English while learners follow in ${l.name} (${l.native}) as live captions or spoken audio, each choosing for themselves. ${LANG_COUNT} languages, no download.`;
+const others = LANGUAGES.filter((x) => x.code !== l.code && x.code !== 'en');
+const faq = [
+  { q: `Do my learners need to set anything up to hear ${l.name}?`, a: `No. They join from the link in a browser, open the Captions menu and pick ${l.name} — captions, with spoken audio as an extra toggle. You keep teaching in your language.` },
+  { q: `Can some learners pick ${l.name} while others pick a different language?`, a: `Yes. Each learner chooses independently; one live session runs up to ${LANGS_PER_SESSION} different languages at the same time.` },
+  { q: `Is the ${l.name} voice natural?`, a: indian ? 'A natural voice with an Indian accent reads the translation, and technical terms and numbers are spoken in English the way an Indian classroom hears them.' : `A natural ${l.name} voice reads the translation a beat behind the speaker; common technical terms are kept in English.` },
+  { q: 'Is this certified interpretation?', a: 'No. It is machine translation of live speech — excellent for following a lesson, not a substitute for a certified interpreter where the stakes are legal or medical.' },
+];
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Live ${l.name} translation for online classes`,
+  serviceType: 'Real-time voice translation for live classes, webinars and meetings',
+  description,
+  provider: { '@type': 'Organization', name: 'Ollasync' },
+  availableLanguage: [l.name, 'English'],
+};
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero
+    eyebrow="Live translation"
+    eyebrowIcon="globe"
+    crumbs={[{ label: 'Languages', href: '/languages' }, { label: l.name }]}
+    title={`Teach in English.`}
+    titleAccent={`Learners follow in ${l.name}.`}
+    lead={`${l.native} — as live captions, with spoken audio on top if they want it. Each learner picks it for themselves while you teach exactly as you do today.`}
+  >
+    <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
+      <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
+      <a href="/features/live-translation" class="btn btn-ghost">How live translation works</a>
+    </div>
+  </PageHero>
+
+  <section class="section" style="padding-top:34px">
+    <div class="container">
+      <div class="sample panel" data-reveal dir={l.rtl ? 'rtl' : undefined}>
+        <span class="sample__lang" dir="ltr"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>{l.name} · {l.native}</span>
+        <p class="sample__line" lang={l.code}>{l.sample}</p>
+        <p class="sample__gloss" dir="ltr">“Now everything is clear!” — what a learner sees and hears when the trainer says it in English.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">What you get</span>
+        <h2 class="h2" style="margin-top:12px">{l.name} in every live class</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        <div class="card card--hover"><div class="card__icon"><Icon name="doc" size={20} /></div><h3 class="h3">Live captions in {l.native}</h3><p>Translated captions appear as the trainer speaks and refine as each sentence completes, with the speaker’s name on every line.</p></div>
+        <div class="card card--hover"><div class="card__icon"><Icon name="mic" size={20} /></div><h3 class="h3">Spoken {l.name} audio</h3><p>{indian ? 'A natural voice with an Indian accent reads the translation, with technical terms and numbers spoken in English.' : `A natural ${l.name} voice reads the translation a beat behind the speaker.`}</p></div>
+        <div class="card card--hover"><div class="card__icon"><Icon name="users" size={20} /></div><h3 class="h3">Per-learner choice</h3><p>One learner reads {l.name}, another listens in Spanish, a third stays on English — up to {LANGS_PER_SESSION} languages in one session.</p></div>
+        <div class="card card--hover"><div class="card__icon"><Icon name="network" size={20} /></div><h3 class="h3">Technical terms stay in English</h3><p>Common technical terms — protocol, tool and product names from networking, software, cloud and AI — are kept in English inside the {l.name} translation.</p></div>
+        <div class="card card--hover"><div class="card__icon"><Icon name="broadcast" size={20} /></div><h3 class="h3">Meetings and webinars</h3><p>The same {l.name} translation is available in a live class, a meeting or a webinar broadcast.</p></div>
+        <div class="card card--hover"><div class="card__icon"><Icon name="play" size={20} /></div><h3 class="h3">Keep {/^[aeiou]/i.test(l.name) ? 'an' : 'a'} {l.name} recording</h3><p>A learner can record the class locally on their own device in {l.name} — nothing is uploaded.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" style="padding-top:34px;padding-bottom:34px">
+    <div class="container">
+      <div class="deep" data-reveal>
+        <div><span class="eyebrow-label">Honest edges</span><h2 class="h2" style="margin-top:12px;max-width:20ch">What live translation is — and isn’t.</h2></div>
+        <div>
+          <p class="lead" style="max-width:62ch">It is machine translation of live speech, a beat behind the speaker. A good headset microphone in a quiet room makes the biggest difference to quality. It is not certified interpretation, and an end-to-end encrypted meeting has no server-readable audio, so translation is not available inside it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} title={`${l.name} — questions`} />
+
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal><h2 class="h3">Other languages</h2></div>
+      <div class="explore" data-reveal>
+        {others.map((o) => <a href={`/languages/${o.code}`} class="chip explore__chip" lang={o.code}>{o.native} <span class="explore__en">{o.name}</span></a>)}
+        <a href="/languages" class="chip explore__chip"><Icon name="globe" size={15} /> All {LANG_COUNT} languages</a>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+
+<style>
+  .sample { padding: clamp(22px, 3vw, 34px); display: grid; gap: 10px; }
+  .sample__lang { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--blue); }
+  .sample__line { margin: 0; font-size: clamp(24px, 3.2vw, 40px); font-weight: 900; line-height: 1.25; color: var(--ink); }
+  .sample__gloss { margin: 0; color: var(--muted); font-size: 14px; }
+  .wave { display: inline-flex; align-items: flex-end; gap: 2px; height: 11px; }
+  .wave i { width: 2px; border-radius: 1px; background: var(--blue); height: 4px; animation: langWave 1.1s ease-in-out infinite; }
+  .wave i:nth-child(2) { animation-delay: .14s } .wave i:nth-child(3) { animation-delay: .28s } .wave i:nth-child(4) { animation-delay: .42s }
+  @keyframes langWave { 0%, 100% { height: 4px } 50% { height: 11px } }
+  .deep { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: start; }
+  .band { background: var(--bg-2); border-block: 1px solid var(--line); }
+  .explore { display: flex; flex-wrap: wrap; gap: 12px; }
+  .explore__chip { padding: 10px 16px; font-size: 14px; }
+  .explore__chip:hover { border-color: var(--violet-300); color: var(--ink); }
+  .explore__en { color: var(--muted-2); font-size: 12px; margin-left: 4px; }
+  @media (max-width: 900px) { .deep { grid-template-columns: 1fr; gap: 16px; } }
+  @media (prefers-reduced-motion: reduce) { .wave i { animation: none; height: 8px; } }
+</style>

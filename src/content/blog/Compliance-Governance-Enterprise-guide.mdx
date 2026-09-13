@@ -133,7 +133,7 @@ Enterprise organizations implement sovereign video conferencing across three pri
 | **Air-Gapped Network** | Zero Internet Access | Absolute (Isolated local LAN) | Total Internal Control | Fixed Bare-Metal Overhead |
 
 ### 1. Single-Tenant Private Cloud VPC
-The video stack is deployed inside a dedicated virtual private cloud (AWS EC2, Google Cloud Platform, Microsoft Azure, or regional European cloud providers like OVHcloud, Scaleway, or Hetzner) located within your specified country.
+The video stack is deployed inside a dedicated virtual private cloud (AWS EC2, Google Cloud Platform, Microsoft Azure, or a regional European cloud provider) located within your specified country.
 - **Characteristics:** Single-tenant isolation, automated container scaling, local cloud region enforcement, full root administrative access.
 - **Best For:** Mid-market to large enterprises seeking dedicated operational isolation combined with cloud scalability.
 
@@ -225,7 +225,7 @@ Transitioning your enterprise to a fully sovereign, self-hosted video conferenci
 ### Phase 2: Regional Compute & Media Relay Provisioning
 - Provision single-tenant compute hosts inside your designated private cloud VPC or domestic physical data center.
 - Deploy zero-knowledge Selective Forwarding Units (SFUs) running modern open-source media engines configured for host-network mode.
-- Deploy Coturn relay pairs operating over TLS port 5349 on dedicated domestic IP blocks to ensure remote firewall traversal without cross-border routing.
+- Deploy TURN relay pairs operating over TLS port 5349 on dedicated domestic IP blocks to ensure remote firewall traversal without cross-border routing.
 
 ### Phase 3: Client Policy Enforcement & E2EE Activation
 - Push browser policies and mobile app configurations enforcing WebRTC Insertable Streams for frame-level AES-256-GCM media encryption.

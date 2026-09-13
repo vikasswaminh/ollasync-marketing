@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Enterprise compliance",
+    "body": "Meet strict corporate and regulatory training standards."
+  },
+  {
+    "title": "Detailed reporting",
+    "body": "Track completion rates, time spent, and interaction metrics."
+  },
+  {
+    "title": "Easy export",
+    "body": "Export session data in SCORM-friendly formats for your records."
+  }
+];
+const faqs = [
+  {
+    "question": "Is the translation data included in reports?",
+    "answer": "Yes, you can see which languages were utilized during the session."
+  }
+];
+---
+<SeoPage 
+  title="SCORM Compliant Virtual Classroom Software" 
+  description="Enterprise-grade virtual classrooms that meet SCORM compliance standards." 
+  category="Integrations" 
+  intro="Enterprise buyers require strict compliance for training modules. Ollasync provides a SCORM-compliant virtual classroom experience with built-in translation." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

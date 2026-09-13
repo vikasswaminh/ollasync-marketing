@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Consistent brand standards",
+    "body": "Deliver the exact same training message to every franchisee globally, in their native language."
+  },
+  {
+    "title": "Zero localization costs",
+    "body": "Stop paying for expensive video dubbing or human interpreters for every new market."
+  },
+  {
+    "title": "Interactive Q&A",
+    "body": "Franchisees can ask questions in their language, and trainers hear it in theirs."
+  }
+];
+const faqs = [
+  {
+    "question": "How does this help franchises?",
+    "answer": "It allows corporate trainers to host a single session that all global franchisees can understand in their native language."
+  }
+];
+---
+<SeoPage 
+  title="Global Franchise Training Software with Translation" 
+  description="Scale your franchise internationally with automated video training translation for franchisees and staff." 
+  category="Industries" 
+  intro="Expanding a franchise globally means training staff in dozens of languages. Ollasync eliminates the need for localized training videos by translating live sessions instantly." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

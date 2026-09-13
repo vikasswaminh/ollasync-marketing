@@ -1,21 +1,24 @@
 ---
 import { FOOTER, SITE } from '../consts';
+import BrandMark from './BrandMark.astro';
+import { LANG_COUNT } from '../data/languages';
 ---
 <footer class="footer">
-  <div class="container">
+  <div class="container--wide">
     <div class="footer__grid">
       <div>
         <a href="/" class="brand" aria-label="Ollasync home">
-          <img src="/ollasync-logo.png" alt="Ollasync" class="brand__logo" height="30" width="130" style="height:30px;width:auto;display:block;" />
+          <BrandMark size={28} class="brand__mark" />
+          {SITE.name}
         </a>
         <p class="muted" style="margin-top:16px;font-size:14px;max-width:290px;line-height:1.6">
-          EU-hosted, end-to-end encrypted messaging with encrypted meetings, webinars and deal rooms.
-          Server-blind by design — self-host optional.
+          An AI classroom for trainers, tutors and coaches — run live classes while AI translates
+          your voice and writes the class notes.
         </p>
         <div class="footer__badges" style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px">
-          <span class="badge-soft">E2E messaging</span>
-          <span class="badge-soft">EU-hosted</span>
-          <span class="badge-soft">Self-host optional</span>
+          <span class="badge-soft">{LANG_COUNT} languages</span>
+          <span class="badge-soft">AI class notes</span>
+          <span class="badge-soft">Runs in the browser</span>
         </div>
       </div>
       {FOOTER.map((col) => (
@@ -28,24 +31,8 @@ import { FOOTER, SITE } from '../consts';
       ))}
     </div>
     <div class="footer__bottom">
-      <span>© {new Date().getFullYear()} {SITE.name}. Built for teams that can’t trust the cloud.</span>
-      <span class="mono" style="font-size:12px;color:var(--cyan)">Encrypted in your browser · Server-blind ciphertext only</span>
+      <span>© {new Date().getFullYear()} {SITE.name}. An AI classroom for trainers, tutors and coaches.</span>
+      <span class="mono" style="font-size:12px">Live translation · AI class notes</span>
     </div>
   </div>
 </footer>
-
-<style>
-  .badge-soft {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--cyan);
-    background: rgba(0, 245, 212, 0.08);
-    border: 1px solid rgba(0, 245, 212, 0.25);
-    padding: 4px 10px;
-    border-radius: var(--r-pill);
-  }
-</style>
-

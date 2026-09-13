@@ -1,0 +1,35 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "HIPAA-ready security",
+    "body": "Keep sensitive training materials and discussions secure with enterprise-grade encryption."
+  },
+  {
+    "title": "Medical terminology translation",
+    "body": "AI models designed to handle complex healthcare jargon across 19+ languages."
+  },
+  {
+    "title": "Automated attendance tracking",
+    "body": "Easily prove compliance with built-in reporting on who attended and for how long."
+  }
+];
+const faqs = [
+  {
+    "question": "Is Ollasync suitable for healthcare compliance?",
+    "answer": "Yes, Ollasync offers secure, encrypted video sessions with attendance tracking to meet compliance requirements."
+  },
+  {
+    "question": "Can it translate medical terms?",
+    "answer": "Our AI is equipped to handle industry-specific terminology, ensuring accurate translations for healthcare professionals."
+  }
+];
+---
+<SeoPage 
+  title="Multilingual Healthcare Compliance Training Platform" 
+  description="Train global hospital staff and healthcare workers with strict, translated compliance training in 19+ languages." 
+  category="Industries" 
+  intro="Healthcare organizations need to ensure every employee understands compliance protocols, regardless of their native language. Ollasync provides secure, translated video training for global health teams." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

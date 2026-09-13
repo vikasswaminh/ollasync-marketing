@@ -1,0 +1,146 @@
+{
+  "_about": "The approved product-facts manifest: the ONLY statements the content engine may make about Ollasync. Every fact points at where the public site or the shipped product states it (source). Change a fact here when the product changes; test/facts_drift.test.mjs re-derives the countable ones from src/data/*.ts and fails when they drift. Reviewed by a human before the engine's first run (2026-09-13).",
+  "facts": [
+    {
+      "id": "F01",
+      "text": "Live translation: while the trainer teaches, each learner can follow in their own language as live captions or as spoken audio. 19 languages are available.",
+      "source": "src/data/languages.ts LANG_COUNT; src/data/features.ts live-translation"
+    },
+    {
+      "id": "F02",
+      "text": "One live class can run up to 5 different languages at the same time (learners choose individually).",
+      "source": "src/data/languages.ts LANGS_PER_SESSION"
+    },
+    {
+      "id": "F03",
+      "text": "The 19 languages are English, Spanish, French, Hindi, German, Chinese, Japanese, Portuguese, Arabic, Russian, Kannada, Tamil, Telugu, Marathi, Bengali, Gujarati, Malayalam, Punjabi and Urdu; Arabic and Urdu are right-to-left. Each has a page at /languages/<code>/.",
+      "source": "src/data/languages.ts LANGUAGES"
+    },
+    {
+      "id": "F04",
+      "text": "Live translation runs a beat behind the speaker, like listening through an interpreter; captions appear immediately and refine as the sentence completes.",
+      "source": "src/data/useCases.ts tutors FAQ; blog how-live-voice-translation-works-in-class"
+    },
+    {
+      "id": "F05",
+      "text": "It is machine translation of the trainer's live voice: excellent for following a lesson, not a substitute for a certified interpreter in legal or medical settings.",
+      "source": "src/data/useCases.ts tutors/trainers compliance"
+    },
+    {
+      "id": "F06",
+      "text": "Numbers, IP addresses and port numbers come through as spoken in every language. Acronyms and product names written in Latin script are normally kept as they are, and a built-in technical vocabulary keeps common networking, software and cloud phrases in English instead of translating them in meaning. There is no guarantee for every arbitrary term.",
+      "source": "src/data/useCases.ts trainers FAQ; product voice rule shipped 2026-09-07 (19 languages, probe-proven); agents/translate-agent/vocab.py (per-session vocabulary, capped)"
+    },
+    {
+      "id": "F07",
+      "text": "Live captions: every participant can read real-time captions in the language they choose; captions and spoken translation are independent choices per person.",
+      "source": "src/data/features.ts live-captions"
+    },
+    {
+      "id": "F08",
+      "text": "Learners join from a link in a modern browser on desktop or mobile; nothing to install and no account is required for invited guests. Trainers teach from the browser too.",
+      "source": "src/data/features.ts video-meetings; src/data/useCases.ts tutors FAQ"
+    },
+    {
+      "id": "F09",
+      "text": "The invitation email can carry a message written by the host (an optional invite note).",
+      "source": "src/data/useCases.ts trainers; dashboard invite-by-email note field (trainer tools, 2026-09-12)"
+    },
+    {
+      "id": "F10",
+      "text": "A class link is reusable across sessions and can carry a passcode; the passcode travels with the invitation and its calendar file.",
+      "source": "product: reusable /j/<room> link with passcode (shipped 2026-09-03), invitation .ics"
+    },
+    {
+      "id": "F11",
+      "text": "Every past session keeps its attendance — who joined — visible from the meeting's session history in the dashboard.",
+      "source": "src/data/useCases.ts trainers; dashboard Attendance per session (trainer tools, 2026-09-12)"
+    },
+    {
+      "id": "F12",
+      "text": "A wrap-up email can reach the host when a class ends; attendance and the wrap-up email are switches in the workspace settings (Settings › Trainer tools).",
+      "source": "src/data/useCases.ts trainers; dashboard Settings › Trainer tools"
+    },
+    {
+      "id": "F13",
+      "text": "AI class notes: a recorded class can be transcribed and summarised automatically (an opt-in switch); the notes give a summary, the key topics and action items.",
+      "source": "src/data/features.ts ai; dashboard auto-notes switch (trainer tools, 2026-09-12)"
+    },
+    {
+      "id": "F14",
+      "text": "From a recording, the host can send the AI notes to everyone on the invite list, or to typed addresses, in one step.",
+      "source": "src/data/useCases.ts trainers; dashboard Send notes (trainer tools, 2026-09-12)"
+    },
+    {
+      "id": "F15",
+      "text": "An assistant can be asked questions about any recorded class (summary, action items) from its transcript.",
+      "source": "src/data/features.ts ai"
+    },
+    {
+      "id": "F16",
+      "text": "AI features are opt-in per workspace, run after the class on its recording, and never run on end-to-end encrypted meetings.",
+      "source": "src/data/features.ts ai (and the file's claim ceiling header); src/data/useCases.ts trainers compliance"
+    },
+    {
+      "id": "F17",
+      "text": "Recordings and their transcripts live in the workspace under access control: only people the host allows can open them, never a public link; retention is the host's choice (keep an archive or clear when a cohort ends).",
+      "source": "src/data/features.ts recordings; src/data/useCases.ts tutors compliance"
+    },
+    {
+      "id": "F18",
+      "text": "Recording is explicit and visible to everyone in the class; there is no silent capture.",
+      "source": "src/data/useCases.ts tutors compliance"
+    },
+    {
+      "id": "F19",
+      "text": "Local recording: a viewer can record the class on their own device, in the language they are listening to, with nothing uploaded to a server.",
+      "source": "src/data/features.ts local-recording"
+    },
+    {
+      "id": "F20",
+      "text": "Webinars for large classes: a presenting stage and a view-only audience, moderated Q&A, polls and quizzes during the session, handouts attached to it, and a professional broadcast feed via OBS/RTMPS when wanted.",
+      "source": "src/data/features.ts webinars; src/data/useCases.ts academies"
+    },
+    {
+      "id": "F21",
+      "text": "Video classes: HD video with screen sharing, a whiteboard, breakout rooms, background blur and full host controls.",
+      "source": "src/data/features.ts video-meetings"
+    },
+    {
+      "id": "F22",
+      "text": "Pricing is per trainer/staff seat; learners join sessions without a paid seat. It is free to start; the plans are on /pricing/.",
+      "source": "src/pages/pricing.astro; src/data/useCases.ts academies compliance"
+    },
+    {
+      "id": "F23",
+      "text": "A meeting can be end-to-end encrypted per meeting (optional). An encrypted class cannot be recorded, transcribed or summarised — that trade is deliberate.",
+      "source": "src/data/features.ts video-meetings (the file's claim ceiling header); src/pages/virtual-classroom-software.astro tradeoffs"
+    },
+    {
+      "id": "F24",
+      "text": "Data handling: encryption in transit, access control and audit logging are described on /security/, and a data-processing agreement is available (/dpa/). Ollasync holds no certification and says so.",
+      "source": "src/pages/security.astro; src/pages/dpa.astro; src/data/useCases.ts healthcare FAQ"
+    },
+    {
+      "id": "F25",
+      "text": "Attendance, the wrap-up email, automatic notes, sending notes and the invite note are each a switch the host can turn on or off in workspace settings.",
+      "source": "dashboard Settings › Trainer tools (trainer tools v1, 2026-09-12)"
+    },
+    {
+      "id": "F26",
+      "text": "Ollasync is a cloud service used from the browser; it is not installed on the customer's own servers.",
+      "source": "src/data/features.ts video-meetings (the file's claim ceiling header: 100% cloud SaaS)"
+    }
+  ],
+  "never": [
+    "Never claim certifications (SOC 2, ISO 27001, 'HIPAA certified', 'GDPR certified', FedRAMP) — say 'controls and a DPA'.",
+    "Never say Ollasync is EU-hosted, self-hosted, on-premise or installable on the customer's servers.",
+    "Never name an integration (calendar, LMS, CRM, payment tool) — none is published.",
+    "Never state a latency figure, an uptime figure, a class-size number, a price in currency, a customer name, a quote, a testimonial, a case study or a market statistic.",
+    "Never name a language that is not in F03, a bigger language count than 19, or more than 5 languages per session.",
+    "Never describe AI features on end-to-end encrypted meetings.",
+    "Never mention the vendors, models or infrastructure behind the product; speak in capabilities and open standards (WebRTC, TLS).",
+    "Never describe how the product works internally — where translation, captions, recording or notes are processed (browser or server), how audio is routed, what the architecture does — beyond the exact wording of a fact. Describe what a trainer and a learner experience, not the mechanism.",
+    "Never state that a feature works in a situation a fact does not cover (for example anything about local recording or AI features during an end-to-end encrypted class beyond F19 and F23)."
+  ]
+}

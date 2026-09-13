@@ -3,15 +3,15 @@ import LegalLayout from '../layouts/LegalLayout.astro';
 ---
 <LegalLayout
   title="Privacy Policy"
-  description="How Ollasync handles your data: EU-hosted, end-to-end encrypted messaging, no selling of data, and your rights under the GDPR."
-  updated="1 August 2026"
+  description="How Ollasync handles your data: where it is processed, end-to-end encrypted messaging, no selling of data, and your rights under the GDPR and India's DPDP Act."
+  updated="8 September 2026"
   crumb="Privacy"
 >
-  <p>This policy explains what data Ollasync processes when you use our hosted service, and your rights over it. If you self-host Ollasync, you are the operator and controller of your deployment — this policy covers our managed service.</p>
+  <p>This policy explains what data Ollasync processes when you use our service, and your rights over it.</p>
 
   <h2>The short version</h2>
   <ul>
-    <li>We host our managed service in the <strong>EU (Frankfurt)</strong>.</li>
+    <li>Application data is processed in the <strong>United States (Detroit)</strong>; live media and recordings on servers in <strong>Germany (Frankfurt)</strong>. The managed service is not offered as EU-only hosting; self-hosting keeps all data on infrastructure you control. Details in the DPA.</li>
     <li>Encrypted messaging is <strong>end-to-end encrypted</strong> — we store only ciphertext and cannot read its content.</li>
     <li>We <strong>do not sell your data</strong> and we do not use it to train advertising or third-party models.</li>
     <li>You can request access to, or deletion of, your personal data at any time.</li>
@@ -21,7 +21,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   <h3>Account data</h3>
   <p>Your name, email address, organisation and authentication details (including 2FA and passkey metadata) so you can sign in and we can operate your workspace.</p>
   <h3>Content</h3>
-  <p>Encryption differs by data type, as described on our <a href="/security">security page</a>. For <strong>end-to-end encrypted messaging</strong>, we store only opaque ciphertext and hold no keys. For meetings, media is encrypted in transit and relayed; for deal-room documents, content is encrypted in transit and access-controlled. We process this content only to deliver the service.</p>
+  <p>Encryption differs by data type, as described on our <a href="/security">security page</a>. For <strong>end-to-end encrypted messaging</strong>, we store only opaque ciphertext and hold no keys. For meetings, media is encrypted in transit and relayed; for deal-room documents, content is encrypted in transit and access-controlled. We process this content only to deliver the service. When a participant turns on live captions, translation or AI meeting notes, the speech in that meeting is sent to our speech provider (transcription, translation, synthesis) and, for notes, its transcript to an AI provider; both are listed in the DPA, and everyone in the meeting is shown a notice when it starts.</p>
   <h3>Metadata</h3>
   <p>To route and secure the service we necessarily process routing and operational metadata — for example room identifiers, membership, connection times, and message size and timing. For encrypted messaging, this metadata does not reveal message content.</p>
   <h3>Logs</h3>
@@ -34,7 +34,7 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   <p>We use a small set of infrastructure providers to operate the hosted service. They are listed, with their roles and locations, in our <a href="/dpa">Data Processing Agreement</a>, available on request. We do not share your data with advertisers or data brokers.</p>
 
   <h2>Retention</h2>
-  <p>We keep account and content data for as long as your workspace is active. Rooms can be closed and purged, and per-room disappearing-message TTLs are supported. On request or on account closure, we delete personal data within a reasonable period, subject to legal retention obligations.</p>
+  <p>We keep account and content data for as long as your workspace is active. Cloud recordings are deleted 90 days after they are made (earlier on request). A room you close is removed in full 90 days after closing — messages, documents and recordings. Per-room disappearing-message timers are supported. Encrypted backups are retained for 30 days (databases) and 90 days (recordings and configuration). You can delete your own account from the workspace settings; a workspace owner can delete the whole workspace and everything in it. On request or on account closure, we delete personal data within a reasonable period, subject to legal retention obligations.</p>
 
   <h2>Your rights</h2>
   <p>Under the GDPR you have the right to access, correct, delete, restrict or port your personal data, and to object to certain processing. Contact <a href="mailto:privacy@ollasync.com">privacy@ollasync.com</a> and we will respond within the timeframes the law requires. You may also complain to your data-protection authority.</p>
@@ -44,6 +44,8 @@ import LegalLayout from '../layouts/LegalLayout.astro';
 
   <h2>Contact</h2>
   <p>Questions about this policy or your data: <a href="mailto:privacy@ollasync.com">privacy@ollasync.com</a>. Security matters: <a href="mailto:security@ollasync.com">security@ollasync.com</a>.</p>
+  <h3>Grievance officer (India)</h3>
+  <p>For users in India, under the Digital Personal Data Protection Act, 2023, grievances about your personal data go to our Grievance Officer, <strong>Amit Tanwar</strong>, at <a href="mailto:amit@ollasync.com">amit@ollasync.com</a>. We acknowledge every grievance and resolve it within the period the law requires.</p>
 
   <p class="note">This policy reflects how the product works today and will be updated as the service evolves. It is provided for transparency and should be reviewed alongside your contract and DPA.</p>
 </LegalLayout>

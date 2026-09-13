@@ -1,9 +1,19 @@
+# Round 10 (2026-09-10): `! Access-Control-Allow-Origin` detaches the `*` that Cloudflare Pages adds to every asset by
+# default (seen on the bare pages.dev origin too — not a zone rule, not ours). COOP/CORP mirror the app. The
+# Content-Security-Policy line is a PLACEHOLDER: scripts/mkt_csp_headers.mjs (gate 3 of scripts/mkt_deploy.sh) replaces
+# it in dist/_headers with the enforced policy + the SHA-256 of every inline script in the build. A deploy that skips
+# the gate ships the literal placeholder, which browsers ignore as an unknown directive (nothing breaks, nothing is
+# enforced) — the gate is what makes the header real.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Content-Security-Policy: __MKT_CSP__
+  ! Access-Control-Allow-Origin
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable

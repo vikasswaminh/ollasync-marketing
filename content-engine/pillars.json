@@ -1,0 +1,5 @@
+{
+  "pillar_1": { "name": "Virtual Classroom Software", "url": "/virtual-classroom-software/", "spokes": ["/use-cases/trainers/", "/use-cases/tutors/", "/use-cases/academies/", "/features/video-meetings/", "/features/ai/", "/pricing/"] },
+  "pillar_2": { "name": "Zoom Alternative for Teaching", "url": "/vs/zoom/", "spokes": ["/vs/google-meet/", "/vs/microsoft-teams/", "/vs/bigbluebutton/", "/use-cases/trainers/", "/use-cases/tutors/", "/pricing/"] },
+  "pillar_3": { "name": "Live Translation for Online Classes", "url": "/features/live-translation/", "spokes": ["/languages/", "/features/live-captions/", "/use-cases/academies/", "/use-cases/tutors/", "/features/ai/"] }
+}

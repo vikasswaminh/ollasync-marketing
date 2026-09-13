@@ -1,0 +1,24 @@
+{
+  "questions": [
+    {
+      "q": "what is the difference between a virtual classroom and a webinar",
+      "slug": "what-is-a-virtual-classroom"
+    },
+    {
+      "q": "do i need special equipment to run a virtual classroom",
+      "slug": "what-is-a-virtual-classroom"
+    },
+    {
+      "q": "what happens after a virtual class ends",
+      "slug": "what-is-a-virtual-classroom"
+    },
+    {
+      "q": "how do i handle late joiners without disrupting the class",
+      "slug": "how-to-run-a-live-online-class"
+    },
+    {
+      "q": "what should i do if the live translation seems to lag",
+      "slug": "how-to-run-a-live-online-class"
+    }
+  ]
+}

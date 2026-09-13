@@ -5,9 +5,9 @@ import Icon from '../../components/Icon.astro';
 import Cta from '../../components/Cta.astro';
 import { USE_CASES } from '../../data/useCases';
 
-const title = 'Use cases — encrypted video for regulated industries';
+const title = 'Use Cases — Live Classrooms to Regulated Industries';
 const description =
-  'How healthcare, legal, finance and government teams use Ollasync for encrypted, self-hostable video meetings, messaging and confidential deal rooms.';
+  'How healthcare, legal, finance and government teams run private training and meetings on Ollasync — live translation, AI notes and access-controlled rooms.';
 ---
 <Base title={title} description={description}>
   <PageHero
@@ -16,16 +16,16 @@ const description =
     crumbs={[{ label: 'Use cases' }]}
     title="Built for teams where a leaked meeting is"
     titleAccent="a headline"
-    lead="The same platform, tuned to the confidentiality and sovereignty demands of the industries that feel them most."
+    lead="Tutors, academies and L&D teams teaching across languages — and the regulated industries that need every session contained. The same platform, tuned to each."
   />
-  <section class="section section--tan" style="padding-block:48px">
+  <section class="section" style="padding-top:32px">
     <div class="container">
       <div class="grid grid-2" data-reveal>
         {USE_CASES.map((u) => (
           <a href={`/use-cases/${u.slug}`} class="card card--hover uc-card">
             <div class="card__icon card__icon--teal"><Icon name={u.icon} size={22} /></div>
             <h2 class="h3">{u.label}</h2>
-            <p style="color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:8px">{u.lead}</p>
+            <p>{u.lead}</p>
             <span class="uc-more mono">Explore {u.label.toLowerCase()} <Icon name="arrow" size={15} /></span>
           </a>
         ))}
@@ -35,7 +35,7 @@ const description =
   <Cta />
 </Base>
 <style>
-  .uc-card { display: flex; flex-direction: column; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); padding: 28px; }
+  .uc-card { display: flex; flex-direction: column; }
   .uc-card p { flex: 1; }
-  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; font-size: 13px; font-weight: 700; color: #0284c7; }
+  .uc-more { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-size: 13px; color: var(--iris); }
 </style>

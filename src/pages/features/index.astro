@@ -4,10 +4,11 @@ import PageHero from '../../components/PageHero.astro';
 import Icon from '../../components/Icon.astro';
 import Cta from '../../components/Cta.astro';
 import { FEATURES } from '../../data/features';
+import { LANG_COUNT } from '../../data/languages';
 
-const title = 'Features — encrypted meetings, webinars, recordings & deal rooms';
+const title = 'AI Classroom Features — Translation, Webinars';
 const description =
-  'Everything Ollasync does: encrypted 4K video meetings, webinars, access-controlled recordings, confidential deal rooms and server-blind messaging — self-hostable and EU-hosted.';
+  `Everything Ollasync does: live translation in ${LANG_COUNT} languages, AI class notes, webinars, access-controlled recordings and confidential deal rooms.`;
 ---
 <Base title={title} description={description}>
   <PageHero
@@ -16,9 +17,9 @@ const description =
     crumbs={[{ label: 'Features' }]}
     title="Everything a meeting needs —"
     titleAccent="under one encryption model"
-    lead="Meetings, webinars, recordings, deal rooms and messaging, built to the same standard and deployable the same way: on our EU service, or on your own infrastructure."
+    lead="Live translation, AI meetings and class notes, webinars, recordings and deal rooms — one product, one hosted service, built to the same standard end to end."
   />
-  <section class="section section--tan" style="padding-block:48px">
+  <section class="section" style="padding-top:32px">
     <div class="container">
       <div class="feature-rows" data-reveal>
         {FEATURES.map((f) => (
@@ -36,11 +37,11 @@ const description =
   <Cta />
 </Base>
 <style>
-  .feature-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .feature-row { display: flex; gap: 18px; align-items: flex-start; border: 1.5px solid #e2e8f0; border-radius: var(--r-xl); background: #ffffff; box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04); padding: 24px; }
+  .feature-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .feature-row { display: flex; gap: 16px; align-items: flex-start; }
   .feature-row .card__icon { margin-bottom: 0; flex: none; }
-  .feature-row p { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+  .feature-row p { color: var(--muted); font-size: 14.5px; }
   .fr-arrow { color: var(--muted); opacity: 0; transform: translateX(-4px); transition: all var(--dur) ease; }
-  .feature-row:hover .fr-arrow { opacity: 1; transform: none; color: #0284c7; }
+  .feature-row:hover .fr-arrow { opacity: 1; transform: none; color: var(--iris); }
   @media (max-width: 900px) { .feature-rows { grid-template-columns: 1fr; } }
 </style>

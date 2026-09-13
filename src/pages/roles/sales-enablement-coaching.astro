@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Faster playbook rollouts",
+    "body": "Launch new products to your entire global sales force on the same day."
+  },
+  {
+    "title": "Consistent messaging",
+    "body": "Ensure the value proposition is understood perfectly across all regions."
+  },
+  {
+    "title": "Interactive roleplay",
+    "body": "Reps can practice pitches in their language while managers listen in theirs."
+  }
+];
+const faqs = [
+  {
+    "question": "Can this replace our current video tool?",
+    "answer": "Yes, Ollasync provides all standard video conferencing features plus advanced AI translation."
+  }
+];
+---
+<SeoPage 
+  title="Sales Enablement Video Coaching with AI" 
+  description="Train global sales reps simultaneously with AI-translated video coaching." 
+  category="Roles" 
+  intro="VP of Sales need to roll out new messaging and playbooks fast. Ollasync ensures your sales enablement sessions reach every rep globally, instantly." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Engagement scoring",
+    "body": "See exactly when learners drop off or lose focus during a session."
+  },
+  {
+    "title": "Comprehension tracking",
+    "body": "Analyze Q&A interactions to gauge understanding across different languages."
+  },
+  {
+    "title": "Actionable insights",
+    "body": "Use data to improve your training materials and delivery."
+  }
+];
+const faqs = [
+  {
+    "question": "Is the analytics data private?",
+    "answer": "Yes, all analytics are anonymized and aggregated to protect user privacy while providing actionable insights."
+  }
+];
+---
+<SeoPage 
+  title="AI Video Analytics for Training Engagement" 
+  description="Track who is paying attention and learning with advanced AI video analytics." 
+  category="Integrations" 
+  intro="Stop guessing if your training is effective. Ollasync uses AI to provide deep analytics on learner engagement, comprehension, and participation." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

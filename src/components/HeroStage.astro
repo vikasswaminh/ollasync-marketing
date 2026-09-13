@@ -1,0 +1,156 @@
+---
+// The hero visual, as real HTML/CSS on the design tokens (no PNG): one trainer tile speaking English with a live
+// caption, two honest panels under it (live captions, AI class notes — the product's real surfaces), and six learner
+// tiles each following in their own language. Faces reuse the existing assets; learners without a photo get an
+// initials avatar on the accent gradient. Every language shown is a SHIPPED translate target (src/data/languages.ts).
+// Pure CSS, no client JS; every message reads with animation disabled (prefers-reduced-motion at the bottom).
+import Icon from './Icon.astro';
+import { Image } from 'astro:assets';
+import trainer from '../assets/faces/hero-face-trainer.png'; // synthetic portrait (generated 2026-09-06), nobody real
+import zh from '../assets/faces/hero-face-zh.png';
+import fr from '../assets/faces/hero-face-fr.png';
+import bob from '../assets/faces/hero-face-bob.png';
+import aisha from '../assets/faces/hero-face-aisha.png';
+import you from '../assets/faces/hero-face-you.png';
+import { LANGUAGES, LANG_COUNT, LANGS_PER_SESSION } from '../data/languages';
+
+const byCode = Object.fromEntries(LANGUAGES.map((l) => [l.code, l]));
+// India-first mix, no country flags (a language is not a country). Each learner: face or initials, language, a
+// translated line + its English gloss. EXACTLY LANGS_PER_SESSION distinct languages — the number one live session can
+// run at once (the backend cap) — so the picture never shows more than the product delivers; the sixth tile points at
+// the rest of the list.
+const learners = [
+  { code: 'hi', name: 'Priya',  img: you,   gloss: 'Now everything is clear!' },
+  { code: 'zh', name: 'Wei Lin', img: zh,    gloss: 'Now I can easily understand!' },
+  { code: 'es', name: 'Mateo',  img: bob,   gloss: 'Now everything makes sense!' },
+  { code: 'fr', name: 'Chloé',  img: fr,    gloss: 'This is much clearer!' },
+  { code: 'ar', name: 'Aisha',  img: aisha, gloss: 'Now everything is clear!' },
+].slice(0, LANGS_PER_SESSION).map((l) => ({ ...l, lang: byCode[l.code] }));
+const rest = LANG_COUNT - learners.length;
+const restNames = LANGUAGES.filter((l) => !learners.some((x) => x.code === l.code) && l.code !== 'en').slice(0, 4).map((l) => l.name).join(', ');
+const initials = (n: string) => n.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+---
+<div class="stage" data-reveal>
+  <!-- trainer column -->
+  <div class="stage__trainer panel">
+    <figure class="tr">
+      <Image src={trainer} alt="A trainer teaching a live class in English while every learner follows in their own language" widths={[480, 760, 1100]} sizes="(max-width: 960px) 100vw, 56vw" format="webp" quality={80} loading="eager" fetchpriority="high" />
+      <figcaption class="tr__speak"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Speaking: English</figcaption>
+      <span class="tr__name"><span class="tr__dot" aria-hidden="true"></span>Arjun Mehta <em>Trainer</em></span>
+      <p class="tr__cap">Today we’ll set up the VPN tunnel and check the firewall rule together…</p>
+    </figure>
+    <div class="lines" aria-label="Live captions and AI class notes">
+      <span class="lines__h"><Icon name="doc" size={13} stroke="var(--blue)" /> Live captions</span>
+      <p class="line"><span class="lines__t">00:19</span>The management port is 4500 and the network is 192.168.10.0/24.</p>
+      <p class="line lines__now"><span class="lines__t">00:26</span>Set the MTU to 1500, then we test from the branch router…</p>
+      <p class="note"><span class="tick" aria-hidden="true"></span><b>AI class notes</b> — VPN tunnel setup, firewall rule review, test from the branch router</p>
+    </div>
+  </div>
+
+  <!-- learners -->
+  <ul class="learners" aria-label="Learners following in their own language">
+    {learners.map((l) => (
+      <li class="lr panel" dir={l.lang.rtl ? 'rtl' : undefined}>
+        <div class="lr__face" aria-hidden={l.img ? undefined : 'true'}>
+          {l.img
+            ? <Image src={l.img} alt={`A learner following the class in ${l.lang.name}`} widths={[240, 480]} sizes="(max-width: 560px) 45vw, 200px" format="webp" quality={78} loading="lazy" />
+            : <span class="lr__ini">{initials(l.name)}</span>}
+        </div>
+        <div class="lr__lang" dir="ltr"><span class="wave wave--sm" aria-hidden="true"><i></i><i></i><i></i><i></i></span>{l.lang.name} <b>{l.lang.native}</b></div>
+        <p class="lr__line">{l.lang.sample}</p>
+        <p class="lr__gloss" dir="ltr">{l.gloss}</p>
+      </li>
+    ))}
+    <li class="lr lr--more panel">
+      <a href="#languages" class="lr__more">
+        <span class="lr__more-n">+{rest}</span>
+        <span class="lr__more-t">more languages</span>
+        <span class="lr__more-l">{restNames}…</span>
+        <span class="lr__more-cap">Up to {LANGS_PER_SESSION} languages live in one session · {LANG_COUNT} to choose from</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<style>
+  /* Layout only — every colour, radius, shadow and type step is a token. */
+  .stage { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
+
+  /* trainer column */
+  .stage__trainer { position: relative; display: flex; flex-direction: column; padding: 10px; background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--r-lg); box-shadow: var(--sh-card); }
+  .tr { position: relative; margin: 0; border-radius: var(--r); overflow: hidden; background: var(--ink-2); }
+  .tr :global(img) { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+  .tr__speak {
+    position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 12px; border-radius: var(--r-pill); background: rgba(255, 255, 255, .92); color: var(--ink);
+    font-size: 12.5px; font-weight: 700; box-shadow: var(--sh-card);
+  }
+  .tr__name {
+    position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 11px; border-radius: var(--r-pill); background: rgba(0, 0, 0, .62); color: #fff; font-size: 12px; font-weight: 700;
+  }
+  .tr__name em { font-style: normal; font-weight: 400; color: rgba(255, 255, 255, .78); }
+  .tr__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+  .tr__cap {
+    position: absolute; right: 12px; bottom: 12px; max-width: 46%; margin: 0; padding: 9px 12px;
+    border-radius: var(--r); background: rgba(0, 0, 0, .66); color: #fff; font-size: 13px; line-height: 1.4;
+    border: 1px solid rgba(255, 255, 255, .12);
+  }
+
+  /* one compact panel: two caption lines + one AI-note line; flex-fills so the column ends with the learner grid */
+  .lines { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 6px; margin: 10px 0 0; padding: 10px 12px; border-radius: var(--r); background: var(--bg-2); border: 1px solid var(--line); }
+  .lines__h { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--blue); }
+  .line { display: flex; gap: 10px; margin: 0; font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+  .lines__t { font-family: var(--font-mono); font-size: 11px; color: var(--muted-2); flex: none; padding-top: 2px; }
+  .lines__now { color: var(--ink); }
+  .lines__now::after { content: ""; display: inline-block; width: 6px; height: 14px; margin-left: 4px; background: var(--blue); animation: caret 1s steps(2) infinite; }
+  .note { display: flex; align-items: flex-start; gap: 8px; margin: 4px 0 0; padding-top: 8px; border-top: 1px solid var(--line); font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+  .note b { color: var(--ink); }
+  .tick { width: 14px; height: 14px; border-radius: 5px; flex: none; margin-top: 1px; background: var(--teal-150); position: relative; }
+  .tick::after { content: ""; position: absolute; inset: 3px; border-radius: 2px; background: var(--teal); }
+
+  /* learners */
+  .learners { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 12px; height: 100%; }
+  .lr { display: grid; grid-template-rows: auto auto auto 1fr; padding: 8px 8px 10px; background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--r); box-shadow: var(--sh-card); }
+  .lr__face { border-radius: var(--r-sm); overflow: hidden; background: var(--grad-accent); aspect-ratio: 4 / 3; display: grid; place-items: center; }
+  .lr__face :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .lr__ini { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: .04em; }
+  .lr__lang { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--ink); }
+  .lr__lang b { font-weight: 400; color: var(--muted); }
+  .lr__line { margin: 6px 0 0; font-size: 13px; font-weight: 700; line-height: 1.35; color: var(--ink); }
+  .lr__gloss { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
+  .lr--more { padding: 0; background: var(--tint-blue); border-color: var(--violet-300); grid-template-rows: 1fr; } /* the link spans the whole card (Codex) */
+  .lr__more { display: grid; gap: 4px; align-content: center; grid-row: 1 / -1; height: 100%; padding: 14px 12px; text-decoration: none; color: var(--ink); }
+  .lr__more-n { font-size: 28px; font-weight: 900; color: var(--blue); line-height: 1; }
+  .lr__more-t { font-size: 13px; font-weight: 700; }
+  .lr__more-l { font-size: 12px; color: var(--muted); }
+  .lr__more-cap { margin-top: 6px; font-size: 11px; color: var(--muted-2); line-height: 1.35; }
+  .lr__more:hover .lr__more-t { color: var(--blue); }
+
+  /* the speaking waveform — soft and slow, not decorative glow */
+  .wave { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+  .wave i { width: 2px; border-radius: 1px; background: var(--blue); height: 4px; animation: wave 1.1s ease-in-out infinite; }
+  .wave--sm { height: 10px; } .wave--sm i { background: var(--teal); }
+  .wave i:nth-child(2) { animation-delay: .14s } .wave i:nth-child(3) { animation-delay: .28s }
+  .wave i:nth-child(4) { animation-delay: .42s } .wave i:nth-child(5) { animation-delay: .56s }
+
+  @keyframes wave  { 0%, 100% { height: 4px } 50% { height: 12px } }
+  @keyframes caret { 0%, 100% { opacity: 0 } 50% { opacity: 1 } }
+
+  @media (max-width: 960px) {
+    .stage { grid-template-columns: 1fr; }
+    .learners { grid-template-columns: repeat(3, 1fr); }
+    .tr__cap { max-width: 60%; }
+  }
+  @media (max-width: 560px) {
+    .learners { grid-template-columns: repeat(2, 1fr); }
+    /* stack the name chip and the caption under the photo — absolute chips overlapped at phone widths */
+    .tr { display: flex; flex-direction: column; }
+    .tr__name { position: static; align-self: flex-start; margin: 8px 8px 0; }
+    .tr__cap { position: static; max-width: none; margin: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wave i, .lines__now::after { animation: none !important; }
+    .wave i { height: 8px; }
+  }
+</style>

@@ -1,0 +1,95 @@
+{
+  "_about": "Curated competitor claims for comparison articles. Each claim carries the exact quote it rests on and the official page it was read from; the engine re-fetches the page before every use and DROPS the claim if the quote is no longer there (research_policy: official documentation, stored URL/publisher/access date/claim; fallback: omit rather than rely on model memory). Zoom's support centre refuses non-browser fetches; the Zoom claims rest on Zoom's product pages, which serve plain HTML.",
+  "claims": [
+    {
+      "id": "C01",
+      "competitor": "Google Meet",
+      "claim": "Google Meet's translated captions are a Google Workspace feature tied to the Business and Enterprise editions.",
+      "quote": "customers with Business Standard, Business Plus, Enterprise Standard, and Enterprise Plus editions can continue to use translated captions through their existing subscriptions",
+      "url": "https://support.google.com/meet/answer/10964115?hl=en",
+      "publisher": "Google Meet Help",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C02",
+      "competitor": "Google Meet",
+      "claim": "Google Meet's translated captions translate to and from specific languages (captions, not spoken audio).",
+      "quote": "You can use translated captions to translate to and from specific languages",
+      "url": "https://support.google.com/meet/answer/10964115?hl=en",
+      "publisher": "Google Meet Help",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C03",
+      "competitor": "Microsoft Teams",
+      "claim": "Microsoft Teams meetings offer real-time live captions of what is said.",
+      "quote": "Teams can detect what’s said in a meeting and present real-time captions",
+      "url": "https://support.microsoft.com/en-us/office/use-live-captions-in-microsoft-teams-meetings-4be2d304-f675-4b57-8347-cbd000a21260",
+      "publisher": "Microsoft Support",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C04",
+      "competitor": "Microsoft Teams",
+      "claim": "Microsoft Teams offers live translated captions in meetings.",
+      "quote": "Use live translated captions",
+      "url": "https://support.microsoft.com/en-us/office/use-live-captions-in-microsoft-teams-meetings-4be2d304-f675-4b57-8347-cbd000a21260",
+      "publisher": "Microsoft Support",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C05",
+      "competitor": "BigBlueButton",
+      "claim": "BigBlueButton positions itself as virtual classroom software and is an open-source project.",
+      "quote": "Open Source Project",
+      "url": "https://bigbluebutton.org/",
+      "publisher": "BigBlueButton",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C06",
+      "competitor": "BigBlueButton",
+      "claim": "BigBlueButton includes multi-user whiteboards.",
+      "quote": "Easy-to-use multiuser whiteboards",
+      "url": "https://bigbluebutton.org/",
+      "publisher": "BigBlueButton",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C07",
+      "competitor": "Zoom",
+      "claim": "Zoom's free Basic plan caps a meeting at 40 minutes.",
+      "quote": "40 minutes max per meeting",
+      "url": "https://www.zoom.com/en/products/virtual-meetings/",
+      "publisher": "Zoom",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C08",
+      "competitor": "Zoom",
+      "claim": "Zoom's free Basic plan caps a meeting at 100 participants.",
+      "quote": "100 participants max per meeting",
+      "url": "https://www.zoom.com/en/products/virtual-meetings/",
+      "publisher": "Zoom",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C09",
+      "competitor": "Zoom",
+      "claim": "Zoom Meetings list breakout rooms among their features.",
+      "quote": "Breakout rooms",
+      "url": "https://www.zoom.com/en/products/virtual-meetings/",
+      "publisher": "Zoom",
+      "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C10",
+      "competitor": "Zoom",
+      "claim": "Zoom's AI assistant offers meeting summaries.",
+      "quote": "Meeting summaries",
+      "url": "https://www.zoom.com/en/products/ai-assistant/",
+      "publisher": "Zoom",
+      "accessDate": "2026-09-13"
+    }
+  ]
+}

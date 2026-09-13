@@ -1,0 +1,530 @@
+{
+  "id": "20260912T102007786-46a7",
+  "started": "2026-09-12T10:20:07.786Z",
+  "finished": "2026-09-12T10:31:44.737Z",
+  "istDate": "2026-09-12",
+  "args": {
+    "dryRun": true,
+    "batch": 1,
+    "limit": 4,
+    "only": null,
+    "retry": null,
+    "fresh": null,
+    "promote": null,
+    "publish": "none",
+    "openPr": false,
+    "report": false,
+    "help": false
+  },
+  "attempted": [
+    "b1-02",
+    "b1-03",
+    "b1-04",
+    "b1-05"
+  ],
+  "approved": [],
+  "published": [],
+  "blocked": [
+    "b1-02",
+    "b1-03",
+    "b1-04",
+    "b1-05"
+  ],
+  "refused": null,
+  "calls": [
+    {
+      "articleId": "b1-02",
+      "stage": "write",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 3352,
+      "out": 2631,
+      "cost": 0.00034456000000000005,
+      "latencyMs": 19181,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-02",
+      "stage": "edit",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5748,
+      "out": 2976,
+      "cost": 0.00129312,
+      "latencyMs": 81754,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-02",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5489,
+      "out": 1662,
+      "cost": 0.00090448,
+      "latencyMs": 45507,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-02",
+      "stage": "repair",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 5754,
+      "out": 2615,
+      "cost": 0.00043936,
+      "latencyMs": 14780,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-02",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5535,
+      "out": 1634,
+      "cost": 0.00090032,
+      "latencyMs": 36127,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-03",
+      "stage": "write",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 3265,
+      "out": 2602,
+      "cost": 0.00033876,
+      "latencyMs": 15873,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-03",
+      "stage": "edit",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5664,
+      "out": 3401,
+      "cost": 0.0014054,
+      "latencyMs": 76559,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-03",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5462,
+      "out": 1556,
+      "cost": 0.00087264,
+      "latencyMs": 37831,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-03",
+      "stage": "repair",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 5791,
+      "out": 2836,
+      "cost": 0.00045851999999999997,
+      "latencyMs": 10270,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-03",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5721,
+      "out": 1712,
+      "cost": 0.0009370400000000001,
+      "latencyMs": 43100,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-04",
+      "stage": "write",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 3230,
+      "out": 2475,
+      "cost": 0.0003272,
+      "latencyMs": 14708,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-04",
+      "stage": "edit",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5470,
+      "out": 2242,
+      "cost": 0.0010653600000000002,
+      "latencyMs": 54750,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-04",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 4538,
+      "out": 1583,
+      "cost": 0.00080628,
+      "latencyMs": 44337,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-04",
+      "stage": "repair",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 4826,
+      "out": 2164,
+      "cost": 0.00036616,
+      "latencyMs": 8989,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-04",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 4968,
+      "out": 1578,
+      "cost": 0.00083928,
+      "latencyMs": 35401,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-05",
+      "stage": "write",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 3255,
+      "out": 2564,
+      "cost": 0.00033532,
+      "latencyMs": 15012,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-05",
+      "stage": "edit",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 5596,
+      "out": 2210,
+      "cost": 0.00106648,
+      "latencyMs": 56497,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-05",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 4525,
+      "out": 1473,
+      "cost": 0.00077444,
+      "latencyMs": 29863,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-05",
+      "stage": "repair",
+      "task": "content_writer",
+      "route": "openrouter",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "provider": "CoreWeave",
+      "in": 4878,
+      "out": 1858,
+      "cost": 0.00034376,
+      "latencyMs": 7137,
+      "finish": "stop",
+      "status": "ok"
+    },
+    {
+      "articleId": "b1-05",
+      "stage": "review",
+      "task": "content_reviewer",
+      "route": "openrouter",
+      "model": "qwen/qwen3-32b",
+      "provider": "DeepInfra",
+      "in": 4681,
+      "out": 2131,
+      "cost": 0.0009711600000000001,
+      "latencyMs": 48359,
+      "finish": "stop",
+      "status": "ok"
+    }
+  ],
+  "totals": {
+    "in": 97748,
+    "out": 43903,
+    "costUsd": 0.0148,
+    "calls": 20
+  },
+  "articles": {
+    "b1-02": {
+      "slug": "virtual-classroom-vs-video-conferencing",
+      "title": "Virtual Classroom vs Video Conferencing: What Changes for Teaching?",
+      "status": "blocked",
+      "reason": "still failing after the repair pass (score 94; ANSWER_LENGTH: the answer under \"Is a meeting tool enough for teaching?\" is 123 words — write a standalone answer of about 40–100 words directly under the heading; ANSWER_LENGTH: the answer under \"When should I stick with a plain meeting tool?\" is 148 words — write a standalone answer of about 40–100 words directly under the heading)",
+      "score": 94,
+      "repaired": true,
+      "tokens": {
+        "in": 25878,
+        "out": 11518
+      },
+      "costUsd": 0.0039,
+      "stages": {
+        "write": {
+          "in": 3352,
+          "out": 2631,
+          "costUsd": 0.00034,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        },
+        "edit": {
+          "in": 5748,
+          "out": 2976,
+          "costUsd": 0.00129,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "review": {
+          "in": 11024,
+          "out": 3296,
+          "costUsd": 0.0018,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "repair": {
+          "in": 5754,
+          "out": 2615,
+          "costUsd": 0.00044,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        }
+      },
+      "draft": "C:\\Users\\test\\Downloads\\quick\\marketing-site\\content-engine\\drafts\\blocked-virtual-classroom-vs-video-conferencing.md"
+    },
+    "b1-03": {
+      "slug": "virtual-classroom-vs-lms",
+      "title": "Virtual Classroom vs LMS: Which Layer Does a Training Business Need?",
+      "status": "blocked",
+      "reason": "still failing after the repair pass (score 92; RELATED_LINKS: no link to a related article (link the genuinely related ones from the brief, 2–4 when they exist); ANSWER_LENGTH: the answer under \"Do I need an LMS for live training?\" is 157 words — write a standalone answer of about 40–100 words directly under the heading; ANSWER_LENGTH: the answer under \"Can a virtual classroom replace an LMS?\" is 144 words — write a standalone answer of about 40–100 words directly under the heading; ANSWER_LENGTH: the answer under \"What should I buy first: an LMS or a virtual classroom?\" is 163 words — write a standalone answer of about 40–100 words directly under the heading)",
+      "score": 92,
+      "repaired": true,
+      "tokens": {
+        "in": 25903,
+        "out": 12107
+      },
+      "costUsd": 0.004,
+      "stages": {
+        "write": {
+          "in": 3265,
+          "out": 2602,
+          "costUsd": 0.00034,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        },
+        "edit": {
+          "in": 5664,
+          "out": 3401,
+          "costUsd": 0.00141,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "review": {
+          "in": 11183,
+          "out": 3268,
+          "costUsd": 0.00181,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "repair": {
+          "in": 5791,
+          "out": 2836,
+          "costUsd": 0.00046,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        }
+      },
+      "draft": "C:\\Users\\test\\Downloads\\quick\\marketing-site\\content-engine\\drafts\\blocked-virtual-classroom-vs-lms.md"
+    },
+    "b1-04": {
+      "slug": "how-to-run-a-live-online-class",
+      "title": "How to Run a Live Online Class: A Trainer's Checklist",
+      "status": "blocked",
+      "reason": "still failing after the repair pass (score 95; RELATED_LINKS: no link to a related article (link the genuinely related ones from the brief, 2–4 when they exist))",
+      "score": 95,
+      "repaired": true,
+      "tokens": {
+        "in": 23032,
+        "out": 10042
+      },
+      "costUsd": 0.0034,
+      "stages": {
+        "write": {
+          "in": 3230,
+          "out": 2475,
+          "costUsd": 0.00033,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        },
+        "edit": {
+          "in": 5470,
+          "out": 2242,
+          "costUsd": 0.00107,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "review": {
+          "in": 9506,
+          "out": 3161,
+          "costUsd": 0.00165,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "repair": {
+          "in": 4826,
+          "out": 2164,
+          "costUsd": 0.00037,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        }
+      },
+      "draft": "C:\\Users\\test\\Downloads\\quick\\marketing-site\\content-engine\\drafts\\blocked-how-to-run-a-live-online-class.md"
+    },
+    "b1-05": {
+      "slug": "virtual-classroom-features-for-trainers",
+      "title": "Best Virtual Classroom Features for Professional Trainers",
+      "status": "blocked",
+      "reason": "still failing after the repair pass (score 90; RELATED_LINKS: no link to a related article (link the genuinely related ones from the brief, 2–4 when they exist); ANSWER_LENGTH: the answer under \"Can learners join without installing software or creating an account?\" is 24 words — write a standalone answer of about 40–100 words directly under the heading; BOLD: 13 bold spans; UNSUPPORTED_CLAIM: unsupported number claim: \"20 sessions per month saving 8 hours monthly with AI notes\"; UNSUPPORTED_CLAIM: unsupported number claim: \"10 hours monthly post-class work without automation\")",
+      "score": 90,
+      "repaired": true,
+      "tokens": {
+        "in": 22935,
+        "out": 10236
+      },
+      "costUsd": 0.0035,
+      "stages": {
+        "write": {
+          "in": 3255,
+          "out": 2564,
+          "costUsd": 0.00034,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        },
+        "edit": {
+          "in": 5596,
+          "out": 2210,
+          "costUsd": 0.00107,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "review": {
+          "in": 9206,
+          "out": 3604,
+          "costUsd": 0.00174,
+          "model": "qwen/qwen3-32b",
+          "route": "openrouter"
+        },
+        "repair": {
+          "in": 4878,
+          "out": 1858,
+          "costUsd": 0.00034,
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "route": "openrouter"
+        }
+      },
+      "draft": "C:\\Users\\test\\Downloads\\quick\\marketing-site\\content-engine\\drafts\\blocked-virtual-classroom-features-for-trainers.md"
+    }
+  },
+  "models": {
+    "content_writer": [
+      {
+        "route": "openrouter",
+        "id": "deepseek/deepseek-v4-flash-0731",
+        "in": 0.04,
+        "out": 0.08
+      },
+      {
+        "route": "openrouter",
+        "id": "google/gemini-2.5-flash-lite",
+        "in": 0.1,
+        "out": 0.4
+      }
+    ],
+    "content_reviewer": [
+      {
+        "route": "openrouter",
+        "id": "qwen/qwen3-32b",
+        "in": 0.08,
+        "out": 0.28
+      },
+      {
+        "route": "openrouter",
+        "id": "google/gemini-2.5-flash-lite",
+        "in": 0.1,
+        "out": 0.4
+      }
+    ]
+  }
+}

@@ -18,6 +18,8 @@ const blog = defineCollection({
       'Infrastructure & Performance',
       'Enterprise Use Cases',
       'Product',
+      'Teaching',
+      'Translation',
     ]),
     cover: z.string().optional(),
     author: z.string().default('The Ollasync team'),
@@ -28,6 +30,12 @@ const blog = defineCollection({
     pillarSlug: z.string().optional(),
     takeaways: z.array(z.string()).default([]),
     keywords: z.array(z.string()).default([]),
+    /** research sources cited by the article (content engine): rendered as a "Sources" list under the body */
+    sources: z
+      .array(z.object({ url: z.string().url(), publisher: z.string(), accessDate: z.string(), claim: z.string() }))
+      .default([]),
+    /** explicit related-post slugs (shown first in "Related reading"; older posts gain one when a new post links them) */
+    related: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
 });

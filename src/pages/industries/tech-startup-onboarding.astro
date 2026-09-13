@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Faster time-to-productivity",
+    "body": "New hires learn faster when they can consume complex technical onboarding in their native language."
+  },
+  {
+    "title": "Unified company culture",
+    "body": "Host global all-hands meetings where everyone feels included and understands the vision."
+  },
+  {
+    "title": "Developer-friendly API",
+    "body": "Integrate Ollasync directly into your internal startup tools."
+  }
+];
+const faqs = [
+  {
+    "question": "Is it easy to set up?",
+    "answer": "Ollasync requires no downloads or complex installations. It runs directly in the browser."
+  }
+];
+---
+<SeoPage 
+  title="Tech Startup Remote Onboarding Tools" 
+  description="Onboard global engineering and sales talent faster with AI-translated video sessions." 
+  category="Industries" 
+  intro="Hyper-growth startups hire the best talent, regardless of geography. Ollasync helps you onboard remote teams seamlessly across language barriers." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

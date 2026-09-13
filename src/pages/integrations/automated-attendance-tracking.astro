@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Foolproof verification",
+    "body": "Track active window presence and engagement, not just login status."
+  },
+  {
+    "title": "Instant reporting",
+    "body": "Generate compliance-ready attendance reports the moment the session ends."
+  },
+  {
+    "title": "Multi-session tracking",
+    "body": "Track attendance across multi-day global training events easily."
+  }
+];
+const faqs = [
+  {
+    "question": "Can reports be exported?",
+    "answer": "Yes, reports can be exported to CSV, PDF, or synced directly to your HRIS."
+  }
+];
+---
+<SeoPage 
+  title="Automated Training Attendance Tracking Software" 
+  description="Solve compliance headaches with automated, foolproof attendance tracking." 
+  category="Integrations" 
+  intro="Compliance officers waste hours manually verifying attendance. Ollasync automates the entire process, providing verifiable proof of presence for global training sessions." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

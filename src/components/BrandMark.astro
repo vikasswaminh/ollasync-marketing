@@ -1,0 +1,25 @@
+---
+// The Ollasync mark: a thick ring broken by two narrow notches — a "sync" glyph.
+// Geometry measured off the product artwork rather than eyeballed: band thickness is 0.37 of the
+// outer radius, notches centred at 132° and 325° (roughly opposite), ~7° wide.
+// Replaces the old padlock, which belonged to the previous security-led branding.
+interface Props { size?: number; class?: string }
+const { size = 28, class: cls } = Astro.props;
+// Unique per instance so two marks on one page (nav + footer) can't collide on the gradient id.
+const gid = 'ollamark-' + Math.random().toString(36).slice(2, 9);
+---
+<svg
+  width={size} height={size} viewBox="0 0 24 24" fill="none"
+  class={cls} aria-hidden="true" focusable="false"
+>
+  <defs>
+    <linearGradient id={gid} x1="12" y1="3.5" x2="12" y2="20.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4AA6FF" />
+      <stop offset="1" stop-color="#2F79F0" />
+    </linearGradient>
+  </defs>
+  <g stroke={`url(#${gid})`} stroke-width="3.4" fill="none">
+    <path d="M6.605 6.790 A7.5 7.5 0 1 0 17.828 16.720" />
+    <path d="M18.429 15.863 A7.5 7.5 0 0 0 7.280 6.172" />
+  </g>
+</svg>

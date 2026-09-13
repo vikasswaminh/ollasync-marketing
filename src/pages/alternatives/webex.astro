@@ -1,0 +1,13 @@
+﻿---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+    { title: 'No localization overhead', body: 'Create one live session for every region. Ollasync avoids the cost and delay of translating, re-recording, and maintaining separate content.' },
+    { title: '19+ languages in one session', body: 'Each participant chooses a language for translated audio or AI captions and can take part in the discussion.' },
+    { title: 'Tools for everyday work', body: 'Use secure browser video, optional recording, attendance tracking, and AI notes in one workspace.' }
+];
+const faqs = [
+    { question: 'How many languages does Ollasync support?', answer: 'Ollasync supports 19+ languages for live translation and captions, with each participant choosing their own language.' },
+    { question: 'Does this eliminate localization costs?', answer: 'For live training and events, one source session can serve multilingual audiences without separate localized recordings or sessions.' }
+];
+---
+<SeoPage title="Webex Alternative with Live Translation" description="A Webex alternative for multilingual webinars, meetings, and employee training without localization costs." category="Alternatives" intro="Ollasync lets each participant choose captions or translated audio in 19+ languages during the session." benefits={benefits} faqs={faqs} />

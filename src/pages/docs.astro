@@ -6,11 +6,11 @@ import { SITE } from '../consts';
 
 const title = 'Docs & getting started';
 const description =
-  'Get started with Ollasync — start an encrypted meeting in one click on our hosted service, or talk to us about a self-hosted deployment.';
+  'Get started with Ollasync — start an AI-powered meeting in one click, use the API and SDKs, or talk to us about an Enterprise deployment.';
 
 const paths = [
-  { icon: 'zap', title: 'Start hosted', body: 'Create an account on our EU-hosted service and start an encrypted meeting or deal room in one click — no download.', cta: { label: 'Open the app', href: SITE.appUrl } },
-  { icon: 'server', title: 'Self-host', body: 'Run Ollasync on your own infrastructure — private cloud, on-premise or air-gapped. We’ll share the deployment guide and size it with you.', cta: { label: 'Talk to us', href: '/contact' } },
+  { icon: 'zap', title: 'Start hosted', body: 'Create an account and start an encrypted meeting or deal room in one click — no download.', cta: { label: 'Open the app', href: SITE.appUrl } },
+  { icon: 'layers', title: 'Developers & API', body: 'Build meetings into your product with the REST API, Go/Python/TypeScript SDKs and webhooks — all documented with OpenAPI.', cta: { label: 'Explore the API', href: '/developers' } },
   { icon: 'shield-check', title: 'Security & DPA', body: 'For security reviews: the whitepaper describes exactly what’s protected and how, and a DPA is available for your legal team.', cta: { label: 'Security model', href: '/security' } },
 ];
 
@@ -18,8 +18,8 @@ const quickstart = [
   'Open the app and create your workspace with email, a magic link or SSO.',
   'Start a meeting or a deal room — invite people by link or email.',
   'Guests join from any browser, no download; hosts approve who comes in.',
-  'Turn on messaging for end-to-end encrypted, server-blind conversations.',
-  'When you’re ready, move to single-tenant or self-hosted — the experience is identical.',
+  'Record a meeting to get an automatic transcript, AI notes and action items.',
+  'Turn on end-to-end encryption for any meeting that needs to stay fully private.',
 ];
 ---
 <Base title={title} description={description}>
@@ -32,28 +32,28 @@ const quickstart = [
     lead="However you deploy, the product works the same. Pick your path below, or follow the quickstart."
   />
 
-  <section class="section section--tan" style="padding-block:48px">
+  <section class="section" style="padding-top:28px">
     <div class="container">
       <div class="grid grid-3" data-reveal>
         {paths.map((p) => (
-          <div class="card card--hover" style="display:flex;flex-direction:column;padding:26px">
+          <div class="card card--hover" style="display:flex;flex-direction:column">
             <div class="card__icon"><Icon name={p.icon} size={20} /></div>
             <h2 class="h3">{p.title}</h2>
-            <p style="flex:1;color:var(--muted);font-size:14.5px;margin-top:8px;line-height:1.55">{p.body}</p>
-            <a href={p.cta.href} class="btn btn-ghost btn-sm" style="align-self:flex-start;margin-top:20px">{p.cta.label} <span class="arrow">→</span></a>
+            <p style="flex:1">{p.body}</p>
+            <a href={p.cta.href} class="btn btn-ghost btn-sm" style="align-self:flex-start;margin-top:16px">{p.cta.label} <span class="arrow">→</span></a>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-block:48px">
+  <section class="section" style="padding-top:12px">
     <div class="container" style="max-width:760px">
       <div class="section-head" data-reveal>
         <span class="eyebrow-label">Quickstart</span>
         <h2 class="h2" style="margin-top:12px">Your first encrypted meeting</h2>
       </div>
-      <ol class="quickstart" data-reveal style="margin-top:24px">
+      <ol class="quickstart" data-reveal>
         {quickstart.map((q, i) => (
           <li><span class="quickstart__n mono">{i + 1}</span><span>{q}</span></li>
         ))}
@@ -64,6 +64,6 @@ const quickstart = [
 
 <style>
   .quickstart { list-style: none; display: grid; gap: 14px; counter-reset: q; }
-  .quickstart li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 22px; border: 1.5px solid #e2e8f0; border-radius: var(--r-lg); background: #ffffff; box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04); color: var(--ink-2); font-size: 15.5px; line-height: 1.55; }
-  .quickstart__n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.25); color: #6d28d9; font-size: 13px; font-weight: 800; flex: none; }
+  .quickstart li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg-2); color: var(--ink-2); font-size: 15.5px; }
+  .quickstart__n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--violet-050); border: 1px solid var(--violet-300); color: var(--blue); font-size: 13px; flex: none; }
 </style>

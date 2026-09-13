@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Reduce workplace accidents",
+    "body": "Clear, native-language instruction ensures safety protocols are fully understood."
+  },
+  {
+    "title": "Train diverse shifts simultaneously",
+    "body": "Host one safety briefing for a shift where workers speak 5 different languages."
+  },
+  {
+    "title": "On-demand safety recordings",
+    "body": "Record the live translated session for new hires to watch later."
+  }
+];
+const faqs = [
+  {
+    "question": "Can workers join from mobile devices?",
+    "answer": "Yes, Ollasync works directly in the browser on mobile devices, perfect for factory floor access."
+  }
+];
+---
+<SeoPage 
+  title="Manufacturing Safety Training Video Platform" 
+  description="Ensure factory floor safety with multilingual video training that every worker understands." 
+  category="Industries" 
+  intro="Safety training is only effective if workers understand it. Ollasync ensures your diverse, multilingual manufacturing workforce receives critical safety instructions clearly." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

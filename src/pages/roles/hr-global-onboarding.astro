@@ -1,0 +1,31 @@
+---
+import SeoPage from '../../layouts/SeoPage.astro';
+const benefits = [
+  {
+    "title": "Standardized onboarding",
+    "body": "Ensure every employee receives the exact same HR messaging and compliance training."
+  },
+  {
+    "title": "Inclusive company culture",
+    "body": "Make international hires feel welcome from day one with native-language support."
+  },
+  {
+    "title": "Reduce HR workload",
+    "body": "Stop scheduling separate orientation sessions for different regions."
+  }
+];
+const faqs = [
+  {
+    "question": "Can we record HR sessions?",
+    "answer": "Yes, sessions can be recorded with all language tracks preserved for future hires."
+  }
+];
+---
+<SeoPage 
+  title="HR Tools for Global Employee Onboarding" 
+  description="Streamline international hiring with multilingual onboarding video software." 
+  category="Roles" 
+  intro="Human Resources directors managing distributed teams face massive logistical hurdles. Ollasync simplifies global onboarding by translating live orientation sessions instantly." 
+  benefits={benefits} 
+  faqs={faqs} 
+/>

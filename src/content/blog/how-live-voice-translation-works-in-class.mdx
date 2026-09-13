@@ -1,0 +1,51 @@
+---
+title: "How live voice translation works in an online class"
+description: "What actually happens between a trainer speaking English and a learner hearing Hindi: the live recognition → translation → delivery pipeline, what the latency feels like, and where machine translation honestly ends."
+pubDate: 2026-08-31
+category: "Product"
+cover: "/og-classroom.jpg"
+readTime: 6
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["real-time voice translation online class", "live voice translation classroom", "translated online teaching", "multilingual live class"]
+takeaways:
+  - "The pipeline is speech recognition → neural machine translation → delivery as captions or spoken audio, running continuously while the trainer teaches."
+  - "Each learner picks their own language — each of 19 languages is available and a single session can run up to five different ones at once."
+  - "Live translation runs a beat behind the speaker, like listening through an interpreter; captions appear immediately and refine as the sentence completes."
+  - "It's machine translation: superb for following a lesson, not a replacement for certified interpretation in legal or medical settings."
+---
+
+A trainer in London says: *"Today we'll balance the equation on the left."* Two seconds later a student in Delhi hears it in Hindi, a student in Madrid reads it in Spanish, and a third listens to the original English. Nobody clicked anything mid-sentence; nobody hired an interpreter.
+
+This piece explains what actually happens in between — because "AI translates your voice" deserves a concrete answer, including the honest parts.
+
+## The pipeline, in three stages
+
+**1. Recognition.** As the trainer speaks, streaming speech recognition converts audio into text continuously — not in batches after each sentence, but word by word as the audio arrives. This is why captions can start rendering while a sentence is still being spoken.
+
+**2. Translation.** The recognised text flows through neural machine translation into each language a learner has selected. Because recognition streams, translation streams too: a caption first appears as a best-effort partial, then refines as the sentence completes and the models get the full context. If you watch closely you'll see captions occasionally rewrite their last few words — that's the refinement working, not a glitch.
+
+**3. Delivery.** Each learner chooses how to receive their language: **captions** rendered under the class, or **spoken audio** — a synthesised voice reading the translation, so a learner can watch the whiteboard instead of the subtitles. Different learners in the same class can make different choices; the trainer does nothing differently either way.
+
+## What "live" honestly means
+
+Translation runs **a beat behind the speaker** — typically the time it takes for a phrase to complete plus the translation itself. Subjectively it feels like listening through a good consecutive interpreter: you're never waiting for a paragraph, but you're not lip-synced either.
+
+Two practical implications for teaching:
+
+- **Pause at the seams.** Trainers who leave half a breath between ideas give the translation a natural boundary and learners a cleaner experience.
+- **Numbers and names survive better with context.** "In 1848" translates robustly; a bare "48" mid-mumble is harder for any recogniser. Say the sentence, not the fragment.
+
+## One class, nineteen languages
+
+Learners can follow in any of the nineteen supported languages — English, Spanish, French, Hindi, German, Chinese, Japanese, Portuguese, Arabic, Russian, Kannada, Tamil, Telugu, Marathi, Bengali, Gujarati, Malayalam, Punjabi and Urdu — each independently, with up to five different languages running in one session. The trainer teaches once. There is no per-language session to schedule, no duplicated cohort, and joining happens [in the browser with nothing to install](/features/video-meetings).
+
+## Where the honesty line is
+
+This is machine translation of live speech. For following a lesson, asking questions and keeping a multilingual cohort genuinely together, it is transformative. It is **not** certified interpretation: for a courtroom, a medical consent conversation or a contract negotiation, you still want a human professional. We'd rather say that plainly than have you discover it in the wrong meeting.
+
+Accents, crosstalk and poor microphones degrade recognition — the same way they degrade human comprehension. A decent headset mic is the single highest-leverage upgrade a trainer can make.
+
+## Where to see it
+
+The [AI classroom](/) runs this pipeline on every class with translation enabled, and the same session also produces the transcript and the class notes automatically. Plans are [per trainer seat](/pricing) — learners join free.

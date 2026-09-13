@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects. The self-host landing page was retired (cloud-only product): a real 301, not a
+# 200 meta-refresh stub that search engines index as "Redirecting to…".
+/self-hosted    /pricing/   301
+/self-hosted/*  /pricing/   301

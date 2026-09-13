@@ -200,7 +200,7 @@ Note: For organizational compliance requirements requiring central cloud recordi
 
 Detailed capacity planning for zero-trust video relays requires evaluating network interface throughput, memory bandwidth, and packet-per-second (PPS) processing capabilities. Unlike traditional media servers that perform CPU-bound decoding and re-encoding operations, zero-trust SFUs function primarily as high-speed packet inspection and routing engines. Server performance is determined by network I/O throughput and kernel packet handling efficiency rather than raw compute cycles. Configuring bare-metal host interfaces with Receive Side Scaling (RSS), DPDK (Data Plane Development Kit), or eBPF packet routing bypasses standard Linux kernel network stack bottlenecks, allowing a single 32-core server node to forward millions of encrypted media packets per second with sub-millisecond latency.
 
-Memory bandwidth optimization is equally critical when scaling high-density WebRTC relay nodes. Because zero-trust SFUs manage thousands of simultaneous media packet buffers across active client sockets, configuring high-frequency DDR5 memory in multi-channel configurations prevents memory bus saturation during peak traffic periods. In addition, isolating signaling microservices, state caches (such as Redis), and media routing processes onto separate NUMA (Non-Uniform Memory Access) nodes ensures predictable latency and prevents cross-thread memory contention, maintaining high service availability across enterprise operations.
+Memory bandwidth optimization is equally critical when scaling high-density WebRTC relay nodes. Because zero-trust SFUs manage thousands of simultaneous media packet buffers across active client sockets, configuring high-frequency DDR5 memory in multi-channel configurations prevents memory bus saturation during peak traffic periods. In addition, isolating signaling microservices, in-memory state caches, and media routing processes onto separate NUMA (Non-Uniform Memory Access) nodes ensures predictable latency and prevents cross-thread memory contention, maintaining high service availability across enterprise operations.
 
 ## Step-by-Step Enterprise Implementation Blueprint
 
@@ -217,8 +217,8 @@ Executing Phase 1 lays the foundation for cryptographic identity governance acro
 ### Phase 2: Sovereign Relay Deployment
 
 - Provision isolated compute instances across your private cloud VPCs or physical data centers.
-- Deploy zero-knowledge SFU nodes (such as LiveKit or Jitsi JVB running in E2EE routing mode) across secure host subnets.
-- Configure dedicated Coturn relays operating over TLS port 5349 to ensure firewall traversal for remote mobile workers without compromising payload security.
+- Deploy zero-knowledge SFU nodes (open-source media servers running in end-to-end-encrypted routing mode) across secure host subnets.
+- Configure dedicated TURN relays operating over TLS port 5349 to ensure firewall traversal for remote mobile workers without compromising payload security.
 
 Phase 2 focuses on provisioning and hardening the physical and virtual host infrastructure supporting zero-trust media routing. Compute nodes are provisioned across isolated network subnets, with ingress firewall rules restricted exclusively to necessary media and signaling ports. Zero-knowledge SFU container images are pulled from private, audited registries and launched with minimal root privileges. STUN and TURN relays are deployed in redundant pairs across distinct network paths, enforcing secure TLS encapsulation for remote client connections traversing restrictive corporate firewalls or public Wi-Fi networks.
 

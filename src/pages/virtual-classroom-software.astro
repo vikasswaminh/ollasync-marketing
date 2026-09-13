@@ -1,0 +1,190 @@
+---
+// Pillar page for the "virtual classroom software" query family (SEO_STRATEGY §1; content policy pillar 1).
+// Hand-written and honesty-guarded: every capability is the shipped one described in data/features.ts, every
+// language number is LANG_COUNT, and nothing is claimed here that the feature pages do not claim. The blog's
+// classroom cluster links back to this page.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { FEATURES } from '../data/features';
+import { USE_CASES } from '../data/useCases';
+import { LANG_COUNT, LANGS_PER_SESSION } from '../data/languages';
+import { SITE } from '../consts';
+
+const title = 'Virtual Classroom Software for Trainers | Ollasync';
+const description = `Virtual classroom software for live teaching: browser classes, live voice translation in ${LANG_COUNT} languages, AI class notes, webinars and access-controlled replays.`;
+
+const feat = (slug: string) => FEATURES.find((f) => f.slug === slug)!;
+const inside = ['live-translation', 'video-meetings', 'ai', 'live-captions', 'webinars', 'recordings'].map(feat);
+const audiences = ['trainers', 'tutors', 'academies', 'onboarding'].map((s) => USE_CASES.find((u) => u.slug === s)!);
+
+const differences = [
+  { title: 'Learners, not attendees', body: 'A meeting tool treats everyone as a participant; translated captions exist on some plans, but nobody hears the class in their own language. A classroom lets each learner follow in theirs — captions or spoken audio — while the trainer teaches once.' },
+  { title: 'The class continues after the call', body: 'Notes, the attendance list, the replay: in a classroom they come out of the session itself, not rebuilt from memory by the trainer afterwards.' },
+  { title: 'Built for the shapes teaching takes', body: 'Recurring cohorts, open-enrolment sessions, Q&A and polls for a large class, a recordings library per course.' },
+];
+const steps = [
+  { title: 'Share one link', body: 'Learners open it in the browser on any device. No install, no account, and your own message on the invitation.' },
+  { title: 'Teach once, translated live', body: `You speak; each learner reads captions or hears your voice in their language — ${LANG_COUNT} languages, up to ${LANGS_PER_SESSION} different ones in a single class.` },
+  { title: 'Notes and replay, after', body: 'A recorded class can transcribe and summarise itself, the notes go to everyone on the invite list, and the replay opens only for the people you allow.' },
+];
+const tradeoffs = [
+  { title: 'Internal meetings inside a suite', body: 'If your day is status meetings with colleagues who already live in a suite, its calendar and chat integration is the better fit. A virtual classroom earns its place when the sessions are lessons.' },
+  { title: 'Certified interpretation', body: 'Live translation here is machine translation of the trainer’s voice. It is excellent for following a lesson; it is not a substitute for a certified interpreter in legal or medical settings.' },
+  { title: 'End-to-end encrypted sessions', body: 'A class can run end-to-end encrypted. By design an encrypted session cannot be recorded or turned into AI notes — that trade is deliberate, and it is yours to make per meeting.' },
+];
+const faq = [
+  { q: 'What is virtual classroom software?', a: 'Software for teaching live over the internet: a video class in the browser plus the parts of teaching a meeting tool leaves out — learners following in their own language, class notes, attendance, recordings kept per course. Ollasync is one, built for trainers, tutors and academies.' },
+  { q: 'How is a virtual classroom different from Zoom or Google Meet?', a: 'Meeting software is general-purpose: translated captions exist on some of their plans, but the class is still delivered in one language. A virtual classroom is organised around teaching: each learner picks their own language for captions or spoken audio, notes and attendance come out of the session, and replays sit in a course library. Where the meeting suite is stronger — internal meetings, calendar and chat integration — it stays the better choice.' },
+  { q: 'Do learners need to install anything?', a: 'No. Learners join from a link in a modern browser on desktop or mobile.' },
+  { q: 'Which languages can a class run in?', a: `${LANG_COUNT} languages are available for live translation, each learner choosing their own, and one live class can run up to ${LANGS_PER_SESSION} different languages at once.` },
+  { q: 'Is there a free plan?', a: 'Yes — it is free to start, and paid plans are priced per trainer seat, not per learner.' },
+];
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: `${SITE.name} — virtual classroom software`,
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web browser',
+  description,
+  url: new URL('/virtual-classroom-software/', SITE.url).href,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free to start; per-seat plans' },
+};
+---
+<Base title={title} description={description} schema={schema}>
+  <PageHero
+    eyebrow="Virtual classroom software"
+    eyebrowIcon="video"
+    crumbs={[{ label: 'Virtual classroom software' }]}
+    title="Virtual classroom software built around"
+    titleAccent="live teaching"
+    lead={`Run live classes in the browser where every learner follows in their own language, the notes write themselves and the replay stays under your control — made for trainers, tutors and academies, not for status meetings.`}
+  >
+    <div class="hero__cta" data-reveal style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px">
+      <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
+      <a href="/features/live-translation/" class="btn btn-ghost">See live translation</a>
+    </div>
+  </PageHero>
+
+  <!-- WHAT CHANGES -->
+  <section class="section" style="padding-top:34px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Classroom, not meeting</span>
+        <h2 class="h2" style="margin-top:12px">What a virtual classroom changes</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        {differences.map((d) => (
+          <div class="card diff">
+            <h3 class="h3">{d.title}</h3>
+            <p>{d.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIDE -->
+  <section class="section band" style="padding-top:34px;padding-bottom:34px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">What is inside</span>
+        <h2 class="h2" style="margin-top:12px">Every part of a class, in one workspace</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        {inside.map((f) => (
+          <a href={`/features/${f.slug}/`} class="card card--hover inside">
+            <div class="card__icon"><Icon name={f.icon} size={20} /></div>
+            <h3 class="h3">{f.label}</h3>
+            <p>{f.metaDescription}</p>
+            <span class="inside__more mono">Read about {f.label.toLowerCase()} <Icon name="arrow" size={15} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW A CLASS RUNS -->
+  <section class="section" style="padding-top:34px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">How a class runs</span>
+        <h2 class="h2" style="margin-top:12px">Three steps, nothing to set up per learner</h2>
+      </div>
+      <ol class="steps" data-reveal>
+        {steps.map((st, i) => (
+          <li class="step card">
+            <span class="step__n">{i + 1}</span>
+            <h3 class="h3">{st.title}</h3>
+            <p>{st.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- WHO IT IS FOR -->
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Who it is for</span>
+        <h2 class="h2" style="margin-top:12px">Made for people who teach for a living</h2>
+      </div>
+      <div class="grid grid-2" data-reveal>
+        {audiences.map((u) => (
+          <a href={`/use-cases/${u.slug}/`} class="card card--hover aud">
+            <div class="card__icon card__icon--teal"><Icon name={u.icon} size={22} /></div>
+            <h3 class="h3">{u.label}</h3>
+            <p>{u.lead}</p>
+            <span class="inside__more mono">For {u.label.toLowerCase()} <Icon name="arrow" size={15} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE MEETING SOFTWARE STILL WINS -->
+  <section class="section band" style="padding-top:34px;padding-bottom:34px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Honest limits</span>
+        <h2 class="h2" style="margin-top:12px">Where meeting software still wins</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        {tradeoffs.map((t) => (
+          <div class="card diff">
+            <h3 class="h3">{t.title}</h3>
+            <p>{t.body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="muted" data-reveal style="margin-top:22px;font-size:14.5px;max-width:70ch">
+        The comparison pages say the same thing in more detail: <a href="/vs/zoom/">Ollasync vs Zoom</a>, <a href="/vs/google-meet/">vs Google Meet</a> and <a href="/vs/microsoft-teams/">vs Microsoft Teams</a>, each with a “where they are stronger” section.
+        Plans and seats are on the <a href="/pricing/">pricing page</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={faq} title="Virtual classroom software — questions" />
+  <Cta />
+</Base>
+
+<style>
+  /* Layout only — colours, radii, shadows and type come from the tokens. Caps live on TEXT, never on containers. */
+  .diff h3 { font-size: 17px; }
+  .diff p { margin-top: 8px; }
+  .inside, .aud { display: flex; flex-direction: column; }
+  .inside p, .aud p { flex: 1; }
+  .inside__more { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-size: 13px; color: var(--iris); }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .step { position: relative; padding-top: 22px; }
+  .step__n {
+    position: absolute; top: -14px; left: 18px; width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--grad-accent); color: #fff; font-weight: 900; font-size: 13px; box-shadow: var(--sh-btn);
+  }
+  .band { background: var(--bg-2); border-block: 1px solid var(--line); }
+  .band a { color: var(--iris); text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 900px) { .steps { grid-template-columns: 1fr; } }
+</style>
