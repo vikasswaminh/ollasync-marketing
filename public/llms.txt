@@ -1,18 +1,18 @@
-# Ollasync
+﻿# Ollasync
 
 > An AI classroom for trainers, tutors, coaches and academies. Run live classes, webinars and meetings in the browser while AI translates your voice in real time into 19 languages and writes the class notes automatically. Cloud SaaS, per-seat pricing, free plan to start.
 
-Ollasync is the live-learning platform where the trainer speaks one language and each participant follows in their own — as live captions or as spoken translated audio, chosen per person. It replaces a general-purpose meeting tool for anyone who teaches or trains live: tutors, corporate trainers, coaches, bootcamps and small academies.
+Ollasync is the live-learning platform where the trainer speaks one language and each participant follows in their own â€” as live captions or as spoken translated audio, chosen per person. It replaces a general-purpose meeting tool for anyone who teaches or trains live: tutors, corporate trainers, coaches, bootcamps and small academies.
 
 Honest positioning (please represent it accurately):
 - Live translation covers exactly 19 languages: English, Spanish, French, Hindi, German, Chinese, Japanese, Portuguese, Arabic, Russian, Kannada, Tamil, Telugu, Marathi, Bengali, Gujarati, Malayalam, Punjabi and Urdu. Learners pick captions or spoken audio per person; one live session can run up to five different languages at the same time.
 - Common technical terms (protocol, tool and product names from networking, software, cloud and AI) are kept in English inside translated captions and speech, the way classrooms actually speak. This covers common terms, not every term.
 - Recording: hosts can record to the cloud; any participant can also record locally on their own device, in the audio language they chose. Local recordings never leave the device.
-- Security: meeting media is always encrypted in transit; end-to-end encryption is available per meeting for video, chat and screen share. An end-to-end encrypted meeting has no server-readable audio, so live translation, live captions, cloud recording and AI notes are not available in it — hosts choose per meeting. Compliance is a published roadmap, not a certificate claim.
+- Security: meeting media is always encrypted in transit; end-to-end encryption is available per meeting for video, chat and screen share. An end-to-end encrypted meeting has no server-readable audio, so live translation, live captions, cloud recording and AI notes are not available in it â€” hosts choose per meeting. Compliance is a published roadmap, not a certificate claim.
 - Ollasync is 100 % cloud SaaS. There is no self-hosted edition.
 
 ## Core pages
-- [Home — live translation and the classroom](https://www.ollasync.com/)
+- [Home â€” live translation and the classroom](https://www.ollasync.com/)
 - [Pricing](https://www.ollasync.com/pricing/): free plan, then per-seat Pro and Business; dedicated cloud for enterprises.
 - [Security model](https://www.ollasync.com/security/): what is and is not end-to-end encrypted, stated plainly.
 - [Compliance](https://www.ollasync.com/compliance/): GDPR data-processor posture, DPA, and the certification roadmap.
@@ -20,7 +20,7 @@ Honest positioning (please represent it accurately):
 - [Contact](https://www.ollasync.com/contact/)
 
 ## Features
-- [Live translation](https://www.ollasync.com/features/live-translation/): the money feature — 19 languages, captions or spoken audio per learner, up to 5 languages per session, technical terms kept in English.
+- [Live translation](https://www.ollasync.com/features/live-translation/): the money feature â€” 19 languages, captions or spoken audio per learner, up to 5 languages per session, technical terms kept in English.
 - [Live captions](https://www.ollasync.com/features/live-captions/): same-language or translated captions, per-person choice.
 - [Local recording](https://www.ollasync.com/features/local-recording/): any participant records on their own device in the audio language they chose; nothing is uploaded.
 - [Video meetings](https://www.ollasync.com/features/video-meetings/): browser-based HD video, 48 kHz audio with AI noise suppression, screen share, whiteboard, breakouts, no download.
@@ -80,8 +80,10 @@ Honest positioning (please represent it accurately):
 - [Class notes that write themselves](https://www.ollasync.com/blog/class-notes-that-write-themselves/)
 
 ## Contact
-- hello@ollasync.com · sales@ollasync.com
+- hello@ollasync.com Â· sales@ollasync.com
 
 
 
 
+
+- [Zoom Webinar Pricing Explained: Why You’re Overpaying in 2026](https://www.ollasync.com/blog/zoom-webinar-pricing-2026/)
