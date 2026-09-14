@@ -16,12 +16,10 @@ for (const file of files) {
     let body = parts.slice(2).join('---\n');
     
     // Replace { and } with HTML entities in the body to prevent MDX parsing errors
-    // But we need to be careful not to break existing valid MDX components if any.
-    // Since these are generated blog posts, they shouldn't have MDX components.
     body = body.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
     
-    // Replace < followed by digit, $, or = with &lt;
-    body = body.replace(/<([\d\$=])/g, '&lt;$1');
+    // Replace < followed by digit, $, =, or - with &lt;
+    body = body.replace(/<([\d\$=\-])/g, '&lt;$1');
     
     content = '---\n' + frontmatter + '---\n' + body;
   }
