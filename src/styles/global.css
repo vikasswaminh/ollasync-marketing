@@ -90,6 +90,7 @@
 /* ---------- reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
+a, button, .btn { -webkit-tap-highlight-color: transparent; }
 html {
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
@@ -165,7 +166,7 @@ h1, h2, h3, h4 { line-height: 1.08; letter-spacing: -.03em; font-weight: 700; te
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
+.btn:active { transform: scale(0.98); }
 .btn-primary { color: #fff; background: var(--red); border-color: var(--red-dark); box-shadow: 0 8px 20px rgba(218, 41, 28, .24); }
 .btn-primary:hover { color: #fff; background: var(--red-dark); box-shadow: 0 12px 26px rgba(218, 41, 28, .3); }
 .btn-ghost { color: var(--ink); background: #fff; border-color: var(--line-strong); }
@@ -339,6 +340,7 @@ h1, h2, h3, h4 { line-height: 1.08; letter-spacing: -.03em; font-weight: 700; te
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 22px 18px; }
   .footer__grid > div:first-child { grid-column: 1 / -1; }
   .footer__grid h4 { margin-bottom: 8px; }
-  .footer__grid a { font-size: 13.5px; }
+  .footer__grid a { font-size: 15px; }
+  .footer ul { gap: 14px; }
   :root { --pad: 20px; }
 }

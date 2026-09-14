@@ -138,7 +138,11 @@ const schema = {
   .related__card { display: flex; flex-direction: column; }
   @media (max-width: 860px) {
     .post__grid { grid-template-columns: 1fr; gap: 24px; }
-    .post__toc { display: none; }
+    .post__toc { display: block; grid-row: 1; margin-bottom: 24px; background: var(--bg-2); padding: 16px; border-radius: var(--r); }
+    .post__toc-inner { position: static; }
+    .post__toc nav ul { border-left: none; }
+    .post__toc a { padding-left: 0; border-left: none; }
+    .post__toc .sub a { padding-left: 12px; }
     .related { grid-template-columns: 1fr; }
   }
 </style>

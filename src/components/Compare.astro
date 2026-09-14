@@ -5,6 +5,7 @@ interface Props { competitor: Competitor; }
 const { competitor } = Astro.props;
 const cell = (c: { state: string; note?: string }) => c;
 ---
+<div class="cmp-hint">Swipe to see more →</div>
 <div class="cmp-wrap">
   <table class="cmp">
     <thead>
@@ -46,7 +47,11 @@ const cell = (c: { state: string; note?: string }) => c;
 </div>
 
 <style>
-  .cmp-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .cmp-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); position: relative; }
+  .cmp-hint { display: none; }
+  @media (max-width: 640px) {
+    .cmp-hint { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; text-align: right; }
+  }
   .cmp { width: 100%; border-collapse: collapse; min-width: 640px; }
   .cmp th, .cmp td { text-align: left; padding: 15px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
   .cmp thead th { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-2); background: var(--bg-2); }
