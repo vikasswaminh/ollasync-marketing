@@ -48,10 +48,40 @@ Honest positioning (please represent it accurately):
 - [Ollasync vs Webex](https://www.ollasync.com/vs/webex/)
 - [Ollasync vs BigBlueButton](https://www.ollasync.com/vs/bigbluebutton/)
 
+
+## Industries & Roles
+- [Healthcare Compliance](https://www.ollasync.com/industries/healthcare-compliance-training/)
+- [Franchise Training](https://www.ollasync.com/industries/franchise-training-software/)
+- [Manufacturing Safety](https://www.ollasync.com/industries/manufacturing-safety-training/)
+- [Tech Startup Onboarding](https://www.ollasync.com/industries/tech-startup-onboarding/)
+- [Non-Profit Training](https://www.ollasync.com/industries/non-profit-volunteer-training/)
+- [L&D Professionals](https://www.ollasync.com/roles/learning-and-development/)
+- [HR Global Onboarding](https://www.ollasync.com/roles/hr-global-onboarding/)
+- [Customer Success](https://www.ollasync.com/roles/customer-success-webinars/)
+- [Sales Enablement](https://www.ollasync.com/roles/sales-enablement-coaching/)
+
+## Integrations
+- [LMS Integration](https://www.ollasync.com/integrations/lms-video-translation/)
+- [SCORM Virtual Classroom](https://www.ollasync.com/integrations/scorm-virtual-classroom/)
+- [AI Video Analytics](https://www.ollasync.com/integrations/ai-video-analytics/)
+- [Attendance Tracking](https://www.ollasync.com/integrations/automated-attendance-tracking/)
+
 ## Guides
+- [Automated Webinar Translation Guide](https://www.ollasync.com/blog/automated-webinar-translation-guide/)
+- [Improve Remote Training Engagement Across Timezones](https://www.ollasync.com/blog/improve-remote-training-engagement-timezones/)
+- [Replacing Human Interpreters in Corporate Webinars](https://www.ollasync.com/blog/replacing-human-interpreters-webinars/)
+- [How to Host a Multilingual Corporate Town Hall](https://www.ollasync.com/blog/host-multilingual-corporate-town-hall/)
+- [Overcoming Zoom Fatigue in Corporate Training](https://www.ollasync.com/blog/overcoming-zoom-fatigue-corporate-training/)
+- [AI Agents for Interactive Employee Training](https://www.ollasync.com/blog/ai-agents-interactive-employee-training/)
+- [Real-Time Voice Cloning for Corporate Training](https://www.ollasync.com/blog/real-time-voice-cloning-corporate-training/)
+- [Spatial Audio Virtual Classrooms for Remote Teams](https://www.ollasync.com/blog/spatial-audio-virtual-classrooms/)
 - [How live voice translation works in class](https://www.ollasync.com/blog/how-live-voice-translation-works-in-class/)
 - [Nineteen languages, one classroom](https://www.ollasync.com/blog/ten-languages-one-classroom/)
 - [Class notes that write themselves](https://www.ollasync.com/blog/class-notes-that-write-themselves/)
 
 ## Contact
 - hello@ollasync.com · sales@ollasync.com
+
+
+
+
