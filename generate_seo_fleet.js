@@ -1,9 +1,6 @@
 ﻿import fs from 'fs';
 import path from 'path';
 
-// This script is designed to be run locally to generate the remaining 98 SEO guides (3,000 - 5,000 words each).
-// Usage: node generate_seo_fleet.js --batch 1
-
 const API_KEY = 'sk-t0-JOgxi8vsS91o-TJTjF1bcSX6aSbDaUuXQRBsx8xwrgPOp9ocyUGsDIOZVMsxZ';
 const API_URL = 'http://10.1.30.34:8088/v1/chat/completions';
 const MODEL = 'gemini-3.8-flash-high';
@@ -43,6 +40,7 @@ const batches = {
     { title: 'Breaking Down Silos in Multinational Corporations', keyword: 'multinational corporations silos', category: 'Guides' },
     { title: 'The Future of Global Collaboration: AI Translation', keyword: 'future of global collaboration', category: 'Guides' }
   ],
+
   4: [
     { title: 'How to Train Non-English Speaking Employees Effectively', keyword: 'train non-english speaking employees', category: 'Guides' },
     { title: 'Reducing Cognitive Load in Multilingual Meetings', keyword: 'reduce cognitive load', category: 'Guides' },
@@ -54,78 +52,80 @@ const batches = {
     { title: 'How to Foster Inclusion in Global Remote Teams', keyword: 'inclusion global remote teams', category: 'Guides' },
     { title: 'Scaling Your Customer Success Training Globally', keyword: 'scaling customer success training', category: 'Guides' },
     { title: 'The Role of AI in Cross-Cultural Business Communication', keyword: 'ai cross-cultural communication', category: 'Guides' }
-  ],
+  ]
+
+,
   5: [
-    { title: 'Manufacturing Safety Training Video Platform: The 2026 Guide', keyword: 'manufacturing safety video platform', category: 'Enterprise Use Cases' },
-    { title: 'Healthcare Compliance Training Software for Global Teams', keyword: 'healthcare compliance training software', category: 'Compliance' },
-    { title: 'Non-Profit Volunteer Training Software: Cost-Effective Solutions', keyword: 'non profit volunteer training software', category: 'Enterprise Use Cases' },
-    { title: 'SCORM Compliant Virtual Classrooms for Higher Education', keyword: 'scorm compliant virtual classroom', category: 'Compliance' },
-    { title: 'Real Estate Virtual Tours and Multilingual Client Meetings', keyword: 'real estate virtual tours', category: 'Enterprise Use Cases' },
-    { title: 'Financial Services: Secure, Translated Client Webinars', keyword: 'financial services webinars', category: 'Security' },
-    { title: 'Tech Startups: Pitching Global Investors in Their Native Tongue', keyword: 'pitching global investors', category: 'Enterprise Use Cases' },
-    { title: 'Retail & Franchise Training: Standardizing the Global Brand', keyword: 'retail franchise training', category: 'Enterprise Use Cases' },
-    { title: 'Hospitality Staff Onboarding: Overcoming Language Barriers', keyword: 'hospitality staff onboarding', category: 'Enterprise Use Cases' },
-    { title: 'Logistics & Supply Chain: Multilingual Vendor Communications', keyword: 'logistics supply chain communications', category: 'Enterprise Use Cases' }
+    { title: 'Manufacturing Safety Training Video Platform: The 2026 Guide', keyword: 'manufacturing safety training video', category: 'Industry Verticals' },
+    { title: 'Healthcare Compliance Training Software for Global Teams', keyword: 'healthcare compliance training software', category: 'Industry Verticals' },
+    { title: 'Non-Profit Volunteer Training Software: Cost-Effective Solutions', keyword: 'nonprofit volunteer training software', category: 'Industry Verticals' },
+    { title: 'SCORM Compliant Virtual Classrooms for Higher Education', keyword: 'scorm compliant virtual classrooms', category: 'Industry Verticals' },
+    { title: 'Real Estate Virtual Tours and Multilingual Client Meetings', keyword: 'real estate virtual tours', category: 'Industry Verticals' },
+    { title: 'Financial Services: Secure, Translated Client Webinars', keyword: 'financial services secure translated', category: 'Industry Verticals' },
+    { title: 'Tech Startups: Pitching Global Investors in Their Native Tongue', keyword: 'tech startups pitching global', category: 'Industry Verticals' },
+    { title: 'Retail & Franchise Training: Standardizing the Global Brand', keyword: 'retail  franchise training', category: 'Industry Verticals' },
+    { title: 'Hospitality Staff Onboarding: Overcoming Language Barriers', keyword: 'hospitality staff onboarding overcoming', category: 'Industry Verticals' },
+    { title: 'Logistics & Supply Chain: Multilingual Vendor Communications', keyword: 'logistics  supply chain', category: 'Industry Verticals' }
   ],
   6: [
-    { title: 'Legal Tech: Secure Multilingual Depositions and Consultations', keyword: 'legal tech depositions', category: 'Security' },
-    { title: 'Pharmaceuticals: Global Clinical Trial Training Platforms', keyword: 'pharmaceuticals clinical trial training', category: 'Enterprise Use Cases' },
-    { title: 'Construction: On-Site Safety Briefings in 19 Languages', keyword: 'construction safety briefings', category: 'Enterprise Use Cases' },
-    { title: 'E-commerce: Multilingual Product Launch Webinars', keyword: 'ecommerce product launch webinars', category: 'Enterprise Use Cases' },
-    { title: 'SaaS Customer Onboarding: Scaling Global User Education', keyword: 'saas customer onboarding', category: 'Enterprise Use Cases' },
-    { title: 'Government & Public Sector: Accessible Multilingual Town Halls', keyword: 'government town halls', category: 'Enterprise Use Cases' },
-    { title: 'Aviation & Aerospace: Global Crew Training Solutions', keyword: 'aviation crew training', category: 'Enterprise Use Cases' },
-    { title: 'Energy & Utilities: Remote Multilingual Safety Protocols', keyword: 'energy utilities safety protocols', category: 'Enterprise Use Cases' },
-    { title: 'Automotive: Dealership Training Across Borders', keyword: 'automotive dealership training', category: 'Enterprise Use Cases' },
-    { title: 'Media & Entertainment: Global Press Junkets via AI Translation', keyword: 'media entertainment press junkets', category: 'Enterprise Use Cases' }
+    { title: 'Legal Tech: Secure Multilingual Depositions and Consultations', keyword: 'legal tech secure multilingual', category: 'Industry Verticals' },
+    { title: 'Pharmaceuticals: Global Clinical Trial Training Platforms', keyword: 'pharmaceuticals global clinical trial', category: 'Industry Verticals' },
+    { title: 'Construction: On-Site Safety Briefings in 19 Languages', keyword: 'construction onsite safety briefings', category: 'Industry Verticals' },
+    { title: 'E-commerce: Multilingual Product Launch Webinars', keyword: 'ecommerce multilingual product launch', category: 'Industry Verticals' },
+    { title: 'SaaS Customer Onboarding: Scaling Global User Education', keyword: 'saas customer onboarding scaling', category: 'Industry Verticals' },
+    { title: 'Government & Public Sector: Accessible Multilingual Town Halls', keyword: 'government  public sector', category: 'Industry Verticals' },
+    { title: 'Aviation & Aerospace: Global Crew Training Solutions', keyword: 'aviation  aerospace global', category: 'Industry Verticals' },
+    { title: 'Energy & Utilities: Remote Multilingual Safety Protocols', keyword: 'energy  utilities remote', category: 'Industry Verticals' },
+    { title: 'Automotive: Dealership Training Across Borders', keyword: 'automotive dealership training across', category: 'Industry Verticals' },
+    { title: 'Media & Entertainment: Global Press Junkets via AI Translation', keyword: 'media  entertainment global', category: 'Industry Verticals' }
   ],
   7: [
-    { title: '15 Proven Strategies to Keep Students Engaged in Virtual Classrooms', keyword: 'how to keep students engaged virtual classroom', category: 'Teaching' },
-    { title: 'Interactive Webinar Ideas to Boost Audience Retention', keyword: 'interactive webinar ideas', category: 'Teaching' },
-    { title: 'How to Reduce Cognitive Load in Virtual Learning', keyword: 'reduce cognitive load virtual learning', category: 'Teaching' },
-    { title: 'The Ultimate Checklist for Hosting a Flawless Webinar', keyword: 'how to host a webinar', category: 'Guides' },
-    { title: 'How to Repurpose Webinar Content into 100+ Marketing Assets', keyword: 'repurpose webinar content', category: 'Guides' },
-    { title: 'Webinar Promotion Strategies That Actually Work in 2026', keyword: 'webinar promotion strategies', category: 'Guides' },
-    { title: 'How to Design High-Converting Webinar Registration Pages', keyword: 'webinar registration pages', category: 'Guides' },
-    { title: 'The Best Equipment for Professional Home Studio Webinars', keyword: 'webinar equipment', category: 'Guides' },
-    { title: 'How to Handle Q&A Sessions Like a Pro', keyword: 'webinar q&a sessions', category: 'Guides' },
-    { title: 'Webinar Analytics: Which Metrics Actually Matter?', keyword: 'webinar analytics', category: 'Guides' }
+    { title: '15 Proven Strategies to Keep Students Engaged in Virtual Classrooms', keyword: '15 proven strategies to', category: 'Tactical How-To' },
+    { title: 'Interactive Webinar Ideas to Boost Audience Retention', keyword: 'interactive webinar ideas to', category: 'Tactical How-To' },
+    { title: 'How to Reduce Cognitive Load in Virtual Learning', keyword: 'how to reduce cognitive', category: 'Tactical How-To' },
+    { title: 'The Ultimate Checklist for Hosting a Flawless Webinar', keyword: 'the ultimate checklist for', category: 'Tactical How-To' },
+    { title: 'How to Repurpose Webinar Content into 100+ Marketing Assets', keyword: 'how to repurpose webinar', category: 'Tactical How-To' },
+    { title: 'Webinar Promotion Strategies That Actually Work in 2026', keyword: 'webinar promotion strategies that', category: 'Tactical How-To' },
+    { title: 'How to Design High-Converting Webinar Registration Pages', keyword: 'how to design highconverting', category: 'Tactical How-To' },
+    { title: 'The Best Equipment for Professional Home Studio Webinars', keyword: 'the best equipment for', category: 'Tactical How-To' },
+    { title: 'How to Handle Q&A Sessions Like a Pro', keyword: 'how to handle qa', category: 'Tactical How-To' },
+    { title: 'Webinar Analytics: Which Metrics Actually Matter?', keyword: 'webinar analytics which metrics', category: 'Tactical How-To' }
   ],
   8: [
-    { title: 'How to Follow Up After a Webinar to Maximize Sales', keyword: 'webinar follow up', category: 'Guides' },
-    { title: 'The Anatomy of a Perfect Webinar Pitch', keyword: 'webinar pitch', category: 'Guides' },
-    { title: 'How to Overcome Camera Anxiety for Virtual Presenters', keyword: 'overcome camera anxiety', category: 'Guides' },
-    { title: 'Gamification in Virtual Classrooms: A Practical Guide', keyword: 'gamification virtual classrooms', category: 'Teaching' },
-    { title: 'How to Use Polls and Surveys to Drive Webinar Engagement', keyword: 'webinar polls surveys', category: 'Teaching' },
-    { title: 'Troubleshooting Common Webinar Tech Issues Live', keyword: 'troubleshooting webinar tech issues', category: 'Guides' },
-    { title: 'How to Co-Host a Webinar with Industry Influencers', keyword: 'co-host webinar influencers', category: 'Guides' },
-    { title: 'Creating Accessible Webinars for Viewers with Disabilities', keyword: 'accessible webinars', category: 'Guides' },
-    { title: 'How to Script a Webinar That Keeps Viewers Hooked', keyword: 'script a webinar', category: 'Guides' },
-    { title: 'The Best Times and Days to Host a B2B Webinar in 2026', keyword: 'best times to host webinar', category: 'Guides' }
+    { title: 'How to Follow Up After a Webinar to Maximize Sales', keyword: 'how to follow up', category: 'Tactical How-To' },
+    { title: 'The Anatomy of a Perfect Webinar Pitch', keyword: 'the anatomy of a', category: 'Tactical How-To' },
+    { title: 'How to Overcome Camera Anxiety for Virtual Presenters', keyword: 'how to overcome camera', category: 'Tactical How-To' },
+    { title: 'Gamification in Virtual Classrooms: A Practical Guide', keyword: 'gamification in virtual classrooms', category: 'Tactical How-To' },
+    { title: 'How to Use Polls and Surveys to Drive Webinar Engagement', keyword: 'how to use polls', category: 'Tactical How-To' },
+    { title: 'Troubleshooting Common Webinar Tech Issues Live', keyword: 'troubleshooting common webinar tech', category: 'Tactical How-To' },
+    { title: 'How to Co-Host a Webinar with Industry Influencers', keyword: 'how to cohost a', category: 'Tactical How-To' },
+    { title: 'Creating Accessible Webinars for Viewers with Disabilities', keyword: 'creating accessible webinars for', category: 'Tactical How-To' },
+    { title: 'How to Script a Webinar That Keeps Viewers Hooked', keyword: 'how to script a', category: 'Tactical How-To' },
+    { title: 'The Best Times and Days to Host a B2B Webinar in 2026', keyword: 'the best times and', category: 'Tactical How-To' }
   ],
   9: [
-    { title: 'The 2026 Future of Work: How AI is Erasing the Language Barrier', keyword: 'future of remote work 2026', category: 'Guides' },
-    { title: 'AI Agents in Employee Training: What to Expect', keyword: 'ai agents employee training', category: 'Guides' },
-    { title: 'Spatial Audio in Remote Meetings: The Next Frontier', keyword: 'spatial audio remote meetings', category: 'Guides' },
-    { title: 'The Death of the Traditional Corporate Headquarters', keyword: 'death of corporate headquarters', category: 'Guides' },
-    { title: 'How Asynchronous Video is Changing Global Collaboration', keyword: 'asynchronous video collaboration', category: 'Guides' },
-    { title: 'The Ethics of AI in the Workplace: A 2026 Perspective', keyword: 'ethics of ai workplace', category: 'Security' },
-    { title: 'Why the "English-Only" Corporate Mandate is Dead', keyword: 'english-only corporate mandate', category: 'Guides' },
-    { title: 'The Rise of the AI-Augmented Knowledge Worker', keyword: 'ai-augmented knowledge worker', category: 'Guides' },
-    { title: 'How Virtual Reality and AI Translation Will Merge', keyword: 'virtual reality ai translation', category: 'Guides' },
-    { title: 'The Environmental Impact of Virtual vs. In-Person Events', keyword: 'environmental impact virtual events', category: 'Guides' }
+    { title: 'The 2026 Future of Work: How AI is Erasing the Language Barrier', keyword: 'the 2026 future of', category: 'Future of Work' },
+    { title: 'AI Agents in Employee Training: What to Expect', keyword: 'ai agents in employee', category: 'Future of Work' },
+    { title: 'Spatial Audio in Remote Meetings: The Next Frontier', keyword: 'spatial audio in remote', category: 'Future of Work' },
+    { title: 'The Death of the Traditional Corporate Headquarters', keyword: 'the death of the', category: 'Future of Work' },
+    { title: 'How Asynchronous Video is Changing Global Collaboration', keyword: 'how asynchronous video is', category: 'Future of Work' },
+    { title: 'The Ethics of AI in the Workplace: A 2026 Perspective', keyword: 'the ethics of ai', category: 'Future of Work' },
+    { title: 'Why the "English-Only" Corporate Mandate is Dead', keyword: 'why the englishonly corporate', category: 'Future of Work' },
+    { title: 'The Rise of the AI-Augmented Knowledge Worker', keyword: 'the rise of the', category: 'Future of Work' },
+    { title: 'How Virtual Reality and AI Translation Will Merge', keyword: 'how virtual reality and', category: 'Future of Work' },
+    { title: 'The Environmental Impact of Virtual vs. In-Person Events', keyword: 'the environmental impact of', category: 'Future of Work' }
   ],
   10: [
-    { title: 'Predictive Analytics in Employee Engagement and Training', keyword: 'predictive analytics employee engagement', category: 'Guides' },
-    { title: 'The Evolution of the Chief Learning Officer Role', keyword: 'chief learning officer role', category: 'Guides' },
-    { title: 'How AI is Democratizing Access to Global Talent', keyword: 'ai democratizing global talent', category: 'Guides' },
-    { title: 'The Future of B2B Sales: AI-Translated Virtual Pitching', keyword: 'future of b2b sales', category: 'Guides' },
-    { title: 'Deepfakes vs. Voice Cloning: Security in Enterprise AI', keyword: 'deepfakes vs voice cloning', category: 'Security' },
-    { title: 'The Role of Emotional Intelligence in AI-Mediated Communication', keyword: 'emotional intelligence ai communication', category: 'Guides' },
-    { title: 'How Gen Z is Reshaping Corporate Training Expectations', keyword: 'gen z corporate training', category: 'Guides' },
-    { title: 'The Integration of Wearables and Virtual Classrooms', keyword: 'wearables virtual classrooms', category: 'Teaching' },
-    { title: 'Blockchain and Credentialing in Corporate L&D', keyword: 'blockchain credentialing corporate l&d', category: 'Security' },
-    { title: 'The 4-Day Workweek and the Need for Hyper-Efficient Meetings', keyword: '4-day workweek efficient meetings', category: 'Guides' }
+    { title: 'Predictive Analytics in Employee Engagement and Training', keyword: 'predictive analytics in employee', category: 'Future of Work' },
+    { title: 'The Evolution of the Chief Learning Officer Role', keyword: 'the evolution of the', category: 'Future of Work' },
+    { title: 'How AI is Democratizing Access to Global Talent', keyword: 'how ai is democratizing', category: 'Future of Work' },
+    { title: 'The Future of B2B Sales: AI-Translated Virtual Pitching', keyword: 'the future of b2b', category: 'Future of Work' },
+    { title: 'Deepfakes vs. Voice Cloning: Security in Enterprise AI', keyword: 'deepfakes vs voice cloning', category: 'Future of Work' },
+    { title: 'The Role of Emotional Intelligence in AI-Mediated Communication', keyword: 'the role of emotional', category: 'Future of Work' },
+    { title: 'How Gen Z is Reshaping Corporate Training Expectations', keyword: 'how gen z is', category: 'Future of Work' },
+    { title: 'The Integration of Wearables and Virtual Classrooms', keyword: 'the integration of wearables', category: 'Future of Work' },
+    { title: 'Blockchain and Credentialing in Corporate L&D', keyword: 'blockchain and credentialing in', category: 'Future of Work' },
+    { title: 'The 4-Day Workweek and the Need for Hyper-Efficient Meetings', keyword: 'the 4day workweek and', category: 'Future of Work' }
   ]
 };
 
@@ -135,7 +135,7 @@ async function generateChapter(prompt) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': Bearer \
+        'Authorization': 'Bearer ' + API_KEY
       },
       body: JSON.stringify({
         model: MODEL,
@@ -150,39 +150,39 @@ async function generateChapter(prompt) {
     if (!response.ok) {
       const errText = await response.text();
       console.error('API Error:', response.status, errText);
-      return \n\n## Error generating chapter\n\nAPI returned status \\n\n;
+      return `\n\n## Error generating chapter\n\nAPI returned status ${response.status}\n\n`;
     }
     
     const data = await response.json();
     return data.choices[0].message.content;
   } catch (error) {
     console.error('Fetch error:', error);
-    return \n\n## Error generating chapter\n\n\\n\n;
+    return `\n\n## Error generating chapter\n\n${error.message}\n\n`;
   }
 }
 
 async function buildGuide(topic) {
-  console.log(Building guide: \);
+  console.log(`Building guide: ${topic.title}`);
   
   const slug = topic.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   const date = new Date().toISOString().split('T')[0];
   
-  const frontmatter = ---
-title: "\"
-description: "A comprehensive guide on \ and why Ollasync is the best alternative in 2026."
-pubDate: "\"
+  const frontmatter = `---
+title: "${topic.title}"
+description: "A comprehensive guide on ${topic.keyword} and why Ollasync is the best alternative in 2026."
+pubDate: "${date}"
 heroImage: "/blog-placeholder-1.jpg"
-category: "\"
+category: "${topic.category}"
 ---
 
-# \
+# ${topic.title}
 
-;
+`;
 
-  const ch12Prompt = Write Chapter 1 (The Hook) and Chapter 2 (The Problem) for a 4,000-word SEO guide titled "\". Target keyword: "\". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,200 words. Output ONLY markdown.;
-  const ch3Prompt = Write Chapter 3 (Tech Deep Dive / Comparison) for a 4,000-word SEO guide titled "\". Target keyword: "\". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.;
-  const ch4Prompt = Write Chapter 4 (The Playbook / ROI) for a 4,000-word SEO guide titled "\". Target keyword: "\". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.;
-  const ch56Prompt = Write Chapter 5 (Implementation) and Chapter 6 (FAQ) for a 4,000-word SEO guide titled "\". Target keyword: "\". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,000 words. Output ONLY markdown.;
+  const ch12Prompt = `Write Chapter 1 (The Hook) and Chapter 2 (The Problem) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,200 words. Output ONLY markdown.`;
+  const ch3Prompt = `Write Chapter 3 (Tech Deep Dive / Comparison) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.`;
+  const ch4Prompt = `Write Chapter 4 (The Playbook / ROI) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.`;
+  const ch56Prompt = `Write Chapter 5 (Implementation) and Chapter 6 (FAQ) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,000 words. Output ONLY markdown.`;
 
   const [ch12, ch3, ch4, ch56] = await Promise.all([
     generateChapter(ch12Prompt),
@@ -193,8 +193,8 @@ category: "\"
 
   const finalContent = frontmatter + ch12 + ch3 + ch4 + ch56;
   
-  fs.writeFileSync(path.join('src', 'content', 'blog', \.mdx), finalContent);
-  console.log(Successfully built: src/content/blog/\.mdx);
+  fs.writeFileSync(path.join('src', 'content', 'blog', `${slug}.mdx`), finalContent);
+  console.log(`Successfully built: src/content/blog/${slug}.mdx`);
 }
 
 async function main() {
@@ -204,19 +204,18 @@ async function main() {
   
   const topics = batches[batchNum];
   if (!topics) {
-    console.error(Batch \ not found.);
+    console.error(`Batch ${batchNum} not found.`);
     return;
   }
   
-  console.log(Starting execution for Batch \ (\ guides) using model \...);
+  console.log(`Starting execution for Batch ${batchNum} (${topics.length} guides) using model ${MODEL}...`);
   
   for (const topic of topics) {
     await buildGuide(topic);
-    // Add a delay to avoid rate limits
     await new Promise(resolve => setTimeout(resolve, 5000));
   }
   
-  console.log(Batch \ complete!);
+  console.log(`Batch ${batchNum} complete!`);
 }
 
 main().catch(console.error);
