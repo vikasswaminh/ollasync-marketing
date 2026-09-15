@@ -2,7 +2,7 @@
 title: 'Best SSO and enterprise identity integrations for webinar platforms?'
 description: 'A comprehensive, data-backed answer to: Best SSO and enterprise identity integrations for webinar platforms?'
 pubDate: '2026-09-15'
-heroImage: '/blog-placeholder-1.jpg'
+cover: "/og-classroom.jpg"
 category: 'Security'
 ---
 
@@ -47,7 +47,7 @@ Evaluating the **best SSO and enterprise identity** frameworks requires moving b
 |                                                                                   |
 |  +---------------------+       SAML 2.0 / OIDC Assertions     +----------------+  |
 |  | Enterprise IdP      | -----------------------------------> | Webinar Cloud  |  |
-|  | (Entra ID / Okta)   | <----------------------------------- | Host Console   |  |
+|  | (Entra ID / Okta)   | &lt;----------------------------------- | Host Console   |  |
 |  +---------------------+        Token Auth & Attribute Maps   +----------------+  |
 |         |                                                             |           |
 |         | SCIM 2.0                                                    | Audit Logs|
@@ -161,14 +161,14 @@ Evaluating the **best SSO and enterprise identity** frameworks requires distingu
 LEGACY PARADIGM (Host-Centric / Internal-First)
 [IdP: Okta/Entra] ---> [SCIM 2.0 Sync] ---> [Central Admin Console]
                                                     |
-                       [Internal SAML Auth] <-------+-------> [Locked Domain Gate]
+                       [Internal SAML Auth] &lt;-------+-------> [Locked Domain Gate]
                                                                     |
                                                             (Rigid Internal Viewers)
 
 MODERN PARADIGM (Dual-Engine / Orchestration-First)
 [IdP: Okta/Entra] ---> [Host / Admin SCIM] ---> [AI Studio & Dynamic RBAC]
                                                     |
-                       [Attendee Identity Layer] <--+
+                       [Attendee Identity Layer] &lt;--+
                                 |
              +------------------+------------------+
              |                                     |
@@ -376,26 +376,26 @@ Identity data is critical for compliance and incident response. Modern enterpris
 Every identity-linked event must be logged with complete context, formatted as structured JSON:
 
 ```json
-{
+&#123;
   "timestamp": "2026-03-30T14:22:18.421Z",
   "event_type": "webinar.session.privilege_escalated",
-  "actor": {
+  "actor": &#123;
     "directory_id": "usr_entra_9823410a8c",
     "email": "sarah.chen@enterprise.com",
     "ip_address": "198.51.100.42",
     "device_posture": "compliant"
-  },
-  "session": {
+  &#125;,
+  "session": &#123;
     "webinar_id": "web_live_7739201",
     "session_role_before": "presenter",
     "session_role_after": "producer"
-  },
-  "authentication_context": {
+  &#125;,
+  "authentication_context": &#123;
     "protocol": "OIDC",
     "auth_method": "fido2_passkey",
     "idp_issuer": "https://login.microsoftonline.com/v2.0/tenant-guid"
-  }
-}
+  &#125;
+&#125;
 ```
 
 By maintaining this level of granular identity tracing, organizations can verify compliance against **SOC 2 Type II, ISO/IEC 27001, HIPAA, and GDPR** standards across every virtual interaction.# Chapter 4: The Enterprise Solution & Implementation Blueprint
@@ -414,7 +414,7 @@ IdP (Okta / Entra ID) ──[ SAML 2.0 Login Only ]──> Webinar Platform (Iso
 * No SCIM Deprovisioning | * Manual Group Mapping | * Orphaned Access Risks
 
 [ Ollasync Architecture: Bidirectional & Continuous ]
-IdP (Okta / Entra ID / Ping) <──[ SCIM 2.0 + Webhooks ]──> [ OLLASYNC IDENTITY FABRIC ] ──> Webinar Infrastructure
+IdP (Okta / Entra ID / Ping) &lt;──[ SCIM 2.0 + Webhooks ]──> [ OLLASYNC IDENTITY FABRIC ] ──> Webinar Infrastructure
 * Real-time JIT + Revocation | * Dynamic Attribute-Based Access | * Unified Audit Telemetry
 ```
 

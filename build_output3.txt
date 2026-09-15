@@ -1,0 +1,20 @@
+21:29:37 [types] Generated 2.31s
+21:29:37 [build] output: "static"
+21:29:37 [build] directory: C:\Users\test\Downloads\ollasync marketing site\ollasync-marketing\dist\
+21:29:37 [build] Collecting build info...
+21:29:37 [build] ✓ Completed in 2.44s.
+21:29:37 [build] Building static entrypoints...
+21:29:46 [ERROR] [vite] [31mx[39m Build failed in 8.41s
+[@mdx-js/rollup] Could not parse expression with acorn
+file: C:/Users/test/Downloads/ollasync marketing site/ollasync-marketing/src/content/blog/best-budget-friendly-webinar-platforms-for-small-businesses.mdx:170:13
+  Location:
+    C:/Users/test/Downloads/ollasync marketing site/ollasync-marketing/src/content/blog/best-budget-friendly-webinar-platforms-for-small-businesses.mdx:170:13
+  Stack trace:
+    at Object.transform (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/@astrojs/mdx/dist/vite-plugin-mdx.js:51:15)
+  Caused by:
+  Unexpected content after expression
+    at eventsToAcorn (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/micromark-util-events-to-acorn/lib/index.js:96:7)
+    at before (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/micromark-factory-mdx-expression/index.js:129:47)
+    at go (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/micromark/lib/create-tokenizer.js:235:13)
+    at Object.write (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/micromark/lib/create-tokenizer.js:136:5)
+    at subtokenize (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/micromark-util-subtokenize/index.js:69:30)

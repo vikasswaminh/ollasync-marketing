@@ -1,0 +1,13 @@
+21:37:09 [types] Generated 2.35s
+21:37:09 [build] output: "static"
+21:37:09 [build] directory: C:\Users\test\Downloads\ollasync marketing site\ollasync-marketing\dist\
+21:37:09 [build] Collecting build info...
+21:37:09 [build] ✓ Completed in 2.48s.
+21:37:09 [build] Building static entrypoints...
+21:37:21 [ERROR] [vite] [31mx[39m Build failed in 11.84s
+[@mdx-js/rollup] Expected a closing tag for `<br>` (61:332-61:336) before the end of `tableData`
+file: C:/Users/test/Downloads/ollasync marketing site/ollasync-marketing/src/content/blog/global-clinical-trial-training-platforms-for-pharmaceuticals.mdx:61:287
+  Location:
+    C:/Users/test/Downloads/ollasync marketing site/ollasync-marketing/src/content/blog/global-clinical-trial-training-platforms-for-pharmaceuticals.mdx:61:287
+  Stack trace:
+    at Object.transform (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/@astrojs/mdx/dist/vite-plugin-mdx.js:51:15)

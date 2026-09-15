@@ -25,6 +25,7 @@ const blog = defineCollection({
       'Future of Work',
     ]),
     cover: z.string().optional(),
+    heroImage: z.string().optional(),
     author: z.string().default('The Ollasync team'),
     authorRole: z.string().default('Security & product'),
     readTime: z.number().default(6),

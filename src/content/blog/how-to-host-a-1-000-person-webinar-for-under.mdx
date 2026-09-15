@@ -2,7 +2,7 @@
 title: 'How to host a 1,000-person webinar for under'
 description: 'A comprehensive, data-backed answer to: How to host a 1,000-person webinar for under'
 pubDate: '2026-09-15'
-heroImage: '/blog-placeholder-1.jpg'
+cover: "/og-classroom.jpg"
 category: 'Enterprise Use Cases'
 ---
 
@@ -20,8 +20,8 @@ Understanding **how to host a 1000person** event on a lean budget requires disti
 
 | Architecture Model | Primary Tech Stack | Total Cost (Single Event) | Maximum Live Capacity | Two-Way Audio/Video? | Latency |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Option A: Ephemeral SaaS Tier** | Zoom Webinar 1,000 (1-Mo Subscription) | **$79.00** | 1,000 Interactive Viewers | No (Host/Panelist Only) | < 1 second (WebRTC) |
-| **Option B: Value SaaS Alternative** | Zoho Meeting Pro (1,000 Plan) | **$36.00** | 1,000 Interactive Viewers | No (Host/Panelist Only) | < 2 seconds |
+| **Option A: Ephemeral SaaS Tier** | Zoom Webinar 1,000 (1-Mo Subscription) | **$79.00** | 1,000 Interactive Viewers | No (Host/Panelist Only) | &lt; 1 second (WebRTC) |
+| **Option B: Value SaaS Alternative** | Zoho Meeting Pro (1,000 Plan) | **$36.00** | 1,000 Interactive Viewers | No (Host/Panelist Only) | &lt; 2 seconds |
 | **Option C: Custom RTMP Ingest** | OBS Studio + YouTube Live (Unlisted) + Fillout/Airfocus Forms | **$0.00** | Unlimited (Millions) | Text Chat Only | 5–15 seconds (HLS/DASH) |
 | **Option D: Developer Edge Embed** | OBS + Cloudflare Stream + Custom HTML Landing Page | **$5.00 – $12.00** | Unlimited | Custom Live Chat (Matrix/Pusher) | 1–3 seconds (LL-HLS) |
 
@@ -145,7 +145,7 @@ Traditional web conferencing suites were designed for internal corporate meeting
 
 ```
 Legacy Model: Base License ($15–$50/mo) + Webinar 1,000 Add-on ($275–$340/mo) + Storage/AI Add-ons = $4,000–$6,500/year
-Modern Model: Usage-Based or Flat SaaS Tier with Integrated AI = Under $100/mo or Pay-Per-Event (<$500/year)
+Modern Model: Usage-Based or Flat SaaS Tier with Integrated AI = Under $100/mo or Pay-Per-Event (&lt;$500/year)
 ```
 
 ### The Breakdown of Legacy Giants
@@ -173,7 +173,7 @@ The following benchmark demonstrates the cost and capability disparities when pl
 | **Monthly Cost (No Annual Lock)** | $340.00 / month | ~$375.00 / month | N/A (Annual Enterprise License) | $49 – $99 / month |
 | **Annualized Cost** | $3,400.00 / year | ~$3,000.00 / year | $432 – $684 / user/year + Base E3/E5 | $480 – $990 / year |
 | **Attendee Barrier to Entry** | App install or restricted browser client | App install or plugin required | Browser (limited) or Teams client | 100% Zero-Install Browser WebRTC |
-| **Stream Latency** | 2–5 seconds | 3–8 seconds | 10–25 seconds (HLS Broadcast) | Ultra-low (<1s WebRTC) or Low (<3s CMAF) |
+| **Stream Latency** | 2–5 seconds | 3–8 seconds | 10–25 seconds (HLS Broadcast) | Ultra-low (&lt;1s WebRTC) or Low (&lt;3s CMAF) |
 | **Interactive Audience Limit** | 1,000 (view/listen only by default) | 1,000 (view-only broadcast) | Up to 10,000 (moderated broadcast) | 1,000 fully interactive / Stage-switching |
 | **Native AI Engine** | Live transcription, basic AI summary | Live captions, noise removal | Copilot (Requires $30/mo add-on) | Native: Real-time clips, auto-chapters, instant blog/social post-gen |
 | **Audience Engagement Suite** | Basic polls, text Q&A, chat | Slido integration (tiered) | Polls (Forms), moderated Q&A | Gamified polls, dynamic CTAs, embeddable checkout widgets |
@@ -240,7 +240,7 @@ To host a four-figure audience affordably, you must select the right transport p
 | Attribute     | Pure WebRTC       | RTMP to LL-HLS   | WebRTC-to-HLS    |
 |               | (Peer/SFU)        | (Stream Engine)  | Cascading (2026) |
 +---------------+-------------------+------------------+------------------+
-| Latency       | < 500 ms          | 2–5 seconds      | 1–2 seconds      |
+| Latency       | &lt; 500 ms          | 2–5 seconds      | 1–2 seconds      |
 | Host Cost/Mo  | $300 – $1,200     | $20 – $80        | $40 – $120       |
 | CPU Overhead  | High (Client-side)| Low (CDN Edge)   | Low (Edge)       |
 | 1,000p Cap    | Expensive         | Highly Efficient | Optimal Balance  |
@@ -339,14 +339,14 @@ Configure primary and secondary RTMP endpoints within OBS Studio using the **Mul
 ### Out-of-Band Incident Handling
 * **The "Ghost Stream" Fallback:** Configure your custom HTML5 video player (Video.js, Hls.js, or Plyr) with automatic error recovery logic:
 ```javascript
-player.on('error', function() {
+player.on('error', function() &#123;
   // Automatically switch source to secondary CDN edge if buffer stalls > 5000ms
-  player.src({
+  player.src(&#123;
     src: 'https://backup-stream.yourdomain.com/live/index.m3u8',
     type: 'application/x-mpegURL'
-  });
+  &#125;);
   player.play();
-});
+&#125;);
 ```
 
 ---

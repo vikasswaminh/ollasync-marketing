@@ -273,7 +273,7 @@ Selecting between In-Transit Encryption and End-to-End Encryption involves clear
 | **Active Speaker Detection** | Native (Server inspects raw audio energy levels) | Requires Unencrypted Client Audio Volume Headers (RFC 6464) |
 | **Cloud AI Transcription** | Native (Server routes audio to cloud GPUs) | Requires On-Device Local Models (Wasm / WebGPU) |
 | **Breakout Rooms & PSTN Dial-In** | Supported Out-of-the-Box | Requires Cryptographic Gateway Adapters |
-| **Client CPU Utilization** | Standard WebRTC Video Encoding | WebRTC Encoding + SFrame AES-GCM Execution (< 1ms overhead) |
+| **Client CPU Utilization** | Standard WebRTC Video Encoding | WebRTC Encoding + SFrame AES-GCM Execution (&lt; 1ms overhead) |
 | **Subpoena / Intercept Risk** | Provider can be compelled to surrender live streams | Provider holds only unreadable ciphertext |
 
 ### Server-Side Features: Cloud Recording, Active Speaker Switching, AI Transcription
@@ -303,7 +303,7 @@ Under E2EE, cloud GPUs cannot access the encrypted audio feed. Modern platforms 
 
 Hardware cryptographic acceleration has minimized the historical performance costs associated with client-side encryption:
 
-- **Cryptographic Execution Overhead:** Modern CPU microarchitectures (including Intel AES-NI and ARMv8 Cryptography Extensions) allow WebAssembly and native engines to execute SFrame per-frame AES-GCM encryption in under 1ms (often < 0.2ms) per frame, resulting in imperceptible latency additions.
+- **Cryptographic Execution Overhead:** Modern CPU microarchitectures (including Intel AES-NI and ARMv8 Cryptography Extensions) allow WebAssembly and native engines to execute SFrame per-frame AES-GCM encryption in under 1ms (often &lt; 0.2ms) per frame, resulting in imperceptible latency additions.
 - **Bandwidth Overhead:** SFrame adds a small header footprint (typically 8 to 16 bytes per frame) alongside a 16-byte authentication tag. For a standard 30fps video stream, this represents less than 1% of additional network payload — an insignificant fraction of standard broadband allocations.
 
 ## Enterprise Security, Compliance, and Threat Modeling

@@ -2,7 +2,7 @@
 title: 'Are there SCORM-compliant webinar platforms for higher education?'
 description: 'A comprehensive, data-backed answer to: Are there SCORM-compliant webinar platforms for higher education?'
 pubDate: '2026-09-15'
-heroImage: '/blog-placeholder-1.jpg'
+cover: "/og-classroom.jpg"
 category: 'Teaching'
 ---
 
@@ -155,12 +155,12 @@ Adobe Connect and BigBlueButton were built specifically for distance learning, b
 ```
 SCORM Package Structure Required by Higher Ed LMS:
 course_package.zip/
-│── imsmanifest.xml           <-- Manifest identifying course structure & metadata
-│── scormdriver.js            <-- API wrapper handling LMS handshake (LMSInitialize)
-│── index.html                <-- Video player interface with interaction hooks
+│── imsmanifest.xml           &lt;-- Manifest identifying course structure & metadata
+│── scormdriver.js            &lt;-- API wrapper handling LMS handshake (LMSInitialize)
+│── index.html                &lt;-- Video player interface with interaction hooks
 └── assets/
-    ├── lecture_stream.mp4    <-- Indexed video asset
-    └── interactions.json     <-- In-video quizzes, polls, and timeline checkpoints
+    ├── lecture_stream.mp4    &lt;-- Indexed video asset
+    └── interactions.json     &lt;-- In-video quizzes, polls, and timeline checkpoints
 ```
 
 ### 3. Modern AI-Powered Interactive Platforms: The New Benchmark
@@ -197,7 +197,7 @@ The root challenge of deploying SCORM in a live webinar environment lies in the 
 |                             LMS Runtime Context                               |
 |                                                                               |
 |  +------------------+     SCORM 1.2 / 2004 JS API      +-------------------+  |
-|  |                  | <==============================> |  Dynamic SCORM    |  |
+|  |                  | &lt;==============================> |  Dynamic SCORM    |  |
 |  |    Canvas /      |   LMSInitialize() / SetValue()   |  Wrapper / Player |  |
 |  |   Blackboard /   |                                  +--------^----------+  |
 |  |     Moodle       |                                           |             |
@@ -288,30 +288,30 @@ For institutions looking to standardize attendance, accreditation verification, 
 
 ```json
 // Example: Normalized cmi5/xAPI Event Payload from Live WebinarSFU
-{
-  "actor": {
+&#123;
+  "actor": &#123;
     "mbox": "mailto:j.doe@university.edu",
-    "account": { "homePage": "https://canvas.university.edu", "name": "usr_9948271" }
-  },
-  "verb": {
+    "account": &#123; "homePage": "https://canvas.university.edu", "name": "usr_9948271" &#125;
+  &#125;,
+  "verb": &#123;
     "id": "http://adlnet.gov/expapi/verbs/completed",
-    "display": { "en-US": "attended-synchronous-session" }
-  },
-  "object": {
+    "display": &#123; "en-US": "attended-synchronous-session" &#125;
+  &#125;,
+  "object": &#123;
     "id": "https://events.university.edu/lectures/2026-BIO-301",
-    "definition": { "name": { "en-US": "BIO301: Advanced Genetics Live Stream" } }
-  },
-  "result": {
+    "definition": &#123; "name": &#123; "en-US": "BIO301: Advanced Genetics Live Stream" &#125; &#125;
+  &#125;,
+  "result": &#123;
     "duration": "PT1H14M22S",
     "completion": true,
     "success": true,
-    "extensions": {
+    "extensions": &#123;
       "https://university.edu/xapi/attendance-rate": 0.92,
       "https://university.edu/xapi/polls-answered": "4/4",
       "https://university.edu/xapi/verified-device": "Canvas-LTI-Bridge"
-    }
-  }
-}
+    &#125;
+  &#125;
+&#125;
 ```
 
 1. **Establish State-Validation Rules:** Do not rely solely on simple open/close session time. Define business logic requiring both a continuous seat-time percentage (e.g., minimum 75% of broadcast duration) and a minimum threshold of synchronous interactions (e.g., responding to at least two in-stream formative checks).

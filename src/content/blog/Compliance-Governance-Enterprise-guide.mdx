@@ -181,7 +181,7 @@ Conducting a comprehensive threat model evaluation helps enterprise security ope
 | **Vendor Support Admin Compromise** | **HIGH RISK:** Compromised vendor support staff credentials grant global account access. | **MITIGATED:** Zero vendor personnel in the data path; internal IdP MFA required. |
 | **Cross-Border Network Interception (BGP Hijacking)** | **MODERATE RISK:** Public SaaS media packets dynamically routed across unverified international paths. | **MITIGATED:** Deterministic geofenced network routing via private backbones and Local TURN relays. |
 | **Automated AI Scraping & Data Ingestion** | **HIGH RISK:** Vendor updates Terms of Service to ingest raw audio into central LLM models. | **MITIGATED:** Zero outbound telemetry; localized AI models process transcription internally. |
-| **Credential Harvesting & Session Hijacking** | **HIGH RISK:** Static meeting URLs and persistent passwords reused across sessions. | **MITIGATED:** Short-lived JWTs (TTL < 300s) bound to enterprise identity assertions. |
+| **Credential Harvesting & Session Hijacking** | **HIGH RISK:** Static meeting URLs and persistent passwords reused across sessions. | **MITIGATED:** Short-lived JWTs (TTL &lt; 300s) bound to enterprise identity assertions. |
 
 ## Network Routing & Deterministic Traffic Geofencing
 

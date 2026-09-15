@@ -2,7 +2,7 @@
 title: 'Webinar promotion strategies that actually work in 2026?'
 description: 'A comprehensive, data-backed answer to: Webinar promotion strategies that actually work in 2026?'
 pubDate: '2026-09-15'
-heroImage: '/blog-placeholder-1.jpg'
+cover: "/og-classroom.jpg"
 category: 'Tactical How-To'
 ---
 
@@ -228,7 +228,7 @@ The following matrix compares legacy platforms directly against modern AI-native
 
 Sticking with legacy conferencing suites for market-facing demand generation carries substantial hidden costs:
 
-$$\text{True Promotional CAC} = \frac{\text{Direct Ad Spend} + \text{Internal Labor Overhead (Asset Creation + Manual Routing)}}{\text{Qualified Pipeline Registrants (Not Raw Signups)}}$$
+$$\text&#123;True Promotional CAC&#125; = \frac&#123;\text&#123;Direct Ad Spend&#125; + \text&#123;Internal Labor Overhead (Asset Creation + Manual Routing)&#125;&#125;&#123;\text&#123;Qualified Pipeline Registrants (Not Raw Signups)&#125;&#125;$$
 
 When marketing operations teams spend 15 to 20 hours per event manually configuring forms, generating tracking links, editing speaker promotional reels, and debugging webhook synchronizations, the labor cost often outpaces the licensing cost of an enterprise-grade AI webinar engine. 
 
@@ -272,7 +272,7 @@ If your event architecture is not machine-readable by LLM web scrapers at execut
 * **LLM Markdown Feeds (`/ai-manifest.md`):** Deploy a public, lightweight raw text or Markdown manifest at your root directory summarizing upcoming technical events, target technical domains, speaker authority proofs, and exact learning outcomes. AI crawlers prioritize structured plaintext summaries over heavy client-side JavaScript applications.
 
 ```json
-{
+&#123;
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Live Systems Engineering: Enterprise Multi-Agent Deployment",
@@ -280,16 +280,16 @@ If your event architecture is not machine-readable by LLM web scrapers at execut
   "endDate": "2026-04-15T19:00:00Z",
   "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
   "eventStatus": "https://schema.org/EventScheduled",
-  "location": {
+  "location": &#123;
     "@type": "VirtualLocation",
     "url": "https://company.com/webinars/agent-deployment"
-  },
-  "performer": {
+  &#125;,
+  "performer": &#123;
     "@type": "Person",
     "name": "Alex Chen",
     "jobTitle": "Principal Infrastructure Architect"
-  }
-}
+  &#125;
+&#125;
 ```
 
 ---
@@ -352,7 +352,7 @@ The multi-field form is the single largest point of friction in conversion opera
 | **Authentication** | 5–7 field static form | Edge Passkeys, OAuth 2.0 (Google/GitHub/LinkedIn) |
 | **Calendar Placement** | ICS download attachment via confirmation email | Instant programmatic `.ics` calendar webhook push |
 | **Identity Resolution** | Manual user inputs | Real-time IP and corporate domain enrichment API |
-| **Page Latency** | 2.5s–4.0s (heavy tracking scripts) | <300ms edge-rendered serverless framework |
+| **Page Latency** | 2.5s–4.0s (heavy tracking scripts) | &lt;300ms edge-rendered serverless framework |
 
 ```
 [Target Prospect Arrives]

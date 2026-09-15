@@ -15,7 +15,7 @@ const { post, headings, related } = Astro.props;
 const d = post.data;
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
-const cover = d.cover || '/og-ollasync.png';
+const cover = d.cover || d.heroImage || '/og-classroom.jpg';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -144,6 +144,19 @@ const schema = {
     .post__toc a { padding-left: 0; border-left: none; }
     .post__toc .sub a { padding-left: 12px; }
     .related { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .post__head { padding-block: 28px 6px !important; }
+    .post__meta { flex-wrap: wrap; row-gap: 6px; font-size: 12.5px; }
+    .post__cover-wrap { margin-top: 18px; }
+    .prose-post { font-size: 16px; line-height: 1.7; }
+    .prose-post > * + * { margin-top: 18px; }
+    .prose-post h2 { font-size: 24px; margin-top: 34px; }
+    .prose-post h3 { font-size: 18px; margin-top: 26px; }
+    .prose-post ul, .prose-post ol { padding-left: 18px; }
+    .takeaways { padding: 16px 16px; }
+    .sources ol { font-size: 14px; }
   }
 </style>
 

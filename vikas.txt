@@ -1,0 +1,10 @@
+{"id": "gemini-3.8-flash-high", "name": "Gemini 3.8 Flash (High)", "url": "http://10.1.30.34:8088/v1/chat/completions", "toolCalling": true, "vision": true, "maxInputTokens": 1048576, "maxOutputTokens": 65536},
+      {"id": "gemini-3.7-flash-high", "name": "Gemini 3.7 Flash (High)", "url": "http://10.1.30.34:8088/v1/chat/completions", "toolCalling": true, "vision": true, "maxInputTokens": 1048576, "maxOutputTokens": 65536},
+      {"id": "gemini-3.6-flash-high", "name": "Gemini 3.6 Flash (High)", "url": "http://10.1.30.34:8088/v1/chat/completions", "toolCalling": true, "vision": true, "maxInputTokens": 1048576, "maxOutputTokens": 65536},
+      {"id": "gemini-3.1-pro-low", "name": "Gemini 3.1 Pro (Low)", "url": "http://10.1.30.34:8088/v1/chat/completions", "toolCalling": true, "vision": true, "maxInputTokens": 1048576, "maxOutputTokens": 65536},
+      {"id": "gemini-3.1-flash-lite", "name": "Gemini 3.1 Flash Lite", "url": "http://10.1.30.34:8088/v1/chat/completions", "toolCalling": true, "vision": true, "maxInputTokens": 1048576, "maxOutputTokens": 65536},
+      {"id": "gemini-3-flash", "name": "Gemini 3 Flash", "url": "http://10.1.30.34:8088/v1/chat/completions", "toolCalling": true, "vision": true, "maxInputTokens": 128000, "maxOutputTokens": 16000},
+
+
+      api key for these models
+      sk-t0-JOgxi8vsS91o-TJTjF1bcSX6aSbDaUuXQRBsx8xwrgPOp9ocyUGsDIOZVMsxZ

@@ -2,7 +2,7 @@
 title: 'How to create accessible webinars for viewers with disabilities?'
 description: 'A comprehensive, data-backed answer to: How to create accessible webinars for viewers with disabilities?'
 pubDate: '2026-09-15'
-heroImage: '/blog-placeholder-1.jpg'
+cover: "/og-classroom.jpg"
 category: 'Compliance'
 ---
 
@@ -137,7 +137,7 @@ Failure to build accessibility into live events creates measurable audience attr
 | • 80% of viewers using live captions do NOT report hearing loss (captions   |
 |   drive retention across noisy environments and non-native speakers).       |
 | • Word Error Rate (WER) Thresholds: Legacy ASR engines average 12–18% WER    |
-|   on technical jargon; Modern AI LLM-based ASR engines achieve <4.5% WER.   |
+|   on technical jargon; Modern AI LLM-based ASR engines achieve &lt;4.5% WER.   |
 +-----------------------------------------------------------------------------+
 ```
 
@@ -157,7 +157,7 @@ The following matrix benchmarks the core accessibility capabilities required by 
 | Accessibility Feature / Standard | Zoom Meetings / Webinars | Microsoft Teams | Cisco Webex | Modern AI-Native Platforms (e.g., Veed, Descript Live, ON24 AI) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Live ASR Captioning (Baseline)** | Native (Multi-language via add-on) | Native (Included in M365) | Native (Webex Assistant) | Native AI (Domain-specific lexicon tuning) |
-| **Average Word Error Rate (WER)** | 8% – 12% | 7% – 11% | 9% – 13% | **< 4.5%** (Context-aware LLM decoders) |
+| **Average Word Error Rate (WER)** | 8% – 12% | 7% – 11% | 9% – 13% | **&lt; 4.5%** (Context-aware LLM decoders) |
 | **Sign Language Interpretation Pinning** | Dedicated Interpreter channel (up to 20 slots) | Sign Language View (prioritizes up to 2 signers) | Dynamic stage management / multi-pinning | Dedicated, resizable PIP with independent viewport control |
 | **Screen Reader Compatibility (NVDA/JAWS)** | Moderate (Inconsistent chat aria-live announcements) | High (Deep Microsoft UI Automation support) | Moderate (Complex navigational menus) | **High to Native Web Components** (Semantic HTML5 semantic landmarks) |
 | **Real-Time Automated Audio Description** | Not supported natively | Not supported natively | Not supported natively | **Supported** (Vision-to-text narration models) |
@@ -211,7 +211,7 @@ Next-generation webinar engines treat accessibility not as an overlay, but as a 
 +-----------------------------------------------------------------------------+
 | [Host Audio/Video]                                                          |
 |        │                                                                    |
-|        ├──> [LLM-Powered ASR] ──> Low-Latency Specialized Captions (<4% WER)|
+|        ├──> [LLM-Powered ASR] ──> Low-Latency Specialized Captions (&lt;4% WER)|
 |        │                                                                    |
 |        ├──> [Computer Vision] ──> Real-Time Audio Descriptions for Visuals  |
 |        │                                                                    |

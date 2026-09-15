@@ -2,7 +2,7 @@
 title: 'What role does emotional intelligence play in AI-mediated communication?'
 description: 'A comprehensive, data-backed answer to: What role does emotional intelligence play in AI-mediated communication?'
 pubDate: '2026-09-15'
-heroImage: '/blog-placeholder-1.jpg'
+cover: "/og-classroom.jpg"
 category: 'Future of Work'
 ---
 
@@ -304,7 +304,7 @@ Total Response Latency = T_acoustic + T_transcription + T_affective_scoring + T_
 To maintain conversational parity with humans, total round-trip latency must remain under **300 milliseconds** for voice and under **1.2 seconds** for digital messaging.
 
 ```
-                Latency Budget (Target: <300ms for Voice)
+                Latency Budget (Target: &lt;300ms for Voice)
 ┌───────────────────────────────┬───────────────────────────────┐
 │ Voice Ingestion & ASR (~80ms) │ Affect Parsing & Scoring (~35ms)│
 ├───────────────────────────────┴───────────────────────────────┤
@@ -321,16 +321,16 @@ To hit these performance thresholds, modern SaaS stacks avoid running multi-bill
 2.  **Core Generative Engine (High-Capacity LLM):** Ingests the raw user input alongside the structured *Affect Payload* within its system prompt, generating the contextually calibrated response without spending inference tokens on emotional interpretation.
 
 ```json
-{
+&#123;
   "user_id": "usr_992x",
   "raw_input": "I have verified this three times already. Why is it asking for MFA again?",
-  "affect_payload": {
+  "affect_payload": &#123;
     "primary_emotion": "frustration",
     "urgency_score": 0.88,
     "churn_risk_flag": true,
     "recommended_style": "assertive_action_minimal_lexical_density"
-  }
-}
+  &#125;
+&#125;
 ```
 
 ---

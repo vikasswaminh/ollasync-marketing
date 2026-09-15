@@ -1,0 +1,13 @@
+21:38:44 [types] Generated 2.23s
+21:38:44 [build] output: "static"
+21:38:44 [build] directory: C:\Users\test\Downloads\ollasync marketing site\ollasync-marketing\dist\
+21:38:44 [build] Collecting build info...
+21:38:44 [build] ✓ Completed in 2.36s.
+21:38:44 [build] Building static entrypoints...
+21:39:02 [ERROR] [vite] [31mx[39m Build failed in 17.85s
+[@mdx-js/rollup] Unexpected character `(` (U+0028) after name, expected a character that can start an attribute name, such as a letter, `$`, or `_`; whitespace before attributes; or the end of the tag
+file: C:/Users/test/Downloads/ollasync marketing site/ollasync-marketing/src/content/blog/how-to-co-host-a-massive-virtual-event-with-industry-influencers.mdx:67:64
+  Location:
+    C:/Users/test/Downloads/ollasync marketing site/ollasync-marketing/src/content/blog/how-to-co-host-a-massive-virtual-event-with-industry-influencers.mdx:67:64
+  Stack trace:
+    at Object.transform (file:///C:/Users/test/Downloads/ollasync%20marketing%20site/ollasync-marketing/node_modules/@astrojs/mdx/dist/vite-plugin-mdx.js:51:15)

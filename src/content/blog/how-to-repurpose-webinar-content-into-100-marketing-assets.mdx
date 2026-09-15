@@ -2,7 +2,7 @@
 title: 'How to repurpose webinar content into 100+ marketing assets?'
 description: 'A comprehensive, data-backed answer to: How to repurpose webinar content into 100+ marketing assets?'
 pubDate: '2026-09-15'
-heroImage: '/blog-placeholder-1.jpg'
+cover: "/og-classroom.jpg"
 category: 'Tactical How-To'
 ---
 
@@ -246,7 +246,7 @@ AI-NATIVE ENGINE:
 * **Modern AI-Native Engine:**
   * Total Hours: **2.5 hours** (Human-in-the-loop review and distribution orchestration)
   * Estimated Production Cost: **$150 – $300** (Software seat allocation + computational overhead)
-  * Time to Market: **< 2 Hours**
+  * Time to Market: **&lt; 2 Hours**
 
 By removing the linear relationship between asset volume and labor cost, modern AI engines transform a single webinar from a single-use demand generation event into an evergreen asset production pipeline.
 
@@ -378,7 +378,7 @@ To implement this model at scale, your data engineering and marketing teams must
 Do not process the transcript as a single, linear document. Instead, ingest the transcript into a Vector Database (such as Pinecone, Qdrant, or Weaviate) using dense embeddings (e.g., `text-embedding-3-large`). Tag each vector with rich metadata:
 
 ```json
-{
+&#123;
   "timestamp_start": "00:14:22.150",
   "timestamp_end": "00:18:45.300",
   "speaker_role": "Subject Matter Expert",
@@ -386,7 +386,7 @@ Do not process the transcript as a single, linear document. Instead, ingest the 
   "entities_mentioned": ["PostgreSQL", "Aurora", "Vector Indexing"],
   "sentiment_intensity": "High Friction Point",
   "slide_ocr_reference": "Slide 12: Migration Latency Benchmarks"
-}
+&#125;
 ```
 
 This structural tagging allows downstream agents to pull verified topical clusters rather than raw, uncurated blocks of text.
@@ -539,7 +539,7 @@ Repurposing content is not merely an editorial strategy; it is a capital allocat
 | **Labor Requirement** | 1 Video Editor, 1 Copywriter, 1 Strategist | 1 Content Marketer (Review only) |
 | **Average Cost per Webinar** | $2,500 – $4,500 | Marginal software subscription cost |
 | **Total Asset Yield** | 8 – 12 Assets | 100+ Assets |
-| **Cost per Asset** | ~$350.00 | **<$1.00** |
+| **Cost per Asset** | ~$350.00 | **&lt;$1.00** |
 | **Publishing Frequency** | Weekly drops (stale after 14 days) | Daily multi-channel cadence for 3 months |
 
 By switching from manual clipping and drafting to Ollasync, marketing teams capture an average **85% reduction in production costs** while increasing content distribution velocity by **10x**.

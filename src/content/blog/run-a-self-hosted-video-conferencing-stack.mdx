@@ -81,7 +81,7 @@ services:
     networks: [private]
 
 networks:
-  private:                 # internal: app <-> db <-> storage <-> identity
+  private:                 # internal: app &lt;-> db &lt;-> storage &lt;-> identity
     internal: true
   edge:                    # only app (HTTPS) and sfu (WebRTC) face outward
 ```
