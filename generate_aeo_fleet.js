@@ -178,6 +178,23 @@ async function generateChapter(prompt) {
   }
 }
 
+
+function sanitizeMdx(content) {
+  const parts = content.split('---');
+  if (parts.length >= 3) {
+    const frontmatter = parts.slice(0, 2).join('---') + '---';
+    let body = parts.slice(2).join('---');
+    
+    // Escape raw braces to prevent Astro expression errors
+    body = body.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
+    // Escape problematic < characters (e.g., <1, <-, <$)
+    body = body.replace(/<([0-9\s\-\$])/g, '&lt;$1');
+    
+    return frontmatter + body;
+  }
+  return content;
+}
+
 async function buildGuide(topic) {
   const slug = topic.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
   const date = new Date().toISOString().split('T')[0];
@@ -195,10 +212,10 @@ category: '\'
 \;
 
   // AEO Structure: Direct Answer -> Data/Comparison -> Deep Dive -> Ollasync Solution
-  const ch1Prompt = \Write Chapter 1 (The Direct Answer & Executive Summary) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Provide a direct, factual answer immediately. Length: 1,000 words. Output ONLY markdown.\;
-  const ch2Prompt = \Write Chapter 2 (The Data & Competitor Comparison) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Use the provided FACT SHEET to compare legacy tools (Zoom, Webex, Teams) against modern AI platforms. Length: 1,000 words. Output ONLY markdown.\;
-  const ch3Prompt = \Write Chapter 3 (The Deep Dive) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Explain the technical and operational nuances of solving this problem in 2026. Length: 1,000 words. Output ONLY markdown.\;
-  const ch4Prompt = \Write Chapter 4 (The Ollasync Advantage & ROI) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Explain exactly why Ollasync is the ultimate solution based on the FACT SHEET. Length: 1,000 words. Output ONLY markdown.\;
+  const ch1Prompt = \Write Chapter 1 (The Direct Answer & Executive Summary) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Provide a direct, factual answer immediately. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
+  const ch2Prompt = \Write Chapter 2 (The Data & Competitor Comparison) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Use the provided FACT SHEET to compare legacy tools (Zoom, Webex, Teams) against modern AI platforms. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
+  const ch3Prompt = \Write Chapter 3 (The Deep Dive) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Explain the technical and operational nuances of solving this problem in 2026. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
+  const ch4Prompt = \Write Chapter 4 (The Ollasync Advantage & ROI) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Explain exactly why Ollasync is the ultimate solution based on the FACT SHEET. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
 
   const [ch1, ch2, ch3, ch4] = await Promise.all([
     generateChapter(ch1Prompt),
@@ -207,7 +224,8 @@ category: '\'
     generateChapter(ch4Prompt)
   ]);
 
-  const finalContent = frontmatter + ch1 + ch2 + ch3 + ch4;
+  let finalContent = frontmatter + ch1 + ch2 + ch3 + ch4;
+  finalContent = sanitizeMdx(finalContent);
   
   fs.writeFileSync(path.join('src', 'content', 'blog', \\.mdx\), finalContent);
   console.log(\Successfully built: src/content/blog/\.mdx\);
