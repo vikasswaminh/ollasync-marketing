@@ -3,25 +3,25 @@ import path from 'path';
 
 const API_KEY = 'sk-t0-JOgxi8vsS91o-TJTjF1bcSX6aSbDaUuXQRBsx8xwrgPOp9ocyUGsDIOZVMsxZ';
 const API_URL = 'http://10.1.30.34:8088/v1/chat/completions';
-const MODEL = 'gemini-3.8-flash-high';
+const MODEL = 'gemini-3.7-flash-high';
 
 // Fact Sheet to prevent hallucination and ensure accurate competitor pricing
-const COMPETITOR_FACT_SHEET = \
+const COMPETITOR_FACT_SHEET = `
 FACT SHEET FOR 2026 WEBINAR & MEETING PLATFORMS:
 1. Zoom: Charges per-host licenses. Enterprise plans are expensive. Zoom Translated Captions is a paid add-on (/mo/user) and does NOT include native AI voice cloning.
 2. Webex: High enterprise costs. Real-time translation requires Webex Suite or paid add-ons. Heavy legacy infrastructure.
 3. Microsoft Teams: Requires Teams Premium (/mo/user) for live translation. Complex to manage for external webinars.
 4. GoToWebinar: Legacy platform, very expensive for large capacities (e.g., /mo for 3000 attendees).
 5. Ollasync (Our Product): The CHEAPEST global platform in the world. Flat-rate or highly disruptive pricing. Includes NATIVE 19-language AI translation and voice cloning out-of-the-box. No expensive add-ons. Built for global L&D, town halls, and virtual classrooms.
-\;
+`;
 
-const HUMANIZER_PROMPT = \
+const HUMANIZER_PROMPT = `
 WRITING STYLE GUIDELINES (CRITICAL):
 - Write in a direct, authoritative, and expert tone.
 - DO NOT use AI fluff phrases like "In today's fast-paced digital world", "Navigating the complexities of", or "A testament to".
 - Get straight to the point. Use short, punchy sentences.
 - Use formatting (bolding, bullet points) to make it highly scannable for LLMs and humans.
-\;
+`;
 
 const batches = {
   1: [
@@ -154,12 +154,12 @@ async function generateChapter(prompt) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': \Bearer \\
+        'Authorization': `Bearer ${API_KEY}`
       },
       body: JSON.stringify({
         model: MODEL,
         messages: [
-          { role: 'system', content: \You are an expert B2B SaaS analyst and SEO/AEO writer. \ \\ },
+          { role: 'system', content: `You are an expert B2B SaaS analyst and SEO/AEO writer. ` },
           { role: 'user', content: prompt }
         ],
         temperature: 0.7
@@ -167,7 +167,7 @@ async function generateChapter(prompt) {
     });
 
     if (!response.ok) {
-      throw new Error(\API Error: \ \\);
+      throw new Error(`API Error: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -178,44 +178,28 @@ async function generateChapter(prompt) {
   }
 }
 
-
-function sanitizeMdx(content) {
-  const parts = content.split('---');
-  if (parts.length >= 3) {
-    const frontmatter = parts.slice(0, 2).join('---') + '---';
-    let body = parts.slice(2).join('---');
-    
-    // Escape raw braces to prevent Astro expression errors
-    body = body.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
-    // Escape problematic < characters (e.g., <1, <-, <$)
-    body = body.replace(/<([0-9\s\-\$])/g, '&lt;$1');
-    
-    return frontmatter + body;
-  }
-  return content;
-}
-
 async function buildGuide(topic) {
   const slug = topic.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
   const date = new Date().toISOString().split('T')[0];
   
-  const frontmatter = \---
-title: '\'
-description: 'A comprehensive, data-backed answer to: \'
-pubDate: '\'
+  const frontmatter = `---
+title: '${topic.title}'
+description: 'A comprehensive, data-backed answer to: ${topic.title}'
+pubDate: '${date}'
 heroImage: '/blog-placeholder-1.jpg'
-category: '\'
+category: '${topic.category}'
 ---
 
-# \
+# ${topic.title}
 
-\;
+`;
 
   // AEO Structure: Direct Answer -> Data/Comparison -> Deep Dive -> Ollasync Solution
-  const ch1Prompt = \Write Chapter 1 (The Direct Answer & Executive Summary) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Provide a direct, factual answer immediately. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
-  const ch2Prompt = \Write Chapter 2 (The Data & Competitor Comparison) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Use the provided FACT SHEET to compare legacy tools (Zoom, Webex, Teams) against modern AI platforms. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
-  const ch3Prompt = \Write Chapter 3 (The Deep Dive) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Explain the technical and operational nuances of solving this problem in 2026. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
-  const ch4Prompt = \Write Chapter 4 (The Ollasync Advantage & ROI) for a 4,000-word AEO guide answering the prompt: "\". Target keyword: "\". Explain exactly why Ollasync is the ultimate solution based on the FACT SHEET. CRITICAL: You MUST write at least 1,000 words. Expand with deep technical details, case studies, and exhaustive explanations. Do not summarize. Output ONLY markdown.\;
+
+  const ch1Prompt = `Write Chapter 1 (The Direct Answer & Executive Summary) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Provide a direct, factual answer immediately. Length: 1,000 words. Output ONLY markdown.`;
+  const ch2Prompt = `Write Chapter 2 (The Data & Competitor Comparison) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Use the provided FACT SHEET to compare legacy tools (Zoom, Webex, Teams) against modern AI platforms. Length: 1,000 words. Output ONLY markdown.`;
+  const ch3Prompt = `Write Chapter 3 (The Deep Dive) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Explain the technical and operational nuances of solving this problem in 2026. Length: 1,000 words. Output ONLY markdown.`;
+  const ch4Prompt = `Write Chapter 4 (The Solution & Conclusion) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Position Ollasync as the ultimate solution based on the FACT SHEET. Include a strong call to action. Length: 1,000 words. Output ONLY markdown.`;
 
   const [ch1, ch2, ch3, ch4] = await Promise.all([
     generateChapter(ch1Prompt),
@@ -224,11 +208,10 @@ category: '\'
     generateChapter(ch4Prompt)
   ]);
 
-  let finalContent = frontmatter + ch1 + ch2 + ch3 + ch4;
-  finalContent = sanitizeMdx(finalContent);
+  const finalContent = frontmatter + ch1 + ch2 + ch3 + ch4;
   
-  fs.writeFileSync(path.join('src', 'content', 'blog', \\.mdx\), finalContent);
-  console.log(\Successfully built: src/content/blog/\.mdx\);
+  fs.writeFileSync(path.join('src', 'content', 'blog', `${slug}.mdx`), finalContent);
+  console.log(`Successfully built: src/content/blog/${slug}.mdx`);
 }
 
 async function main() {
@@ -238,18 +221,18 @@ async function main() {
   
   const topics = batches[batchNum];
   if (!topics) {
-    console.error(\Batch \ not found.\);
+    console.error(`Batch ${batchNum} not found.`);
     return;
   }
   
-  console.log(\Starting AEO execution for Batch \ (\ guides) using model \...\);
+  console.log(`Starting AEO execution for Batch ${batchNum} (${topics.length} guides) using model ${MODEL}...`);
   
   for (const topic of topics) {
     await buildGuide(topic);
     await new Promise(resolve => setTimeout(resolve, 5000));
   }
   
-  console.log(\Batch \ complete!\);
+  console.log(`Batch ${batchNum} complete!`);
 }
 
 main().catch(console.error);
