@@ -6,28 +6,28 @@ import Faq from '../components/Faq.astro';
 import Cta from '../components/Cta.astro';
 import { SITE } from '../consts';
 
-const title = 'AI Classroom Pricing — Live Translation, Per Seat';
+const title = 'Video Meeting Pricing — Live Translation, Per Seat';
 const description =
-  'Per-seat pricing for the AI classroom: live translation, meetings, webinars and class notes. Free to start, then $19 and $29 per seat.';
+  'Per-seat pricing for browser meetings with live translation, recordings and AI notes. Free to start, then $19 and $29 per seat.';
 
 const tiers = [
   {
     name: 'Free', price: '$0', unit: '', tag: '',
     blurb: 'For tutors getting started — free, no credit card.',
     cta: { label: 'Start free', href: SITE.appUrl }, primary: false,
-    features: ['Up to 25 members', 'HD meetings up to 100 participants', 'AI notes, transcripts & action items', '1 active deal room', 'Passkeys & 2FA'],
+    features: ['Up to 25 members', 'HD meetings up to 100 participants', 'AI notes, transcripts & action items', 'Passkeys & 2FA'],
   },
   {
     name: 'Pro', price: '$19', unit: '/ user · mo', tag: 'Most popular',
     blurb: 'For trainers and academies teaching at scale.',
     cta: { label: 'Start free', href: SITE.appUrl }, primary: true,
-    features: ['Everything in Free', 'Live translation — captions & spoken audio', 'Meetings up to 300 participants', 'Unlimited deal rooms', 'AI class notes & summaries'],
+    features: ['Everything in Free', 'Live translation — captions & spoken audio', 'Meetings up to 300 participants', 'AI meeting notes & summaries'],
   },
   {
     name: 'Business', price: '$29', unit: '/ user · mo', tag: '',
     blurb: 'For teams that need SSO, audit and priority support.',
     cta: { label: 'Start free', href: SITE.appUrl }, primary: false,
-    features: ['Everything in Pro', 'SSO (OIDC)', 'Audit logs & view-only watermarks', 'Webinars with OBS/RTMP streaming in', 'DPA & priority support'],
+    features: ['Everything in Pro', 'SSO (OIDC)', 'Audit logs', 'DPA & priority support'],
   },
 ];
 

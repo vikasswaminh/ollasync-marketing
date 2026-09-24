@@ -28,7 +28,7 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: `Live ${l.name} translation for online classes`,
-  serviceType: 'Real-time voice translation for live classes, webinars and meetings',
+  serviceType: 'Real-time voice translation for meetings and live training',
   description,
   provider: { '@type': 'Organization', name: 'Ollasync' },
   availableLanguage: [l.name, 'English'],
@@ -70,7 +70,7 @@ const schema = {
         <div class="card card--hover"><div class="card__icon"><Icon name="mic" size={20} /></div><h3 class="h3">Spoken {l.name} audio</h3><p>{indian ? 'A natural voice with an Indian accent reads the translation, with technical terms and numbers spoken in English.' : `A natural ${l.name} voice reads the translation a beat behind the speaker.`}</p></div>
         <div class="card card--hover"><div class="card__icon"><Icon name="users" size={20} /></div><h3 class="h3">Per-learner choice</h3><p>One learner reads {l.name}, another listens in Spanish, a third stays on English — up to {LANGS_PER_SESSION} languages in one session.</p></div>
         <div class="card card--hover"><div class="card__icon"><Icon name="network" size={20} /></div><h3 class="h3">Technical terms stay in English</h3><p>Common technical terms — protocol, tool and product names from networking, software, cloud and AI — are kept in English inside the {l.name} translation.</p></div>
-        <div class="card card--hover"><div class="card__icon"><Icon name="broadcast" size={20} /></div><h3 class="h3">Meetings and webinars</h3><p>The same {l.name} translation is available in a live class, a meeting or a webinar broadcast.</p></div>
+        <div class="card card--hover"><div class="card__icon"><Icon name="video" size={20} /></div><h3 class="h3">Meetings and live training</h3><p>Use {l.name} translation in team meetings, client calls and live training sessions.</p></div>
         <div class="card card--hover"><div class="card__icon"><Icon name="play" size={20} /></div><h3 class="h3">Keep {/^[aeiou]/i.test(l.name) ? 'an' : 'a'} {l.name} recording</h3><p>A learner can record the class locally on their own device in {l.name} — nothing is uploaded.</p></div>
       </div>
     </div>

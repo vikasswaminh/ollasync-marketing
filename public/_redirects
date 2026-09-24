@@ -2,3 +2,19 @@
 # 200 meta-refresh stub that search engines index as "Redirecting to…".
 /self-hosted    /pricing/   301
 /self-hosted/*  /pricing/   301
+
+# Retired products and meeting use-case URLs.
+/features/webinars    /features/video-meetings/    301
+/features/webinars/    /features/video-meetings/    301
+/features/deal-rooms    /features/video-meetings/    301
+/features/deal-rooms/    /features/video-meetings/    301
+/roles/customer-success-webinars    /roles/customer-success-meetings/    301
+/roles/customer-success-webinars/    /roles/customer-success-meetings/    301
+/use-cases/customer-education-webinars    /use-cases/customer-education-meetings/    301
+/use-cases/customer-education-webinars/    /use-cases/customer-education-meetings/    301
+/alternatives/cvent    /features/video-meetings/    301
+/alternatives/cvent/    /features/video-meetings/    301
+/integrations/scorm-virtual-classroom    /virtual-classroom-software/    301
+/integrations/scorm-virtual-classroom/    /virtual-classroom-software/    301
+/integrations/ai-video-analytics    /features/ai/    301
+/integrations/ai-video-analytics/    /features/ai/    301

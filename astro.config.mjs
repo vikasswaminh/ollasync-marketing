@@ -38,18 +38,30 @@ const POST_DATES = (() => {
   return out;
 })();
 
+// Retired product URLs stay reachable for existing links, including blog articles.
+const retiredRoutes = {
+  "/features/webinars": "/features/video-meetings/",
+  "/features/deal-rooms": "/features/video-meetings/",
+  "/roles/customer-success-webinars": "/roles/customer-success-meetings/",
+  "/use-cases/customer-education-webinars": "/use-cases/customer-education-meetings/",
+  "/alternatives/cvent": "/features/video-meetings/",
+  "/integrations/scorm-virtual-classroom": "/virtual-classroom-software/",
+  "/integrations/ai-video-analytics": "/features/ai/"
+};
+
 // Multi-page static marketing site for Ollasync.
 // output: 'static' + directory URLs → /security serves /security/index.html.
 export default defineConfig({
   site: 'https://www.ollasync.com',
   output: 'static',
+  redirects: retiredRoutes,
   compressHTML: true,
   trailingSlash: 'ignore',
   integrations: [
     mdx(),
     sitemap({
       // /licenses is noindex (OSS attribution page) — keep it out of the sitemap too.
-      filter: (page) => !page.includes('/thanks') && !page.includes('/licenses'),
+      filter: (page) => !page.includes('/thanks') && !page.includes('/licenses') && !Object.hasOwn(retiredRoutes, new URL(page).pathname.replace(/\/$/, '')),
       serialize(item) {
         const post = item.url.match(/\/blog\/(.+?)\/?$/);
         item.lastmod = (post && POST_DATES[post[1]]) || BUILD_DATE;

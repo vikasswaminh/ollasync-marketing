@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import HeroStage from '../components/HeroStage.astro';
+import Customers from '../components/Customers.astro';
 import FloatingCta from '../components/FloatingCta.astro';
 import { SITE } from '../consts';
 import { getCollection } from 'astro:content';
@@ -14,7 +15,7 @@ const latestPosts = (await getCollection('blog'))
   .slice(0, 2);
 const fmtDate = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 
-const title = 'AI Classroom & Zoom Alternative for Trainers | Ollasync';  // SEO title, operator's wording 2026-09-12 (55 chars; names Ollasync, so Base adds no suffix); the hero keeps the brand line 'Teach anyone. In any language.'
+const title = 'Video Meetings with Live Translation | Ollasync';
 const description = SITE.description;
 
 // Every language named on this page is a real translate target
@@ -26,7 +27,7 @@ const benefits = [
   },
   {
     n: '02', theme: 'Focus', head: 'Teach. Don’t take notes.',
-    copy: 'AI captures the important concepts and writes the class notes while you stay with your learners.',
+    copy: 'Generate a transcript, summary and action items from your meeting recording.',
   },
   {
     n: '03', theme: 'Grow', head: 'Your expertise is no longer local.',
@@ -36,16 +37,16 @@ const benefits = [
 
 const capabilities = [
   { icon: 'globe',    title: 'Live translation', copy: 'Learners hear your class in their language.' },
-  { icon: 'video',    title: 'AI meetings',      copy: 'A live classroom built around the trainer.' },
-  { icon: 'sparkles', title: 'AI class notes',   copy: 'Key concepts captured as you teach.' },
-  { icon: 'doc',      title: 'Class summaries',  copy: 'A full session becomes a useful recap.' },
+  { icon: 'video',    title: 'AI meetings',      copy: 'Browser video with screen sharing and host controls.' },
+  { icon: 'sparkles', title: 'AI meeting notes',   copy: 'Transcripts and action items from recorded meetings.' },
+  { icon: 'doc',      title: 'Meeting summaries',  copy: 'A full session becomes a useful recap.' },
 ];
 
 const audience = [
   { title: 'Tutors',                copy: 'Teach students anywhere without losing the live-class feel.' },
   { title: 'Professional trainers', copy: 'Deliver polished programmes across locations and languages.' },
   { title: 'Coaches',               copy: 'Stay in the conversation while AI handles the language and the notes.' },
-  { title: 'Small academies',       copy: 'Give instructors and learners a modern, professional classroom.' },
+  { title: 'Teams and academies',   copy: 'Bring colleagues and learners together in interactive browser meetings.' },
 ];
 
 // Internal links to the comparison pages with keyword anchors (the pillar → /vs/* edge of the SEO cluster).
@@ -58,15 +59,15 @@ const homeSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: SITE.name,
-  applicationCategory: 'EducationalApplication',
+  applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web browser',
   description,
   featureList: [
-    'Live online classes',
+    'Browser video meetings',
     'Real-time AI voice translation',
     'AI live captions',
-    'AI class notes',
-    'Class summaries',
+    'AI meeting notes',
+    'Meeting summaries',
   ],
   url: SITE.url,
 };
@@ -77,8 +78,8 @@ const homeSchema = {
   <section class="section hero-s" id="product">
     <div class="container hero-copy">
       <span class="hero-pill" data-reveal><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Live translate <span class="hero-pill__dot" aria-hidden="true"></span></span>
-      <h1 class="display hero-h1" data-reveal>One Training Session.<br /><span class="gradient-text">Every Language.</span> Infinite Scale.</h1>
-      <p class="lead" data-reveal>The AI-native classroom that translates your voice in real time. You speak English—your global workforce listens and learns in 19+ languages simultaneously. Eliminate localization costs and train the world.</p>
+      <h1 class="display hero-h1" data-reveal>Multilingual <span class="gradient-text">Video Meeting Platform</span></h1>
+      <p class="lead" data-reveal>Expand your Market to more than 99 Languages</p>
       <div class="hero-cta" data-reveal>
         <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
         <a href="/features/live-translation" class="btn btn-ghost">See how it works</a>
@@ -98,6 +99,9 @@ const homeSchema = {
     </div>
 
   </section>
+
+  <!-- ── OUR CUSTOMERS ────────────────────────────────────── -->
+  <Customers />
 
   <!-- ── GLOBAL TEACHING DEMO ─────────────────────────────── -->
   <section class="section band" id="translation">
@@ -143,26 +147,25 @@ const homeSchema = {
   <section class="section band">
     <div class="container split">
       <div data-reveal>
-        <span class="eyebrow-label">BUILT FOR TEACHING</span>
-        <h2 class="h2" style="margin-top:12px">Not another meeting room.<br />A classroom.</h2>
+        <span class="eyebrow-label">BUILT FOR MEETINGS</span>
+        <h2 class="h2" style="margin-top:12px">Everything you need<br />for a better meeting.</h2>
         <p class="lead" style="margin-top:16px">
-          The trainer leads, the lesson has a name, and the notes belong to the class —
-          not bolted onto a corporate call.
+          Lead the discussion with screen sharing, whiteboards and breakout rooms. Keep everyone involved with chat, polls and live translation.
         </p>
       </div>
       {/* Deliberately text, not a second mock — the hero already carries the only image on this page. */}
       <ul class="classlist" data-reveal>
         <li>
           <span class="classlist__ic"><Icon name="users" size={18} /></span>
-          <div><strong>The trainer leads</strong><span>The room is built around the person teaching, not a grid of equal squares.</span></div>
+          <div><strong>You lead the meeting</strong><span>Waiting rooms, co-hosts and participant controls keep the session in your hands.</span></div>
         </li>
         <li>
           <span class="classlist__ic"><Icon name="doc" size={18} /></span>
-          <div><strong>The lesson has a name</strong><span>Every session is a titled class, not an anonymous meeting ID.</span></div>
+          <div><strong>One link brings everyone together</strong><span>Start an instant meeting or schedule a session. Guests join in their browser.</span></div>
         </li>
         <li>
           <span class="classlist__ic"><Icon name="sparkles" size={18} /></span>
-          <div><strong>The notes belong to the class</strong><span>Key concepts and the summary stay with the lesson, not scattered across chat threads.</span></div>
+          <div><strong>Keep the context after the call</strong><span>Turn a meeting recording into a searchable transcript, summary and action items.</span></div>
         </li>
       </ul>
     </div>
@@ -172,8 +175,8 @@ const homeSchema = {
   <section class="section">
     <div class="container">
       <div class="sec-head" data-reveal>
-        <h2 class="h2">You teach. AI handles the rest.</h2>
-        <p class="lead">No extra staff for translation or class notes.</p>
+        <h2 class="h2">Meet, share and follow up.</h2>
+        <p class="lead">Live translation during the meeting. AI notes from your recording afterwards.</p>
       </div>
       <div class="caps" data-reveal>
         {capabilities.map((c) => (
@@ -208,11 +211,11 @@ const homeSchema = {
   <!-- ── ASPIRATION ───────────────────────────────────────── -->
   <section class="section band">
     <div class="container borderless" data-reveal>
-      <h2 class="h2">Your classroom has no borders.</h2>
+      <h2 class="h2">Bring every location into the conversation.</h2>
       <div class="borderless__side">
         <p class="lead">
           The right learner may live in another city, country or language.
-          Your live classroom should make that irrelevant.
+          Your meeting should bring you together.
         </p>
         <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
       </div>
@@ -278,7 +281,7 @@ const homeSchema = {
     font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; letter-spacing: .12em;
   }
   /* One line on a desktop so the headline spans the grid instead of stacking into a narrow block. */
-  .hero-h1 { font-size: clamp(30px, 3.6vw, 56px); line-height: 1.08; }
+  .hero-h1 { font-size: clamp(45px, 5.4vw, 84px); line-height: 1.08; }
   .hero-copy .display { margin-top: 22px; }
   /* Caps live on the TEXT, never on the container — a container cap is exactly what collapsed
      two sections downpage to 501px and 185px. */

@@ -2,7 +2,6 @@ import { LANG_COUNT, LANGS_PER_SESSION, LANG_LIST_SENTENCE } from './languages';
 // Product feature pages. Claims are whitepaper-accurate (100% cloud SaaS):
 //  - meeting media = encrypted in transit (DTLS-SRTP); OPT-IN per-meeting end-to-end encryption (NOT default)
 //  - in-meeting chat/DMs = server-blind ONLY inside an E2EE meeting; otherwise transit-encrypted + server-side
-//  - deal-room docs = encrypted in transit + at rest + access-controlled (NOT client-side E2EE)
 //  - recordings = access-controlled, in your workspace; AI = opt-in, post-meeting, never on E2EE meetings
 //  - do NOT claim standalone MLS "team messaging" (not shipped), SOC2/ISO, or self-host.
 
@@ -49,7 +48,7 @@ export const FEATURES: Feature[] = [
       { icon: 'doc', title: 'Live captions', body: 'Translated captions in the learner’s script, or same-language captions of the original for accessibility.' },
       { icon: 'network', title: 'Technical terms stay in English', body: 'Common protocol, tool and product names from networking, software, cloud and AI are kept in English inside the translation — the way real classrooms speak.' },
       { icon: 'zap', title: 'Numbers the way trainers say them', body: 'Ports, addresses, versions and figures are spoken in English inside the translated voice for Indian languages, the way an Indian classroom hears them.' },
-      { icon: 'users', title: 'Works in meetings and webinars', body: 'The same translation runs in a live class, a meeting or a webinar broadcast — attendees pick their language from the same menu.' },
+      { icon: 'users', title: 'Translation in every meeting', body: 'The same translation runs in a live class, a meeting or a webinar broadcast — attendees pick their language from the same menu.' },
     ],
     sections: [
       { eyebrow: 'For India-first classrooms', title: 'Teach in English. Be heard in Kannada, Tamil or Hindi.',
@@ -59,7 +58,7 @@ export const FEATURES: Feature[] = [
         body: 'Translation follows a beat behind the speaker. Recognition quality follows microphone quality: a headset in a quiet room translates far better than a laptop mic in a café. For legal or medical settings where a certified interpreter is required, use one — we say that plainly rather than let you discover it in the wrong meeting.',
         bullets: [`Up to ${LANGS_PER_SESSION} distinct languages per live session`, 'End-to-end encrypted meetings have no server-readable audio, so translation is not available in them', 'Translation is included on paid plans — see pricing'] },
     ],
-    related: ['live-captions', 'webinars', 'ai', '/languages', 'use-cases/tutors', 'use-cases/academies'],
+    related: ['live-captions', 'ai', '/languages', 'use-cases/tutors', 'use-cases/academies'],
     securityNote: 'Translation runs on the meeting’s live audio on our hosted service and is not stored as audio; captions are delivered live to the learners who asked for them. An end-to-end encrypted meeting has no server-readable audio, so translation is not available inside it — hosts choose per meeting.',
     faq: [
       { q: 'Which languages are supported?', a: `${LANG_COUNT}: ${LANG_LIST_SENTENCE}. Every one of them is available as captions and as spoken audio.` },
@@ -73,7 +72,7 @@ export const FEATURES: Feature[] = [
     icon: 'doc',
     label: 'Live captions',
     metaTitle: 'Live Captions for Online Classes',
-    metaDescription: 'Real-time captions for every participant: read along in the language spoken, or in your own. Per-person choice, no download, works in meetings and webinars.',
+    metaDescription: 'Real-time captions for every participant: read along in the language spoken, or in your own. Per-person choice, no download, works in meetings.',
     eyebrow: 'Live captions',
     title: 'Every word on screen,',
     titleAccent: 'in the language each learner reads',
@@ -84,21 +83,21 @@ export const FEATURES: Feature[] = [
       { title: 'Keep the speaker in view', body: 'Captions sit over the stage with the speaker’s name, so a class with several presenters stays easy to follow.' },
     ],
     capabilities: [
-      { icon: 'doc', title: 'Same-language captions', body: 'Read exactly what is being said — the accessibility baseline for every participant, in every meeting and webinar.' },
+      { icon: 'doc', title: 'Same-language captions', body: 'Read exactly what is being said — the accessibility baseline for every participant, in every meeting.' },
       { icon: 'globe', title: 'Translated captions', body: `Captions in any of the ${LANG_COUNT} shipped languages, with common technical terms kept in English.` },
       { icon: 'users', title: 'Speaker attribution', body: 'Each caption line carries the name of the person speaking, so multi-presenter sessions read like a transcript.' },
       { icon: 'zap', title: 'Low-latency lines', body: 'Interim captions appear immediately and settle as the sentence completes — the way live captioning should feel.' },
-      { icon: 'toggle', title: 'Per-person choice', body: 'In meetings captions are a viewer setting; in webinars the host turns same-language captions on for everyone, and each attendee still picks their own translated language.' },
+      { icon: 'toggle', title: 'Per-person choice', body: 'Captions are a personal meeting setting: each participant turns them on and chooses their own language.' },
       { icon: 'shield', title: 'Respects encryption', body: 'End-to-end encrypted meetings have no server-readable audio, so captions are not available inside them — by design.' },
     ],
     sections: [
       { eyebrow: 'Accessibility first', title: 'Captions are the baseline, translation is the upgrade.',
         body: 'Same-language captions help learners with hearing loss, noisy rooms, second-language listeners and anyone who retains more by reading. Translated captions build on the same stream, so turning on translation never removes the accessibility baseline for the rest of the class.' },
     ],
-    related: ['live-translation', 'webinars', 'video-meetings', '/languages'],
+    related: ['live-translation', 'video-meetings', '/languages'],
     securityNote: 'Captions are generated from the live audio on our hosted service and delivered to the participants who asked for them; they are not stored as audio. End-to-end encrypted meetings exclude captions because the server cannot read their audio.',
     faq: [
-      { q: 'Are captions on for everyone once the host enables them?', a: 'In a meeting, captions are a per-person choice: each participant turns them on and picks the language they read. In a webinar, the host switches same-language captions on for the whole audience, and each attendee can still choose a translated language for themselves.' },
+      { q: 'Are captions on for everyone once the host enables them?', a: 'In a meeting, captions are a per-person choice: each participant turns them on and picks the language they read.' },
       { q: 'Can I get a transcript afterwards?', a: 'Recorded sessions can be transcribed and summarised from the recording; live captions themselves are for the live session.' },
     ],
   },
@@ -142,7 +141,7 @@ export const FEATURES: Feature[] = [
     slug: 'video-meetings',
     icon: 'video',
     label: 'Video meetings',
-    metaTitle: 'Live Classes in the Browser, No Download',
+    metaTitle: 'Video Meetings in the Browser, No Download',
     metaDescription:
       'One-click HD video meetings with screen sharing, whiteboard, breakout rooms, background blur and full host controls. No install; end-to-end encryption optional.',
     eyebrow: 'Video meetings',
@@ -160,7 +159,7 @@ export const FEATURES: Feature[] = [
       { icon: 'mic', title: 'Studio audio + AI noise removal', body: 'Full-band 48 kHz audio with AI noise suppression that keeps keyboards, traffic and background chatter out of the room.' },
       { icon: 'layers', title: 'Screen share & annotate', body: 'Share a screen, window or tab with system audio, and draw on top of it with the shared whiteboard.' },
       { icon: 'users', title: 'Breakout rooms', body: 'Split into up to ten breakout rooms with per-person or round-robin assignment, then pull everyone back.' },
-      { icon: 'chat', title: 'Chat, DMs, polls & reactions', body: 'Side chat with file sharing, 1:1 private messages, live polls, emoji reactions, raise-hand and spotlight.' },
+      { icon: 'chat', title: 'Chat, DMs, polls & reactions', body: 'In-meeting chat, 1:1 private messages, live polls, emoji reactions, raise-hand and spotlight.' },
       { icon: 'image', title: 'Background blur & backgrounds', body: 'Blur your background or drop in a virtual scene — including your own uploaded image.' },
       { icon: 'shield', title: 'Full host controls', body: 'Waiting room, lock, password, mute-all, mute-on-entry, co-hosts, remove and ban — you run the room.' },
       { icon: 'route', title: 'Personal room & short links', body: 'A stable personal meeting room plus clean, Zoom-style short join links — guests join from a browser, no account.' },
@@ -170,7 +169,7 @@ export const FEATURES: Feature[] = [
     faq: [
       { q: 'Do participants need to install anything?', a: 'No. Meetings run in any modern browser with no download. Invited guests can join from a link without an account, gated by your waiting room.' },
       { q: 'Are meetings end-to-end encrypted?', a: 'Meeting media is always encrypted in transit, and end-to-end encryption covers video, chat and screen share — encrypted in the browser under a key held by the participants. See the security page for each layer.' },
-      { q: 'How many people can join?', a: 'Up to 100 on Pro and 300 on Business, with plan-based limits on concurrent meetings and duration. Webinars scale larger and are a separate product.' },
+      { q: 'How many people can join?', a: 'Participant, duration and concurrent-meeting limits depend on your plan. See the pricing page for current meeting limits.' },
     ],
   },
   {
@@ -182,7 +181,7 @@ export const FEATURES: Feature[] = [
       'Transcripts, AI class notes and action items, plus an assistant you can ask about any recorded class. End-to-end encrypted meetings stay AI-free by design.',
     eyebrow: 'AI & context',
     steps: [
-      { title: 'Record the session', body: 'Cloud-record a meeting or webinar; the recording becomes the source for everything below.' },
+      { title: 'Record the session', body: 'Cloud-record a meeting; the recording becomes the source for everything below.' },
       { title: 'Transcribe and summarise', body: 'One click turns the recording into a searchable transcript, a clean summary and action items.' },
       { title: 'Ask the meeting', body: 'Ask questions about what was said and get answers grounded in that transcript.' },
     ],
@@ -191,7 +190,7 @@ export const FEATURES: Feature[] = [
     titleAccent: 'notes and context after',
     lead: 'Record a meeting and Ollasync turns it into a searchable transcript, a clean summary and a list of action items — and lets you ask questions about what was said. Your workspace decides which meetings it covers.',
     capabilities: [
-      { icon: 'doc', title: 'Automatic transcripts', body: 'Recorded meetings and webinars are transcribed into timestamped, searchable text you can scan or share.' },
+      { icon: 'doc', title: 'Automatic transcripts', body: 'Recorded meetings are transcribed into timestamped, searchable text you can scan or share.' },
       { icon: 'sparkles', title: 'AI notes & summaries', body: 'A concise summary of what happened, generated from the meeting’s own transcript — no manual note-taking.' },
       { icon: 'check-circle', title: 'Action items', body: 'The decisions and to-dos pulled out of the conversation, so nothing gets lost after the call.' },
       { icon: 'chat', title: 'Ask about the meeting', body: 'Ask questions about a recorded meeting and get answers grounded in its transcript — the context is the meeting itself.' },
@@ -206,58 +205,26 @@ export const FEATURES: Feature[] = [
       { q: 'What does “context” mean?', a: 'The assistant answers from the meeting’s own transcript, so every answer is grounded in what was actually said in that meeting.' },
     ],
   },
-  {
-    slug: 'webinars',
-    icon: 'users',
-    label: 'Webinars',
-    metaTitle: 'Webinars for Training — Q&A, Polls, OBS',
-    metaDescription:
-      'Broadcast to large audiences with a public browser join, stage controls, Q&A, polls and quizzes, handouts, recording and OBS/RTMP streaming in.',
-    eyebrow: 'Webinars',
-    steps: [
-      { title: 'Publish a join link', body: 'Attendees open it in the browser — no account, no download, subscribe-only by design.' },
-      { title: 'Run the stage', body: 'Promote attendees to speak, take questions and polls, share handouts, stream in a produced feed.' },
-      { title: 'Every attendee in their language', body: `Attendees pick captions or spoken translation from the same ${LANG_COUNT}-language menu as meetings.` },
-    ],
-    related: ['live-translation', 'recordings', 'use-cases/academies', 'use-cases/onboarding'],
-    title: 'Webinars that scale,',
-    titleAccent: 'without the friction',
-    lead: 'Broadcast to a large audience with a clean public join, a managed stage, live Q&A, polls and quizzes, downloadable handouts and studio-quality streaming in from OBS — a separate product built for one-to-many.',
-    capabilities: [
-      { icon: 'users', title: 'Stage & audience', body: 'Present from a managed stage; promote attendees up to speak and demote them back with a click.' },
-      { icon: 'route', title: 'Public browser join', body: 'Attendees join instantly from a shareable link — subscribe-only, no account, no download.' },
-      { icon: 'chat', title: 'Live Q&A', body: 'Attendees ask and upvote questions; hosts mark them answered, so large sessions stay interactive and orderly.' },
-      { icon: 'poll', title: 'Polls & quizzes', body: 'Run live polls or quiz mode with correct answers revealed on close — great for training and webinars.' },
-      { icon: 'doc', title: 'Handouts & resources', body: 'Share links or upload files for attendees to download during or after the session.' },
-      { icon: 'broadcast', title: 'Stream in with OBS', body: 'Bring a polished, multi-source production in over RTMP from OBS or your encoder of choice.' },
-    ],
-    securityNote:
-      'Webinar attendee join is public and subscribe-only by design — the audience receives the broadcast but can’t publish into it. Media is encrypted in transit; hosts can record the session to the workspace.',
-    faq: [
-      { q: 'How do attendees join a webinar?', a: 'Through a shareable link that opens in the browser — no account and no download. The public attendee join is subscribe-only, so the audience receives the broadcast without being able to publish into it.' },
-      { q: 'Can I stream in a produced feed?', a: 'Yes. Mint a stream key and push a multi-source production in over RTMP from OBS or a hardware encoder; it appears on stage like any presenter.' },
-      { q: 'Do webinars count against my meeting limit?', a: 'No. Webinars run as a separate product and don’t count against your concurrent-meeting limit.' },
-    ],
-  },
+
   {
     slug: 'recordings',
     icon: 'play',
-    label: 'Recordings',
+    label: 'Meeting recordings',
     metaTitle: 'Class Recordings — Access-Controlled',
     metaDescription:
-      'Record meetings and webinars to your workspace, restricted to authorised viewers, with transcripts and AI notes. Audio-only option and retention on your terms.',
+      'Record meetings to your workspace, restricted to authorised viewers, with transcripts and AI notes. Audio-only option and retention on your terms.',
     eyebrow: 'Recordings',
     steps: [
       { title: 'Record to the cloud', body: 'The host starts and stops recording; everyone in the room sees the indicator.' },
       { title: 'Stored in your workspace', body: 'Access-controlled, served through short-lived signed links, never a public bucket.' },
       { title: 'Transcribe, summarise, share', body: 'Turn a recording into a transcript and AI notes, or let learners keep their own local copy in their language.' },
     ],
-    related: ['local-recording', 'ai', 'webinars'],
+    related: ['local-recording', 'ai'],
     title: 'Recordings that stay',
     titleAccent: 'under your control',
-    lead: 'Capture meetings and webinars for replay and records — stored in your workspace, restricted to the people you authorise, and ready to transcribe and summarise with AI.',
+    lead: 'Capture meetings for replay and records — stored in your workspace, restricted to the people you authorise, and ready to transcribe and summarise with AI.',
     capabilities: [
-      { icon: 'play', title: 'One-click capture', body: 'Start and stop recording during a meeting or webinar, with a clear on-screen indicator for everyone in the room.' },
+      { icon: 'play', title: 'One-click capture', body: 'Start and stop recording during a meeting, with a clear on-screen indicator for everyone in the room.' },
       { icon: 'file-lock', title: 'Access-restricted', body: 'Playback is limited to authorised viewers through short-lived signed links — not a public URL that leaks.' },
       { icon: 'mic', title: 'Audio-only option', body: 'Capture audio only when that’s all you need — smaller files, faster to review and transcribe.' },
       { icon: 'sparkles', title: 'Transcripts & AI notes', body: 'Turn any recording into a searchable transcript with an AI summary and action items.' },
@@ -272,37 +239,5 @@ export const FEATURES: Feature[] = [
       { q: 'Can I record an encrypted meeting?', a: 'No. Recording decodes media server-side, which an end-to-end-encrypted meeting deliberately prevents — so recording is hidden for E2EE meetings.' },
     ],
   },
-  {
-    slug: 'deal-rooms',
-    icon: 'file-lock',
-    label: 'Deal rooms',
-    metaTitle: 'Confidential Deal Rooms with Live Video',
-    metaDescription:
-      'Per-deal confidential document rooms with role-based access, NDA gating, view-only watermarking, engagement analytics and live encrypted video.',
-    eyebrow: 'Deal rooms',
-    steps: [
-      { title: 'Open a deal', body: 'Create the room, add parties and assign roles that govern which folders each side sees.' },
-      { title: 'Gate the documents', body: 'Require the NDA, set view-only with watermarks where needed, and invite outside parties by email.' },
-      { title: 'Meet inside it', body: 'Discuss the documents on encrypted video in the same room, with every access in the trail.' },
-    ],
-    related: ['video-meetings', 'use-cases/legal', 'use-cases/finance'],
-    title: 'Confidential document rooms',
-    titleAccent: 'with live video',
-    lead: 'Per-deal rooms where documents are role-gated, NDA-protected and view-only when they need to be — with encrypted video and an access trail in the same room. A virtual data room for the conversations that can’t leak.',
-    capabilities: [
-      { icon: 'doc', title: 'Role-based folders', body: 'Deal roles govern who sees which folders — buyer, seller, counsel, banker, auditor, observer and more.' },
-      { icon: 'file-lock', title: 'NDA gating', body: 'Require NDA acceptance before any document can be downloaded — audited, with the admin notified.' },
-      { icon: 'eye-off', title: 'View-only + watermark', body: 'Show sensitive documents in-browser with a per-viewer watermark and no download — deterrence against casual leakage.' },
-      { icon: 'video', title: 'Live encrypted video', body: 'Meet inside the deal room, so discussion and documents live in one confidential place.' },
-      { icon: 'users', title: 'Cross-organisation invites', body: 'Invite outside parties by email; they access the deal from their own workspace with their own scoped role.' },
-      { icon: 'chart', title: 'Engagement analytics', body: 'See who accessed what and when — every invite, NDA acceptance and document view is logged.' },
-    ],
-    securityNote:
-      'Deal-room documents are encrypted in transit and at rest and gated by role and NDA, with short-lived signed access links — they are not client-side end-to-end encrypted, and we state this plainly. Watermarking is a deterrent, not DRM.',
-    faq: [
-      { q: 'Is this a virtual data room?', a: 'Yes — a confidential document room with role-based folders, NDA gating, in-browser view-only mode with watermarks and audited access, plus live encrypted video in the same room.' },
-      { q: 'How are deal-room documents protected?', a: 'Encrypted in transit and at rest, gated by role and NDA, served through short-lived signed links, with per-viewer watermarks on view-only files and an access trail on every document.' },
-      { q: 'Can external parties join a deal?', a: 'Yes. Cross-organisation invites let outside members access a deal from their own workspace, governed by their assigned role — without joining your tenant.' },
-    ],
-  },
+
 ];

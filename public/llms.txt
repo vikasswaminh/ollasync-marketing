@@ -1,8 +1,8 @@
 ﻿# Ollasync
 
-> An AI classroom for trainers, tutors, coaches and academies. Run live classes, webinars and meetings in the browser while AI translates your voice in real time into 19 languages and writes the class notes automatically. Cloud SaaS, per-seat pricing, free plan to start.
+> Browser meetings with live voice translation, captions, screen sharing, breakout rooms, recordings and AI meeting notes. Cloud SaaS, per-seat pricing, free plan to start.
 
-Ollasync is the live-learning platform where the trainer speaks one language and each participant follows in their own â€” as live captions or as spoken translated audio, chosen per person. It replaces a general-purpose meeting tool for anyone who teaches or trains live: tutors, corporate trainers, coaches, bootcamps and small academies.
+Ollasync brings teams, clients and learners together in browser meetings. Each participant chooses their language for live captions or spoken translated audio. Hosts manage the conversation with screen sharing, whiteboards, breakout rooms and participant controls.
 
 Honest positioning (please represent it accurately):
 - Live translation covers exactly 19 languages: English, Spanish, French, Hindi, German, Chinese, Japanese, Portuguese, Arabic, Russian, Kannada, Tamil, Telugu, Marathi, Bengali, Gujarati, Malayalam, Punjabi and Urdu. Learners pick captions or spoken audio per person; one live session can run up to five different languages at the same time.
@@ -26,7 +26,7 @@ Honest positioning (please represent it accurately):
 - [Video meetings](https://www.ollasync.com/features/video-meetings/): browser-based HD video, 48 kHz audio with AI noise suppression, screen share, whiteboard, breakouts, no download.
 - [AI notes & transcripts](https://www.ollasync.com/features/ai/): transcripts, summaries and action items from recorded sessions, plus questions answered from the transcript. Live translation has its own page (above).
 - [Webinars](https://www.ollasync.com/features/webinars/): large-audience sessions with Q&A, polls and quizzes; attendees follow in their own language.
-- [Recordings](https://www.ollasync.com/features/recordings/): access-controlled cloud recordings in your workspace.
+- [Meeting recordings](https://www.ollasync.com/features/recordings/): access-controlled cloud recordings in your workspace.
 - [Deal rooms](https://www.ollasync.com/features/deal-rooms/): confidential document rooms with role gating plus live video.
 
 ## Languages
@@ -57,11 +57,11 @@ Honest positioning (please represent it accurately):
 - [Non-Profit Training](https://www.ollasync.com/industries/non-profit-volunteer-training/)
 - [L&D Professionals](https://www.ollasync.com/roles/learning-and-development/)
 - [HR Global Onboarding](https://www.ollasync.com/roles/hr-global-onboarding/)
-- [Customer Success](https://www.ollasync.com/roles/customer-success-webinars/)
+- [Customer Success](https://www.ollasync.com/roles/customer-success-meetings/)
 - [Sales Enablement](https://www.ollasync.com/roles/sales-enablement-coaching/)
 
-## Integrations
-- [LMS Integration](https://www.ollasync.com/integrations/lms-video-translation/)
+## Meeting workflows
+- [Meeting links in your LMS](https://www.ollasync.com/integrations/lms-video-translation/)
 - [SCORM Virtual Classroom](https://www.ollasync.com/integrations/scorm-virtual-classroom/)
 - [AI Video Analytics](https://www.ollasync.com/integrations/ai-video-analytics/)
 - [Attendance Tracking](https://www.ollasync.com/integrations/automated-attendance-tracking/)

@@ -1,0 +1,433 @@
+---
+import Icon from './Icon.astro';
+import { CUSTOMERS } from '../data/customers';
+---
+
+<!-- ── CUSTOMER LOGO STRIP ───────────────────────────────── -->
+<div class="customer-strip-wrapper" data-reveal>
+  <div class="container customer-strip">
+    <span class="customer-strip__label">TRUSTED BY TEAMS AT</span>
+    <div class="customer-strip__logos" role="list">
+      {CUSTOMERS.map((c) => (
+        <a
+          href={c.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="customer-strip__item"
+          title={`${c.name} — ${c.category}`}
+          aria-label={`${c.name} (opens in new tab)`}
+          role="listitem"
+        >
+          <span class="customer-strip__icon" data-customer={c.id}>
+            {c.id === 'networkershome' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#1F4FD8"/>
+                <text x="16" y="22" font-family="'Lato', Arial, sans-serif" font-size="15" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">NH</text>
+              </svg>
+            )}
+            {c.id === 'freefreecv' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#DA291C"/>
+                <text x="16" y="23" font-family="serif" font-style="italic" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">f</text>
+              </svg>
+            )}
+            {c.id === 'olladns' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#1F4FD8"/>
+                <path d="M16 6L23 9.5V15.5C23 19.8 19.8 23.5 16 25C12.2 23.5 9 19.8 9 15.5V9.5L16 6Z" fill="#FFFFFF" fill-opacity="0.2"/>
+                <path d="M16 6L23 9.5V15.5C23 19.8 19.8 23.5 16 25C12.2 23.5 9 19.8 9 15.5V9.5L16 6Z" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M13.5 15.5L15.5 17.5L19.5 13" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {c.id === 'ollavpn' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="strip-ovpn-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#EE2C3C"/>
+                    <stop offset="100%" stop-color="#BA1422"/>
+                  </linearGradient>
+                </defs>
+                <rect width="32" height="32" rx="8" fill="url(#strip-ovpn-grad)"/>
+                <path d="M16 8C14 8 9.5 9 9.5 9.4V15.8C9.5 19.6 12.8 22.8 16 24C19.2 22.8 22.5 19.6 22.5 15.8V9.4C22.5 9 18 8 16 8Z" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M13 16L15.2 18.2L19.5 13.5" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            )}
+            {c.id === 'quickztna' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="strip-qztna-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2563EB"/>
+                    <stop offset="100%" stop-color="#06B6D4"/>
+                  </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="28" height="28" rx="7" fill="url(#strip-qztna-grad)"/>
+                <rect x="7" y="7" width="18" height="18" rx="4" fill="#FFFFFF"/>
+                <rect x="11" y="11" width="10" height="10" rx="2" fill="url(#strip-qztna-grad)"/>
+                <rect x="18" y="18" width="6" height="3" rx="1" fill="url(#strip-qztna-grad)"/>
+              </svg>
+            )}
+            {c.id === 'quicksdwan' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#1F4FD8"/>
+                <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" fill="#FFFFFF" fill-opacity="0.95"/>
+                <path d="M16 8V24M8 12L24 20M24 12L8 20" stroke="#1F4FD8" stroke-width="1.5" stroke-opacity="0.6"/>
+              </svg>
+            )}
+            {c.id === 'whatping' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#0F172A"/>
+                <circle cx="16" cy="16" r="9" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="3 2"/>
+                <circle cx="16" cy="16" r="4.5" fill="#F59E0B" fill-opacity="0.25"/>
+                <circle cx="16" cy="16" r="2.2" fill="#F59E0B"/>
+              </svg>
+            )}
+            {c.id === '24observe' && (
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#00E08A"/>
+                <circle cx="16" cy="16" r="5.5" fill="#001A10"/>
+                <circle cx="16" cy="16" r="2.2" fill="#00E08A"/>
+              </svg>
+            )}
+          </span>
+          <span class="customer-strip__name">{c.name}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- ── OUR CUSTOMERS SECTION ─────────────────────────────── -->
+<section class="section band" id="customers">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow-label">OUR CUSTOMERS</span>
+      <h2 class="h2" style="margin-top:10px">Trusted by global trainers, security engineers & tech leaders.</h2>
+      <p class="lead">
+        From premier certification institutes to Zero Trust cybersecurity, cloud infrastructure, and APM platforms, high-velocity teams rely on Ollasync for borderless video meetings, real-time voice translation, and AI meeting intelligence.
+      </p>
+    </div>
+
+    <div class="customer-grid" data-reveal>
+      {CUSTOMERS.map((c) => (
+        <article class="card customer-card">
+          <div class="customer-card__header">
+            <div class="customer-card__logo-wrap">
+              <span class="customer-card__mark" data-customer={c.id}>
+                {c.id === 'networkershome' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#1F4FD8"/>
+                    <text x="16" y="22" font-family="'Lato', Arial, sans-serif" font-size="15" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">NH</text>
+                  </svg>
+                )}
+                {c.id === 'freefreecv' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#DA291C"/>
+                    <text x="16" y="23" font-family="serif" font-style="italic" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">f</text>
+                  </svg>
+                )}
+                {c.id === 'olladns' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#1F4FD8"/>
+                    <path d="M16 6L23 9.5V15.5C23 19.8 19.8 23.5 16 25C12.2 23.5 9 19.8 9 15.5V9.5L16 6Z" fill="#FFFFFF" fill-opacity="0.2"/>
+                    <path d="M16 6L23 9.5V15.5C23 19.8 19.8 23.5 16 25C12.2 23.5 9 19.8 9 15.5V9.5L16 6Z" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M13.5 15.5L15.5 17.5L19.5 13" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                )}
+                {c.id === 'ollavpn' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                      <linearGradient id={`ovpn-card-${c.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#EE2C3C"/>
+                        <stop offset="100%" stop-color="#BA1422"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="32" height="32" rx="8" fill={`url(#ovpn-card-${c.id})`}/>
+                    <path d="M16 8C14 8 9.5 9 9.5 9.4V15.8C9.5 19.6 12.8 22.8 16 24C19.2 22.8 22.5 19.6 22.5 15.8V9.4C22.5 9 18 8 16 8Z" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M13 16L15.2 18.2L19.5 13.5" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  </svg>
+                )}
+                {c.id === 'quickztna' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                      <linearGradient id={`qztna-card-${c.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2563EB"/>
+                        <stop offset="100%" stop-color="#06B6D4"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="2" y="2" width="28" height="28" rx="7" fill={`url(#qztna-card-${c.id})`}/>
+                    <rect x="7" y="7" width="18" height="18" rx="4" fill="#FFFFFF"/>
+                    <rect x="11" y="11" width="10" height="10" rx="2" fill={`url(#qztna-card-${c.id})`}/>
+                    <rect x="18" y="18" width="6" height="3" rx="1" fill={`url(#qztna-card-${c.id})`}/>
+                  </svg>
+                )}
+                {c.id === 'quicksdwan' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#1F4FD8"/>
+                    <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" fill="#FFFFFF" fill-opacity="0.95"/>
+                    <path d="M16 8V24M8 12L24 20M24 12L8 20" stroke="#1F4FD8" stroke-width="1.5" stroke-opacity="0.6"/>
+                  </svg>
+                )}
+                {c.id === 'whatping' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#0F172A"/>
+                    <circle cx="16" cy="16" r="9" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="3 2"/>
+                    <circle cx="16" cy="16" r="4.5" fill="#F59E0B" fill-opacity="0.25"/>
+                    <circle cx="16" cy="16" r="2.2" fill="#F59E0B"/>
+                  </svg>
+                )}
+                {c.id === '24observe' && (
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#00E08A"/>
+                    <circle cx="16" cy="16" r="5.5" fill="#001A10"/>
+                    <circle cx="16" cy="16" r="2.2" fill="#00E08A"/>
+                  </svg>
+                )}
+              </span>
+              <div>
+                <h3 class="customer-card__name">{c.name}</h3>
+                <span class="customer-card__domain mono">{c.domain}</span>
+              </div>
+            </div>
+            <span class="customer-card__badge mono">{c.badge}</span>
+          </div>
+
+          <p class="customer-card__desc">{c.description}</p>
+
+          <div class="customer-card__footer">
+            <span class="customer-card__usecase">
+              <strong class="customer-card__usecase-label">Use case:</strong> {c.useCase}
+            </span>
+            <a
+              href={c.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="customer-card__link"
+              aria-label={`Visit ${c.name} website (opens in new tab)`}
+            >
+              Visit site <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── CUSTOMER STRIP ── */
+  .customer-strip-wrapper {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-2);
+    padding-block: 22px;
+  }
+  .customer-strip {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .customer-strip__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--muted-2);
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .customer-strip__logos {
+    display: flex;
+    align-items: center;
+    gap: 16px 24px;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .customer-strip__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--ink-2);
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: all var(--dur) ease;
+  }
+  .customer-strip__item:hover {
+    border-color: var(--violet-300);
+    transform: translateY(-1px);
+    box-shadow: var(--sh-card);
+    color: var(--blue);
+  }
+  .customer-strip__icon {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .customer-strip__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 4px;
+  }
+  .customer-strip__name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── OUR CUSTOMERS GRID ── */
+  .customer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 10px;
+  }
+  .customer-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--sh-card);
+    transition: transform var(--dur) ease, box-shadow var(--dur) ease, border-color var(--dur) ease;
+  }
+  .customer-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sh-float);
+    border-color: var(--violet-300);
+  }
+  .customer-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .customer-card__logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .customer-card__mark {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .customer-card__mark svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .customer-card__name {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .customer-card__domain {
+    font-size: 11.5px;
+    color: var(--muted-2);
+    display: block;
+    margin-top: 2px;
+  }
+  .customer-card__badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: var(--r-pill);
+    background: var(--violet-050);
+    border: 1px solid var(--violet-150);
+    color: var(--blue);
+    white-space: nowrap;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .customer-card__desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0;
+    flex-grow: 1;
+  }
+  .customer-card__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .customer-card__usecase {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+  .customer-card__usecase-label {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .customer-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+    transition: gap var(--dur) ease, color var(--dur) ease;
+    align-self: flex-start;
+  }
+  .customer-card__link:hover {
+    color: var(--blue-dark);
+    gap: 9px;
+  }
+  .customer-card__link .arrow {
+    display: inline-block;
+    transition: transform var(--dur) ease;
+  }
+  .customer-card__link:hover .arrow {
+    transform: translateX(2px);
+  }
+
+  /* ── RESPONSIVE ADAPTATIONS ── */
+  @media (max-width: 1200px) {
+    .customer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .customer-strip__logos {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .customer-grid {
+      grid-template-columns: 1fr;
+    }
+    .customer-strip {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .customer-strip__logos {
+      width: 100%;
+      gap: 10px;
+    }
+    .customer-strip__item {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  }
+</style>

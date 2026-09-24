@@ -9,7 +9,20 @@ const isActive = (g: typeof NAV[number]) => {
 };
 ---
 <a class="annbar" href={SITE.appUrl}>
-  <span class="annbar__inner">Zero credit card required — try now</span>
+  <span class="annbar__shine" aria-hidden="true"></span>
+  <span class="annbar__inner">
+    <span class="annbar__item">AI Powered Multilingugal Video Meeting</span>
+    <span class="annbar__sep" aria-hidden="true">•</span>
+    <span class="annbar__item">AI Notes</span>
+    <span class="annbar__sep" aria-hidden="true">•</span>
+    <span class="annbar__item">AI Attendance</span>
+    <span class="annbar__sep" aria-hidden="true">•</span>
+    <span class="annbar__item">AI Live Captions</span>
+    <span class="annbar__sep" aria-hidden="true">•</span>
+    <span class="annbar__item annbar__item--badge"><span class="badge-tag">Coming Soon</span> 8K Recording &amp; AI Editor</span>
+    <span class="annbar__sep" aria-hidden="true">•</span>
+    <span class="annbar__item">AI Webinars</span>
+  </span>
 </a>
 
 <header class="nav" id="siteNav">
@@ -57,16 +70,122 @@ const isActive = (g: typeof NAV[number]) => {
 </header>
 
 <style>
-  /* Full-bleed announcement bar, in the networkershome blue. Static and CSS-only —
-     a dismiss button would cost client JS for very little. */
+  /* Full-bleed announcement bar: shining super dark black with lustrous light sweep */
   .annbar {
-    display: block; background: var(--blue); color: #fff;
-    text-align: center; padding: 9px 16px;
-    font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    position: relative;
+    display: block;
+    background: #030305;
+    background: linear-gradient(90deg, #020203 0%, #08080c 25%, #0e0e14 50%, #08080c 75%, #020203 100%);
+    color: #f1f3f7;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    overflow: hidden;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .8), 0 4px 16px rgba(0, 0, 0, .45);
   }
-  .annbar:hover { color: #fff; background: var(--blue-dark); }
-  .annbar__inner { display: inline-block; max-width: var(--maxw-wide); }
-  @media (max-width: 520px) { .annbar { font-size: 12px; letter-spacing: .04em; padding: 8px 12px; } }
+
+  /* Animated metallic shine across the super dark black surface */
+  .annbar__shine {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.04) 38%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(255, 255, 255, 0.04) 62%,
+      transparent 80%
+    );
+    background-size: 200% 100%;
+    animation: annbarShine 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes annbarShine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .annbar:hover {
+    color: #ffffff;
+    background: #000000;
+    background: linear-gradient(90deg, #000 0%, #0c0d13 35%, #151620 50%, #0c0d13 65%, #000 100%);
+  }
+
+  .annbar:hover .annbar__shine {
+    animation-duration: 3s;
+  }
+
+  .annbar__inner {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    max-width: var(--maxw-wide);
+    line-height: 1.35;
+  }
+
+  .annbar__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #f1f3f7;
+    white-space: nowrap;
+  }
+
+  .annbar__sep {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 11px;
+    user-select: none;
+  }
+
+  .badge-tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    background: rgba(255, 255, 255, .15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, .25);
+    line-height: 1.4;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .annbar__shine {
+      animation: none;
+      background: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .annbar {
+      font-size: 11.5px;
+      padding: 8px 12px;
+    }
+    .annbar__inner {
+      gap: 6px 10px;
+    }
+    .annbar__sep {
+      display: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .annbar {
+      font-size: 11px;
+      padding: 7px 10px;
+    }
+  }
 
   .nav__mobile { border-top: 1px solid var(--line); background: rgba(255,255,255,.97); backdrop-filter: blur(14px); padding-block: 14px; }
   .nav__mobile a { display: block; padding: 11px 0; font-size: 16px; color: var(--ink-2); border-bottom: 1px solid var(--line-soft); }

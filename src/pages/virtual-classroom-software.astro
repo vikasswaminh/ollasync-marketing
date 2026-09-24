@@ -13,17 +13,17 @@ import { USE_CASES } from '../data/useCases';
 import { LANG_COUNT, LANGS_PER_SESSION } from '../data/languages';
 import { SITE } from '../consts';
 
-const title = 'Virtual Classroom Software for Trainers | Ollasync';
-const description = `Virtual classroom software for live teaching: browser classes, live voice translation in ${LANG_COUNT} languages, AI class notes, webinars and access-controlled replays.`;
+const title = 'Video Meetings for Live Training | Ollasync';
+const description = `Browser meetings for live training: voice translation in ${LANG_COUNT} languages, screen sharing, breakout rooms, AI notes and meeting recordings.`;
 
 const feat = (slug: string) => FEATURES.find((f) => f.slug === slug)!;
-const inside = ['live-translation', 'video-meetings', 'ai', 'live-captions', 'webinars', 'recordings'].map(feat);
+const inside = ['live-translation', 'video-meetings', 'ai', 'live-captions', 'local-recording', 'recordings'].map(feat);
 const audiences = ['trainers', 'tutors', 'academies', 'onboarding'].map((s) => USE_CASES.find((u) => u.slug === s)!);
 
 const differences = [
   { title: 'Learners, not attendees', body: 'A meeting tool treats everyone as a participant; translated captions exist on some plans, but nobody hears the class in their own language. A classroom lets each learner follow in theirs — captions or spoken audio — while the trainer teaches once.' },
   { title: 'The class continues after the call', body: 'Notes, the attendance list, the replay: in a classroom they come out of the session itself, not rebuilt from memory by the trainer afterwards.' },
-  { title: 'Built for the shapes teaching takes', body: 'Recurring cohorts, open-enrolment sessions, Q&A and polls for a large class, a recordings library per course.' },
+  { title: 'Built for the shapes teaching takes', body: 'Screen sharing, whiteboards, breakout rooms, chat and polls help trainers lead interactive meetings.' },
 ];
 const steps = [
   { title: 'Share one link', body: 'Learners open it in the browser on any device. No install, no account, and your own message on the invitation.' },
@@ -55,10 +55,10 @@ const schema = {
 ---
 <Base title={title} description={description} schema={schema}>
   <PageHero
-    eyebrow="Virtual classroom software"
+    eyebrow="Meetings for live training"
     eyebrowIcon="video"
     crumbs={[{ label: 'Virtual classroom software' }]}
-    title="Virtual classroom software built around"
+    title="Video meetings built around"
     titleAccent="live teaching"
     lead={`Run live classes in the browser where every learner follows in their own language, the notes write themselves and the replay stays under your control — made for trainers, tutors and academies, not for status meetings.`}
   >

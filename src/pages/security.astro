@@ -16,14 +16,9 @@ const matrix = [
     body: 'Every call travels over an encrypted transport. End-to-end encryption protects the media per frame under a key generated in your browser — the server relays ciphertext it cannot read.',
   },
   {
-    icon: 'chat', title: 'In-meeting chat, DMs & files',
+    icon: 'chat', title: 'In-meeting chat & DMs',
     status: 'End-to-end encrypted (in an E2EE meeting)', tone: 'teal',
-    body: 'When a meeting is end-to-end encrypted, chat, 1:1 direct messages and shared files are encrypted in your browser with AES-GCM under a key that never reaches our servers — we store only ciphertext. In a standard meeting they’re encrypted in transit but server-readable.',
-  },
-  {
-    icon: 'file-lock', title: 'Deal-room documents',
-    status: 'Encrypted in transit + at rest · access-controlled', tone: 'neutral',
-    body: 'Uploaded over TLS, stored encrypted at rest, and gated by role and NDA with short-lived signed access links, per-viewer watermarks on view-only files and an access trail on every document.',
+    body: 'When a meeting is end-to-end encrypted, chat and 1:1 direct messages are encrypted in your browser with AES-GCM under a key that never reaches our servers — we store only ciphertext. In a standard meeting they’re encrypted in transit but server-readable.',
   },
   {
     icon: 'play', title: 'Recordings',
@@ -41,28 +36,25 @@ const serverSees = {
   can: [
     'Meeting metadata: who is connected, when, the room identifier, timing',
     'The media of a standard (non-E2EE) meeting — encrypted in transit, but readable server-side',
-    'Documents and recordings you choose to store with us — encrypted at rest, access-controlled',
+    'Meeting recordings you choose to store with us — encrypted at rest, access-controlled',
   ],
 };
 
 const access = [
   { icon: 'fingerprint', title: 'Strong identity', body: 'Sign-in with email + password, magic-link, TOTP two-factor and passkeys (WebAuthn/FIDO2). OIDC single sign-on to your own IdP — Okta, Entra ID, Google Workspace and more.' },
   { icon: 'lock', title: 'Rooms default-closed', body: 'A guest needs an invite or the meeting id, and the host admits them from a waiting room before anything flows. Room tokens are short-lived and scoped to a single room with a role.' },
-  { icon: 'doc', title: 'Role & NDA gating', body: 'Deal roles govern who sees which folders. A deal can require NDA acceptance before any document can be downloaded — audited, and the admin is notified.' },
-  { icon: 'eye-off', title: 'View-only (deterrence)', body: 'View-only documents render in-browser with a per-viewer watermark and no download. We call this what it is: deterrence against casual leakage, not DRM.' },
 ];
 
 const transparency = [
   { title: 'End-to-end encrypted meetings', body: 'Video, chat and screen share are encrypted in the browser, under a key held by the participants. The service stores ciphertext it cannot read.' },
   { title: 'Encrypted transit on every meeting', body: 'All meeting media travels over an encrypted transport, with per-session keys negotiated for the call.' },
-  { title: 'Confidential deal rooms', body: 'Role-based access, NDA gating, per-viewer watermarks on view-only documents and a full access trail on every file.' },
-  { title: 'Private hosting with a DPA', body: 'Meetings, recordings and documents live on our hosted service under a data-processing agreement, in private storage.' },
+  { title: 'Private hosting with a DPA', body: 'Meetings and recordings live on our hosted service under a data-processing agreement, in private storage.' },
 ];
 
 const verify = [
   { icon: 'shield-check', title: 'The key stays with you', body: 'When you turn on end-to-end encryption, the meeting key is generated in your browser and rides only in the invite-link fragment — it never reaches our servers, which store only a SHA-256 hash of it.' },
   { icon: 'layers', title: 'Tenant isolation', body: 'An automated test asserts one organisation cannot read or even list another organisation’s data.' },
-  { icon: 'gauge', title: 'Nightly end-to-end suites', body: 'Identity, deal-room, cross-org access and the full in-call feature set run every night against the live stack, with results reported on failure.' },
+  { icon: 'gauge', title: 'Nightly end-to-end suites', body: 'Identity, workspace access and the full in-call feature set run every night against the live stack, with results reported on failure.' },
   { icon: 'route', title: 'Contract conformance', body: 'Every API route is checked against its documented contract on every build.' },
 ];
 
