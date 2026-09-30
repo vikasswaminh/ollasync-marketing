@@ -33,8 +33,8 @@ const schema = {
 <Base title={d.title} description={d.description} ogType="article" ogImage={cover} schema={schema}>
   <article class="post">
     <header class="post__head section" style="padding-block:40px 8px">
-      <div class="container" style="max-width:960px">
-        <div style="max-width:840px">
+      <div class="container">
+        <div style="max-width:880px">
           <div style="margin-bottom:18px"><Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: d.category, href: `/blog?category=${d.category}` }, { label: d.title }]} /></div>
           <span class={`chip cat cat--${d.category.toLowerCase()}`}>{d.category}{d.pillar && <> · Pillar guide</>}</span>
           <h1 class="display" style="font-size:clamp(30px,4.4vw,46px);line-height:1.18;margin-top:16px">{d.title}</h1>
@@ -48,28 +48,70 @@ const schema = {
       </div>
     </header>
 
-    <div class="container post__cover-wrap" style="max-width:960px">
-      <img class="post__cover" src={cover} alt={d.title} width="960" height="420" loading="eager" />
+    <div class="container post__cover-wrap">
+      <img class="post__cover" src={cover} alt={d.title} width="1600" height="540" loading="eager" />
     </div>
 
-    <div class="container post__grid" style="max-width:960px">
-      {toc.length > 0 && (
-        <aside class="post__toc">
-          <div class="post__toc-inner">
-            <details class="post__toc-details" open>
-              <summary class="post__toc-summary">
-                <span class="eyebrow-label">On this page</span>
-                <span class="toc-chevron" aria-hidden="true">▾</span>
-              </summary>
-              <nav aria-label="Table of contents">
-                <ul>
-                  {toc.map((h) => <li class={h.depth === 3 ? 'sub' : ''}><a href={`#${h.slug}`}>{h.text}</a></li>)}
-                </ul>
-              </nav>
-            </details>
+    <div class="container post__grid">
+      <aside class="post__sidebar">
+        <div class="post__sidebar-inner">
+          {toc.length > 0 && (
+            <div class="sidebar-card toc-card">
+              <details class="post__toc-details" open>
+                <summary class="post__toc-summary">
+                  <div class="sidebar-header">
+                    <span class="sidebar-badge"><Icon name="route" size={13} stroke="var(--blue)" /> Guide Navigation</span>
+                    <span class="toc-chevron" aria-hidden="true">▾</span>
+                  </div>
+                </summary>
+                <nav class="sidebar-nav" aria-label="Table of contents">
+                  <ul class="sidebar-nav__list">
+                    {toc.map((h) => (
+                      <li class={`sidebar-nav__item ${h.depth === 3 ? 'sidebar-nav__item--sub' : ''}`}>
+                        <a href={`#${h.slug}`} class="sidebar-nav__link">
+                          <span class="nav-indicator" aria-hidden="true"></span>
+                          <span class="nav-text">{h.text}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </details>
+            </div>
+          )}
+
+          <div class="sidebar-card promo-card">
+            <span class="sidebar-badge sidebar-badge--teal"><Icon name="shield-check" size={13} stroke="var(--teal)" /> Enterprise Alternative</span>
+            <h4 class="promo-card__title">Deploy Ollasync AI Meetings</h4>
+            <p class="promo-card__desc">Browser-native video meetings with live voice translation, automated meeting minutes, and zero add-on license traps.</p>
+            <div class="promo-card__actions">
+              <a href={SITE.appUrl} class="btn btn-primary btn-sm promo-btn">Try Ollasync Free <span class="arrow">→</span></a>
+              <a href="/vs/microsoft-teams" class="promo-link">Compare Teams vs Ollasync</a>
+            </div>
           </div>
-        </aside>
-      )}
+
+          <div class="sidebar-card meta-card">
+            <div class="meta-row">
+              <span class="meta-label">Author</span>
+              <span class="meta-value">{d.author}</span>
+            </div>
+            {d.authorRole && (
+              <div class="meta-row">
+                <span class="meta-label">Role</span>
+                <span class="meta-value">{d.authorRole}</span>
+              </div>
+            )}
+            <div class="meta-row">
+              <span class="meta-label">Published</span>
+              <span class="meta-value">{fmt(d.pubDate)}</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Est. Read</span>
+              <span class="meta-value">{d.readTime} min</span>
+            </div>
+          </div>
+        </div>
+      </aside>
 
       <div class="post__body">
         {d.takeaways.length > 0 && (
@@ -98,7 +140,7 @@ const schema = {
 
     {related.length > 0 && (
       <section class="section" style="padding-top:40px">
-        <div class="container" style="max-width:960px">
+        <div class="container">
           <h2 class="h3" style="margin-bottom:20px">Related reading</h2>
           <div class="related">
             {related.map((r) => (
@@ -123,7 +165,7 @@ const schema = {
 
 <script is:inline>
   // Collapse TOC on small screens initially
-  if (window.innerWidth <= 860) {
+  if (window.innerWidth <= 1024) {
     const tocEl = document.querySelector('.post__toc-details');
     if (tocEl) tocEl.removeAttribute('open');
   }
@@ -131,7 +173,7 @@ const schema = {
   // Scrollspy observer for active section in TOC
   document.addEventListener('DOMContentLoaded', () => {
     const headings = Array.from(document.querySelectorAll('.prose-post h2, .prose-post h3'));
-    const tocLinks = Array.from(document.querySelectorAll('.post__toc a'));
+    const tocLinks = Array.from(document.querySelectorAll('.sidebar-nav__link'));
     if (!headings.length || !tocLinks.length) return;
 
     const linkMap = new Map();
@@ -147,8 +189,8 @@ const schema = {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
           if (id && linkMap.has(id)) {
-            tocLinks.forEach((l) => l.classList.remove('active'));
-            linkMap.get(id).classList.add('active');
+            tocLinks.forEach((l) => l.classList.remove('is-active'));
+            linkMap.get(id).classList.add('is-active');
           }
         }
       });
@@ -166,49 +208,80 @@ const schema = {
   .post__meta { display: flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 14px; color: var(--muted); }
   .post__meta .dot { color: var(--line-2); }
   .post__role { font-family: var(--font-mono); font-size: 12px; color: var(--muted-2); }
-  .post__cover-wrap { margin-top: 30px; }
-  .post__cover { width: 100%; border-radius: var(--r-lg); border: 1px solid var(--line); aspect-ratio: 16/7; object-fit: cover; }
-  .post__grid { display: grid; grid-template-columns: 220px 1fr; gap: 44px; margin-top: 44px; align-items: start; }
-  .post__toc-inner { position: sticky; top: 96px; max-height: calc(100vh - 120px); overflow-y: auto; padding-right: 6px; }
-  .post__toc-inner::-webkit-scrollbar { width: 4px; }
-  .post__toc-inner::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
-  .post__toc-details { width: 100%; }
-  .post__toc-summary { display: flex; align-items: center; justify-content: space-between; }
-  .post__toc-summary::-webkit-details-marker { display: none; }
-  .post__toc nav ul { list-style: none; display: grid; gap: 9px; margin-top: 12px; border-left: 1px solid var(--line); }
-  .post__toc a { font-size: 13.5px; color: var(--muted); display: block; padding-left: 14px; margin-left: -1px; border-left: 2px solid transparent; transition: all 0.15s ease; }
-  .post__toc a:hover { color: var(--ink); border-left-color: var(--iris); }
-  .post__toc a.active { color: var(--iris); font-weight: 600; border-left-color: var(--iris); }
-  .post__toc .sub a { padding-left: 26px; font-size: 13px; }
+  .post__cover-wrap { margin-top: 24px; }
+  .post__cover { width: 100%; border-radius: var(--r-lg); border: 1.5px solid var(--line-2); max-height: 480px; object-fit: cover; }
+  
+  /* Layout: 2-column with sticky sidebar matching landing page style */
+  .post__grid { display: grid; grid-template-columns: 290px 1fr; gap: 40px; margin-top: 40px; align-items: start; }
+  .post__sidebar { position: relative; }
+  .post__sidebar-inner { position: sticky; top: 88px; display: flex; flex-direction: column; gap: 20px; max-height: calc(100vh - 100px); overflow-y: auto; padding-right: 4px; }
+  .post__sidebar-inner::-webkit-scrollbar { width: 4px; }
+  .post__sidebar-inner::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
 
-  .takeaways { border: 1px solid var(--teal-150); background: var(--teal-050); border-radius: var(--r); padding: 20px 22px; margin-bottom: 30px; }
+  /* Sidebar Cards */
+  .sidebar-card { background: var(--panel); border: 1.5px solid var(--line-2); border-radius: var(--r); padding: 18px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
+  .toc-card { padding: 0; overflow: hidden; }
+  .sidebar-header { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+  
+  .sidebar-badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--blue); padding: 4px 10px; background: var(--violet-050); border: 1px solid var(--violet-300); border-radius: var(--r-pill); }
+  .sidebar-badge--teal { color: var(--teal); background: var(--teal-050); border-color: var(--teal-150); }
+
+  .post__toc-summary { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; cursor: pointer; user-select: none; }
+  .post__toc-summary::-webkit-details-marker { display: none; }
+  .toc-chevron { font-size: 13px; color: var(--muted-2); transition: transform 0.2s ease; }
+  .post__toc-details[open] .toc-chevron { transform: rotate(180deg); }
+
+  .sidebar-nav { padding: 4px 14px 18px 14px; border-top: 1px solid var(--line); }
+  .sidebar-nav__list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+  .sidebar-nav__item { list-style: none; }
+  .sidebar-nav__item--sub { padding-left: 12px; }
+  .sidebar-nav__link { display: flex; align-items: center; gap: 9px; padding: 6px 10px; border-radius: var(--r-sm); font-size: 13px; color: var(--muted); line-height: 1.4; transition: all 0.15s ease; }
+  .sidebar-nav__link:hover { color: var(--ink); background: var(--bg-2); }
+  .sidebar-nav__link.is-active { color: var(--blue); background: var(--violet-050); font-weight: 600; }
+  .nav-indicator { width: 5px; height: 5px; border-radius: 50%; background: var(--line-2); flex-shrink: 0; transition: all 0.15s ease; }
+  .sidebar-nav__link:hover .nav-indicator { background: var(--muted); }
+  .sidebar-nav__link.is-active .nav-indicator { background: var(--blue); box-shadow: 0 0 0 2px var(--violet-150); }
+
+  /* Promo Card in Sidebar */
+  .promo-card { background: linear-gradient(180deg, var(--panel), var(--bg-2)); border-color: var(--line-2); }
+  .promo-card__title { font-size: 15px; font-weight: 700; color: var(--ink); margin-top: 12px; line-height: 1.3; }
+  .promo-card__desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 8px; }
+  .promo-card__actions { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .promo-btn { width: 100%; justify-content: center; font-size: 13.5px; padding: 8px 14px; }
+  .promo-link { font-size: 12.5px; color: var(--muted); text-align: center; text-decoration: underline; text-underline-offset: 3px; }
+  .promo-link:hover { color: var(--blue); }
+
+  /* Meta Card in Sidebar */
+  .meta-card { display: flex; flex-direction: column; gap: 10px; background: var(--bg-2); border-color: var(--line-2); }
+  .meta-row { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; }
+  .meta-label { color: var(--muted-2); font-family: var(--font-mono); font-size: 11.5px; }
+  .meta-value { color: var(--ink); font-weight: 600; text-align: right; }
+
+  /* Post Body & Takeaways */
+  .post__body { min-width: 0; }
+  .takeaways { border: 1.5px solid var(--teal-150); background: var(--teal-050); border-radius: var(--r-lg); padding: 22px 24px; margin-bottom: 34px; box-shadow: 0 1px 2px rgba(15, 138, 95, 0.05); }
   .takeaways ul { list-style: none; display: grid; gap: 10px; margin-top: 14px; }
-  .takeaways li { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--ink-2); }
-  .takeaways .tick { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--teal-150); flex: none; margin-top: 1px; }
+  .takeaways li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--ink-2); line-height: 1.55; }
+  .takeaways .tick { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--teal-150); flex: none; margin-top: 2px; }
 
   .sources { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 24px; }
   .sources h2 { font-size: 20px; color: var(--ink); }
   .sources ol { padding-left: 20px; display: grid; gap: 8px; margin-top: 12px; font-size: 14.5px; color: var(--ink-2); }
   .sources a { color: var(--iris); }
-  .related { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .related { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .related__card { display: flex; flex-direction: column; }
 
-  @media (min-width: 861px) {
-    .post__toc-summary { cursor: default; pointer-events: none; list-style: none; }
+  @media (min-width: 1025px) {
+    .post__toc-summary { cursor: default; }
     .post__toc-summary .toc-chevron { display: none; }
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 1024px) {
     .post__grid { grid-template-columns: 1fr; gap: 24px; }
-    .post__toc { display: block; grid-row: 1; margin-bottom: 24px; background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); padding: 0; }
-    .post__toc-inner { position: static; max-height: none; overflow-y: visible; padding-right: 0; }
-    .post__toc-summary { padding: 14px 18px; cursor: pointer; user-select: none; }
-    .post__toc-summary .toc-chevron { font-size: 14px; color: var(--muted); transition: transform 0.2s ease; }
-    .post__toc-details[open] .post__toc-summary .toc-chevron { transform: rotate(180deg); }
-    .post__toc nav { padding: 0 18px 16px 18px; border-top: 1px solid var(--line-soft); }
-    .post__toc nav ul { border-left: none; margin-top: 10px; max-height: 280px; overflow-y: auto; }
-    .post__toc a { padding-left: 0; border-left: none; }
-    .post__toc .sub a { padding-left: 12px; }
+    .post__sidebar { display: block; }
+    .post__sidebar-inner { position: static; max-height: none; overflow-y: visible; padding-right: 0; gap: 16px; }
+    .post__toc-summary { cursor: pointer; }
+    .sidebar-nav__list { max-height: 300px; overflow-y: auto; }
     .related { grid-template-columns: 1fr; }
   }
 
