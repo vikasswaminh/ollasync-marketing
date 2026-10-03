@@ -31,6 +31,10 @@ jobs:
           npm ci || npm install
           npm run build
 
+      - name: CSP (hash every inline script, write dist/_headers)
+        # public/_headers ships a __MKT_CSP__ placeholder; this writes the enforced policy from the BUILT pages and
+        # fails the deploy on anything the policy would block. Without it the live site served the raw placeholder.
+        run: node scripts/mkt_csp_headers.mjs dist
       - name: Deploy to Cloudflare Pages
         if: github.ref == 'refs/heads/main'
         run: npx --yes wrangler@4 pages deploy dist --project-name ollasync-marketing --branch main --commit-dirty=true
