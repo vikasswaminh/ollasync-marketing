@@ -83,7 +83,7 @@
   --dur:  .22s;
 
   /* ---- grid ---- */
-  --grid-line: transparent;   /* the blog has no grid; the painter stays, paints nothing */
+  --grid-line: rgba(0, 0, 0, 0.045); /* subtle neutral architectural square grid */
   --grid-cell: 40px;
 }
 
@@ -277,10 +277,8 @@ h1, h2, h3, h4 { line-height: 1.08; letter-spacing: -.03em; font-weight: 700; te
 .footer__bottom { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line-soft); color: var(--muted-2); font-size: 13px; }
 
 /* ---------- aurora background ---------- */
-/* Background: white ground with the networkershome red square grid — 40px cells,
-   the red kept faint so it reads as paper texture rather than decoration. The three
-   blurred colour blobs and the fade-to-black belonged to the dark theme and are gone;
-   .blob/.fade are kept as no-ops so the existing markup needs no edit. */
+/* Background: pure white ground with subtle neutral square grid — 40px cells,
+   crisp and continuous like networkershome.com architectural styling. */
 .aurora { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; background: var(--bg); }
 .aurora .blob, .aurora .fade { display: none; }
 .aurora .grid-mask {
@@ -289,8 +287,6 @@ h1, h2, h3, h4 { line-height: 1.08; letter-spacing: -.03em; font-weight: 700; te
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: var(--grid-cell) var(--grid-cell);
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 42%, transparent 92%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 42%, transparent 92%);
 }
 
 @keyframes auroraA { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(8%, 6%) scale(1.15); } 100% { transform: translate(0, 0) scale(1); } }
