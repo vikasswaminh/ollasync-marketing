@@ -8,32 +8,32 @@ import { SITE } from '../consts';
 
 const title = 'Video Meeting Pricing — Live Translation, Per Seat';
 const description =
-  'Per-seat pricing for browser meetings with live translation, recordings and AI notes. Free to start, then $19 and $29 per seat.';
+  'Per-seat pricing for browser meetings with live translation, recordings and AI notes. Free to start, then Pro $5 and Business $19 per seat a month.';
 
 const tiers = [
   {
-    name: 'Free', price: '$0', unit: '', tag: '',
+    name: 'Free', price: '$0', unit: 'free forever', tag: '',
     blurb: 'For tutors getting started — free, no credit card.',
     cta: { label: 'Start free', href: SITE.appUrl }, primary: false,
-    features: ['Up to 25 members', 'HD meetings up to 100 participants', 'AI notes, transcripts & action items', 'Passkeys & 2FA'],
+    features: ['1 meeting at a time, up to 30 min', 'Up to 20 people', 'Captions & translated captions', 'Local recording & AI notes', '2 h translated voice a month'],
   },
   {
-    name: 'Pro', price: '$19', unit: '/ user · mo', tag: 'Most popular',
+    name: 'Pro', price: '$5', unit: '/ seat · mo', tag: 'Most popular',
     blurb: 'For trainers and academies teaching at scale.',
     cta: { label: 'Start free', href: SITE.appUrl }, primary: true,
-    features: ['Everything in Free', 'Live translation — captions & spoken audio', 'Meetings up to 300 participants', 'AI meeting notes & summaries'],
+    features: ['Everything in Free', '1 meeting at a time, up to 8 h', 'Up to 100 people', 'Cloud recording & AI notes', '20 h translated voice a month'],
   },
   {
-    name: 'Business', price: '$29', unit: '/ user · mo', tag: '',
-    blurb: 'For teams that need SSO, audit and priority support.',
-    cta: { label: 'Start free', href: SITE.appUrl }, primary: false,
-    features: ['Everything in Pro', 'SSO (OIDC)', 'Audit logs', 'DPA & priority support'],
+    name: 'Business', price: '$19', unit: '/ seat · mo', tag: '',
+    blurb: 'For teams that need a seat for every host, with SSO.',
+    cta: { label: 'Contact us', href: `mailto:${SITE.salesEmail}` }, primary: false,
+    features: ['Everything in Pro', '1 meeting per seat, up to 8 h', 'Up to 100 people', 'Unlimited translated voice', 'Seats for your team', 'SSO (OIDC)'],
   },
 ];
 
 const faq = [
   { q: 'Is there a free trial?', a: 'The Free plan is not a trial — it stays free, with no credit card. Upgrade to Pro or Business when you need more, and try everything before you commit.' },
-  { q: 'Do you offer a dedicated deployment?', a: 'Yes — enterprises can run on dedicated / single-tenant cloud infrastructure with a DPA and a custom SLA, priced per deployment rather than per seat. Tell us your scale and we’ll size it with you.' },
+  { q: 'Do you offer a dedicated deployment?', a: 'Yes — enterprises can run on dedicated / single-tenant cloud infrastructure with a DPA and a custom SLA. Tell us your scale and we’ll size it with you.' },
   { q: 'Are AI notes included?', a: 'Yes — AI transcripts, notes and action items are included on every plan. They run on the meetings you record; end-to-end-encrypted meetings are excluded by design.' },
   { q: 'Where is our data hosted?', a: 'On our hosted service, in private storage with access control and a DPA. Dedicated single-tenant deployments are available for enterprises.' },
 ];
@@ -48,7 +48,7 @@ const offerSchema = {
     '@type': 'AggregateOffer',
     priceCurrency: 'USD',
     lowPrice: '0',
-    highPrice: '29',
+    highPrice: '19',
     offerCount: '3',
     availability: 'https://schema.org/InStock',
   },
@@ -61,7 +61,7 @@ const offerSchema = {
     crumbs={[{ label: 'Pricing' }]}
     title="Simple pricing that"
     titleAccent="starts at free"
-    lead="Free to start — no credit card. Pro is $19 and Business $29, per user per month."
+    lead="Free to start, no credit card. Pro is $5 and Business $19, per seat per month."
     align="center"
   />
   <section class="section" style="padding-top:24px">
