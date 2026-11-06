@@ -179,3 +179,77 @@ export const COMPETITORS: Competitor[] = [
     ],
   },
 ];
+
+// What it costs to get translation in a meeting, per platform. ACCURACY-CRITICAL: every competitor figure is a
+// published list price from the vendor's own page (sources below), USD per user per month on annual billing, as
+// checked on PRICES_CHECKED. Where a vendor does not publish a price we say so — never estimate. Re-check before
+// changing any number; the matching quotes live in content-engine/competitor-facts.json (C11–C24).
+export const PRICES_CHECKED = '6 November 2026';
+
+export interface TranslationPriceRow {
+  name: string;
+  captions: string;
+  voice: string;
+  price: string;
+  priceNote?: string;
+  sources: { label: string; url: string }[];
+}
+
+export const TRANSLATION_PRICING: TranslationPriceRow[] = [
+  {
+    name: 'Ollasync',
+    captions: 'Included on every plan',
+    voice: `Included: 2 h a month on Free, 20 h on Pro, unlimited on Business`,
+    price: 'Free, or from $5',
+    priceNote: 'Per host seat. Guests and learners join free and hear the translation.',
+    sources: [{ label: 'Ollasync pricing', url: '/pricing/' }],
+  },
+  {
+    name: 'Google Meet',
+    captions: 'Business Standard edition and up',
+    voice: 'Business Standard and up, up to 90 minutes per meeting',
+    price: 'From $14',
+    priceNote: 'Business Standard on an annual plan; $16.80 on the flexible plan.',
+    sources: [
+      { label: 'Translated captions', url: 'https://support.google.com/meet/answer/10964115?hl=en' },
+      { label: 'Speech translation', url: 'https://support.google.com/meet/answer/16221730?hl=en' },
+      { label: 'Business edition prices', url: 'https://knowledge.workspace.google.com/admin/getting-started/editions/business-editions' },
+    ],
+  },
+  {
+    name: 'Zoom',
+    captions: 'Business Plus and up, or the Translated Captions add-on (price from Zoom sales)',
+    voice: 'Live Translation add-on (price not published) or ZoomMate',
+    price: 'From $16.67',
+    priceNote: 'ZoomMate on annual billing ($20 monthly), on top of your Zoom plan.',
+    sources: [
+      { label: 'Translated captions requirements', url: 'https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081' },
+      { label: 'Voice translator requirements', url: 'https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084896' },
+      { label: 'ZoomMate pricing', url: 'https://zoom.us/pricing/aic' },
+    ],
+  },
+  {
+    name: 'Microsoft Teams',
+    captions: 'Teams Premium add-on ($10) on a paid Teams plan',
+    voice: 'Interpreter agent with a Microsoft 365 Copilot licence, 20 h a month; each listener needs a licence',
+    price: 'From $25',
+    priceNote: 'Microsoft 365 Business Basic ($7) plus Copilot Business ($18 offer price until 31 Dec 2026; $21 list).',
+    sources: [
+      { label: 'Translated captions licensing', url: 'https://learn.microsoft.com/en-us/microsoftteams/meeting-transcription-captions' },
+      { label: 'Interpreter agent', url: 'https://learn.microsoft.com/en-us/microsoftteams/interpreter-agent-teams' },
+      { label: 'Copilot Business pricing', url: 'https://www.microsoft.com/en-us/copilot/pricing/business' },
+      { label: 'Teams Premium pricing', url: 'https://www.microsoft.com/en-us/microsoft-teams/premium' },
+    ],
+  },
+  {
+    name: 'Cisco Webex',
+    captions: 'Real-time translation paid add-on',
+    voice: 'Not available in Webex Meetings yet (announced for early 2027)',
+    price: 'Not published',
+    priceNote: 'Paid plans and the translation add-on are quoted by Webex sales.',
+    sources: [
+      { label: 'Real-time translation', url: 'https://help.webex.com/en-us/article/nqzpeei/show-real-time-translation-and-transcription-in-meetings-and-webinars' },
+      { label: 'Webex pricing', url: 'https://pricing.webex.com/us/en/' },
+    ],
+  },
+];

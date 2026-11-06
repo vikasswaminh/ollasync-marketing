@@ -65,11 +65,10 @@ test('links: pillar required, must resolve, canonical form, at most eight, descr
   assert.ok(!codes(deterministicGates(e, gateCtx({ sourceUrls: new Set(['https://zoom.com/x']) }))).includes('EXTERNAL_UNSOURCED'));
 });
 
-test('invented facts are caught: certifications, EU hosting, self-hosting, customers, latency numbers, statistics, language counts', () => {
+test('invented facts are caught: certifications, EU hosting, customers, latency numbers, statistics, language counts', () => {
   const cases = [
     ['Ollasync is SOC 2 certified.', 'CERTIFICATION_CLAIM'],
     ['Your data stays in the EU.', 'EU_HOSTING_CLAIM'],
-    ['Ollasync can be self-hosted on your servers.', 'SELF_HOST_CLAIM'],
     ['Customers like Acme Corp rely on it.', 'FABRICATED_CUSTOMER'],
     ['Translation arrives in 400 ms.', 'INVENTED_LATENCY'],
     ['73% of trainers prefer it.', 'INVENTED_STATISTIC'],
@@ -95,23 +94,22 @@ test('fact ids in the prose and a body that stops mid-sentence are caught', () =
 
 test('a negated statement is honesty, not an invented claim', () => {
   const cases = [
-    'If you need to self-host on your own servers, Ollasync is not the right choice.',
     'Ollasync holds no SOC 2 certification and says so.',
     'Your data does not stay in the EU: the application runs in the US.',
   ];
   for (const sentence of cases) {
     const a = goodArticle();
     a.body += `\n\n${sentence}`;
-    const found = codes(deterministicGates(a, gateCtx())).filter((c) => ['SELF_HOST_CLAIM', 'CERTIFICATION_CLAIM', 'EU_HOSTING_CLAIM'].includes(c));
+    const found = codes(deterministicGates(a, gateCtx())).filter((c) => ['CERTIFICATION_CLAIM', 'EU_HOSTING_CLAIM'].includes(c));
     assert.deepEqual(found, [], `${sentence} → ${found}`);
   }
   const a = goodArticle();
-  a.body += '\n\nOllasync can be self-hosted on your servers.';
-  assert.ok(codes(deterministicGates(a, gateCtx())).includes('SELF_HOST_CLAIM'), 'the positive claim is still caught');
+  a.body += '\n\nOllasync is SOC 2 certified.';
+  assert.ok(codes(deterministicGates(a, gateCtx())).includes('CERTIFICATION_CLAIM'), 'the positive claim is still caught');
   const mixed = goodArticle();
-  mixed.body += '\n\nOllasync is not self-hosted, but Ollasync is SOC 2 certified.';
+  mixed.body += '\n\nYour data does not stay in the EU, but Ollasync is SOC 2 certified.';
   const im = codes(deterministicGates(mixed, gateCtx()));
-  assert.ok(im.includes('CERTIFICATION_CLAIM') && !im.includes('SELF_HOST_CLAIM'), 'negation applies to its own clause only');
+  assert.ok(im.includes('CERTIFICATION_CLAIM') && !im.includes('EU_HOSTING_CLAIM'), 'negation applies to its own clause only');
 });
 
 test('leaks, placeholders, external images and embeds are rejected', () => {

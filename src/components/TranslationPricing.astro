@@ -1,0 +1,50 @@
+---
+import { TRANSLATION_PRICING, PRICES_CHECKED } from '../data/vs';
+---
+<div class="tp-hint">Swipe to see more →</div>
+<div class="tp-wrap">
+  <table class="tp">
+    <thead>
+      <tr>
+        <th scope="col">Platform</th>
+        <th scope="col">Translated captions</th>
+        <th scope="col">Spoken (voice) translation</th>
+        <th scope="col">Price for voice translation<span class="tp__unit">USD per user per month</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {TRANSLATION_PRICING.map((r, i) => (
+        <tr class={i === 0 ? 'tp__olla' : ''}>
+          <th scope="row">{r.name}</th>
+          <td>{r.captions}</td>
+          <td>{r.voice}</td>
+          <td>
+            <strong class="tp__price">{r.price}</strong>
+            {r.priceNote && <span class="tp__note">{r.priceNote}</span>}
+            <span class="tp__src">
+              {r.sources.map((s, j) => (
+                <>{j > 0 && ' · '}<a href={s.url} rel={s.url.startsWith('http') ? 'nofollow noopener' : undefined} target={s.url.startsWith('http') ? '_blank' : undefined}>{s.label}</a></>
+              ))}
+            </span>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="tp__foot">Published list prices from each vendor's own pages, checked {PRICES_CHECKED}. Annual billing unless noted; taxes excluded. Vendors change prices, so check the linked pages before you buy.</p>
+</div>
+<style>
+  .tp-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .tp-hint { display: none; }
+  @media (max-width: 640px) { .tp-hint { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; text-align: right; } }
+  .tp { width: 100%; border-collapse: collapse; min-width: 760px; }
+  .tp th, .tp td { text-align: left; padding: 15px 18px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 14px; }
+  .tp thead th { font-size: 12.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-2); background: var(--bg-2); }
+  .tp tbody th { color: var(--ink-2); font-weight: 600; font-size: 14.5px; white-space: nowrap; }
+  .tp__olla th, .tp__olla td { background: linear-gradient(180deg, var(--violet-050), transparent); }
+  .tp__unit { display: block; text-transform: none; letter-spacing: 0; font-size: 11.5px; margin-top: 3px; }
+  .tp__price { display: block; font-size: 16px; font-variant-numeric: tabular-nums; }
+  .tp__note, .tp__src { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
+  .tp__src a { color: var(--iris); }
+  .tp__foot { margin: 0; padding: 14px 18px; font-size: 12px; color: var(--muted); }
+</style>

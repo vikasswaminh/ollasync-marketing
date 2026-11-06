@@ -1,9 +1,9 @@
 import { LANG_COUNT, LANGS_PER_SESSION, LANG_LIST_SENTENCE } from './languages';
-// Product feature pages. Claims are whitepaper-accurate (100% cloud SaaS):
+// Product feature pages. Claims are whitepaper-accurate (cloud SaaS; a self-hosted option exists for regulated industries):
 //  - meeting media = encrypted in transit (DTLS-SRTP); OPT-IN per-meeting end-to-end encryption (NOT default)
 //  - in-meeting chat/DMs = server-blind ONLY inside an E2EE meeting; otherwise transit-encrypted + server-side
 //  - recordings = access-controlled, in your workspace; AI = opt-in, post-meeting, never on E2EE meetings
-//  - do NOT claim standalone MLS "team messaging" (not shipped), SOC2/ISO, or self-host.
+//  - do NOT claim standalone MLS "team messaging" (not shipped), SOC2/ISO, or self-host specifics (install steps, infrastructure).
 
 export interface Feature {
   slug: string;

@@ -3,7 +3,7 @@
 Internal doc — not built into `dist/`. Every piece of public copy MUST pass `scripts/mkt_no_leak.sh`
 (no internal vendor/stack names; open standards only) and the honesty rules: only the shipped translate
 languages in `src/data/languages.ts` (`LANG_COUNT`, 19 since 2026-09-06 — never a bigger number, never a
-language not listed there), no certification claims, no self-host overclaim, captions exist but are not the pitch.
+language not listed there), no certification claims, captions exist but are not the pitch. Ollasync is cloud SaaS with a self-hosted option for regulated industries (operator, 2026-11-06); state it, without install or infrastructure specifics. Prices only from `/pricing` (per seat: Free, Pro $5, Business $19); never "cheapest" — link `/vs/#translation-pricing`. Meetings cap at 100 people; webinars are parked.
 
 ## 0. The flagship
 

@@ -24,7 +24,6 @@ export function fairnessHeading(headings, competitors) {
 // Claims the policy says never to invent — the writer sees the NEVER list, and the gate catches what slips through.
 export const NEVER_PATTERNS = [
   { code: 'CERTIFICATION_CLAIM', re: /\b(SOC ?2|ISO ?27001|ISO ?27017|HIPAA[- ]certified|GDPR[- ]certified|FedRAMP|HITRUST|compliant with (HIPAA|GDPR|SOC))\b/i, msg: 'a certification/compliance claim (Ollasync holds none — say "controls and a DPA")' },
-  { code: 'SELF_HOST_CLAIM', re: /\bollasync\b[^.]{0,80}\bself[- ]host(ed|ing|able)?\b|\bself[- ]host(ed|ing|able)?\b[^.]{0,80}\bollasync\b/i, msg: 'a self-hosting claim about Ollasync (it is a cloud service)' },
   { code: 'EU_HOSTING_CLAIM', re: /\b(eu[- ]hosted|hosted in (the eu|europe)|data stays in the eu|servers in the eu)\b/i, msg: 'an EU-hosting claim' },
   { code: 'FABRICATED_CUSTOMER', re: /\b([Cc]ustomers? (like|such as|including) [A-Z]|[Cc]ase stud(y|ies)|[Tt]estimonials?|"[^"]{20,}"\s*[—-]\s*[A-Z][a-z]+ [A-Z][a-z]+,)/, msg: 'a named customer, case study, testimonial or quote' },
   { code: 'INVENTED_LATENCY', re: /\b\d+(\.\d+)?\s?(ms|milliseconds|-second delay|second latency)\b/i, msg: 'a latency number (none is published; say "a beat behind, like an interpreter")' },

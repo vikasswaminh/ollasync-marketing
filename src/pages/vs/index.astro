@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Icon from '../../components/Icon.astro';
 import Cta from '../../components/Cta.astro';
+import TranslationPricing from '../../components/TranslationPricing.astro';
 import { COMPETITORS } from '../../data/vs';
 
 const title = 'Ollasync vs Zoom, Teams, Meet, Webex & BigBlueButton';
@@ -18,7 +19,17 @@ const description =
     titleAccent="alternative"
     lead="We compare fairly — the big platforms are fast and capable, and we say where they’re strong. But if you need to control where your meetings run and who can reach the data, here’s how Ollasync stacks up."
   />
-  <section class="section" style="padding-top:32px">
+  <section class="section" id="translation-pricing" style="padding-top:32px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">What translation costs</span>
+        <h2 class="h2" style="margin-top:12px">Live voice translation from $5 per seat</h2>
+        <p class="muted" style="max-width:70ch;margin-top:10px">Most platforms sell meeting translation as an add-on or a higher tier. Here is what each one charges for it, from their own published prices.</p>
+      </div>
+      <div data-reveal><TranslationPricing /></div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:12px">
     <div class="container">
       <div class="grid grid-2" data-reveal>
         {COMPETITORS.map((c) => (
