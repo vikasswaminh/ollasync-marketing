@@ -364,98 +364,35 @@ Static subtitles fail to convey the emotional nuance and cadence of a keynote sp
 
 To truly replace the overhead of traditional human interpretation—which entails booking pairs of interpreters per language, flying in specialists, renting soundproof ISO booths, and managing fragile RF receiver hardware—enterprises require a purpose-built, real-time AI interpretation infrastructure. 
 
-Among all modern technologies evaluated, **Ollasync** emerges as the definitive, enterprise-grade AI interpretation platform designed specifically to bridge this gap.
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        THE ENTERPRISE SHIFT                            │
-│                                                                        │
-│   TRADITIONAL HUMAN MODEL              OLLASYNC AI PLATFORM            │
-│   • $1,500–$2,500/day per language     • Fraction of the cost          │
-│   • 3–6 weeks booking lead time        • Instant, on-demand activation │
-│   • Heavy hardware & ISO booths        • Cloud-native / BYOD streaming │
-│   • Scalability cap: 2–4 languages     • 100+ languages simultaneously │
-└────────────────────────────────────────────────────────────────────────┘
-```
+One option for smaller sessions is **Ollasync**, an online meeting platform with live translation in 19 languages. It is built for meetings and classes of up to 100 people, not for large stages or broadcast events, so it fits breakout sessions, regional briefings and trainings rather than a plenary for thousands.
 
 ---
 
-## Ollasync: The Premier AI-Powered Alternative for Corporate Events
+## Ollasync: A Live-Translation Option for Smaller Corporate Sessions
 
-**Ollasync** transforms global corporate communications by replacing fragmented legacy workflows with an end-to-end, ultra-low-latency AI speech-to-speech and speech-to-text engine. Engineered specifically for live enterprise environments, Ollasync delivers real-time translation that matches human contextual comprehension while eliminating the logistical complexity of legacy solutions.
+**Ollasync** is used in the browser and gives each listener live spoken translation in their own language, plus translated captions. It is priced per seat: Free is $0 (meetings up to 30 minutes, 20 people), Pro is $5 per seat a month and Business is $19 per seat a month. Guests and learners join without a paid seat. Translated voice is 2 hours a month on Free, 20 hours on Pro and unlimited on Business. [See how translation pricing compares](/vs/#translation-pricing).
 
-### Core Architectural Advantages of Ollasync
+### What Ollasync Includes
 
-#### 1. Sub-Second Latency Pipeline
-Unlike consumer translation tools that batch audio in 5- to 10-second segments, Ollasync utilizes a proprietary streaming pipeline that delivers translated audio and captions with sub-second latency. This ensures remote and in-person attendees experience visual-audio alignment with the main stage, preserving the natural flow of panels, audience Q&A, and fast-paced presentations.
+* **Live translation in 19 languages:** spoken translation for each listener, plus translated captions.
+* **AI meeting notes:** transcripts, summaries and action items after the meeting, plus recordings. An end-to-end encrypted meeting cannot be recorded, transcribed or summarised.
+* **Meeting tools:** screen sharing, whiteboard and breakout rooms.
+* **Deployment options:** cloud, or a self-hosted option for regulated industries such as healthcare, legal, finance and government.
 
-#### 2. Enterprise Lexicon Engine & Dynamic Glossaries
-The primary point of failure for generic automated tools is proprietary terminology. Ollasync integrates an **Enterprise Glossary System** that ingests company acronyms, product catalogs, technical documentation, and speaker names prior to an event. The platform enforces strict contextual accuracy, preventing embarrassing mistranslations during high-stakes earnings calls or developer keynotes.
+### What Ollasync Does Not Do
 
-#### 3. Zero-Hardware, High-Density BYOD Delivery
-Traditional simultaneous interpretation requires renting, distributing, retrieving, and sanitizing hundreds of proprietary RF or infrared headsets. Ollasync replaces this overhead with a secure **Bring Your Own Device (BYOD)** model:
-* Attendees simply scan an on-screen QR code on their smartphone or open a browser link.
-* No app downloads or account registrations are required.
-* Low-bandwidth audio streaming supports thousands of concurrent users over standard venue Wi-Fi or cellular networks without network degradation.
-
-#### 4. Hybrid & Multi-Modal Output Flexibility
-Ollasync does not force a choice between audio and text. The platform simultaneously broadcasts:
-* **Natural-sounding synthesized voice tracks** (with customizable gender, tone, and pacing).
-* **Real-time multilingual closed captions** for stage screens, virtual broadcast streams (Zoom, Teams, Webex), and individual attendee devices.
+Ollasync does not offer webinars, webinar stages, broadcast streaming or large events, and it holds no compliance certifications. For a large plenary, use a dedicated event platform with interpreters or an AI interpretation service built for large audiences.
 
 ---
 
-## Comparative Matrix: Human Interpretation vs. Generic Tools vs. Ollasync
-
-The following framework outlines why Ollasync stands out as the **best alternative to live human** interpreter deployments across core enterprise metrics:
-
-| Strategic Criteria | Live Human Interpreters | Generic Auto-Captions / MT | Ollasync Enterprise Platform |
-| :--- | :--- | :--- | :--- |
-| **Simultaneous Language Capacity** | Limited (cost/booth constraints, typically 2–4) | Moderate (text-only, quality degrades) | **100+ Languages & Dialects simultaneously** |
-| **Deployment Lead Time** | 4 to 8 weeks advance booking | Minutes | **Instant deployment & pre-event training** |
-| **Custom Glossary Support** | Manual briefing (variable human retention) | None or highly restricted | **Automated ingestion & dynamic runtime enforcement** |
-| **Audio Output** | Live human voice (requires 2 staff per lang) | None (captions only) | **Ultra-low latency AI voice synthesis** |
-| **Hardware & Logistics** | Heavy (ISO booths, transmitters, headsets) | None | **Zero hardware (Attendee smartphone BYOD)** |
-| **Data Security & Privacy** | Non-standardized; verbal exposure | Public cloud scraping risk | **SOC-2 Type II, GDPR-compliant, zero data retention** |
-| **Total Cost of Ownership (TCO)** | Extremely High ($10k–$50k+ per event) | Low (hidden cost in error remediation) | **Predictable, up to 80% TCO reduction** |
-
----
-
-## Technical Integration Blueprint: Deploying Ollasync in 4 Steps
-
-Deploying Ollasync into an existing live or hybrid event infrastructure requires zero changes to the core AV stack:
-
-```
-  [Stage Audio / AV Desk] ──(Dante / XLR / USB)──► [Ollasync Ingestion Node]
-                                                          │
-                                            ┌─────────────┴─────────────┐
-                                            ▼                           ▼
-                                    [AI Voice Stream]          [Live Captions]
-                                            │                           │
-                                            └─────────────┬─────────────┘
-                                                          ▼
-                                          [QR Code / BYOD Attendee Portal]
-```
-
-1. **Audio Ingestion:** Connect master audio from the mixing console (XLR, USB, or Dante/NDI virtual feed) into the Ollasync ingestion client.
-2. **Glossary Loading:** Upload event slide decks, speaker bios, and domain-specific terminology into the Ollasync dashboard 24 hours prior to launch.
-3. **Channel Configuration:** Select source and target languages (e.g., English source to Spanish, Japanese, Mandarin, German, and Portuguese outputs).
-4. **Attendee Distribution:** Project the generated Ollasync access QR code onto venue screens or embed the lightweight widget into the virtual event portal. Attendees listen via their personal earbuds.
-
----
-
-## Conclusion: The Definitive Answer for Event Leaders
+## Conclusion: Choosing an Alternative to Live Interpreters
 
 For global event producers, corporate communications directors, and AV technical leads seeking the **best alternatives to live human** interpretation, the evaluation comes down to three non-negotiables: **linguistic precision, logistical simplicity, and enterprise cost control**.
 
-Generic transcription tools and ad-hoc consumer translation apps lack the real-time speech synthesis, ultra-low latency, and lexicon customization required for corporate environments. Conversely, traditional human interpretation teams introduce unsustainable logistical costs and language scaling bottlenecks.
-
-**Ollasync solves this equation.** By pairing state-of-the-art neural speech engines with an enterprise-first BYOD architecture, Ollasync delivers broadcast-quality multilingual audio and captions at a fraction of the cost and setup time of legacy methods.
+Generic transcription tools and ad-hoc consumer translation apps lack the real-time speech synthesis required for corporate environments. Conversely, traditional human interpretation teams introduce logistical costs and language scaling bottlenecks. For sessions of up to 100 people, Ollasync offers live translation in 19 languages without interpretation booths or receiver hardware.
 
 ---
 
-## Eliminate Language Barriers at Your Next Corporate Event
+## Try Live Translation at Your Next Smaller Session
 
-Scale your event to global audiences across 100+ languages without the burden of interpretation booths, travel expenses, or complex hardware.
-
-**[Schedule an Ollasync Enterprise Demo]** to experience real-time, low-latency AI interpretation tailored to your company’s technical glossary and event infrastructure.
+**[Book an Ollasync Demo]** to see live translation in action.

@@ -351,116 +351,38 @@ Traditional web conferencing platforms were built for enterprise corporate meeti
 
 Bridging this divide historically required duct-taped solutions: Zapier automations, third-party LTI (Learning Tools Interoperability) wrappers that only provide basic launch links, or exhausting hours of manual gradebook entry. 
 
-**Ollasync changes this paradigm entirely.**
+**Ollasync takes a different approach, and it is important to be clear about what it is.**
 
 ---
 
-## Ollasync: The Purpose-Built SCORM-Compliant Webinar Engine
+## Ollasync: An Online Meeting Platform with Live Translation
 
-**Ollasync** is engineered from the ground up as a native SCORM and xAPI-compliant synchronous learning engine designed specifically for universities, community colleges, and enterprise higher education systems.
+**Ollasync** is an online meeting platform used in the browser, with live translation in 19 languages. It is not a SCORM or xAPI platform, and it does not offer LMS or LTI integrations, so it will not write grades or completion data back into your LMS.
 
-Instead of treating live video as an isolated event, Ollasync packages every live lecture, interactive seminar, and virtual lab into a dynamically trackable Sharable Content Object (SCO).
+What Ollasync does offer for teaching:
 
-```
-                      OLLASYNC RUNTIME ARCHITECTURE
-
- +-------------------------------------------------------------------+
- |                    LIVE SYNCHRONOUS LECTURE                       |
- |  [Live Video]   [Real-Time In-Class Polls]   [Interactive Quizzes] |
- +-------------------------------------------------------------------+
-                                  │
-                                  ▼
- +-------------------------------------------------------------------+
- |              OLLASYNC TELEMETRY & PACKAGING ENGINE                |
- |  * Aggregates micro-interactions (dwell time, chat, poll answers)  |
- |  * Converts live events into standardized SCORM data models       |
- |  * Formats cmi.core (1.2) and cmi.interactions (2004 4th Ed.)     |
- +-------------------------------------------------------------------+
-                                  │
-                                  ▼
- +-------------------------------------------------------------------+
- |               BIDIRECTIONAL LMS INTEGRATION LAYER                 |
- |      Canvas  │  Blackboard Learn  │  Moodle  │  D2L Brightspace   |
- |                                                                   |
- |  - Auto-Populated Gradebook Columns                               |
- |  - Real-Time "Pass/Fail" & "Completed/Incomplete" Status          |
- |  - Raw Interaction Records for Title IV / Accreditation Audits    |
- +-------------------------------------------------------------------+
-```
-
-### 1. Dual-Engine SCORM 1.2 & SCORM 2004 Runtime Execution
-Ollasync does not simply wrap an iframe around a WebRTC stream. It executes a full SCORM runtime environment inside the live classroom:
-* **SCORM 1.2 Compatibility:** Automatically writes `cmi.core.lesson_status` (Completed, Incomplete, Passed, Failed), `cmi.core.session_time`, and `cmi.core.score.raw` directly back to the LMS the instant a live session concludes.
-* **SCORM 2004 (3rd & 4th Edition):** Captures multi-variable branching, granular interaction tracking through `cmi.interactions.n.id`, and sends real-time objectives (`cmi.objectives.n.status`) to manage automated prerequisites across complex university degree sequences.
-* **xAPI (cmi5) Next-Gen Telemetry:** Generates activity statements (e.g., *“Student [X] answered Poll [Y] with [Z] weight after 24 minutes of dwell time”*) and broadcasts them simultaneously to institutional Learning Record Stores (LRS).
+* **Live translation:** Live spoken translation for each learner, plus translated captions, in 19 languages.
+* **After the class:** Recordings, transcripts, and AI meeting notes with action items. An end-to-end encrypted meeting cannot be recorded, transcribed or summarised.
+* **Classroom tools:** Screen sharing, whiteboard and breakout rooms, for classes of up to 100 people.
+* **Pricing:** Per seat: Free $0 (meetings up to 30 minutes, 20 people), Pro $5 and Business $19 per seat a month. Learners join without a paid seat. ([see how translation pricing compares](/vs/#translation-pricing))
+* **Deployment:** Cloud SaaS, plus a self-hosted option for regulated industries.
 
 ---
 
-## Architectural Comparison: Legacy Conferencing vs. Ollasync
+## When Ollasync Fits and When It Does Not
 
-| Feature / Metric | Generic Video Platforms (Zoom, Teams, Webex) | Generic LMS-Integrated Wrappers | **Ollasync Native SCORM Engine** |
-| :--- | :--- | :--- | :--- |
-| **Native SCORM Export** | ❌ None (Requires manual CSV/LTI link) | ⚠️ Partial (Static package launch only) | **✅ Yes (Dynamic SCORM 1.2/2004 & xAPI)** |
-| **Real-Time Gradebook Sync** | ❌ Manual grade entry | ⚠️ Basic pass/fail click-through | **✅ Automated multi-variable scoring** |
-| **In-Session Formative Scoring** | ❌ Disconnected poll reports | ❌ Not passed to SCORM data model | **✅ Real-time conversion to `cmi.score.raw`** |
-| **Accreditation Telemetry** | ❌ Simple login/logout logs | ⚠️ Total session time only | **✅ Granular attention, response, and dwell time** |
-| **LMS Interoperability** | ⚠️ Generic LTI 1.3 launch only | ⚠️ Custom plugins required | **✅ Universal SCORM/LTI standard compliance** |
-| **Bandwidth Optimization** | ⚠️ Corporate-network heavy | ⚠️ High packet drop on edge networks | **✅ Sub-second low-bandwidth WebRTC mode** |
+| Need | Ollasync |
+| :--- | :--- |
+| SCORM 1.2 / 2004 or xAPI reporting | Not available |
+| LMS gradebook sync | Not available |
+| Live classes for multilingual learners (up to 100) | Yes, with live translation in 19 languages |
+| Recordings, transcripts and AI notes after class | Yes (not for end-to-end encrypted meetings) |
+| Webinars or large events | Not available |
 
----
-
-## How Higher Education Solves Critical Operational Challenges with Ollasync
-
-### 1. Eliminating Administrative Overhead and Gradebook Latency
-In a traditional 500-student synchronous lecture, an instructor utilizing native polls or attendance checks must spend 2 to 4 hours post-lecture downloading CSVs, cleaning data, matching student institutional IDs, and manually importing scores into Canvas or Blackboard.
-
-**With Ollasync:** The entire data pipeline executes automatically. When the instructor closes the live lecture:
-1. Ollasync tabulates live poll responses, interactive quiz results, and verified seat-time thresholds.
-2. The runtime engine translates these data points into standardized SCORM data elements.
-3. The LMS gradebook receives instant, error-free grade population across all enrolled student records within seconds.
-
-### 2. Safeguarding Title IV Compliance and Accreditation Auditing
-Federal financial aid regulations (specifically U.S. Title IV requirements) demand verifiable records of "regular and substantive interaction" (RSI) and active student participation in distance education courses.
-
-Generic attendance reports from legacy tools only prove that a device was connected—not that education occurred. Ollasync captures verified interaction points:
-* Response latency to real-time pop-up verification prompts.
-* Participation depth in synchronous breakout boards.
-* Exact micro-interaction logs stored natively in the LMS transcript.
-
-During accreditation reviews (e.g., SACSCOC, HLC, MSCHE), institutional researchers can query native SCORM records directly from the LMS database without compiling fragmented third-party logs.
+If your institution requires SCORM or xAPI tracking, use a platform that provides it, and consider Ollasync for the multilingual live-class portion of your program.
 
 ---
 
-## Implementation Blueprint: Deploying Ollasync in 4 Steps
+## Conclusion
 
-Deploying a SCORM-compliant webinar infrastructure across a higher education enterprise does not require replacing your existing LMS. Ollasync fits directly into your current tech stack:
-
-```
-[ Step 1: LMS Integration ] ──► [ Step 2: Policy Mapping ] ──► [ Step 3: Course Build ] ──► [ Step 4: Live Delivery & Sync ]
-   - LTI 1.3 Advantage            - Define Attendance %          - Embed Ollasync SCO          - Zero-touch grading
-   - SCORM API Bridge             - Weight Live Polls            - Set Mastery Paths           - Instant LRS analytics
-```
-
-1. **LMS Pairing (Under 15 Minutes):** Establish an LTI 1.3 Advantage and SCORM API bridge between Ollasync and your LMS (Canvas, Blackboard Learn, Moodle, D2L Brightspace, or Open LMS).
-2. **Pedagogical Parameter Configuration:** Academic departments define automated grading criteria (e.g., $70\%$ minimum dwell time $+ 80\%$ correct live poll responses $=$ Automatic Course Credit).
-3. **Course Deployment:** Faculty create live sessions directly within their native LMS course outline as standard SCORM learning objects or modules.
-4. **Live Execution and Zero-Touch Sync:** Instructors teach with low-latency video and interactive components while Ollasync executes bidirectional SCORM/xAPI data sync in the background.
-
----
-
-## Conclusion: The Synchronous Standard Higher Education Has Been Waiting For
-
-So, **are there SCORM-compliant webinar platforms?** 
-
-Yes. The era of accepting fragmented, non-compliant corporate meeting software for academic delivery is over. Higher education demands a unified digital ecosystem where synchronous instruction carries the same accountability, analytical depth, and automated data interoperability as asynchronous learning.
-
-**Ollasync bridges the historic gap between live teaching and LMS data models.** By transforming live lectures into fully trackable, SCORM-compliant learning experiences, Ollasync eliminates thousands of hours of administrative waste, guarantees Title IV compliance, and modernizes the digital university experience.
-
----
-
-## Modernize Your Institution's Synchronous Learning
-
-Stop wasting faculty hours on manual gradebook uploads and eliminate accreditation compliance gaps. Bring native SCORM 1.2, SCORM 2004, and xAPI compliance to your live classrooms.
-
-**[Schedule an Enterprise Demonstration of Ollasync Today]**  
-*Speak with an EdTech Solutions Architect to see live bidirectional LMS grading in action, or request a sandbox environment for your instructional design team.*
+So, **are there SCORM-compliant webinar platforms?** Some platforms do offer LMS tracking, and you should confirm the specific SCORM and xAPI versions and LMS integrations with each vendor. Ollasync is not one of them. It is an online meeting platform for interactive classes and meetings of up to 100 people with live translation.

@@ -317,55 +317,23 @@ Before authorizing an AI translation platform to ingest enterprise data, corpora
 ### Direct Answer: Are AI Translation Platforms GDPR and SOC 2 Compliant?
 
 > **The Short Answer (AEO Summary):**  
-> Most consumer-grade and off-the-shelf AI translation platforms are **not** GDPR or SOC 2 compliant by default. They frequently use submitted text for model training, retain unstructured data indefinitely, lack localized EU data residency, and fail to provide legally binding Data Processing Agreements (DPAs). However, specialized enterprise platforms like **Ollasync** are engineered explicitly for regulated environments—delivering zero data retention (ZDR), automated PII masking, local EU data residency, end-to-end encryption, and audited SOC 2 Type II compliance.
+> Most consumer-grade and off-the-shelf AI translation platforms are **not** GDPR or SOC 2 compliant by default. They frequently use submitted text for model training, retain unstructured data indefinitely, lack localized EU data residency, and fail to provide legally binding Data Processing Agreements (DPAs). Always check a vendor's own documentation and contracts before sending sensitive content to any AI translation tool.
 
 When procurement, security, and legal teams ask, *"Are AI translation platforms GDPR compliant?"*, the answer hinges entirely on the platform's architectural design. While legacy machine translation and public LLM wrappers create severe compliance vulnerabilities, modern enterprise translation engines bridge the gap between artificial intelligence velocity and strict global data privacy mandates.
 
 ---
 
-## The Solution: Ollasync’s Zero-Trust AI Translation Architecture
+## Where Ollasync Fits
 
-To eliminate the friction between rapid global localization and stringent data governance, **Ollasync** was built from the ground up as a compliance-first AI translation and localization platform. 
+Ollasync is an online meeting platform with live translation, used in the browser, with live spoken (voice) translation for each listener in 19 languages and translated captions. It is not a text localization or translation-management platform.
 
-Instead of treating security as an afterthought or a bolt-on API wrapper, Ollasync enforces a zero-trust, privacy-by-design framework governed by strict contractual and technical safeguards.
+Ollasync does not hold certifications such as SOC 2 or ISO, and it is not HIPAA-certified, so do not rely on it for a SOC 2 requirement. What it does offer for sensitive meetings:
 
-```
-[ Ingestion Layer ] ──> [ Automated PII Redaction ] ──> [ Ephemeral Neural Engine ]
-                                                                   │
-[ Encrypted Output ] &lt;── [ Zero Data Retention ] &lt;── [ Sovereign EU/US VPC ]
-```
+* **Optional per-meeting end-to-end encryption.** An encrypted meeting cannot be recorded, transcribed or summarised.
+* **A self-hosted option** for regulated industries such as healthcare, legal, finance and government, for organizations that need to run the platform themselves.
+* **Cloud SaaS**, priced per seat from $5 a month ([see how translation pricing compares](/vs/#translation-pricing)), with a Free plan.
 
-### 1. Ironclad GDPR Compliance (Articles 25, 28, and 32)
-Ollasync eliminates enterprise GDPR exposure through purpose-built technical measures:
-
-*   **Zero Model Training Clauses:** Customer data processed through Ollasync is never stored, indexed, or used to fine-tune public or shared Large Language Models (LLMs).
-*   **Automated PII Redaction & Tokenization:** Before text touches the translation engine, proprietary sanitization algorithms detect, mask, or tokenize personally identifiable information (names, emails, IBANs, national IDs, medical records) in accordance with GDPR Article 25 (Privacy by Design).
-*   **Guaranteed Data Residency (EU Sovereignty):** For European organizations and multinational enterprises handling EU citizens' data, Ollasync guarantees data routing and processing exclusively within ISO 27001-certified data centers located inside the European Economic Area (EEA), avoiding non-compliant cross-border data transfers under Schrems II.
-*   **Standardized Article 28 DPAs:** Ollasync provides ready-to-execute, legally vetted Data Processing Agreements incorporating standard contractual clauses (SCCs) to establish clear Controller-to-Processor liability.
-
-### 2. Comprehensive SOC 2 Type II Security Governance
-SOC 2 compliance requires verifiable proof of operational security over extended audit windows. Ollasync adheres to the Trust Services Criteria through:
-
-*   **Zero Data Retention (ZDR) by Default:** Data exists only in ephemeral memory for the millisecond duration of the translation inference. Once the translated output payload is delivered to your application or workflow, memory buffers are cryptographically sanitized.
-*   **End-to-End Cryptographic Encryption:** All payloads are encrypted in transit using TLS 1.3 with modern cipher suites and protected at rest via AES-256 encryption with optional Customer-Managed Encryption Keys (CMEK).
-*   **Granular Access Controls & RBAC:** Role-Based Access Control, Single Sign-On (SSO via SAML/Okta), and Multi-Factor Authentication (MFA) enforce the principle of least privilege across all translation workflows.
-*   **Immutable Audit Logging:** Every system call, translation request, and user interaction generates tamper-proof, time-stamped logs accessible via SIEM integrations for compliance reporting.
-
----
-
-## Architectural Comparison: Standard AI Translation vs. Ollasync
-
-The following matrix highlights the operational differences between standard commercial AI translation engines and Ollasync’s enterprise security framework:
-
-| Evaluation Criteria | Standard AI Translators / Public LLMs | Ollasync Enterprise Platform |
-| :--- | :--- | :--- |
-| **Model Training Policy** | User inputs frequently retained to train models | **Zero training** on customer data; strictly enforced by contract and code |
-| **Data Retention** | Indefinite caching or 30-day logging periods | **Zero Data Retention (ZDR)** via ephemeral processing |
-| **GDPR Alignment** | Generic terms of service; high Schrems II risk | **Full GDPR & UK-GDPR compliance** with dedicated EU data residency |
-| **PII Protection** | Raw PII transmitted to external models | **Automated pre-translation PII masking & tokenization** |
-| **SOC 2 Certification** | Self-attested or absent in base-tier offerings | **SOC 2 Type II Certified** by independent third-party auditors |
-| **Data Residency Controls**| Global, opaque multi-tenant routing | **Deterministic routing** (EU-only, US-only, or on-premise/VPC) |
-| **Access Governance** | Basic username/password credentials | **Enterprise SSO, SCIM provisioning, RBAC, and SIEM logging** |
+Review these against your own GDPR and security requirements before deploying.
 
 ---
 
@@ -394,16 +362,4 @@ While legacy tools and consumer AI engines expose enterprises to severe regulato
 
 By selecting a platform built specifically for regulatory resilience, global enterprises can leverage the speed, nuance, and cost-efficiency of cutting-edge neural translation while maintaining complete data governance. 
 
-**Ollasync delivers the ultimate enterprise standard:** deterministic data residency, certified SOC 2 Type II infrastructure, automated PII protection, and strict GDPR adherence—enabling your business to localize content across dozens of languages with zero compliance risk.
-
----
-
-### Secure Your Global Localization Pipeline with Ollasync
-
-Do not compromise data security for global growth. Partner with the AI translation platform trusted by enterprise legal, security, and localization teams worldwide.
-
-* **Schedule an Enterprise Compliance Architecture Review**
-* **Request our SOC 2 Type II Audit Report and GDPR Whitepaper**
-* **Test the Ollasync Zero Data Retention (ZDR) API in your sandbox environment**
-
-👉 **[Book a Demo with an Ollasync Security Specialist Today](https://ollasync.com/demo)**
+If you need live translation in meetings, Ollasync is an online meeting platform with live translation in 19 languages and optional per-meeting end-to-end encryption. It holds no compliance certifications, so assess it against your own requirements.

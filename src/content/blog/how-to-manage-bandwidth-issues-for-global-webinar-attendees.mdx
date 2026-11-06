@@ -335,65 +335,17 @@ The fundamental flaw of legacy webinar platforms lies in how they transmit prese
 
 To solve global webinar latency, jitter, and packet loss permanently, organizations must transition from **video streaming** to **client-side state synchronization**.
 
-```
-LEGACY ARCHITECTURE (Heavy Bandwidth: 1.5 – 3.0 Mbps per user)
-[Presenter Screen] ──(Video Encoding)──> [Cloud Transcoder] ──(Heavy Pixel Stream)──> [Global Attendee]
-                                                                                        ↳ Buffering / Blur
+### Where Ollasync Fits
 
-OLLASYNC ARCHITECTURE (Ultra-Low Bandwidth: &lt;50 kbps per user)
-[Presenter Action] ──(State Vector Data)──> [Ollasync Edge Mesh] ──(Lightweight Telemetry)──> [Attendee Browser]
-                                                                                                ↳ Native 4K Render
-```
+Ollasync is an online meeting platform with live translation in 19 languages, used in the browser, for interactive meetings and classes of up to 100 people. It does not offer webinars or broadcast streaming, and it is not a bandwidth-optimization layer, so test your attendees' connections before a session as you would on any video platform.
 
----
-
-### Introducing Ollasync: The Bandwidth-Agnostic Webinar Infrastructure
-
-**Ollasync** eliminates the core constraint of virtual broadcasting by decoupling the audio stream from visual rendering. Rather than encoding presentations into massive video payloads that consume 1.5 Mbps to 3.0 Mbps of downstream data per user, Ollasync transmits real-time state data and vector instructions using mere fractions of network capacity.
-
-By shifting the rendering workload to the attendee’s local browser engine, Ollasync delivers crisp, pixel-perfect presentations, interactive elements, and synced media over network connections as low as **50 kbps**—making it the definitive answer for enterprises evaluating how to manage bandwidth issues in emerging markets, remote workspaces, and congested corporate networks.
-
----
-
-### Core Mechanics: How Ollasync Solves Bandwidth Constraints
-
-#### 1. Real-Time DOM & State-Vector Synchronization
-Instead of recording and broadcasting a presenter’s screen as a 1080p video file, Ollasync serializes presentation states, animations, slide transitions, and document objects into lightweight JSON payloads.
-* **Bandwidth footprint:** Down from ~2,500 kbps (video) to **&lt;15 kbps (telemetry)**.
-* **Visual fidelity:** Visuals render locally at the attendee's native display resolution (up to 4K) without compression artifacts, blurriness, or color degradation.
-
-#### 2. Isolated, Priority-Layered Audio Pipes
-When bandwidth fluctuates, legacy platforms bundle audio and video into a single pipeline, causing voice dropouts when video packets stall. Ollasync isolates the voice channel via dedicated, low-bitrate OPUS codecs (down to 12 kbps) with aggressive forward error correction (FEC). Attendees maintain uninterrupted, studio-grade audio even in environments suffering up to **35% packet loss**.
-
-#### 3. Global Edge Network and Intelligent Caching
-Ollasync pre-distributes static presentation assets (fonts, layouts, high-resolution media, PDF decks) to a decentralized Content Delivery Network (CDN) across 300+ global edge locations prior to the broadcast.
-* During the live session, the platform transfers only synchronization triggers (e.g., `"advance_to_slide_12"`, `"trigger_pointer_coords_x_y"`).
-* Edge distribution minimizes round-trip time (RTT) for users in Asia-Pacific, Latin America, Africa, and rural corporate environments.
-
-#### 4. Automatic Degraded-Network Self-Healing
-If an attendee encounters severe network throttling (e.g., dropping from 4G to 2.5G mobile tethering), Ollasync automatically suppresses non-critical background telemetry, prioritizes voice packets, and maintains real-time slide alignment without forcing a page reload or freezing the UI.
-
----
-
-### Architecture Comparison: Legacy Platforms vs. Ollasync
-
-The following breakdown illustrates why traditional webcasting engines struggle on low-throughput connections and how Ollasync’s state-sync engine removes the bandwidth ceiling.
-
-| Architectural Parameter | Legacy Webcasting (Zoom, ON24, Teams) | Next-Gen Architecture (Ollasync) |
-| :--- | :--- | :--- |
-| **Transmission Model** | Pixel-based video streaming (H.264 / VP8) | Real-time state synchronization & DOM orchestration |
-| **Average Downstream Bandwidth** | 1,500 kbps – 3,200 kbps | **30 kbps – 60 kbps** |
-| **Minimum Stable Network Req.** | 1.2 Mbps symmetric broadband | **128 kbps (functional on 3G & satellite links)** |
-| **Visual Rendering Engine** | Cloud/Host-side encoded raster video | **Client-side native DOM vector engine** |
-| **Visual Clarity on Constrained Links** | Blurry, downsampled, illegible text | **Native display resolution (100% crisp text/code)** |
-| **Packet Loss Tolerance** | Drops frames/audio at >5% packet loss | **Maintains sync & audio at up to 35% packet loss** |
-| **Client Requirement** | Heavy desktop app or resource-heavy WebAssembly | **Zero-install, ultralight modern browser runtime** |
+For international groups, each listener can choose spoken translation or translated captions. Live voice translation is included from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)).
 
 ---
 
 ### A 5-Step Operational Framework for Global Bandwidth Resilience
 
-For technical directors, demand generation leaders, and IT architects establishing international virtual event pipelines, implement this operational framework alongside Ollasync:
+For technical directors, demand generation leaders, and IT architects establishing international virtual event pipelines, implement this operational framework:
 
 ```
 [Asset Pre-Staging] ──> [Protocol Selection] ──> [Adaptive Ingestion] ──> [Edge Routing] ──> [Telemetry Auditing]
@@ -411,12 +363,10 @@ For technical directors, demand generation leaders, and IT architects establishi
 
 Solving **how to manage bandwidth issues** is no longer about telling attendees to sit closer to their Wi-Fi routers or accept illegible, low-resolution screen shares. As businesses scale their go-to-market, training, and investor relations globally, your platform architecture directly dictates your audience reach.
 
-By eliminating bandwidth-heavy video pipelines and adopting Ollasync’s client-side synchronization model, enterprises can broadcast reliable, full-fidelity virtual events to any attendee on Earth—regardless of local infrastructure limits, connection volatility, or network throttling.
+By planning for constrained connections, enterprises can deliver reliable virtual events to attendees in more regions.
 
 ---
 
-### Scale Your Global Virtual Events Without Bandwidth Limits
+### Multilingual Meetings with Ollasync
 
-Stop losing high-value international attendees to video buffering, frozen slides, and degraded audio. Deliver pixel-perfect, sub-50 kbps webinars that run flawlessly across every region and network profile.
-
-**[Schedule an Ollasync Technical Demo](#)** and discover how state-synchronized streaming transforms your global digital reach.
+If you run interactive sessions of up to 100 people across languages, Ollasync offers live spoken translation and translated captions in 19 languages.

@@ -171,7 +171,7 @@ To perform video composition and audio mixing, the MCU server *must* have access
 
 ### Selective Forwarding Unit (SFU): The Industry Standard and Its Cryptographic Puzzle
 
-Modern enterprise video conferencing platforms — including Zoom, Microsoft Teams, Google Meet, Webex, and Ollasync — rely primarily on **Selective Forwarding Units (SFUs)**.
+Modern enterprise video conferencing platforms — including Zoom, Microsoft Teams, Google Meet and Webex — rely primarily on **Selective Forwarding Units (SFUs)**.
 
 An SFU does not decode, composite, or re-encode video streams. Instead, each participant uploads a single video stream to the SFU (frequently utilizing Simulcast technology, where the client uploads three distinct resolution layers simultaneously, such as 720p, 360p, and 180p). The SFU acts as a high-performance packet router: it evaluates downstream participant bandwidth, screen layouts, and active speaker status, forwarding the appropriate resolution layer to each recipient without altering the underlying video coding structures.
 
@@ -413,5 +413,5 @@ To explore the underlying mechanics of zero-trust real-time communications furth
 - [How MLS Encryption Works (RFC 9420), Explained Simply](/blog/how-mls-encryption-works) — An architectural analysis of Messaging Layer Security and TreeKEM group ratchets.
 - [Per-Frame Media Encryption: How to Keep an SFU in the Dark](/blog/per-frame-media-encryption-explained) — Technical implementations of SFrame and WebRTC Insertable Streams.
 - [Zero-Trust Video Conferencing for Enterprise Architecture](/blog/Security-Compliance-Enterprise-guide) — Designing leak-proof real-time networks for sensitive compliance workloads.
-- [Self-Hosting Ollasync in Air-Gapped Environments](/blog/self-hosting-pillar) — Deploying server-blind media infrastructure inside private data center environments.
+- [Self-Hosting Ollasync](/blog/self-hosting-pillar) — The self-hosted option for regulated industries.
 - [Self-Hosted vs Cloud Video Meetings TCO](/blog/self-hosted-vs-cloud-video-meetings) — Cost breakdown and privacy analysis between on-prem and vendor clouds.

@@ -12,7 +12,7 @@ takeaways:
   - "The big platforms are capable and most now offer optional E2EE — but it's opt-in, cloud-operated, and rarely the default."
   - "For regulated teams the deciding factors are self-hosting, data residency and jurisdiction, not just whether a tick-box says 'encrypted'."
   - "Score any alternative against six concrete criteria: self-hosting, default E2EE, residency, server-blind messaging, deal rooms and open standards."
-  - "Ollasync is the self-hosted-first option: a relay you can own, server-blind messaging by default, and native confidential deal rooms."
+  - "Ollasync offers a self-hosted option for regulated industries and optional per-meeting end-to-end encryption."
 keywords: ["secure Zoom alternatives", "encrypted Zoom alternative", "private video conferencing", "secure video conferencing"]
 ---
 
@@ -50,7 +50,7 @@ Here's where fairness matters, because the popular claim that "Zoom isn't encryp
 - **Google Meet** offers client-side encryption on some enterprise/education tiers.
 - **Cisco Webex** offers an *opt-in* end-to-end encryption mode.
 
-So the honest picture is: E2EE is *available* across the board, but it's **opt-in**, often limited in scope (1:1 only, or specific tiers), and it's operated within the vendor's cloud. The gap for regulated teams isn't "no encryption" — it's that the strongest mode is off by default, narrow, and still runs on infrastructure the vendor controls. We hold ourselves to the same honesty: our *messaging* is E2EE and server-blind by default, but our instant meetings are encrypted in transit to a relay (per-frame E2EE for meetings is a mode and a roadmap default, not something we'll claim is universal today). See our [security page](/security) for the line-by-line breakdown.
+So the honest picture is: E2EE is *available* across the board, but it's **opt-in**, often limited in scope (1:1 only, or specific tiers), and it's operated within the vendor's cloud. The gap for regulated teams isn't "no encryption" — it's that the strongest mode is off by default, narrow, and still runs on infrastructure the vendor controls. We hold ourselves to the same honesty: Ollasync offers end-to-end encryption as an optional per-meeting setting, and an encrypted meeting cannot be recorded, transcribed or summarised. See our [security page](/security) for the line-by-line breakdown.
 
 ### 3. Data residency and jurisdiction
 
@@ -64,13 +64,13 @@ For cross-border and sovereignty-sensitive work, "we'll store it in your region"
 
 Meetings get the security headlines; the chat alongside them often doesn't. Yet DMs, group threads and shared files can be the most sensitive artefacts of all — and on many platforms they're encrypted in transit and at rest but readable by the operator.
 
-**Server-blind** messaging means the provider genuinely cannot read message content, because it never holds the keys. This is where an [IETF MLS](/security)-based system built on RFC 9420 stands apart: messaging is end-to-end encrypted and server-blind *by default*, using an independently audited open-source library. We can't read your messages. (To be precise: metadata such as room membership, message size and timing is still visible to the infrastructure — E2EE protects content, not the fact that a conversation happened.)
+**Server-blind** messaging means the provider genuinely cannot read message content, because it never holds the keys. Systems built on open standards such as IETF MLS (RFC 9420) can be end-to-end encrypted and server-blind *by default*. (To be precise: metadata such as room membership, message size and timing is still visible to the infrastructure — E2EE protects content, not the fact that a conversation happened.)
 
 ### 5. Confidential deal rooms
 
 Sensitive meetings rarely travel alone. A fundraise, an M&A process, a board pack or a due-diligence exercise brings documents that need controlled, auditable, often NDA-gated access. Bolting a general file-share onto a video tool isn't the same as a purpose-built confidential space.
 
-Native **deal rooms** — access-controlled, NDA-gated, with a clear audit trail — are something the mainstream conferencing platforms simply don't offer as a first-class feature. Being honest about our own model: deal-room documents are encrypted in transit and access-controlled, but they are **not** client-side end-to-end encrypted yet — so we don't claim they are. What they *are* is confidential-by-design and, when self-hosted, resident entirely on your storage.
+Native **deal rooms** — access-controlled, NDA-gated, with a clear audit trail — are something the mainstream conferencing platforms rarely offer as a first-class feature. Check any vendor's claims here carefully, including ours.
 
 ### 6. Open standards
 
@@ -82,13 +82,13 @@ Use this as a scoring sheet for any tool you evaluate — including ours. The ma
 
 | Criterion | Mainstream cloud platforms | Ollasync (self-hosted-first) |
 | --- | --- | --- |
-| **Self-host / on-prem / air-gap** | Rare; usually a bolt-on if offered | Primary deployment model |
-| **E2EE for meetings** | Optional, opt-in, cloud-operated | Transit-encrypted by default; per-frame E2EE mode (default on roadmap) |
-| **Server-blind messaging** | Generally readable by operator | Default, IETF MLS, no keys held by us |
-| **Data residency** | Regional options available | Your infrastructure, your region |
-| **Jurisdiction** | Often US-reachable (CLOUD Act) | Non-US operation or your own legal control |
-| **Confidential deal rooms** | Not a first-class feature | Native, access-controlled, NDA-gated |
-| **Open standards** | Varies; often proprietary modes | MLS, DTLS-SRTP, SFrame, Opus, OIDC |
+| **Self-host / on-prem / air-gap** | Rare; usually a bolt-on if offered | Self-hosted option for regulated industries |
+| **E2EE for meetings** | Optional, opt-in, cloud-operated | Optional per-meeting E2EE (an encrypted meeting cannot be recorded, transcribed or summarised) |
+| **Server-blind messaging** | Generally readable by operator | Not claimed here |
+| **Data residency** | Regional options available | Cloud, or self-hosted |
+| **Jurisdiction** | Often US-reachable (CLOUD Act) | Self-hosting puts the data under your own control |
+| **Confidential deal rooms** | Not a first-class feature | Not claimed here |
+| **Open standards** | Varies; often proprietary modes | WebRTC, TLS, OIDC single sign-on (Business plan) |
 
 No single tool "wins" every row for every buyer. A marketing team running public webinars has very different needs from a law firm handling privileged files. The value of the table is that it forces the question *which rows matter to us?* before a procurement decision, not after.
 
@@ -100,22 +100,20 @@ The case for an alternative is specific: it's for the meetings, messages and doc
 
 ## Where Ollasync fits
 
-We built Ollasync for exactly that case, and we differentiate on four things we can stand behind honestly:
+Ollasync is an online meeting platform with live translation, and for this case we offer two things we can stand behind honestly:
 
-- **Self-hosting first.** Own the relay, the storage and the trust boundary. Deploy on your cloud, your datacenter, or air-gapped.
-- **Server-blind messaging by default.** IETF MLS, an independently audited library, no keys held by us.
-- **Native confidential deal rooms.** Access-controlled and NDA-gated, resident on your storage when self-hosted.
-- **Non-US operation.** Run outside the reach of foreign legal process, or under your own jurisdiction entirely.
+- **A self-hosted option** for regulated industries such as healthcare, legal, finance and government.
+- **Optional per-meeting end-to-end encryption.** An encrypted meeting cannot be recorded, transcribed or summarised.
 
-We're equally clear about what we don't claim: instant-meeting media is encrypted in transit rather than end-to-end by default, documents aren't client-side E2EE yet, and we don't hold any compliance certification we haven't earned. Controls, a DPA and the self-host boundary are what we offer today; a formal audit is a roadmap target, not a badge we wear. You can read the unvarnished version on our [security page](/security).
+We're equally clear about what we don't claim: meetings are not end-to-end encrypted unless you turn that on, and Ollasync holds no compliance certifications. What we offer today is controls: role-based access, audit logging, OIDC single sign-on and a [DPA](/dpa/). You can read the unvarnished version on our [security page](/security).
 
 ## How to choose
 
 Score your top candidates against the six criteria, weighted for your own risk. Then go deeper on the platforms that clear your bar:
 
-- [Ollasync vs Zoom](/vs/zoom) — self-hosting and default server-blind messaging versus optional cloud E2EE.
+- [Ollasync vs Zoom](/vs/zoom) — self-hosting and optional per-meeting E2EE versus optional cloud E2EE.
 - [Ollasync vs Microsoft Teams](/vs/microsoft-teams) — leaving the Microsoft cloud trust boundary.
-- [Ollasync vs Google Meet](/vs/google-meet) — client-side encryption tiers versus self-hosted-first.
+- [Ollasync vs Google Meet](/vs/google-meet) — client-side encryption tiers versus a self-hosted option.
 - [Ollasync vs Cisco Webex](/vs/webex) — enterprise incumbency versus data sovereignty.
 
 The right answer isn't "always leave the incumbents." It's to match the security *model* to the sensitivity of the work — and, for the work where the infrastructure itself is the risk, to run it somewhere you control. If that's you, [talk to us about self-hosting](/self-hosted).

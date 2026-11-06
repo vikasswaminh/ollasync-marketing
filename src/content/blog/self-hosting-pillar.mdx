@@ -13,8 +13,8 @@ takeaways:
   - "True Sovereignty: Self-hosting ensures meetings, streams, call metadata, user rosters, interactive whiteboard state, and archived media recordings remain strictly within infrastructure operated directly under your administrative control."
   - "Control Drivers: Operational isolation is driven by real-world governance requirements: strict geographic data residency, avoiding third-party vendor subprocessor risk, maintaining compliance perimeters, preventing external metadata tracking, and eliminating external operator access."
   - "Streamlined Architecture: A modern real-time WebRTC media stack consists of modular open-source microservices — lightweight application API gateways, Selective Forwarding Units (SFUs), private S3-compatible object storage, enterprise identity providers, and dedicated NAT traversal relays."
-  - "Zero Experience Trade-Off: Organizations no longer sacrifice end-user software quality for strict security controls. Standard browser-native 4K video resolution, spatial audio rendering, dynamic background blur, and neural background noise cancellation operate seamlessly on self-hosted infrastructure."
-  - "Massive Cost Reductions: Decoupling recurring per-seat user licenses from physical compute hardware yields predictable operational costs, enabling up to 90% cost savings at enterprise scale compared to commercial SaaS subscriptions."
+  - "Zero Experience Trade-Off: Organizations no longer sacrifice end-user software quality for strict security controls. The same browser-based meeting experience is available on self-hosted infrastructure."
+  - "Different Cost Model: Self-hosting replaces recurring per-seat user licenses with compute, bandwidth and your own operations time, so costs depend on your deployment."
 ---
 
 Most real-time video conferencing across the modern corporate landscape relies on multi-tenant commercial cloud platforms. For routine team check-ins, informal huddles, or casual external vendor calls, relying on third-party public cloud services offers convenient, turn-key convenience. However, for an expanding group of global organizations — spanning clinical healthcare systems, international legal partnerships, financial investment institutions, defense contractors, and sovereign government agencies — relying on third-party multi-tenant infrastructure introduces significant operational vulnerability.
@@ -144,7 +144,6 @@ Accurate compute allocation ensures consistent media performance during peak usa
 | **Starter / Small Office** | Up to 5 Active Rooms, Max 50 Concurrent Streams | 4 vCPU cores, 8 GB RAM | 1 Gbps dedicated |
 | **Mid-Market Enterprise** | Up to 25 Active Rooms, Max 350 Concurrent Streams | 16 vCPU cores, 32 GB RAM | 5 Gbps dedicated |
 | **Large Scale Cluster** | Up to 100 Active Rooms, Max 1,500 Concurrent Streams | 3x SFU Nodes (16 vCPU / 32 GB), 1x in-memory control-plane store | 10 Gbps dedicated |
-| **High Capacity Broadcast** | Multi-room townhalls, 10,000+ Viewers (WebRTC/HLS) | Autoscaling Kubernetes Pod Pool, Dedicated TURN Array | 25+ Gbps burstable |
 
 Note: Selective Forwarding Units (SFUs) inspect packet headers and route media streams without re-encoding them, keeping server CPU requirements modest. Hardware acceleration GPUs are primarily required when running central multi-stream video compositing for cloud recordings.
 
@@ -264,21 +263,9 @@ Disaster recovery planning also mandates regular database backup procedures and 
 
 ## Total cost of ownership: self-hosted vs SaaS
 
-SaaS providers typically charge recurring monthly fees per user seat. As headcount grows, licensing costs scale linearly regardless of actual meeting frequency. Self-hosting shifts the model to underlying compute and bandwidth usage, resulting in substantial savings at scale. For detailed tier breakdowns, check our [pricing overview](/pricing), and see how we compare directly in our [Ollasync vs Zoom breakdown](/vs/zoom).
+SaaS providers typically charge recurring monthly fees per user seat. As headcount grows, licensing costs scale linearly regardless of actual meeting frequency. Self-hosting shifts the model to underlying compute and bandwidth usage plus your own operations time, so whether it costs less depends on your deployment. For detailed tier breakdowns, check our [pricing overview](/pricing), and see how we compare directly in our [Ollasync vs Zoom breakdown](/vs/zoom).
 
-### Cost Comparison (1,000-User Enterprise Deployment)
-
-| Cost Center | Commercial SaaS Vendor | Self-Hosted Infrastructure |
-| --- | --- | --- |
-| **User Seat Licensing** | $240,000/year ($20/user/month) | $0 (Open-source platform) |
-| **Compute Hardware** | Included in SaaS fee | $4,800 / year (2x bare-metal nodes) |
-| **Egress Network Bandwidth** | Included in SaaS fee | $3,600 / year (~15 TB monthly egress) |
-| **TURN Edge Relays** | Included in SaaS fee | $1,200 / year (Relay traffic) |
-| **DevOps & Platform Operations** | Included in SaaS fee | $12,000 / year (Internal allocation) |
-| **Total Annual Overhead** | **$240,000** | **$21,600** |
-| **5-Year Projected Savings** | Baseline Reference | **$1,092,000 Saved (91% Cost Reduction)** |
-
-Financial predictability expands further when accounting for dynamic bandwidth pricing and cloud infrastructure optimizations. Leveraging unmetered bare-metal hosting, regional peering agreements, or cloud egress discount programs further decreases bandwidth costs. Moreover, because computing instances are shared dynamically across changing meeting schedules, overall hardware utilization remains high, maximizing the return on investment for your infrastructure budget.
+Ollasync's hosted plans are priced per seat: Free is $0, Pro is $5 per seat a month and Business is $19 per seat a month. Guests and learners join without a paid seat.
 
 
 ## Getting started without a big-bang migration
@@ -337,6 +324,6 @@ Self-hosted video conferencing is not about returning to legacy on-premise softw
 
 If your team handles confidential, regulated, or sensitive discussions where data location, privacy perimeters, and regulatory access controls matter, self-hosting provides complete operational ownership — delivering total privacy, data sovereignty, and compliance without sacrificing a fast, modern meeting experience.
 
-By shifting away from opaque commercial SaaS licensing toward open-source WebRTC media engines running on your own compute nodes, your organization takes control of its communications infrastructure. You eliminate vendor lock-in, streamline audit boundaries, protect sensitive intellectual property from automated AI model harvesting, and achieve up to 90% in long-term operational cost savings.
+By shifting away from opaque commercial SaaS licensing toward open-source WebRTC media engines running on your own compute nodes, your organization takes control of its communications infrastructure. You eliminate vendor lock-in, streamline audit boundaries, protect sensitive intellectual property from automated AI model harvesting, and change your cost model from per-seat licensing to compute and bandwidth.
 
 Ready to deploy sovereign video infrastructure for your organization? Learn more about our [self-hosted architecture and deployment options](/self-hosted) or [book a technical consultation](/contact) with our engineering team.

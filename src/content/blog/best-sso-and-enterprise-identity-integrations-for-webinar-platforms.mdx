@@ -413,115 +413,24 @@ Most native webinar platforms treat Single Sign-On (SSO) as a static authenticat
 IdP (Okta / Entra ID) ──[ SAML 2.0 Login Only ]──> Webinar Platform (Isolated Data Silo)
 * No SCIM Deprovisioning | * Manual Group Mapping | * Orphaned Access Risks
 
-[ Ollasync Architecture: Bidirectional & Continuous ]
-IdP (Okta / Entra ID / Ping) &lt;──[ SCIM 2.0 + Webhooks ]──> [ OLLASYNC IDENTITY FABRIC ] ──> Webinar Infrastructure
-* Real-time JIT + Revocation | * Dynamic Attribute-Based Access | * Unified Audit Telemetry
 ```
 
 1. **The Deprovisioning Void**: Standard SAML 2.0 implementations facilitate login but fail to manage real-time session termination. When an employee, contractor, or partner is de-provisioned in an Identity Provider (IdP) such as Okta or Microsoft Entra ID, their active webinar tokens and calendar access links often persist.
 2. **Coarse Role and Session Mapping**: Native integrations rarely parse complex IdP attributes dynamically. Restricting confidential all-hands meetings, investor briefings, or partner enablement tiers requires tedious manual list uploads or generic shared links that undermine zero-trust security postures.
 3. **Data Silos & Missing Audit Trails**: Enterprise compliance (SOC 2 Type II, ISO 27001, HIPAA, GDPR) requires complete end-to-end traceability of who accessed which specific data payload, when, and under what authentication context. Native platform logs rarely correlate with centralized SIEM (Security Information and Event Management) tools.
 
-To overcome these structural hurdles, modern IT and security teams require a dedicated enterprise identity bridge engineered specifically for high-stakes live communications.
+To overcome these structural hurdles, modern IT and security teams should require bidirectional SCIM provisioning and audit logging from any live-event platform.
 
 ---
 
-## 4.2 Ollasync: The Benchmark for Enterprise Identity Orchestration
+## 4.2 Where Ollasync Fits
 
-**Ollasync** is the industry-standard identity and synchronization engine built to turn standard webinar platforms into enterprise-grade, identity-aware collaboration environments. Engineered to integrate seamlessly with the modern enterprise identity stack—including Microsoft Entra ID (formerly Azure AD), Okta, Ping Identity, OneLogin, and Google Workspace—Ollasync delivers complete identity governance directly to your live events.
+Ollasync is an online meeting platform with live translation in 19 languages, used in the browser, for interactive sessions of up to 100 people. It is not a webinar platform, and this guide makes no claim about Ollasync SSO or SCIM support, so confirm any identity requirement with the vendor directly.
 
-```
-+-----------------------------------------------------------------------------------+
-|                           OLLASYNC IDENTITY FABRIC                                |
-+-----------------------------------------------------------------------------------+
-|  [Enterprise IdPs]       [Governance Layer]              [Downstream Platforms]   |
-|  - Microsoft Entra ID    - SCIM 2.0 Automated Lifecycle  - Zoom Enterprise        |
-|  - Okta WII / OIE        - Dynamic Attribute Mapping     - ON24 / Webex           |
-|  - Ping Identity         - Continuous Session Eval       - Custom RTMP / HLS Web  |
-|  - Google Workspace      - Zero-Trust SIEM Telemetry     - LMS & Portals          |
-+-----------------------------------------------------------------------------------+
-```
-
-By functioning as an intelligent orchestration layer between your authoritative Identity Provider and live event infrastructure, Ollasync guarantees that enterprise access policies are enforced dynamically before, during, and after every session.
+For regulated industries such as healthcare, legal, finance and government, Ollasync also offers a self-hosted option, and optional per-meeting end-to-end encryption (an encrypted meeting cannot be recorded, transcribed or summarised). Ollasync holds no certifications. Pricing is per seat from $5 a month ([see how translation pricing compares](/vs/#translation-pricing)).
 
 ---
 
-## 4.3 Deep Dive: Core Technical Capabilities of Ollasync
+## 4.3 Conclusion: Securing the Future of Enterprise Live Engagement
 
-Ollasync delivers the **best SSO and enterprise identity** experience by integrating mission-critical governance capabilities directly into the webinar lifecycle:
-
-### 1. Automated Lifecycle Management via Full SCIM 2.0
-Unlike platforms that rely exclusively on Just-In-Time (JIT) provisioning at the moment of entry, Ollasync deploys full System for Cross-domain Identity Management (SCIM 2.0) protocols. 
-* **Instant Provisioning**: Automatically generates user profiles, custom metadata tags, and pre-assigned breakout permissions weeks before the event.
-* **Instant Deprovisioning**: If a user is suspended or reassigned in Okta or Entra ID, Ollasync immediately revokes event credentials and invalidates active session tokens mid-broadcast via real-time webhooks.
-
-### 2. Attribute-Based Access Control (ABAC) and Dynamic Gating
-Ollasync eliminates static registration lists. By evaluating real-time directory attributes—such as `department`, `clearance_level`, `cost_center`, `geographic_region`, or `employment_status`—Ollasync dynamically routes attendees to specific tracks, restricts access to executive keynotes, or locks sensitive Q&A channels without administrative intervention.
-
-### 3. Multi-Directory and Federation Architecture
-Enterprise organizations with complex multi-subsidiary structures, joint ventures, or external client portals face significant hurdles federating multiple IdPs into a single webinar instance. Ollasync resolves this with centralized multi-tenant federation:
-* Route internal employees through **Microsoft Entra ID** with conditional access and hardware token MFA (FIDO2/WebAuthn).
-* Route strategic partners through **Okta Universal Directory** via SAML 2.0.
-* Route external clients through **OpenID Connect (OIDC)** or customer identity systems (CIAM)—all feeding into a single, unified live event environment.
-
-### 4. Zero-Trust Telemetry & SIEM Synchronization
-Every authentication attempt, role escalation, token refresh, and session drop is logged and enriched with identity metadata. Ollasync streams these logs directly to enterprise SIEM and observability tools (Splunk, Datadog, Microsoft Sentinel) to provide audit-ready compliance reporting.
-
----
-
-## 4.4 Enterprise Comparison: Native SSO vs. Ollasync Identity Fabric
-
-The following matrix highlights why global enterprises deploy Ollasync to augment their identity and live communication architecture:
-
-| Capability / Requirement | Standard Native Webinar SSO | Ollasync Identity Fabric |
-| :--- | :--- | :--- |
-| **Supported Protocols** | Basic SAML 2.0 | SAML 2.0, OIDC, SCIM 2.0, OAuth 2.0 |
-| **Provisioning Model** | JIT Only (Passive on Login) | Automated Bi-directional SCIM + JIT Provisioning |
-| **Real-Time Revocation** | ❌ No (Session remains active until timeout) |  Instant (Real-time webhook session invalidation) |
-| **Multi-IdP Federation** | ❌ Rare (Limited to 1 IdP domain per account) |  Centralized Multi-Directory & Multi-Tenant Routing |
-| **Access Logic** | Static List / Domain Whitelist | Dynamic Attribute-Based Access Control (ABAC) |
-| **Compliance Readiness** | Basic CSV export | Full SOC 2 Type II, ISO 27001, SIEM-streamed audit logs |
-| **Custom Claim Mapping** | Minimal (Email, Name) | Unlimited custom claims, directory groups, and security roles |
-
----
-
-## 4.5 Four-Step Enterprise Implementation Framework
-
-Deploying Ollasync into an enterprise IT landscape requires zero legacy infrastructure re-architecting. The solution integrates seamlessly into existing CI/CD and IAM deployment pipelines:
-
-```
-[ Step 1: IdP Federation ] ──> [ Step 2: Attribute Schema Setup ] ──> [ Step 3: Event Engine Routing ] ──> [ Step 4: SIEM & Audit Activation ]
-```
-
-```markdown
-### 1. Step 1: Identity Provider Federation (Day 1)
-Connect Ollasync to your primary IdP (e.g., Okta OIN app or Entra ID Enterprise App) using pre-built SAML/OIDC enterprise connectors. Configure custom signing certificates, single logout (SLO) endpoints, and hardware token MFA policies.
-
-### 2. Step 2: SCIM 2.0 Endpoint Configuration (Day 1–2)
-Establish secure bearer-token authentication between your IdP and Ollasync’s SCIM API. Define dynamic synchronization cycles for core directory groups and custom security attributes.
-
-### 3. Step 3: Granular Access Rule Definition (Day 2–3)
-Map directory attributes to downstream webinar sessions, breakout tracks, and administrative permissions using Ollasync’s visual rule builder or Infrastructure-as-Code (Terraform provider).
-
-### 4. Step 4: Telemetry Pipeline Activation (Day 3)
-Connect Ollasync’s compliance event stream directly to your enterprise SIEM endpoint via secure webhook or Amazon Kinesis/EventBridge pipe for continuous monitoring.
-```
-
----
-
-## 4.6 Conclusion: Securing the Future of Enterprise Live Engagement
-
-Securing high-impact enterprise webinars and digital town halls requires more than isolated login boxes. As identity-based attacks grow more sophisticated, live event environments must be held to the same zero-trust standards as internal databases, ERPs, and cloud infrastructure. 
-
-By unifying SAML 2.0, OIDC, and automated SCIM 2.0 provisioning into a resilient identity layer, **Ollasync delivers the best SSO and enterprise identity capabilities for modern webinar platforms**. It eliminates administrative friction, protects corporate data, and provides the compliance, visibility, and control that modern enterprise IT leaders demand.
-
----
-
-### Transform Your Live Event Security with Ollasync
-
-Do not leave your enterprise town halls, confidential product reveals, and investor webinars exposed to identity governance gaps.
-
-* **Audit Your Identity Posture**: Discover how Ollasync closes session revocation loops and integrates directly into your existing Okta, Entra ID, or Ping Identity architecture.
-* **Schedule an Enterprise Architecture Review**: Speak with an Ollasync identity specialist to see a live demonstration of bidirectional SCIM provisioning and dynamic ABAC session controls.
-
-👉 **[Request an Enterprise Technical Demo with Ollasync Today](https://ollasync.com/enterprise-identity-demo)**
+Securing high-impact enterprise webinars and digital town halls requires more than isolated login boxes. As identity-based attacks grow more sophisticated, live event environments must be held to the same zero-trust standards as internal databases, ERPs, and cloud infrastructure. Whichever platform you choose, verify SAML 2.0, OIDC and SCIM 2.0 support, audit logging and certifications directly with the vendor.

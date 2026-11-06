@@ -90,6 +90,132 @@
       "url": "https://www.zoom.com/en/products/ai-assistant/",
       "publisher": "Zoom",
       "accessDate": "2026-09-13"
+    },
+    {
+      "id": "C11",
+      "competitor": "Zoom",
+      "claim": "Zoom translated captions need Business Plus or an Enterprise plan, or the Translated Captions add-on, whose price comes from Zoom sales.",
+      "quote": "assigned the Zoom Translated Captions add-on",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059081",
+      "publisher": "Zoom Support",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C12",
+      "competitor": "Zoom",
+      "claim": "Zoom spoken translation (Voice Translator) needs the Live Translation add-on or ZoomMate.",
+      "quote": "Live Translation add-on or ZoomMate",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0084896",
+      "publisher": "Zoom Support",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C13",
+      "competitor": "Zoom",
+      "claim": "ZoomMate costs $16.67 per user per month billed annually.",
+      "quote": "$16.67 /user per month · billed annually",
+      "url": "https://zoom.us/pricing/aic",
+      "publisher": "Zoom",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C14",
+      "competitor": "Zoom",
+      "claim": "Zoom Workplace Pro costs $14.16 per user per month billed annually.",
+      "quote": "$14.16 /user per month · billed annually",
+      "url": "https://zoom.us/pricing",
+      "publisher": "Zoom",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C15",
+      "competitor": "Google Meet",
+      "claim": "Google Meet speech translation is available for up to 90 minutes per meeting on Business Standard and Plus.",
+      "quote": "Google Workspace Business Standard and Plus: 90 minutes",
+      "url": "https://support.google.com/meet/answer/16221730?hl=en",
+      "publisher": "Google Meet Help",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C16",
+      "competitor": "Google Meet",
+      "claim": "Google Workspace Business Standard costs $14 per user per month on the annual plan.",
+      "quote": "Business Standard: $14 USD per user",
+      "url": "https://knowledge.workspace.google.com/admin/billing/compare-flexible-and-annual-fixed-term-payment-plans",
+      "publisher": "Google Workspace Admin Help",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C17",
+      "competitor": "Microsoft Teams",
+      "claim": "Live translated captions in Teams require the organizer to have a Teams Premium licence.",
+      "quote": "The meeting or event organizer must have a Teams Premium license for attendees to use live translated captions",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/meeting-transcription-captions",
+      "publisher": "Microsoft Learn",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C18",
+      "competitor": "Microsoft Teams",
+      "claim": "The Teams Interpreter agent comes with a Microsoft Copilot licence and includes 20 hours of interpretation per user per month.",
+      "quote": "20 hours of interpretation is included per user per month with a Microsoft Copilot license",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/interpreter-agent-teams",
+      "publisher": "Microsoft Learn",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C19",
+      "competitor": "Microsoft Teams",
+      "claim": "Listening through the Teams Interpreter agent requires a Microsoft 365 licence.",
+      "quote": "A Microsoft M365 license is required to listen to others",
+      "url": "https://learn.microsoft.com/en-us/microsoftteams/interpreter-agent-teams",
+      "publisher": "Microsoft Learn",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C20",
+      "competitor": "Microsoft Teams",
+      "claim": "Microsoft Copilot Business starts at $18 per user per month paid yearly (offer price; $21 list).",
+      "quote": "now starting from $18.00",
+      "url": "https://www.microsoft.com/en-us/copilot/pricing/business",
+      "publisher": "Microsoft",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C21",
+      "competitor": "Microsoft Teams",
+      "claim": "Teams Premium costs $10 per user per month paid yearly.",
+      "quote": "$10.00 user/month",
+      "url": "https://www.microsoft.com/en-us/microsoft-teams/premium",
+      "publisher": "Microsoft",
+      "accessDate": "2026-11-06"
+    },
+    {
+      "id": "C22",
+      "competitor": "Microsoft Teams",
+      "claim": "Microsoft 365 Business Basic costs $7 per user per month paid yearly.",
+      "quote": "$7.00 user/month",
+      "url": "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-basic",
+      "publisher": "Microsoft",
+      "accessDate": "2026-11-06"
+    },
+    {
+      "id": "C23",
+      "competitor": "Webex",
+      "claim": "Webex real-time translation is a paid add-on licence.",
+      "quote": "Real-time translation is a paid add-on license",
+      "url": "https://help.webex.com/en-us/article/nqzpeei/show-real-time-translation-and-transcription-in-meetings-and-webinars",
+      "publisher": "Webex Help Center",
+      "accessDate": "2026-11-05"
+    },
+    {
+      "id": "C24",
+      "competitor": "Webex",
+      "claim": "Webex paid plans are quoted by sales rather than published.",
+      "quote": "Let’s talk",
+      "url": "https://pricing.webex.com/us/en/",
+      "publisher": "Webex",
+      "accessDate": "2026-11-05"
     }
   ]
 }

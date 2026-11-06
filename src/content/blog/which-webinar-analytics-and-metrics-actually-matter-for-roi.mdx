@@ -406,13 +406,11 @@ To extract measurable ROI from webinar analytics:
 1. **Deprecate Legacy Platform Analytics:** Stop relying on native, isolated dashboards. Export raw telemetry via real-time webhooks directly to your data stack.
 2. **Implement Identity Graphs:** Connect pre-registration cookies with live viewing sessions and post-event on-demand consumption to construct a unified engagement path across multiple devices.
 3. **Align SDR Triggers to Granular Telemetry:** Route accounts directly based on combined buying-committee signals and verified active focus rather than simple registration numbers.
-4. **Deploy Algorithmic Modeling in the Warehouse:** Measure true incremental conversion lift and sales-cycle compression rather than relying on basic single-touch attribution.## Chapter 4: The Unified Analytics Solution — Transforming Webinar Data into Pipeline and Revenue
+4. **Deploy Algorithmic Modeling in the Warehouse:** Measure true incremental conversion lift and sales-cycle compression rather than relying on basic single-touch attribution.## Chapter 4: Where Ollasync Fits
 
-Knowing **which webinar analytics and metrics** matter for ROI is only half the battle. Marketing and revenue operations leaders frequently discover that while they understand the theoretical importance of multi-touch attribution, drop-off curves, and engagement scoring, their execution is crippled by a fragmented tech stack.
+Knowing **which webinar analytics and metrics** matter for ROI is only half the battle. Marketing and revenue operations leaders still need to move raw audience data into their CRM and attribution tools.
 
-Native webinar tools isolate viewing behavior inside disconnected reports. Legacy CRMs record binary attendance statuses ("Attended" vs. "No-Show") while discarding critical intent signals such as poll responses, questions asked, and exact watch durations. The result is revenue blind spots, delayed sales follow-up, and an inability to prove pipeline contribution to executive leadership.
-
-To bridge the chasm between raw audience data and closed-won revenue, organizations require a dedicated, automated analytics and attribution engine.
+To bridge the chasm between raw audience data and closed-won revenue, organizations require a dedicated, automated analytics and attribution setup in their own revenue stack.
 
 ```
 +-------------------------------------------------------------------------+
@@ -423,109 +421,29 @@ To bridge the chasm between raw audience data and closed-won revenue, organizati
 |  - CAC per Lead      |  - Intent / Poll Actions   |  - Influenced ACV   |
 |  - Channel Yield     |  - Micro-Drop-Off Timestamps| - Closed-Won ROI   |
 +-------------------------------------------------------------------------+
-                                    │
-                                    ▼
-+-------------------------------------------------------------------------+
-|                  OLLASYNC UNIFIED REVENUE ENGINE                        |
-|   (Bi-Directional Sync • Real-Time Scoring • Multi-Touch Attribution)   |
-+-------------------------------------------------------------------------+
 ```
 
 ---
 
-### The Infrastructure Breakdown: Why Native Analytics Fail Modern GTM Teams
+### Where Ollasync Fits
 
-Most B2B marketing teams run webinars on platforms optimized for video streaming rather than revenue attribution. This architecture creates three systemic data failures:
+Ollasync is an online meeting platform with live translation in 19 languages, used in the browser. It is not a webinar analytics or attribution tool, and it does not offer webinars, webinar stages or broadcast streaming. It does not replace the CRM and attribution tools described in this guide.
 
-1. **The Binary Data Black Hole:** When an attendee spends 48 minutes in a 60-minute technical demonstration, asks two pricing questions, and answers a qualification poll, legacy integrations push a single flat record to Salesforce or HubSpot: `Status = Attended`. Your sales reps receive zero context regarding the buyer's level of intent.
-2. **Attribution Disconnect:** Native analytics cannot connect an attendee's session data to opportunity creation 60 days later. Without multi-touch algorithmic attribution, webinars are unfairly relegated to top-of-funnel cost centers rather than recognized as mid-funnel velocity accelerators.
-3. **Manual CSV Hell:** RevOps teams spend an average of 4 to 8 hours per event manually exporting attendee logs, cleaning spreadsheets, cross-referencing CRM accounts, and calculating conversion percentages. By the time leads are assigned, buyer intent has decayed.
+For the interactive meetings and classes it does run (up to 100 people), Ollasync offers:
 
----
+* **Live translation:** Live spoken translation for each listener, plus translated captions, in 19 languages.
+* **Recordings:** Meetings can be recorded.
+* **Transcripts and AI notes:** A transcript, AI meeting notes and action items after the meeting. An end-to-end encrypted meeting cannot be recorded, transcribed or summarised.
+* **Meeting tools:** Screen sharing, whiteboard and breakout rooms.
 
-### The Solution: Ollasync as the Complete Webinar Analytics & Attribution Engine
-
-**Ollasync** solves the technical and attribution gaps inherent in standard webinar setups. Built specifically for B2B demand generation, growth, and RevOps teams, Ollasync transforms raw engagement data into real-time pipeline visibility.
-
-Rather than treating webinars as isolated marketing events, Ollasync integrates your entire event ecosystem directly into your revenue stack (HubSpot, Salesforce, Marketo), operationalizing the critical analytics identified across this guide.
-
-```
-+-------------------+      +----------------------+      +--------------------+
-|  Webinar Engine   | ---> |       OLLASYNC       | ---> |    CRM / RevOps    |
-| (Zoom, ON24, etc.)|      |  Attribution & Lead  |      | (Salesforce, HS)   |
-|                   |      |    Scoring Engine    |      |                    |
-+-------------------+      +----------------------+      +--------------------+
-         │                            │                            │
-         ▼                            ▼                            ▼
-• Video Engagement Logs      • Real-Time Intent Signals   • Instant Routing
-• Polls / Chats / Q&A        • Multi-Touch Attribution    • Influenced Pipeline
-• Timestamp Drop-offs        • Automated Field Mapping    • Opportunity Match
-```
-
-#### 1. Real-Time Micro-Engagement Ingestion and Scoring
-Ollasync eliminates binary lead statuses by capturing every micro-action inside the webinar room and translating it into an actionable **Engagement Score**:
-* **Granular Time-in-Session:** Tracks precise attendee arrival and departure timestamps.
-* **Interactivity Signals:** Automatically maps poll responses, chat activity, hand raises, and Q&A submissions directly to contact and account records in your CRM.
-* **Dynamic Lead Prioritization:** Automatically routes high-intent attendees (e.g., users who stayed >80% of the session and answered buying-intent polls) to account executives within minutes of event conclusion, capitalizing on peak interest.
-
-#### 2. Closed-Loop Multi-Touch Revenue Attribution
-Ollasync eliminates the guesswork surrounding **which webinar analytics and metrics** influence pipeline by delivering native, out-of-the-box multi-touch attribution models:
-* **First-Touch Attribution:** Measures net-new pipeline sourcing from top-of-funnel educational webinars.
-* **Mid-Funnel Influenced Pipeline:** Calculates the acceleration velocity of open opportunities whose buying committee attended a product deep-dive.
-* **Opportunity Matchmaking:** Automatically matches attendee email domains to existing target accounts and active pipeline opportunities, preventing account duplication and attribution loss.
-
-#### 3. Automated Data Hygiene and Bi-Directional CRM Sync
-Manual CSV processing introduces human error and slows lead velocity. Ollasync automates end-to-end event data hygiene:
-* Normalizes attendee job titles, company sizes, and geographic data before syncing.
-* Updates custom CRM fields in real time with detailed session metrics (e.g., `Last_Webinar_Watch_Time_Minutes`, `Webinar_Intent_Tier`, `Specific_Poll_Answers`).
-* Triggers targeted, behavioral-based post-webinar email sequences based on exact drop-off points rather than generic blast follow-ups.
+Ollasync is priced per seat: Free is $0 (meetings up to 30 minutes, 20 people), Pro is $5 per seat a month and Business is $19 per seat a month. Guests and learners join without a paid seat. [See how translation pricing compares](/vs/#translation-pricing).
 
 ---
 
-### Feature Comparison: Traditional Tracking vs. Ollasync
-
-| Metric & Capability | Native Webinar Reports | Generic Integration Tools (Zapier/Custom Webhooks) | Ollasync Revenue Platform |
-| :--- | :--- | :--- | :--- |
-| **Attendance Status** | Binary (Attended / No-Show) | Binary (Attended / No-Show) | **Granular (Time, %, Drop-off Point)** |
-| **Micro-Action Mapping** | Isolated in CSV exports | Basic text field sync (limited) | **Direct CRM Property/Object Sync** |
-| **Lead Routing Speed** | Manual (24–72 hours post-event) | Delayed / Periodic API polling | **Real-Time (Instant Triggering)** |
-| **Pipeline Attribution** | Non-existent | Requires external BI configuration | **Native Multi-Touch & Influenced Models** |
-| **Account-Level Rollup** | Individual attendee level only | Individual attendee level only | **ABM / Buying Committee Aggregation** |
-| **ROI Dashboard** | Cost per registrant only | Static conversion estimates | **Dynamic Closed-Won Revenue ROI** |
+Tracking the right metrics changes how you justify budget; choosing the right tools changes how quickly you close revenue.
 
 ---
 
-## Conclusion: Shifting from Vanity Metrics to Revenue Velocity
+### Try Live Translation in Your Next Meeting
 
-Evaluating **which webinar analytics and metrics** truly matter requires a fundamental shift in perspective: from vanity performance indicators to revenue-centric business drivers.
-
-```
-       LEGACY PARADIGM                    MODERN REVENUE PARADIGM
-┌─────────────────────────────┐        ┌─────────────────────────────┐
-│ • Total Registrations       │   ──►  │ • Target Account Coverage   │
-│ • Raw Attendee Count        │   ──►  │ • High-Intent Watch Time    │
-│ • Superficial Chat Volume   │   ──►  │ • Qualified Opportunity Rate│
-│ • Cost Per Registrant (CPR) │   ──►  │ • Customer Acquisition Cost │
-└─────────────────────────────┘        └─────────────────────────────┘
-```
-
-When marketing organizations focus strictly on registration volume and surface-level attendance counts, they optimize for audience size rather than pipeline velocity. By pivoting your measurement framework toward engagement depth, attendee qualification rates, multi-touch pipeline influence, and closed-won ROI, you elevate webinars from simple broadcast channels into predictable growth engines.
-
-To operationalize this framework:
-1. **Audit your current baseline:** Identify where critical attendee data is being lost between your webinar provider and your CRM.
-2. **Deprecate vanity KPIs:** Replace top-line registration volume with qualified attendee pipeline metrics in your executive reporting.
-3. **Implement automated attribution:** Deploy specialized infrastructure to capture behavioral signals and assign multi-touch credit to closed revenue.
-
-Tracking the right metrics changes how you justify budget; deploying the right infrastructure changes how quickly you close revenue.
-
----
-
-### Turn Your Webinar Engagement into Verified Pipeline
-
-Stop letting high-intent attendee signals get buried in static spreadsheets. With **Ollasync**, modern revenue teams automatically capture deep engagement metrics, unify event data with their CRM, and measure precise multi-touch revenue attribution.
-
-* **Capture Every Signal:** Sync exact watch times, poll choices, and Q&A interactions directly to Salesforce and HubSpot.
-* **Accelerate Sales Velocity:** Route high-intent prospects to reps instantly with complete behavioral context.
-* **Prove True ROI:** Measure influenced pipeline, source opportunities, and closed-won revenue with precision.
-
-**[Schedule Your Ollasync Demo Today]** and transform your webinars into a reliable, high-converting pipeline engine.
+**[Schedule Your Ollasync Demo Today]** to see live translation in action.

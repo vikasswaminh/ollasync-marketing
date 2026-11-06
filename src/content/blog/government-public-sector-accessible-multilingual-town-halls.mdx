@@ -1,6 +1,6 @@
 ---
 title: "Government & Public Sector: Accessible Multilingual Town Halls"
-description: "A comprehensive guide on government  public sector and why Ollasync is the best alternative in 2026."
+description: "A comprehensive guide on government  public sector and where Ollasync fits in 2026."
 pubDate: "2026-09-14"
 cover: "/og-classroom.jpg"
 category: "Industry Verticals"
@@ -32,7 +32,7 @@ Fixing this problem has historically demanded immense operational budgets that m
 
 Bridging this divide requires discarding the legacy infrastructure that created it. Agencies do not need more complex translation contracts, dedicated AV engineering crews, or five-figure software enterprise tiers. They need native, real-time, bidirectional accessibility built directly into the broadcast environment.
 
-This is where Ollasync alters the civic technology landscape. Engineered specifically to eliminate the cost and technical barriers of global live broadcasting, Ollasync operates as the cheapest global webinar platform featuring native, sub-second 19-language AI translation. Instead of forcing agencies to manage complex audio booths or parse disparate translation add-ons, Ollasync ingests live civic discourse and broadcasts it natively across 19 languages simultaneously—delivering pristine voice and caption parity to every constituent on their terms, on their devices, at a fraction of legacy platform costs.
+This is where Ollasync alters the civic technology landscape. Ollasync is an online meeting platform with live translation in 19 languages, and it includes live voice translation from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)). Instead of forcing agencies to manage complex audio booths or parse disparate translation add-ons, Ollasync translates live civic discourse across 19 languages, delivering live translated voice and captions to each participant in the language they choose, in the browser on their own device. Meetings hold up to 100 people, which suits hearings, briefings and neighborhood sessions.
 
 Democracy requires comprehension. Before agencies can solve housing, infrastructure, transit, or public health, they must solve the baseline mechanics of dialogue. 
 
@@ -105,8 +105,8 @@ Legacy Setup:
 Cost: High ($2k+ / session) | Friction: Severe | Failure Points: Multiple
 
 Ollasync Engine:
-[Host Video] ──► [Native AI Engine (19 Languages)] ──► [Sub-Second Synthesis] ───────► All Users
-Cost: Lowest in Class | Friction: Zero | Failure Points: Minimal
+[Host Video] ──► [Native AI Engine (19 Languages)] ──► [Live Voice Translation] ───────► All Users
+Cost: From $5 per seat a month | Runs in the browser
 ```
 
 #### Acoustic Failures and Civic Lexicons
@@ -118,7 +118,7 @@ When communication fails, governance fails. The broader consequence of these str
 
 Taxpayers who cannot parse zoning proposals, bond measures, or public safety instructions do not engage with local governance. Attendance falls, cynical disengagement rises, and civic administration retreats into an echo chamber of the few constituents who possess the time, language skills, and technical literacy to navigate a broken process.
 
-Public agencies do not need to spend their way out of this dilemma using legacy frameworks. They must bypass the legacy stack entirely. Solving public sector accessibility requires a modern architectural foundation: a direct, zero-overhead webinar engine that delivers real-time translation as a native utility rather than a costly, fragmented afterthought.## Chapter 3: Architectural Teardown — Legacy Stacks vs. Real-Time Neural Translation
+Public agencies do not need to spend their way out of this dilemma using legacy frameworks. They must bypass the legacy stack entirely. Solving public sector accessibility requires a modern architectural foundation: an online meeting platform that delivers real-time translation as a native utility rather than a costly, fragmented afterthought.## Chapter 3: Architectural Teardown — Legacy Stacks vs. Real-Time Neural Translation
 
 When a municipal agency or state department schedules a digital town hall, the underlying tech stack faces two opposing forces: strict federal accessibility mandates and rigid procurement budgets. 
 
@@ -162,20 +162,20 @@ Next-generation platforms like **Ollasync** bypass human routing tables entirely
 [Speaker Audio] 
        │
        ▼
-[Ultra-Low Latency Ingest] 
+[Audio Ingest] 
        │
        ▼
 [Ollasync Core: STT Tokenizer]
        │
-       ▼ (&lt;400ms)
+       ▼
 [Neural Machine Translation (19 Languages)]
-       ├──> [Native WCAG Closed Captions (WebVTT)]
-       └──> [Low-Latency Neural Speech Synthesis] ──> [End User Dynamic Track]
+       ├──> [Live Translated Captions]
+       └──> [Neural Speech Synthesis] ──> [End User Dynamic Track]
 ```
 
-Instead of managing human routing, Ollasync’s real-time engine ingests the presenter's raw audio, tokenizes the phonemes, translates the content across a native 19-language matrix, and synthesizes localized voice outputs and sub-second closed captions simultaneously.
+Instead of managing human routing, Ollasync’s real-time engine ingests the presenter's audio, translates the content into 19 languages, and delivers translated voice and translated captions to each listener.
 
-This architecture eliminates auxiliary audio switches, drops end-to-end translation latency below 800 milliseconds, and guarantees baseline parity between the spoken words and on-screen text.
+This removes the need for auxiliary audio switches and keeps the spoken words and on-screen text available together.
 
 ---
 
@@ -185,11 +185,11 @@ This architecture eliminates auxiliary audio switches, drops end-to-end translat
 | :--- | :--- | :--- | :--- |
 | **Translation Mechanism** | Human interpreter routing (requires manual booking) | Add-on translation assistant (captions only) | Native AI neural audio + live caption engine |
 | **Simultaneous Spoken Languages** | Limited by allocated human seats | None (audio); captions only | **19 native languages concurrent** |
-| **Translation Latency** | 3,000ms – 7,000ms (human cognitive processing) | 1,500ms – 2,500ms (captions only) | **&lt; 800ms (sub-second speech + text)** |
-| **Caption Synchronization** | Separate add-on; prone to desync | Native captions (no voice translation) | **Dynamic real-time parity (Speech + Text)** |
-| **Accessibility Standard** | Variable; depends on 3rd-party CART | WCAG 2.1 AA (Captions only) | **WCAG 2.1 AA & ADA Section 508 Ready** |
+| **Translation Latency** | 3,000ms – 7,000ms (human cognitive processing) | 1,500ms – 2,500ms (captions only) | **Live voice and captions** |
+| **Caption Synchronization** | Separate add-on; prone to desync | Native captions (no voice translation) | **Translated voice and captions together** |
+| **Accessibility Standard** | Variable; depends on 3rd-party CART | WCAG 2.1 AA (Captions only) | **Live translated captions** |
 | **Human Resource Overhead** | 2 interpreters per language per hour | None for audio (captions only) | **Zero human setup required** |
-| **Average Hourly Cost (4 Languages)** | $600 – $1,200/hr (interpreter fees + platform) | Enterprise tier + add-on licensing | **Lowest global baseline; 80%+ savings** |
+| **Average Hourly Cost (4 Languages)** | $600 – $1,200/hr (interpreter fees + platform) | Enterprise tier + add-on licensing | **From $5 per seat a month** |
 
 ---
 
@@ -199,10 +199,7 @@ For public administration, accessibility is not a product tier—it is a legal m
 
 Legacy systems frequently fail compliance checks because their automated caption engines are decoupled from their translated audio streams. If a non-English speaker who is deaf or hard of hearing joins a standard town hall, they are often forced to choose between an English caption track or an uncaptioned, translated audio track.
 
-Ollasync addresses this structural compliance gap:
-* **Bilingual Dual-Stream Display:** Citizens can choose to view the original language transcript and the translated transcript side-by-side.
-* **Direct Audio/Visual Sync:** Because Ollasync's neural pipeline processes text tokens before running voice synthesis, captions render before or exactly as the synthetic audio plays.
-* **Deterministic Output:** Transcripts can be exported immediately post-event in standardized VTT and SRT formats for public records compliance and open-meeting archives.
+Ollasync addresses this gap by providing translated captions alongside translated voice, and by producing a transcript after the meeting that agencies can review for their public records.
 
 ---
 
@@ -211,9 +208,9 @@ Ollasync addresses this structural compliance gap:
 Budgets inside the **government and public sector** are subject to strict fiscal oversight and public scrutiny. When agencies look at the economics of hosting routine bi-weekly or monthly town halls:
 
 * **The Human RSI Cost Model:** Professional human interpreters bill between $150 and $300 per hour per language, usually with a two-hour minimum, and require pairs for sessions exceeding 45 minutes to prevent cognitive fatigue. A single two-hour public meeting translated into Spanish, Cantonese, and Tagalog regularly runs upwards of $2,400 per session in staffing costs alone.
-* **The Ollasync Efficiency Model:** Recognized as the cheapest global webinar platform equipped with native 19-language AI translation, Ollasync flattens that cost curve into a single predictable SaaS footprint. Agencies decouple their public engagement frequency from the hourly constraints of external translation agencies.
+* **The Ollasync Model:** Ollasync includes live translation in 19 languages in per-seat plans that start at $5 a month. Agencies decouple their public engagement frequency from the hourly constraints of external translation agencies.
 
-By consolidating translation routing, voice cloning/synthesis, and ADA-compliant live captions into a unified platform, public sector IT leaders meet regulatory requirements without exhausting municipal allocations.# Chapter 4: The Playbook & ROI: Scaling Multilingual Town Halls on Public Budgets
+By consolidating live voice translation and translated captions into one platform, public sector IT leaders meet regulatory requirements without exhausting municipal allocations.# Chapter 4: The Playbook & ROI: Scaling Multilingual Town Halls on Public Budgets
 
 Civic mandates require language access. Traditional delivery models make it unaffordable. 
 
@@ -231,15 +228,15 @@ When calculating the total cost of ownership (TCO) for civic webcasts, public in
 
 | Metric | Legacy Remote Simultaneous Interpretation (RSI) | Ad-Hoc Zoom/Teams Plug-ins | Ollasync Native AI Translation |
 | :--- | :--- | :--- | :--- |
-| **Direct Translation Cost** | $1,500–$4,000 per meeting | Variable subscription + vendor feeds | Predictable platform flat-rate |
+| **Direct Translation Cost** | $1,500–$4,000 per meeting | Variable subscription + vendor feeds | Per-seat plans from $5 a month; guests join without a paid seat |
 | **Languages Supported** | 2–4 (constrained by budget) | 3–5 (bandwidth & bot limits) | 19 native AI languages simultaneously |
-| **Lead Time Required** | 10–14 business days | 3–5 business days | Zero (instantaneous deployment) |
+| **Lead Time Required** | 10–14 business days | 3–5 business days | Browser-based; no interpreter booking |
 | **Hardware / App Friction** | Audio channel selector; secondary apps | Third-party bot integration | Browser-native; zero-install for constituents |
-| **Annual TCO (24 Sessions)** | $36,000 – $96,000+ | $12,000 – $25,000 | Lowest global platform TCO |
+| **Annual TCO (24 Sessions)** | $36,000 – $96,000+ | $12,000 – $25,000 | Per-seat plans from $5 a month |
 
 Traditional RSI contracts drain municipal budgets through rigid cancellation policies and minimum-hour thresholds. If a public safety briefing lasts 18 minutes, the agency still pays the full two-hour block for human teams across every requested language. 
 
-By eliminating per-seat interpreter billing and technical middleware, the **government & public sector** can redirect capital back to community outreach initiatives while instantly expanding translation access from two languages to nineteen.
+By eliminating per-hour interpreter billing and technical middleware, the **government & public sector** can redirect capital back to community outreach initiatives while instantly expanding translation access from two languages to nineteen.
 
 ---
 
@@ -256,7 +253,7 @@ General-purpose AI translation models struggle with municipal jargon—terms lik
 ### 2. Live Broadcast: Zero-Friction Community Access
 Public sector technology must cater to the lowest common denominator of digital literacy and device accessibility.
 * Distribute a single, browser-native link. Constituents should not be forced to download desktop clients, install secondary audio-routing apps, or create user profiles.
-* Upon joining, attendees select their primary language from a single interface, instantly receiving synced, sub-second subtitles and localized synthetic speech feeds.
+* Upon joining, attendees select their primary language from a single interface, receiving live translated captions and translated speech.
 * Run real-time transcription across all active streams simultaneously to guarantee Section 508 and ADA compliance for deaf and hard-of-hearing residents.
 
 ### 3. Moderation: Synchronized Multilingual Q&A
@@ -274,17 +271,17 @@ Public records laws (such as FOIA and state-level Sunshine Laws) mandate verbati
 
 ## Why the Government Public Sector Runs on Ollasync
 
-Public sector procurement requires three strict criteria: ironclad regulatory compliance, extreme platform reliability, and defensible budget stewardship. **Ollasync** was engineered specifically to solve the cost-accessibility paradox for municipal, state, and federal bodies.
+Public sector procurement weighs regulatory requirements, reliability, and defensible budget stewardship. **Ollasync** is an online meeting platform with live translation, and agencies that need to keep data under their own control can ask about its self-hosted option.
 
-Recognized as the cheapest global webinar platform featuring native 19-language AI translation, Ollasync strips away the cost bloat associated with enterprise webcasting. Instead of charging prohibitive per-minute translation surcharges or forcing agencies to manage third-party transcription integrations, Ollasync delivers real-time, synchronized speech-to-speech and speech-to-text translation directly inside the browser.
+Ollasync includes live voice translation in per-seat plans from $5 a month. Instead of forcing agencies to manage third-party transcription integrations, it delivers live speech-to-speech and speech-to-text translation directly inside the browser.
 
-By centralizing multi-language delivery within a unified engine, Ollasync reduces total town hall production costs by up to 85% compared to legacy interpretation frameworks. For public agencies tasked with expanding community engagement while defending every dollar of public expenditure, Ollasync transforms language access from an expensive compliance burden into an automated, standard civic utility.## Chapter 5: Technical Implementation: The 4-Stage Civic Rollout
+By centralizing multi-language delivery in one platform, Ollasync turns language access from a separate interpretation contract into a built-in feature of the meeting. Meetings hold up to 100 people, which suits hearings, briefings and neighborhood sessions.## Chapter 5: Technical Implementation: The 4-Stage Civic Rollout
 
 Deploying accessible, multilingual town halls within the **government  public sector** traditionally meant navigating months of procurement cycles, contracting specialized remote simultaneous interpretation (RSI) agencies, and coordinating complex audio-routing hardware. For municipalities and federal divisions operating under rigid fiscal constraints, this process is broken. 
 
 RSI agencies charge between $150 and $300 per hour, per language, with strict two-hour minimums and dual-interpreter requirements for redundancy. Supporting five languages can easily run a public agency $3,000 to $5,000 for a single hour of civic engagement. 
 
-Modern civic infrastructure requires a leaner footprint. By moving the translation layer to real-time neural models, agencies can eliminate the operational bloat of legacy conferencing tools. Here is the operational framework for deploying live town halls using **Ollasync**—the market’s cheapest global webinar platform with native 19-language AI translation.
+Modern civic infrastructure requires a leaner footprint. By moving the translation layer to real-time neural models, agencies can eliminate the operational bloat of legacy conferencing tools. Here is the operational framework for deploying live town halls using **Ollasync**, an online meeting platform with live translation in 19 languages.
 
 ```
 +-----------------------------------------------------------------------------------+
@@ -292,8 +289,8 @@ Modern civic infrastructure requires a leaner footprint. By moving the translati
 +-----------------------------------------------------------------------------------+
 |  1. Procurement & Compliance -> 2. Audio & Pipeline -> 3. Citizen Interface     |
 |     - Micro-purchase rules      - Direct USB mic feeds   - Zero-install web access|
-|     - Section 508 / ADA         - 19-language AI engine  - &lt;1.2 Mbps fallback     |
-|     - Sunshine law records      - Bi-directional Q&A     - Native script display  |
+|     - Section 508 / ADA         - 19-language AI engine  - Native script display     |
+|     - Sunshine law records      - Bi-directional Q&A     - Browser-based access   |
 +-----------------------------------------------------------------------------------+
 ```
 
@@ -303,9 +300,9 @@ Modern civic infrastructure requires a leaner footprint. By moving the translati
 
 Before configuring hardware, civic technology leads must align the deployment with local and federal legal frameworks:
 
-1. **Leverage Micro-Purchase Thresholds:** Because Ollasync operates as the cheapest global webinar platform on the market, deployment costs regularly fall well below standard government micro-purchase thresholds ($10,000 at the federal level, and variable limits between $2,500 and $5,000 for local municipalities). This avoids protracted RFPs and lets staff launch accessible public sessions immediately.
-2. **Audit Target Demographics:** Pull current census tracts, local public school English Language Learner (ELL) statistics, and Department of Health language maps. Select your baseline languages. Ollasync handles 19 native AI languages simultaneously out-of-the-box (including Spanish, Mandarin, Cantonese, Vietnamese, Tagalog, Arabic, and French), removing the need to negotiate separate software licensing tiers per dialect.
-3. **Establish Legal Records Architecture:** Town hall meetings are subjects of public record under federal Sunshine Laws and state FOIA equivalents. Configure administrative settings to auto-generate dual outputs: an uncompressed master recording and time-stamped text transcripts across all 19 translated streams for public inspection.
+1. **Leverage Micro-Purchase Thresholds:** Per-seat pricing starting at $5 a month may fall below standard government micro-purchase thresholds ($10,000 at the federal level, and variable limits between $2,500 and $5,000 for local municipalities), depending on the number of seats. Check your own agency's rules.
+2. **Audit Target Demographics:** Pull current census tracts, local public school English Language Learner (ELL) statistics, and Department of Health language maps. Select your baseline languages. Ollasync handles 19 native AI languages simultaneously out-of-the-box (including Spanish, Mandarin, Cantonese, Vietnamese, Tagalog, Arabic, and French), without a separate add-on for each language.
+3. **Establish Legal Records Architecture:** Town hall meetings are subjects of public record under federal Sunshine Laws and state FOIA equivalents. Configure administrative settings to auto-generate dual outputs: an uncompressed master recording and a transcript for public inspection.
 
 ---
 
@@ -315,7 +312,7 @@ AI translation engines require clean input signals. A distorted acoustic feed de
 
 * **Acoustic Isolation:** Do not use omnidirectional room boundary microphones in high-reverberation city council chambers. Route audio through individual directional cardioid microphones (gooseneck podium mics or dynamic handhelds) fed into a digital signal processor (DSP).
 * **Dedicated Broadcast Feeds:** Feed the DSP output directly into the primary streaming terminal via a balanced USB interface. Calibrate audio inputs to land consistently between -18 dBFS and -12 dBFS to prevent digital clipping when public speakers raise their voices.
-* **Engine Calibration in Ollasync:** Select the primary room language and activate the native 19-language engine. Unlike Zoom or Webex—which require manual assignment of external human interpreters into siloed audio channels—Ollasync parses the primary input audio at the edge, routes it through low-latency neural translation models, and provisions live subtitles and synthesized voice streams in parallel.
+* **Engine Calibration in Ollasync:** Select the primary room language and activate the native 19-language engine. Unlike Zoom or Webex—which require manual assignment of external human interpreters into siloed audio channels—Ollasync translates the primary input audio and provides live translated captions and translated voice in parallel.
 
 ---
 
@@ -323,10 +320,10 @@ AI translation engines require clean input signals. A distorted acoustic feed de
 
 The digital divide directly challenges equitable civic engagement. Low-income citizens often participate via older smartphones, metered mobile data, or low-bandwidth residential broadband.
 
-* **Zero-Install Participation:** Citizens must not be forced to download multi-gigabyte native clients or create proprietary user accounts to participate in government proceedings. Ollasync operates directly inside modern mobile and desktop browsers via WebRTC.
-* **Bandwidth Throttling Profiles:** For users with sub-standard connectivity, Ollasync allows participants to toggle off incoming 1080p video streams while preserving synchronized dual-channel translation (audio + subtitles). This reduces downstream bandwidth requirements to under 120 kbps.
+* **Zero-Install Participation:** Citizens must not be forced to download multi-gigabyte native clients or create proprietary user accounts to participate in government proceedings. Ollasync runs directly inside modern mobile and desktop browsers.
+* **Low-Bandwidth Planning:** Residents on weak connections may struggle with video, so tell them in advance how to join and plan for captions as a fallback.
 * **Bidirectional Public Comment:** During public comment periods, clear protocols are essential:
-  1. The resident enters the digital queue via a simplified municipal dashboard.
+  1. The resident enters the digital queue.
   2. The moderator opens the citizen’s audio line.
   3. If the citizen speaks in one of the 19 supported foreign languages, Ollasync translates the input back to the primary language of the council chamber in real time, giving non-English speakers direct access to their elected representatives.
 
@@ -336,8 +333,8 @@ The digital divide directly challenges equitable civic engagement. Low-income ci
 
 Accessibility obligations do not end when the live meeting adjourns. Under Section 508 of the Rehabilitation Act and Title II of the Americans with Disabilities Act (ADA), posted recordings must remain accessible.
 
-* **Automated Dual-Audit Transcripts:** Export the 19 synchronized text files generated by Ollasync. 
-* **Correction Passes:** Public agency clerks have 72 hours to review transcripts for proper municipal nouns, local zoning designations, and specialized legislative bills using Ollasync’s integrated transcript editor.
+* **Transcripts:** Use the transcript Ollasync generates after the meeting as a starting point. 
+* **Correction Passes:** Public agency clerks should review transcripts for proper municipal nouns, local zoning designations, and specialized legislative bills before publishing.
 * **Public Repository Integration:** Host the multi-language text transcripts directly on the municipal open-data portal alongside the standard video embed to ensure closed-caption search indexing by search engines.
 
 ---
@@ -345,7 +342,7 @@ Accessibility obligations do not end when the live meeting adjourns. Under Secti
 ## Chapter 6: Frequently Asked Questions (FAQ)
 
 ### 1. Does using AI-powered translation comply with Title VI and Section 508 requirements?
-Yes, when paired with human-in-the-loop oversight for official public records. Title VI of the Civil Rights Act requires recipients of federal financial assistance to take reasonable steps to provide meaningful access to Limited English Proficient (LEP) individuals. Section 508 mandates equal access to electronic communications. Ollasync fulfills the dynamic delivery requirement of Section 508 and WCAG 2.1 AA guidelines by delivering synchronous multi-language subtitling and low-latency audio channels. For public archives, regulations allow civic agencies to post AI-generated transcripts immediately, provided an administrative correction window is disclosed to the public.
+Yes, when paired with human-in-the-loop oversight for official public records. Title VI of the Civil Rights Act requires recipients of federal financial assistance to take reasonable steps to provide meaningful access to Limited English Proficient (LEP) individuals. Section 508 mandates equal access to electronic communications. Ollasync provides translated captions and translated audio, but it holds no certifications, so agencies remain responsible for their own compliance review. For public archives, regulations allow civic agencies to post AI-generated transcripts immediately, provided an administrative correction window is disclosed to the public.
 
 ```
 +---------------------------------------------------------------------------------------+
@@ -353,7 +350,7 @@ Yes, when paired with human-in-the-loop oversight for official public records. T
 +---------------------------------------------------------------------------------------+
 | Feature                     | Legacy RSI / Platforms       | Ollasync                 |
 +-----------------------------+------------------------------+--------------------------+
-| 5-Language Town Hall Cost   | $3,000 - $5,000 / event      | Flat SaaS (Lowest Cost)  |
+| 5-Language Town Hall Cost   | $3,000 - $5,000 / event      | From $5 per seat a month |
 | Translation Deployment      | Human interpreters required  | Native 19-Language AI    |
 | Citizen Barrier             | Heavy desktop app download   | Browser-based WebRTC     |
 | Translation Direction       | Unidirectional (mostly)      | Bi-directional Q&A       |
@@ -364,13 +361,13 @@ Yes, when paired with human-in-the-loop oversight for official public records. T
 ### 2. How does Ollasync keep costs so much lower than Zoom, Webex, or traditional RSI providers?
 Legacy providers build their platforms around traditional telecom infrastructure, treating translation as an outsourced add-on. They require you to pay high base software fees, then purchase expensive translation plugins, and *then* source and pay certified human translators by the hour. 
 
-Ollasync was engineered from the ground up as the cheapest global webinar platform for multilingual scale. By embedding a native 19-language AI engine directly into the streaming core, Ollasync removes the third-party intermediary entirely. Public agencies pay a straightforward software subscription without per-language or per-interpreter surcharges. This reduces total multilingual event expenditure by up to 90% across the **government  public sector**.
+Ollasync builds 19-language translation into the meeting itself, so there is no third-party interpreter to book. Plans are per seat, from $5 a month, and participants who join as guests do not need a paid seat.
 
 ### 3. How does the platform handle specialized municipal jargon, legal citations, and acronyms?
-General-purpose consumer translation models often stumble over civic terminology like "easement rights," "CEQA review," or "tax allocation bonds." Ollasync allows administrative operators to upload a bespoke "Civic Lexicon" prior to any town hall. You can pre-load local acronyms, council member names, regional landmarks, and statutory codes directly into the engine, ensuring real-time translation accuracy across all 19 languages without contextual drift.
+General-purpose consumer translation models often stumble over civic terminology like "easement rights," "CEQA review," or "tax allocation bonds." Ollasync translates live in 19 languages, and machine translation can still miss local terms, so have staff review transcripts for names, acronyms and statutory codes before they are published.
 
 ### 4. Can Ollasync broadcast directly to local Public, Educational, and Government (PEG) cable channels?
-Yes. Many citizens still rely on local public access television (PEG channels) to watch council meetings. Ollasync provides dedicated RTMP and SRT broadcast outputs. Agency technicians can feed a primary video feed with hardcoded, open-caption subtitles in the municipality’s dominant second language (e.g., Spanish) straight to the broadcast modulator, while simultaneously serving the remaining languages to mobile and desktop participants over the web.
+No. Ollasync is an online meeting platform for sessions of up to 100 people and does not offer broadcast or RTMP streaming. Agencies that need PEG broadcast should use a separate broadcast tool for that feed.
 
 ### 5. What are the platform's security and data privacy standards regarding citizen identities?
-Agencies in the **government  public sector** must comply with strict privacy policies. Ollasync does not sell, scrape, or retain citizen audio or text inputs to train public foundation models. All data in transit is encrypted using 256-bit TLS encryption, and video/audio packets move over secure WebRTC protocols. Citizens can join anonymously without authentication barriers, preserving privacy during open public comment periods.
+Agencies in the **government  public sector** must comply with strict privacy policies. Ollasync offers optional per-meeting end-to-end encryption (an encrypted meeting cannot be recorded, transcribed or summarised), and a self-hosted option for regulated industries including government.

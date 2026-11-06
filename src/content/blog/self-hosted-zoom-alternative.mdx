@@ -12,7 +12,7 @@ takeaways:
   - "Zoom is a cloud service; it can't meaningfully be self-hosted — legacy on-prem connectors still route through or depend on Zoom's cloud."
   - "A genuinely self-hostable alternative runs entirely on infrastructure you operate, with no vendor operator in the media path."
   - "The real benefits are data residency, a clean compliance boundary, and the option of fully air-gapped operation."
-  - "Ollasync is self-hosted-first: the same modern, browser-based experience, but the servers — and the trust boundary — are yours."
+  - "Ollasync is an online meeting platform with live translation, available as cloud SaaS and as a self-hosted option for regulated industries."
 keywords: ["self-hosted Zoom alternative", "on-premise Zoom alternative", "Zoom alternative you can host", "self-hosted video conferencing"]
 ---
 
@@ -72,13 +72,9 @@ The most sensitive environments can't use any internet-connected SaaS, full stop
 
 ## How Ollasync is positioned
 
-We built Ollasync **self-hosted-first**. The same platform runs three ways from one codebase:
+Ollasync is an online meeting platform with live translation, used in the browser. It is available as cloud SaaS, and also as a **self-hosted option** for regulated industries such as healthcare, legal, finance and government.
 
-1. **Hosted on EU infrastructure**, to prove the workflow quickly with real users.
-2. **Single-tenant**, a dedicated isolated instance in your chosen region.
-3. **Fully on-premise**, up to and including air-gapped.
-
-Because the product experience is identical across all three, moving from hosted to on-premise changes the deployment boundary without changing what users see. And the encryption story is precise rather than sweeping: **messaging** is end-to-end encrypted and server-blind by default on the [IETF MLS standard](/security); **meeting media** is encrypted in transit (DTLS-SRTP) to a relay that, when self-hosted, is yours — so it never reaches an outside operator; a per-frame E2EE mode exists for keeping even the relay blind. We spell out exactly what each layer protects on the [security](/security) page rather than making blanket claims.
+Ollasync offers optional per-meeting end-to-end encryption (an encrypted meeting cannot be recorded, transcribed or summarised). Ollasync holds no certifications such as SOC 2 or ISO, so assess it against your own requirements. See the [security](/security) page for what each layer protects.
 
 ## The bottom line
 

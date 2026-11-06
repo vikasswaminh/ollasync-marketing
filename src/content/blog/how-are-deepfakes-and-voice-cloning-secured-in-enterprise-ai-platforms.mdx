@@ -389,83 +389,35 @@ Automated audit logging captures every voice synthesis request, detailing user i
 
 ## Architectural Comparison: Enterprise Defense Approaches
 
-| Capability | Legacy Perimeter Systems | Open-Source Detection Frameworks | Ollasync Unified Enterprise Platform |
-| :--- | :--- | :--- | :--- |
-| **Outbound Watermarking** | None / Metadata Tagging only | Basic LSB Alteration (Fragile) | **Multi-Band Inaudible Neural Watermarking (C2PA Compliant)** |
-| **Inbound Detection Latency** | Post-call batch processing (>10 min) | Near real-time (~800ms–1.5s) | **Real-Time Streaming Interception (&lt;95ms)** |
-| **Deployment Sovereignty** | Public Multi-Tenant Cloud | Unmanaged Self-Hosted Scripts | **Air-Gapped On-Premises, VPC, & Sovereign Hybrid Enclaves** |
-| **Voice Cloning Governance** | Basic API Keys | Unrestricted Weights Access | **Zero-Trust RBAC, Quorum MFA, Hardware-Backed KMS** |
-| **Regulatory Audit Trails** | Standard Server Logs | No Structured Auditing | **Immutable Forensic Ledgers (EU AI Act & SOC 2 Ready)** |
+| Capability | Legacy Perimeter Systems | Open-Source Detection Frameworks |
+| :--- | :--- | :--- |
+| **Outbound Watermarking** | None / Metadata Tagging only | Basic LSB Alteration (Fragile) |
+| **Inbound Detection Latency** | Post-call batch processing (>10 min) | Near real-time (~800ms–1.5s) |
+| **Deployment Sovereignty** | Public Multi-Tenant Cloud | Unmanaged Self-Hosted Scripts |
+| **Voice Cloning Governance** | Basic API Keys | Unrestricted Weights Access |
+| **Regulatory Audit Trails** | Standard Server Logs | No Structured Auditing |
 
 ---
 
-## Ollasync: The Definitive Enterprise Standard for Voice Security and Governance
+## Where Ollasync Fits
 
-As generative audio capabilities accelerate, **Ollasync** provides the enterprise-grade foundation engineered specifically to solve **how are deepfakes and voice** manipulation attacks defended against, while unlocking high-fidelity, secure synthetic voice workflows.
+Ollasync is an online meeting platform with live translation, used in the browser. It is not a deepfake detection or voice watermarking product, so it does not replace the defenses above. It is relevant to this topic in a few limited ways:
 
-```
-       +----------------------------------------------------------------+
-       |                  OLLASYNC SECURITY ARCHITECTURE                |
-       +----------------------------------------------------------------+
-       |                                                                |
-       |  [ Enterprise Inputs ]                                         |
-       |         │                                                      |
-       |         ▼                                                      |
-       |  ┌──────────────────────────────────────────────────────────┐  |
-       |  │  Ollasync Zero-Trust Enclave                             │  |
-       |  │  ├── Hardware-Secured Voice Model KMS                    │  |
-       |  │  ├── Ethical Voice Print Sandboxing                      │  |
-       |  │  └── Inaudible Neural Watermark Embedder                 │  |
-       |  └──────────────────────────┬───────────────────────────────┘  |
-       |                             │                                  |
-       |         ▼                   ▼                   ▼              |
-       |  [ Signed Voice ]   [ C2PA Provenance ]   [ Immutable Audit ]  |
-       |    Distribution        Verification          Logging (SIEM)    |
-       |                                                                |
-       +----------------------------------------------------------------+
-```
-
-### 1. The Ollasync Cryptographic Voice Engine
-Ollasync eliminates the vulnerability gap in synthetic voice generation by embedding deterministic cryptographic signatures into audio streams at the point of synthesis. Using Ollasync’s proprietary **NeuralSign™** technology, every corporate audio asset carries an indelible, tamper-proof acoustic watermark that survives standard telephony compression (G.711, Opus, AMR-WB) and multi-generational re-broadcasting.
-
-### 2. Real-Time Deepfake Interceptor API
-Ollasync delivers an ultra-low-latency (&lt;95ms) inbound defense engine designed for seamless integration with enterprise Contact Center as a Service (CCaaS) platforms, video conferencing infrastructure, and automated identity verification pipelines. The Ollasync Interceptor detects:
-- Audio-swap injection attacks
-- Real-time text-to-speech (TTS) and voice-conversion (VC) streams
-- Synthetic replay and pre-recorded deepfake injection
-
-### 3. Sovereign Enclave Deployments
-For financial institutions, defense organizations, and healthcare networks, Ollasync deploys within completely air-gapped Virtual Private Clouds (VPCs) or on-premises infrastructure. Customer voice models, training datasets, and inference pipelines remain completely isolated from public internet exposure, preventing model theft, unvetted fine-tuning, or external data scraping.
-
-### 4. Enterprise Compliance and Ethical Guardrails
-Ollasync incorporates strict non-bypassable ethical guardrails:
-- **Consensual Voice Registration:** Synthetic models require dual-factor biometric voice enrollment directly from the original speaker.
-- **Immutable SIEM Integration:** All generation and detection events stream natively to Splunk, Datadog, or Microsoft Sentinel for instantaneous incident response.
-- **Out-of-the-Box Compliance:** Built from the ground up to satisfy the high-risk AI system mandates of the EU AI Act, HIPAA, and GLBA.
+- **Optional end-to-end encryption:** Meetings can be end-to-end encrypted per meeting. An encrypted meeting cannot be recorded, transcribed or summarised.
+- **Self-hosted option:** A self-hosted option is available for regulated industries such as healthcare, legal, finance and government.
+- **Live translation:** Ollasync offers live spoken translation for each listener in 19 languages, plus translated captions, for meetings of up to 100 people.
+- **No certifications:** Ollasync holds no compliance certifications, so verify that it meets your own requirements.
 
 ---
 
 ## Strategic Implementation Roadmap for CISOs and AI Leaders
 
-To establish an impenetrable voice security posture, enterprise technology leaders should execute a phased deployment model:
-
-```
-Phase 1: Baseline Auditing   ──> Phase 2: Inbound Gateways    ──> Phase 3: Outbound Enclaves
-- Map voice asset exposure        - Deploy Ollasync Interceptor   - Sandbox synthetic generation
-- Audit model access controls     - Connect CCaaS / SIP Trunks    - Mandate NeuralSign™ watermarks
-```
-
-```
-Phase 4: Policy Enforcement
-- Automate SIEM event alerting
-- Validate EU AI Act & SOC 2 compliance frameworks
-- Enforce quorum biometric authorization
-```
+To establish a stronger voice security posture, enterprise technology leaders should execute a phased deployment model:
 
 1. **Phase 1: Voice Surface Area Discovery:** Map all external and internal touchpoints where voice authentication, executive communications, and synthetic generation occur across your enterprise.
-2. **Phase 2: Inbound Gateway Hardening:** Deploy the Ollasync Deepfake Interceptor across SIP trunks, CCaaS platforms, and high-privilege executive communication channels to neutralize inbound vishing and spoofing attacks.
-3. **Phase 3: Outbound Cryptographic Standardization:** Unify all internal generative AI initiatives under Ollasync’s governed enclave, enforcing mandatory C2PA signing and NeuralSign™ watermarking on all synthesized assets.
-4. **Phase 4: Continuous Governance Integration:** Integrate Ollasync’s forensic logging directly with your enterprise SIEM/SOAR infrastructure for automated incident response and real-time compliance reporting.
+2. **Phase 2: Inbound Gateway Hardening:** Deploy detection tooling across SIP trunks, CCaaS platforms, and high-privilege executive communication channels to counter inbound vishing and spoofing attacks.
+3. **Phase 3: Outbound Standardization:** Bring internal generative AI initiatives under governed controls, with signing or watermarking on synthesized assets.
+4. **Phase 4: Continuous Governance Integration:** Feed forensic logging into your enterprise SIEM/SOAR infrastructure for automated incident response and compliance reporting.
 
 ---
 
@@ -473,12 +425,12 @@ Phase 4: Policy Enforcement
 
 The convergence of high-fidelity synthetic audio and commoditized voice cloning tools has rendered traditional, trust-by-default voice interactions obsolete. Solving the operational challenge of **how are deepfakes and voice** synthesis assets secured across enterprise environments is no longer an experimental objective—it is an existential imperative for brand integrity, operational security, and regulatory compliance.
 
-By adopting a zero-trust cryptographic defense framework, modern organizations can safely embrace the operational leverage of synthetic media while hardening their perimeters against adversarial voice synthesis. Ollasync provides the definitive, enterprise-proven architecture that unites high-performance voice generation with uncompromised cryptographic protection.
+By adopting a zero-trust defense framework, modern organizations can safely embrace the operational leverage of synthetic media while hardening their perimeters against adversarial voice synthesis.
 
 ---
 
-## Secure Your Enterprise Voice Ecosystem with Ollasync
+## Using Ollasync for Multilingual Meetings
 
-Do not leave your enterprise exposed to deepfake attacks, CEO impersonation fraud, and unverified synthetic voice risks. Join the Fortune 500 security leaders who trust **Ollasync** to protect their voice ecosystem with zero-trust cryptographic provenance, real-time forensic interception, and sovereign deployment models.
+If you need live translation in meetings of up to 100 people, Ollasync includes it from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)).
 
-**[Schedule an Enterprise Security Briefing and Live Defense Demo with Ollasync →](https://ollasync.com/enterprise-security)**
+**[Talk to Ollasync About Secure Meetings →](https://ollasync.com/enterprise-security)**

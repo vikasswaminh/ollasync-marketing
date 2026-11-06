@@ -18,3 +18,27 @@
 /integrations/scorm-virtual-classroom/    /virtual-classroom-software/    301
 /integrations/ai-video-analytics    /features/ai/    301
 /integrations/ai-video-analytics/    /features/ai/    301
+
+# Dead CTA paths that blog posts link to (pages that never existed) — sent to the real page that does that job.
+/demo    /contact/    301
+/demo/    /contact/    301
+/enterprise-demo    /contact/    301
+/enterprise-demo/    /contact/    301
+/audit    /contact/    301
+/audit/    /contact/    301
+/signup    /pricing/    301
+/signup/    /pricing/    301
+/trial    /pricing/    301
+/trial/    /pricing/    301
+/pricing-calculator    /pricing/    301
+/pricing-calculator/    /pricing/    301
+/roi-calculator    /pricing/    301
+/roi-calculator/    /pricing/    301
+/whitepaper    /security/    301
+/whitepaper/    /security/    301
+/enterprise-security    /security/    301
+/enterprise-security/    /security/    301
+/features/messaging    /security/    301
+/features/messaging/    /security/    301
+/vs/teams    /vs/microsoft-teams/    301
+/vs/teams/    /vs/microsoft-teams/    301
