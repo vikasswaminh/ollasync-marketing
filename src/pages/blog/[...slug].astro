@@ -1,21 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { getPrimaryTopic } from '../../data/blogTopics';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
   return posts.map((post) => {
     // related: the post's explicit `related` slugs first, then same pillar cluster, then same category
     const explicit = post.data.related.map((s) => posts.find((p) => p.slug === s)).filter((p): p is typeof post => !!p && p.slug !== post.slug);
+    const topic = getPrimaryTopic(post);
     const scored = posts
       .filter((p) => p.slug !== post.slug && !explicit.includes(p))
       .map((p) => {
         let score = 0;
         if (post.data.pillarSlug && (p.slug === post.data.pillarSlug || p.data.pillarSlug === post.data.pillarSlug)) score += 3;
+        if (topic && getPrimaryTopic(p) === topic) score += 2;
         if (p.data.category === post.data.category) score += 1;
         return { p, score };
       })
-      .sort((a, b) => b.score - a.score)
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score || b.p.data.pubDate.valueOf() - a.p.data.pubDate.valueOf() || a.p.slug.localeCompare(b.p.slug))
       .map((x) => x.p);
     const related = [...explicit, ...scored].slice(0, 3);
     return { params: { slug: post.slug }, props: { post, related } };

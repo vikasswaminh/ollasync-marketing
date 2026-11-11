@@ -14,6 +14,10 @@ function* htmlFiles(directory) {
 }
 
 const isFile = (path) => existsSync(path) && statSync(path).isFile();
+const imageFile = (url) => {
+  const path = new URL(url, 'https://www.ollasync.com').pathname;
+  return path.startsWith('/') && isFile(join(root, decodeURIComponent(path)));
+};
 let pages = 0;
 let breadcrumbs = 0;
 const htmlByRoute = new Map();
@@ -26,6 +30,19 @@ for (const file of htmlFiles(root)) {
 
   assert.equal((html.match(/<h1\b/gi) || []).length, 1, `${label}: expected exactly one page H1`);
   pages++;
+  for (const [element] of html.matchAll(/<(?:img|source)\b[^>]+>/gi)) {
+    // The complete responsive set matters: browsers may choose a missing srcset size even when src exists.
+    for (const [, value] of element.matchAll(/\b(?:src|srcset)="([^"]+)"/gi)) {
+      for (const candidate of value.split(',')) {
+        const url = candidate.trim().split(/\s+/)[0];
+        if (url.startsWith('/') || url.startsWith('https://www.ollasync.com/')) {
+          assert.ok(imageFile(url), `${label}: missing image ${url}`);
+        }
+      }
+    }
+  }
+  const previewImage = html.match(/<meta\b[^>]*property="og:image"[^>]*content="([^"]+)"/i)?.[1];
+  if (previewImage) assert.ok(imageFile(previewImage), `${label}: missing Open Graph image ${previewImage}`);
 
   const nav = html.match(/<nav\b[^>]*aria-label="Breadcrumb"[^>]*>([\s\S]*?)<\/nav>/i)?.[1];
   if (nav) {
@@ -67,6 +84,39 @@ for (const [route, html] of listingPages) {
   if (next) assert.ok(htmlByRoute.has(next), `${route}: missing next listing ${next}`);
 }
 const articleRoutes = [...htmlByRoute.keys()].filter((route) => /^\/blog\/[^/]+\/$/.test(route));
+const redirects = readFileSync(join(root, '_redirects'), 'utf8').split(/\r?\n/)
+  .filter((line) => line.trim() && !line.trim().startsWith('#'))
+  .map((line) => line.trim().split(/\s+/))
+  .filter((parts) => parts.length >= 3 && parts[2] === '301');
+const redirectedPaths = new Set(redirects.map(([from]) => from).filter((from) => !from.includes('*')));
+let internalLinks = 0;
+let contextualArticleLinks = 0;
+const brokenInternalLinks = new Map();
+for (const [route, html] of htmlByRoute) {
+  if (/<meta\b[^>]*http-equiv="refresh"/i.test(html)) continue;
+  for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/gi)) {
+    if (!href || href.startsWith('#')) continue;
+    const url = new URL(href, 'https://www.ollasync.com');
+    if (url.origin !== 'https://www.ollasync.com') continue;
+    if (!htmlByRoute.has(url.pathname) && !redirectedPaths.has(url.pathname) && !isFile(join(root, decodeURIComponent(url.pathname))) && !isFile(join(root, decodeURIComponent(url.pathname), 'index.html'))) {
+      const sources = brokenInternalLinks.get(url.pathname) || [];
+      sources.push(route);
+      brokenInternalLinks.set(url.pathname, sources);
+    }
+    internalLinks++;
+  }
+  if (articleRoutes.includes(route)) {
+    const body = html.match(/<div\b[^>]*class="prose-post"[^>]*>([\s\S]*?)<\/div>/i)?.[1] || '';
+    if (/<a\b[^>]*href="\/(?!#)/i.test(body)) contextualArticleLinks++;
+    const topicLink = html.match(/<p\b[^>]*class="post__topic-link"[^>]*>([\s\S]*?)<\/p>/i)?.[1];
+    if (topicLink) assert.equal((topicLink.match(/<a\b/g) || []).length, 2, `${route}: expected topic and product links`);
+  }
+}
+for (const [from, to] of redirects) {
+  if (from.includes('*')) continue;
+  assert.ok(htmlByRoute.has(to) || isFile(join(root, decodeURIComponent(to))) || isFile(join(root, decodeURIComponent(to), 'index.html')), `Redirect ${from} has no destination: ${to}`);
+}
+assert.equal(brokenInternalLinks.size, 0, `Broken internal links:\n${[...brokenInternalLinks].map(([url, routes]) => `${url} (${routes.length} pages; e.g. ${routes.slice(0, 2).join(', ')})`).join('\n')}`);
 assert.equal(listedArticles.size, articleRoutes.length, 'Every published article must appear once in the main listing');
 for (const route of articleRoutes) assert.ok(listedArticles.has(route.split('/')[2]), `${route}: missing from main listing`);
 assert.equal(listingPages.length, Math.ceil(articleRoutes.length / 18), 'Unexpected main blog page count');
@@ -109,4 +159,4 @@ for (const [, url] of llms.matchAll(/\]\((https:\/\/www\.ollasync\.com\/[^)]+)\)
 const security = readFileSync(join(root, '.well-known', 'security.txt'), 'utf8');
 assert.ok(security.includes('Contact: mailto:security@ollasync.com'), 'security.txt contact missing');
 assert.ok(Date.parse(security.match(/^Expires:\s*(.+)$/m)?.[1] || '') > Date.now(), 'security.txt has expired');
-console.log(`SEO checks passed: ${pages} pages, ${breadcrumbs} breadcrumbs, ${listingPages.length} blog listing pages, ${listedArticles.size} unique articles, ${topicListings} topic listing pages, and discovery files.`);
+console.log(`SEO checks passed: ${pages} pages, ${breadcrumbs} breadcrumbs, ${listingPages.length} blog listing pages, ${listedArticles.size} unique articles, ${topicListings} topic listing pages, ${internalLinks} checked internal links, ${contextualArticleLinks} articles with contextual links, and discovery files.`);

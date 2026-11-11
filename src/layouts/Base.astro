@@ -43,7 +43,7 @@ const orgSchema = {
   // Both were hardcoded to the previous branding and shipped on all 54 pages — this is the
   // description search engines treat as canonical for the company, so it drifts silently.
   // Derived from SITE now, so it can't fall out of step again.
-  logo: new URL(SITE.ogImage, SITE.url).href,
+  logo: new URL('/apple-touch-icon.png', SITE.url).href,
   description: SITE.description,
   sameAs: [],
 };

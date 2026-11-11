@@ -26,8 +26,8 @@ const blog = defineCollection({
     ]),
     cover: z.string().optional(),
     heroImage: z.string().optional(),
-    author: z.string().default('The Ollasync team'),
-    authorRole: z.string().default('Security & product'),
+    author: z.string().default('Amit Mishra'),
+    authorRole: z.string().default(''),
     readTime: z.number().default(6),
     /** true = pillar page (comprehensive hub); clusters link up to a pillar slug */
     pillar: z.boolean().default(false),

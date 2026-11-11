@@ -2,6 +2,7 @@
 import type { BlogEntry } from '../data/blogListing';
 import BlogImage from './BlogImage.astro';
 import BlogPagination from './BlogPagination.astro';
+import { SITE } from '../consts';
 
 interface Props {
   posts: BlogEntry[];
@@ -15,7 +16,7 @@ const fmt = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numeric', 
 ---
 {featured && (
   <a href={`/blog/${featured.slug}/`} class="feat card--hover">
-    <div class="feat__media"><BlogImage src={featured.data.cover || featured.data.heroImage || '/og-ollasync.png'} alt={featured.data.title} sizes="(max-width: 900px) 100vw, 50vw" widths={[320, 480, 640, 960]} loading="eager" /></div>
+    <div class="feat__media"><BlogImage src={featured.data.cover || featured.data.heroImage || SITE.ogImage} alt={featured.data.title} sizes="(max-width: 900px) 100vw, 50vw" widths={[320, 480, 640, 960]} loading="eager" /></div>
     <div class="feat__body">
       <span class="chip cat">{featured.data.category}{featured.data.pillar && <> · Pillar guide</>}</span>
       <h2 class="h2" style="margin-top:14px;font-size:clamp(24px,3vw,32px)">{featured.data.title}</h2>
@@ -28,7 +29,7 @@ const fmt = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numeric', 
 <div class="posts">
   {posts.filter((post) => post.slug !== featured?.slug).map((post) => (
     <a href={`/blog/${post.slug}/`} class="post-card card card--hover">
-      <div class="post-card__media"><BlogImage src={post.data.cover || post.data.heroImage || '/og-ollasync.png'} alt={post.data.title} sizes="(max-width: 900px) 100vw, 33vw" widths={[320, 480, 640]} loading="lazy" /></div>
+      <div class="post-card__media"><BlogImage src={post.data.cover || post.data.heroImage || SITE.ogImage} alt={post.data.title} sizes="(max-width: 900px) 100vw, 33vw" widths={[320, 480, 640]} loading="lazy" /></div>
       <div class="post-card__body">
         <span class="chip cat">{post.data.category}</span>
         <h3>{post.data.title}</h3>

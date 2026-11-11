@@ -18,7 +18,7 @@ const d = post.data;
 const topic = getPrimaryTopic(post);
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
-const cover = d.cover || d.heroImage || '/og-classroom.jpg';
+const cover = d.cover || d.heroImage || SITE.ogImage;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -28,8 +28,10 @@ const schema = {
   image: new URL(cover, SITE.url).href,
   datePublished: d.pubDate.toISOString(),
   dateModified: (d.updatedDate || d.pubDate).toISOString(),
-  author: { '@type': /\b(team|ollasync)\b/i.test(d.author) ? 'Organization' : 'Person', name: d.author }, // the visible byline, typed by what it names
-  publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: new URL('/og-ollasync.png', SITE.url).href } },
+  author: d.author === 'Amit Mishra'
+    ? { '@type': 'Person', name: d.author, email: 'mailto:amit@ollasync.com', homeLocation: { '@type': 'Place', name: 'Bengaluru, India' } }
+    : { '@type': /\b(team|ollasync)\b/i.test(d.author) ? 'Organization' : 'Person', name: d.author },
+  publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: new URL('/apple-touch-icon.png', SITE.url).href } },
   mainEntityOfPage: new URL(`/blog/${post.slug}/`, SITE.url).href, // the canonical form (directory URLs end with a slash)
 };
 ---
@@ -98,6 +100,18 @@ const schema = {
               <span class="meta-label">Author</span>
               <span class="meta-value">{d.author}</span>
             </div>
+            {d.author === 'Amit Mishra' && (
+              <>
+                <div class="meta-row">
+                  <span class="meta-label">Contact</span>
+                  <a class="meta-value" href="mailto:amit@ollasync.com">amit@ollasync.com</a>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Location</span>
+                  <span class="meta-value">Bengaluru, India</span>
+                </div>
+              </>
+            )}
             {d.authorRole && (
               <div class="meta-row">
                 <span class="meta-label">Role</span>
@@ -128,6 +142,9 @@ const schema = {
         <div class="prose-post">
           <slot />
         </div>
+        {topic && (
+          <p class="post__topic-link">Explore more in <a href={`/blog/topics/${topic}/`}>{topics[topic].title}</a> and <a href={topics[topic].product.href}>{topics[topic].product.label.toLowerCase()}</a>.</p>
+        )}
         {d.sources.length > 0 && (
           <section class="sources" aria-labelledby="sources-h">
             <h2 id="sources-h">Sources</h2>
@@ -262,6 +279,8 @@ const schema = {
 
   /* Post Body & Takeaways */
   .post__body { min-width: 0; }
+  .post__topic-link { margin-top: 32px; color: var(--muted); line-height: 1.6; }
+  .post__topic-link a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
   .takeaways { border: 1.5px solid var(--teal-150); background: var(--teal-050); border-radius: var(--r-lg); padding: 22px 24px; margin-bottom: 34px; box-shadow: 0 1px 2px rgba(15, 138, 95, 0.05); }
   .takeaways ul { list-style: none; display: grid; gap: 10px; margin-top: 14px; }
   .takeaways li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--ink-2); line-height: 1.55; }

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Ollasync multilingual video meetings</title>
+  <desc id="desc">A stylized meeting interface with translated speech and captions, without portraits.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1"><stop stop-color="#07172e"/><stop offset="1" stop-color="#193b67"/></linearGradient>
+    <linearGradient id="accent" x2="1" y2="1"><stop stop-color="#69d3ff"/><stop offset="1" stop-color="#557af5"/></linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <circle cx="1055" cy="85" r="285" fill="#438afa" opacity=".12"/>
+  <circle cx="74" cy="608" r="246" fill="#42c9d9" opacity=".08"/>
+  <g transform="translate(82 70)">
+    <g fill="none" stroke="#69d3ff" stroke-width="10"><path d="M19 9 A30 30 0 1 0 66 52"/><path d="M68 50 A30 30 0 0 0 22 7"/></g>
+    <text x="91" y="54" fill="#fff" font-family="Arial, sans-serif" font-size="52" font-weight="700">Ollasync</text>
+  </g>
+  <text x="84" y="275" fill="#fff" font-family="Arial, sans-serif" font-size="66" font-weight="700">Meet beyond language.</text>
+  <text x="86" y="335" fill="#c9deff" font-family="Arial, sans-serif" font-size="27">Video meetings with live translated voice and captions</text>
+  <g transform="translate(86 402)">
+    <rect width="688" height="156" rx="24" fill="#ffffff" fill-opacity=".09" stroke="#a8cfff" stroke-opacity=".27"/>
+    <circle cx="61" cy="65" r="27" fill="url(#accent)"/>
+    <path d="M48 65h26m-13-13v26" stroke="#07172e" stroke-width="5" stroke-linecap="round"/>
+    <text x="108" y="59" fill="#fff" font-family="Arial, sans-serif" font-size="23" font-weight="700">One conversation</text>
+    <text x="108" y="94" fill="#c9deff" font-family="Arial, sans-serif" font-size="21">Everyone can take part.</text>
+    <g font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+      <rect x="400" y="45" width="70" height="44" rx="16" fill="#1e587d"/><text x="435" y="74" fill="#fff">EN</text>
+      <rect x="481" y="45" width="70" height="44" rx="16" fill="#1e587d"/><text x="516" y="74" fill="#fff">ES</text>
+      <rect x="562" y="45" width="70" height="44" rx="16" fill="#1e587d"/><text x="597" y="74" fill="#fff">HI</text>
+    </g>
+  </g>
+  <g transform="translate(866 204)" fill="#fff" fill-opacity=".12" stroke="#a8cfff" stroke-opacity=".34">
+    <rect width="236" height="150" rx="24"/><rect y="170" width="236" height="150" rx="24"/>
+  </g>
+  <g fill="none" stroke="#85d9fb" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M951 271v18a22 22 0 0 0 44 0v-18m-22-10v-14m-36 45a36 36 0 0 0 72 0m-36 36v14m-18 0h36"/>
+    <path d="M923 453h124m-124 28h85m-85 28h112"/>
+  </g>
+</svg>

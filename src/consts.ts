@@ -11,9 +11,7 @@ export const SITE = {
   tagline: 'Meet beyond language.',
   description:
     `Browser-based video meetings with live translation in ${LANG_COUNT} languages, captions, screen sharing, recordings and AI meeting notes.`,
-  // Was og-ollasync.png — a padlock-in-shield cybersecurity graphic from the previous branding, and
-  // the single most-shared brand asset. The old file is left in place so this is a one-line rollback.
-  ogImage: '/og-classroom.jpg',
+  ogImage: '/og-meeting.png',
   email: 'hello@ollasync.com',
   salesEmail: 'sales@ollasync.com',
 };
