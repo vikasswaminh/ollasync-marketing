@@ -1,0 +1,152 @@
+---
+title: "What should an IT buyer ask before enabling AI meeting transcription?"
+description: "A procurement-ready question set for AI meeting transcription: map the data flow, request evidence, test consent and deletion, and decide when recorded meetings or E2EE are appropriate."
+pubDate: 2026-11-10
+category: "Security"
+readTime: 20
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["AI meeting transcription procurement", "AI notes vendor assessment", "meeting transcript data flow", "transcription retention questions", "E2EE meeting notes tradeoff"]
+takeaways:
+  - "Approve a defined meeting use case and processing path, not a generic AI-notes toggle."
+  - "Require a data-flow diagram, contractual answers and a live admin demonstration; record unresolved claims as gaps rather than treating them as controls."
+  - "Test consent, access, deletion, identity and E2EE behavior on a pilot before enabling transcription broadly."
+---
+
+**Direct answer:** Before enabling AI meeting transcription, an IT buyer should ask *which meetings may be processed, what is captured, who receives each artifact, who can read or reuse it, how long every copy survives, and what happens when recording or AI is disabled*. Ask for a current data-flow diagram, the applicable contract and subprocessor list, retention and deletion evidence, an identity/access demonstration, and a test meeting showing participant notice and the encryption-mode boundary. Approval should be conditional on a specific configuration and meeting category, not a vendor's general statement that its platform is “secure.”
+
+This is a purchasing and implementation worksheet, not a claim that any particular vendor satisfies a control. It is not legal advice. Privacy, employment and recording rules depend on jurisdiction and context; involve your privacy and legal teams in decisions about lawful basis, notices, consultation and retention. The earlier article [Are cloud AI video transcripts safe?](/blog/are-cloud-ai-video-transcripts-safe/) explains the *risks*. Here the task is different: turn a proposed feature into evidence requests, acceptance tests, owners and a defensible go/no-go decision. If a vendor cannot answer a question, write **unknown**, not **yes**.
+
+## What exactly is being approved?
+
+Start with a one-page scope statement. “AI notes for everyone” is not a scope. Specify who may start transcription, which tenant or workspace it applies to, whether guests attend, whether the feature acts during a call or only on a saved recording, and where the result is distributed. Decide whether a meeting organizer can override a central policy. Ask whether a free personal account or third-party bot can join outside the managed deployment; blocking that route may require separate meeting and identity controls.
+
+List meeting classes before reading the sales deck: public training, routine internal operations, customer calls, HR conversations, incident response, privileged advice and regulated information. Different classes can reach different decisions. A pilot that records onboarding sessions is not evidence that a finance or medical discussion belongs in the same workflow. Define the value you expect—accurate decisions, accessible replay, action-item capture—and the smallest material required to achieve it. A text transcript may suffice without video; live captions may serve a different need from retained transcription. For example, Microsoft's [Teams transcription and captions documentation](https://learn.microsoft.com/en-us/microsoftteams/meeting-transcription-captions) distinguishes retained transcripts from live captions that Teams does not save. That is a product-specific example, not a universal rule.
+
+Write an explicit approval unit: “Managed workspace, named organizers, internal training meetings, post-meeting notes from selected recordings, access limited to the course team, retention schedule approved by records owner.” That sentence gives procurement something testable. It also makes drift visible when an integration later posts summaries to a wider channel.
+
+## Can the vendor draw the complete data flow?
+
+Ask for a diagram of **your proposed configuration**, not a generic architecture graphic. Trace microphone audio, shared screen, video if captured, metadata, intermediate audio chunks, speech-to-text output, speaker labels, draft and final transcript, summaries, action items, searchable indexes or embeddings, exports and backups. Include every region and processing party at each step. Identify the actor that initiates capture: meeting host, tenant admin, automatic policy, guest-installed bot or an API integration. For each arrow, record purpose, encryption boundary, processor, location, retention and deletion mechanism.
+
+A useful practical exercise is to narrate one utterance: “I read a confidential customer name aloud. Where can that name appear ten minutes later, ten days later and after I delete the meeting?” Ask the vendor to answer for temporary processing buffers, error logs, search indexes, notification emails and support tools, not just the main recording. Do not assume all these copies exist; do not assume none do. Request documentation distinguishing **possible** paths from paths enabled in your tenant. If the product works directly on an existing platform's transcript, ask whether it retrieves the whole meeting or only selected excerpts, and which permission grants that access.
+
+Request a current subprocessor register and identify which entities perform speech recognition, summarization, hosting and support. A subprocessor list alone does not show which services receive your meeting content or whether they persist it. Ask for a per-service mapping and a change-notice process. If an answer says “data stays in region,” ask whether that covers inference, backups, logs, troubleshooting access and exports, or only primary storage. For transfers involving personal data, ask your privacy team to evaluate the relevant mechanism and contractual provisions; the [EU GDPR text](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng) includes processor requirements in Article 28 and transfer rules in Chapter V. Neither a region label nor this article establishes compliance.
+
+**Evidence to request:** a dated diagram, service/subprocessor mapping, regional processing statement, sample admin configuration and a written answer to the one-utterance deletion exercise. Redact sensitive details in the procurement packet if needed, but keep version dates so a later architecture change can trigger review.
+
+## What does the contract allow the provider to do with content?
+
+Ask separately about meeting audio, raw transcripts, derived notes, user feedback, diagnostic logs and de-identified or aggregated data. Does the provider use any of these to train, fine-tune, evaluate or improve models? If the answer depends on plan, tenant setting, an opt-out or an enterprise amendment, record the exact setting and contractual clause. “We do not train our models” may not answer whether a model subprocessor may retain prompts for abuse monitoring or quality evaluation. “Your data is yours” does not specify permissible processing purposes.
+
+Request the DPA and service terms that actually attach to the chosen plan. Identify controller/processor roles where applicable, documented instructions, authorized subprocessors, breach notice, assistance with rights requests, deletion or return at termination and audit-information provisions. These topics are expressly addressed in [GDPR Article 28](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng#art_28); legal counsel should assess which terms and laws apply to your organization. Ask whether a separate AI feature addendum changes the baseline terms. Keep a copy of the negotiated version, not only a link to mutable web terms.
+
+A procurement answer should be precise enough to test: “Content from tenant X is processed for transcription and summarization under agreement Y; setting Z disables optional reuse; subprocessor A receives audio and B receives transcript; support access follows procedure C.” That sentence is an **example of the specificity to request**, not a statement about Ollasync or another supplier. If the vendor cannot contractually distinguish operational processing from training or product improvement, treat the uncertainty as a decision input rather than inventing a promise.
+
+## How will people know, and who decides whether a meeting is transcribed?
+
+Ask for a complete participant journey: invitation text, pre-join notice, in-meeting indicator, start and stop announcements, late joiners, dial-in participants, external guests and a person who declines. Test whether recording, transcription and AI summarization are signaled separately. A visible bot is not necessarily adequate notice about downstream AI or retention. Ask who can pause or stop capture, whether the organizer can start it after a participant objects, and how exceptions are logged. If attendees lack a practical choice, document the alternative meeting path rather than calling a theoretical toggle “consent.”
+
+Do not equate a product's “consent” button with a valid legal basis. The [GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng#art_6) sets out legal bases in Article 6; [Articles 12–14](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng#art_13) address transparent information. Employment relationships, local recording laws and cross-border attendees complicate implementation. Ask counsel or privacy staff to specify the notice and process for each meeting class. IT should verify that the UI supports the approved process; it should not decide legal validity from a screenshot.
+
+Run a pilot with one host, one employee, an external guest and a late joiner. Observe the actual banners and prompts. Save screenshots of the state before capture, while capture runs and after it ends. Test what happens if the guest refuses: can the meeting continue without transcription? If the platform can auto-start capture, check whether the admin policy and the host's meeting options agree. Ask how a mistaken recording is quarantined or removed before a summary is emailed. An effective procedure includes a person authorized to respond, not merely a support address.
+
+## What is retained, where, and what does deletion really delete?
+
+Request a retention table by artifact. Recording, transcript, summary, action items, embeddings, system logs, support tickets, exports, notification emails and backups need distinct rows; a vendor may not create all of them. Ask what starts each clock—meeting end, artifact creation, user deletion or contract termination—and who can change it. Distinguish an organizer deleting a visible file from an administrator imposing a tenant-wide retention policy. Ask whether preservation or legal holds override deletion and who can see that state.
+
+Test deletion on a pilot meeting. Record when it disappears from the user interface, search, sharing links, API results and restore tools. Ask for the documented backup expiry or purge timetable and the fate of copies already exported to connected apps. Some downstream copies will be your organization's responsibility rather than the meeting vendor's; assign an owner to each. For subject access or erasure requests, ask how the vendor finds a person's speech across meetings, handles shared records and supports your decision without promising that every request means automatic deletion. The [GDPR storage-limitation principle](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng#art_5) in Article 5 and the [erasure provisions](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng#art_17) in Article 17 are relevant where the regulation applies; they do not supply a single universal retention period.
+
+Ask about offboarding as carefully as routine deletion: can you export the information needed for records, revoke access and obtain deletion or return of remaining content? Is there a machine-readable export, and does it include timestamps and speaker attribution? If you cancel the plan, when do the public share links stop working? An answer of “data deleted in 30 days” needs a scope: primary storage, model-provider requests, backup replicas and logs may have different clocks. Accept a documented exception if it fits your policy; do not silently mark incomplete deletion as complete.
+
+## Where are the encryption boundaries, especially with E2EE?
+
+Ask the vendor to distinguish encryption **in transit**, **at rest** and **end to end** for each stage. Encryption in transit protects a network hop; it does not mean the service cannot read audio after that hop. Encryption at rest protects stored data under a key-management arrangement; it does not itself limit an authorized application from decrypting content. Ask where plaintext is exposed, who controls keys, whether support staff can gain access, and whether recordings, transcripts and indexes share permissions. Request a security architecture explanation, not a cipher-name slogan.
+
+For a server to transcribe meeting audio, it generally needs audio it can process. A true server-blind, end-to-end-encrypted media path cannot simultaneously offer ordinary server-side transcription of that same media without introducing an endpoint-side processor, a participant-side recorder or a deliberate decrypt-and-upload step. Ask the vendor to demonstrate which path it actually uses. If an E2EE toggle is turned on, do recording, captions, translation, AI notes and integrations stop, shift to an endpoint, or create an exception? Also ask whether chat and screen share have the same boundary as audio; a single “E2EE meeting” label can conceal different treatment of different streams.
+
+For Ollasync specifically, the public [pricing FAQ](/pricing) says AI notes run on recorded meetings and E2EE meetings are excluded by design; the [AI notes feature page](/features/ai) describes post-meeting processing of chosen recordings. Those statements define a product boundary to verify during a pilot, not a substitute for a security assessment. A local recording may follow a different path from a cloud recording; confirm which artifact generates notes in the selected plan and where any local file lives. The practical tradeoff is to classify meetings: use recorded, authorized sessions when notes are needed; choose E2EE sessions when server-readable media is unacceptable, accepting that server-side notes are unavailable. For deeper context see [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call).
+
+## Who may create, read, share and search a transcript?
+
+Ask for a role-to-action matrix: tenant administrator, meeting organizer, participant, guest, transcript owner, support operator and integration service account. For each role, test start, stop, view, edit, download, share, delete, restore and cross-meeting search. Do organizers automatically see every generated note? Do absent invitees receive an email? Does a guest retain access after the meeting? Can a link be forwarded or indexed by an external system? “Workspace access controlled” is a starting point; the buyer needs the actual default and configurable scope.
+
+Search is especially important. A transcript may be accessible through a meeting page, an AI assistant, an organization-wide search index or a CRM integration. Ask whether results are filtered using the requester's *current* permissions, whether revoked access updates indexes, and whether an assistant can answer across meetings the user could not open individually. In a test workspace, put a unique phrase in a restricted meeting, revoke one user's permission and search from that user's account. Do not place real confidential data in this test. Document results, including stale-search intervals and cache behavior, rather than relying solely on policy text.
+
+Ask how exports and automated distribution are governed. Disable auto-email and connected apps for the pilot unless they are explicitly in scope. If a summary must go to a team channel, define an approved destination and who can change it. Have the records owner decide whether corrections to a transcript are preserved as edits, version history or an immutable original. A generated action item can be wrong; avoid treating it as a verified decision just because it appears in a system of record.
+
+## Can identity and offboarding controls actually enforce the policy?
+
+Ask which plan and deployment support the identity features you require: SSO protocol, domain enforcement, provisioning and deprovisioning, session revocation, role assignment and emergency access. Request a live demo, not an unqualified “SSO supported.” Test a new user, a renamed user, a disabled user and a guest. Determine whether disabling an account immediately removes transcript access and API tokens; if not, specify the delay and compensating control. Ask whether users can create unmanaged workspaces with the same company email and whether admins can discover or block them.
+
+SSO authenticates a person; it does not decide which old meetings they may read. Pair identity checks with the role-to-action tests above. If SCIM or another automated provisioning mechanism is mandatory, get a contractual answer for the **selected tier**; do not infer it from SSO. The Ollasync [pricing page](/pricing) lists SSO (OIDC) on Business and mentions a DPA for dedicated deployments, but it does not establish SCIM, a particular audit-log feature or an enterprise identity configuration for your tenant. Ask for those details directly and record unverified capabilities as open items.
+
+Ask for audit events that help investigate misuse: transcription enabled or disabled, recording started, transcript downloaded, external share created, admin policy changed, content deleted and support access granted. For each event, request fields, retention, export format and delivery latency. If a needed event is absent, decide whether meeting restrictions or another control can close the gap. An identity demo is not complete until the buyer has tested revocation and the logs show who changed what.
+
+## How will the organization test quality, errors and misuse?
+
+Treat note quality as a procurement requirement, not a cosmetic feature. A misheard dosage, customer name or contractual commitment can create operational harm even if no data leaks. Use a small set of representative *synthetic* meetings: accented speakers, interruptions, jargon, overlapping speech, a noisy caller, a late joiner and a clear instruction that should **not** become an action item. Measure omissions, speaker attribution errors and fabricated commitments. Record whether humans can inspect the source and correct the output before distribution. Do not upload real sensitive meetings just to benchmark a model.
+
+Ask the vendor what is configurable: language, speaker identification, summary template, citation or timestamp links, and the ability to turn off automatic distribution. A model update may alter performance after the pilot. Who announces changes, and can you rerun the tests before wider rollout? If the tool creates a cross-meeting assistant, test whether it refuses requests beyond a user's permissions and whether it accurately points to the originating recording rather than inventing a citation. NIST's voluntary [AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) provides a general structure for governing, mapping, measuring and managing AI risk; it does not certify a meeting-notes vendor. Use it as a prompt for ongoing ownership and evaluation, not as a purchase badge.
+
+Assign a human reviewer for meeting types where an incorrect summary could drive decisions. State in the rollout instructions that notes are drafts until reviewed, with an escalation path for correction or deletion. Balance value against review cost: if a class of meetings requires line-by-line verification but saves only a few minutes, the feature may not be worthwhile there. Accuracy alone is also not permission to retain more content than necessary.
+
+## What evidence belongs in the procurement packet?
+
+**Hypothetical worksheet — adapt these rows to your own policy.** “Pass” below means evidence and a buyer-run test support the scoped requirement; it is not a statement about any named vendor. Leave unanswered cells as **unknown** until resolved. Keep the packet alongside the signed agreement and review it when the vendor changes a processor, feature path or plan.
+
+| Decision question | Vendor evidence to request | Buyer-run acceptance check | Owner / status |
+| --- | --- | --- | --- |
+| Which meetings can activate capture? | Policy controls and organizer override documentation | Attempt capture as an unauthorized host and guest | IT / unknown |
+| What content reaches which service? | Dated data-flow diagram and processor mapping | Walk one synthetic utterance through outputs | Security / unknown |
+| What reuse is permitted? | Signed DPA, AI terms and selected-plan settings | Compare tenant setting with contract language | Procurement / unknown |
+| Are participants told and given the approved route? | Notice screens and admin configuration | Join before, during and after capture as a guest | Privacy / unknown |
+| How long does each artifact survive? | Artifact-level retention and backup schedule | Delete pilot meeting; check search, links and exports | Records / unknown |
+| Where does E2EE stop server processing? | Media and AI architecture for each mode | Run E2EE meeting; attempt cloud notes | Security / unknown |
+| Who can search or export notes? | Permissions matrix and audit event catalog | Revoke access, then search and export | IT / unknown |
+| Can identities be removed reliably? | SSO and provisioning documentation for chosen plan | Disable a user; test session and token access | Identity / unknown |
+| How are model errors handled? | Change notices and correction workflow | Review synthetic summary against source | Business owner / unknown |
+
+Set decision thresholds before vendor demonstrations. For instance, make written purpose restrictions and a workable participant-notice process non-negotiable; allow a documented backup lag only if the records owner approves it; defer cross-meeting search until permission tests pass. These are **example gates**, not a universal standard. Maintain separate columns in your working copy for the document link, date, tested environment, exception, mitigation, approver and review date. A brochure with no environment or date is weak evidence for a tenant-specific assertion.
+
+## What should the pilot and rollout sequence look like?
+
+First, appoint one technical owner, one privacy/records owner and one business owner. Agree the meeting classes and measurable benefit. Second, get contract and diagram answers before sending production content. Third, create a limited tenant or restricted pilot cohort and disable unneeded defaults: automatic capture, broad sharing and integrations unless they are part of the test. Fourth, perform the consent, identity, E2EE, deletion and accuracy tests above using synthetic content. Finally, record the decision for each meeting class: approve, approve with restrictions, defer pending evidence, or prohibit.
+
+Do not interpret a successful demo as a production configuration audit. Save the policy settings, plan name, region and feature version used in the test. Recheck them after SSO rollout, plan upgrade, workspace migration or vendor change. Provide a host-facing decision card: “For class A, recording with notes is allowed after the approved notice; for class B, use an unrecorded or E2EE meeting; for class C, ask the records owner.” Make the safe choice easy to find at scheduling time.
+
+A rollback plan matters as much as launch. Specify who can disable transcription at tenant and meeting level, how to identify meetings processed during an accidental enablement, how to stop sharing, and who coordinates deletion or incident response. Give users a way to flag incorrect notes and unexpected recording. Monitor adoption and access events during the pilot; expand only if the system actually delivers the intended value under the agreed controls. The question is not simply whether a feature can transcribe; it is whether your organization can operate it without losing track of what it created.
+
+## Frequently asked questions
+
+### Should we require a SOC report or a named certification before a pilot?
+
+Ask for independent assurance if your procurement policy requires it, but first identify which service, period, controls and exclusions the report covers. A certification does not answer whether your chosen AI configuration sends transcripts to another processor or whether guests can share links. No certification is asserted here for Ollasync or another vendor. Treat assurance as one item of evidence, not a substitute for data-flow and behavioral tests.
+
+### Can live captions be approved while saved transcripts are blocked?
+
+Potentially, if the product can separate them and your use case permits it. Verify the actual feature behavior and whether captions, intermediate audio or logs persist. Microsoft's [Teams admin documentation](https://learn.microsoft.com/en-us/microsoftteams/meeting-transcription-captions) says its live captions are not saved while transcripts are retained; that example does not establish another platform's behavior. Test both settings in your own plan.
+
+### Does turning off AI notes delete existing transcripts?
+
+Do not assume so. Disabling future processing, deleting existing artifacts, removing search-index entries and revoking exported copies are different operations. Ask for each workflow and test with a synthetic meeting. Document who owns previously emailed or exported summaries; the meeting platform may not control copies in another system.
+
+### Is a DPA enough to authorize recording every meeting?
+
+No. A DPA governs defined processing relationships; meeting-specific purpose, notices, applicable legal basis and local recording requirements need separate review. Ask legal and privacy staff to approve the intended meeting categories and participant journey. A signed agreement cannot replace testing whether the feature follows that approved workflow.
+
+### Can server-side AI notes coexist with E2EE calls?
+
+Only with an explicitly described change in processing architecture, such as processing on a participant's device or intentionally making media available to a service. Ask exactly where the plaintext appears and whether the call remains E2EE under that design. For Ollasync's public [pricing description](/pricing), AI notes are for recorded meetings and E2EE meetings are excluded; confirm the chosen mode in a pilot rather than assuming both happen simultaneously.
+
+### What if the vendor will not provide a detailed data-flow diagram?
+
+Ask for a scoped written answer covering content types, processors, regions, retention and access, possibly under NDA. If it still cannot distinguish the selected deployment from marketing descriptions, restrict the pilot to synthetic material or defer approval. Unknown subprocessors and deletion paths should remain recorded exceptions, not be filled in with optimistic assumptions.
+
+## Sources and further reading
+
+- [NIST, AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) — voluntary AI risk-management framework used here to structure evaluation and ongoing ownership.
+- [European Union, Regulation (EU) 2016/679 (GDPR)](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng) — primary text for the cited principles, information duties, processor agreements, erasure and transfers; applicability requires legal review.
+- [Microsoft Learn, Manage transcription and captions for Teams meetings](https://learn.microsoft.com/en-us/microsoftteams/meeting-transcription-captions) — official product example distinguishing saved transcripts from unsaved live captions.
+- [Microsoft Learn, Introduction to recording Teams calls, meetings, and events](https://learn.microsoft.com/en-us/microsoftteams/teams-recording-policy) — official distinction between convenience and compliance recording, including participant notification and differing policy ownership.
+- [Ollasync pricing and FAQ](/pricing) — first-party description of recorded-meeting AI notes, E2EE exclusion and listed SSO tier; verify current plan terms directly.

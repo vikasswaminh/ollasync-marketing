@@ -1,0 +1,182 @@
+---
+title: "How do we switch meeting platforms without losing multilingual access?"
+description: "How can a team move meeting platforms while preserving language access? Inventory meetings and records, test guest joins, replace calendar links, stage a pilot, and plan rollback."
+pubDate: 2026-11-10
+category: "Guides"
+author: "The Ollasync team"
+readTime: 20
+takeaways:
+  - "Treat translated participation as a service to preserve during cutover, not a feature to check once in a demo."
+  - "Inventory recurring links, guest roles, language needs, recordings, contracts, and retention obligations before changing defaults."
+  - "Pilot the new scheduling-to-records workflow, communicate language instructions, and keep a time-limited fallback with named owners."
+  - "Never assume old links, recordings, captions, identities, or retention settings migrate automatically."
+keywords: ["switch meeting platforms multilingual access", "meeting platform migration checklist", "multilingual meeting cutover plan", "meeting platform rollback template"]
+sources:
+  - url: "https://support.google.com/meet/answer/10964115?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Google documents translated captions and edition eligibility, with some languages subject to rollout or beta conditions."
+  - url: "https://learn.microsoft.com/en-us/microsoftteams/teams-end-to-end-encryption"
+    publisher: "Microsoft Learn"
+    accessDate: "2026-11-10"
+    claim: "Teams end-to-end encrypted meetings have feature restrictions relevant to captions, transcription, and recording."
+  - url: "https://www.w3.org/WAI/media/av/captions/"
+    publisher: "W3C Web Accessibility Initiative"
+    accessDate: "2026-11-10"
+    claim: "Captions provide access to speech and important non-speech audio; translated subtitles are not interchangeable with same-language captions."
+related:
+  - "what-should-we-test-during-a-multilingual-meeting-software-trial"
+  - "how-do-zoom-teams-meet-and-ollasync-compare-for-a-multilingual-100-person-meeting"
+  - "how-to-test-live-translation-accuracy-before-a-meeting"
+  - "are-cloud-ai-video-transcripts-safe"
+---
+
+## How do we change platforms without cutting anyone off?
+
+**The short answer:** switch the *meeting service*, not merely the meeting app. First identify who needs same-language captions, translated text, spoken interpretation, accessible controls, or a recording they can actually use. Inventory existing invitations and records; confirm the replacement's exact licensed, policy-enabled behavior with those participants; pilot whole workflows; update invitations deliberately; keep an approved fallback; and turn off the old service only after the new one and its records obligations have passed acceptance. Do not assume old join links, recording URLs, language settings, or transcripts transfer.
+
+This is an operational migration guide, not a vendor ranking. The [multilingual software trial guide](/blog/what-should-we-test-during-a-multilingual-meeting-software-trial/) helps compare candidates before purchase, while the [100-person comparison](/blog/how-do-zoom-teams-meet-and-ollasync-compare-for-a-multilingual-100-person-meeting/) examines capacity and plan gates for one event. Here the question is different: **what must survive when a real organization changes its default platform?** A product can pass a trial yet fail a rollout because a standing calendar series still points to the old room or an external attendee cannot activate the promised language channel.
+
+Assign one migration owner who can make a go/no-go call, plus owners for calendar administration, accessibility, privacy, records, service desk, procurement, and communications. Give each an actual deliverable and deadline. If you are only adding a language service alongside an incumbent meeting app, use the same controls for the affected meetings but do not label it a full replacement. High-stakes legal, clinical, safety, and labor conversations may require professional interpretation and a separately approved process; AI translation alone should not silently become their replacement.
+
+## What exactly are we migrating?
+
+A meeting platform is more than a set of video rooms. It is a chain from a scheduler's calendar template to an invitee's device, through identity and language settings, to a stored artifact and its eventual deletion. Draw that chain before moving it. Look at the last ordinary month and the next scheduled quarter rather than extrapolating from a flagship event. Include cancellations, recurring meetings, external-client appointments, confidential calls, and sessions hosted by people who will leave the organization.
+
+Create a working inventory with **meeting owner, calendar owner, series or event ID, next occurrence, internal and external audiences, time zones, criticality, spoken languages, preferred listening/reading languages, accessibility accommodations, invitation distribution list, join URL, authentication policy, and recording owner**. Mark whether the invitation lives in a shared mailbox, booking page, CRM-generated email, training portal, printed QR code, or a third party's calendar. The owner should attest that the list is complete enough for their business unit; central IT cannot see every client-issued invite. Use minimum necessary personal data and restrict access to the inventory.
+
+For every meeting class, document what people can do *today*, not what an admin believes is enabled. Does a guest need an account? Do attendees choose translated captions themselves? Does a speaker use a human interpreter channel? Are captions offered during playback, only live, or not at all? Which participants rely on keyboard navigation, screen readers, captions, or a dial-in route? Record failures and workarounds alongside successful paths. A feature described on a vendor page is not proof it is available in your tenant, edition, language pair, device, country, or meeting configuration.
+
+### Which meetings deserve migration priority?
+
+Classify events by impact and replaceability. A weekly internal project sync is usually easier to reschedule than a board meeting with external guests and a published agenda. For each class, name the consequence of a language-access failure, the notice required to change its URL, and the latest time it can be safely rehearsed. Prioritize meetings where participants have no alternative channel, followed by high-volume recurring series and externally published links. Move a small reversible class first, not your most visible event.
+
+Do not confuse attendee count with a plan's participant ceiling. Hosts, co-hosts, interpreters, and guests may count differently; ask the vendor and test headroom for your selected plan. Our [100-person scenario analysis](/blog/how-do-zoom-teams-meet-and-ollasync-compare-for-a-multilingual-100-person-meeting/) addresses that sizing decision. This migration inventory focuses on **ownership and continuity**: even a room with capacity to spare is unusable if half its audience follows an obsolete invitation.
+
+## How do we define language-access parity?
+
+Build an access matrix by *person and task*, not a single checkbox called “translation.” Columns should include attendee role, source language, needed output language, same-language captions, translated captions, translated speech or human interpretation, visual accessibility, audio accessibility, device, and whether the person may be an anonymous or authenticated guest. Put the actual meeting types in rows. Ask affected participants to validate requirements without requiring disclosure of a disability to everyone on the migration team.
+
+Distinguish live participation from records access. Someone who follows translated speech in real time may still need a reviewed translation of minutes afterward; a translated live caption stream may not appear on the recording. A source-language transcript may be searchable but not accessible to a person who requires another language. Conversely, translated subtitles should not be presented as a substitute for accurate same-language captions for deaf or hard-of-hearing participants. The [W3C caption guidance](https://www.w3.org/WAI/media/av/captions/) helps clarify that distinction. Make post-meeting deliverables separate acceptance criteria.
+
+Mark each requirement **must preserve**, **approved alternative**, or **not applicable**, with a named reviewer and an evidence link. Examples of approved alternatives include a qualified interpreter for a particular class of meeting, or an accessible written recap with agreed delivery time. Do not unilaterally replace live access with a recording available days later. If a replacement cannot meet a hard requirement, either retain the incumbent for that class, arrange a formally accepted alternative, or stop the cutover. A procurement score cannot waive a participant's access requirement by itself.
+
+### What does a fair feature check look like?
+
+Verify exact behavior under the purchased plan and administrator policies. [Google Meet's translated-caption documentation](https://support.google.com/meet/answer/10964115?hl=en) lists eligible Workspace editions and warns that some languages roll out gradually or are in beta. That documents an available product capability, not a guarantee for your organization. [Microsoft's Teams E2EE guidance](https://learn.microsoft.com/en-us/microsoftteams/teams-end-to-end-encryption) describes restrictions on features including captions and recording in end-to-end encrypted meetings; a privacy setting may change the access path you intend to preserve. Do not infer that either product delivers translated speech merely because translated captions exist.
+
+Apply the same evidence rule to Zoom, Ollasync, or any other candidate: request current official documentation and written confirmation for the *specific* plan, region, language directions, recording workflow, and guest role you will deploy. Ollasync's [pricing page](/pricing/) is a starting point for published plan scope, not a migration guarantee. Test in an actual configured tenant rather than assuming integrations, bulk conversion, cross-platform recording import, or automatic calendar rewriting. Avoid a brand leaderboard here; the outcome is a meeting-by-meeting preservation decision.
+
+## What should procurement and IT settle before announcing a date?
+
+Write down both the incoming and outgoing contract clocks: renewal, notice period, minimum commitment, overage terms, seat reassignment, support coverage, and the window during which both services may run. Request current signed or draft terms rather than copying public pricing into a business case. Double-running licenses briefly may be necessary for a safe cutover; that is a planning allowance, not a claim that a vendor offers a particular grace period. Procurement should identify who can authorize extension if rollback is triggered.
+
+Identify the identity and administrative dependencies that can block a pilot: host provisioning, account ownership, domain restrictions, guest policies, moderation, consent banners, meeting templates, and admin permission to enable language features. Ask the vendor what can be provisioned in the contracted edition; do not promise SSO, SCIM, calendar, LMS, CRM, or recording-system integration unless official documentation and a tenant test establish it. If an integration is essential, treat a missing permission or unsupported connector as an open gate and plan a manual scheduling path that has been approved, not an invented API migration.
+
+Finance should model the overlap period and the exit. Include approved host entitlements, potential language-related add-ons or usage allowances where applicable, administrative effort, interpreter coverage, help-desk capacity, and retention/storage arrangements. Use quoted amounts only in your internal budget. Do not claim migration savings until owners have priced manual re-invites and legacy record stewardship. The cheapest new subscription is not necessarily the cheapest way to honor old obligations.
+
+## What happens to recordings, transcripts, and old meeting links?
+
+**Treat old records as a separate project.** List each recording's owner, location, associated meeting, languages and caption tracks actually present, access list, retention category, legal hold status, sharing links, and approved disposition. Have records and legal owners decide what must remain accessible, what may be exported in a documented format, and what must stay in the old environment until expiry. If an export lacks caption tracks, speaker labels, or permissions, it is not equivalent to the source record; flag the difference. Never assume the new vendor can ingest a proprietary recording or preserve access controls.
+
+Do a sample export-and-retrieval test with non-sensitive or authorized material before decommissioning anything. Verify a permitted viewer can find and play the result, captions remain usable where required, and a responsible owner can respond to an access or deletion request. Store an export manifest with file identifiers, format, owners, checksums if your records process uses them, and any omissions. Keep that manifest protected; it may reveal confidential meeting topics. If retention or legal hold requires the original, retain the original under an approved access and billing plan rather than treating a copied video as a compliant replacement.
+
+Old join URLs are a different risk. A recording URL should not be mistaken for a scheduled meeting link, and neither is redirected automatically when you change vendors. Track public registration pages, intranet links, shared-channel pins, email templates, mobile calendar entries, and embedded buttons. Replace only links you own. For externally owned invitations, contact the organizer and request a corrected invite; do not assume editing your internal calendar updates guests' copies. Decide whether the old room stays reachable for a bounded period, shows a notice where supported, or is closed, according to privacy and contract rules.
+
+### How do calendar series get replaced safely?
+
+Select an owner for each recurring series. Have that owner create a fresh series or update the organizer-owned event using the supported calendar workflow, send an actual update to **all** invitees, and inspect a recipient's calendar for the new URL, time zone, dial-in instructions, and language-access directions. Recheck exceptions: individual occurrences moved to another day, delegated organizers, forwarded invitations, room resources, and guests whose mail clients retain the original event. Make no claim that a calendar provider will edit every downstream copy or that a platform can migrate series automatically.
+
+Schedule link replacement relative to the event, not merely to the project launch. Send an early notice for important external meetings, a final reminder close to the event, and an easy-to-find support route. Keep a change log of original URL, new URL, update sender, timestamp, audience, verification method, and old-link disposition. Restrict the log because meeting URLs can function as entry credentials. Never put private join links in a public migration dashboard.
+
+## What privacy and retention questions can stop a switch?
+
+Ask legal and privacy reviewers to compare the outgoing and incoming **data-processing agreements**, subprocessors, processing locations, cross-border transfer arrangements, security exhibits, breach notices, and deletion mechanisms as applicable to your organization. Determine which service receives audio, live captions, translated text, voice output, recordings, transcripts, and analytics; who can enable each; and whether an AI or human-review workflow needs separate notice or consent. “Encrypted” alone does not answer where data is processed or who may retrieve it.
+
+Define retention by artifact and system: source recording, transcript, caption file, translated output if stored, chat, attendance report, invite metadata, support tickets, and exported copies. An ephemeral live caption may not be retained, while a transcript or recording can persist under another policy. Confirm actual settings and written vendor terms before telling participants their speech will be deleted on a particular date. Map holds and deletion requests across both services during the overlap window; disabling the old license must not strand retained records or make a deletion request impossible to fulfill.
+
+If the old environment is being shut down, require sign-off for records disposition and a dated proof of access transfer or lawful deletion, as appropriate. If your team cannot establish what the old service retains after termination, escalate to the contract and privacy owners instead of guessing. Our [cloud transcript safety guide](/blog/are-cloud-ai-video-transcripts-safe/) explores related controls; here the practical point is that **two vendors can mean two simultaneous records systems**, each with its own owner until closed.
+
+## How should we design a reversible pilot?
+
+Start with representative meetings whose organizers consent to a change and whose information can be used under the approved pilot terms. Include an internal recurring call, an external guest call, and a workflow with a language-access requirement that is easy to miss. For each, rehearse the *full path*: create invitation, join as the organizer, join as a guest on a realistic device, select needed captions or audio, interrupt and rejoin, moderate, end, retrieve the intended record, and test its access and deletion process. Do not use genuine sensitive material solely to make a pilot feel realistic.
+
+Have participants report what they actually experienced rather than asking “Did translation work?” Ask whether they found the language control without coaching, whether they could interrupt or ask questions, whether captions covered the speaker reliably, whether speech and slides stayed intelligible, and what happened when the host changed. Collect accessibility feedback privately. For phrase-level language testing, use the separate [translation accuracy preflight](/blog/how-to-test-live-translation-accuracy-before-a-meeting/) rather than inventing a universal accuracy threshold here.
+
+Record a pass, fail, or open state for each requirement. Capture evidence: tested plan and policy, date, device, participant role, language direction, consent state, anonymized observation, issue owner, and retest result. An “open” item does not become a pass because nobody complained. Agree in advance on stop conditions, such as an inaccessible required language path, a guest blocked by authentication, a missing legally required record, or an unapproved data-processing arrangement. Set thresholds based on your own policy and participants, not fabricated industry averages.
+
+### Who decides whether the pilot graduates?
+
+The meeting owner can accept scheduling ergonomics; the accessibility representative validates the access path; security and privacy approve data handling; records approves artifact continuity; and procurement confirms contract readiness. The migration owner records the final decision and dissent. A vendor representative can help troubleshoot but should not sign off on your organization's requirements. If any hard gate remains open, keep the affected meetings on the old service or an approved alternative while remediation is tested. Partial rollout by meeting class is a valid outcome, not a failed migration.
+
+## What should employees and guests hear before cutover?
+
+Tell people **what changes, when, and what they must do**. A staff message should identify the first date for new meetings, who updates existing series, how to choose captions or translated audio where tested, what to do if the feature is absent, and where to report a broken join link. Include device guidance that your pilot actually verified. Say explicitly whether old recordings stay in the old location and for how long access is expected under the approved retention plan. Do not promise that every old bookmark will redirect.
+
+Send hosts a shorter action list: identify every series they own, replace its join details, send calendar updates, verify a guest copy, and rehearse their first multilingual session. Give support agents a lookup keyed to meeting owner and event class rather than publicly distributing private URLs. Train them to distinguish a join failure from a missing translated-caption entitlement, unsupported language direction, muted audio, or a recording-permission issue. They should know when to escalate a privacy question instead of suggesting an unauthorized workaround.
+
+Guests need a separate, concise invitation note in a language they can use. Explain whether sign-in is required, the tested join method, how to access the language option, and a support contact. If there is a fallback link, share it only when activated by the host through an approved channel; two live links in an initial invite can send attendees to different rooms. Provide a non-video contact route if a guest cannot enter either room. Never require an untested account creation path minutes before a client meeting.
+
+## When should we cut over, and how do we measure success?
+
+Choose a cutoff that leaves time to repair calendars before the next major recurring cycle. Freeze new *old-platform* meeting creation for the classes being moved only after hosts have the approved new template; do not block untouched classes. During the transition, route new invitations to the replacement while legacy series are converted by owners. Publish a live status by meeting class—ready, pilot, blocked, migrated—without exposing meeting titles or links. Keep the old service licensed and accessible for the agreed fallback window, subject to contract and data-policy approval.
+
+On cutover day, monitor the first occurrences of migrated series, not just the admin console. Check join success for external participants, activation of required language modes, accessibility incidents, support queue themes, missing calendar updates, and records created as expected. Use counts from your own support and meeting logs; do not interpret silence as proof of inclusion. Invite anonymous or private feedback from affected participants. A single unresolved critical-access failure can outweigh dozens of routine joins.
+
+Review after the first cycle and again before the old service's cancellation deadline. Confirm that every outstanding series has an owner, that old links have an approved disposition, that recordings and holds remain retrievable, that new retention settings match the signed policy, and that incident tickets are closed or risk-accepted by the appropriate authority. Sunset is a separate decision from launch. No one should cancel a contract simply because new meeting creation has stopped.
+
+## Can we use a one-page migration and rollback template?
+
+Copy this into your internal change record and fill every blank with an owner or an explicit “not applicable.” The template describes process, **not** an automated migration script or a promise that vendors support any particular export or integration.
+
+| Decision field | Entry to complete before launch |
+| :--- | :--- |
+| Scope and change owner | Meeting classes in scope: ___; excluded classes: ___; decision owner and backup: ___ |
+| Language/access baseline | Required live and post-meeting access by audience and device: ___; named reviewer: ___ |
+| Inventory | Calendar series owners: ___; externally published links: ___; record systems and holds: ___ |
+| Vendor readiness | Purchased edition/policies tested: ___; guest join evidence: ___; DPA and retention approval: ___ |
+| Pilot evidence | Test dates and participants: ___; hard gates passed: ___; open issues and retest owner: ___ |
+| Calendar and communication | Updates sent by: ___; recipient verification: ___; guest instructions: ___; support route: ___ |
+| Cutover and overlap | New-meeting start: ___; legacy-series update deadline: ___; old-service access end: ___ |
+| Rollback authority | Who can declare rollback: ___; decision window: ___; procurement extension contact: ___ |
+| Records disposition | Export/retention owner: ___; access verification: ___; deletion or hold sign-off: ___ |
+
+For **each critical meeting class**, write a rollback card with a trigger, a contact tree, and a permitted fallback. Example: “If an invited guest cannot obtain the required translated text in the scheduled room, the host pauses substantive discussion, contacts support, and moves only after all attendees receive an approved replacement link; if the alternative is not accessible, reschedule and provide the agreed interpretation path.” That is an illustrative procedure, not a universal service-level guarantee. Specify how confidentiality and consent are maintained when moving rooms.
+
+Rollback is not just switching the default button back. Reissue calendar invitations from the authorized organizer, tell attendees which URL is authoritative, preserve any records already created in the new service, and keep deletion or legal-hold obligations active in **both** environments. Record the incident, its participants' impact, the owner of remediation, and the conditions for another attempt. If the outgoing contract has expired or its old room is unavailable, rollback to it is impossible; secure an alternative before treating it as a contingency.
+
+## What should a realistic migration example look like?
+
+Imagine a regional nonprofit with weekly multilingual volunteer briefings, monthly donor calls, and occasional confidential case reviews. This is an illustrative workflow, not a claim about any vendor's capacity, pricing, or migration features. The team inventories its invitations and finds that a shared mailbox owns the volunteer series, individual fundraisers own donor invites, and a third party owns the case-review calendar. The same person who can edit the shared mailbox cannot update the third party's invitations.
+
+Its access matrix shows that volunteer attendees read translated captions live, a donor needs same-language captions, and case reviews require a qualified interpreter. Rather than moving everything on one Friday, the nonprofit pilots a volunteer briefing with approved sample content and guests joining from their normal devices. It separately verifies that the donor's caption path works, then asks the third-party case-review organizer to keep the existing interpretation process until a new arrangement is approved. A successful volunteer pilot does not certify confidential case reviews.
+
+The records owner learns that an old recording archive contains captions needed for training and that its retention schedule outlasts the meeting subscription renewal. Procurement arranges an authorized access period while records tests a permitted export; nobody claims that moving the video automatically preserves its caption tracks. Hosts update calendar series, the service desk verifies a recipient copy, and guests receive the tested join instructions. If the first volunteer session fails its language-access gate, the host follows the approved fallback and the team defers the next series. Only after records and legal sign off does the organization close the old account.
+
+This example illustrates the critical asymmetry: a new meeting can be perfect while a legacy invitation or archive still excludes someone. Track *both* the forward path and the past obligations. Your organization's actual events, contracts, and accessibility decisions—not this example—determine its timeline.
+
+## FAQs: what tends to go wrong after the announcement?
+
+### Can we keep the old platform for a few meetings?
+
+Yes, if procurement and privacy approve the overlap and hosts clearly identify which link is authoritative. A split by meeting class is often safer than forcing a specialized or high-stakes session into an unproven workflow. Set an end date or review date for each exception, an owner for its records, and a support path. “Temporary” should not mean an unmanaged second platform forever.
+
+### Will old recordings and transcripts follow us?
+
+Do not assume so. Export formats, captions, permissions, and retention are separate questions; an exported video may lack the text or viewer entitlements that made the original useful. Obtain approved vendor instructions for the actual record type, test retrieval and accessibility, and retain the original when legal hold or policy requires it. Document what was not transferable and who owns continuing access.
+
+### Do we need to replace every calendar invitation?
+
+Review every invitation **in scope**, including recurring exceptions and externally owned events. The owner of the calendar event should use the supported update process and verify that recipients received the corrected join information. Changing a meeting default or installing a new calendar add-in does not prove that invitations already sent contain the new URL. A published link may require a separate content-owner change.
+
+### What if translated captions work for employees but not guests?
+
+Treat guest access as an unmet requirement for any meeting that needs it. Check the actual guest identity, policy, edition, language direction, and device against official documentation and your pilot evidence. Do not ask an outside person to bypass their organization's controls. Keep the old approved path, provide a vetted interpreter or another approved accommodation, or reschedule until a compliant solution is verified.
+
+### Should we cancel the incumbent service immediately after cutover?
+
+No. First verify migrated meetings, outstanding old invitations, recording access, legal holds, deletion duties, and the contract notice period. Only the designated owners can decide when the legacy environment is safe to retire. If a rollback depends on that service, its availability must be confirmed **before** the new default goes live.
+
+### How do we know the migration is finished?
+
+Finish is an evidence-backed sign-off, not a date on a slide. Each in-scope series has a verified owner and link, affected participants have an accepted live access path, required records remain accessible or are lawfully disposed of, open incidents have owners, and the rollback window is formally closed. Then tell hosts where future meetings belong and tell records staff which system holds historical material. Anything still unknown stays visible on the exception register.

@@ -1,0 +1,181 @@
+---
+title: "How much delay should I expect from real-time voice translation in a meeting?"
+description: "A buyer's guide to measuring the delay people actually experience with translated speech and captions, rehearsing turn-taking, and comparing vendors without invented speed guarantees."
+pubDate: 2026-11-10
+category: "Translation"
+author: "The Ollasync team"
+readTime: 21
+takeaways:
+  - "There is no universal seconds-or-milliseconds promise: measure from a specified source event to a specified listener event in the actual meeting configuration."
+  - "Time first output and complete usable output separately; translated captions and translated speech are different endpoints."
+  - "Rehearse both language directions with real participants, record slow and failed turns as well as typical ones, and set acceptance limits for your own meeting before seeing results."
+  - "A comfortable multilingual meeting needs an explicit handoff rule: wait until listeners receive the completed translation before asking them to answer."
+keywords: ["real-time voice translation delay", "meeting translation latency", "translated speech lag", "multilingual meeting turn taking", "measure live translation latency"]
+sources:
+  - url: "https://support.google.com/meet/answer/16221730?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Speech Translation is delayed a few seconds for completeness; documentation describes consent, eligibility, caption delays, language-detection errors, network sensitivity, and advice to wait for the translation indicator."
+  - url: "https://support.google.com/meet/answer/10964115?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Translated captions are a separate feature with edition, language rollout, and beta-quality caveats."
+  - url: "https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings"
+    publisher: "Microsoft Support"
+    accessDate: "2026-11-10"
+    claim: "Distinguishes live captions and translated captions, documents meeting licensing and spoken-language settings, and says ordinary captions are not saved."
+  - url: "https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getStats"
+    publisher: "MDN Web Docs"
+    accessDate: "2026-11-10"
+    claim: "WebRTC connection statistics are available to applications, but do not by themselves measure application-level translation completion."
+related:
+  - "how-live-voice-translation-works-in-class"
+  - "how-to-test-live-translation-accuracy-before-a-meeting"
+  - "how-do-i-run-a-bilingual-business-meeting-without-a-human-interpreter"
+---
+
+## What is a realistic answer before I run a test?
+
+Expect a **noticeable pause**, not lip-synced conversation, when a person hears another person's words translated into speech. The amount varies with the speaker's phrasing, language pair, equipment, connection, output mode, and product behavior. A caption may begin while a sentence is still underway; a spoken rendition may wait for enough meaning to become clear and then take time to play. Neither the first fragment on screen nor the first syllable in a headset guarantees that the listener has received the *point* of the sentence.
+
+Google's own [Meet Speech Translation help](https://support.google.com/meet/answer/16221730?hl=en) says translations are **“a few seconds delayed for completeness.”** That is a useful expectation for that documented feature, not a benchmark for every vendor, language, device, or utterance. Google also advises waiting until the translation symbol on the speaker's tile disappears before responding. Its help page warns of possible caption delays, language-identification errors, and quality differences with poor connectivity. None of those statements supplies a guaranteed maximum, a percentile, or an Ollasync performance figure. Do not turn “real time” into a made-up millisecond service level.
+
+If you're choosing a meeting product, ask a more actionable question: **When does each listener have enough translated information to answer correctly, and how often does that moment arrive too late for this particular conversation?** Measure that in the room and network conditions you will use, then decide what your team can tolerate. This article provides an original stopwatch worksheet and a turn-taking rehearsal, not a laboratory ranking or a promise about an untested product.
+
+This is distinct from [how live translation works in an online class](/blog/how-live-voice-translation-works-in-class), which walks through recognition, translation, and delivery for a largely one-way lesson. It is also distinct from [testing whether a client-call translation preserves meaning](/blog/how-to-test-live-translation-accuracy-before-a-meeting). Here the buying decision is about **elapsed time, interruptions, and who gets the floor** in a two-way meeting. Accuracy still matters: an earlier but unusable output is not an operational win.
+
+## Which delay am I actually measuring?
+
+A single number labeled “latency” can describe incompatible things. Before opening a stopwatch, write an event at the source end and an event at the receiving end. A useful source event is **the moment the speaker finishes a short, predetermined thought**. A useful receiving event is **the moment the intended listener has received a complete, intelligible rendering of that thought**. The difference is a practical completion delay for turn-taking. Record first visible or audible output separately. Do not combine these into a single “translation speed” score.
+
+Three measurements answer different questions:
+
+| Measure | Start | Stop | What it tells the meeting owner |
+| --- | --- | --- | --- |
+| First-output delay | Speaker finishes a marked thought | First relevant translated word appears or is heard | Whether the system appears responsive; not whether the answer is ready |
+| Usable-completion delay | Speaker finishes that thought | Listener receives its complete meaning in the chosen mode | Whether a safe handoff to the next speaker is possible |
+| Response-ready delay | Speaker finishes that thought | Listener signals that they can answer, after output completes | Actual conversational waiting, including reading, listening, and clarification |
+
+Some products stream before the speaker finishes. If first output arrives before your chosen start event, record **“before endpoint”** and note the moment rather than forcing a negative delay into a chart of post-speech waits. For a long sentence, also note total speaking duration: a listener may receive a partial translation during the utterance and still wait for the final clause. For voice, mark completion when the synthesized audio has actually played to the point needed for an answer, not when a vendor says processing finished. For captions, mark it when the relevant final text is visible long enough to be read; an early partial that later changes is not final.
+
+**Who presses the watch matters.** Two people with separate clocks cannot produce a precise difference merely by subtracting their wall-clock times. In a low-tech rehearsal, put the timekeeper beside the receiving participant and let them watch the source speaker's visible finish and the receiver's screen or speaker, where practical. A camera view or approved local recording can help review ambiguous turns, but consent and organizational policy come first. When the remote source finish is not directly observable, have a neutral timekeeper watch both views on a controlled setup, or label the measurement as an approximation. A watch measures the observed meeting experience; it does not isolate server processing.
+
+If you need instrumentation-grade figures, ask vendors for event definitions, synchronized timing, sample distributions, both language directions, and how missed outputs are counted. Stopwatch observations are not a vendor SLA.
+
+## Why does translated audio trail the original conversation?
+
+The journey has several distinguishable parts. A microphone captures speech; the meeting sends it across a network; recognition may produce text or another intermediate representation; a translation system chooses target-language words; a voice-output system generates audio if requested; and the application sends that output to the listener's device. The precise implementation varies by vendor: some architectures do not expose or even use a discrete, user-visible text stage. The buyer can nevertheless observe where delays **might** arise without claiming knowledge of a vendor's internal model.
+
+**Network and playback delay** affect the original call before translation begins. Wi-Fi interference, overloaded links, geographically distant participants, audio buffering, Bluetooth devices, and local playback can all change when the source is heard. A network round-trip number is not the same as one-way mouth-to-ear time, and neither equals the time until a complete translated reply is available. Browser WebRTC [connection statistics](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getStats) may help an application diagnose connectivity; a buyer should not present a connection statistic as a measurement of translated speech completion. Compare the original-language path and translated path in the same call to identify whether the whole call is struggling, but remember that two listeners may have different routes.
+
+**Speech segmentation and recognition** add a different sort of waiting. The system must decide whether a speaker has completed a unit of meaning. A speaker who says “We can ship on Friday—no, *next* Friday, provided approval arrives” gives the translator important information late. Starting immediately may require revision; waiting may improve completeness at the cost of response time. Silence detection, hesitations, crosstalk, acronyms, unfamiliar names, and corrections can change the behavior. This is not simply an internet-speed problem. A faster connection cannot reveal a verb the speaker has not yet said.
+
+**Translation and voice rendering** may be incremental or may wait for more context. Languages with different word order can make a premature rendering misleading. In audio mode, the translated words still have to be *spoken*: a short source phrase may expand in the target language, and speech playback occupies time even after processing has finished. If the application plays original and translated audio together, the listener may also need a moment to distinguish them. If it ducks or replaces the original, test whether participants can hear an interruption. Ask which controls the listener has rather than assuming that every translated-audio interface behaves alike.
+
+**Human comprehension** completes the operational chain. A listener reading changing captions on a small phone may wait longer than a listener viewing stable text on a laptop, even if the first token appeared at the same instant. A person listening to the entire translated utterance may take a beat to formulate a response. That's why “model response time,” “time to first caption,” and “time to a safe reply” belong in different columns. Don't blame the engine for every pause, but don't erase the pause from the meeting owner's decision either.
+
+## Can captions feel faster than translated speech?
+
+Sometimes, especially when text appears incrementally while speech output waits or plays back. **Faster first output is not necessarily faster usable meaning.** A caption may display “we approve” and later change after the negation or condition arrives. An audio track may sound slower because you must hear a whole phrase, yet be easier to follow when someone is presenting slides. You need two mode-specific observations, not an abstract winner.
+
+Run captions and voice tests separately on the same speakers, language direction, devices, and representative utterances. For captions, note time to first text, time to stable usable text, whether the last words revise, and whether the user can read the content without missing the speaker or shared screen. For voice, note time to first translated sound, time to the complete audible thought, and whether a reply spoken during playback masks the ending. Where both modes run together, test that configuration too: the fastest first caption cannot compensate for a listener whose audio is still finishing a different clause.
+
+Accessibility changes the question. Same-language captions, translated subtitles, and translated speech are different experiences, and no single mode suits every listener. Give participants control where the product permits it; do not disable an accessibility accommodation to improve a timing score. Ask a user of that accommodation whether the *meeting* is workable, not merely whether a stopwatch looks good. In a meeting where participants need to refer to names, figures, or action items, stable written text can complement audio, but check that both actually express the same final meaning.
+
+## How do I run an original stopwatch rehearsal?
+
+Use the following worksheet as an **operational template, not published performance data**. Pick the upcoming meeting type: a small bilingual planning call, a training Q&A, or a larger briefing. Test with the account tier, geographic locations, language directions, participant devices, output settings, and network types expected on the day. Use safe fictional content instead of actual customer data. Keep the host and listener roles the same as the real meeting, including whether a guest can enable translation without an organizer's help.
+
+Before any run, decide your own acceptance rules in plain language. For example: “The Spanish-speaking participant must be able to hear the full scheduling question before the English-speaking chair gives the floor to anyone else,” and “If a translated correction arrives after a decision is recorded, stop and repeat the decision.” You may choose a numeric maximum for completion delay, but **that number belongs to your organization and this meeting**. It is not a population norm, an industry standard, or a claimed capability of Ollasync, Google Meet, Teams, or another vendor. Write it down *before* seeing the demonstration so that the result cannot move the goalposts.
+
+### Worksheet: one row per listener and turn
+
+Copy this grid into an approved meeting note. Use a simple stopwatch with lap times and label anything the observer could not directly see or hear. Blank cells are better than invented precision.
+
+| Field | What to enter |
+| --- | --- |
+| Run ID and setup | Date, product, plan or account eligibility, language direction, caption/voice mode, device, headset, location and connection type |
+| Speaker and listener | Roles and who observes each endpoint; note if observer is fluent in the listener's language |
+| Prompt class | Question, correction, number with unit, conditional decision, or interruption; use fictional words |
+| Source finish | Stopwatch lap when the marked thought ends; note if this was estimated from a remote feed |
+| First relevant output | Lap when target text first appears or translated audio starts; mark “before finish” if applicable |
+| Usable completion | Lap when complete relevant target text is stable or complete audible meaning has played |
+| Listener ready | Lap when the listener signals they have enough information to respond |
+| Unexpected event | Wrong language, missing output, caption rewrite, double audio, overlap, reconnection, or a requested repeat |
+| Outcome | Within your predeclared limit, outside it, or invalid test; record why |
+
+For each turn, subtract the source-finish lap from the usable-completion lap only when the observer saw both endpoints on a shared time base. A phone watch does not reveal microseconds; report approximate seconds with the uncertainty of human reaction. If you repeat a failed turn after changing a setting, keep the original row. Deleting the slow attempt makes the experience look smoother than it was. Log **no-output turns** as failures, not as zero delay or missing data. If the listener guesses from the original language, asks the speaker to repeat, or reads a shared slide instead of receiving the translation, record that fact rather than crediting the translator.
+
+For a useful rehearsal, include a brief greeting; a longer question that ends with a condition; a name and number; a correction; a reverse-language reply; a pause followed by a quick response; and one controlled interruption. Repeat several of these with ordinary speaking pace rather than a scripted, artificially slow delivery. Don't try to manufacture a stress-test accent; invite actual participants to use their usual speech. Change one condition at a time when diagnosing an issue: network, microphone, language setting, mode, or pacing. Otherwise you cannot say which change helped.
+
+### Worked example: how to interpret a row, not a benchmark
+
+Suppose a fictional chair finishes “Can we review the draft after the legal team approves the scope?” at the observer's **00:20** lap. A translated caption first shows relevant words at **00:21**, then includes the approval condition at **00:24**. The listener signals readiness at **00:26**. The recorded post-finish delays are approximately one second to first relevant caption, four seconds to usable completion, and six seconds to response readiness. Those are **illustrative arithmetic in a made-up rehearsal**, not observed vendor performance, predicted averages, or recommended thresholds. The actual insight is that asking the listener at 00:22 would have skipped the condition. If the caption initially suggested an unconditional review, annotate the revision and check meaning as well as time.
+
+Imagine a separate voice-mode row with a prompt of different length. Its values are not directly comparable to the caption row. Repeat the *same class of prompt* with each output mode and let the intended user decide whether audio or text supports participation. Even with identical wording, order effects, network changes, and human timing error limit a casual comparison. Don't announce that a product “wins by three seconds” on the strength of one row.
+
+## What does a usable turn-taking protocol look like?
+
+A translated meeting needs a floor rule: **one speaker finishes a thought; everyone waits for the translated output; the listener acknowledges receipt; then the next speaker answers.** This prevents a follow-up while the first question is still playing in someone's headset.
+
+For speech output, decide how listeners know translation has finished. In Google Meet Speech Translation, Google explicitly recommends waiting until the translation symbol on the speaker's tile disappears. That is a product-specific visible cue, not a universal feature. On another platform, use a listener's verbal “ready,” a hand raise, or the facilitator's check-in. If the UI exposes no reliable completion indicator, the listener's confirmation is more trustworthy than the chair's assumption that silence means completion. For caption users, ask whether the consequential clause is stable and readable before moving on.
+
+Practice a **question–wait–answer–wait–confirm** loop. Ask one question with its context; finish it without adding a second question; allow the translated version to complete; take one answer; wait for the reverse translation; then summarize what each side understood. At decision points, state the conclusion and ask the other side to confirm it in their language. For agendas with multiple stakeholders, name the next speaker before the handoff. One voice at a time is particularly valuable when automatic language recognition and speaker identification have to handle rapid switches.
+
+If someone interrupts, pause, let the queued translation finish, and invite a short restatement. An overlap may yield two partly translated turns in an unexpected order. If the point was a correction—“not Tuesday, Thursday”—repeat the corrected proposition and confirm the final day.
+
+A briefing's bundled questions create fewer handoffs than a rapid discussion. Test the *meeting format*, not only the feature toggle. [A bilingual meeting facilitation guide](/blog/how-do-i-run-a-bilingual-business-meeting-without-a-human-interpreter) covers agenda ownership and decision confirmation beyond timing.
+
+## What should I ask vendors without inventing a speed ranking?
+
+Compare **documented product behavior first**, then compare your own measured experiences under the same conditions. Google Meet's [Speech Translation documentation](https://support.google.com/meet/answer/16221730?hl=en) describes translated voice, eligible plans and meeting usage limits, participant consent, language recognition, potential caption delays, and translation that trails by a few seconds for completeness. It also says translation quality may vary with poor network connectivity and recommends waiting for its indicator to disappear. Check current eligibility and controls with your account before timing a call. A feature missing because of consent, account permissions, device, or regional availability is an availability result, not a slow timing result.
+
+Google's separate [translated-captions instructions](https://support.google.com/meet/answer/10964115?hl=en) document a **text** feature with its own Workspace-edition list and warn that some languages roll out gradually or are in beta. A test of translated captions is not evidence about Speech Translation's audible delay, and a language shown in one list does not prove identical behavior in every mode. On a call using both captions and translated speech, Google's documentation says captions can follow the language of the audio and may sometimes be delayed or show identified-language errors. Record which settings were actually on.
+
+Microsoft's [Teams live captions and translated captions documentation](https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings) distinguishes ordinary live captions from translated captions, explains spoken-language settings, and describes license conditions for translated captions in meetings. That page is not evidence of a synthesized translated-audio delay. If your buying requirement is to *hear* another language, don't substitute a Teams caption demo for a voice demo. If the requirement is readable text, compare final usable captions rather than a voice vendor's first syllable. Features and entitlements may change; consult the current official documentation and your own admin controls.
+
+Ollasync offers live multilingual meeting translation with caption and spoken-audio choices; see [meeting features](/features/video-meetings) for the product context. We do **not** have a published, independently verified per-language completion-time distribution or a maximum delay to cite here. Neither should another vendor be assigned a precise speed merely because its product is described as “real time.” Put Ollasync, Meet, Teams, and any specialist service through the same scenario worksheet if their modes meet the requirement. A fair contrast can say “this documentation supports voice,” “that page documents captions,” and “this particular rehearsal passed our rule”; it cannot claim a cross-vendor milliseconds winner without comparable evidence.
+
+Send vendors a compact written request: Which output mode is being quoted? How is delay defined (first token, completed thought, or audible playback)? What languages and directions were tested? Did the test include remote devices, consent and join flow, real networks, overlapping speech, and missing outputs? What happens when translation is still playing and the next person talks? Is there a completion cue, and can listeners mute or adjust original audio? Can the vendor share an official measurement method or contractual remedy, rather than a promotional average? Answers to these questions are more valuable than a number printed without context.
+
+## What should I do when the wait exceeds our limit?
+
+Start with the cause you can observe. If original speech and translation both arrive late, check the meeting connection, headset, audio routing, and network before blaming language processing. If original speech arrives normally but translated output appears only after a long clause, try shorter complete thoughts and a clear pause. If captions appear but voice is still playing, consider whether that listener would prefer text; do not impose text on someone who needs audio. If one direction fails, check the source-language setting, speaking conditions, and available language direction rather than assuming that reversing the pair is equivalent.
+
+When the meeting is already live, **stop consequential decisions** until the listener confirms the full translated proposition. Use chat or a shared document to pin a number, date, or next action and ask the recipient to restate it. If translation never becomes usable, switch to the agreed fallback or reschedule with a qualified human interpreter. Safety, medical, legal, financial, and binding-contract conversations may require specialized review irrespective of how good the timing looks.
+
+## Frequently asked questions
+
+### Is there a standard number of milliseconds for “real-time” voice translation?
+
+Not one that establishes what every meeting participant will experience. A vendor can measure different endpoints and publish a number for one test setup; that does not automatically describe end-to-end delivery of a complete translated thought to your listener. Google documents its own Speech Translation as a few seconds behind for completeness but does not provide a universal maximum in the help page cited here. Set an acceptance limit for *your* call, specify its endpoints, and measure the actual configuration. A limit you choose is not a statistical expectation.
+
+### When should the next speaker start talking?
+
+After the listener has received the complete translated thought and signals readiness, not merely after the source speaker stops or the first caption appears. For Google Meet Speech Translation, Google recommends waiting for its translation symbol to disappear. For other interfaces, use a listener acknowledgment or a clearly observed completion cue. An early response may cover the end of synthesized audio and leave the first speaker thinking the question was answered when the condition was never heard.
+
+### Does a good network eliminate translation delay?
+
+No. A stable connection helps transport and can improve translation quality, but the speaker still has to provide enough context, the system has to render the target language, and spoken output takes time to play. Conversely, a poor network can make an otherwise workable translation experience worse. Check original audio and translated output in the same session to distinguish a general call problem from an output-specific wait; do not equate ping or WebRTC connection statistics with the listener's completion time.
+
+### Should I time from the first spoken word or the end of the sentence?
+
+Either can answer a defined question, but don't mix them. Start-to-first-output is useful for responsiveness; end-of-thought to usable completion helps a chair decide when to hand over the floor. If the system streams before the thought ends, log that early output separately. Include the source duration when comparing turns of different lengths. A single unlabeled “delay” number conceals whether the listener waited for the network, a clause ending, translated playback, or their own reading time.
+
+### What if captions appear while translated audio is still playing?
+
+Record each mode separately and ask the listener which one they actually rely on. A caption's first words may still be revised; the voice may still be delivering the final condition. If both are enabled, wait for the mode that the intended participant needs before handing them a decision. Do not score a voice meeting as successful because a different participant saw text first. If the modes disagree on a material point, pause and verify the source statement rather than selecting the faster version.
+
+### Can I choose a threshold such as five seconds for procurement?
+
+Yes, as an **internal, predeclared decision rule**, if five seconds genuinely fits the turn length and business workflow you're testing. It is not a benchmark, normal distribution, guaranteed vendor result, or universal cut-off. Define whether the rule applies to first output, usable completion, or listener readiness; decide how to treat missed outputs and slow consequential turns; and include the same languages and modes in each vendor's rehearsal. An organization with longer presentation turns may tolerate a different wait than a fast-paced discussion.
+
+### Does a successful rehearsal prove the client call will be smooth?
+
+No. It shows that the tested configuration worked for those prompts, people, and conditions. A different accent, connection, account permission, spontaneous correction, or important new term may change the experience. Keep the worksheet, test both directions, establish a fallback, and ask the client to confirm important conclusions. If your primary question is whether translated content preserves meaning rather than how long it takes, use the separate [live-translation accuracy preflight](/blog/how-to-test-live-translation-accuracy-before-a-meeting).
+
+## What decision can I make after the rehearsal?
+
+Choose **go** when the actual participants can receive complete, correct-enough information within your predeclared meeting-flow rule in both required directions, and can follow the wait-and-confirm protocol. Choose **conditional go** when a simpler speaking format, a caption alternative, or a moderator makes the tested meeting workable *and* the relevant participants accept that format. Choose **no-go** for an unmeasurable endpoint, recurring missing or late consequential output, a language or device configuration that is unavailable, or stakes that require a qualified human interpreter. Record why; don't convert a subjective “felt live” impression into an invented product guarantee.
+
+The purchase question is not “which logo has the smallest unsourced latency number?” It is “can our people finish a thought, hear or read its full translation, and answer without losing the floor?” A stopwatch with explicit endpoints, a listener who can confirm meaning, and a rehearsed handoff give you an answer you can use.

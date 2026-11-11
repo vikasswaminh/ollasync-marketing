@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../../../layouts/Base.astro';
+import Breadcrumb from '../../../../../components/Breadcrumb.astro';
+import { getTopicPosts, topicPageHref, TOPIC_PAGE_SIZE, topics, type BlogTopic } from '../../../../../data/blogTopics';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return (Object.keys(topics) as BlogTopic[]).flatMap((topic) => {
+    const topicPosts = getTopicPosts(posts, topic);
+    const pages = Math.ceil(topicPosts.length / TOPIC_PAGE_SIZE);
+    return Array.from({ length: Math.max(0, pages - 1) }, (_, index) => ({
+      params: { topic, page: String(index + 2) },
+      props: { posts: topicPosts, currentPage: index + 2 },
+    }));
+  });
+}
+
+const topic = Astro.params.topic as BlogTopic;
+const meta = topics[topic];
+const posts = Astro.props.posts as Awaited<ReturnType<typeof getCollection<'blog'>>>;
+const currentPage = Astro.props.currentPage as number;
+const totalPages = Math.ceil(posts.length / TOPIC_PAGE_SIZE);
+const pagePosts = posts.slice((currentPage - 1) * TOPIC_PAGE_SIZE, currentPage * TOPIC_PAGE_SIZE);
+const date = (value: Date) => value.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title={`${meta.title} articles — Page ${currentPage}`} description={`Page ${currentPage} of ${totalPages}: more ${meta.title.toLowerCase()} guides and practical articles. ${meta.description}`}>
+  <section class="section topic-hero">
+    <div class="container">
+      <Breadcrumb items={[{ label: 'Blog', href: '/blog/' }, { label: meta.title, href: topicPageHref(topic, 1) }, { label: `Page ${currentPage}` }]} />
+      <p class="mono topic-label">Topic archive · Page {currentPage}</p>
+      <h1>{meta.title}: more articles</h1>
+      <p class="lead">Continue exploring {meta.title.toLowerCase()} through focused guides, practical decisions and real-world use cases.</p>
+      <a class="topic-product" href={meta.product.href}>{meta.product.label} →</a>
+    </div>
+  </section>
+  <section class="section topic-content">
+    <div class="container">
+      <h2>Articles · Page {currentPage} of {totalPages}</h2>
+      <div class="topic-grid">
+        {pagePosts.map((post) => <article class="topic-card">
+          <p class="mono topic-category">{post.data.category} · {date(post.data.pubDate)}</p>
+          <h3><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+          <a class="topic-read" href={`/blog/${post.slug}/`} aria-label={`Read ${post.data.title}`}>Read article →</a>
+        </article>)}
+      </div>
+      <nav aria-label={`${meta.title} pages`} class="topic-pagination">
+        <a href={topicPageHref(topic, currentPage - 1)} rel="prev">← Previous</a>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => n === currentPage
+          ? <span aria-current="page" class="current">{n}</span>
+          : <a href={topicPageHref(topic, n)} aria-label={`Page ${n}`}>{n}</a>)}
+        {currentPage < totalPages && <a href={topicPageHref(topic, currentPage + 1)} rel="next">Next →</a>}
+      </nav>
+      <p class="topic-back"><a href="/blog/">← Browse all blog articles</a></p>
+    </div>
+  </section>
+</Base>
+<style>
+  .topic-hero { padding-bottom: 48px; }
+  .topic-hero h1 { max-width: 850px; font-size: clamp(36px, 5vw, 64px); line-height: 1.1; margin: 12px 0 22px; }
+  .topic-hero .lead { max-width: 760px; }
+  .topic-label, .topic-category { color: var(--iris); font-size: 12px; }
+  .topic-crumbs { display: flex; gap: 12px; margin-bottom: 40px; color: var(--muted-2); }
+  .topic-crumbs a, .topic-product, .topic-read, .topic-back a { color: var(--iris); }
+  .topic-product { display: inline-block; margin-top: 22px; }
+  .topic-content { padding-top: 20px; }
+  .topic-content h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 12px; }
+  .topic-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+  .topic-card { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--panel); }
+  .topic-card h3 { font-size: 19px; line-height: 1.35; margin: 14px 0 10px; }
+  .topic-card p:not(.topic-category) { font-size: 14px; color: var(--muted-2); line-height: 1.6; }
+  .topic-read { margin-top: auto; padding-top: 16px; font-size: 13px; }
+  .topic-pagination { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 36px; }
+  .topic-pagination a, .topic-pagination .current { padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; }
+  .topic-pagination .current { background: var(--panel); font-weight: bold; }
+  .topic-back { margin-top: 36px; }
+  @media (max-width: 900px) { .topic-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .topic-grid { grid-template-columns: 1fr; } }
+</style>

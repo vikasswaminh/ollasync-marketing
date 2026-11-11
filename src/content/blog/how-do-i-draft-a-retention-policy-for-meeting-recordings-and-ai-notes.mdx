@@ -1,0 +1,162 @@
+---
+title: "How do I draft a retention policy for meeting recordings and AI notes?"
+description: "A fillable, artifact-by-artifact meeting retention policy worksheet covering owners, durations, access, exports, backups, deletion, holds, exceptions and review."
+pubDate: 2026-11-10
+category: "Compliance"
+author: "The Ollasync team"
+authorRole: "Security & product"
+readTime: 22
+keywords: ["meeting recording retention policy", "AI notes retention policy template", "meeting transcript deletion schedule", "recording policy worksheet", "AI meeting notes governance"]
+takeaways:
+  - "Draft the policy around each artifact and its actual storage path, not a single setting called meeting retention."
+  - "Leave durations blank until the records, privacy and legal owners approve a documented purpose and trigger for each class."
+  - "Test exports, backups, holds and downstream copies before promising deletion; distinguish a written policy from a product-enforced setting."
+---
+
+**Short answer:** Inventory what a meeting creates, appoint a records owner and a technical operator, then write a rule for each artifact: why it exists, who may access it, when its retention clock starts, the approved duration, where copies go, how deletion is executed and verified, and what happens under a documented hold. Use the fillable worksheet below to turn those decisions into an approved schedule. Leave the duration fields empty until the responsible people decide them; neither a vendor default nor a generic number from an article determines your obligations. Record any control your tools cannot enforce as a manual process or an unresolved gap, not as an implemented safeguard.
+
+This is a **policy-drafting task**, not procurement advice or a statement about Ollasync's retention controls. The [IT-buyer transcription guide](/blog/what-should-it-buyers-ask-before-enabling-ai-meeting-transcription/) helps buyers ask a vendor for evidence before enabling AI; [our cloud-transcript privacy article](/blog/are-cloud-ai-video-transcripts-safe/) describes exposure paths. Here the deliverable is different: a schedule that records owners, decisions, instructions and proof for the people who will operate meetings after purchase. This worksheet is not legal advice. Privacy, employment, accessibility, sector records, litigation and local recording requirements differ; have your legal and privacy teams determine which apply before adopting it.
+
+## What is the policy actually supposed to govern?
+
+Define the boundary before choosing a period. A meeting may create a video recording, audio-only recording, live captions, saved transcript, draft transcript, translated transcript, AI summary, action-item list, comments, searchable index, notification email and exported file. Some may not exist in your selected configuration. An organizer downloading a transcript can move it from a managed platform into a shared drive; a calendar invitation can contain a link rather than the content itself. Treat the destination and artifact as a pair. “Delete the meeting” is not sufficiently precise to describe any of these operations.
+
+Begin with the permitted meeting classes and their business purpose. For example, routine project meetings might need an approved decision record but not an indefinitely accessible replay. Training might need an accessible replay for a defined audience; a sensitive personnel discussion might not be recorded at all. These are drafting examples, not instructions to record or not record particular classes. Name a class owner who can say what value the artifact provides. If no purpose is established for a durable recording, consider whether to create it. Do not assume that a live caption displayed to a participant is automatically saved as a transcript; confirm the actual behavior for the specific service and setting.
+
+Write a scope sentence in the adopted document: “This policy applies to [managed tenants/workspaces], [meeting classes], [users and guests], [recording and AI features], and copies held by [listed systems]. It excludes [classes/contexts], which follow [other schedule or no-capture rule].” Add an effective date and policy version. The exclusions matter: a retention schedule for routine internal collaboration does not automatically resolve court preservation, regulated records, employee consultations or individual recording permissions. Maintain a separate inventory entry for personal meeting bots and third-party add-ons if they are allowed; if they are not allowed, document how the rule is communicated and monitored rather than claiming an untested technical block.
+
+### Who signs off on a meeting class?
+
+Assign separate responsibilities even when one person holds several roles. The business owner explains the purpose and minimum useful form; records management proposes classification and schedule; privacy assesses data minimization, notices and rights; legal determines applicable obligations and holds; IT maps storage and implements available settings; security verifies access and logs; the vendor contact supplies documented service behavior. A meeting organizer follows the published rules but should not silently create a new exception. The policy approver signs a version that identifies all unresolved dependencies. “Owner: IT” alone leaves no one responsible for the purpose or an export already outside the meeting service.
+
+## Which principles constrain the draft without supplying a magic number?
+
+Where the EU General Data Protection Regulation applies, its [primary text](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng) includes purpose limitation and data minimization (Article 5(1)(b)–(c)), storage limitation (Article 5(1)(e)), accountability (Article 5(2)), information to individuals about the retention period or criteria (Articles 13(2)(a) and 14(2)(a)), and appropriate security (Article 32). Article 30 addresses records of processing activities in specified circumstances; Article 28 covers processor arrangements. Articles 17 and 18 address erasure and restriction with conditions and exceptions. These provisions do **not** prescribe a universal meeting-recording period. Applicability, lawful basis, applicable exceptions and any separate recordkeeping duty need qualified review.
+
+A workable policy connects purpose to an observable expiration trigger. “Keep until no longer needed” is hard for an operator to calculate; “start when [event] occurs, retain for [approved duration], then perform [defined action]” is auditable. Possible triggers include meeting end, approval of final notes, completion of a training cohort, closure of a project, or the end of another defined event. Choose one per row and decide what happens when the trigger never arrives. Define whether the period starts on creation or on the trigger date, whether a changed meeting classification resets anything, and how staff will find the relevant date. Do not use the creation date for every category merely because it is easy to automate.
+
+Write the reason beside the duration: “We retain [artifact] for [purpose]; the owner approved [duration] after [trigger] on [date], considering [documented requirements].” If a requirement mandates longer preservation, identify the actual source and owner in your internal schedule rather than paraphrasing a generic compliance slogan. If several rules apply, legal and records teams decide precedence. A shorter operational need and a separate preservation duty may require restricted archival access rather than broad daily availability; the policy should say which copy serves which purpose.
+
+## How do I inventory artifacts before filling in the schedule?
+
+Run a harmless test meeting for every relevant configuration: recording on with transcription off, transcription on with recording off if supported, notes from a recording, and the approved caption or translation mode. Include a guest only if the deployment permits one. For each test, note what persists immediately, after the organizer leaves, after sharing, and after deleting the visible item. Ask administrators and the vendor about indexes, diagnostic logs, caches, subprocessors, exports and backup windows. Mark an artifact **not created**, **created and retained**, **transient with unverified persistence**, or **unknown**. Do not convert “not visible in the UI” to “not stored.”
+
+The Microsoft [Teams storage and permissions documentation](https://learn.microsoft.com/en-us/microsoftteams/tmr-meeting-recording-change) is a useful *product-specific* example: it describes recordings and transcripts stored in OneDrive or SharePoint and explains permissions. Microsoft's [Purview Teams retention documentation](https://learn.microsoft.com/en-us/purview/retention-policies-teams) concerns Teams messages and call logs and points readers to separate workload guidance for files. Its [SharePoint and OneDrive retention documentation](https://learn.microsoft.com/en-us/purview/retention-policies-sharepoint) describes file retention. A Teams message policy is therefore not proof that every meeting recording file or external export follows that rule. Check your actual license, settings, storage location and documentation date; no Microsoft behavior is asserted here for Ollasync or another product.
+
+For an AI note, inventory both the draft and the human-approved version. If a summary is pasted into a task tracker, its copy may be governed by the task tracker's schedule. If the model provider processes content, ask whether it keeps service logs or inputs and for what purpose; the answer may vary by plan and contract. Record a processor-held item separately from a tenant-visible file. If a provider cannot substantiate whether a copy exists or how it expires, write **unknown: evidence pending** and assign someone to obtain the answer. Publishing an expiry claim for that copy while the answer is unknown would overstate your control.
+
+### What counts as a separate copy?
+
+A new location, independent recipient, changed access model or separate deletion mechanism usually deserves its own row or linked sub-row. A downloaded MP4 and the hosted recording are not interchangeable: deleting one does not necessarily delete the other. A transcript attached to a recording may have different export and retention behavior from a separately downloaded transcript. An email containing a link is different from an email containing the complete summary. Where content is duplicated into a CRM, ticket, archive or employee file, identify the system of record and its owner; write down whether the copy is authorized and how its schedule relates to the meeting source. Include translated versions and corrections where they can persist independently.
+
+## Can I copy a fillable policy worksheet into our own document?
+
+Yes. Copy the following **draft**, replace every bracketed field and delete rows confirmed not to exist. The “duration” blanks are deliberate: no universal legal period or product default is supplied. If a field is unresolved, retain **UNKNOWN — owner [name], due [date]** rather than guessing. Approval means the named approvers accept the populated schedule and its documented gaps; it does not mean a platform automatically enforces the text.
+
+### Policy header and decision owners
+
+- **Policy ID / version / effective date:** [________] / [________] / [________]. **Last approved / next review:** [________] / [________].
+- **Scope / exclusions:** [tenants, meeting classes, participants, features, jurisdictions, systems: ________] / [excluded classes and governing policy: ________].
+- **Business purpose by meeting class:** [class: ________ | purpose: ________ | minimum artifact needed: ________ | prohibited capture, if any: ________]. Repeat for each class.
+- **Accountable policy owner:** [name/role: ________]. **Records owner:** [________]. **Privacy reviewer:** [________]. **Legal reviewer and hold authority:** [________]. **IT operator:** [________]. **Security/access reviewer:** [________]. **Vendor liaison:** [________].
+- **Approval:** [approver names/roles: ________ | signed date: ________ | outstanding evidence and risk acceptance: ________]. **Where staff find this policy:** [________].
+- **Notice and participant questions:** [approved notice location and owner: ________ | inquiry channel: ________]. Do not treat this entry as a substitute for applicable recording or privacy review.
+
+### Per-artifact schedule: repeat this row for every meeting class and location
+
+| Field | Fill in before approval |
+| --- | --- |
+| Meeting class and artifact | [________] / [recording, source transcript, translated transcript, AI draft, approved notes, action list, index, export, other: ________] |
+| Purpose and decision owner | [specific use: ________] / [role: ________] |
+| System, region and custodian | [primary location: ________] / [processor or downstream system: ________] / [operator: ________] |
+| Capture and access | [who may create: ________] / [who may view, edit, share, download and administer: ________] |
+| Trigger and duration | [clock-start event: ________] / [approved duration after trigger: ________] / [reason and approving source: ________] |
+| Action at expiry | [delete, anonymize, restricted archive or transfer: ________] / [operator or tested automation: ________] |
+| Copies and backups | [known exports and recipients: ________] / [backup location, restore behavior and purge path: ________] |
+| Hold and exceptions | [authority and hold marker: ________] / [resume rule: ________] / [exception register link: ________] |
+| Verification | [test date and environment: ________] / [evidence record: ________] / [next validation date: ________] |
+
+Include rows for **raw video/audio**, **saved transcript and speaker labels**, **translated transcript or subtitles**, **AI-generated draft**, **approved summary and decisions**, **action items distributed to other systems**, **search index or embeddings if applicable**, **downloaded or emailed copies**, **service/diagnostic artifacts if documented**, and **backups**. You can mark a row “not created in approved configuration” only when an owner verifies that statement. For transient materials with no tenant-side schedule, record the vendor's documented processing and deletion terms and who will recheck them; never imply that the tenant's timer reaches a provider's logs.
+
+### Operational rules to fill in beneath the table
+
+1. **Access:** [group membership approval: ________]; [guest access rule: ________]; [sharing/download rule: ________]; [admin/support access and audit review: ________]; [offboarding owner: ________].
+2. **Exports and downstream copies:** [allowed destinations: ________]; [who registers exports: ________]; [how recipients receive expiry instructions: ________]; [how copies are found and removed: ________].
+3. **Deletion:** [scheduled job or manual ticket: ________]; [frequency: ________]; [visible deletion and recycle-bin path: ________]; [index and processor follow-up: ________]; [evidence retained without meeting content: ________].
+4. **Backups and restores:** [backup operator: ________]; [documented backup expiry: ________]; [whether targeted erasure is possible: ________]; [post-restore re-deletion or suppression procedure: ________].
+5. **Holds and exceptions:** [request channel: ________]; [authorized approver: ________]; [scope and access restriction: ________]; [review date: ________]; [release approval: ________].
+6. **Rights and incidents:** [privacy request intake: ________]; [search and response owner: ________]; [incident contact: ________]; [coordination with legal/records: ________].
+7. **Review:** [cadence: ________]; [triggering changes: ________]; [test sample and success criteria: ________]; [approvers for revisions: ________].
+
+Keep this worksheet alongside an implementation register mapping each rule to a setting, script, ticket, contract clause or manual owner. A cell saying “automatic deletion” is not evidence that automation exists. For an unenforceable requirement, specify an interim manual action, due date and escalation path; if the interim arrangement cannot meet the approved requirement, do not enable that processing for the affected meeting class. The fillable artifact is a starting document, not an assertion that every organization can implement every row with its current software.
+
+## How should access be written into the retention policy?
+
+Retention controls *how long* material stays; access controls *who can use it while it stays*. Define roles by operation rather than “employees”: organizer, co-organizer, attendee, invited guest, records custodian, system administrator, support agent and approved downstream recipient. For each artifact specify view, edit, share, download, search and restore separately. A meeting invite is not necessarily an authorization to edit minutes or see the full recording. An approved executive summary may be shared more broadly than a speaker-attributed transcript. Conversely, someone who must correct a transcript may need temporary access to the source; record how that access expires.
+
+Choose how the access rule survives ownership changes. What happens when the organizer leaves, a guest link is forwarded, a team changes membership, or a file moves to another folder? List the groups and destinations that IT actually manages. Test the policy with a permitted user, an uninvited user and a former user. Where the platform offers no separate permission for a transcript attached to a video, do not write a promise of separate enforcement; use an alternate distribution workflow or narrow the approved use case. Log who approves unusual access and why. Avoid including full meeting content in an access ticket when a meeting ID and classification suffice.
+
+Consider two distinct restrictions: disabling the ability to make *new* copies and removing *existing* ones. An export prohibition may reduce future sprawl, but it does not retract a downloaded file. A short recording duration does little if an AI summary is automatically posted to a permanent channel. Name the downstream owner who will maintain the destination schedule, not merely the meeting organizer who pressed “share.” Where legal or accessibility needs call for a longer-lived approved deliverable, prefer creating a reviewed, appropriately scoped record instead of keeping unrestricted raw capture for everyone.
+
+## How do backups, exports and deletion become actionable instructions?
+
+Specify deletion at each layer. A user may remove a file from the visible library while a recycle bin, retention mechanism, search index or backup still contains it. Some systems preserve material after a user deletes it because a retention policy or hold applies. For each system, ask what “delete” means, who can reverse it, when normal users lose access, when recoverable copies expire, whether search results update, and what evidence the operator can retain. Separate **scheduled expiry**, **individual erasure request**, **incident cleanup**, and **hold release**: they have different authorization and priority paths. Never promise immediate irreversible removal unless the platform and contractual path actually support it.
+
+Record export rules as a chain of custody. Who may download or email content? Is an approved export registered with a source meeting ID, destination, recipient, purpose and expiry owner? Can the recipient add it to a system with a different schedule? If a participant legally makes an independent copy, the organization's policy may not control that copy; have counsel advise on appropriate notice and obligations. Do not describe deletion from the vendor tenant as deletion from every attendee's device. If uncontrolled exports are incompatible with your chosen policy, limit the use case or find a technical and operational arrangement you can verify.
+
+Backups need a separate line because they may be restored after the visible original expires. Obtain documented backup lifecycle and restoration behavior from the operator or vendor, including whether a specific item can be removed and how old content is prevented from reappearing in active search after a restore. A possible procedure is to maintain a minimal deletion ledger of artifact IDs, expiration status and restoration checks; the ledger itself needs restricted access and its own schedule. Do not retain the full transcript just to prove deletion. If targeted backup deletion is unavailable, record that constraint, the documented backup expiry process, access limits and the approver's decision. It is not honest to call the artifact fully erased at the visible-delete step.
+
+Run an end-to-end test with fictional meeting content: create recording and notes, share a permitted copy, export one artifact, delete the source at a simulated expiry, check what remains discoverable, and ask about restore behavior. Note the timestamp, tenant, plan, version, roles and destination. Repeat after a configuration or vendor change. Evidence might be a configuration snapshot, deletion job record and a vendor statement about inaccessible backup copies; a screenshot of an empty folder proves only that the folder looks empty to that user.
+
+## What if a hold or exception interrupts the schedule?
+
+A hold is a documented direction to preserve identified material, not a reason to turn every recording into a permanent archive. Define who can issue it, the meeting IDs or date range covered, the basis recorded by legal, the affected systems, how access is restricted, who checks it periodically and who authorizes release. Instruct operators to suspend conflicting deletion steps for the scoped artifacts, and confirm whether the actual platform can do that. If it cannot, arrange an approved preservation route before relying on the policy. The policy should not try to decide legal preservation questions itself.
+
+An operational exception is different: a training group wants an extended replay window; an organizer accidentally used the wrong meeting class; a customer contract imposes another requirement; a provider cannot meet a required purge action. Maintain an exception register with requester, artifact scope, purpose, proposed alternative, risk, legal/privacy/records approvals, expiry date and mitigation. Deny or escalate requests with no owner or expiration review. State whether an exception changes the retention clock or merely pauses action until a specified date. After release, calculate the remaining treatment under the approved rule; do not assume a hold automatically grants a new full duration.
+
+For a deletion or access request from an individual, route it to the privacy team rather than allowing a host to decide in isolation. The team may need to locate several copies, assess applicable rights and exceptions, coordinate with other people's interests and record the decision. A meeting involving multiple participants is not necessarily erasable in full merely because one participant asks. Equally, “we always retain meetings” is not an adequate substitute for evaluating a valid request. Track the request, systems searched, processors contacted and outcome without reproducing the sensitive meeting in the case log.
+
+### How do we handle an accidental recording?
+
+First stop further capture and sharing using the capabilities actually available, then notify the designated incident/privacy contact. Preserve only the information necessary to investigate; do not circulate the recording as a demonstration. Identify all artifacts and destinations, decide whether any preservation obligation applies, and coordinate remediation and communication under the organization's incident process. Record who authorized deletion and whether processors or export recipients need separate instructions. Review why the meeting class or organizer setting allowed the capture and update training or controls. This is a workflow to adapt, not a promise that any product can retract content already distributed.
+
+## How do we approve and maintain the finished policy?
+
+Turn the draft into a decision, not a forgotten template. Records and legal owners confirm classification and applicable duties; privacy checks the stated purposes, notices and rights workflow; the business owner confirms that each retained artifact is necessary; IT maps every rule to the actual selected configuration; security checks permissions and auditability. Have the approver explicitly acknowledge **unknown** rows. For a critical unknown, pause that capture mode until evidence exists. Publish a short organizer-facing companion: which classes may be recorded, who may start AI notes, where approved outputs go, and how to request an exception. Keep the full worksheet for operators who handle expiry and holds.
+
+Set a review date and event-driven triggers. Revisit the schedule after a new transcription provider, AI feature, storage location, integration, plan tier, backup design, workplace policy or legal requirement changes. Check whether the written rule and actual deletion jobs still agree; review a sample of expired artifacts and whether exports remain registered. Inspect exceptions and holds for stale approvals. Update the version, communicate changes to hosts and downstream owners, and preserve a narrow record of prior approvals for audit purposes under its own approved schedule. Do not let a migration silently convert a restricted recording into an unrestricted shared file.
+
+Measure the policy by outcomes, not by how many boxes were filled. Can an operator find the owner of a translated transcript? Can the records team calculate its expiry from an actual event? Can a former guest still open a link? Can the privacy team identify copies in a task tracker? Can IT distinguish normal expiry from a hold and show evidence that action occurred? A “no” is an implementation gap to assign, not a reason to quietly redefine deletion. Rehearse a small sample before rolling the schedule across all meetings, and revise the rule if actual capabilities make the promised treatment impossible.
+
+## Frequently asked questions
+
+### What retention period should we put in the blanks?
+
+One approved by your records and legal owners for that artifact, purpose and applicable obligations. No duration in this article is a default or legal recommendation. Name the trigger and the responsible person as well as the period. A video replay and an approved decision note can serve different purposes and need not have the same schedule. If the business owner cannot articulate why a durable artifact is needed, consider not creating it rather than selecting an arbitrary timer.
+
+### Is the transcript deleted when the recording expires?
+
+Not necessarily. Test the selected vendor's recording/transcript relationship, especially separately stored transcripts, edits, downloads and downstream AI notes. Microsoft's [Teams recording and transcript storage guidance](https://learn.microsoft.com/en-us/microsoftteams/tmr-meeting-recording-change) describes a particular OneDrive/SharePoint architecture, not a universal deletion guarantee. Give each independently accessible or independently deleted artifact its own row and test the linked deletion behavior before combining them.
+
+### Can we use one rule for both AI drafts and approved minutes?
+
+Only if their purpose, owner, access, clock trigger, location and deletion path truly match. A draft may contain hallucinated claims or unreviewed personal details; approved minutes may be the intended business record. State who approves the transition, whether the draft is replaced or preserved, and where corrections live. For operational guidance on review before distribution, see [how teams review and share AI meeting notes across languages](/blog/how-should-teams-review-and-share-ai-meeting-notes-across-languages/).
+
+### Does removing an organizer's account erase their recordings?
+
+Do not assume so. File ownership, retention settings, holds and handover workflows may outlive the account. Identify a custodian for offboarding, test what happens to recordings and transcript permissions, and decide who assumes scheduled deletion duties. Avoid deleting an account as a substitute for an artifact-by-artifact retention process.
+
+### What if the vendor will not disclose its backup deletion path?
+
+Record the missing evidence, ask for a written scoped answer under the applicable agreement, and do not claim that the tenant's visible deletion reaches backups. Escalate the gap to the policy approver. A bounded alternative might restrict meeting classes or avoid creating saved content until the requirement is met. The acceptable decision depends on the specific obligations and risks, not a general assurance that backups are secure.
+
+### Should a legal hold keep all meeting copies forever?
+
+No blanket instruction follows from a hold. Have legal define its scope, preservation method, authorized access, review and release criteria. Identify which systems and exports are covered and whether scheduled deletion must pause there. Once released, apply the approved schedule and legal instructions; do not silently turn a targeted preservation order into a permanent general-access archive.
+
+## Primary sources and related reading
+
+- [European Union, Regulation (EU) 2016/679 (GDPR)](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng) — primary legal text for the principles, transparency, processor obligations, security and rights discussed above; applicability and interpretation require advice for your situation.
+- [Microsoft Learn, Teams meeting recording and transcript storage and permissions](https://learn.microsoft.com/en-us/microsoftteams/tmr-meeting-recording-change) — official vendor account of one product's recording/transcript storage and access model.
+- [Microsoft Learn, retention for Teams](https://learn.microsoft.com/en-us/purview/retention-policies-teams) and [retention for SharePoint and OneDrive](https://learn.microsoft.com/en-us/purview/retention-policies-sharepoint) — separate official workload guides illustrating why a message policy is not a universal file policy.
+- Related: [IT-buyer questions before AI transcription](/blog/what-should-it-buyers-ask-before-enabling-ai-meeting-transcription/), [cloud AI transcript privacy risks](/blog/are-cloud-ai-video-transcripts-safe/) and [reviewing multilingual AI notes](/blog/how-should-teams-review-and-share-ai-meeting-notes-across-languages/).

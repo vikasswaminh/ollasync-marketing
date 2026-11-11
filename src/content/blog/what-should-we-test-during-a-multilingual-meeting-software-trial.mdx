@@ -1,0 +1,204 @@
+---
+title: "What should we test during a multilingual meeting software trial?"
+description: "A procurement-stage trial plan for multilingual meetings: test guest access, administration, accessibility, integrations, security, licensing, total cost, and adoption with a multi-vendor worksheet."
+pubDate: 2026-11-10
+category: "Guides"
+author: "The Ollasync team"
+readTime: 23
+takeaways:
+  - "Test a complete meeting workflow with real roles and approved sample data, not only a polished translation demo."
+  - "Record license prerequisites, operational effort, accessibility, guest friction, and AI-data controls alongside language features."
+  - "Decide whether E2EE, captions, translation, recording, and AI notes can coexist in the exact mode you intend to purchase."
+  - "Use the same scenarios, evidence standard, and weighted worksheet for every shortlisted vendor; leave unverified claims unscored."
+keywords: ["multilingual meeting software trial", "meeting platform procurement checklist", "multilingual meeting vendor scorecard", "meeting software total cost of ownership"]
+sources:
+  - url: "https://learn.microsoft.com/en-us/microsoftteams/teams-end-to-end-encryption"
+    publisher: "Microsoft Learn"
+    accessDate: "2026-11-10"
+    claim: "Teams meeting E2EE prerequisites and the features unavailable when meeting E2EE is enabled, including live captions, transcription, recording, and Copilot."
+  - url: "https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings"
+    publisher: "Microsoft Support"
+    accessDate: "2026-11-10"
+    claim: "Teams distinguishes unsaved live captions from transcription and documents caption controls."
+  - url: "https://support.google.com/meet/answer/10964115?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Meet documents translated-caption availability by edition and cautions that some languages are rolling out or in beta."
+  - url: "https://support.google.com/meet/answer/16221730?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Meet documents Speech Translation plan eligibility, meeting usage limits, room-device limitations, and its recording and notes limitations."
+  - url: "https://support.google.com/meet/answer/9852160?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Meet describes encryption in transit between client and Google and encryption at rest for recordings in Drive."
+  - url: "https://www.w3.org/WAI/media/av/captions/"
+    publisher: "W3C Web Accessibility Initiative"
+    accessDate: "2026-11-10"
+    claim: "Explains the distinction between same-language captions and translated subtitles."
+related:
+  - "how-to-test-live-translation-accuracy-before-a-meeting"
+  - "best-sso-and-enterprise-identity-integrations-for-webinar-platforms"
+  - "are-cloud-ai-video-transcripts-safe"
+---
+
+## What is the short answer for a buying team?
+
+Test the **whole service you will operate**, not just its language button. Give every shortlisted vendor the same two or three representative meeting scenarios. Have an administrator configure the tenant, a host schedule and run meetings, employees participate on their usual devices, and invited outsiders join without coaching. Check language access, accessibility, permissions, integrations, support, data handling, and the actual bill. Preserve screenshots, configuration exports where safe, quotes, and participant observations. Reject a solution that fails a non-negotiable requirement even if its translated demo is impressive.
+
+The deliverable is a decision packet: a signed requirements list, identical scenario scripts, an evidence-backed multi-vendor scorecard, a three-year cost model, a risk-and-remediation log, and a recommendation with an owner and expiry date. Translation accuracy is **one** criterion. For a detailed language-quality rehearsal, use our separate [live translation preflight](/blog/how-to-test-live-translation-accuracy-before-a-meeting/); do not substitute its phrase-level rubric for procurement testing. This article is about what happens before, during, and after many meetings, including cases where no translation is needed.
+
+Set the trial in your own tenant or an appropriately isolated evaluation environment, on the editions you could actually buy. This is a method, not a product ranking. Vendor documentation describes availability, not proof that a particular licensed tenant, guest device, policy, or language direction will work for you. Confirm current terms in writing before signing.
+
+## What should the trial produce before anyone gets a demo?
+
+Start with a one-page decision brief. Name the executive sponsor, procurement owner, meeting-platform administrator, accessibility reviewer, security/privacy reviewer, finance analyst, and at least two representatives of frequent speakers and listeners. Include external guests where they can participate voluntarily and without exposing confidential information. If a participant cannot use the trial software, record that as a finding, not a reason to exclude them from the sample.
+
+Define the workload: recurring staff meetings, client calls, a large town hall, training, or regulated consultations. Specify approximate concurrency, duration, peak audience, number of hosts, languages in each direction, text versus spoken translation, guest percentage, regions, devices, and network conditions. Decide whether the procurement is replacing the primary meeting platform, adding a translation layer to an existing one, or buying both. Otherwise a comparison between a standalone meeting service and an add-on quietly counts the incumbent platform's licenses and administration for only one candidate.
+
+Separate **hard gates** from preferences. Examples of possible gates are an approved data-processing agreement, supported guest access in a required region, a workable accessibility path for a named employee group, or an approved interpretation path for high-stakes discussions. These are examples, not universal rules: legal and accessibility owners set your actual gates. State what evidence closes each gate, the deadline, and who can accept residual risk. A gate that has not been proven is *open*, not automatically passed.
+
+Run the trial through an ordinary workweek, not one staged presentation. Request edition, security, accessibility, integration, and support documents plus a written quote.
+
+### Which three scenarios expose the most buying risk?
+
+Choose scenarios based on actual work, not imaginary feature density. One could be a routine 12-person project meeting with two language directions, mobile participants, and action items. A second could be a client call where an unlicensed guest joins from a locked-down browser and must read translated captions without creating an account. A third could be a larger briefing with a deaf or hard-of-hearing participant, several guest domains, a moderator, and a post-event records request. If your organization never hosts large briefings, replace the third with its most expensive or highest-risk workflow.
+
+**Hypothetical example:** A 600-person organization has 70 hosts, 220 occasional staff attendees, and 40 external partners per month. Its trial compares a meeting platform already licensed across the organization with two alternative deployment options. These numbers are illustrative; they imply no vendor capacity or price. The organization should validate whether it needs 70 paid hosts, 600 paid identities, a per-minute speech allowance, or guest entitlements under *each quote*, rather than assuming attendees are free.
+
+For each scenario record the scheduling path, role assignments, invitation wording, spoken and display languages, device/browser combinations, expected output, fallback, and deletion plan. Keep a non-sensitive test dataset. Send a short consent notice explaining whether audio, transcripts, or AI processing will be used. A meeting with invented customer names and harmless dates is sufficient to test most workflows. Never paste genuine confidential material into a vendor trial just to make it realistic.
+
+## Can an administrator control the experience at scale?
+
+Ask an actual administrator—not the vendor's demo operator—to create the tenant, assign the proposed licenses, set meeting defaults, and delegate limited roles. Can they restrict recording, translation, AI notes, guest entry, and retention by group or meeting policy? Can an organizer override them? Check how changes propagate and whether exceptions are visible in an audit trail. Record screenshots of the policy *and* observed behavior with test identities; a toggle in an admin console alone is not evidence of effective enforcement.
+
+Walk the employee lifecycle from invitation to removal. Provision a host, change the host's team, revoke their license, deactivate their identity, and verify what happens to scheduled meetings, transcripts, shared notes, and links. Test whether a co-host can continue a meeting if the original host leaves. Ask which controls are included in the quoted edition and which depend on an identity provider, compliance suite, or higher tier. Do not assume single sign-on, automated provisioning, or data-loss prevention simply because a vendor's broader product family offers them.
+
+Have IT inspect tenant boundaries and support boundaries: who can reset access, review logs, recover a misconfigured meeting, and open an urgent support case across time zones? Try a configuration rollback. Document the time spent preparing invitations, training hosts, investigating failures, and managing account churn. Administrative labor is part of total cost even when it does not appear on an invoice.
+
+### What should an identity and permission test include?
+
+Test ordinary sign-in, MFA where required, SSO initiation from the identity provider, guest invitations, and removal using throwaway approved accounts. If SCIM or another provisioning interface is proposed, test create, role change, suspend, and delete events; inspect eventual state, not just a successful API response. Attempt to join a protected meeting as an unauthorized account and as an invited guest from an allowed domain. Confirm who can admit, expel, mute, share, translate, and start transcription. Record differences between a browser guest and an internal desktop user.
+
+Test an intentional mistake: send a link to the wrong test group, then revoke it. Can administrators contain access and identify exposed artifacts? Check audit-log fields and retention against investigation needs.
+
+## What is the real licensing and total-cost question?
+
+Get a written bill of materials for the exact scenario: base subscriptions, translation or AI add-ons, paid host versus attendee definitions, guest rules, minute or language allowances, concurrency limits, storage, API access, security features, support tier, and any telephony or room-device charges. Include taxes where relevant and the billing currency. List minimum seats, annual commitments, price protection, renewal increases, overages, cancellation terms, and trial-to-production migration effort. A published starting price is not an enterprise quote.
+
+Build a **three-year** comparison in the same currency and with the same utilization assumption. Use a simple, inspectable equation: three-year cost equals subscriptions plus usage and overages plus implementation and integration plus support plus estimated administration and training minus *documented* costs avoided. Show low, expected, and high usage cases. For an add-on, include the underlying meeting license if it is not already a sunk, continuing expense; if the base license is already paid and unavoidable, show the incremental decision separately. Do not count the whole incumbent subscription as savings unless it will actually be retired.
+
+**Hypothetical example:** Vendor A quotes 70 host subscriptions and translation minutes, while Vendor B quotes 600 employee seats with translation included for a stated allowance. A spreadsheet that compares only 70 times A's seat price with 600 times B's seat price is not yet fair. Verify whether A's attendees need another paid meeting license, whether B's allowance covers peak simultaneous use, and what either charges for excess usage. Use actual quoted amounts, not these illustrative constructs, in the final decision.
+
+Ask finance to test a sudden event: a quarterly briefing doubles the expected audience or a training program adds another language. What is the incremental price, operational lead time, and contractual approval path? Price the fallback too: a human interpreter, accessible captioner, or second platform for cases the automated workflow cannot support. The lowest sticker price may still be the highest operating cost if hosts need dedicated assistance each time.
+
+## Do existing tools and records actually connect?
+
+Map each candidate against the organization's calendar, directory, room systems, help desk, LMS, CRM, records repository, and automation tools *that the scenarios actually use*. Avoid awarding points for a long integration catalog. Schedule from a real test calendar; change time zones and reschedule; verify invitation updates and guest entry. If an integration promises notes in a CRM, inspect where the notes land, whose identity authored them, whether permission scopes are excessive, and whether deletion in the meeting service also affects the copy. Exports and APIs can be adequate alternatives to native integrations, but only if someone owns the maintenance.
+
+For a recurring training scenario, verify attendance records against actual joins and reconnects rather than trusting a summary count. Check who can access translated transcripts and whether multilingual search finds the relevant record without revealing it to the wrong team. If a meeting crosses organizational boundaries, ask what happens when an external tenant blocks third-party apps or bots. Have an admin disable an integration midway through the trial and confirm the meeting remains usable.
+
+Document ownership of recordings, captions, transcripts, translations, notes, chat, and audit events. Identify the source of truth and copies; test export and deletion for each. “Integration available” does not establish a governable workflow.
+
+## Can people with different access needs actually participate?
+
+Invite users of the devices and assistive technology your organization supports. Evaluate keyboard navigation, focus order, screen-reader announcements, caption customization, contrast, visual speaker identification, and whether translated content arrives in a format that can be read, not just viewed in a screenshot. Ask people whether they can follow turns and contribute without a moderator doing extra work. Record the tested browser, OS, device, locale, and meeting mode; accessibility is not a single yes/no feature flag.
+
+Distinguish **same-language captions** from translated subtitles. The [W3C explanation of captions and subtitles](https://www.w3.org/WAI/media/av/captions/) makes clear why a translation overlay does not automatically satisfy a person's captioning needs. A participant may need faithful captions in the language being spoken, including relevant non-speech information, while another needs translation. Test both paths, preferably at the same time, and ask whether a human captioner or interpreter can join when automation is unsuitable. Do not claim compliance with a particular standard based on one trial meeting; ask the accessibility owner to assess the applicable requirements.
+
+Check for competing demands: tiny mobile captions, screen sharing that covers text, audio output that overlaps a speaker, or a room participant who hears only the original audio. If a user turns captions off and back on, do they miss important information? Run a short meeting with interruptions and screen sharing, then ask participants separately to describe what they could access. Do not treat fluency in English as a proxy for accessibility in another language.
+
+### How should translation fit without repeating an accuracy study?
+
+For procurement, establish which language *directions* and output modes are available in the quoted edition; whether they work for external guests, in rooms, on mobile, and on poor connections; what happens when a speaker switches languages; and whether users can choose original audio, translated speech, or text. Run one representative language-quality check with fluent reviewers, and link any consequential-error findings to the specialized [pre-meeting translation test](/blog/how-to-test-live-translation-accuracy-before-a-meeting/). Do not invent a universal accuracy percentage from a handful of sentences.
+
+Treat captions, translated captions, and speech translation as separate products until proven otherwise. [Google's translated-captions help](https://support.google.com/meet/answer/10964115?hl=en) lists eligible Workspace editions and notes that some languages are rolling out or in beta. Its separate [Speech Translation help](https://support.google.com/meet/answer/16221730?hl=en) describes eligible plans and usage limits and says the feature is not available in live streams or recordings. That is a reason to verify *your* account, region, meeting type, and language pair, not to infer that every listed capability will appear for every attendee. [Microsoft's Teams captions help](https://support.microsoft.com/en-us/teams/meetings/use-live-captions-in-microsoft-teams-meetings) distinguishes captions, which Teams does not save, from transcription; do not promise a transcript based on a caption screenshot.
+
+## What should a first-time guest experience reveal?
+
+Send a fresh invitation to a consenting external tester with no prior setup. Ask them to join from a managed corporate laptop, a personal mobile device, and, if relevant, a browser with installation restrictions. Observe account requirements, lobby delay, language discovery, permissions prompts, headset selection, fallback if translation is unavailable, and whether the guest can leave and rejoin. Record the time to useful participation from clicking the invitation—not from the moment the vendor's engineer finishes configuration.
+
+Try a calendar forward to an uninvited person and an invited user on a different email address. The right outcome depends on your access policy; what matters is that the experience matches it and the host can explain what happened. Ask how guests learn whether translation, transcription, recording, or an AI assistant is active and how consent or objections are handled. If a translated voice resembles a real speaker, consider whether the notice is intelligible and whether guests can opt out or choose original audio. Obtain privacy/legal guidance for actual consent requirements rather than treating a generic banner as sufficient.
+
+Give guests a way to report confusion after the meeting without asking them to disclose confidential content. Collect a small number of reproducible observations: “Could not find Spanish captions on mobile,” device and version, approximate time, and steps tried. A guest who stayed silent because the controls were hard to find is not a success merely because they were present on the attendee list.
+
+## What do security, E2EE, and AI notes change?
+
+Ask security and privacy reviewers to diagram where media, text, keys, recordings, notes, and analytics travel, who can access each, and how long each remains. Request current documentation for encryption in transit and at rest, regional processing and storage, subprocessors, retention and deletion, incident notification, auditability, and contract terms. Verify actual administrative settings and test with dummy material. An encryption label by itself does not answer whether a service-side translator or note-taker can process speech.
+
+**Do not equate transport encryption with end-to-end encryption.** [Google's Meet security and privacy page](https://support.google.com/meet/answer/9852160?hl=en) describes encryption in transit between clients and Google and at-rest encryption for recordings in Drive; those statements alone are not a claim that every meeting is E2EE. Ask each vendor to name the exact encrypted meeting mode and its consequences. In [Microsoft's Teams E2EE administration guide](https://learn.microsoft.com/en-us/microsoftteams/teams-end-to-end-encryption), meeting organizers require Teams Premium, and enabling meeting E2EE makes live captions, transcription, recording, and Copilot unavailable, among other functions. That is a documented tradeoff for that Teams mode, **not** a general statement about all vendors or all Teams meetings.
+
+Run a two-mode security exercise: first use the strictest mode your policy requires, then a mode that permits the desired language and notes features. Record which functions disappear, who can switch modes, whether the change requires organizer action, and whether guests receive notice. If E2EE is mandatory for the specific meeting, do not silently relax it to make AI translation work. Consider approved human interpretation, an out-of-band reviewed summary, or a different meeting design. Review our [discussion of cloud meeting transcripts](/blog/are-cloud-ai-video-transcripts-safe/) when your decision hinges on storage and access rather than live speech alone.
+
+For AI notes, test opt-in/opt-out, participant notice, administrative disablement, accuracy of owners and decisions, source-language versus translated-language attribution, correction workflow, sharing permissions, retention, training-use terms, and deletion. Ask whether summaries can be produced without recording or whether transcription is a prerequisite. Verify with a harmless meeting containing a deliberately unapproved proposal; if the notes present it as an approved decision, flag the workflow as unsafe until humans review summaries before distribution. Do not assume AI outputs are authoritative minutes. Keep a human accountable for the final record.
+
+### Which documents should a security reviewer request?
+
+Request the vendor's applicable data-processing agreement, security overview, current audit or certification scope, subprocessor list, retention schedule, breach-notification commitments, and AI-specific data-use terms. Ask how logs and participant identifiers are exported for incident response and whether administrators can prevent accidental external sharing. A certificate may cover a service but not every optional integration or region. A contractual clause may promise a retention window but not show that your pilot tenant enforces it. Record both documentary evidence and the observed test, with a named reviewer and renewal date.
+
+Limit trial access to approved testers, use least-privilege roles, and set a trial-end deletion date. If the vendor cannot answer where sample media or transcripts went, do not upload sensitive data as a follow-up experiment. Escalate the question in the procurement risk log. A “no recording” meeting may still involve transient processing for captions or translation; ask explicitly which intermediate data persists and who can inspect it.
+
+## How do we measure adoption and operational reliability?
+
+After the first coached session, let ordinary hosts run a meeting without vendor staff. Measure whether they can schedule, select languages, explain consent, manage guest entry, recover from a failed caption stream, and distribute a corrected summary. Repeat with one new host who did not attend the kickoff. Collect structured feedback separately from speakers, translated listeners, accessibility testers, guests, and administrators; an aggregate satisfaction score can hide a blocker for a smaller group.
+
+Capture help requests and time to resolution. Track failed joins, time to first comprehensible output, interruptions caused by controls, repeated language-setting errors, and how often participants revert to a familiar tool. Use denominators: “three failed guest joins in 20 attempts” is more useful than “some guests struggled.” These are local trial observations, not platform-wide reliability statistics. Log outages or network problems with timestamps and context; avoid attributing every bad connection to the vendor without retesting.
+
+Practice fallback before declaring the trial complete. When translation fails, can the host pause, bring in an approved interpreter, change to same-language captions, or move consequential decisions to reviewed writing? Can they recover without opening a new meeting and losing participants? Write a one-page host playbook and estimate training effort. If adoption depends on a dedicated technician for every call, put that technician's labor into the cost model.
+
+## How can we score several vendors without inventing a leaderboard?
+
+Use one worksheet per vendor and scenario, plus a consolidated decision sheet. The table below is a **blank template**, not a product rating. Weights are an illustrative starting point totaling 100; change them *before* viewing trial results. For each row assign a 0–4 observed score: 0 = tested and unusable, 1 = substantial workaround, 2 = usable with material friction, 3 = meets the agreed scenario, 4 = meets it with demonstrably lower effort or risk. Use **U** for untested or insufficient evidence; never convert U to a zero or a four. Record whether the evidence is a live observation, documentation, contract, or vendor assertion. For requirements that cannot be traded off, use the separate gate column regardless of totals.
+
+| Criterion | Example weight | Scenario / acceptance question | Evidence to attach | Vendor A | Vendor B | Vendor C |
+| --- | ---: | --- | --- | --- | --- | --- |
+| Language access and quality | 12 | Do required pairs and modes work for intended roles? | Fluent-review result and account setup | U | U | U |
+| Guest experience | 10 | Can an uncoached guest participate? | Guest log and device details | U | U | U |
+| Accessibility | 12 | Can identified users participate in tested modes? | User observations and accessibility review | U | U | U |
+| Admin and identity controls | 12 | Are policy, lifecycle, and roles enforceable? | Admin screenshots and audit events | U | U | U |
+| Privacy and security | 14 | Are data flows and controls acceptable? | Documents, test, reviewer sign-off | U | U | U |
+| E2EE / feature coexistence | 8 | Does the required encryption mode permit the required workflow? | Mode comparison and feature log | U | U | U |
+| Integrations and records | 8 | Can meetings and artifacts move correctly? | Calendar, export, and permission test | U | U | U |
+| Licensing and three-year cost | 10 | Does the quote cover expected and peak use? | Quote and sensitivity model | U | U | U |
+| Adoption and support | 8 | Can ordinary hosts operate and recover? | Uncoached trial and ticket log | U | U | U |
+| Reliability in tested conditions | 6 | Does service meet local scenario thresholds? | Timed trials and incident context | U | U | U |
+
+Calculate a weighted score only for sufficiently evidenced rows: add each observed score divided by four, multiplied by its weight. Show **coverage** too: the sum of weights with evidence divided by 100. A vendor with 85 points of proven coverage must not outrank one with 100 points of coverage on the strength of unknowns. Revisit uncertain rows rather than quietly normalizing partial results to a perfect total. A hard-gate failure overrides the numerical ranking. Keep the raw participant notes and reviewer decisions alongside the spreadsheet; numbers are a prompt for deliberation, not an automated purchase order.
+
+**Hypothetical worked decision:** Three bidders complete the same guest and administrator exercises. One has the highest observed weighted score but cannot provide contractual retention terms by the decision deadline. Mark its privacy gate open; do not describe it as the winner. The team may extend the trial to obtain terms, choose a compliant alternative, or document an approved exception. No real vendor was tested or scored in this example.
+
+### What belongs in the final decision packet?
+
+Include the versioned scenarios, tested editions and settings, attendee-role matrix, evidence links, worksheet with unknowns, signed hard-gate decisions, three-year cost assumptions, support and migration estimates, and an issue list ordered by severity. For each issue record owner, workaround, retest date, and whether it must be fixed before purchase. Require procurement to confirm quoted entitlements and renewal terms; require security and accessibility owners to sign only their respective conclusions. Keep the scoring weights and acceptance thresholds unchanged after results arrive unless the committee records why the business requirement changed.
+
+Make a recommendation that can be audited: “buy for these workflows,” “pilot longer under these conditions,” or “do not buy for this use case.” State explicitly what was **not** tested, such as a particular regional data boundary, room system, or language direction. Set a review date because product editions, rollout status, usage limits, and terms can change. A procurement trial should reduce uncertainty, not disguise it.
+
+## FAQ: what should buyers ask at the end of the trial?
+
+### Is one excellent translated demo enough to approve a platform?
+
+No. It might establish that one mode worked once for one speaker and listener. Approval also depends on guests, accessibility, admin controls, licensing, integration, data handling, and repeatability. Use the separate [language preflight](/blog/how-to-test-live-translation-accuracy-before-a-meeting/) for fine-grained meaning checks and retain this trial's broader evidence packet.
+
+### Should we test every supported language?
+
+Prioritize required directions and the highest-consequence workflows, then sample additional languages that are likely to be deployed. Document untested combinations as unknowns. A vendor's language list does not establish availability for each edition, device, output mode, or participant role. If a new language becomes essential later, schedule a new acceptance test rather than treating the original procurement score as proof.
+
+### Can we require both end-to-end encryption and AI notes?
+
+Write both as requirements, then ask vendors to demonstrate them *together* in the specific meeting mode. Some designs cannot expose media to server-side AI while maintaining a mode in which the service cannot decrypt it. Microsoft's [Teams E2EE documentation](https://learn.microsoft.com/en-us/microsoftteams/teams-end-to-end-encryption) explicitly lists meeting captions, transcription, recording, and Copilot among unavailable functions in E2EE meetings. Other vendors need their own documented and observed mode-by-mode evaluation; do not extrapolate.
+
+### How much weight should price get?
+
+There is no universal percentage. Decide based on the cost of a failure and your budget constraints *before* receiving bids. A price quote cannot compensate for an unmet legal or accessibility gate. Show three-year cost and usage sensitivity separately from feature scores so buyers can see the tradeoff rather than hiding cost assumptions inside a single number.
+
+### What if vendors provide different trial privileges?
+
+Compare the purchasable configurations, not the most generous temporary demo flags. Ask for written confirmation of the exact edition, entitlements, expiration, and price corresponding to each tested capability. If a vendor cannot give equivalent trial access, mark those rows U and decide whether to request an extension, accept another form of evidence under your rules, or leave the requirement unproven.
+
+### When should we involve a human interpreter or captioner?
+
+When consequences or accessibility needs require one, or when automated language output has not been shown adequate for the use case. Trial a way to invite and support that professional, including audio routing, turn-taking, permissions, and compensation. A successful product trial should include a safe fallback, not merely a happy-path demonstration.
+
+## What is the practical buying decision?
+
+Choose the configuration that clears your gates and performs consistently across **the meetings you actually run**, with costs and limitations your team can explain. Preserve unknowns rather than filling them with sales promises. A multilingual meeting purchase is successful when a guest can participate, an administrator can govern it, a participant can access it, finance can predict its cost, and a host knows what to do when automation fails—not simply when a translation clip sounds convincing.

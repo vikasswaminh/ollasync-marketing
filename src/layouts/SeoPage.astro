@@ -15,6 +15,10 @@ interface Props {
 }
 
 const { title, description, eyebrow = 'Ollasync platform', category = 'Solutions', intro, benefits, faqs = [] } = Astro.props;
+const categoryLinks: Record<string, string> = {
+  Features: '/features/',
+  'Use cases': '/use-cases/',
+};
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -29,7 +33,7 @@ const schema = {
 <Base title={title} description={description} schema={schema}>
   <section class="section seo-hero">
     <div class="container">
-      <Breadcrumb items={[{ label: category, href: `/${category.toLowerCase().replace(/\s+/g, '-')}` }, { label: title }]} />
+      <Breadcrumb items={[{ label: category, href: categoryLinks[category] }, { label: title }]} />
       <span class="eyebrow-label" data-reveal>{eyebrow}</span>
       <h1 class="display" data-reveal>{title}</h1>
       <p class="lead seo-intro" data-reveal>{intro}</p>

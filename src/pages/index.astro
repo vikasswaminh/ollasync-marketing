@@ -15,8 +15,8 @@ const latestPosts = (await getCollection('blog'))
   .slice(0, 2);
 const fmtDate = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 
-const title = 'Video Meetings with Live Translation | Ollasync';
-const description = SITE.description;
+const title = 'Ollasync | Multilingual Video Meetings with Live Translation';
+const description = `Ollasync brings video meetings, live voice translation and captions in ${LANG_COUNT} languages, plus recordings and AI notes for supported meetings. Meet beyond language.`;
 
 // Every language named on this page is a real translate target
 // (XLATE_LANGS / the server TRANSLATE_LANGS default). Nothing here is aspirational.
@@ -78,8 +78,8 @@ const homeSchema = {
   <section class="section hero-s" id="product">
     <div class="container hero-copy">
       <span class="hero-pill" data-reveal><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Live translate <span class="hero-pill__dot" aria-hidden="true"></span></span>
-      <h1 class="display hero-h1" data-reveal>Multilingual <span class="gradient-text">Video Meeting Platform</span></h1>
-      <p class="lead" data-reveal>Expand your Market to more than 99 Languages</p>
+      <h1 class="display hero-h1" data-reveal>Meet beyond <span class="gradient-text">language.</span></h1>
+      <p class="lead" data-reveal>Video meetings with live translated voice and captions, so everyone can take part.</p>
       <div class="hero-cta" data-reveal>
         <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
         <a href="/features/live-translation" class="btn btn-ghost">See how it works</a>

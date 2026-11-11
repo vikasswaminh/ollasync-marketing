@@ -6,7 +6,8 @@ const all = [{ label: 'Home', href: '/' }, ...items];
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: all.map((i, n) => ({
+  // Non-linked intermediate labels are visual groupings, not navigable schema items.
+  itemListElement: all.filter((i, n) => i.href || n === all.length - 1).map((i, n) => ({
     '@type': 'ListItem',
     position: n + 1,
     name: i.label,
@@ -18,7 +19,7 @@ const schema = {
   <ol>
     {all.map((i, n) => (
       <li>
-        {i.href && n < all.length - 1 ? <a href={i.href}>{i.label}</a> : <span aria-current="page">{i.label}</span>}
+        {i.href && n < all.length - 1 ? <a href={i.href}>{i.label}</a> : <span aria-current={n === all.length - 1 ? 'page' : undefined}>{i.label}</span>}
         {n < all.length - 1 && <span class="crumbs__sep" aria-hidden="true">/</span>}
       </li>
     ))}

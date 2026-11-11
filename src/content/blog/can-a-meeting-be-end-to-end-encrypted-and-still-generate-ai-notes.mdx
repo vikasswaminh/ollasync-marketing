@@ -1,0 +1,179 @@
+---
+title: "Can a meeting be end-to-end encrypted and still generate AI notes?"
+description: "Yes, conditionally: AI can take notes from plaintext at an authorized endpoint, but a server that never receives meeting keys cannot silently transcribe an E2EE call. Compare local, participant, and post-meeting designs."
+pubDate: 2026-11-10
+category: "Cryptography"
+cover: "/blog-cover-sframe.png"
+pillar: false
+readTime: 20
+author: "The Ollasync team"
+authorRole: "Security & product"
+keywords: ["E2EE AI meeting notes", "end-to-end encrypted transcription", "local meeting transcription", "encrypted meeting recording", "AI notes privacy"]
+takeaways:
+  - "An E2EE relay cannot make notes from audio it cannot decrypt; an authorized participant endpoint can process plaintext after decryption."
+  - "A cloud note-taking bot can be an additional authorized endpoint, but that grants the bot and its operator access to meeting content; server-side capture outside the endpoint group defeats the stated server-blind boundary."
+  - "Local transcription and summarization, or later processing of a participant-held recording, can preserve the live media's E2EE boundary while creating new risks around endpoints, files, and note distribution."
+  - "Ollasync's published pricing FAQ says its AI notes run on recorded meetings and excludes end-to-end-encrypted meetings; do not treat the architectural possibilities here as a currently supported combined feature."
+---
+
+**Yes, but only if the note-maker is allowed to see the meeting's plaintext.** End-to-end encryption (E2EE) prevents an intermediary without the content keys from reading the call. It does not stop a participant's device from reading audio it must decrypt to play it, nor does it prevent that participant from deliberately recording or summarizing what it heard. AI notes can therefore coexist with an E2EE *media path* if transcription and summarization happen on an authorized endpoint, or later from a recording that an authorized endpoint made. A cloud service that transcribes the live call needs its own authorized plaintext source. Merely turning on a server-side AI switch cannot make ciphertext intelligible.
+
+That is a conditional architectural answer, **not a feature claim about Ollasync**. Our current [pricing FAQ](/pricing/) says AI transcripts, notes and action items run on meetings you record and that **end-to-end-encrypted meetings are excluded by design**. Do not infer that Ollasync currently produces AI notes for an E2EE meeting. The question this article answers is where an E2EE-compatible notes system *could* obtain plaintext, what each design gives up, and how to check a product's actual behavior before buying it.
+
+## What does “E2EE meeting with AI notes” really mean?
+
+There are at least three separate things to specify: the live audio/video channel, the material given to the note-maker, and the resulting transcript and notes. “The meeting is E2EE” might describe the first while saying nothing about the other two. If participants decrypt audio on their devices and one device uploads a transcript for cloud summarization, the media relay can still be blind to the call, but the summarization provider now holds readable content. Both statements can be true. Neither tells you whether the *whole notes workflow* is private from providers.
+
+Use a plain-language test: **which machine first sees words rather than encrypted bytes?** Then ask who owns that machine and where those words go next. Transcription typically requires intelligible speech or decoded audio. Summarization typically requires text, audio, or another content representation. A system can move either task to a device, but it cannot produce accurate semantic notes solely by looking at properly encrypted media without an additional trusted source of content. Encryption does not magically make an AI model unable to read a transcript once someone supplies that transcript to it.
+
+Also distinguish “notes about a meeting” from “a complete transcript of a meeting.” A user might type decisions into an E2EE chat, or an assistant might summarize an agenda and manually supplied bullet points. That can generate helpful notes without ever transcribing speech. It cannot justify claiming that the service heard everything participants said. Define the input before evaluating a claim about output quality or confidentiality.
+
+## Where does the encryption boundary sit?
+
+Standard WebRTC transport protection secures packets between network peers or between a client and a media server. If a selective forwarding unit (SFU) terminates that transport, it can be in a position to access media even though outsiders on the network cannot. Per-frame encryption adds a distinct layer: endpoints encrypt media content before it reaches the relay and decrypt it after receipt. The IETF's [SFrame specification, RFC 9605](https://www.rfc-editor.org/info/rfc9605), describes an approach in which an SFU can use forwarding metadata without accessing the media itself. The W3C [WebRTC Encoded Transform specification](https://www.w3.org/TR/webrtc-encoded-transform/) describes hooks for processing encoded frames locally in the send and receive pipelines.
+
+Those standards explain a *possible* media architecture, not an automatic promise that every meeting or every browser has the same protection enabled. They also do not define a turnkey AI-notes product. Key distribution, participant authentication, device security, recording policy, and actual feature configuration remain implementation questions. Our separate explanations of [per-frame media encryption](/blog/per-frame-media-encryption-explained) and [what a server can see on an encrypted call](/blog/what-a-server-can-see-on-an-encrypted-call) cover the relay mechanics. The useful question here starts one step later: **after a legitimate participant decrypts a frame, can its software derive notes without re-exposing the meeting to the relay or an unapproved service?**
+
+The answer is yes in principle. An endpoint needs plaintext to render sound. A local speech recognizer can receive that decrypted sound; a local summarizer can receive its transcript. If a participant instead exports the audio to a cloud model, the provider of that model gains access to content by a different route. E2EE of the live channel has not been mathematically broken; the data has crossed a new trust boundary with the user's authorization. Calling the *entire workflow* “provider-blind” after that export would be misleading.
+
+## What can each participant in the workflow see?
+
+A useful threat model names actors rather than relying on a single “secure” label. The caller's device holds sound before encryption; receiving devices hold sound after decryption. An SFU can route streams using network and media metadata. A note-taking client may receive audio through an endpoint API or a recording. A speech service may receive audio. A summarizer may receive transcript text. Finally, a storage or collaboration service may receive the generated notes. Some products combine several roles into one operator; others split them across subprocessors.
+
+| Location or actor | What it needs for ordinary operation | What changes when notes are enabled? |
+| --- | --- | --- |
+| Sending endpoint | Microphone audio before encryption | May capture a local recording or transcript |
+| Receiving authorized endpoint | Decrypted audio for playback | May transcribe locally or export audio |
+| Blind media relay | Routing metadata and encrypted media | Cannot derive speech content merely by forwarding it |
+| Authorized note-taking bot endpoint | Meeting key or legitimately decrypted media | Its operator may receive live meeting content |
+| Cloud speech or summarization service | Readable audio or text supplied to it | Becomes a content recipient, whether or not the relay stayed blind |
+| Notes repository or integration | Transcript, summary, or action items | Creates a separate searchable and shareable artifact |
+
+This table is about *possible* access, not a declaration that any named vendor uses all these components. Ask for a data-flow diagram for the precise plan and meeting mode under consideration. Otherwise a claim like “we never store recordings” can distract from a service that still receives a transcript, while “E2EE” can distract from a bot that joins as a full participant. Live-media secrecy and note secrecy are separate properties.
+
+## Which designs actually permit notes?
+
+### Option 1: Can a participant device transcribe and summarize locally?
+
+Yes, if the application supports it and the device has adequate resources. After the client decrypts the meeting audio, a local speech-to-text component turns permitted audio into text and a local model or rule-based system produces notes. Nothing about the E2EE media layer requires shipping that plaintext to the SFU. A device can also let the user review, edit, and selectively export only a short action list rather than the full transcript.
+
+“Local” should mean the content-processing path really stays on the endpoint, not merely that the record button appears in a desktop app. Check whether the speech recognizer downloads a model and operates offline, whether the summarizer calls a remote API, whether diagnostics include snippets, and whether cloud backup syncs raw files. The app may still contact a licensing or update server; that does not itself imply media upload. Conversely, a single remote transcription request changes the content-access story even if everything else runs locally.
+
+Long meetings consume battery and storage; browser and device permissions may limit capture of other participants' sound. A single device's mix can lose speaker attribution or miss late joiners. Endpoint processing is an architectural option, not a guarantee of complete notes or a shipped feature. Protect temporary files, prompts, and generated text.
+
+### Option 2: Can an AI bot join as an encrypted participant?
+
+Potentially. An organization can explicitly admit a bot as another endpoint, provide it the same sort of legitimate ability to receive and decrypt media as other participants, and let it transcribe speech. The relay may still lack the meeting's media keys. But **the bot is now inside the circle of trust**. If its operator runs it in the cloud, that operator can process everything the bot hears. This is not the same promise as “neither the platform nor any provider can access meeting content.”
+
+Treat bot admission as a security event, not a harmless UI flourish. Who invited it? Can any attendee add it? Does the attendee list clearly identify it? Are organizers and guests informed before capture? Does the bot receive audio for the whole call, only after admission, or for selected segments? Where does it send audio, transcripts, and model inputs? Can an administrator audit its participation and remove it mid-call? Can it rejoin after a key rotation? Answers matter more than a badge saying “encrypted.”
+
+Do not assume that adding a bot automatically preserves a particular product's E2EE guarantee. A vendor may prohibit bots in E2EE mode, offer a trusted endpoint with a specific architecture, or fall back to a less protected mode. Ask whether keys stay with authenticated meeting endpoints, whether the bot itself is one of those endpoints, and whether enabling notes silently changes meeting mode. A cloud bot can be a valid *explicitly trusted participant* design; it is not evidence that an untrusted relay somehow transcribed ciphertext.
+
+### Option 3: Can a participant make a recording and create notes later?
+
+Yes, provided the meeting and recording policies permit it. A participant device can record after decryption, keep the file under that participant's control, and later run speech recognition and summarization locally. This separates the time of the call from the time of AI processing. It can also allow a deliberate human checkpoint: exclude sensitive sections, obtain approval, and delete raw audio after an agreed retention period.
+
+The boundary follows the recording wherever it goes. If someone uploads that file to a cloud notes service tomorrow, the service receives plaintext tomorrow; the fact that the *live call* was E2EE yesterday does not encrypt the upload end-to-end from that service. Encryption at rest and HTTPS during upload protect different threats from a service being able to process the file. If notes are later synced to a shared drive, review that drive's access and retention separately.
+
+A “local recording” setting is not enough to infer a locally executed notes model. Conversely, recording on an authorized device does not itself mean that the media relay had access to plaintext. Specify both steps. Ask whether recording is possible at all in the chosen E2EE mode, which endpoint makes it, whether all parties receive notice, and where the recording and intermediate transcription files live. Some products restrict recording when an E2EE option is selected; the existence of a conceptual post-meeting workflow does not override their product limits.
+
+### Option 4: Can the meeting server transcribe live encrypted media?
+
+Not if “E2EE” means the server has neither the keys nor an authorized plaintext feed. The server can store ciphertext, forward frames, and observe some routing metadata; it cannot recover the spoken words from encrypted frames just because a customer bought an AI add-on. If a server is in fact generating a transcript, locate its source: perhaps the call is only encrypted in transit, an endpoint streams decrypted audio back to the server, a recorder joined as a participant, or an uploaded copy is processed afterward.
+
+Each source can be legitimate if accurately disclosed and permitted. What is not legitimate is combining “server has no means to access meeting content” and “our server transcribes that same content” without describing a separate content-bearing endpoint or export. Ask for the specific component that performs decryption and the principal controlling it. A server that obtains the media key in order to generate notes is no longer blind to that media during the relevant interval. If the product downgrades E2EE on enabling notes, label the meeting accordingly, even if the remaining transit encryption is strong.
+
+## Does a transcript change the security of an E2EE meeting?
+
+It creates a new artifact with its own threat model. Speech disappears for most listeners after playback; a transcript can be copied, searched, indexed, used to answer later questions, or forwarded to people who never joined. AI summaries can contain sensitive details and occasional mistakes. A model's output is not automatically safer than the full transcript just because it is shorter. An action item might reveal a customer name, medical fact, credential-handling decision, or confidential negotiation point even if the audio file is deleted.
+
+Protecting the notes requires decisions about access, retention, deletion, and distribution. Who can open the transcript: every participant, only organizers, or anyone with a link? Are late joiners or guests included? Does the system retain raw audio, text, intermediate chunks, prompts, and generated notes for different periods? Do email notifications include the whole summary? Does a calendar integration place action items in a workspace with a wider audience? These questions apply even if local AI did the computation and the SFU remained blind.
+
+The meeting may involve multiple content channels. E2EE for video is not a statement that chat, shared files, screen captures, captions, and AI artifacts use the same keys or retention rules. A speaker can also voluntarily tell a participant what was said; E2EE never prevented that participant from writing it down. The realistic promise is a constrained access path, not a guarantee that decrypted content can never be reproduced. When evaluating a vendor's security claims, insist on a channel-by-channel description.
+
+## What threat model should a buyer use?
+
+Start with the adversary you actually need to exclude. If the main concern is interception on an untrusted network, transport encryption already addresses that class of attack; the decision about a cloud transcription provider is mostly about contractual access, retention, and operational controls. If your concern is the meeting operator or its compromised infrastructure reading live media, E2EE with endpoint-held keys changes the media boundary. If your concern includes **every** external AI service, a bot hosted by one or an endpoint upload to one defeats that broader requirement even when live media remains E2EE.
+
+If you distrust endpoint devices or meeting participants, E2EE is not a cure. Malware on a device can observe audio after decryption; a participant can record a call with another device. Endpoint security, admission controls, meeting policy, and human trust still matter. If you need evidence of who accessed content, logs and role-based controls help, but logging metadata can itself reveal sensitive meeting relationships. Decide which of these risks you can mitigate and which you must accept.
+
+Write down the non-negotiable statement before shopping: “Our media relay must never receive intelligible audio,” “No external processor may receive meeting text,” or “Only approved internal endpoints may hold recordings.” Those are different procurement requirements. An E2EE call plus a permitted cloud bot can satisfy the first while failing the second. A self-hosted relay with transport-only encryption might satisfy a requirement to keep plaintext on company-owned infrastructure while failing a requirement that even company administrators cannot access live media.
+
+## How do local, bot, and later-processing workflows compare?
+
+| Workflow | Where plaintext first reaches the note-maker | Who must be trusted with content | Main limitation to verify |
+| --- | --- | --- | --- |
+| Local AI on participant device | After decryption on that device | Endpoint owner, app and device | Actual offline processing, audio capture, performance, storage |
+| Cloud bot admitted as endpoint | After decryption by the bot | Bot operator and its processors | Visible admission, key access, downstream handling |
+| Participant recording, local AI later | Participant's decrypted recording | Recorder's endpoint and storage | Recording permission, retention, completeness |
+| Participant upload, cloud AI later | Uploaded audio or transcript | Upload service and its processors | Consent, upload destination, deletion, model-data terms |
+| Server-side AI on transport-encrypted call | Media server or downstream service | Meeting operator and AI processors | Not the same as server-blind media E2EE |
+
+This comparison is about trust and feasibility, not a ranking of vendors or a claim about which approach produces better summaries. A locally generated note can still leak through a shared folder; a well-governed cloud service might be an acceptable choice for a low-sensitivity meeting. Ask who is *technically able* to access content, then decide who is *authorized* under your policy. Cryptographic access and organizational permission are related but not interchangeable.
+
+There is also a meaningful difference between “the provider cannot decrypt the meeting stream” and “the provider cannot read notes.” If the local app encrypts a finished note to selected recipients before uploading it, the notes repository could be blind to the note's content; that would require its own keys and design. E2EE of the original audio does not automatically extend to the resulting text. Ask a vendor to demonstrate both boundaries separately rather than letting one encryption badge stand for every data type.
+
+## What should an implementation team build or test?
+
+### Where is plaintext allowed to appear?
+
+Draw a data-flow diagram from microphone to speaker and from speaker to summary. Mark each plaintext point: capture, rendering, local buffer, speech recognition, summarization, exported file, and notification. Name its operator and retention behavior. For a client-side design, verify that model inference actually occurs on the client; inspect network traffic during a test call, including failures and retries, for media, transcript, or prompt uploads. An offline test is useful evidence but not proof of the entire lifecycle: updates, telemetry, backups, and downstream sharing may still cross a boundary later.
+
+For a bot, model it as a participant with privileges, not as an invisible service behind the SFU. Document how it receives keys, how it authenticates, what happens when someone removes it, and how clients indicate its presence. The IETF's [WebRTC security architecture, RFC 8827](https://www.rfc-editor.org/info/rfc8827), is useful background on transport and identity considerations; it does not grant a bot special exemption from endpoint trust. If group membership and keys rotate, test late admission and removal rather than assuming an old stream or exported recording is automatically revoked.
+
+### What artifacts exist after the meeting?
+
+Inventory raw recordings, partial speech-recognition segments, full transcripts, model inputs and outputs, embeddings if used, cached copies, and third-party integration payloads. Decide which must exist at all. Give each a retention rule and an owner; test whether deletion reaches backups or external services according to the provider's documented process. Limit the audience for notes before enabling automatic sharing. A privacy-preserving design can summarize locally and publish a reviewed, minimal outcome instead of automatically distributing full speech text.
+
+Separate technical controls from process controls. An app can encrypt a recording at rest but still give an administrator access to its decryption key. A policy can forbid external uploads but cannot guarantee compliance if endpoints allow unrestricted export. An organization may need user training and device controls alongside cryptography. Preserve a route to correct hallucinated tasks or misattributed quotes: generated minutes are a draft, not an authenticated record of what every speaker agreed to.
+
+### How will the team verify the E2EE claim?
+
+Test the *specific meeting mode with notes turned on*, not merely the product's default security page. Check for an E2EE indicator and whether the indicator disappears when recording or AI is enabled. Ask the vendor which component holds media keys and which receives decrypted audio or transcripts. If the answer is “the server,” determine whether it is an admitted endpoint or the media relay, and who operates it. Require a written explanation of what happens if E2EE mode, recording, and notes are requested together: refusal, disabled notes, a prompted mode change, or another explicitly described path.
+
+A UI icon alone does not prove key custody. Client versions and account settings can change behavior; retest guests, late joiners, and reconnects if relevant. Record versions and policy settings so a future rollout does not invalidate the result.
+
+## How should a team decide which design to use?
+
+First classify the meetings. For ordinary planning calls, notes may matter more than excluding all cloud processors; use the product's supported recording and notes workflow, disclose capture, and set reasonable access and retention. For calls where the relay operator must not see audio, require a genuine E2EE media mode and then ask whether notes can be generated at a trusted participant endpoint. If the product excludes notes in that mode, choose between taking manual notes, using an independently approved endpoint workflow, or not generating notes. Do not quietly downgrade the encryption setting to satisfy an automation request.
+
+For the most sensitive meetings, decide whether any durable transcript should exist. Sometimes the right result is a short, reviewed decision log typed by an authorized participant, not an exhaustive searchable record of the conversation. Where an AI workflow is genuinely required, a controlled endpoint with verified local inference and carefully managed output may better match a no-external-content requirement than a cloud bot. That is a deployment choice with operational work attached, not a free toggle.
+
+Finally separate “technically possible” from “available in this subscription and configuration.” A standards-based design might be feasible for an engineering team but absent from the product you have. Check platform documentation and a live test for exactly the feature combination you intend to use. In Ollasync's case, the current [pricing FAQ](/pricing/) explicitly says AI notes operate on **recorded meetings** and **E2EE meetings are excluded**. Its statement that plans include E2EE should not be read as a promise that E2EE and AI notes run together. If that combination is mandatory, treat it as an unmet requirement unless product documentation and an actual test show otherwise.
+
+## Frequently asked questions
+
+### If the meeting is E2EE, can nobody take notes?
+
+No. Authorized participants hear decrypted audio and can write notes themselves. An application could also process that audio locally if the product and device support it. E2EE protects the media against parties outside the authorized endpoint group; it cannot prevent an endpoint from using the plaintext it legitimately receives. Ask whether the *automated* notes capability is supported in the specific E2EE mode rather than inferring it from the encryption label.
+
+### Does a bot break end-to-end encryption?
+
+It depends on what “break” means. An explicitly admitted bot that decrypts as a participant can leave the relay blind while expanding the set of trusted endpoints. It is not a zero-access design with respect to the bot operator. If enabling the bot instead gives the meeting server keys or switches to transport-only encryption, the original server-blind media claim no longer describes that session. Verify admission, keys, and mode changes; do not assume either outcome without documentation.
+
+### Can encrypted audio be summarized without decrypting it?
+
+Not by an ordinary speech-recognition and summarization pipeline that lacks another plaintext source. A participant could separately supply notes, captions, or a recording, but then the model processes *that* input. The presence of encrypted media plus a finished summary does not establish which input was used. Ask for the source of the text and the identity of the component that first received intelligible speech.
+
+### Are local AI notes always private?
+
+No. Local computation removes a cloud processing hop if it is truly local, but a compromised device, automatic cloud backup, telemetry, transcript sync, or careless sharing can expose the result. Check both the inference path and the artifact lifecycle. Local notes also require consent and governance appropriate to the meeting; a private algorithm does not automatically authorize recording other people.
+
+### Is a cloud recording still E2EE if I can generate notes from it?
+
+That depends on who encrypted it, who holds its decryption keys, and where it is decrypted for processing. A cloud server that can play a recording and transcribe it has access to that recording's plaintext through some mechanism. A participant could instead upload only ciphertext that the server cannot decrypt, but the server could not generate ordinary speech-based notes from that ciphertext alone. Live-call E2EE and recording encryption are separate claims.
+
+### Can I use Ollasync AI notes in an E2EE meeting today?
+
+According to the current [Ollasync pricing FAQ](/pricing/), no: AI transcripts, notes and action items run on recorded meetings, and end-to-end-encrypted meetings are excluded by design. This article describes possible architectures, not a shipped Ollasync E2EE-plus-notes feature. Verify current product documentation when planning a deployment; avoid treating a general cryptographic possibility as an available setting.
+
+## What is the bottom line?
+
+An E2EE meeting **can** produce AI notes if an authorized endpoint supplies plaintext to the notes workflow, whether locally, through a deliberately trusted bot, or from a participant-controlled recording later. The condition is not optional: someone or something must encounter intelligible content. Identify that actor, its operator, its keys, and every subsequent destination for text. If a server is supposed to remain unable to read meeting media, it cannot also derive speech-based notes from that same stream without a distinct authorized input path or a change in the protection model. For Ollasync's currently published product combination, the answer is narrower than the theoretical one: recorded-meeting AI notes are offered, while E2EE meetings are excluded from AI notes on the [pricing page](/pricing/).
+
+## Primary sources and product disclosure
+
+- [IETF RFC 9605: Secure Frame (SFrame)](https://www.rfc-editor.org/info/rfc9605) — end-to-end protection of conference media frames while allowing an SFU to forward using metadata.
+- [W3C WebRTC Encoded Transform](https://www.w3.org/TR/webrtc-encoded-transform/) — access to encoded frames in a client media pipeline, including local encryption use cases.
+- [IETF RFC 8827: WebRTC Security Architecture](https://www.rfc-editor.org/info/rfc8827) — security architecture for WebRTC communications.
+- [Ollasync pricing and FAQ](/pricing/) — published distinction between recorded-meeting AI notes and excluded end-to-end-encrypted meetings.

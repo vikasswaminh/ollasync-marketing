@@ -5,6 +5,24 @@ Internal doc — not built into `dist/`. Every piece of public copy MUST pass `s
 languages in `src/data/languages.ts` (`LANG_COUNT`, 19 since 2026-09-06 — never a bigger number, never a
 language not listed there), no certification claims, captions exist but are not the pitch. Ollasync is cloud SaaS with a self-hosted option for regulated industries (operator, 2026-11-06); state it, without install or infrastructure specifics. Prices only from `/pricing` (per seat: Free, Pro $5, Business $19); never "cheapest" — link `/vs/#translation-pricing`. Meetings cap at 100 people; webinars are parked.
 
+## SEO publishing checks (2026-11-10)
+
+- The blog layout renders the article title as the page's only H1. Start body sections at H2; do not repeat the frontmatter title in the body.
+- Category breadcrumb labels without a published landing page remain plain text. Only the final breadcrumb is marked as the current page; non-linked intermediate labels are omitted from breadcrumb JSON-LD.
+- After a build, run `npm run test:seo` to check page H1 counts, breadcrumb destinations, current-page semantics, and breadcrumb schema. This checks generated HTML, not production index coverage or Core Web Vitals.
+- Article merges, redirects, and substantive claim corrections require separate editorial approval. The blog now has four topic hubs (`/blog/topics/*/`), 18-post static listing pages (`/blog/page/2/`, etc.), and responsive WebP listing/article covers. Articles with no clear fit in these four hubs remain accessible through the general blog and related links; no article URLs or claims are rewritten. Topic assignments live in `src/data/blogTopics.ts` and should be reviewed editorially as the library evolves.
+- Run `npm run build` followed by `npm run test:seo` after editing routes or topic assignments. The check covers paginated article coverage, four hubs, topic listing coverage, breadcrumbs and canonical URLs. Search Console and field Core Web Vitals remain a later stage.
+
+## Homepage brand search (2026-11-10)
+
+The homepage title starts with "Ollasync" and describes multilingual video meetings with live translation; its description names the brand. The selected brand theme and homepage H1 are "Meet beyond language." The supporting hero line explains the product in plain language, while the language ribbon uses `LANG_COUNT` from `src/data/languages.ts` rather than an unsupported 99-language claim. After deployment, use Google Search Console URL Inspection for `https://www.ollasync.com/` to check index status, selected canonical, crawlability, and last crawl; submit the sitemap or request a recrawl if appropriate. Metadata changes alone cannot guarantee branded rankings or indexing.
+
+## Discovery and update process (2026-11-11)
+
+On deployment, `npm run build` regenerates the sitemap and RSS feed; `npm run generate:llms` replaces `dist/llms.txt` with current canonical product and topic links plus the thirty most recent published posts. `npm run test:seo` checks that sitemap, robots, llms, and security contact files agree and that `security.txt` is not expired. `robots.txt` and `security.txt` are static: update them only when policy/contact details change. The security mailbox must be checked operationally, and `Expires` renewed before expiry; build validation cannot verify that messages are delivered. Non-blog sitemap dates now use the last committed change to the page or shared layout instead of every build timestamp; blog article dates use published/updated frontmatter. Uncommitted preview builds may show the last commit date until changes are committed.
+
+Production does not update until a successful main-branch deployment. After deploy, smoke-test these endpoints and use Search Console for actual indexing evidence. `llms.txt` is an optional discovery aid, not a guarantee of AI citation or ranking.
+
 ## 0. The flagship
 
 Everything hangs off one phrase, approved as the site's identity:

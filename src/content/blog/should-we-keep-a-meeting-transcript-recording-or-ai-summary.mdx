@@ -1,0 +1,178 @@
+---
+title: "Should we keep a meeting transcript, a recording, or an AI summary?"
+description: "Which meeting artifact should you retain? Compare recordings, transcripts, AI summaries and approved decision records for evidence, accessibility, privacy, consent and audit needs."
+pubDate: 2026-11-10
+category: "Security"
+author: "The Ollasync team"
+authorRole: "Security & product"
+readTime: 20
+keywords: ["meeting transcript vs recording vs AI summary", "meeting artifact retention", "meeting recording privacy", "AI summary evidence", "approved meeting minutes"]
+takeaways:
+  - "Choose the purpose and approved retention rule before capture; a summary, transcript, and recording answer different questions."
+  - "A recording helps an authorized reviewer replay captured speech, but neither it nor a transcript proves the legal meaning or final approval of a decision."
+  - "Keep a human-approved decision record for operational accountability; preserve source artifacts separately only when their value justifies their exposure."
+  - "Treat access, accessibility, consent, deletion and audit trails as decisions about each artifact and its copies, not a single meeting-wide switch."
+sources:
+  - url: "https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings"
+    publisher: "Microsoft Support"
+    accessDate: "2026-11-10"
+    claim: "Teams live transcription can show speaker names and timestamps, and participants see a transcription notification; recording can start transcription automatically."
+  - url: "https://support.microsoft.com/en-us/teams/meetings/start-stop-and-find-meeting-recordings-in-microsoft-teams"
+    publisher: "Microsoft Support"
+    accessDate: "2026-11-10"
+    claim: "Teams recordings capture audio, video and screen sharing activity, but the support page lists material not captured by recordings."
+  - url: "https://support.google.com/meet/answer/12849897?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Google Meet Transcripts include spoken words rather than meeting chat; availability and storage depend on account and configuration."
+  - url: "https://support.google.com/meet/answer/9308681?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Google describes recording permissions and an optional administrator setting that can request explicit participant consent for recording, transcription and notes."
+  - url: "https://support.google.com/meet/answer/14754931?hl=en"
+    publisher: "Google Meet Help"
+    accessDate: "2026-11-10"
+    claim: "Google describes AI-generated meeting notes, eligibility and single-language-at-a-time limitations for its Take notes for me feature."
+related: ["what-consent-and-notice-should-i-plan-for-recording-a-multilingual-meeting", "how-should-teams-review-and-share-ai-meeting-notes-across-languages", "are-cloud-ai-video-transcripts-safe", "can-a-meeting-be-end-to-end-encrypted-and-still-generate-ai-notes"]
+---
+
+## Should we keep a meeting transcript, a recording, or an AI summary?
+
+**Short answer:** Keep the *least revealing artifact that reliably serves a defined purpose*. For routine coordination, that is often a short, human-approved decision and action record, perhaps with no retained audio or verbatim transcript. Keep a transcript when authorized readers need searchable speech or a text route to the discussion; keep a recording when replay of what was actually captured is necessary and permitted. An AI summary is a draft navigation aid, not an evidentiary substitute for either. More than one artifact may be justified, but each needs a separate owner, audience, retention period and deletion path. If a preservation obligation or dispute applies, ask the records or legal team before changing normal deletion.
+
+The question is not “Which file is most complete?” but “What future question must we answer, for whom, and at what cost to participants?” A recording retains features of the event that text cannot convey, while a transcript makes some speech searchable and an approved recap makes commitments legible. None contains the whole meeting: a microphone can miss a remark; a transcript can lose tone and negation; a summary can omit disagreement; a recording can leave out chat, whiteboards or material outside the captured window. [Microsoft's Teams recording instructions](https://support.microsoft.com/en-us/teams/meetings/start-stop-and-find-meeting-recordings-in-microsoft-teams) explicitly list items its recordings do not capture. Never label any file “everything that happened” without checking the capture scope.
+
+For privacy questions about cloud processing rather than the choice of artifact, read [Are cloud AI video transcripts safe?](/blog/are-cloud-ai-video-transcripts-safe/). For editorial checks on multilingual notes, see [How should teams review and share AI meeting notes across languages?](/blog/how-should-teams-review-and-share-ai-meeting-notes-across-languages/). Here we decide **what to create and retain**, including the option to create no durable speech record at all.
+
+### What is the default when we do not need an exact replay?
+
+Write a concise approved record: meeting purpose, date, participants or roles where appropriate, decisions, unresolved questions, owners, deadlines, and who approved the record. Let participants correct consequential errors. A facilitator can make this from contemporaneous human notes and a closing verbal confirmation, without recording anyone. If there is no final decision, write “open” rather than inventing consensus. An approved decision record is evidence of the organization's *documented action*, not proof that every participant agreed with every sentence.
+
+Do not quietly upgrade the default to continuous capture because storage is cheap. The marginal cost of one more transcript is not just disk space: search, forwarding, discovery, mistaken attribution, access requests, breach impact and downstream copies all become possible. Conversely, a team handling a disputed technical handoff may need a narrowly scoped recording precisely because a decision log cannot reconstruct a phrase. Choose deliberately rather than declaring either “always record” or “never record.”
+
+## What does each artifact preserve, and what does it leave out?
+
+| Artifact | Useful later for | What it cannot safely establish by itself | Main exposure to manage |
+| --- | --- | --- | --- |
+| Recording, with actual capture scope documented | Replaying captured speech, slides or visible actions; checking sequence and emphasis | Uncaptured chat, side conversations, intent, later amendments, legal truth or universal agreement | Voice, image, screen contents and incidental personal information; large copied files |
+| Source-language transcript | Searching speech, reading instead of listening, locating a passage to verify | Perfect quotation, tone, nonverbal signals, missing audio or reliably identified speakers | Searchable names, sensitive statements and machine errors that look factual |
+| Translated transcript | Helping a reader understand speech in another language | Exact wording in the source language or a certified interpretation | Additional ambiguity, language inference and broader access to private speech |
+| AI-generated summary | Fast orientation, topics and candidate actions to review | Completeness, consent, who actually approved an action or faithful quotation | Plausible but false assertions and wide, frictionless distribution |
+| Human-approved decision record | Communicating authorized decisions, owners, dates and unresolved items | A verbatim or exhaustive account of discussion | Misstated approval if review and version history are weak |
+
+These are *roles*, not a ranking from “best” to “worst.” A recording may have the greatest replay value but also the greatest collateral exposure. A transcript can be more accessible to a reader who cannot use audio, yet still be inaccurate. An AI summary can be the easiest file to read and the least appropriate file to quote as evidence. Decide whether you need to answer “What did the camera and microphone capture?”, “Where was a phrase spoken?”, “What should we do next?”, or “Who authorized the final decision?” Different questions demand different records.
+
+### Is a recording an objective record of what happened?
+
+It is a record of *what the configured capture obtained*. That matters, but it is narrower than what happened. A recording may begin late, stop early, miss quiet speech, exclude a whiteboard, show only one shared window, or omit messages in another channel. Even a clear passage can be ambiguous about conditions, authority, sarcasm or whether someone later changed their mind. A trimmed export may further hide context. Record the start and stop times and any known gaps; do not describe a clipped file as an uninterrupted meeting.
+
+The point of retaining audio or video is to let an authorized person inspect a claim against the captured source, not to claim that the file resolves every legal or interpersonal question. If a meeting has contractual or regulatory consequences, ask the responsible records and legal teams what counts as the official record and how to preserve relevant evidence. Do not make a general claim that recording establishes legal truth, assent or admissibility. For example, a recorded “sounds good” might acknowledge a proposal rather than formally approve it. Document the actual approval separately.
+
+### Is a transcript safer than a recording because it is only text?
+
+Not automatically. Text may exclude images and vocal cues, reducing some exposure, but it is easy to search, copy and combine with other records. A speech recognizer can mishear numbers, negation, unusual names or overlapping speakers. A transcript with timestamps and speaker labels can help locate a segment; those labels should still be checked for material claims. [Microsoft Support's live transcription guidance](https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings) describes names and timestamps in Teams, and says participants see a transcription notice. That is a description of a feature, not a warranty that every utterance is correctly attributed.
+
+Nor should a transcript be assumed to include everything a recording might show. [Google Meet's transcript help](https://support.google.com/meet/answer/12849897?hl=en) says its transcripts include spoken words, not meeting chat. Its account, device and storage conditions also matter. A transcript that makes a conversation legible for review may nevertheless make a fleeting, sensitive remark persist as searchable text. Limit its audience accordingly, and correct material transcription errors without silently replacing the original when preservation rules require a trace.
+
+### Why not retain only the AI summary?
+
+For an ordinary follow-up, an approved recap may be sufficient. But a raw AI summary is an *interpretation of selected input*, not a neutral compression. It can erase uncertainty, move an action to the wrong owner, collapse a conditional date into a deadline, or miss an objection. It may also omit a topic intentionally or simply because the input was incomplete. You cannot infer from fluent prose that the system heard every participant or captured the whole meeting.
+
+Separate **generated draft** from **approved record** in the title, header or status. A reviewer should confirm consequential claims with speakers or an authorized source. If audio or transcript was never created, say the recap was based on human notes or participant confirmation; do not imply it has timestamped support. If the source was deleted on schedule, do not promise future replay. Google's [Meet “Take notes for me” help](https://support.google.com/meet/answer/14754931?hl=en) describes generated notes and notes that can be shared, with availability and language constraints; it does not turn such notes into certified minutes. Your approval process, not the AI label, determines which recap the team will act on.
+
+## When does each choice make practical sense?
+
+Consider four meetings, all of which might be called “important.” A weekly project sync needs a decision log and action list; replaying every aside adds little. An accessibility-focused training session may need a reviewed text alternative, and possibly a recording if people need to revisit demonstrations; a bare action list will not teach the material. An incident review may need preserved source speech to resolve a disputed timeline, subject to an approved investigation and preservation process. A confidential personnel discussion may warrant minimal, access-restricted approved notes rather than a routine searchable transcript or video archive. These are starting points, not legal rules for every organization.
+
+A useful two-axis test is **reconstruction value versus collateral exposure**. Ask what an authorized future reader needs to reconstruct: exact spoken sequence, visual demonstration, terms of a decision, or just next steps. Then ask what else the artifact reveals: bystanders, private home details, sensitive hypotheses, unrelated client names, side comments, or unverified allegations. If the answer to the first question is narrow and the answer to the second is broad, capture a smaller artifact. If the future question cannot be answered without replay, define the smallest permitted capture window and audience rather than keeping all meetings forever.
+
+For a training session, consider accessible alternatives before deciding the transcript is the solution. A participant might need accurate captions during the live event, a reviewed transcript afterward, an accessible slide deck, or a description of visual demonstrations. These are related but not interchangeable. A recording with unclear audio and no text alternative can remain inaccessible; an unreviewed transcript can mislead someone who depends on it. Ask the intended audience what format lets them use the content, then check the actual output rather than assuming feature availability equals accessibility.
+
+For a high-stakes meeting, avoid a false choice between detailed evidence and a useful executive recap. An approved decision log can serve everyday readers while an authorized, separately restricted source artifact supports verification. The two may have different retention requirements. If the source expires under policy, make that limitation clear on the decision record. If a hold requires preservation, follow the hold; do not improvise deletion in the name of minimization. This separation keeps a company from forwarding raw speech to everyone merely because several people need the approved outcome.
+
+## What must we decide before pressing Record or Transcribe?
+
+State the purpose, capture scope, audience and expected disposition in ordinary language before the meeting. “We need notes” does not tell a participant whether a transcript, video, AI-generated draft or human minutes will be kept. Name which outputs will exist, where an authorized copy will live, who can receive it, whether outside processors are involved, when normal deletion happens and whom to contact about an error or objection. Check platform behavior and the organization's actual configuration, including whether starting one feature also starts another; do not rely on labels in an invitation.
+
+Notice and a legal basis are distinct. Requirements vary with jurisdiction, employment relationship, participants and subject matter. A platform notification helps people see that capture is active, but it does not itself resolve permission to record or process speech. [Google's recording help](https://support.google.com/meet/answer/9308681?hl=en) describes an administrator option that may require explicit participant consent for features such as recording, transcription and AI notes; the setting is off by default. That feature description is not a universal legal consent mechanism. Ask your privacy or legal owner what process is required. For a fuller participant-facing plan, see [What consent and notice should I plan for recording a multilingual meeting?](/blog/what-consent-and-notice-should-i-plan-for-recording-a-multilingual-meeting/).
+
+If someone objects, do not assume they can simply leave without consequence. Prepare a workable alternative: a meeting without capture, a separately approved note-taker, a follow-up in writing, a limited segment without the sensitive topic, or another method suitable for the work. In a multilingual meeting, explain the choice in an understandable language and format. Pause capture when the agenda moves into a topic outside the stated purpose. Ask the responsible team whether an earlier artifact must be restricted, corrected or deleted; do not promise a button erases every distributed copy.
+
+An accessibility request can affect the format you provide without automatically authorizing indefinite retention of raw speech. Distinguish live captions, saved transcription, translated captions, a reviewed transcript and approved minutes. A person may need live text but not a permanent searchable archive. Conversely, someone who misses the call may need a reliable accessible record rather than a video alone. Check whether the planned service retains outputs and whether speakers using multiple languages are handled correctly; do not present translated machine text as an exact quotation.
+
+## How should we separate the approved record from source evidence?
+
+Establish two lanes. The **working lane** contains an AI draft, human scratch notes and disputed interpretations; it is restricted to reviewers and marked unapproved. The **approved lane** contains the outcome that the authorized decision owner accepts, including date, scope, decisions, conditions, action owners, deadlines, open questions, approver and version. A recording or transcript, if needed, remains a separately governed source lane. Approval of minutes should not automatically publish the underlying voices and faces to the same readership.
+
+For each consequential statement, record its basis at a level the organization can sustain. “Confirmed by finance lead after meeting” may be enough for routine action ownership. A high-stakes correction might require an authorized reviewer to note the source-language phrase and a timestamp in a permitted recording. Do not fabricate timestamps or claim a source exists when it does not. If a speaker disputes an AI-generated action, resolve it with the responsible people, update the approved version and notify recipients who may have acted on the incorrect one. The cross-language editorial process in [our notes review guide](/blog/how-should-teams-review-and-share-ai-meeting-notes-across-languages/) goes deeper on that workflow.
+
+A simple example shows why the lanes matter. The transcript says, “We could ship next week if testing passes”; the AI summary says, “Launch next week”; the project owner confirms, “Testing gate stays open; no date approved.” The approved record should say “Proposed next-week launch, contingent on testing; date unapproved,” with the owner and review date. Keep the source only if its replay or search value is justified and permitted. The summary's confident wording should not become institutional history merely because it reached inboxes first.
+
+In multilingual meetings, label the language of the captured source and the language of each derived version. A translated sentence may be a helpful reading aid, but it is not the source-language utterance. If approval takes place in a different language, identify who checked the translation of key terms. Track whether a number, negation, condition or title was corrected. Where no qualified reviewer is available, mark the point unresolved. A record of uncertainty is often more useful than an elegant but unsupported paraphrase.
+
+## What should the retention and access policy cover?
+
+Do not set one generic “meeting data” timer without mapping the artifacts. A recorded video, downloaded copy, transcript, AI draft, approved minutes, translated recap and task-system action may reside in different places. Identify the owner of each copy and the rule that applies to it. Ask the records team about mandatory retention, legal holds and defensible disposal; ask security about access and incident response. A shorter retention target is meaningful only if the actual storage locations and exports are included in the plan.
+
+Start with a small audience. A participant may need approved outcomes but not a verbatim account of colleagues' personal remarks. A reviewer may need the audio for ten minutes but not a perpetual team-wide download. A customer may need commitments in the customer's language but not the internal discussion that preceded them. Restrict according to purpose and role, then verify that links and copies reach the intended people. Treat an integration that posts a summary to a broad channel as another distribution decision, not a harmless formatting step.
+
+Document the ordinary lifecycle: who creates the artifact, when it becomes approved, where it is stored, who can correct it, when it is reviewed for deletion, and what happens if a preservation hold intervenes. Do not claim that a provider offers granular permissions, automatic expiry, audit exports or secure deletion unless your own deployment has been verified. Product documentation can tell you what a feature *may* capture; your organization's configuration and policies determine what it actually does in this meeting. A small manual register can be preferable to an unverified automation promise.
+
+If the meeting concerns privileged, regulated or highly sensitive information, pause the routine workflow. Ask the designated owner whether capture is allowed, whether a specialized repository is required and what downstream uses must be prohibited. Do not treat this article as advice about evidentiary admissibility, statutory retention, employment consent or a particular industry's compliance. The same caution applies to an unexpected investigation: stop normal deletion through the authorized hold process, not through an ad hoc personal copy on someone's laptop.
+
+### What does an audit trail need to show?
+
+An audit trail should make decisions reconstructable without pretending that every keystroke was preserved. Capture the meeting identifier or purpose, capture notice and scope, the artifact inventory, custodians and approved destinations, the person who reviewed material claims, the approving decision owner, version dates, significant corrections and the scheduled disposition or applicable hold. If a recording was restricted or deleted, note the event and authority; do not imply that an inaccessible source can still be checked. The trail helps explain what was done with information, not certify that the information was intrinsically true.
+
+Keep **provenance** explicit. “Generated from recorded audio, reviewed against Spanish speech by reviewer A, approved by owner B on 12 November” tells a reader more than “AI verified.” If the approval was based only on written notes, say so. If a platform creates a transcript while recording, inventory both rather than assuming the video is the only artifact. [Microsoft's transcription support](https://support.microsoft.com/en-us/teams/meetings/start-stop-and-download-live-transcripts-in-microsoft-teams-meetings) notes that starting a Teams recording can automatically start transcription; that behavior is a reason to check actual outputs and settings, not a claim about Ollasync or every platform.
+
+## Can AI notes work with end-to-end-encrypted meetings here?
+
+Do not infer that live end-to-end encryption and AI notes are simultaneously available just because both appear on a product website. Ollasync's current [pricing FAQ](/pricing/) says AI transcripts, notes and action items run on **recorded meetings** and that **end-to-end-encrypted meetings are excluded by design**. Plan accordingly: if the meeting must use that E2EE mode, do not plan on Ollasync AI notes for it. If notes are essential, select a permitted workflow and confirm the privacy tradeoff rather than quietly switching meeting modes. Our [E2EE and AI notes explainer](/blog/can-a-meeting-be-end-to-end-encrypted-and-still-generate-ai-notes/) distinguishes possible technical designs from the feature currently offered.
+
+Even outside an E2EE meeting, do not assume all notes are provider-blind or that an AI summary carries the same protection as the media path. Determine who receives audio or text, who retains resulting files and which approved participants can access them. An organizer who manually writes a decision log after an E2EE meeting can still share that log under the organization's rules, but it is a new artifact with its own audience and retention decision. Encryption of the live channel does not automatically classify or protect a copy of the words later placed in a document.
+
+## Can we use a one-page artifact decision worksheet?
+
+Use this before the invite or when planning recurring meeting types. Fill in each answer for the specific purpose; do not treat checked boxes as legal clearance.
+
+| Decision | Question to record | Example of a sufficiently concrete answer |
+| --- | --- | --- |
+| Future use | What must an authorized reader be able to do? | Confirm owners and deadlines; no replay needed |
+| Minimum artifact | What is the smallest usable output? | Approved action log, not routine video |
+| Capture scope | What speech, video, screens, chat or language is included? | Audio and shared screen for a defined demo segment only |
+| Participant process | What notice and response process has the owner approved? | Advance bilingual notice and a pause before capture |
+| Reviewer | Who verifies consequential claims and translations? | Facilitator plus subject lead for technical terms |
+| Distribution | Who sees the draft, source and approved record? | Two reviewers see source; project team sees approved log |
+| Retention | What rule applies to every copy and export? | Records schedule applies; owner checks downloads |
+| Exception | What changes for an objection, error or hold? | Pause capture; escalate to privacy or records owner |
+
+If the worksheet cannot identify a future use for an artifact, do not create it by default. If it identifies a use but no owner or approved destination, resolve that gap before capturing. For recurring meetings, review the answers when participants, agenda, technology or legal requirements change. The decision is not “set and forget”: a routine product sync can become a confidential personnel conversation halfway through, and the original capture plan may no longer fit.
+
+## Frequently asked questions
+
+### Should we keep both a recording and a transcript?
+
+Sometimes. A transcript can help find a passage and provide text access; an authorized recording can help check audible context or a visual demonstration. Both increase retained information and may create separate copies. Keep both only when the use cases and permissions justify them, identify which is the source for checking speech, and apply distinct access and retention rules. Do not assume a transcript automatically contains chat or that a video captured every whiteboard and aside.
+
+### What if someone needs accessible notes but we cannot record?
+
+Ask what format actually meets the need: live captions, a human note-taker, an accessible approved recap, a reviewed transcript made through an authorized process, or an alternative demonstration. A human-authored record can be created without retaining raw audio. If live processing is involved, explain it separately from durable capture. Check accuracy and timeliness with the intended reader; refusing to record does not mean refusing accessible participation.
+
+### Can an AI summary be our official minutes?
+
+Only after the organization applies its ordinary review and approval process to the content. Label the generated version as a draft; have a responsible person confirm decisions, conditions, owners and omissions, then publish an approved version with an approver and date. Approval makes it the organization's documented decision record, not a verbatim transcript or infallible reconstruction of what was said. Keep the original draft only when your records policy calls for it.
+
+### Should we delete a transcript once the recap is approved?
+
+Follow the approved schedule and check for holds first. If the transcript exists only to prepare the recap and no separate search, accessibility or evidentiary need remains, deletion may be appropriate under that schedule. But approving minutes does not override preservation obligations, and deleting the primary copy while leaving exports in email or shared drives is not meaningful minimization. Record the disposition so later readers know what evidence is no longer available.
+
+### Does participant consent make every artifact safe to share?
+
+No. Whatever process authorizes capture does not automatically authorize broad distribution, indefinite retention, secondary AI processing or an unrelated use. Explain each output and intended audience, apply the relevant legal and organizational rules, and restrict source material independently from the approved recap. A notification icon or participant silence should not be used as a universal permission slip.
+
+### Which artifact should we send to someone who missed the meeting?
+
+Usually the approved recap with decisions, owners, conditions and open questions, in a usable language and format. Provide a reviewed transcript or restricted recording when the absent person genuinely needs to inspect discussion or a demonstration and is authorized to receive it. Avoid forwarding a raw AI draft as if it were approved, and avoid distributing the entire recording solely to answer “What are my next steps?”
+
+The useful policy is therefore not “record everything” or “summarize everything.” It is a repeatable decision: define the future question, create only the approved artifact that can answer it, tell participants what is happening, check the result, and keep an accountable path to correct or dispose of each copy.

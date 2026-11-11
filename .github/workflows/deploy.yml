@@ -30,6 +30,8 @@ jobs:
         run: |
           npm ci || npm install
           npm run build
+          npm run generate:llms
+          npm run test:seo
 
       - name: CSP (hash every inline script, write dist/_headers)
         # public/_headers ships a __MKT_CSP__ placeholder; this writes the enforced policy from the BUILT pages and

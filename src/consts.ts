@@ -8,7 +8,7 @@ export const SITE = {
   // Canonical host is www (apex 301-redirects to www). Drives canonicals/OG/schema.
   url: 'https://www.ollasync.com',
   appUrl: 'https://login.ollasync.com',
-  tagline: 'Meet in your language.',
+  tagline: 'Meet beyond language.',
   description:
     `Browser-based video meetings with live translation in ${LANG_COUNT} languages, captions, screen sharing, recordings and AI meeting notes.`,
   // Was og-ollasync.png — a padlock-in-shield cybersecurity graphic from the previous branding, and

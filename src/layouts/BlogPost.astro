@@ -1,9 +1,11 @@
 ---
 import Base from './Base.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import BlogImage from '../components/BlogImage.astro';
 import Icon from '../components/Icon.astro';
 import Cta from '../components/Cta.astro';
 import { SITE } from '../consts';
+import { getPrimaryTopic, topics } from '../data/blogTopics';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 }
 const { post, headings, related } = Astro.props;
 const d = post.data;
+const topic = getPrimaryTopic(post);
 const fmt = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const cover = d.cover || d.heroImage || '/og-classroom.jpg';
@@ -35,7 +38,7 @@ const schema = {
     <header class="post__head section" style="padding-block:40px 8px">
       <div class="container">
         <div style="max-width:880px">
-          <div style="margin-bottom:18px"><Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: d.category, href: `/blog?category=${d.category}` }, { label: d.title }]} /></div>
+          <div style="margin-bottom:18px"><Breadcrumb items={[{ label: 'Blog', href: '/blog/' }, ...(topic ? [{ label: topics[topic].title, href: `/blog/topics/${topic}/` }] : []), { label: d.title }]} /></div>
           <span class={`chip cat cat--${d.category.toLowerCase()}`}>{d.category}{d.pillar && <> · Pillar guide</>}</span>
           <h1 class="display" style="font-size:clamp(30px,4.4vw,46px);line-height:1.18;margin-top:16px">{d.title}</h1>
           <p class="lead" style="margin-top:16px">{d.description}</p>
@@ -49,7 +52,7 @@ const schema = {
     </header>
 
     <div class="container post__cover-wrap">
-      <img class="post__cover" src={cover} alt={d.title} width="1600" height="540" loading="eager" />
+      <BlogImage class="post__cover" src={cover} alt={d.title} sizes="(max-width: 1200px) 100vw, 1200px" widths={[480, 768, 960, 1200]} loading="eager" fetchpriority="high" />
     </div>
 
     <div class="container post__grid">
@@ -209,7 +212,7 @@ const schema = {
   .post__meta .dot { color: var(--line-2); }
   .post__role { font-family: var(--font-mono); font-size: 12px; color: var(--muted-2); }
   .post__cover-wrap { margin-top: 24px; }
-  .post__cover { width: 100%; border-radius: var(--r-lg); border: 1.5px solid var(--line-2); max-height: 480px; object-fit: cover; }
+  .post__cover-wrap :global(img.post__cover) { width: 100%; border-radius: var(--r-lg); border: 1.5px solid var(--line-2); max-height: 480px; object-fit: cover; }
   
   /* Layout: 2-column with sticky sidebar matching landing page style */
   .post__grid { display: grid; grid-template-columns: 290px 1fr; gap: 40px; margin-top: 40px; align-items: start; }

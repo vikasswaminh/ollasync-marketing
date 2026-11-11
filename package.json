@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "test:seo": "node scripts/check-seo.mjs",
+    "generate:llms": "node scripts/generate-llms.mjs dist",
     "preview": "astro preview",
     "astro": "astro"
   },

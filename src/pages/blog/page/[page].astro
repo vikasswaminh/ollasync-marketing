@@ -1,0 +1,38 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import BlogListing from '../../../components/BlogListing.astro';
+import Cta from '../../../components/Cta.astro';
+import { getBlogPage, getBlogPosts, BLOG_PAGE_SIZE } from '../../../data/blogListing';
+import { topics } from '../../../data/blogTopics';
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return Array.from({ length: Math.ceil(posts.length / BLOG_PAGE_SIZE) - 1 }, (_, index) => ({
+    params: { page: String(index + 2) },
+    props: { posts },
+  }));
+}
+const { posts } = Astro.props;
+const page = Number(Astro.params.page);
+const { posts: pagePosts, totalPages } = getBlogPage(posts, page);
+---
+<Base title={`Blog — Page ${page} — AI meetings and secure collaboration`} description={`Browse page ${page} of Ollasync articles on multilingual meetings, global training, security, and software comparisons.`}>
+  <section class="section">
+    <div class="container">
+      <Breadcrumb items={[{ label: 'Blog', href: '/blog/' }, { label: `Page ${page}` }]} />
+      <h1 class="h1" style="margin:24px 0">Blog articles — page {page}</h1>
+      <nav class="topic-nav" aria-label="Blog topics">
+        <a href="/blog/">All articles</a>
+        {Object.entries(topics).map(([slug, topic]) => <a href={`/blog/topics/${slug}/`}>{topic.title}</a>)}
+      </nav>
+      <BlogListing posts={pagePosts} page={page} totalPages={totalPages} baseUrl="/blog/" />
+    </div>
+  </section>
+  <Cta />
+</Base>
+<style>
+  .topic-nav { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
+  .topic-nav a { border:1px solid var(--line); border-radius:var(--r-lg); padding:8px 12px; color:var(--ink); }
+  .topic-nav a:hover { background:var(--bg-2); }
+</style>
