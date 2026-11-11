@@ -1,10 +1,10 @@
-<!-- Ollasync ring mark — same glyph/geometry as src/components/BrandMark.astro and the product's
-     web/favicon.svg. Hosted as a real FILE (plus favicon.ico / apple-touch-icon.png) because Google's
-     SERP favicon fetcher and bookmark/touch-icon consumers cannot read the inline data: URI the layout
-     used to rely on — that's why search results kept showing the retired mark. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
-  <g stroke="#3B8EF5" stroke-width="5" fill="none">
-    <path d="M8.807 9.053A10 10 0 1 0 23.771 22.293"/>
-    <path d="M24.572 21.151A10 10 0 0 0 9.707 8.229"/>
-  </g>
+<!-- OllaSync mark — same paths as src/components/BrandMark.astro. Master for the raster icons:
+     scripts/build-brand-icons.mjs renders this into favicon.ico, apple-touch-icon.png and logo.png.
+     Hosted as a real FILE (plus favicon.ico / apple-touch-icon.png) because Google's SERP favicon
+     fetcher and bookmark/touch-icon consumers cannot read an inline data: URI. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490" width="32" height="32" fill="#C51208">
+  <path fill-rule="evenodd" d="M124 64H330A124 124 0 0 1 382.3 75.6A65 65 0 0 0 438 127A124 124 0 0 1 454 188V348A124 124 0 0 1 330 472H124A124 124 0 0 1 0 348V188A124 124 0 0 1 124 64ZM137 147H317A58 58 0 0 1 375 205V333A58 58 0 0 1 317 391H137A58 58 0 0 1 79 333V205A58 58 0 0 1 137 147Z"/>
+  <rect x="137" y="212" width="125" height="114" rx="20"/>
+  <path d="M260 249L313.8 215.4Q324 209 324 221V316Q324 328 313.8 321.6L260 288Z"/>
+  <circle cx="446" cy="62.5" r="44"/>
 </svg>

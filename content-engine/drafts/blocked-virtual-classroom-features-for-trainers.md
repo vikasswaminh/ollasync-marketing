@@ -3,26 +3,26 @@ title: "Virtual Classroom Features That Save Trainers Time and Money"
 description: "Which virtual classroom features actually save trainers time and money per class? A practical ranking with real limits explained."
 pubDate: 2026-09-12
 category: "Teaching"
-cover: "/og-classroom.jpg"
+cover: "/og-meeting.png"
 readTime: 6
-author: "The Ollasync team"
+author: "The OllaSync team"
 authorRole: "Trainer tools & product"
 keywords: ["virtual classroom features", "best virtual classroom features", "virtual classroom software features for trainers", "features to look for in a virtual classroom"]
 takeaways:
   - "Live translation works well for lessons but can't replace certified interpreters in regulated fields."
   - "Attendance, wrap-up emails and AI notes are automated from the session itself, reducing post-class work."
   - "Per-trainer pricing lowers costs for large cohorts and client training."
-  - "Ollasync supports up to five languages per session; plan your multilingual classes accordingly."
+  - "OllaSync supports up to five languages per session; plan your multilingual classes accordingly."
   - "End-to-end encryption and AI features are mutually exclusive in the same class."
 draft: false
 ---
 Professional trainers don’t get paid for software battles. They get paid for outcomes. When evaluating virtual classroom tools, the real question isn’t *“What does this platform have?”* but *“What does this feature save me per class, and per cohort?”* This article cuts through the noise to rank features by their actual impact on a trainer’s workflow, with honest limits included.
 
-For a deeper dive into how Ollasync fits into the virtual classroom landscape, start with the [virtual classroom software overview](/virtual-classroom-software/).
+For a deeper dive into how OllaSync fits into the virtual classroom landscape, start with the [virtual classroom software overview](/virtual-classroom-software/).
 
 ## What a virtual classroom must do before anything else
 
-Every platform must handle the basics: HD video, screen sharing, whiteboards, breakout rooms, and host controls. Ollasync includes these in its video classes. But for professional trainers, these are table stakes. The real differentiators are the features that reduce the *non-teaching* work: preparing materials, managing attendees, following up, and protecting content.
+Every platform must handle the basics: HD video, screen sharing, whiteboards, breakout rooms, and host controls. OllaSync includes these in its video classes. But for professional trainers, these are table stakes. The real differentiators are the features that reduce the *non-teaching* work: preparing materials, managing attendees, following up, and protecting content.
 
 ## Which virtual classroom features save the most time per class?
 
@@ -36,7 +36,7 @@ Each of these is a toggle in workspace settings. Turn them on once, and they app
 
 ## The five-language limit is a planning constraint, not a bug
 
-Imagine teaching a technical course to a client with teams in Germany, Japan, India, and Brazil. You teach in English, but some learners struggle with English. Ollasync translates your live voice into 19 languages, and learners choose their preferred language, captions or spoken audio, independently.
+Imagine teaching a technical course to a client with teams in Germany, Japan, India, and Brazil. You teach in English, but some learners struggle with English. OllaSync translates your live voice into 19 languages, and learners choose their preferred language, captions or spoken audio, independently.
 
 But here’s the catch: one live class can support **up to five languages at once**. If your cohort needs six or more, you’ll need to split the session or run a second. This isn’t a bug; it’s a deliberate design choice. Machine translation lags slightly (like listening through an interpreter), which works for lessons but not for certified interpreting in regulated fields.
 
@@ -46,7 +46,7 @@ Plan your cohorts around this limit. For example, a session with English, German
 
 The most underrated features in virtual classrooms are the *after-class* tools. Most trainers spend 20–30 minutes per session on follow-up: writing notes, checking attendance, sending summaries, managing recordings.
 
-Ollasync treats these as first-class outputs of the session:
+OllaSync treats these as first-class outputs of the session:
 
 - **Attendance** is logged per session and visible in the dashboard.
 - A **wrap-up email** reaches the host automatically (if enabled).
@@ -66,7 +66,7 @@ The limit applies per session, not per workspace. If your cohort needs six langu
 
 ## Per-trainer pricing changes the arithmetic of cohorts
 
-Ollasync’s pricing model is **per trainer or staff seat**, with learners joining free. This changes the economics of training:
+OllaSync’s pricing model is **per trainer or staff seat**, with learners joining free. This changes the economics of training:
 
 - For open-enrollment courses, your cost is fixed regardless of how many learners attend. Margins improve as your class fills.
 - For client training (e.g., a course for 40 employees), you pay for your own seat. The client’s learners join free.
@@ -81,9 +81,9 @@ This removes friction that causes dropouts. Every installation barrier, such as 
 
 The class link is reusable across sessions and includes a passcode (which travels with the invitation). The invitation email can include a custom message, useful for setting expectations or attaching pre-reading.
 
-## When Ollasync is not the best choice
+## When OllaSync is not the best choice
 
-Honesty about limits is part of choosing the right tool. Ollasync isn’t ideal in three scenarios:
+Honesty about limits is part of choosing the right tool. OllaSync isn’t ideal in three scenarios:
 
 1. **Certified interpreting** is needed for legal, medical, or regulatory training. Machine translation isn’t a substitute.
 2. **More than five languages** in a single session. Split the session or use a different approach.
@@ -91,7 +91,7 @@ Honesty about limits is part of choosing the right tool. Ollasync isn’t ideal 
 
 Consider a trainer running a global onboarding program for a multinational with teams in eight language regions. The five-language limit becomes a bottleneck. The trainer must either run two sessions with overlapping content, which doubles preparation time, or ask some learners to follow in a second language, which reduces comprehension. In this case, a platform with broader simultaneous language support, or a different delivery model, might serve better.
 
-For everything else, Ollasync is designed around the live teaching workflow, not generic meetings. That’s the key difference.
+For everything else, OllaSync is designed around the live teaching workflow, not generic meetings. That’s the key difference.
 
 ## What to check before you commit
 

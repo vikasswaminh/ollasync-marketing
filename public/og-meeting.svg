@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Ollasync multilingual video meetings</title>
+  <title id="title">OllaSync multilingual video meetings</title>
   <desc id="desc">A stylized meeting interface with translated speech and captions, without portraits.</desc>
   <defs>
     <linearGradient id="background" x2="1" y2="1"><stop stop-color="#07172e"/><stop offset="1" stop-color="#193b67"/></linearGradient>
@@ -8,9 +8,16 @@
   <rect width="1200" height="630" fill="url(#background)"/>
   <circle cx="1055" cy="85" r="285" fill="#438afa" opacity=".12"/>
   <circle cx="74" cy="608" r="246" fill="#42c9d9" opacity=".08"/>
-  <g transform="translate(82 70)">
-    <g fill="none" stroke="#69d3ff" stroke-width="10"><path d="M19 9 A30 30 0 1 0 66 52"/><path d="M68 50 A30 30 0 0 0 22 7"/></g>
-    <text x="91" y="54" fill="#fff" font-family="Arial, sans-serif" font-size="52" font-weight="700">Ollasync</text>
+  <g transform="translate(82 64)">
+    <!-- brand mark (paths from public/favicon.svg) on a white tile: the logo red does not read on navy -->
+    <rect width="88" height="88" rx="22" fill="#fff"/>
+    <g transform="translate(13 13) scale(.1265)" fill="#C51208">
+      <path fill-rule="evenodd" d="M124 64H330A124 124 0 0 1 382.3 75.6A65 65 0 0 0 438 127A124 124 0 0 1 454 188V348A124 124 0 0 1 330 472H124A124 124 0 0 1 0 348V188A124 124 0 0 1 124 64ZM137 147H317A58 58 0 0 1 375 205V333A58 58 0 0 1 317 391H137A58 58 0 0 1 79 333V205A58 58 0 0 1 137 147Z"/>
+      <rect x="137" y="212" width="125" height="114" rx="20"/>
+      <path d="M260 249L313.8 215.4Q324 209 324 221V316Q324 328 313.8 321.6L260 288Z"/>
+      <circle cx="446" cy="62.5" r="44"/>
+    </g>
+    <text x="110" y="62" fill="#fff" font-family="Arial, sans-serif" font-size="52" font-weight="700">OllaSync</text>
   </g>
   <text x="84" y="275" fill="#fff" font-family="Arial, sans-serif" font-size="66" font-weight="700">Meet beyond language.</text>
   <text x="86" y="335" fill="#c9deff" font-family="Arial, sans-serif" font-size="27">Video meetings with live translated voice and captions</text>

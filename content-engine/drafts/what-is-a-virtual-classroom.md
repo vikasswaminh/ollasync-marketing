@@ -3,9 +3,9 @@ title: "What Is a Virtual Classroom? A Practical Guide for Trainers"
 description: "A virtual classroom is a live online teaching space. This guide explains how it works for trainers, with workflow examples and tradeoffs."
 pubDate: 2026-09-12
 category: "Teaching"
-cover: "/og-classroom.jpg"
+cover: "/og-meeting.png"
 readTime: 11
-author: "The Ollasync team"
+author: "The OllaSync team"
 authorRole: "Trainer tools & product"
 keywords: ["what is a virtual classroom", "virtual classroom meaning", "virtual classroom for trainers", "virtual classroom examples"]
 takeaways:
@@ -45,7 +45,7 @@ There is a tradeoff worth naming. Browser-based tools are constrained by what br
 
 A webinar is a broadcast. The presenter speaks, the audience watches, and interaction is limited to moderated Q&A or polls. A virtual classroom is a conversation. Learners can speak, share, write on the whiteboard, and work in breakout rooms. The distinction matters because the tools are different. 
 
-For a one-to-many product demo or a keynote, a webinar is the right format. For training where learners need to practice, ask questions, and engage, a virtual classroom is the right format. Some platforms offer both, and Ollasync does: webinars for large view-only audiences with moderated Q&A and polls, and video classes for interactive sessions with whiteboards and breakout rooms. The choice is about the session design, not the tool. 
+For a one-to-many product demo or a keynote, a webinar is the right format. For training where learners need to practice, ask questions, and engage, a virtual classroom is the right format. Some platforms offer both, and OllaSync does: webinars for large view-only audiences with moderated Q&A and polls, and video classes for interactive sessions with whiteboards and breakout rooms. The choice is about the session design, not the tool. 
 
 ## The after-class artefacts come out of the session itself 
 

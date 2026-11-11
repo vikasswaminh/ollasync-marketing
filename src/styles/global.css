@@ -1,5 +1,5 @@
 /* ============================================================================
-   Ollasync marketing — design system
+   OllaSync marketing — design system
    Light brand world on white, sharing the networkershome system: Lato, navy ink,
    blue primary with the red used as punctuation, and a fine red square grid.
    No external font/asset CDN (privacy: a security product must not leak visitor
@@ -243,7 +243,7 @@ h1, h2, h3, h4 { line-height: 1.08; letter-spacing: -.03em; font-weight: 700; te
 .nav__inner { display: flex; align-items: center; gap: 30px; padding-block: 15px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 620; font-size: 16px; letter-spacing: -.01em; }
 .brand:hover { color: var(--ink); }
-/* The mark is the ring glyph itself — no tile, no shadow, exactly as it appears in the product. */
+/* The mark is the camera-frame glyph itself — no tile, no shadow, exactly as it appears in the logo. */
 .brand__mark { display: block; width: 28px; height: 28px; flex: none; }
 .nav__links { display: flex; gap: 24px; font-size: 14.5px; }
 .nav__links a { color: var(--ink); font-weight: 700; }

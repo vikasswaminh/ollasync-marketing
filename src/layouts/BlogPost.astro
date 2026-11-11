@@ -31,7 +31,7 @@ const schema = {
   author: d.author === 'Amit Mishra'
     ? { '@type': 'Person', name: d.author, email: 'mailto:amit@ollasync.com', homeLocation: { '@type': 'Place', name: 'Bengaluru, India' } }
     : { '@type': /\b(team|ollasync)\b/i.test(d.author) ? 'Organization' : 'Person', name: d.author },
-  publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: new URL('/apple-touch-icon.png', SITE.url).href } },
+  publisher: { '@type': 'Organization', name: SITE.name, logo: { '@type': 'ImageObject', url: new URL('/logo.png', SITE.url).href } },
   mainEntityOfPage: new URL(`/blog/${post.slug}/`, SITE.url).href, // the canonical form (directory URLs end with a slash)
 };
 ---
@@ -87,11 +87,11 @@ const schema = {
 
           <div class="sidebar-card promo-card">
             <span class="sidebar-badge sidebar-badge--teal"><Icon name="shield-check" size={13} stroke="var(--teal)" /> Enterprise Alternative</span>
-            <h4 class="promo-card__title">Deploy Ollasync AI Meetings</h4>
+            <h4 class="promo-card__title">Deploy OllaSync AI Meetings</h4>
             <p class="promo-card__desc">Browser-native video meetings with live voice translation, automated meeting minutes, and zero add-on license traps.</p>
             <div class="promo-card__actions">
-              <a href={SITE.appUrl} class="btn btn-primary btn-sm promo-btn">Try Ollasync Free <span class="arrow">→</span></a>
-              <a href="/vs/microsoft-teams" class="promo-link">Compare Teams vs Ollasync</a>
+              <a href={SITE.appUrl} class="btn btn-primary btn-sm promo-btn">Try OllaSync Free <span class="arrow">→</span></a>
+              <a href="/vs/microsoft-teams" class="promo-link">Compare Teams vs OllaSync</a>
             </div>
           </div>
 
@@ -177,8 +177,8 @@ const schema = {
   </article>
   <Cta
     title={d.category === 'Comparisons' ? 'Cut AI meeting costs by up to 64%.' : undefined}
-    sub={d.category === 'Comparisons' ? 'Ollasync delivers browser-based video meetings with real-time translation, transcription, and automated AI summaries without costly add-on license traps.' : undefined}
-    primary={d.category === 'Comparisons' ? { label: 'Start free with Ollasync', href: SITE.appUrl } : undefined}
+    sub={d.category === 'Comparisons' ? 'OllaSync delivers browser-based video meetings with real-time translation, transcription, and automated AI summaries without costly add-on license traps.' : undefined}
+    primary={d.category === 'Comparisons' ? { label: 'Start free with OllaSync', href: SITE.appUrl } : undefined}
     secondary={d.category === 'Comparisons' ? { label: 'Book an enterprise demo', href: '/contact' } : undefined}
   />
 </Base>

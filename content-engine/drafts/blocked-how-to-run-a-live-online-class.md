@@ -3,9 +3,9 @@ title: "How to Run a Live Online Class: A Trainer's Checklist"
 description: "A practical, time-ordered checklist for running a live online class: setup a week before, an hour before, during, and after the session."
 pubDate: 2026-09-12
 category: "Teaching"
-cover: "/og-classroom.jpg"
+cover: "/og-meeting.png"
 readTime: 8
-author: "The Ollasync team"
+author: "The OllaSync team"
 authorRole: "Trainer tools & product"
 keywords: ["how to run a live online class", "live online class checklist", "online class setup for trainers", "run an online training session"]
 takeaways:
@@ -28,7 +28,7 @@ Upload materials in advance. Any handouts or slides should be ready in a second 
 
 ## An hour before: test the environment
 
-Open your browser and test your setup. Ollasync runs entirely in the browser, so your browser is your infrastructure. Close unnecessary tabs, check your microphone and camera, and verify that your screen sharing works with the actual slides you will use. If you have learners joining in multiple languages, confirm your translation settings. Live translation runs a beat behind the speaker, like an interpreter, while captions appear immediately and refine as the sentence completes. This means your pacing matters. Speak in full sentences, pause after questions, and avoid rapid-fire delivery.
+Open your browser and test your setup. OllaSync runs entirely in the browser, so your browser is your infrastructure. Close unnecessary tabs, check your microphone and camera, and verify that your screen sharing works with the actual slides you will use. If you have learners joining in multiple languages, confirm your translation settings. Live translation runs a beat behind the speaker, like an interpreter, while captions appear immediately and refine as the sentence completes. This means your pacing matters. Speak in full sentences, pause after questions, and avoid rapid-fire delivery.
 
 Set up your physical space. Ensure lighting comes from the front, not behind you. Minimize background noise. Keep a glass of water nearby. Close email and chat apps to avoid distractions. You are about to teach, and the class deserves your full attention.
 
@@ -56,7 +56,7 @@ First, check your pacing. If you are speaking quickly, slow down. Break long pas
 
 ## The after-class workflow
 
-The session ends, but your work continues. Ollasync's after-class workflow saves time. Every session's attendance is recorded in the dashboard, so you do not need to manually track who joined. If you enabled the wrap-up email, it arrives automatically, giving you a quick summary.
+The session ends, but your work continues. OllaSync's after-class workflow saves time. Every session's attendance is recorded in the dashboard, so you do not need to manually track who joined. If you enabled the wrap-up email, it arrives automatically, giving you a quick summary.
 
 If you recorded the class, AI notes can be generated. These provide a summary, key topics, and action items. From the recording, you can send these notes to everyone on the invite list in one step. Instead of writing a follow-up email from memory, you send the AI-generated notes and add a personal message.
 
@@ -64,7 +64,7 @@ Here is the sequence: Check attendance in the session history. If the wrap-up em
 
 ### How this compares to generic tools
 
-| Task after class | Generic meeting tools | Ollasync |
+| Task after class | Generic meeting tools | OllaSync |
 |------------------|----------------------|----------|
 | Attendance record | Manual check of participant list, often lost | Session history in dashboard, per session |
 | Follow-up summary | Write from memory or notes | Wrap-up email to host automatically |
@@ -72,7 +72,7 @@ Here is the sequence: Check attendance in the session history. If the wrap-up em
 | Sending notes to learners | Copy-paste into email client | One-step send to invite list or typed addresses |
 | Control over these | Varies, often all-or-nothing | Each is a switch in workspace settings |
 
-## When Ollasync is not the best choice
+## When OllaSync is not the best choice
 
 Be honest about limitations. Live translation is excellent for lessons but not a substitute for certified interpreters in legal or medical contexts. If you need end-to-end encryption, enable it per meeting, but encrypted classes cannot be recorded or summarized. That trade is deliberate. For a confidential coaching session where no record should exist, encryption is the right call. For a certification course where learners need the recording, skip encryption and rely on access-controlled storage.
 
@@ -80,7 +80,7 @@ Language coverage matters too. The 19 supported languages cover major global mar
 
 ## Browser-based infrastructure and multilingual delivery
 
-Ollasync runs in the browser, which changes how multilingual classes work compared to installed software. With installed tools, each learner must download, update, and configure a client. That is friction, and friction costs class time. With a browser-based approach, learners join from a link on desktop or mobile with nothing to install and no account required for invited guests. The trainer teaches from the browser too.
+OllaSync runs in the browser, which changes how multilingual classes work compared to installed software. With installed tools, each learner must download, update, and configure a client. That is friction, and friction costs class time. With a browser-based approach, learners join from a link on desktop or mobile with nothing to install and no account required for invited guests. The trainer teaches from the browser too.
 
 The technical difference matters for translation. When translation runs in the browser, each learner's language choice is processed independently. Captions and spoken translation are separate streams, so one learner can read Hindi captions while another listens to Arabic audio in the same session. The browser handles the rendering locally, which means the trainer's voice is sent once and each participant receives the language they selected. This is different from installed software that often requires server-side processing per language, which can add latency and complexity. The browser model also means updates roll out centrally, so you never ask learners to "update before class."
 
@@ -88,4 +88,4 @@ The technical difference matters for translation. When translation runs in the b
 
 Run the checklist once. A week before: set up the link, passcode, and workspace settings. An hour before: test your environment. During: teach at a natural pace. After: use attendance, wrap-up emails, and AI notes to close the loop. Practice pacing. Run a test session with a colleague. Speak normally, pause after questions, and watch how captions behave. After one session, it will feel natural.
 
-For a deeper look at how Ollasync fits your training practice, see the [Virtual Classroom Software](/virtual-classroom-software/) overview. If you teach multilingual groups, the [live translation for Hindi](/languages/hi/) or [live translation for Arabic](/languages/ar/) pages show how learners experience the class in their language. And if you are weighing the platform against general-purpose tools, the [trainers use case](/use-cases/trainers/) page covers classroom-specific features that matter.
+For a deeper look at how OllaSync fits your training practice, see the [Virtual Classroom Software](/virtual-classroom-software/) overview. If you teach multilingual groups, the [live translation for Hindi](/languages/hi/) or [live translation for Arabic](/languages/ar/) pages show how learners experience the class in their language. And if you are weighing the platform against general-purpose tools, the [trainers use case](/use-cases/trainers/) page covers classroom-specific features that matter.

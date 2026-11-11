@@ -1,9 +1,9 @@
-# Ollasync SEO strategy — built around "AI Classroom with Live Voice Translation" (2026-08-31, v2)
+# OllaSync SEO strategy — built around "AI Classroom with Live Voice Translation" (2026-08-31, v2)
 
 Internal doc — not built into `dist/`. Every piece of public copy MUST pass `scripts/mkt_no_leak.sh`
 (no internal vendor/stack names; open standards only) and the honesty rules: only the shipped translate
 languages in `src/data/languages.ts` (`LANG_COUNT`, 19 since 2026-09-06 — never a bigger number, never a
-language not listed there), no certification claims, captions exist but are not the pitch. Ollasync is cloud SaaS with a self-hosted option for regulated industries (operator, 2026-11-06); state it, without install or infrastructure specifics. Prices only from `/pricing` (per seat: Free, Pro $5, Business $19); never "cheapest" — link `/vs/#translation-pricing`. Meetings cap at 100 people; webinars are parked.
+language not listed there), no certification claims, captions exist but are not the pitch. OllaSync is cloud SaaS with a self-hosted option for regulated industries (operator, 2026-11-06); state it, without install or infrastructure specifics. Prices only from `/pricing` (per seat: Free, Pro $5, Business $19); never "cheapest" — link `/vs/#translation-pricing`. Meetings cap at 100 people; webinars are parked.
 
 ## SEO publishing checks (2026-11-10)
 
@@ -25,7 +25,7 @@ The generated-site SEO check resolves every internal anchor against a built page
 
 ## Homepage brand search (2026-11-10)
 
-The homepage title starts with "Ollasync" and describes multilingual video meetings with live translation; its description names the brand. The selected brand theme and homepage H1 are "Meet beyond language." The supporting hero line explains the product in plain language, while the language ribbon uses `LANG_COUNT` from `src/data/languages.ts` rather than an unsupported 99-language claim. After deployment, use Google Search Console URL Inspection for `https://www.ollasync.com/` to check index status, selected canonical, crawlability, and last crawl; submit the sitemap or request a recrawl if appropriate. Metadata changes alone cannot guarantee branded rankings or indexing.
+The homepage title starts with "OllaSync" and describes multilingual video meetings with live translation; its description names the brand. The selected brand theme and homepage H1 are "Meet beyond language." The supporting hero line explains the product in plain language, while the language ribbon uses `LANG_COUNT` from `src/data/languages.ts` rather than an unsupported 99-language claim. After deployment, use Google Search Console URL Inspection for `https://www.ollasync.com/` to check index status, selected canonical, crawlability, and last crawl; submit the sitemap or request a recrawl if appropriate. Metadata changes alone cannot guarantee branded rankings or indexing.
 
 ## Discovery and update process (2026-11-11)
 
@@ -37,7 +37,7 @@ Production does not update until a successful main-branch deployment. After depl
 
 Everything hangs off one phrase, approved as the site's identity:
 
-> **AI Classroom & Zoom Alternative for Trainers | Ollasync** (2026-09-12: the home title took the "Zoom
+> **AI Classroom & Zoom Alternative for Trainers | OllaSync** (2026-09-12: the home title took the "Zoom
 > alternative" angle on the operator's decision; the site description names it too. The pillar phrase "AI classroom
 > with live voice translation" stays the semantic center of the cluster and the hero's brand line is unchanged.)
 
@@ -63,8 +63,8 @@ Rule: **titles sell the category, heroes sell the feeling.**
 
 | Query family | Owning page | Title (live) |
 |---|---|---|
-| ai classroom / ai classroom software / zoom alternative for trainers | `/` | AI Classroom & Zoom Alternative for Trainers \| Ollasync |
-| virtual classroom software / virtual classroom for trainers, tutors / ai virtual classroom (content-engine pillar 1) | `/virtual-classroom-software` | Virtual Classroom Software for Trainers \| Ollasync |
+| ai classroom / ai classroom software / zoom alternative for trainers | `/` | AI Classroom & Zoom Alternative for Trainers \| OllaSync |
+| virtual classroom software / virtual classroom for trainers, tutors / ai virtual classroom (content-engine pillar 1) | `/virtual-classroom-software` | Virtual Classroom Software for Trainers \| OllaSync |
 | live voice translation for classes / teach in any language | `/` (+ blog piece #5) | — |
 | virtual classroom features / online class software | `/features` | AI Classroom Features — Live Translation, Webinars & Class Notes |
 | live classes in the browser | `/features/video-meetings` | Live Classes in the Browser — HD Video, No Download |
@@ -72,7 +72,7 @@ Rule: **titles sell the category, heroes sell the feeling.**
 | webinar platform for training | `/features/webinars` | Webinar Platform for Training — Q&A, Polls & OBS Streaming |
 | class recording with access control | `/features/recordings` | Class & Meeting Recordings — Access-Controlled, With Notes |
 | ai classroom pricing / per-seat | `/pricing` | AI Classroom Pricing — Live Translation, Per Seat |
-| zoom / meet / teams / webex / bigbluebutton alternative for online classes, tutors, training | `/vs/*` | "Zoom Alternative for Online Classes — Ollasync vs Zoom", "Google Meet Alternative for Tutors — Ollasync vs Meet", "Microsoft Teams Alternative for Training — Ollasync vs Teams", "Cisco Webex Alternative for Training — Ollasync vs Webex", "BigBlueButton Alternative with Live Translation — Ollasync" |
+| zoom / meet / teams / webex / bigbluebutton alternative for online classes, tutors, training | `/vs/*` | "Zoom Alternative for Online Classes — OllaSync vs Zoom", "Google Meet Alternative for Tutors — OllaSync vs Meet", "Microsoft Teams Alternative for Training — OllaSync vs Teams", "Cisco Webex Alternative for Training — OllaSync vs Webex", "BigBlueButton Alternative with Live Translation — OllaSync" |
 
 **Secondary cluster (secure-meetings equity — keep, do not rewrite):** `/security`
 (E2EE meetings title), `/use-cases/*` (healthcare/legal/finance/government — HIPAA/GDPR/secure
@@ -91,7 +91,7 @@ Conferencing Software for Web & Mobile | Jitsi` · Zoho Meeting `Online Meeting 
 Zoho Meeting` · Whereby `Secure, customizable & reliable WebRTC Video Calls | Whereby`.
 
 Formula: **[category keyword phrase] | [brand]**, ≤ 60 chars where possible. The layout appends
-"· Ollasync". Positioning white space the flagship owns: nobody combines *classroom* + *live voice
+"· OllaSync". Positioning white space the flagship owns: nobody combines *classroom* + *live voice
 translation* — KUDO owns translation-for-meetings, Class/BBB own classroom-without-translation.
 That intersection is the moat; every new page reinforces it.
 
@@ -120,6 +120,11 @@ DONE 2026-08-31: hosted favicon set (SVG + PNG-ICO + apple-touch — the old inl
 invisible to Google's SERP fetcher and /favicon.ico 404'd, which is why the retired mark kept
 showing); keyword-led titles on the money pages; sitemap `lastmod` per deploy; IndexNow pinged
 (52 URLs accepted by api.indexnow.org + bing).
+
+DONE 2026-11-11: rebrand to the red camera-frame mark and the "OllaSync" spelling. `public/favicon.svg`
+is the master; `node scripts/build-brand-icons.mjs` regenerates favicon.ico, apple-touch-icon.png,
+the 512px `logo.png` used as the JSON-LD Organization/publisher logo, and og-meeting.png. Google
+caches favicons and logos, so request a homepage recrawl in Search Console after deploying.
 
 OPEN — **Google Search Console (user's one-time step):** Domain property for `ollasync.com` →
 copy the `google-site-verification=` TXT → hand it over (DNS TXT gets placed via the existing

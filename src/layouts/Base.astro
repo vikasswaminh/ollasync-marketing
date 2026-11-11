@@ -43,7 +43,8 @@ const orgSchema = {
   // Both were hardcoded to the previous branding and shipped on all 54 pages — this is the
   // description search engines treat as canonical for the company, so it drifts silently.
   // Derived from SITE now, so it can't fall out of step again.
-  logo: new URL('/apple-touch-icon.png', SITE.url).href,
+  // 512px square on white, built from public/favicon.svg by scripts/build-brand-icons.mjs.
+  logo: new URL('/logo.png', SITE.url).href,
   description: SITE.description,
   sameAs: [],
 };
@@ -87,7 +88,8 @@ const schemas = [orgSchema, siteSchema, ...extra];
 
   {/* Hosted icon FILES, not a data: URI: Google's SERP favicon fetcher (and bookmark/apple-touch
       consumers) only read a fetchable file — the inline data: ring meant search results kept showing
-      the retired mark while /favicon.ico 404'd. Same ring geometry as BrandMark.astro. */}
+      the retired mark while /favicon.ico 404'd. Same paths as BrandMark.astro; the .ico and
+      apple-touch PNG are rendered from favicon.svg by scripts/build-brand-icons.mjs. */}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

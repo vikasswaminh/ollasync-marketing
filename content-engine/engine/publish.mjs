@@ -16,7 +16,7 @@ export function readTimeFor(body) {
 }
 
 /** Frontmatter + body for the blog collection (marketing-site/src/content/config.ts). */
-export function articleFile(item, article, { pubDate, sources = [], related = [], cover = '/og-classroom.jpg' }) {
+export function articleFile(item, article, { pubDate, sources = [], related = [], cover = '/og-meeting.png' }) {
   const category = item.category || CATEGORY_BY_PILLAR[item.primaryPillar] || 'Teaching';
   const keywords = [item.primaryQuery, ...(item.secondaryQueries || [])].filter(Boolean);
   const lines = ['---'];
@@ -26,7 +26,7 @@ export function articleFile(item, article, { pubDate, sources = [], related = []
   lines.push(`category: ${q(category)}`);
   lines.push(`cover: ${q(cover)}`);
   lines.push(`readTime: ${readTimeFor(article.body)}`);
-  lines.push('author: "The Ollasync team"');
+  lines.push('author: "The OllaSync team"');
   lines.push('authorRole: "Trainer tools & product"');
   lines.push(`keywords: [${keywords.map(q).join(', ')}]`);
   if (article.takeaways?.length) {
