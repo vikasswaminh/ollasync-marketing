@@ -46,12 +46,12 @@ export const COMPETITORS: Competitor[] = [
   {
     slug: 'zoom',
     name: 'Zoom',
-    metaTitle: 'Zoom Alternative for Online Classes — Ollasync vs Zoom',
+    metaTitle: 'Zoom Alternative for Online Classes — OllaSync vs Zoom',
     metaDescription:
-      'Looking for a Zoom alternative for teaching? Ollasync adds live voice translation, AI class notes and optional end-to-end encryption to browser meetings.',
-    eyebrow: 'Ollasync vs Zoom',
-    intro: "Ollasync brings live translated captions, spoken translation and AI notes to browser meetings. Use it for team conversations, client calls and live training with participants who choose their own language.",
-    fair: "Zoom is a familiar choice for video meetings. When evaluating Ollasync, compare the meeting workflow, language support, host controls and pricing that your team needs.",
+      'Looking for a Zoom alternative for teaching? OllaSync adds live voice translation, AI class notes and optional end-to-end encryption to browser meetings.',
+    eyebrow: 'OllaSync vs Zoom',
+    intro: "OllaSync brings live translated captions, spoken translation and AI notes to browser meetings. Use it for team conversations, client calls and live training with participants who choose their own language.",
+    fair: "Zoom is a familiar choice for video meetings. When evaluating OllaSync, compare the meeting workflow, language support, host controls and pricing that your team needs.",
     cells: [
       { state: 'yes', note: 'AI Companion' },
       { state: 'yes', note: 'Opt-in; disables some features' },
@@ -65,20 +65,20 @@ export const COMPETITORS: Competitor[] = [
       'You want recordings, transcripts and AI notes alongside your meetings.',
     ],
     faq: [
-      { q: 'Is Ollasync a Zoom alternative for online classes?', a: 'Yes. Trainers, tutors and coaches get the same one-click browser meeting — screen share, recording, chat — plus live voice translation so each learner follows in their own language, and class notes written automatically after the session.' },
-      { q: 'Is Ollasync a drop-in Zoom replacement?', a: 'For the core experience — one-click, no-download browser meetings with screen share, recording, chat and AI notes — yes. Ollasync adds per-listener live translation and confidential deal rooms that Zoom doesn’t offer.' },
+      { q: 'Is OllaSync a Zoom alternative for online classes?', a: 'Yes. Trainers, tutors and coaches get the same one-click browser meeting — screen share, recording, chat — plus live voice translation so each learner follows in their own language, and class notes written automatically after the session.' },
+      { q: 'Is OllaSync a drop-in Zoom replacement?', a: 'For the core experience — one-click, no-download browser meetings with screen share, recording, chat and AI notes — yes. OllaSync adds per-listener live translation and confidential deal rooms that Zoom doesn’t offer.' },
       { q: 'Can students join without a download?', a: 'Yes. Learners join from a link in the browser, with no account and no app; Zoom often pushes its desktop app on join.' },
-      { q: 'Does Zoom offer end-to-end encryption?', a: 'Yes — Zoom has an optional E2EE meeting mode you enable per meeting, though it disables some features. Ollasync also offers optional per-meeting E2EE.' },
+      { q: 'Does Zoom offer end-to-end encryption?', a: 'Yes — Zoom has an optional E2EE meeting mode you enable per meeting, though it disables some features. OllaSync also offers optional per-meeting E2EE.' },
     ],
   },
   {
     slug: 'microsoft-teams',
     name: 'Microsoft Teams',
-    metaTitle: 'Microsoft Teams Alternative for Training — Ollasync vs Teams',
+    metaTitle: 'Microsoft Teams Alternative for Training — OllaSync vs Teams',
     metaDescription:
       'A Microsoft Teams alternative for live training: browser meetings with live voice translation, AI meeting notes and recordings. Fair comparison.',
-    eyebrow: 'Ollasync vs Microsoft Teams',
-    intro: "Ollasync offers browser meetings with live translated captions and spoken audio per participant, recordings and AI notes. Teams using Microsoft 365 can evaluate it for multilingual conversations and training.",
+    eyebrow: 'OllaSync vs Microsoft Teams',
+    intro: "OllaSync offers browser meetings with live translated captions and spoken audio per participant, recordings and AI notes. Teams using Microsoft 365 can evaluate it for multilingual conversations and training.",
     fair: "Microsoft Teams brings meetings into the Microsoft 365 workflow. Consider how your team uses that suite alongside its requirements for meeting translation, browser access and host controls.",
     cells: [
       { state: 'yes', note: 'Copilot' },
@@ -93,18 +93,18 @@ export const COMPETITORS: Competitor[] = [
       'You want a focused, lightweight tool rather than a full collaboration suite.',
     ],
     faq: [
-      { q: 'Does Microsoft Teams have end-to-end encryption?', a: 'Teams offers opt-in end-to-end encryption for one-to-one calls. Group meetings and chat are encrypted in transit and at rest but not end-to-end encrypted. Ollasync offers optional per-meeting E2EE covering the group.' },
-      { q: 'We’re a Microsoft shop — can we still use Ollasync?', a: 'Yes. Ollasync integrates with your identity provider (including Entra ID) via OIDC single sign-on, so you can use it for confidential meetings alongside your existing collaboration tools.' },
+      { q: 'Does Microsoft Teams have end-to-end encryption?', a: 'Teams offers opt-in end-to-end encryption for one-to-one calls. Group meetings and chat are encrypted in transit and at rest but not end-to-end encrypted. OllaSync offers optional per-meeting E2EE covering the group.' },
+      { q: 'We’re a Microsoft shop — can we still use OllaSync?', a: 'Yes. OllaSync integrates with your identity provider (including Entra ID) via OIDC single sign-on, so you can use it for confidential meetings alongside your existing collaboration tools.' },
     ],
   },
   {
     slug: 'google-meet',
     name: 'Google Meet',
-    metaTitle: 'Google Meet Alternative for Tutors — Ollasync vs Meet',
+    metaTitle: 'Google Meet Alternative for Tutors — OllaSync vs Meet',
     metaDescription:
       'A Google Meet alternative for tutors and trainers: learners hear your class in their own language and the notes write themselves. Fair comparison.',
-    eyebrow: 'Ollasync vs Google Meet',
-    intro: "Ollasync offers browser meetings where participants choose translated captions or spoken audio, with recordings, AI notes and optional end-to-end encryption.",
+    eyebrow: 'OllaSync vs Google Meet',
+    intro: "OllaSync offers browser meetings where participants choose translated captions or spoken audio, with recordings, AI notes and optional end-to-end encryption.",
     fair: "Google Meet fits into the Google Workspace workflow. Compare the language options, meeting controls and recording workflow that matter to your participants.",
     cells: [
       { state: 'yes', note: 'Gemini' },
@@ -119,19 +119,19 @@ export const COMPETITORS: Competitor[] = [
       'You want meeting recordings and AI notes in one workspace.',
     ],
     faq: [
-      { q: 'Is Google Meet end-to-end encrypted?', a: 'Standard Meet calls are encrypted in transit and at rest but not end-to-end encrypted. Google offers optional client-side encryption on certain enterprise Workspace editions. Ollasync offers optional per-meeting E2EE on any plan.' },
-      { q: 'Does Ollasync work in the browser like Meet?', a: 'Yes. Ollasync meetings run in any modern browser with no download, and guests can join without an account.' },
+      { q: 'Is Google Meet end-to-end encrypted?', a: 'Standard Meet calls are encrypted in transit and at rest but not end-to-end encrypted. Google offers optional client-side encryption on certain enterprise Workspace editions. OllaSync offers optional per-meeting E2EE on any plan.' },
+      { q: 'Does OllaSync work in the browser like Meet?', a: 'Yes. OllaSync meetings run in any modern browser with no download, and guests can join without an account.' },
     ],
   },
   {
     slug: 'webex',
     name: 'Cisco Webex',
-    metaTitle: 'Cisco Webex Alternative for Training — Ollasync vs Webex',
+    metaTitle: 'Cisco Webex Alternative for Training — OllaSync vs Webex',
     metaDescription:
       'A modern alternative to Cisco Webex. Compare live translation, end-to-end encryption and browser meetings.',
-    eyebrow: 'Ollasync vs Cisco Webex',
-    intro: "Ollasync focuses on browser meetings with live translation, captions, recordings and AI notes, plus optional end-to-end encryption for sensitive conversations.",
-    fair: "Webex serves teams using Cisco collaboration tools. Evaluate your meeting workflow, participant access and language needs when considering Ollasync.",
+    eyebrow: 'OllaSync vs Cisco Webex',
+    intro: "OllaSync focuses on browser meetings with live translation, captions, recordings and AI notes, plus optional end-to-end encryption for sensitive conversations.",
+    fair: "Webex serves teams using Cisco collaboration tools. Evaluate your meeting workflow, participant access and language needs when considering OllaSync.",
     cells: [
       { state: 'yes', note: 'Webex AI Assistant' },
       { state: 'yes', note: 'Opt-in E2EE meetings' },
@@ -145,18 +145,18 @@ export const COMPETITORS: Competitor[] = [
       'You want simple per-seat pricing rather than an enterprise negotiation.',
     ],
     faq: [
-      { q: 'Does Webex support end-to-end encryption?', a: 'Yes — Webex offers opt-in end-to-end encryption for meetings. Ollasync also offers optional per-meeting E2EE, in a lighter, browser-first product.' },
-      { q: 'Is Ollasync simpler than Webex?', a: 'Yes. Ollasync is a focused, browser-first platform — meetings, webinars, recordings and deal rooms — without the surface area of a full enterprise collaboration suite.' },
+      { q: 'Does Webex support end-to-end encryption?', a: 'Yes — Webex offers opt-in end-to-end encryption for meetings. OllaSync also offers optional per-meeting E2EE, in a lighter, browser-first product.' },
+      { q: 'Is OllaSync simpler than Webex?', a: 'Yes. OllaSync is a focused, browser-first platform — meetings, webinars, recordings and deal rooms — without the surface area of a full enterprise collaboration suite.' },
     ],
   },
   {
     slug: 'bigbluebutton',
     name: 'BigBlueButton',
-    metaTitle: 'BigBlueButton Alternative with Live Translation — Ollasync',
+    metaTitle: 'BigBlueButton Alternative with Live Translation — OllaSync',
     metaDescription:
       'A BigBlueButton alternative for online classes: live voice translation per learner, AI meeting notes and recordings, nothing to host yourself.',
     intro:
-      'BigBlueButton is the open-source standard for virtual classrooms — whiteboard, breakout rooms, polls, and deep LMS integrations, run by many schools on their own servers. What it doesn’t do is translate: every learner hears the class in the language it was taught in, notes are whoever wrote them, and recordings management is basic. Ollasync is the AI-classroom take: your voice translated live into each learner’s language, class notes written automatically, and replays kept behind access control.',
+      'BigBlueButton is the open-source standard for virtual classrooms — whiteboard, breakout rooms, polls, and deep LMS integrations, run by many schools on their own servers. What it doesn’t do is translate: every learner hears the class in the language it was taught in, notes are whoever wrote them, and recordings management is basic. OllaSync is the AI-classroom take: your voice translated live into each learner’s language, class notes written automatically, and replays kept behind access control.',
     fair:
       'BigBlueButton is free, open source, education-first and integrates tightly with LMS platforms via LTI — for an institution with the ops capacity to run it, a serious offer. The gap opens when your learners span languages, when you want the class notes written for you, or when nobody on staff wants to operate video infrastructure.',
     cells: [
@@ -173,9 +173,9 @@ export const COMPETITORS: Competitor[] = [
       'You want meeting recordings and live translation in one managed workspace.',
     ],
     faq: [
-      { q: 'Is BigBlueButton free?', a: 'The software is open source and free; running it well is not — servers, scaling, recordings storage and upgrades are on you or a hosting partner. Ollasync is a managed per-seat service.' },
-      { q: 'Does BigBlueButton translate classes?', a: `No. It offers captioning in the spoken language, but not live translation. Ollasync translates the trainer’s voice into each learner’s chosen language — captions and spoken audio, ${LANG_COUNT} languages.` },
-      { q: 'Can Ollasync integrate with an LMS?', a: 'BigBlueButton’s LTI integrations are deeper today. Ollasync classes are joined from a link you can place inside any LMS, and the replay library is access-controlled per cohort.' },
+      { q: 'Is BigBlueButton free?', a: 'The software is open source and free; running it well is not — servers, scaling, recordings storage and upgrades are on you or a hosting partner. OllaSync is a managed per-seat service.' },
+      { q: 'Does BigBlueButton translate classes?', a: `No. It offers captioning in the spoken language, but not live translation. OllaSync translates the trainer’s voice into each learner’s chosen language — captions and spoken audio, ${LANG_COUNT} languages.` },
+      { q: 'Can OllaSync integrate with an LMS?', a: 'BigBlueButton’s LTI integrations are deeper today. OllaSync classes are joined from a link you can place inside any LMS, and the replay library is access-controlled per cohort.' },
     ],
   },
 ];
@@ -197,12 +197,12 @@ export interface TranslationPriceRow {
 
 export const TRANSLATION_PRICING: TranslationPriceRow[] = [
   {
-    name: 'Ollasync',
+    name: 'OllaSync',
     captions: 'Included on every plan',
     voice: `Included: 2 h a month on Free, 20 h on Pro, unlimited on Business`,
     price: 'Free, or from $5',
     priceNote: 'Per host seat. Guests and learners join free and hear the translation.',
-    sources: [{ label: 'Ollasync pricing', url: '/pricing/' }],
+    sources: [{ label: 'OllaSync pricing', url: '/pricing/' }],
   },
   {
     name: 'Google Meet',

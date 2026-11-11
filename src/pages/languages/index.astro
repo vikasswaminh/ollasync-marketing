@@ -8,8 +8,8 @@ import Cta from '../../components/Cta.astro';
 import { LANGUAGES, LANG_COUNT, LANGS_PER_SESSION } from '../../data/languages';
 import { SITE } from '../../consts';
 
-const title = `${LANG_COUNT} Languages for Live Class Translation`; // + " · Ollasync" from the layout
-const description = `Every language Ollasync translates live. Learners pick captions or spoken audio per person, up to ${LANGS_PER_SESSION} languages in one session; you teach in English.`; // ≤ 160 — the full language list is on the page itself
+const title = `${LANG_COUNT} Languages for Live Class Translation`; // + " · OllaSync" from the layout
+const description = `Every language OllaSync translates live. Learners pick captions or spoken audio per person, up to ${LANGS_PER_SESSION} languages in one session; you teach in English.`; // ≤ 160 — the full language list is on the page itself
 const global = LANGUAGES.filter((l) => l.region === 'global');
 const india = LANGUAGES.filter((l) => l.region === 'india');
 const schema = {

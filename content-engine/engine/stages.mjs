@@ -10,13 +10,13 @@ const P = POLICY;
 export function productContext(facts) {
   const b = P.brand_positioning;
   const lines = [];
-  lines.push(`You write for Ollasync. Ollasync is ${b.primary_identity.toLowerCase()} (category: ${b.primary_category}). Audiences: ${b.primary_audiences.join(', ')}. Primary differentiator: ${b.primary_differentiator.toLowerCase()}. Secondary: ${b.secondary_differentiators.join(', ')}. ${b.competitive_message} ${b.rule}`);
+  lines.push(`You write for OllaSync. OllaSync is ${b.primary_identity.toLowerCase()} (category: ${b.primary_category}). Audiences: ${b.primary_audiences.join(', ')}. Primary differentiator: ${b.primary_differentiator.toLowerCase()}. Secondary: ${b.secondary_differentiators.join(', ')}. ${b.competitive_message} ${b.rule}`);
   lines.push('');
   lines.push(`VOICE: ${P.editorial_voice_policy.objective} Tone: ${P.editorial_voice_policy.tone.join(', ')}. Avoid: ${P.editorial_voice_policy.avoid.join('; ')}.`);
   lines.push(`STYLE RULES: ${P.editorial_voice_policy.style_rules.join(' ')}`);
   lines.push(`FORBIDDEN PHRASES (never use, in any form): ${P.editorial_voice_policy.forbidden_phrases_and_patterns.map((s) => `"${s}"`).join(', ')}.`);
   lines.push('');
-  lines.push('PRODUCT FACTS — the ONLY statements you may make about Ollasync. Cite them by id where the brief asks for it. Anything about Ollasync that is not here must not be written, even if it sounds likely.');
+  lines.push('PRODUCT FACTS — the ONLY statements you may make about OllaSync. Cite them by id where the brief asks for it. Anything about OllaSync that is not here must not be written, even if it sounds likely.');
   for (const f of facts.product.facts) lines.push(`[${f.id}] ${f.text}`);
   lines.push('');
   lines.push(`NEVER (hard rule — a violation blocks publication): ${P.factual_integrity.hard_rule} Never invent ${P.factual_integrity.never_invent.join(', ')}. ${facts.product.never.join(' ')}`);
@@ -58,7 +58,7 @@ export function briefText(b) {
   parts.push(`REQUIRED ORIGINAL INSIGHT SECTIONS (at least two sections must be built on these, each citing product fact ids):\n${fmtList(b.requiredOriginalInsights)}`);
   parts.push(`PILLAR PAGE (must be linked naturally in the body): ${b.pillar.url} — "${b.pillar.name}"\nPLANNED LINK TARGETS (the editorial plan for this article; link each where it fits naturally): ${(b.plannedLinks || []).join(', ') || '—'}\nAUDIENCE / SPOKE PAGES (link one when useful): ${b.spokes.join(', ') || '—'}`);
   parts.push(`RELATED ARTICLES (link 2–4 of these where genuinely relevant, with descriptive anchors):\n${b.related.length ? b.related.map((r) => `- ${r.path} — ${r.title}${r.description ? `: ${r.description}` : ''}`).join('\n') : '- (none yet — link the pillar and one spoke)'}`);
-  if (b.comparison) parts.push(`COMPARISON RULES: state where ${b.comparison.competitors.join(' / ')} is stronger and where Ollasync is stronger; explain use cases; no scoring systems; no blanket claims; include a section whose heading says when ${b.comparison.competitors[0]} is the better choice.`);
+  if (b.comparison) parts.push(`COMPARISON RULES: state where ${b.comparison.competitors.join(' / ')} is stronger and where OllaSync is stronger; explain use cases; no scoring systems; no blanket claims; include a section whose heading says when ${b.comparison.competitors[0]} is the better choice.`);
   if (b.languageSpecifics) parts.push(`LANGUAGE-SPECIFIC CONTENT (the article must contain genuine ${b.languageSpecifics.language}-specific usefulness — terminology examples, number and acronym handling, script, classroom phrases, translation challenges; link /languages/${b.languageSpecifics.code}/):\n${fmtList(b.languageSpecifics.notes)}`);
   if (b.competitorClaims.length) parts.push(`VERIFIED COMPETITOR CLAIMS (the only competitor specifics you may state; cite the id; link the url as the source if you use one):\n${b.competitorClaims.map((c) => `[${c.id}] ${c.competitor}: ${c.claim} (source: ${c.publisher}, ${c.url})`).join('\n')}`);
   else parts.push('VERIFIED COMPETITOR CLAIMS: none — say nothing specific about any competitor\'s current features, limits or prices; general, non-specific statements only.');
@@ -80,7 +80,7 @@ export function writerPrompt(brief, ctx) {
     '',
     `STRUCTURE: ${s.rule} Required: ${s.required.join(', ')}. The layout renders the H1 from the title, so the body must contain NO # heading — use ## sections (at least three) and ### where useful. ${s.introduction_rule} Do not title a section "Conclusion"; end with something the reader can use.`,
     `QUESTION PASSAGES: ${q.format.join(' ')} ${q.rule} Use 1–3 question headings (ending with ?), never more than five; ${q.do_not.join('; ')}.`,
-    `ORIGINAL INSIGHT: at least ${P.first_hand_experience_policy.minimum_original_insight_sections_per_article} sections must carry first-hand, product-grounded insight (${P.first_hand_experience_policy.preferred_material.slice(0, 8).join(', ')}), each citing product fact ids in META. State when Ollasync is not the best choice. Explain tradeoffs and limitations.`,
+    `ORIGINAL INSIGHT: at least ${P.first_hand_experience_policy.minimum_original_insight_sections_per_article} sections must carry first-hand, product-grounded insight (${P.first_hand_experience_policy.preferred_material.slice(0, 8).join(', ')}), each citing product fact ids in META. State when OllaSync is not the best choice. Explain tradeoffs and limitations.`,
     `LINKS: markdown links with root-relative paths that end in a slash (e.g. /features/live-translation/). Link the pillar page naturally. Link 2–4 related articles and at most 8 internal links in total; descriptive anchors only (never "here", "click here", "read more"). External links only to the verified competitor-claim urls. No images.`,
     `COMPARISONS: ${P.comparison_content_policy.requirements.join('; ')}.`,
     '',
@@ -124,10 +124,10 @@ export function reviewerPrompt(article, brief, ctx) {
   const system = [
     ctx.productContext,
     '',
-    'You are an independent editorial reviewer for Ollasync\'s blog. You did not write this article. Be strict and specific; a plausible-sounding statement that is not in the PRODUCT FACTS is unsupported.',
+    'You are an independent editorial reviewer for OllaSync\'s blog. You did not write this article. Be strict and specific; a plausible-sounding statement that is not in the PRODUCT FACTS is unsupported.',
     `Score each dimension from 0 up to its weight (${dims}); "total" is their sum out of ${r.score_out_of}.`,
     `Answer these questions in one sentence each: ${r.review_questions.map((q, i) => `Q${i + 1}: ${q}`).join(' ')}`,
-    'CLAIMS: list every statement about what Ollasync does, supports, costs or guarantees (kind "ollasync"), every statement about HOW Ollasync works internally — where translation, recording or notes are processed, what runs in the browser or on a server, how streams are routed, what happens in an encrypted class (also kind "ollasync"), every statement about a named competitor\'s current features, limits or prices (kind "competitor"), and every number or statistic (kind "number"). For each: supported=true only if it matches a PRODUCT FACT id (ollasync) or a VERIFIED COMPETITOR CLAIM id from the brief (competitor) — a mechanism or situation no fact describes is unsupported even when it sounds technically plausible; numbers are supported only when they come from a fact or claim. Give the id in "ref".',
+    'CLAIMS: list every statement about what OllaSync does, supports, costs or guarantees (kind "ollasync"), every statement about HOW OllaSync works internally — where translation, recording or notes are processed, what runs in the browser or on a server, how streams are routed, what happens in an encrypted class (also kind "ollasync"), every statement about a named competitor\'s current features, limits or prices (kind "competitor"), and every number or statistic (kind "number"). For each: supported=true only if it matches a PRODUCT FACT id (ollasync) or a VERIFIED COMPETITOR CLAIM id from the brief (competitor) — a mechanism or situation no fact describes is unsupported even when it sounds technically plausible; numbers are supported only when they come from a fact or claim. Give the id in "ref".',
     'INSIGHT SECTIONS: list the sections that carry genuine first-hand, product-grounded insight a generic SaaS blog could not write, with the fact ids they rest on.',
     'REPAIR INSTRUCTIONS: concrete, numbered edits that would raise the score — or an empty list.',
     'Return ONLY a JSON object: {"scores": {...}, "total": n, "answers": {"Q1": "...", ...}, "claims": [{"text": "...", "kind": "ollasync|competitor|number|general", "supported": true|false, "ref": "F01|C01|null"}], "insightSections": [{"heading": "...", "factIds": ["F01"]}], "repairInstructions": ["..."], "summary": "two sentences"}',

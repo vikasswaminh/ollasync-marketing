@@ -17,7 +17,7 @@ const { posts } = Astro.props;
 const page = Number(Astro.params.page);
 const { posts: pagePosts, totalPages } = getBlogPage(posts, page);
 ---
-<Base title={`Blog — Page ${page} — AI meetings and secure collaboration`} description={`Browse page ${page} of Ollasync articles on multilingual meetings, global training, security, and software comparisons.`}>
+<Base title={`Blog — Page ${page} — AI meetings and secure collaboration`} description={`Browse page ${page} of OllaSync articles on multilingual meetings, global training, security, and software comparisons.`}>
   <section class="section">
     <div class="container">
       <Breadcrumb items={[{ label: 'Blog', href: '/blog/' }, { label: `Page ${page}` }]} />

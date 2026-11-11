@@ -83,7 +83,7 @@ const retiredRoutes = {
   "/integrations/ai-video-analytics": "/features/ai/"
 };
 
-// Multi-page static marketing site for Ollasync.
+// Multi-page static marketing site for OllaSync.
 // output: 'static' + directory URLs → /security serves /security/index.html.
 export default defineConfig({
   site: 'https://www.ollasync.com',

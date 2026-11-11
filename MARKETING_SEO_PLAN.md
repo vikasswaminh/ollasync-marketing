@@ -1,4 +1,4 @@
-﻿# Ollasync 100-Page SEO Master Plan (2026)
+﻿# OllaSync 100-Page SEO Master Plan (2026)
 
 ## The "Domination by Depth" Strategy
 To rank for highly competitive B2B SaaS keywords against giants like Zoom and Webex, we will execute a phased rollout of 100 "Ultimate Guides." 
@@ -8,7 +8,7 @@ To rank for highly competitive B2B SaaS keywords against giants like Zoom and We
 2. **Tone:** 100% processed through the humanizer.md protocol (no AI fluff, direct, expert tone).
 3. **Structure:** Modular chapters (Hook, Problem, Tech Deep Dive, Playbook, ROI, FAQ).
 4. **SEO:** Exact-match H1s, optimized meta descriptions, and JSON-LD FAQ schema.
-5. **Differentiator:** Every post must highlight Ollasync's core advantage: **The cheapest global webinar/meeting platform with native 19-language AI translation.**
+5. **Differentiator:** Every post must highlight OllaSync's core advantage: **The cheapest global webinar/meeting platform with native 19-language AI translation.**
 
 ---
 
@@ -28,7 +28,7 @@ To rank for highly competitive B2B SaaS keywords against giants like Zoom and We
 **Chapter Structure (4,000 words):**
 - Ch 1: The Hook (Why legacy pricing models are broken)
 - Ch 2: The Hidden Costs (Add-ons, translation plugins, large audience tiers)
-- Ch 3: Cost Comparison Table (Zoom vs. Webex vs. Ollasync)
+- Ch 3: Cost Comparison Table (Zoom vs. Webex vs. OllaSync)
 - Ch 4: The ROI of Switching (Formulas for CFOs)
 - Ch 5: Migration Playbook (How to move your team in 48 hours)
 - Ch 6: FAQ (Schema optimized)
@@ -135,7 +135,7 @@ on profit volunteer training software
 - Ch 2: Trend 1: The End of the Language Barrier
 - Ch 3: Trend 2: AI Co-Pilots in Meetings
 - Ch 4: Trend 3: Spatial Audio and Cognitive Load
-- Ch 5: How to Future-Proof Your Tech Stack (Why Ollasync wins)
+- Ch 5: How to Future-Proof Your Tech Stack (Why OllaSync wins)
 - Ch 6: FAQ (Schema optimized)
 
 ### Phase 5 Rollout (20 Pages):
@@ -157,7 +157,7 @@ For each phase, we will use the exact same automated fleet architecture we used 
 1. **Zoom Webinar Pricing Explained: Why You’re Overpaying in 2026**
 2. **Webex Alternatives: The Cheapest Webinar Software for Enterprise**
 3. **Microsoft Teams Webinar Limitations: What IT Leaders Need to Know**
-4. **Google Meet vs Zoom vs Ollasync: 2026 Cost Comparison**
+4. **Google Meet vs Zoom vs OllaSync: 2026 Cost Comparison**
 5. **How to Cut Your Webinar Software Costs by 80% This Year**
 6. **The Hidden Costs of Zoom Translation Add-ons**
 7. **Why Per-Host Pricing is Killing Your L&D Budget**
@@ -271,7 +271,7 @@ ode generate_seo_fleet.js for each batch.
 ### Batch 1: Finish Pricing & Competitors (8 items)
 *Status: Ready for Execution*
 3. Microsoft Teams Webinar Limitations: What IT Leaders Need to Know
-4. Google Meet vs Zoom vs Ollasync: 2026 Cost Comparison
+4. Google Meet vs Zoom vs OllaSync: 2026 Cost Comparison
 5. How to Cut Your Webinar Software Costs by 80% This Year
 6. The Hidden Costs of Zoom Translation Add-ons
 7. Why Per-Host Pricing is Killing Your L&D Budget

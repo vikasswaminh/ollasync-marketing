@@ -56,7 +56,7 @@ export const USE_CASES: UseCase[] = [
       body: "A care team invites an external specialist to a browser meeting. The host admits the participants, shares the relevant screen and enables end-to-end encryption for the sensitive discussion. Cloud recording, translation and AI notes are unavailable in that encrypted mode.",
     },
     faq: [
-      { q: 'Is Ollasync HIPAA compliant?', a: 'Compliance is a property of your deployment. Ollasync provides the encryption, access control, audit logging and DPA a HIPAA programme needs. We do not currently hold a formal certification and we say so plainly.' },
+      { q: 'Is OllaSync HIPAA compliant?', a: 'Compliance is a property of your deployment. OllaSync provides the encryption, access control, audit logging and DPA a HIPAA programme needs. We do not currently hold a formal certification and we say so plainly.' },
       { q: 'Can patients join without installing anything?', a: 'Yes. Patients join encrypted telehealth visits from any modern browser — no download, no account required for invited guests.' },
       { q: 'Where is patient data stored?', a: 'In your workspace on our hosted service, access-controlled and reachable only through short-lived signed links — never a public bucket.' },
     ],
@@ -168,12 +168,12 @@ export const USE_CASES: UseCase[] = [
     ],
     scenario: {
       title: 'An inter-agency briefing, kept contained',
-      body: 'A ministry runs an encrypted inter-agency briefing on Ollasync. Officials sign in through the agency’s own directory; the briefing documents live in a role-gated room with audited access; the data stays in the EU under EU law, and the sensitive discussion is end-to-end encrypted so no operator can read it.',
+      body: 'A ministry runs an encrypted inter-agency briefing on OllaSync. Officials sign in through the agency’s own directory; the briefing documents live in a role-gated room with audited access; the data stays in the EU under EU law, and the sensitive discussion is end-to-end encrypted so no operator can read it.',
     },
     faq: [
       { q: 'Where is our data hosted?', a: 'In your workspace on our hosted service, access-controlled, with a DPA covering processing and retention. Storage is private and reachable only through short-lived signed links, so there is no public bucket in the path.' },
       { q: 'Can our most sensitive sessions be end-to-end encrypted?', a: 'Yes — meetings can be end-to-end encrypted per meeting, with the key held in participants’ browsers and never by us. Your legal team owns the final determination; the hosting and operation are built to keep data in the EU.' },
-      { q: 'Can we use our own identity system?', a: 'Yes. Ollasync integrates with your OIDC identity provider for single sign-on into your existing directory, with no dependency on a third-party identity SaaS.' },
+      { q: 'Can we use our own identity system?', a: 'Yes. OllaSync integrates with your OIDC identity provider for single sign-on into your existing directory, with no dependency on a third-party identity SaaS.' },
     ],
   },
   {

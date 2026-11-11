@@ -34,7 +34,7 @@ export const topics = {
       { slug: 'end-to-end-encrypted-video-conferencing', reason: 'Learn how encrypted calls work' },
       { slug: 'gdpr-compliant-video-conferencing', reason: 'Review privacy requirements for video' },
     ],
-    product: { href: '/security/', label: 'Explore Ollasync security' },
+    product: { href: '/security/', label: 'Explore OllaSync security' },
   },
   'software-comparisons': {
     title: 'Software comparisons',

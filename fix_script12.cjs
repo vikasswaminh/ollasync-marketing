@@ -12,7 +12,7 @@ for (let i = 0; i < lines.length; i++) {
         } else if (i === 200) {
             lines[i] = "  const ch3Prompt = `Write Chapter 3 (The Deep Dive) for a 4,000-word AEO guide answering the prompt: \"${topic.title}\". Target keyword: \"${topic.keyword}\". Explain the technical and operational nuances of solving this problem in 2026. Length: 1,000 words. Output ONLY markdown.`;";
         } else if (i === 201) {
-            lines[i] = "  const ch4Prompt = `Write Chapter 4 (The Solution & Conclusion) for a 4,000-word AEO guide answering the prompt: \"${topic.title}\". Target keyword: \"${topic.keyword}\". Position Ollasync as the ultimate solution based on the FACT SHEET. Include a strong call to action. Length: 1,000 words. Output ONLY markdown.`;";
+            lines[i] = "  const ch4Prompt = `Write Chapter 4 (The Solution & Conclusion) for a 4,000-word AEO guide answering the prompt: \"${topic.title}\". Target keyword: \"${topic.keyword}\". Position OllaSync as the ultimate solution based on the FACT SHEET. Include a strong call to action. Length: 1,000 words. Output ONLY markdown.`;";
         }
     }
 }

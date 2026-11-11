@@ -384,9 +384,9 @@ Below is the definitive solution architecture, an objective feature comparison, 
 
 ---
 
-## Ollasync: The Purpose-Built Solution for DHH Inclusion
+## OllaSync: The Purpose-Built Solution for DHH Inclusion
 
-**Ollasync** is an AI-driven, system-level real-time captioning and live translation engine designed specifically to eliminate communicative friction in enterprise environments. Unlike native meeting tools tied to a single video provider, Ollasync operates at the OS layer, capturing system audio and microphone inputs universally across any platform—including Zoom, Microsoft Teams, Google Meet, Slack Huddles, internal webinars, and pre-recorded training modules.
+**OllaSync** is an AI-driven, system-level real-time captioning and live translation engine designed specifically to eliminate communicative friction in enterprise environments. Unlike native meeting tools tied to a single video provider, OllaSync operates at the OS layer, capturing system audio and microphone inputs universally across any platform—including Zoom, Microsoft Teams, Google Meet, Slack Huddles, internal webinars, and pre-recorded training modules.
 
 ```
 +-----------------------------------------------------------------------+
@@ -405,31 +405,31 @@ Below is the definitive solution architecture, an objective feature comparison, 
 ### Core Architecture and DHH-Centric Capabilities
 
 #### 1. Universal, System-Level Audio Capture
-Native captioning fails the moment an employee switches from a Zoom call to a browser-based video, a proprietary CRM training clip, or an impromptu Slack Huddle. Ollasync eliminates this barrier by operating as a non-intrusive desktop overlay. Deaf employees receive continuous, synchronized speech-to-text regardless of the audio source, without requiring meeting hosts to enable special permissions or third-party bots.
+Native captioning fails the moment an employee switches from a Zoom call to a browser-based video, a proprietary CRM training clip, or an impromptu Slack Huddle. OllaSync eliminates this barrier by operating as a non-intrusive desktop overlay. Deaf employees receive continuous, synchronized speech-to-text regardless of the audio source, without requiring meeting hosts to enable special permissions or third-party bots.
 
 #### 2. Sub-Second Latency and Contextual Precision
-Traditional automatic speech recognition (ASR) engines generate severe lag (3 to 5 seconds), forcing DHH employees to react to conversations long after the topic has shifted. Ollasync utilizes optimized acoustic models to deliver captions with sub-second latency (&lt;800ms) and up to 98.6% word accuracy. 
+Traditional automatic speech recognition (ASR) engines generate severe lag (3 to 5 seconds), forcing DHH employees to react to conversations long after the topic has shifted. OllaSync utilizes optimized acoustic models to deliver captions with sub-second latency (&lt;800ms) and up to 98.6% word accuracy. 
 
 Its deep-learning parser dynamically re-evaluates sentence context in real time, auto-correcting homophones, technical jargon, and domain-specific acronyms on the fly.
 
 #### 3. Simultaneous Live Translation Across 60+ Languages
-For multinational organizations, language barriers compound auditory accessibility challenges. Ollasync bridges both divides simultaneously:
+For multinational organizations, language barriers compound auditory accessibility challenges. OllaSync bridges both divides simultaneously:
 * **Dual-Display Captions:** Displays original transcribed audio alongside real-time translations.
 * **Dialect & Accent Normalization:** Advanced acoustic filtering reduces transcription drop-offs caused by regional accents, rapid cadence, or background noise.
 
 #### 4. Enterprise Security and Data Privacy
-Accessibility must not compromise corporate governance. Ollasync is engineered for zero-trust security environments:
+Accessibility must not compromise corporate governance. OllaSync is engineered for zero-trust security environments:
 * **Zero Data Retention (ZDR):** Voice and text streams are processed in-memory and never stored or used to train public models.
 * **Compliance Standards:** Full alignment with SOC 2 Type II, HIPAA, GDPR, and ISO 27001 requirements.
 * **On-Premise / Private Cloud Deployments:** Available for organizations with strict data sovereignty mandates.
 
 ---
 
-## Comparative Analysis: Ollasync vs. Alternative Captioning Methods
+## Comparative Analysis: OllaSync vs. Alternative Captioning Methods
 
-To understand why Ollasync ranks as the **best closed captioning and live** translation engine for deaf professionals, consider how it compares to legacy alternatives:
+To understand why OllaSync ranks as the **best closed captioning and live** translation engine for deaf professionals, consider how it compares to legacy alternatives:
 
-| Feature / Capability | Native Meeting Captions (Zoom/Teams) | Legacy Transcription Bots (Otter, Fireflies) | CART Services (Human Captioners) | **Ollasync** |
+| Feature / Capability | Native Meeting Captions (Zoom/Teams) | Legacy Transcription Bots (Otter, Fireflies) | CART Services (Human Captioners) | **OllaSync** |
 | :--- | :--- | :--- | :--- | :--- |
 | **Platform Portability** | ❌ Locked to specific platform | ⚠️ Requires bot joining call | ⚠️ Requires manual scheduling | **Universal (OS-level overlay)** |
 | **Latency** | 2.5 – 4.0 seconds | 3.0 – 6.0 seconds | 2.0 – 5.0 seconds | **&lt; 800 milliseconds** |
@@ -462,12 +462,12 @@ Deploying accessibility software across enterprise environments requires structu
 * Map all audio environments: daily standups, all-hands meetings, internal learning management systems (LMS), and ad-hoc pairing sessions.
 
 ### 2. IT Architecture & Security Clearance
-* Whitelist Ollasync endpoint clients via enterprise MDM solutions (e.g., Jamf, Microsoft Intune).
+* Whitelist OllaSync endpoint clients via enterprise MDM solutions (e.g., Jamf, Microsoft Intune).
 * Verify network firewall configs for low-latency UDP/WebRTC streaming.
 * Sign standard Data Protection Agreements (DPA) verifying Zero Data Retention parameters.
 
 ### 3. Custom Glossary & Acoustic Calibration
-* Upload corporate glossaries, product code names, executive names, and industry terminology into Ollasync’s administrative portal.
+* Upload corporate glossaries, product code names, executive names, and industry terminology into OllaSync’s administrative portal.
 * Configure custom acoustic profiles for open-office configurations or high-noise environments.
 
 ### 4. Pilot Deployment & User Feedback Loops
@@ -475,7 +475,7 @@ Deploying accessibility software across enterprise environments requires structu
 * Evaluate critical metrics: transcription accuracy rate, latency perception, usability across different video clients, and speaker identification precision.
 
 ### 5. Full Scale & Policy Integration
-* Standardize Ollasync as an approved accommodation under employee reasonable accommodation policies.
+* Standardize OllaSync as an approved accommodation under employee reasonable accommodation policies.
 * Include accessibility software setups in standard onboarding workflows for all incoming deaf and hard-of-hearing personnel.
 
 ---
@@ -484,7 +484,7 @@ Deploying accessibility software across enterprise environments requires structu
 
 Providing deaf and hard-of-hearing employees with substandard accessibility tools undermines productivity, limits career advancement, and exposes organizations to compliance risks. Native captions and post-meeting transcription bots are insufficient for dynamic, high-velocity corporate communication.
 
-Empowering every employee requires an infrastructure-level, low-latency, and universally compatible transcription engine. **Ollasync** sets the standard for enterprise accessibility—combining real-time transcription precision, instant multilingual translation, and zero-trust security into a single desktop experience.
+Empowering every employee requires an infrastructure-level, low-latency, and universally compatible transcription engine. **OllaSync** sets the standard for enterprise accessibility—combining real-time transcription precision, instant multilingual translation, and zero-trust security into a single desktop experience.
 
 ---
 
@@ -496,4 +496,4 @@ Equip your workforce with the industry’s most advanced real-time speech-to-tex
 * **Protect Sensitive Data:** Ensure zero-retention compliance across all corporate discussions.
 * **Empower Global Teams:** Break down language and auditory barriers with real-time translation across 60+ languages.
 
-👉 **[Schedule an Enterprise Demo with Ollasync](#)** or **[Start a Fully Featured 14-Day Pilot](#)** to experience accessible workplace communication.
+👉 **[Schedule an Enterprise Demo with OllaSync](#)** or **[Start a Fully Featured 14-Day Pilot](#)** to experience accessible workplace communication.

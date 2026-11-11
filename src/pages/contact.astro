@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../consts';
 
-const title = 'Book a demo — talk to Ollasync';
+const title = 'Book a demo — talk to OllaSync';
 const description =
   'Book a demo or talk to sales about the AI classroom — live translation, AI meetings and class notes. Request the security whitepaper and DPA for your review.';
 
@@ -69,7 +69,7 @@ const channels = [
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
     const f = new FormData(form);
-    const subject = `Ollasync enquiry: ${f.get('topic') || 'Demo'}`;
+    const subject = `OllaSync enquiry: ${f.get('topic') || 'Demo'}`;
     const body = `Name: ${f.get('name') || ''}\nEmail: ${f.get('email') || ''}\nOrganisation: ${f.get('org') || ''}\nInterested in: ${f.get('topic') || ''}\n\n${f.get('message') || ''}`;
     window.location.href = `mailto:${sales}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });

@@ -12,12 +12,12 @@ takeaways:
   - "An E2EE relay cannot make notes from audio it cannot decrypt; an authorized participant endpoint can process plaintext after decryption."
   - "A cloud note-taking bot can be an additional authorized endpoint, but that grants the bot and its operator access to meeting content; server-side capture outside the endpoint group defeats the stated server-blind boundary."
   - "Local transcription and summarization, or later processing of a participant-held recording, can preserve the live media's E2EE boundary while creating new risks around endpoints, files, and note distribution."
-  - "Ollasync's published pricing FAQ says its AI notes run on recorded meetings and excludes end-to-end-encrypted meetings; do not treat the architectural possibilities here as a currently supported combined feature."
+  - "OllaSync's published pricing FAQ says its AI notes run on recorded meetings and excludes end-to-end-encrypted meetings; do not treat the architectural possibilities here as a currently supported combined feature."
 ---
 
 **Yes, but only if the note-maker is allowed to see the meeting's plaintext.** End-to-end encryption (E2EE) prevents an intermediary without the content keys from reading the call. It does not stop a participant's device from reading audio it must decrypt to play it, nor does it prevent that participant from deliberately recording or summarizing what it heard. AI notes can therefore coexist with an E2EE *media path* if transcription and summarization happen on an authorized endpoint, or later from a recording that an authorized endpoint made. A cloud service that transcribes the live call needs its own authorized plaintext source. Merely turning on a server-side AI switch cannot make ciphertext intelligible.
 
-That is a conditional architectural answer, **not a feature claim about Ollasync**. Our current [pricing FAQ](/pricing/) says AI transcripts, notes and action items run on meetings you record and that **end-to-end-encrypted meetings are excluded by design**. Do not infer that Ollasync currently produces AI notes for an E2EE meeting. The question this article answers is where an E2EE-compatible notes system *could* obtain plaintext, what each design gives up, and how to check a product's actual behavior before buying it.
+That is a conditional architectural answer, **not a feature claim about OllaSync**. Our current [pricing FAQ](/pricing/) says AI transcripts, notes and action items run on meetings you record and that **end-to-end-encrypted meetings are excluded by design**. Do not infer that OllaSync currently produces AI notes for an E2EE meeting. The question this article answers is where an E2EE-compatible notes system *could* obtain plaintext, what each design gives up, and how to check a product's actual behavior before buying it.
 
 ## What does “E2EE meeting with AI notes” really mean?
 
@@ -138,7 +138,7 @@ First classify the meetings. For ordinary planning calls, notes may matter more 
 
 For the most sensitive meetings, decide whether any durable transcript should exist. Sometimes the right result is a short, reviewed decision log typed by an authorized participant, not an exhaustive searchable record of the conversation. Where an AI workflow is genuinely required, a controlled endpoint with verified local inference and carefully managed output may better match a no-external-content requirement than a cloud bot. That is a deployment choice with operational work attached, not a free toggle.
 
-Finally separate “technically possible” from “available in this subscription and configuration.” A standards-based design might be feasible for an engineering team but absent from the product you have. Check platform documentation and a live test for exactly the feature combination you intend to use. In Ollasync's case, the current [pricing FAQ](/pricing/) explicitly says AI notes operate on **recorded meetings** and **E2EE meetings are excluded**. Its statement that plans include E2EE should not be read as a promise that E2EE and AI notes run together. If that combination is mandatory, treat it as an unmet requirement unless product documentation and an actual test show otherwise.
+Finally separate “technically possible” from “available in this subscription and configuration.” A standards-based design might be feasible for an engineering team but absent from the product you have. Check platform documentation and a live test for exactly the feature combination you intend to use. In OllaSync's case, the current [pricing FAQ](/pricing/) explicitly says AI notes operate on **recorded meetings** and **E2EE meetings are excluded**. Its statement that plans include E2EE should not be read as a promise that E2EE and AI notes run together. If that combination is mandatory, treat it as an unmet requirement unless product documentation and an actual test show otherwise.
 
 ## Frequently asked questions
 
@@ -162,17 +162,17 @@ No. Local computation removes a cloud processing hop if it is truly local, but a
 
 That depends on who encrypted it, who holds its decryption keys, and where it is decrypted for processing. A cloud server that can play a recording and transcribe it has access to that recording's plaintext through some mechanism. A participant could instead upload only ciphertext that the server cannot decrypt, but the server could not generate ordinary speech-based notes from that ciphertext alone. Live-call E2EE and recording encryption are separate claims.
 
-### Can I use Ollasync AI notes in an E2EE meeting today?
+### Can I use OllaSync AI notes in an E2EE meeting today?
 
-According to the current [Ollasync pricing FAQ](/pricing/), no: AI transcripts, notes and action items run on recorded meetings, and end-to-end-encrypted meetings are excluded by design. This article describes possible architectures, not a shipped Ollasync E2EE-plus-notes feature. Verify current product documentation when planning a deployment; avoid treating a general cryptographic possibility as an available setting.
+According to the current [OllaSync pricing FAQ](/pricing/), no: AI transcripts, notes and action items run on recorded meetings, and end-to-end-encrypted meetings are excluded by design. This article describes possible architectures, not a shipped OllaSync E2EE-plus-notes feature. Verify current product documentation when planning a deployment; avoid treating a general cryptographic possibility as an available setting.
 
 ## What is the bottom line?
 
-An E2EE meeting **can** produce AI notes if an authorized endpoint supplies plaintext to the notes workflow, whether locally, through a deliberately trusted bot, or from a participant-controlled recording later. The condition is not optional: someone or something must encounter intelligible content. Identify that actor, its operator, its keys, and every subsequent destination for text. If a server is supposed to remain unable to read meeting media, it cannot also derive speech-based notes from that same stream without a distinct authorized input path or a change in the protection model. For Ollasync's currently published product combination, the answer is narrower than the theoretical one: recorded-meeting AI notes are offered, while E2EE meetings are excluded from AI notes on the [pricing page](/pricing/).
+An E2EE meeting **can** produce AI notes if an authorized endpoint supplies plaintext to the notes workflow, whether locally, through a deliberately trusted bot, or from a participant-controlled recording later. The condition is not optional: someone or something must encounter intelligible content. Identify that actor, its operator, its keys, and every subsequent destination for text. If a server is supposed to remain unable to read meeting media, it cannot also derive speech-based notes from that same stream without a distinct authorized input path or a change in the protection model. For OllaSync's currently published product combination, the answer is narrower than the theoretical one: recorded-meeting AI notes are offered, while E2EE meetings are excluded from AI notes on the [pricing page](/pricing/).
 
 ## Primary sources and product disclosure
 
 - [IETF RFC 9605: Secure Frame (SFrame)](https://www.rfc-editor.org/info/rfc9605) — end-to-end protection of conference media frames while allowing an SFU to forward using metadata.
 - [W3C WebRTC Encoded Transform](https://www.w3.org/TR/webrtc-encoded-transform/) — access to encoded frames in a client media pipeline, including local encryption use cases.
 - [IETF RFC 8827: WebRTC Security Architecture](https://www.rfc-editor.org/info/rfc8827) — security architecture for WebRTC communications.
-- [Ollasync pricing and FAQ](/pricing/) — published distinction between recorded-meeting AI notes and excluded end-to-end-encrypted meetings.
+- [OllaSync pricing and FAQ](/pricing/) — published distinction between recorded-meeting AI notes and excluded end-to-end-encrypted meetings.

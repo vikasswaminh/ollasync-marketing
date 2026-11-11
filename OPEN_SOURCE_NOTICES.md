@@ -1,6 +1,6 @@
-# Open-source notices — Ollasync
+# Open-source notices — OllaSync
 
-Third-party open-source software included in the Ollasync web client and in the service that runs it.
+Third-party open-source software included in the OllaSync web client and in the service that runs it.
 
 **Why this file exists.** The public page at `/licenses` is no longer linked from the site. It is the
 one page exempted from `scripts/mkt_no_leak.sh`, because attribution requires naming components
@@ -15,7 +15,7 @@ Last reviewed: 5 August 2026.
 
 ---
 
-## In the Ollasync web client
+## In the OllaSync web client
 
 Delivered to the browser as part of the application, so attribution is owed.
 

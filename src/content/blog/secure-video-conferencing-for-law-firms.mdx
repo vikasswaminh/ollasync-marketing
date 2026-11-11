@@ -49,7 +49,7 @@ A useful test for any tool a firm is evaluating: <em>if the provider received a 
 
 ## Be precise about what "encrypted" means
 
-Vendors — including us — should never wave the word "encrypted" over an entire product. Different parts of any real platform protect different things in different ways, and for privileged work you need to know exactly which is which. Here is the honest breakdown for Ollasync:
+Vendors — including us — should never wave the word "encrypted" over an entire product. Different parts of any real platform protect different things in different ways, and for privileged work you need to know exactly which is which. Here is the honest breakdown for OllaSync:
 
 - **Messaging is end-to-end encrypted and server-blind by default.** It's built on the open [IETF MLS standard (RFC 9420)](/security) via an independently audited open-source library. We hold no keys and cannot read message content. Note that message *metadata* — who is in a conversation, and when — is still visible to the service; E2EE protects content, not the fact that a conversation happened.
 - **Meeting media is encrypted in transit** with DTLS-SRTP to the media relay. When you self-host, that relay is *yours*, so the media never reaches an outside operator. A per-frame end-to-end encryption mode exists for keeping even the relay blind; it is a deliberate mode, **not** the default, so we won't claim all video is always E2EE.

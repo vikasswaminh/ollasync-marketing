@@ -524,7 +524,7 @@ export async function verifiedClaims(item, d, today) {
     if (!pages.has(c.url)) {
       let text = null;
       try {
-        const r = await d.fetchImpl(c.url, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OllasyncContentEngine/1.0; +https://www.ollasync.com)' }, signal: AbortSignal.timeout(20000), redirect: 'follow' });
+        const r = await d.fetchImpl(c.url, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OllaSyncContentEngine/1.0; +https://www.ollasync.com)' }, signal: AbortSignal.timeout(20000), redirect: 'follow' });
         if (r.ok) text = htmlText(await r.text()).toLowerCase().replace(/\s+/g, ' ');
       } catch {
         text = null;

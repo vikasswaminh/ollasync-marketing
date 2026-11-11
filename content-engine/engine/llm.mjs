@@ -121,7 +121,7 @@ export class LLM {
       body.reasoning = { enabled: false };
       headers.Authorization = `Bearer ${cfg.openrouter.key}`;
       headers['HTTP-Referer'] = cfg.openrouter.referer;
-      headers['X-Title'] = 'Ollasync';
+      headers['X-Title'] = 'OllaSync';
     } else {
       url = cfg.gateway.endpoint;
       timeoutMs = cfg.gateway.timeoutMs;

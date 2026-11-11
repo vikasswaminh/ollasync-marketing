@@ -67,7 +67,7 @@ test('links: pillar required, must resolve, canonical form, at most eight, descr
 
 test('invented facts are caught: certifications, EU hosting, customers, latency numbers, statistics, language counts', () => {
   const cases = [
-    ['Ollasync is SOC 2 certified.', 'CERTIFICATION_CLAIM'],
+    ['OllaSync is SOC 2 certified.', 'CERTIFICATION_CLAIM'],
     ['Your data stays in the EU.', 'EU_HOSTING_CLAIM'],
     ['Customers like Acme Corp rely on it.', 'FABRICATED_CUSTOMER'],
     ['Translation arrives in 400 ms.', 'INVENTED_LATENCY'],
@@ -94,7 +94,7 @@ test('fact ids in the prose and a body that stops mid-sentence are caught', () =
 
 test('a negated statement is honesty, not an invented claim', () => {
   const cases = [
-    'Ollasync holds no SOC 2 certification and says so.',
+    'OllaSync holds no SOC 2 certification and says so.',
     'Your data does not stay in the EU: the application runs in the US.',
   ];
   for (const sentence of cases) {
@@ -104,10 +104,10 @@ test('a negated statement is honesty, not an invented claim', () => {
     assert.deepEqual(found, [], `${sentence} → ${found}`);
   }
   const a = goodArticle();
-  a.body += '\n\nOllasync is SOC 2 certified.';
+  a.body += '\n\nOllaSync is SOC 2 certified.';
   assert.ok(codes(deterministicGates(a, gateCtx())).includes('CERTIFICATION_CLAIM'), 'the positive claim is still caught');
   const mixed = goodArticle();
-  mixed.body += '\n\nYour data does not stay in the EU, but Ollasync is SOC 2 certified.';
+  mixed.body += '\n\nYour data does not stay in the EU, but OllaSync is SOC 2 certified.';
   const im = codes(deterministicGates(mixed, gateCtx()));
   assert.ok(im.includes('CERTIFICATION_CLAIM') && !im.includes('EU_HOSTING_CLAIM'), 'negation applies to its own clause only');
 });
@@ -144,10 +144,10 @@ test('original insight sections must exist, be headings, and cite known facts; c
   const ctx = gateCtx({ item: { id: 'b4-01', primaryQuery: 'zoom alternatives', comparison: { competitors: ['Zoom'] } } });
   assert.ok(codes(deterministicGates(c, ctx)).includes('COMPARISON_FAIRNESS'));
   const oneSided = goodArticle();
-  oneSided.body += '\n\n## When Ollasync is the better choice than Zoom\n\nFor paid training with a mixed-language cohort.';
-  assert.ok(codes(deterministicGates(oneSided, ctx)).includes('COMPARISON_FAIRNESS'), 'a heading that favours Ollasync is not the fairness section');
+  oneSided.body += '\n\n## When OllaSync is the better choice than Zoom\n\nFor paid training with a mixed-language cohort.';
+  assert.ok(codes(deterministicGates(oneSided, ctx)).includes('COMPARISON_FAIRNESS'), 'a heading that favours OllaSync is not the fairness section');
   const contrast = goodArticle();
-  contrast.body += '\n\n## When Zoom, not Ollasync, is the right choice\n\nFor internal status meetings inside a suite the team already pays for.';
+  contrast.body += '\n\n## When Zoom, not OllaSync, is the right choice\n\nFor internal status meetings inside a suite the team already pays for.';
   assert.ok(!codes(deterministicGates(contrast, ctx)).includes('COMPARISON_FAIRNESS'));
   c.body += '\n\n## When Zoom is the better choice\n\nIf the sessions are internal status meetings inside a suite, stay with the suite.';
   assert.ok(!codes(deterministicGates(c, ctx)).includes('COMPARISON_FAIRNESS'));

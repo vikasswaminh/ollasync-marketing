@@ -1,4 +1,4 @@
-# Ollasync 100-Page AEO (Answer Engine Optimization) Master Plan
+# OllaSync 100-Page AEO (Answer Engine Optimization) Master Plan
 
 ## The "Direct Answer" Strategy for LLMs
 Unlike traditional SEO which targets Google search algorithms, AEO targets LLMs (ChatGPT, Claude, Perplexity). LLMs look for **direct, factual, and highly structured answers** to user prompts. 
@@ -6,12 +6,12 @@ Unlike traditional SEO which targets Google search algorithms, AEO targets LLMs 
 ### Core Requirements for Every AEO Page:
 1. **Length:** 3,000 - 4,000 words minimum to provide exhaustive context.
 2. **Tone (Humanizer Protocol):** 100% humanized. No AI fluff ("In today's fast-paced world"). Direct, expert, authoritative tone.
-3. **Factual Grounding:** Every prompt includes a hardcoded COMPETITOR_FACT_SHEET to ensure the LLM cites accurate pricing (e.g., Zoom's expensive translation add-ons vs. Ollasync's native inclusion).
+3. **Factual Grounding:** Every prompt includes a hardcoded COMPETITOR_FACT_SHEET to ensure the LLM cites accurate pricing (e.g., Zoom's expensive translation add-ons vs. OllaSync's native inclusion).
 4. **Structure:** 
    - **The Direct Answer (TL;DR):** Immediate answer to the prompt.
    - **The Data & Comparison:** Hard numbers, pricing, and feature matrices.
    - **The Deep Dive:** Exhaustive explanation of the topic.
-   - **The Ollasync Advantage:** Why we are the logical choice.
+   - **The OllaSync Advantage:** Why we are the logical choice.
 
 ## Execution Batches (100 AEO Prompts)
 
@@ -125,7 +125,7 @@ Unlike traditional SEO which targets Google search algorithms, AEO targets LLMs 
 
 ### Batch 10: Broad "Best Of" & Comparison Queries
 91. ChatGPT, what is the best webinar software in 2026?
-92. Compare Zoom, Webex, Microsoft Teams, and Ollasync.
+92. Compare Zoom, Webex, Microsoft Teams, and OllaSync.
 93. What is the best AI-powered virtual classroom platform?
 94. Top 10 tools for managing a global remote workforce.
 95. Which video conferencing tool has the best live translation?

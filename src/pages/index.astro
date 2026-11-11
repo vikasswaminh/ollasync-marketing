@@ -15,8 +15,8 @@ const latestPosts = (await getCollection('blog'))
   .slice(0, 2);
 const fmtDate = (dt: Date) => dt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 
-const title = 'Ollasync | Multilingual Video Meetings with Live Translation';
-const description = `Ollasync brings video meetings, live voice translation and captions in ${LANG_COUNT} languages, plus recordings and AI notes for supported meetings. Meet beyond language.`;
+const title = 'OllaSync | Multilingual Video Meetings with Live Translation';
+const description = `OllaSync brings video meetings, live voice translation and captions in ${LANG_COUNT} languages, plus recordings and AI notes for supported meetings. Meet beyond language.`;
 
 // Every language named on this page is a real translate target
 // (XLATE_LANGS / the server TRANSLATE_LANGS default). Nothing here is aspirational.

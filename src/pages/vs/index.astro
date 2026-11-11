@@ -6,9 +6,9 @@ import Cta from '../../components/Cta.astro';
 import TranslationPricing from '../../components/TranslationPricing.astro';
 import { COMPETITORS } from '../../data/vs';
 
-const title = 'Ollasync vs Zoom, Teams, Meet, Webex & BigBlueButton';
+const title = 'OllaSync vs Zoom, Teams, Meet, Webex & BigBlueButton';
 const description =
-  'How Ollasync compares to Zoom, Microsoft Teams, Google Meet and Cisco Webex on AI notes, encryption, price and live translation — a fair, honest breakdown.';
+  'How OllaSync compares to Zoom, Microsoft Teams, Google Meet and Cisco Webex on AI notes, encryption, price and live translation — a fair, honest breakdown.';
 ---
 <Base title={title} description={description}>
   <PageHero
@@ -17,7 +17,7 @@ const description =
     crumbs={[{ label: 'Compare' }]}
     title="The encrypted, translated"
     titleAccent="alternative"
-    lead="We compare fairly — the big platforms are fast and capable, and we say where they’re strong. But if you need to control where your meetings run and who can reach the data, here’s how Ollasync stacks up."
+    lead="We compare fairly — the big platforms are fast and capable, and we say where they’re strong. But if you need to control where your meetings run and who can reach the data, here’s how OllaSync stacks up."
   />
   <section class="section" id="translation-pricing" style="padding-top:32px">
     <div class="container">
@@ -34,7 +34,7 @@ const description =
       <div class="grid grid-2" data-reveal>
         {COMPETITORS.map((c) => (
           <a href={`/vs/${c.slug}`} class="card card--hover uc-card">
-            <h2 class="h3">Ollasync vs {c.name}</h2>
+            <h2 class="h3">OllaSync vs {c.name}</h2>
             <p>{c.intro.split('.')[0]}.</p>
             <span class="uc-more mono">See the comparison <Icon name="arrow" size={15} /></span>
           </a>

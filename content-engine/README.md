@@ -1,4 +1,4 @@
-# Ollasync content engine
+# OllaSync content engine
 
 Writes blog articles for the marketing site from a 50-item editorial manifest, under the persistent policy in
 [`policy.json`](policy.json) (`ollasync_seo_content_engine_master_policy` v1.0). Everything lives in `marketing-site/`:
@@ -14,7 +14,7 @@ select → cannibalization (TF-IDF + intent check) → product facts → competi
        → at most ONE repair pass → originality check → draft | site file → run record (tokens, cost, scores)
 ```
 
-- **Facts:** [`product-facts.json`](product-facts.json) is the only source of Ollasync statements the writer may make
+- **Facts:** [`product-facts.json`](product-facts.json) is the only source of OllaSync statements the writer may make
   (each fact points at where the public site says it; `test/facts_drift.test.mjs` re-derives the countable ones).
   [`competitor-facts.json`](competitor-facts.json) holds quoted claims from official pages; before every use the
   engine re-fetches the page and drops any claim whose quote is gone. Fetched pages never reach a model.

@@ -3,7 +3,7 @@ import { LANG_COUNT } from './data/languages';
 // Language counts come from src/data/languages.ts.
 
 export const SITE = {
-  name: 'Ollasync',
+  name: 'OllaSync',
   domain: 'ollasync.com',
   // Canonical host is www (apex 301-redirects to www). Drives canonicals/OG/schema.
   url: 'https://www.ollasync.com',

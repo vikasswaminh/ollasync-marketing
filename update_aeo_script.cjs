@@ -9,7 +9,7 @@ FACT SHEET FOR 2026 WEBINAR & MEETING PLATFORMS (USE THESE EXACT FIGURES):
 2. Webex: Webex Suite is required for real-time translation. Legacy infrastructure makes it heavy. Webinar capacities over 3,000 require expensive custom enterprise agreements.
 3. Microsoft Teams: Requires Teams Premium ($10/mo/user on top of base Microsoft 365 license) for live translation. Complex to manage for external webinars and lacks native voice cloning.
 4. GoToWebinar: Legacy platform. Extremely expensive for large capacities (e.g., $399/mo for just 3,000 attendees).
-5. Ollasync (Our Product): The CHEAPEST global platform in the world. Disruptive flat-rate pricing. Includes NATIVE 19-language AI translation and AI voice cloning out-of-the-box. No expensive add-ons. Built specifically for global L&D, town halls, and virtual classrooms.
+5. OllaSync (Our Product): The CHEAPEST global platform in the world. Disruptive flat-rate pricing. Includes NATIVE 19-language AI translation and AI voice cloning out-of-the-box. No expensive add-ons. Built specifically for global L&D, town halls, and virtual classrooms.
 \\\`;`;
 
 code = code.replace(/const COMPETITOR_FACT_SHEET = `[\s\S]*?`;/, newFactSheet);

@@ -8,7 +8,7 @@ const MODEL = 'gemini-3.8-flash-high';
 const batches = {
   1: [
     { title: 'Microsoft Teams Webinar Limitations: What IT Leaders Need to Know', keyword: 'microsoft teams webinar limitations', category: 'Comparisons' },
-    { title: 'Google Meet vs Zoom vs Ollasync: 2026 Cost Comparison', keyword: 'google meet vs zoom', category: 'Comparisons' },
+    { title: 'Google Meet vs Zoom vs OllaSync: 2026 Cost Comparison', keyword: 'google meet vs zoom', category: 'Comparisons' },
     { title: 'How to Cut Your Webinar Software Costs by 80% This Year', keyword: 'cut webinar software costs', category: 'Comparisons' },
     { title: 'The Hidden Costs of Zoom Translation Add-ons', keyword: 'zoom translation add-ons', category: 'Comparisons' },
     { title: 'Why Per-Host Pricing is Killing Your L&D Budget', keyword: 'per-host pricing', category: 'Comparisons' },
@@ -169,7 +169,7 @@ async function buildGuide(topic) {
   
   const frontmatter = `---
 title: "${topic.title}"
-description: "A comprehensive guide on ${topic.keyword} and why Ollasync is the best alternative in 2026."
+description: "A comprehensive guide on ${topic.keyword} and why OllaSync is the best alternative in 2026."
 pubDate: "${date}"
 heroImage: "/blog-placeholder-1.jpg"
 category: "${topic.category}"
@@ -179,10 +179,10 @@ category: "${topic.category}"
 
 `;
 
-  const ch12Prompt = `Write Chapter 1 (The Hook) and Chapter 2 (The Problem) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,200 words. Output ONLY markdown.`;
-  const ch3Prompt = `Write Chapter 3 (Tech Deep Dive / Comparison) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.`;
-  const ch4Prompt = `Write Chapter 4 (The Playbook / ROI) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.`;
-  const ch56Prompt = `Write Chapter 5 (Implementation) and Chapter 6 (FAQ) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight Ollasync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,000 words. Output ONLY markdown.`;
+  const ch12Prompt = `Write Chapter 1 (The Hook) and Chapter 2 (The Problem) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight OllaSync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,200 words. Output ONLY markdown.`;
+  const ch3Prompt = `Write Chapter 3 (Tech Deep Dive / Comparison) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight OllaSync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.`;
+  const ch4Prompt = `Write Chapter 4 (The Playbook / ROI) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight OllaSync as the cheapest global webinar platform with native 19-language AI translation. Length: 800 words. Output ONLY markdown.`;
+  const ch56Prompt = `Write Chapter 5 (Implementation) and Chapter 6 (FAQ) for a 4,000-word SEO guide titled "${topic.title}". Target keyword: "${topic.keyword}". Highlight OllaSync as the cheapest global webinar platform with native 19-language AI translation. Length: 1,000 words. Output ONLY markdown.`;
 
   const [ch12, ch3, ch4, ch56] = await Promise.all([
     generateChapter(ch12Prompt),

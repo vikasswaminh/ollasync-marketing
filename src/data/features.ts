@@ -188,7 +188,7 @@ export const FEATURES: Feature[] = [
     related: ['recordings', 'live-captions', 'use-cases/academies'],
     title: 'Meet now, get the',
     titleAccent: 'notes and context after',
-    lead: 'Record a meeting and Ollasync turns it into a searchable transcript, a clean summary and a list of action items — and lets you ask questions about what was said. Your workspace decides which meetings it covers.',
+    lead: 'Record a meeting and OllaSync turns it into a searchable transcript, a clean summary and a list of action items — and lets you ask questions about what was said. Your workspace decides which meetings it covers.',
     capabilities: [
       { icon: 'doc', title: 'Automatic transcripts', body: 'Recorded meetings are transcribed into timestamped, searchable text you can scan or share.' },
       { icon: 'sparkles', title: 'AI notes & summaries', body: 'A concise summary of what happened, generated from the meeting’s own transcript — no manual note-taking.' },

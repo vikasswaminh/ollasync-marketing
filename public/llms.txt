@@ -1,8 +1,8 @@
-# Ollasync
+# OllaSync
 
 > Meet beyond language. Video meetings and live training with live translated voice and captions.
 
-Ollasync offers cloud SaaS for learning and multilingual meetings, and dedicated hosted deployments for regulated organizations. Published meeting plans support up to 100 participants; confirm deployment and plan details with the team. Translation supports 19 languages and up to five selected languages in a meeting. Participants can save a local recording on their device; eligible hosts can separately use cloud recording and AI notes from recorded meetings. Local recording does not mean every data flow or transcription stays on-device. End-to-end encrypted meetings do not offer live translation, cloud recording, or AI notes.
+OllaSync offers cloud SaaS for learning and multilingual meetings, and dedicated hosted deployments for regulated organizations. Published meeting plans support up to 100 participants; confirm deployment and plan details with the team. Translation supports 19 languages and up to five selected languages in a meeting. Participants can save a local recording on their device; eligible hosts can separately use cloud recording and AI notes from recorded meetings. Local recording does not mean every data flow or transcription stays on-device. End-to-end encrypted meetings do not offer live translation, cloud recording, or AI notes.
 
 - [Homepage](https://www.ollasync.com/)
 - [Live translation](https://www.ollasync.com/features/live-translation/)

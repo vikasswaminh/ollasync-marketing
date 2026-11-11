@@ -100,7 +100,7 @@
       "searchIntent": "informational: which layer a training business needs — the live layer, the content layer, or both",
       "audience": "training businesses and academies",
       "funnelStage": "consideration",
-      "uniqueAngle": "Two layers, not two competitors: the live class and the course shelf; states plainly that Ollasync is the live layer and where an LMS still belongs",
+      "uniqueAngle": "Two layers, not two competitors: the live class and the course shelf; states plainly that OllaSync is the live layer and where an LMS still belongs",
       "requiredOriginalInsights": [
         "Recording economics of a long class: recordings stay access-controlled in the workspace with retention the host chooses (F17), recording is visible to everyone (F18), and a learner can record locally in their own listening language (F19)",
         "What AI notes actually contain (summary, key topics, action items) and what they do not (F13), the opt-in and the post-class timing (F16), and the assistant over a recording (F15)",
@@ -551,7 +551,7 @@
       "searchIntent": "commercial: a checklist of questions to ask before buying",
       "audience": "training businesses",
       "funnelStage": "decision",
-      "uniqueAngle": "Questions to put to any vendor (where do the AI notes run, what happens to a recording of an encrypted class, who pays for learner seats), with Ollasync's own answers stated plainly",
+      "uniqueAngle": "Questions to put to any vendor (where do the AI notes run, what happens to a recording of an encrypted class, who pays for learner seats), with OllaSync's own answers stated plainly",
       "requiredOriginalInsights": [
         "Per-trainer-seat pricing with learners joining free (F22): how it changes the arithmetic of cohorts, open sessions and client training",
         "The deliberate trade of an end-to-end encrypted class: no recording, transcript or notes (F23, F16) — when a trainer should choose it anyway",
@@ -620,7 +620,7 @@
       "batch": 4,
       "scheduledDay": 4,
       "slug": "zoom-vs-ollasync-live-training",
-      "title": "Zoom vs Ollasync for Live Training",
+      "title": "Zoom vs OllaSync for Live Training",
       "primaryPillar": "pillar_2",
       "primaryQuery": "zoom vs ollasync",
       "secondaryQueries": [
@@ -662,7 +662,7 @@
       "batch": 4,
       "scheduledDay": 4,
       "slug": "zoom-vs-google-meet-vs-ollasync-online-classes",
-      "title": "Zoom vs Google Meet vs Ollasync for Online Classes",
+      "title": "Zoom vs Google Meet vs OllaSync for Online Classes",
       "primaryPillar": "pillar_2",
       "primaryQuery": "zoom vs google meet for online classes",
       "secondaryQueries": [
@@ -789,7 +789,7 @@
       "batch": 5,
       "scheduledDay": 5,
       "slug": "move-online-classes-from-zoom-to-ollasync",
-      "title": "How to Move Recurring Online Classes from Zoom to Ollasync",
+      "title": "How to Move Recurring Online Classes from Zoom to OllaSync",
       "primaryPillar": "pillar_2",
       "primaryQuery": "switch from zoom to ollasync",
       "secondaryQueries": [
@@ -953,7 +953,7 @@
       "batch": 5,
       "scheduledDay": 5,
       "slug": "bigbluebutton-vs-ollasync",
-      "title": "BigBlueButton vs Ollasync for Training Teams",
+      "title": "BigBlueButton vs OllaSync for Training Teams",
       "primaryPillar": "pillar_2",
       "primaryQuery": "bigbluebutton vs ollasync",
       "secondaryQueries": [
@@ -995,7 +995,7 @@
       "batch": 6,
       "scheduledDay": 6,
       "slug": "microsoft-teams-vs-ollasync-external-training",
-      "title": "Microsoft Teams vs Ollasync for External Training",
+      "title": "Microsoft Teams vs OllaSync for External Training",
       "primaryPillar": "pillar_2",
       "primaryQuery": "microsoft teams vs ollasync",
       "secondaryQueries": [

@@ -64,7 +64,7 @@ export function loadCorpus({ distDir, blogSrcDir, manifest = null, warn = () => 
     for (const p of htmlPages(distDir)) {
       if (SKIP.has(p.path)) continue;
       const html = readFileSync(p.file, 'utf8');
-      const title = decodeEntities((html.match(/<title>([^<]*)<\/title>/) || ['', ''])[1]).replace(/\s*·\s*Ollasync$/, '');
+      const title = decodeEntities((html.match(/<title>([^<]*)<\/title>/) || ['', ''])[1]).replace(/\s*·\s*OllaSync$/, '');
       const description = decodeEntities((html.match(/<meta name="description" content="([^"]*)"/) || ['', ''])[1]);
       const headings = [...html.matchAll(/<h[123][^>]*>([\s\S]*?)<\/h[123]>/g)].map((m) => htmlText(m[1]));
       const main = (html.match(/<main[\s\S]*?<\/main>/) || html.match(/<article[\s\S]*?<\/article>/) || [html])[0];

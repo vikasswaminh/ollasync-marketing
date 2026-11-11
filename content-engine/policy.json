@@ -3,8 +3,8 @@
   "version": "1.0",
   "mode": "persistent_project_instruction",
   "priority": "critical",
-  "scope": "All SEO, blog, comparison, landing-page, pillar-page, AI-search and content-generation work for Ollasync",
-  "mission": "Build and operate a high-quality organic acquisition engine for Ollasync that earns rankings in Google and visibility/citations in AI search systems such as ChatGPT by publishing genuinely useful, original, evidence-driven content rooted in Ollasync's real product and engineering experience.",
+  "scope": "All SEO, blog, comparison, landing-page, pillar-page, AI-search and content-generation work for OllaSync",
+  "mission": "Build and operate a high-quality organic acquisition engine for OllaSync that earns rankings in Google and visibility/citations in AI search systems such as ChatGPT by publishing genuinely useful, original, evidence-driven content rooted in OllaSync's real product and engineering experience.",
   "non_negotiable_rule": "Never optimize for appearing human merely to evade AI detection. Optimize for genuinely useful, natural, specific, first-hand, expert-level editorial content. Never publish generic mass-produced AI SEO content.",
   "repository_first_policy": {
     "rule": "Before implementing anything, inspect the existing repository and reuse existing infrastructure.",
@@ -33,7 +33,7 @@
       "existing comparison pages"
     ],
     "reuse_existing_openrouter_path": true,
-    "existing_reference": "OpenRouter is already wired for Ollasync AI Notes. Reuse that same provider/client/gateway abstraction.",
+    "existing_reference": "OpenRouter is already wired for OllaSync AI Notes. Reuse that same provider/client/gateway abstraction.",
     "forbidden": [
       "creating a duplicate OpenRouter client",
       "creating a second unrelated model gateway",
@@ -62,8 +62,8 @@
       "AI summaries",
       "multilingual delivery"
     ],
-    "competitive_message": "Zoom is general-purpose meeting software. Ollasync is designed around the live teaching workflow.",
-    "rule": "Do not reduce Ollasync to a generic Zoom clone."
+    "competitive_message": "Zoom is general-purpose meeting software. OllaSync is designed around the live teaching workflow.",
+    "rule": "Do not reduce OllaSync to a generic Zoom clone."
   },
   "seo_pillar_strategy": {
     "pillar_1": {
@@ -133,7 +133,7 @@
     ]
   },
   "model_policy": {
-    "provider": "Existing OpenRouter implementation already used by Ollasync AI Notes",
+    "provider": "Existing OpenRouter implementation already used by OllaSync AI Notes",
     "default_writer": "google/gemini-2.5-flash-lite",
     "reviewer_preference": "Use a different inexpensive model where practical",
     "approved_fallback_candidates": [
@@ -212,7 +212,7 @@
       "Use concrete teaching situations.",
       "Explain tradeoffs.",
       "Acknowledge limitations.",
-      "State when Ollasync is not the best choice.",
+      "State when OllaSync is not the best choice.",
       "Use domain vocabulary naturally."
     ]
   },
@@ -220,7 +220,7 @@
     "minimum_original_insight_sections_per_article": 2,
     "goal": "Each important article should contain useful information that cannot be produced by simply summarizing generic search results.",
     "preferred_material": [
-      "real Ollasync workflows",
+      "real OllaSync workflows",
       "verified product behavior",
       "implementation lessons",
       "architecture decisions",
@@ -244,7 +244,7 @@
   "factual_integrity": {
     "hard_rule": "Never invent facts.",
     "never_invent": [
-      "Ollasync features",
+      "OllaSync features",
       "customer names",
       "customer quotes",
       "case studies",
@@ -337,10 +337,10 @@
       "repeat the same FAQ across articles",
       "add FAQ structured data just to chase rankings"
     ],
-    "comparison_question_rule": "When comparing products, answer both where Ollasync is stronger and where the competitor is stronger."
+    "comparison_question_rule": "When comparing products, answer both where OllaSync is stronger and where the competitor is stronger."
   },
   "chatgpt_discovery_policy": {
-    "goal": "Make public Ollasync content accessible and useful to AI search systems.",
+    "goal": "Make public OllaSync content accessible and useful to AI search systems.",
     "requirements": [
       "Ensure OAI-SearchBot can crawl intended public content.",
       "Do not confuse OAI-SearchBot with GPTBot.",
@@ -358,7 +358,7 @@
   "internal_linking": {
     "rules": [
       "Every article must link naturally to its primary pillar.",
-      "Every mature article should link to 2-4 genuinely related Ollasync articles.",
+      "Every mature article should link to 2-4 genuinely related OllaSync articles.",
       "Link to one relevant audience/use-case page when useful.",
       "Prefer descriptive anchors.",
       "Do not use click-here style anchors.",
@@ -403,7 +403,7 @@
     "objective": "Produce trustworthy buyer guidance rather than propaganda.",
     "requirements": [
       "state where competitor is stronger",
-      "state where Ollasync is stronger",
+      "state where OllaSync is stronger",
       "explain use cases",
       "use verified facts",
       "avoid fake scoring systems",
@@ -449,7 +449,7 @@
   "generation_pipeline": [
     "Select next manifest item.",
     "Check cannibalization.",
-    "Load Ollasync verified product context.",
+    "Load OllaSync verified product context.",
     "Research external facts if required.",
     "Create content brief.",
     "Generate initial article with writer model.",
@@ -480,7 +480,7 @@
     },
     "review_questions": [
       "Could this article be published by any SaaS company merely by replacing the product name?",
-      "Does it contain genuinely Ollasync-specific insight?",
+      "Does it contain genuinely OllaSync-specific insight?",
       "Does the writer appear to understand online training?",
       "Does any section exist only to contain keywords?",
       "Is the prose repetitive or mechanically templated?",
@@ -488,7 +488,7 @@
       "Does each major section add information?",
       "Are user questions natural?",
       "Are tradeoffs explained?",
-      "Is the article substantially different from other Ollasync articles?",
+      "Is the article substantially different from other OllaSync articles?",
       "Would a professional trainer learn something useful from this page?"
     ],
     "repair_policy": {
@@ -595,20 +595,20 @@
     ],
     "batch_4_zoom_comparison": [
       "Zoom Alternatives for Online Teaching: What Trainers Should Compare",
-      "Zoom vs Ollasync for Live Training",
-      "Zoom vs Google Meet vs Ollasync for Online Classes",
+      "Zoom vs OllaSync for Live Training",
+      "Zoom vs Google Meet vs OllaSync for Online Classes",
       "Zoom vs Virtual Classroom Software: Which Fits Teaching Better?",
       "When Zoom Is Still the Better Choice for Training"
     ],
     "batch_5_switching_intent": [
-      "How to Move Recurring Online Classes from Zoom to Ollasync",
+      "How to Move Recurring Online Classes from Zoom to OllaSync",
       "Zoom Alternative with Live Voice Translation: What to Look For",
       "Video Conferencing for Multilingual Training: What Actually Matters?",
       "Google Meet Alternatives for Professional Trainers",
-      "BigBlueButton vs Ollasync for Training Teams"
+      "BigBlueButton vs OllaSync for Training Teams"
     ],
     "batch_6_competitors_and_translation": [
-      "Microsoft Teams vs Ollasync for External Training",
+      "Microsoft Teams vs OllaSync for External Training",
       "What Should Tutors and Coaches Look for in a Zoom Alternative?",
       "How Live Voice Translation Works in an Online Class",
       "Live Voice Translation vs Captions: What's the Difference?",
@@ -711,7 +711,7 @@
     "Cannibalization detector blocks near-duplicates.",
     "Current competitor claims contain verified sources.",
     "Article body is crawlable in rendered HTML.",
-    "No invented Ollasync feature appears.",
+    "No invented OllaSync feature appears.",
     "Human-editor quality threshold works.",
     "Generic AI filler is rejected."
   ],
@@ -735,7 +735,7 @@
       "Do not publish Batch 1 automatically unless explicitly configured for production publishing."
     ]
   },
-  "persistent_instruction": "Treat this configuration as the permanent editorial and SEO policy for the Ollasync content engine. Future content-generation work must inherit these rules unless a newer explicit project policy overrides them.",
+  "persistent_instruction": "Treat this configuration as the permanent editorial and SEO policy for the OllaSync content engine. Future content-generation work must inherit these rules unless a newer explicit project policy overrides them.",
   "final_report_required": [
     "architecture used",
     "existing components reused",
@@ -755,5 +755,5 @@
     "test results",
     "remaining risks"
   ],
-  "final_instruction": "Implement this as a maintainable production system, not as a one-off script. Favor factual quality, first-hand Ollasync knowledge, search-intent satisfaction and original usefulness over publishing volume. If an article cannot meet the quality bar, do not publish it."
+  "final_instruction": "Implement this as a maintainable production system, not as a one-off script. Favor factual quality, first-hand OllaSync knowledge, search-intent satisfaction and original usefulness over publishing volume. If an article cannot meet the quality bar, do not publish it."
 }

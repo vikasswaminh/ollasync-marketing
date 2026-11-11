@@ -18,10 +18,10 @@ const classroom = ['tutors', 'trainers', 'academies', 'onboarding'].includes(uc.
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: `Ollasync for ${uc.label}`,
+  name: `OllaSync for ${uc.label}`,
   serviceType: 'Encrypted video conferencing and collaboration',
   description: uc.metaDescription,
-  provider: { '@type': 'Organization', name: 'Ollasync' },
+  provider: { '@type': 'Organization', name: 'OllaSync' },
   areaServed: uc.label,
 };
 ---
@@ -62,7 +62,7 @@ const schema = {
   <section class="section" style="padding-top:12px">
     <div class="container">
       <div class="section-head" data-reveal>
-        <span class="eyebrow-label">How Ollasync helps</span>
+        <span class="eyebrow-label">How OllaSync helps</span>
         <h2 class="h2" style="margin-top:12px">{classroom ? 'Teaching that fits your workflow' : 'Confidentiality that fits your workflow'}</h2>
       </div>
       <div class="grid grid-2" data-reveal>

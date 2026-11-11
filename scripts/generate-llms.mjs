@@ -18,11 +18,11 @@ const entries = [...rss.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(([, item]) =>
   return { title, url, date: Date.parse(date || '') };
 }).filter((entry) => entry.title && entry.url && urls.has(entry.url)).sort((a, b) => b.date - a.date || a.url.localeCompare(b.url));
 const text = [
-  '# Ollasync',
+  '# OllaSync',
   '',
-  '> Ollasync makes video meetings and live training available across languages with participant-selected translated voice or captions.',
+  '> OllaSync makes video meetings and live training available across languages with participant-selected translated voice or captions.',
   '',
-  'Ollasync offers cloud SaaS for learning and meetings, plus dedicated hosted deployments for regulated organizations. The published meeting plans support up to 100 participants. Check current terms and availability with the team before making procurement or compliance decisions.',
+  'OllaSync offers cloud SaaS for learning and meetings, plus dedicated hosted deployments for regulated organizations. The published meeting plans support up to 100 participants. Check current terms and availability with the team before making procurement or compliance decisions.',
   '',
   'Live translation supports 19 languages, with up to five different selected languages in one meeting. A participant can save a personal local recording on their device; eligible hosts can separately use cloud recording and AI notes from recorded meetings. Local recording does not imply that translation, metadata, or AI transcription is processed entirely on-device. End-to-end-encrypted meetings do not offer live translation, cloud recording, or AI notes.',
   '',

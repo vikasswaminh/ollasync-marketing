@@ -14,7 +14,7 @@ interface Props {
   faqs?: { question: string; answer: string }[];
 }
 
-const { title, description, eyebrow = 'Ollasync platform', category = 'Solutions', intro, benefits, faqs = [] } = Astro.props;
+const { title, description, eyebrow = 'OllaSync platform', category = 'Solutions', intro, benefits, faqs = [] } = Astro.props;
 const categoryLinks: Record<string, string> = {
   Features: '/features/',
   'Use cases': '/use-cases/',
@@ -22,7 +22,7 @@ const categoryLinks: Record<string, string> = {
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: `Ollasync — ${title}`,
+  name: `OllaSync — ${title}`,
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web browser',
   description,
@@ -37,7 +37,7 @@ const schema = {
       <span class="eyebrow-label" data-reveal>{eyebrow}</span>
       <h1 class="display" data-reveal>{title}</h1>
       <p class="lead seo-intro" data-reveal>{intro}</p>
-      <p class="seo-proof" data-reveal><strong>Zero localization costs.</strong> Reach every learner in <strong>19+ languages</strong> with Ollasync.</p>
+      <p class="seo-proof" data-reveal><strong>Zero localization costs.</strong> Reach every learner in <strong>19+ languages</strong> with OllaSync.</p>
       <div class="hero__cta" data-reveal>
         <a href={SITE.appUrl} class="btn btn-primary">Start free <span class="arrow">→</span></a>
         <a href="/contact" class="btn btn-ghost">Book a demo</a>
@@ -56,7 +56,7 @@ const schema = {
       </div>
       <div class="panel seo-callout" data-reveal>
         <h2 class="h2">One live experience, every language</h2>
-        <p class="lead">Ollasync translates voice and captions live, so teams can teach, sell, and collaborate globally without producing duplicate recordings or paying for localization. Invite people in a browser and let each person choose their language.</p>
+        <p class="lead">OllaSync translates voice and captions live, so teams can teach, sell, and collaborate globally without producing duplicate recordings or paying for localization. Invite people in a browser and let each person choose their language.</p>
       </div>
       {faqs.length > 0 && (
         <div class="seo-faq">

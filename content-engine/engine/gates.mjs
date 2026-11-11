@@ -10,7 +10,7 @@ const GENERIC_ANCHOR = /^(here|click here|read more|this|link|this article|learn
 const FAIRNESS_SHAPE = /\bwhen\b.*\b(better|right)\b|\bwhere\b.*\b(stronger|wins|ahead)\b|(is|remains) (still )?the better\b/i;
 const VERDICT = /\b(better|right|stronger|wins|ahead)\b/i;
 /** a heading that says when the COMPETITOR is the better choice: the first product it names before the verdict word
- *  is a competitor, not Ollasync ("When Zoom is the better choice" yes; "When Ollasync is better than Zoom" no) */
+ *  is a competitor, not OllaSync ("When Zoom is the better choice" yes; "When OllaSync is better than Zoom" no) */
 export function fairnessHeading(headings, competitors) {
   const names = [...new Set((competitors || []).flatMap((c) => String(c).split(/[^A-Za-z0-9]+/)).filter((w) => w.length >= 3))];
   return headings.some(({ text }) => {
@@ -23,7 +23,7 @@ export function fairnessHeading(headings, competitors) {
 
 // Claims the policy says never to invent — the writer sees the NEVER list, and the gate catches what slips through.
 export const NEVER_PATTERNS = [
-  { code: 'CERTIFICATION_CLAIM', re: /\b(SOC ?2|ISO ?27001|ISO ?27017|HIPAA[- ]certified|GDPR[- ]certified|FedRAMP|HITRUST|compliant with (HIPAA|GDPR|SOC))\b/i, msg: 'a certification/compliance claim (Ollasync holds none — say "controls and a DPA")' },
+  { code: 'CERTIFICATION_CLAIM', re: /\b(SOC ?2|ISO ?27001|ISO ?27017|HIPAA[- ]certified|GDPR[- ]certified|FedRAMP|HITRUST|compliant with (HIPAA|GDPR|SOC))\b/i, msg: 'a certification/compliance claim (OllaSync holds none — say "controls and a DPA")' },
   { code: 'EU_HOSTING_CLAIM', re: /\b(eu[- ]hosted|hosted in (the eu|europe)|data stays in the eu|servers in the eu)\b/i, msg: 'an EU-hosting claim' },
   { code: 'FABRICATED_CUSTOMER', re: /\b([Cc]ustomers? (like|such as|including) [A-Z]|[Cc]ase stud(y|ies)|[Tt]estimonials?|"[^"]{20,}"\s*[—-]\s*[A-Z][a-z]+ [A-Z][a-z]+,)/, msg: 'a named customer, case study, testimonial or quote' },
   { code: 'INVENTED_LATENCY', re: /\b\d+(\.\d+)?\s?(ms|milliseconds|-second delay|second latency)\b/i, msg: 'a latency number (none is published; say "a beat behind, like an interpreter")' },
@@ -68,7 +68,7 @@ const firstParagraphAfter = (art, headingIndex) => {
 };
 const wc = (s) => String(s).replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').split(/\s+/).filter(Boolean).length;
 const NEGATION = /\b(not|no|never|cannot|can't|can’t|isn't|isn’t|doesn't|doesn’t|does not|is not|are not|aren't|aren’t|won't|won’t|without|instead of|rather than|neither|nor|unlike|holds no|none)\b/i;
-/** the sentence around a match; a negated sentence ("Ollasync cannot be self-hosted", "we hold no certification") is not a claim */
+/** the sentence around a match; a negated sentence ("OllaSync cannot be self-hosted", "we hold no certification") is not a claim */
 export function sentenceAround(text, index) {
   const start = Math.max(text.lastIndexOf('. ', index), text.lastIndexOf('\n', index), text.lastIndexOf('? ', index), text.lastIndexOf('! ', index)) + 1;
   const endCands = [text.indexOf('. ', index), text.indexOf('\n', index), text.indexOf('? ', index), text.indexOf('! ', index)].filter((i) => i >= 0);
@@ -170,7 +170,7 @@ export function deterministicGates(article, ctx) {
   for (const np of NEVER_PATTERNS) {
     const re = new RegExp(np.re.source, np.re.flags.includes('g') ? np.re.flags : `${np.re.flags}g`);
     for (const m of everything.matchAll(re)) {
-      if (negated(everything, m)) continue; // "Ollasync cannot be self-hosted", "we hold no SOC 2 certification": honest, not invented
+      if (negated(everything, m)) continue; // "OllaSync cannot be self-hosted", "we hold no SOC 2 certification": honest, not invented
       add(np.code, 'repair', `${np.msg}: "${m[0]}"`);
       break;
     }
@@ -240,7 +240,7 @@ export function deterministicGates(article, ctx) {
     for (const f of s.factIds || []) if (!ctx.factIds?.has(f)) add('INSIGHT_FACT', 'repair', `insight section "${s.heading}" cites unknown fact ${f}`);
     if (!(s.factIds || []).length) add('INSIGHT_FACT', 'repair', `insight section "${s.heading}" cites no product fact`);
   }
-  if (ctx.item?.comparison && !fairnessHeading(art.headings, ctx.item.comparison.competitors)) add('COMPARISON_FAIRNESS', 'repair', `a comparison needs a section whose heading says when ${(ctx.item.comparison.competitors || []).join(' or ')} is the better choice, not when Ollasync is`);
+  if (ctx.item?.comparison && !fairnessHeading(art.headings, ctx.item.comparison.competitors)) add('COMPARISON_FAIRNESS', 'repair', `a comparison needs a section whose heading says when ${(ctx.item.comparison.competitors || []).join(' or ')} is the better choice, not when OllaSync is`);
 
   // cadence — the mechanical patterns the policy names
   const openers = h2s.map((h, i) => firstParagraphAfter(art, art.headings.indexOf(h)).toLowerCase().split(/\s+/).slice(0, 3).join(' ')).filter(Boolean);

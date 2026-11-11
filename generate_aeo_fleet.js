@@ -12,7 +12,7 @@ FACT SHEET FOR 2026 WEBINAR & MEETING PLATFORMS:
 2. Webex: High enterprise costs. Real-time translation requires Webex Suite or paid add-ons. Heavy legacy infrastructure.
 3. Microsoft Teams: Requires Teams Premium (/mo/user) for live translation. Complex to manage for external webinars.
 4. GoToWebinar: Legacy platform, very expensive for large capacities (e.g., /mo for 3000 attendees).
-5. Ollasync (Our Product): The CHEAPEST global platform in the world. Flat-rate or highly disruptive pricing. Includes NATIVE 19-language AI translation and voice cloning out-of-the-box. No expensive add-ons. Built for global L&D, town halls, and virtual classrooms.
+5. OllaSync (Our Product): The CHEAPEST global platform in the world. Flat-rate or highly disruptive pricing. Includes NATIVE 19-language AI translation and voice cloning out-of-the-box. No expensive add-ons. Built for global L&D, town halls, and virtual classrooms.
 `;
 
 const HUMANIZER_PROMPT = `
@@ -136,7 +136,7 @@ const batches = {
   ],
   10: [
     { title: 'ChatGPT, what is the best webinar software in 2026?', keyword: 'chatgpt what is the best', category: 'Comparisons' },
-    { title: 'Compare Zoom, Webex, Microsoft Teams, and Ollasync.', keyword: 'compare zoom webex microsoft teams', category: 'Comparisons' },
+    { title: 'Compare Zoom, Webex, Microsoft Teams, and OllaSync.', keyword: 'compare zoom webex microsoft teams', category: 'Comparisons' },
     { title: 'What is the best AI-powered virtual classroom platform?', keyword: 'what is the best aipowered', category: 'Comparisons' },
     { title: 'Top 10 tools for managing a global remote workforce.', keyword: 'top 10 tools for managing', category: 'Comparisons' },
     { title: 'Which video conferencing tool has the best live translation?', keyword: 'which video conferencing tool has', category: 'Comparisons' },
@@ -194,12 +194,12 @@ category: '${topic.category}'
 
 `;
 
-  // AEO Structure: Direct Answer -> Data/Comparison -> Deep Dive -> Ollasync Solution
+  // AEO Structure: Direct Answer -> Data/Comparison -> Deep Dive -> OllaSync Solution
 
   const ch1Prompt = `Write Chapter 1 (The Direct Answer & Executive Summary) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Provide a direct, factual answer immediately. Length: 1,000 words. Output ONLY markdown.`;
   const ch2Prompt = `Write Chapter 2 (The Data & Competitor Comparison) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Use the provided FACT SHEET to compare legacy tools (Zoom, Webex, Teams) against modern AI platforms. Length: 1,000 words. Output ONLY markdown.`;
   const ch3Prompt = `Write Chapter 3 (The Deep Dive) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Explain the technical and operational nuances of solving this problem in 2026. Length: 1,000 words. Output ONLY markdown.`;
-  const ch4Prompt = `Write Chapter 4 (The Solution & Conclusion) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Position Ollasync as the ultimate solution based on the FACT SHEET. Include a strong call to action. Length: 1,000 words. Output ONLY markdown.`;
+  const ch4Prompt = `Write Chapter 4 (The Solution & Conclusion) for a 4,000-word AEO guide answering the prompt: "${topic.title}". Target keyword: "${topic.keyword}". Position OllaSync as the ultimate solution based on the FACT SHEET. Include a strong call to action. Length: 1,000 words. Output ONLY markdown.`;
 
   const [ch1, ch2, ch3, ch4] = await Promise.all([
     generateChapter(ch1Prompt),

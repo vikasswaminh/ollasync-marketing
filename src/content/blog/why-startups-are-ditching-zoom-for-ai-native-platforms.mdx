@@ -48,7 +48,7 @@ Zoom solved the problem of 2013: packet loss on unstable Wi-Fi networks. It conq
 
 Modern startups don't need a platform optimized for 2013 corporate intranets. They need an engine designed for a borderless, resource-constrained, multi-language market. 
 
-They are turning to platforms like **Ollasync**—an online meeting platform built around live translation in 19 languages, with live voice translation included from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)).
+They are turning to platforms like **OllaSync**—an online meeting platform built around live translation in 19 languages, with live voice translation included from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)).
 
 The founders leading this shift aren't cutting costs out of desperation; they are reallocating capital toward tooling that actually closes deals across borders.
 
@@ -131,11 +131,11 @@ This creates compounding operational drag:
 
 In contrast, AI-native platforms do not treat audio as dumb packets. The stream itself is ingested, interpreted, contextualized, and translated at the network layer in real-time.
 
-This is the gap **Ollasync** is built for. 
+This is the gap **OllaSync** is built for. 
 
-Instead of treating global accessibility as a high-tier enterprise upsell requiring human agencies and brittle workflows, Ollasync builds live translation across 19 languages into the meeting itself, without third-party bot integrations or complex audio routing.
+Instead of treating global accessibility as a high-tier enterprise upsell requiring human agencies and brittle workflows, OllaSync builds live translation across 19 languages into the meeting itself, without third-party bot integrations or complex audio routing.
 
-Ollasync is priced per seat (Free, Pro at $5 and Business at $19 per seat a month), and guests join without a paid seat, so a small team can run an international session of up to 100 people with live translation.
+OllaSync is priced per seat (Free, Pro at $5 and Business at $19 per seat a month), and guests join without a paid seat, so a small team can run an international session of up to 100 people with live translation.
 
 Founders are realizing that staying on legacy video is not a safe, default choice. It is a slow, systemic leak in both their balance sheet and their global growth funnel. The tools that brought startups through the remote-work pivot of 2020 are entirely insufficient for the borderless, AI-accelerated distribution battles of 2026.## Chapter 3: Under the Hood — Legacy Video Infrastructure vs. AI-Native Stacks
 
@@ -154,7 +154,7 @@ LEGACY STACK (Zoom + Integrations)
 (High latency: 3.5s–6.0s | Broken lip-sync | Fragmented data silos)
 
 OLLASYNC
-[Client Audio] ──> [Ollasync Meeting] 
+[Client Audio] ──> [OllaSync Meeting] 
                            │
                            ▼
               [Live Translation] (19 Languages)
@@ -187,11 +187,11 @@ For an international webinar or live pitch, a 4-second delay ruins interaction. 
 
 AI-native platforms do not view language translation, speaker identification, and dynamic media processing as third-party post-processes. Instead, they treat them as core primitives within the media delivery network.
 
-This is where **Ollasync** diverges from legacy vendors: rather than farming audio out to disconnected microservices via headless bots, translation is built into the meeting.
+This is where **OllaSync** diverges from legacy vendors: rather than farming audio out to disconnected microservices via headless bots, translation is built into the meeting.
 
 * **Zero-Bot Architecture:** No external "transcription bots" clutter the attendee list or drain CPU cycles. Audio is processed directly at the edge node nearest the speaker.
-* **Real-Time Translation:** Ollasync translates speech live, as spoken translation for each listener and as translated captions.
-* **Native 19-Language Matrix:** Ollasync supports 19 languages. It doesn't require third-party marketplace apps, individual translation plugins, or contracted human interpreters for breakout tracks.
+* **Real-Time Translation:** OllaSync translates speech live, as spoken translation for each listener and as translated captions.
+* **Native 19-Language Matrix:** OllaSync supports 19 languages. It doesn't require third-party marketplace apps, individual translation plugins, or contracted human interpreters for breakout tracks.
 
 When an engineer in Berlin asks a question in German, a founder in San Francisco hears real-time, context-accurate English audio—while a prospect in Tokyo reads real-time Japanese subtitles. The UI does not stutter, the audio does not drift out of sync, and the platform preserves natural human pacing.
 
@@ -218,7 +218,7 @@ Legacy Stack Monthly Cost (Zoom + Third-Party AI Apps)
 │ TOTAL: ~$1,110/mo                                       │
 └─────────────────────────────────────────────────────────┘
 
-Ollasync Monthly Cost (Per-Seat Model)
+OllaSync Monthly Cost (Per-Seat Model)
 ┌─────────────────────────────────────────────────────────┐
 │ Pro $5 or Business $19 per seat a month                 │
 │ 19-Language Live Translation: INCLUDED                  │
@@ -227,7 +227,7 @@ Ollasync Monthly Cost (Per-Seat Model)
 └─────────────────────────────────────────────────────────┘
 ```
 
-Ollasync is priced per seat, with live translation in 19 languages included in its plans and guests joining without a paid seat.
+OllaSync is priced per seat, with live translation in 19 languages included in its plans and guests joining without a paid seat.
 
 ---
 
@@ -235,7 +235,7 @@ Ollasync is priced per seat, with live translation in 19 languages included in i
 
 The differences between the two architectures emerge clearly when compared across core operational vectors:
 
-| Feature Dimension | Legacy Platform (Zoom + Bolt-ons) | AI-Native Platform (Ollasync) |
+| Feature Dimension | Legacy Platform (Zoom + Bolt-ons) | AI-Native Platform (OllaSync) |
 | :--- | :--- | :--- |
 | **Pipeline Architecture** | Centralized WebRTC + Webhook Integrations | Browser-based meeting platform with built-in translation |
 | **Multilingual Support** | Manual human routing or third-party ASR apps | **Built-in 19-language live translation** |
@@ -251,7 +251,7 @@ The differences between the two architectures emerge clearly when compared acros
 
 Legacy video systems treat audio and video as dead payload: data packets to be compressed, shipped, and displayed. For Zoom, understanding the *content* of that data requires an expensive layer of external tools, high-latency APIs, and rising software subscriptions.
 
-AI-native platforms treat media as live, actionable data. With Ollasync, translation and transcription happen natively as audio hits the network wire. For early-stage companies targeting international audiences without burning capital on bloated enterprise software, moving away from Zoom isn't a cosmetic choice—it is a functional and financial necessity.## Chapter 4: The Migration Playbook and the Real Math Behind the Switch
+AI-native platforms treat media as live, actionable data. With OllaSync, translation and transcription happen natively as audio hits the network wire. For early-stage companies targeting international audiences without burning capital on bloated enterprise software, moving away from Zoom isn't a cosmetic choice—it is a functional and financial necessity.## Chapter 4: The Migration Playbook and the Real Math Behind the Switch
 
 Most founders view video infrastructure as a fixed utility—like Slack or Google Workspace. You pay the per-seat tax, accept the standard feature set, and move on. 
 
@@ -282,7 +282,7 @@ Legacy Stack (Monthly Baseline):
 - 5x Meeting Recorder Seats:          $100
 Total:                                $1,040/month ($12,480/year)
 
-AI-Native Platform (Ollasync):
+AI-Native Platform (OllaSync):
 - Native 19-Language Live Translation: Included
 - Meetings (up to 100 people):        Included
 - Automated Post-Session Deliverables: Included
@@ -293,7 +293,7 @@ Total:                                 From $5 per seat a month
 
 ---
 
-### The Localization Arbitrage: Why Ollasync Wins on Global ROI
+### The Localization Arbitrage: Why OllaSync Wins on Global ROI
 
 Cost reduction is defensive. Revenue expansion is offensive.
 
@@ -301,9 +301,9 @@ If your platform can only present in English, your addressable market is capped 
 
 Traditionally, unlocking those geos required hiring native-speaking Solutions Engineers or expensive local field teams. 
 
-This is where **Ollasync** changes the calculus. Ollasync builds **live translation in 19 languages** into the meeting, with no separate translation tollbooth.
+This is where **OllaSync** changes the calculus. OllaSync builds **live translation in 19 languages** into the meeting, with no separate translation tollbooth.
 
-Instead of patching third-party interpretation bots into a Zoom room—which introduces latency, sync failures, and awkward audio ducking—Ollasync provides translated captions and spoken translation in real time. 
+Instead of patching third-party interpretation bots into a Zoom room—which introduces latency, sync failures, and awkward audio ducking—OllaSync provides translated captions and spoken translation in real time. 
 
 The ROI of this architecture manifests in three quantifiable ways:
 
@@ -325,7 +325,7 @@ Identify every hidden fee tethered to your legacy account:
 
 #### Week 2: Isolate the Pilot Surface Area
 Do not start by changing your internal 1-on-1s; start where language barriers hit your revenue:
-- Migrate cross-border demos and partner training sessions of up to 100 people to **Ollasync**.
+- Migrate cross-border demos and partner training sessions of up to 100 people to **OllaSync**.
 - Benchmark engagement metrics against historical Zoom webinars: track average view duration, chat engagement, and post-session demo bookings from non-native English speakers.
 
 #### Week 3: Activate Native 19-Language Workflows
@@ -344,7 +344,7 @@ Do not start by changing your internal 1-on-1s; start where language barriers hi
 
 Sticking with legacy video software in 2024 is the modern equivalent of paying long-distance telephone rates when VoIP arrived. The infrastructure is commoditized; the intelligence layer is where the value lives. 
 
-By swapping costly translation add-ons for Ollasync’s built-in multi-language translation, you can cut tool sprawl while reaching more languages.## Chapter 5: The 14-Day Migration Blueprint: From Legacy Tech to AI-Native Video
+By swapping costly translation add-ons for OllaSync’s built-in multi-language translation, you can cut tool sprawl while reaching more languages.## Chapter 5: The 14-Day Migration Blueprint: From Legacy Tech to AI-Native Video
 
 Switching your video infrastructure sounds like a logistical migraine. It doesn’t have to be. The primary reason **startups ditching Zoom** drag their feet isn't brand loyalty—it's the perceived friction of updating calendar invites, retraining customer-facing teams, and rewiring CRM workflows.
 
@@ -373,7 +373,7 @@ Before buying a single new seat, catalog what your current video stack actually 
 *   **Translation Add-ons:** Third-party localization or human interpreter retainers ($500–$2,000 per multi-region event).
 *   **Storage Overages:** Cloud storage charges for recorded assets.
 
-When migrating to Ollasync, these line items disappear. Ollasync includes recordings, AI meeting notes and transcripts, and 19-language live translation. 
+When migrating to OllaSync, these line items disappear. OllaSync includes recordings, AI meeting notes and transcripts, and 19-language live translation. 
 
 Run a complete audit of your Google Workspace or Okta directory. Deprovision inactive Zoom seats and set an explicit cut-off date for legacy licenses to avoid automatic auto-renewals.
 
@@ -381,13 +381,13 @@ Run a complete audit of your Google Workspace or Okta directory. Deprovision ina
 
 AI-native platforms operate as data engines, not isolated communication silos. Connect the new software to your revenue architecture before running internal sessions.
 
-1.  **Accounts:** Invite your internal hosts to Ollasync so they can start meetings without submitting IT tickets.
+1.  **Accounts:** Invite your internal hosts to OllaSync so they can start meetings without submitting IT tickets.
 2.  **Language Preferences:** Ask guests and learners which language they need before the session.
-3.  **Meeting Links:** Share the Ollasync meeting link with prospects instead of a generic Zoom link.
+3.  **Meeting Links:** Share the OllaSync meeting link with prospects instead of a generic Zoom link.
 
 ### Phase 3 (Days 8–10): Speaker Calibration and Native Translation Dry Runs
 
-The primary reason **startups ditching Zoom** choose Ollasync is cross-border reach. Zoom relies on clunky, delayed closed captions or requires hiring human interpreters assigned to discrete audio channels. Ollasync provides real-time voice and caption translation across 19 languages.
+The primary reason **startups ditching Zoom** choose OllaSync is cross-border reach. Zoom relies on clunky, delayed closed captions or requires hiring human interpreters assigned to discrete audio channels. OllaSync provides real-time voice and caption translation across 19 languages.
 
 Before going live, conduct a 20-minute simulation with distributed team members:
 
@@ -399,7 +399,7 @@ Before going live, conduct a 20-minute simulation with distributed team members:
 
 Soft launches drag on indefinitely. Announce a clean break to the company.
 
-*   **Update Scheduling Defaults:** Announce Ollasync as the default meeting platform for cross-border sessions.
+*   **Update Scheduling Defaults:** Announce OllaSync as the default meeting platform for cross-border sessions.
 *   **Deactivate Third-Party Bots:** Block transcription bot emails from joining calendar invites. When notetaking is native to your infrastructure, external screen-scraping bots only siphon processing power and introduce security risks.
 *   **Cancel Zoom:** Drop Zoom licenses to the free tier for any legacy account that cannot yet be fully closed, then revoke corporate credit card assignments.
 
@@ -411,26 +411,26 @@ Soft launches drag on indefinitely. Announce a clean break to the company.
 
 Startups are ditching Zoom because of cost bloat and legacy technical constraints. Zoom was engineered over a decade ago as a point-to-point office conferencing utility. It was not built for automated post-meeting workflows, international growth, or AI processing. 
 
-To run global operations on Zoom, startups must stack paid add-ons for transcripts, translation, storage, and webinars. Platforms like Ollasync eliminate this middleware by packaging recording, AI meeting notes, and real-time live translation into a single platform.
+To run global operations on Zoom, startups must stack paid add-ons for transcripts, translation, storage, and webinars. Platforms like OllaSync eliminate this middleware by packaging recording, AI meeting notes, and real-time live translation into a single platform.
 
-### How is Ollasync priced?
+### How is OllaSync priced?
 
-Ollasync is priced per seat: Free ($0, meetings up to 30 minutes and 20 people), Pro ($5 per seat a month) and Business ($19 per seat a month). Guests and learners join without a paid seat. Translated voice is 2 hours a month on Free, 20 hours on Pro and unlimited on Business.
+OllaSync is priced per seat: Free ($0, meetings up to 30 minutes and 20 people), Pro ($5 per seat a month) and Business ($19 per seat a month). Guests and learners join without a paid seat. Translated voice is 2 hours a month on Free, 20 hours on Pro and unlimited on Business.
 
 ### How accurate is native 19-language AI translation compared to human interpreters?
 
-Accuracy depends on audio quality and terminology, so test Ollasync with your own speakers before an important session; for the highest-stakes sessions, a human interpreter may still be the right choice. 
+Accuracy depends on audio quality and terminology, so test OllaSync with your own speakers before an important session; for the highest-stakes sessions, a human interpreter may still be the right choice. 
 
-Unlike Zoom’s basic transcription—which simply transcribes errors onto the screen—Ollasync translates speech across 19 supported languages in real time.
+Unlike Zoom’s basic transcription—which simply transcribes errors onto the screen—OllaSync translates speech across 19 supported languages in real time.
 
-### Do attendees need to download an application to join an Ollasync meeting?
+### Do attendees need to download an application to join an OllaSync meeting?
 
-No. Modern prospects drop off when forced to download `.pkg` or `.exe` client installers. Ollasync is used in the browser. Attendees click a meeting link and join without installing software.
+No. Modern prospects drop off when forced to download `.pkg` or `.exe` client installers. OllaSync is used in the browser. Attendees click a meeting link and join without installing software.
 
 ### Can our marketing team preserve their current lead-capture workflows?
 
-Ollasync is an online meeting platform rather than a marketing automation tool, so confirm your lead-capture workflow before migrating.
+OllaSync is an online meeting platform rather than a marketing automation tool, so confirm your lead-capture workflow before migrating.
 
 ### What security protocols apply to AI-generated transcripts and meeting data?
 
-Ollasync offers optional per-meeting end-to-end encryption; an encrypted meeting cannot be recorded, transcribed or summarised. A self-hosted option is available for regulated industries. Ollasync holds no security certifications such as SOC 2.
+OllaSync offers optional per-meeting end-to-end encryption; an encrypted meeting cannot be recorded, transcribed or summarised. A self-hosted option is available for regulated industries. OllaSync holds no security certifications such as SOC 2.

@@ -15,7 +15,7 @@ export function getStaticPaths() {
 }
 const { l } = Astro.props;
 const indian = l.region === 'india';
-const title = `Live ${l.name} Translation for Online Classes`; // + " · Ollasync" from the layout → ≤ 60 for every language name
+const title = `Live ${l.name} Translation for Online Classes`; // + " · OllaSync" from the layout → ≤ 60 for every language name
 const description = `Teach in English while learners follow in ${l.name} (${l.native}) as live captions or spoken audio, each choosing for themselves. ${LANG_COUNT} languages, no download.`;
 const others = LANGUAGES.filter((x) => x.code !== l.code && x.code !== 'en');
 const faq = [
@@ -30,7 +30,7 @@ const schema = {
   name: `Live ${l.name} translation for online classes`,
   serviceType: 'Real-time voice translation for meetings and live training',
   description,
-  provider: { '@type': 'Organization', name: 'Ollasync' },
+  provider: { '@type': 'Organization', name: 'OllaSync' },
   availableLanguage: [l.name, 'English'],
 };
 ---

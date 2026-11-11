@@ -17,7 +17,7 @@ export const CUSTOMERS: Customer[] = [
     domain: 'networkershome.com',
     category: 'IT Training & Certification',
     useCase: 'Live Cisco & Cyber Training',
-    description: "Bangalore's premier Cisco and cybersecurity training institute. Trains 45,000+ engineers worldwide using Ollasync for live, multilingual virtual classrooms.",
+    description: "Bangalore's premier Cisco and cybersecurity training institute. Trains 45,000+ engineers worldwide using OllaSync for live, multilingual virtual classrooms.",
     badge: '45k+ Engineers Trained',
   },
   {
@@ -27,7 +27,7 @@ export const CUSTOMERS: Customer[] = [
     domain: 'freefreecv.com',
     category: 'AI Resume & Career Platform',
     useCase: 'Global Career Coaching & Webinars',
-    description: 'Free AI-powered ATS resume builder. Employs Ollasync to run cross-border career coaching sessions and multilingual resume workshops.',
+    description: 'Free AI-powered ATS resume builder. Employs OllaSync to run cross-border career coaching sessions and multilingual resume workshops.',
     badge: '30+ ATS Templates',
   },
   {
@@ -37,7 +37,7 @@ export const CUSTOMERS: Customer[] = [
     domain: 'olladns.com',
     category: 'Cloud DNS Security',
     useCase: 'API & MCP SecOps Briefings',
-    description: 'API-first, MCP-native DNS filtering and threat defense platform. Uses Ollasync for secure architecture syncs and engineering reviews.',
+    description: 'API-first, MCP-native DNS filtering and threat defense platform. Uses OllaSync for secure architecture syncs and engineering reviews.',
     badge: 'MCP-Native DNS',
   },
   {
@@ -47,7 +47,7 @@ export const CUSTOMERS: Customer[] = [
     domain: 'ollavpn.com',
     category: 'Quantum-Resistant Mesh VPN',
     useCase: 'Partner & Enterprise Demos',
-    description: 'Post-quantum WireGuard VPN with zero DNS leakage. Relies on Ollasync for privacy-first browser meetings with zero client software required.',
+    description: 'Post-quantum WireGuard VPN with zero DNS leakage. Relies on OllaSync for privacy-first browser meetings with zero client software required.',
     badge: 'Post-Quantum WireGuard',
   },
   {
@@ -57,7 +57,7 @@ export const CUSTOMERS: Customer[] = [
     domain: 'quickztna.com',
     category: 'Zero Trust Network Access',
     useCase: 'Customer Onboarding & SOC Reviews',
-    description: 'Zero Trust network access and encrypted device mesh platform. Delivers live onboarding walkthroughs to enterprise IT teams via Ollasync.',
+    description: 'Zero Trust network access and encrypted device mesh platform. Delivers live onboarding walkthroughs to enterprise IT teams via OllaSync.',
     badge: 'Zero Trust Mesh',
   },
   {
@@ -67,7 +67,7 @@ export const CUSTOMERS: Customer[] = [
     domain: 'quicksdwan.com',
     category: 'Cloud Mesh SD-WAN',
     useCase: 'MSP Operations & Engineer Training',
-    description: 'Full-mesh SD-WAN with self-healing multi-WAN failover. Uses Ollasync AI notes and transcripts to train international MSP support engineers.',
+    description: 'Full-mesh SD-WAN with self-healing multi-WAN failover. Uses OllaSync AI notes and transcripts to train international MSP support engineers.',
     badge: 'Self-Healing SD-WAN',
   },
   {
@@ -77,7 +77,7 @@ export const CUSTOMERS: Customer[] = [
     domain: 'whatping.com',
     category: 'Synthetic & Uptime Monitoring',
     useCase: 'Incident War Rooms & Postmortems',
-    description: 'Agentless uptime, SSL, DNS, and latency monitoring platform. Uses Ollasync browser video meetings for real-time DevOps incident war rooms.',
+    description: 'Agentless uptime, SSL, DNS, and latency monitoring platform. Uses OllaSync browser video meetings for real-time DevOps incident war rooms.',
     badge: 'Agentless Uptime',
   },
   {

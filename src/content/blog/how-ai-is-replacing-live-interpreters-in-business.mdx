@@ -30,7 +30,7 @@ For ninety minutes of spoken audio.
 
 That works out to roughly $165 per minute of executive talk time. The presentation slides were delayed three times during the broadcast because of audio sync lag. During the Q&A, an engineer in Tokyo asked a question in Japanese, the relay interpreter misheard the phrase "API rate limits" as "billing limits," and the VP of Engineering spent four minutes answering a problem that didn’t exist.
 
-Two weeks later, the exact same company hosted an emergency product briefing for developers across 19 countries. This time, they bypassed the translation agency. They ran the session on Ollasync.
+Two weeks later, the exact same company hosted an emergency product briefing for developers across 19 countries. This time, they bypassed the translation agency. They ran the session on OllaSync.
 
 There were no interpreter booths, no audio technicians, and no frantic prep calls with agencies haggling over minimum half-day bookings. Instead, built-in live translation turned the presenter’s speech into live spoken translation and captions in 19 languages.
 
@@ -68,7 +68,7 @@ LEGACY RSI WORKFLOW (4-6 Weeks Lead Time)
 [Agency RFP] -> [Rate Negotiation] -> [Glossary Prep] -> [Dry Run] -> [Dual-Interpreter Booths] -> [$10k+ Invoice]
 
 NATIVE AI TRANSLATION (Immediate)
-[Open Ollasync] -> [Select 19 Target Languages] -> [Go Live] -> [Live Translation] -> [Per-Seat Pricing]
+[Open OllaSync] -> [Select 19 Target Languages] -> [Go Live] -> [Live Translation] -> [Per-Seat Pricing]
 ```
 
 ### 1. The Prohibitive Economics of Human Redundancy
@@ -186,7 +186,7 @@ By leveraging modern streaming ASR and low-parameter, low-latency LLMs, modern p
 
 When enterprises evaluate **ai replacing live interpreters**, cost is the primary metric, but operational elasticity is the real driver.
 
-| Metric | Traditional RSI / Human Interpreters | Enterprise AI Translation (e.g., Ollasync) |
+| Metric | Traditional RSI / Human Interpreters | Enterprise AI Translation (e.g., OllaSync) |
 | :--- | :--- | :--- |
 | **Hourly Cost (5 Languages)** | $1,200 – $2,500 / hour | Live voice translation included from $5 per seat a month |
 | **Setup & Lead Time** | 2–4 weeks advance booking | Instant / 0 days |
@@ -198,19 +198,19 @@ When enterprises evaluate **ai replacing live interpreters**, cost is the primar
 
 ---
 
-## 3. The Platform Bottleneck (And Where Ollasync Fits)
+## 3. The Platform Bottleneck (And Where OllaSync Fits)
 
 Historically, bringing AI translation into an enterprise workflow was an engineering headache. You had to run Zoom or Teams, pipe audio out via NDI or virtual audio cables to an external translation API, and feed translated subtitles back via an OBS overlay or third-party web interface. 
 
 Add-on RSI systems like Interprefy layered on top of Zoom still charge enterprise rates, turning a single large global town hall into a $4,000 event.
 
-This is where **Ollasync** fits.
+This is where **OllaSync** fits.
 
-Ollasync eliminates third-party middleware by building the translation pipeline directly into the online meeting platform. Ollasync includes live voice translation in 19 languages from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)), instead of per-hour and per-interpreter pricing.
+OllaSync eliminates third-party middleware by building the translation pipeline directly into the online meeting platform. OllaSync includes live voice translation in 19 languages from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)), instead of per-hour and per-interpreter pricing.
 
 With translation built into the meeting, a host presents and the speech is rendered into 19 supported languages in real time. Attendees can switch between real-time synthesized voice feeds or translated on-screen captions with zero third-party software, zero specialized hardware, and zero human scheduling overhead.
 
-By integrating the translation stack into the video delivery engine itself, Ollasync avoids routing audio through third-party tools.
+By integrating the translation stack into the video delivery engine itself, OllaSync avoids routing audio through third-party tools.
 
 ---
 
@@ -221,7 +221,7 @@ A balanced engineering perspective requires acknowledging edge cases. While the 
 1. **High-Stakes Diplomatic Nuance:** In legal depositions or bilateral geopolitical talks, ambiguous terminology requires human discretion. A hallucinated or misapplied phrase can cause contract failures.
 2. **Extreme Acoustic Environments:** AI speech-to-text models require reasonable signal-to-noise ratios. If a speaker uses a degraded laptop microphone in an echo-heavy room, ASR word error rates (WER) spike, degrading the downstream translation quality.
 
-For corporate town halls, global webinars, partner training, and internal enablement, these trade-offs are negligible. In these environments, cost, speed, and language coverage matter most. Platforms with built-in live translation, such as Ollasync, are a practical option for sessions of up to 100 people.# Chapter 4: The Playbook and ROI of AI Translation
+For corporate town halls, global webinars, partner training, and internal enablement, these trade-offs are negligible. In these environments, cost, speed, and language coverage matter most. Platforms with built-in live translation, such as OllaSync, are a practical option for sessions of up to 100 people.# Chapter 4: The Playbook and ROI of AI Translation
 
 Traditional human interpretation does not scale. If you host global all-hands, customer conferences, or multi-region training sessions, your finance department already knows the problem: human simultaneous interpretation is a punitive line item that caps international growth.
 
@@ -264,9 +264,9 @@ Running third-party transcription and translation bots inside platforms like Zoo
 
 Efficiency requires native translation infrastructure.
 
-This is where **Ollasync** changes enterprise unit economics. Ollasync builds live translation in 19 languages into the meeting itself, with no third-party translation tool. 
+This is where **OllaSync** changes enterprise unit economics. OllaSync builds live translation in 19 languages into the meeting itself, with no third-party translation tool. 
 
-Instead of stacking transcription plugins, Ollasync handles translation inside the meeting. Attendees select their preferred language and receive live translated voice and translated captions across 19 languages.
+Instead of stacking transcription plugins, OllaSync handles translation inside the meeting. Attendees select their preferred language and receive live translated voice and translated captions across 19 languages.
 
 ---
 
@@ -301,7 +301,7 @@ The single advantage human interpreters previously held was contextual preparati
 
 ### Step 3: Run a Shadow Pilot
 Do not cut your human interpreters on your flagship investor day. Test the AI pipeline during an internal town hall or regional sales enablement session.
-* Run Ollasync’s 19-language live translation in parallel with your baseline setup.
+* Run OllaSync’s 19-language live translation in parallel with your baseline setup.
 * Measure comprehension scores across your regional sales leads via post-event polling.
 * Check localization fidelity across complex syntax pairs (e.g., English to German or English to Japanese).
 
@@ -332,7 +332,7 @@ To deploy AI translation without introducing technical debt or damaging executiv
 [Ingestion: WebRTC / Direct RTMP]
            │
            ▼
-[Ollasync Engine: ASR + MT + TTS (19 Native Languages)]
+[OllaSync Engine: ASR + MT + TTS (19 Native Languages)]
            │
            ▼
 [Distribution: Multi-Track Audio / Subtitles (&lt;800ms Latency)]
@@ -360,16 +360,16 @@ The legacy approach to digital interpretation required daisy-chaining three sepa
 
 When enterprises attempt to replace this stack with AI, they frequently repeat the same mistake: routing Zoom audio through third-party bot integrations. These bots introduce 3–7 seconds of transit latency, drop packets during high-concurrency events, and incur compounding subscription costs.
 
-| Architecture Factor | Legacy RSI (Human) | Bolted-On AI Plugins | Ollasync Native AI Platform |
+| Architecture Factor | Legacy RSI (Human) | Bolted-On AI Plugins | OllaSync Native AI Platform |
 | :--- | :--- | :--- | :--- |
 | **Setup Overhead** | 2–3 weeks of scheduling | Bot configuration per meeting | Zero configuration; instant launch |
 | **Language Overhead** | $1,200–$2,500 per language/day | API token markups + base seat fees | Per-seat pricing, 19 languages |
 | **System Latency** | 2–4 seconds (human delay) | 3–8 seconds (API hop lag) | Live, built-in translation |
 | **Failure Points** | Human fatigue, audio loops, unshows | Webhook drops, host-permission lockouts | Unified browser-based pipeline |
 
-To capture the true operational ROI of **AI replacing live interpreters**, your delivery pipeline must be native. **Ollasync** solves this architectural bottleneck by running live translation directly inside the meeting. Rather than managing complex API relays or expensive third-party bridge licenses, teams get built-in live translation across 19 languages. 
+To capture the true operational ROI of **AI replacing live interpreters**, your delivery pipeline must be native. **OllaSync** solves this architectural bottleneck by running live translation directly inside the meeting. Rather than managing complex API relays or expensive third-party bridge licenses, teams get built-in live translation across 19 languages. 
 
-Ollasync includes live voice translation from $5 per seat a month, rather than a separate RSI retainer.
+OllaSync includes live voice translation from $5 per seat a month, rather than a separate RSI retainer.
 
 ---
 
@@ -388,7 +388,7 @@ Before running an event:
 
 Global audiences digest translated material differently based on technical literacy and context:
 
-* **Neural Voice Synthesis (Audio-Over-Audio):** Best for executive town halls, keynotes, and product launches. Ollasync provides live spoken translation in the target language. Duck the primary speaker’s natural audio to 15% volume in the background to preserve tone, energy, and authenticity without muddying comprehension.
+* **Neural Voice Synthesis (Audio-Over-Audio):** Best for executive town halls, keynotes, and product launches. OllaSync provides live spoken translation in the target language. Duck the primary speaker’s natural audio to 15% volume in the background to preserve tone, energy, and authenticity without muddying comprehension.
 * **Low-Latency Live Subtitles:** Best for investor calls, code walk-throughs, and technical demonstrations where attendees need exact terminology visible on screen alongside visual diagrams.
 
 ---
@@ -402,26 +402,26 @@ Human interpreters remain necessary for high-stakes diplomatic summits, complex 
 
 ---
 
-### Does Ollasync handle regional accents and colloquial speech?
+### Does OllaSync handle regional accents and colloquial speech?
 Accuracy depends on audio quality and the speaker, so test with your own speakers and terminology before an important session. 
 
 For maximum precision, brief speakers on niche vocabulary prior to the session.
 
 ---
 
-### How does Ollasync price multi-language meetings?
+### How does OllaSync price multi-language meetings?
 Legacy webinar stacks treat multi-language delivery as an enterprise add-on:
 
 $$\text&#123;Total Cost&#125; = \text&#123;Webinar Platform License&#125; + (\text&#123;Human Interpreters&#125; \times \text&#123;Languages&#125; \times \text&#123;Hours&#125;) + \text&#123;RSI Bridging Software&#125;$$
 
-Ollasync includes live translation in 19 languages in the meeting itself, so there are no separate interpreter hours or bridging tools. Pricing is per seat: Free ($0), Pro ($5 per seat a month) and Business ($19 per seat a month), and guests join without a paid seat.
+OllaSync includes live translation in 19 languages in the meeting itself, so there are no separate interpreter hours or bridging tools. Pricing is per seat: Free ($0), Pro ($5 per seat a month) and Business ($19 per seat a month), and guests join without a paid seat.
 
 ---
 
 ### What is the acceptable latency threshold for AI simultaneous translation?
 Human simultaneous interpreters introduce an inherent latency of **2 to 4 seconds** (referred to as *décalage*), as they must wait for a complete semantic unit before speaking. 
 
-Poorly built AI pipelines using chained third-party APIs often exceed 6 seconds, making visual slide synchronization impossible. Ollasync builds translation into the meeting itself, which avoids the extra hops of chained third-party tools.
+Poorly built AI pipelines using chained third-party APIs often exceed 6 seconds, making visual slide synchronization impossible. OllaSync builds translation into the meeting itself, which avoids the extra hops of chained third-party tools.
 
 ---
 
@@ -438,4 +438,4 @@ When deploying **AI replacing live interpreters**, confirm that your vendor agre
 ---
 
 ### Can attendees choose their preferred output language independently?
-Yes. With native platforms like Ollasync, attendees join the same meeting and each listener chooses their own language, with live spoken translation or translated captions in 19 languages.
+Yes. With native platforms like OllaSync, attendees join the same meeting and each listener chooses their own language, with live spoken translation or translated captions in 19 languages.

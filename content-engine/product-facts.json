@@ -1,5 +1,5 @@
 {
-  "_about": "The approved product-facts manifest: the ONLY statements the content engine may make about Ollasync. Every fact points at where the public site or the shipped product states it (source). Change a fact here when the product changes; test/facts_drift.test.mjs re-derives the countable ones from src/data/*.ts and fails when they drift. Reviewed by a human before the engine's first run (2026-09-13).",
+  "_about": "The approved product-facts manifest: the ONLY statements the content engine may make about OllaSync. Every fact points at where the public site or the shipped product states it (source). Change a fact here when the product changes; test/facts_drift.test.mjs re-derives the countable ones from src/data/*.ts and fails when they drift. Reviewed by a human before the engine's first run (2026-09-13).",
   "facts": [
     {
       "id": "F01",
@@ -118,7 +118,7 @@
     },
     {
       "id": "F24",
-      "text": "Data handling: encryption in transit, access control and audit logging are described on /security/, and a data-processing agreement is available (/dpa/). Ollasync holds no certification and says so.",
+      "text": "Data handling: encryption in transit, access control and audit logging are described on /security/, and a data-processing agreement is available (/dpa/). OllaSync holds no certification and says so.",
       "source": "src/pages/security.astro; src/pages/dpa.astro; src/data/useCases.ts healthcare FAQ"
     },
     {
@@ -128,13 +128,13 @@
     },
     {
       "id": "F26",
-      "text": "Ollasync runs in the browser as a cloud service, and is also offered self-hosted for regulated industries (healthcare, legal, finance, government).",
+      "text": "OllaSync runs in the browser as a cloud service, and is also offered self-hosted for regulated industries (healthcare, legal, finance, government).",
       "source": "operator confirmation 2026-11-06; /pricing/ FAQ (dedicated deployments); /blog/self-hosting-pillar/"
     }
   ],
   "never": [
     "Never claim certifications (SOC 2, ISO 27001, 'HIPAA certified', 'GDPR certified', FedRAMP) — say 'controls and a DPA'.",
-    "Never say Ollasync is EU-hosted, and never give self-hosting specifics (install steps, supported infrastructure, self-hosted pricing) beyond F26.",
+    "Never say OllaSync is EU-hosted, and never give self-hosting specifics (install steps, supported infrastructure, self-hosted pricing) beyond F26.",
     "Never name an integration (calendar, LMS, CRM, payment tool) — none is published.",
     "Never state a latency or uptime figure, a customer name, a quote, a testimonial, a case study or a market statistic. Prices and the 100-person limit come only from F20/F22; never say cheapest, link /vs/#translation-pricing.",
     "Never name a language that is not in F03, a bigger language count than 19, or more than 5 languages per session.",

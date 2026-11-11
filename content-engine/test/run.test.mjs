@@ -277,7 +277,7 @@ test('an unsupported claim or a forbidden phrase forces the repair; a duplicate 
   const store = new Store(dir);
   const bad = goodArticle();
   bad.body += '\n\nLet\'s dive in.';
-  const llm = fakeLLM({ intent: '{"results":[]}', write: envelope(bad), edit: envelope(bad), repair: envelope(goodArticle()), review: (req, n) => reviewJSON({ total: 90, unsupported: n === 1 ? ['Ollasync is SOC 2 certified'] : [] }) });
+  const llm = fakeLLM({ intent: '{"results":[]}', write: envelope(bad), edit: envelope(bad), repair: envelope(goodArticle()), review: (req, n) => reviewJSON({ total: 90, unsupported: n === 1 ? ['OllaSync is SOC 2 certified'] : [] }) });
   await runBatch(args(), CFG(dir), store, deps(llm));
   assert.equal(store.loadManifest().items[0].status, 'approved');
   const rep = llm.calls.find((c) => c.stage === 'repair');

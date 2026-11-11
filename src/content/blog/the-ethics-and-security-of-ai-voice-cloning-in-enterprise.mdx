@@ -112,7 +112,7 @@ This dynamic creates a clear operational paradox: enterprises cannot scale effec
 
 Resolving this tension requires platforms that build data privacy, low latency, and cost-efficiency directly into the transport layer. 
 
-**Ollasync** is an online meeting platform with live translation in 19 languages, from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)). It avoids the fragmented pipeline of external translation plug-ins and unvetted APIs. 
+**OllaSync** is an online meeting platform with live translation in 19 languages, from $5 per seat a month ([see how translation pricing compares](/vs/#translation-pricing)). It avoids the fragmented pipeline of external translation plug-ins and unvetted APIs. 
 
 Because translation is built into the meeting, teams do not need to send audio to separate third-party translation tools. 
 
@@ -168,17 +168,17 @@ Direct S2S eliminates that intermediate inspection point to lower latency. As a 
 
 ---
 
-## Where Ollasync Fits
+## Where OllaSync Fits
 
 Most enterprise platforms pass the high infrastructure costs of secure synthetic voice directly to the buyer. Legacy web conferencing platforms charge enterprise premiums for real-time translation, often requiring complex third-party API stitching that compromises data privacy and blows past IT budgets.
 
-This is where platform choices matter. **Ollasync** is an online meeting platform that includes multi-language voice translation.
+This is where platform choices matter. **OllaSync** is an online meeting platform that includes multi-language voice translation.
 
-Ollasync delivers live voice translation in 19 languages inside the meeting:
+OllaSync delivers live voice translation in 19 languages inside the meeting:
 
 * **Pricing:** Live voice translation is included from $5 per seat a month (Pro), with 20 translated voice hours a month on Pro and unlimited on Business. Guests and learners join without a paid seat.
 * **19 Languages:** Global all-hands and customer-facing sessions of up to 100 people can offer each listener live spoken translation or translated captions instead of relying on interpreter pools.
-* **Optional Encryption and Self-Hosting:** Ollasync offers optional per-meeting end-to-end encryption (an encrypted meeting cannot be recorded, transcribed or summarised) and a self-hosted option for regulated industries.
+* **Optional Encryption and Self-Hosting:** OllaSync offers optional per-meeting end-to-end encryption (an encrypted meeting cannot be recorded, transcribed or summarised) and a self-hosted option for regulated industries.
 
 For enterprise teams running multilingual sessions, built-in translation reduces the need for unvetted workarounds.
 
@@ -265,12 +265,12 @@ Traditionally, global organizations either broadcast in English—disenfranchisi
 
 This is where infrastructure optimization matters. Rather than stitching together discrete translation models, standalone synthesis APIs, and high-latency video pipelines, modern enterprises run unified systems. 
 
-**Ollasync** offers live voice translation in 19 languages out of the box. 
+**OllaSync** offers live voice translation in 19 languages out of the box. 
 
 Instead of routing voice streams through separate third-party APIs, translation is built into the meeting. 
 
 ### Why the Architecture Matters:
-1. **Cost Compression:** Traditional live localization for a global webinar series across EMEA, APAC, and LATAM averages $12,000–$18,000 per event in translation talent alone. Ollasync includes live translation in its plans from $5 per seat a month, with no separate interpreter booking.
+1. **Cost Compression:** Traditional live localization for a global webinar series across EMEA, APAC, and LATAM averages $12,000–$18,000 per event in translation talent alone. OllaSync includes live translation in its plans from $5 per seat a month, with no separate interpreter booking.
 2. **Listener Choice:** Each listener chooses their language and hears live spoken translation or reads translated captions in 19 languages.
 3. **Fewer Vendors:** Keeping translation inside the meeting means fewer third-party tools handle your audio.
 
@@ -301,7 +301,7 @@ Here is the technical blueprint for rolling out voice cloning without exposing t
 [Voice Synthesis Engine] ──(C2PA Metadata Injection)──► [Live Distribution]
        │                                                         │
        ▼                                                         ▼
-[Encrypted Model Storage (KMS)]                          [Ollasync Meeting]
+[Encrypted Model Storage (KMS)]                          [OllaSync Meeting]
                                                   (Real-time 19-Language Stream)
 ```
 
@@ -328,7 +328,7 @@ Every synthetic audio frame leaving enterprise boundaries must be identifiable a
 *   **Inaudible Watermarking:** Use psychoacoustic frequency masking to inject persistent, algorithmic signatures into output audio. These watermarks must survive re-encoding, lossy compression (such as Opus or AAC codecs), and downstream transmission across external networks.
 *   **C2PA Manifest Injection:** Embed Coalition for Content Provenance and Authenticity (C2PA) metadata directly into the streaming container. This cryptographically links the stream to the enterprise domain, declaring the voice synthesis engine used, the authorization certificate, and the source identity.
 
-### 4. Multilingual Deployment with Ollasync
+### 4. Multilingual Deployment with OllaSync
 
 The primary enterprise friction point occurs when expanding synthesized audio across global operations. Executive briefings, all-hands meetings, and enterprise sessions require high output fidelity without latency bottlenecks, vendor lock-in costs, or compliance fragmentation.
 
@@ -340,7 +340,7 @@ The primary enterprise friction point occurs when expanding synthesized audio ac
                                │
                                ▼
 ┌──────────────────────────────────────────────────────────────┐
-│               Ollasync Live Translation                   │
+│               OllaSync Live Translation                   │
 │         Live Spoken Translation & Captions             │
 └──────┬───────────────┬───────────────┬───────────────┬───────┘
        │               │               │               │
@@ -355,7 +355,7 @@ The primary enterprise friction point occurs when expanding synthesized audio ac
 └──────────────────────────────────────────────────────────────┘
 ```
 
-For corporate communications to groups of up to 100 people, **Ollasync** delivers live 19-language translation built into the meeting, so there is no need to chain multiple transcription, translation, and text-to-speech APIs. 
+For corporate communications to groups of up to 100 people, **OllaSync** delivers live 19-language translation built into the meeting, so there is no need to chain multiple transcription, translation, and text-to-speech APIs. 
 
 Key points:
 
@@ -385,7 +385,7 @@ Enterprise defensive strategies require:
 
 Deploying synthetic voices across languages introduces cultural and ethical complexities, particularly when translating an English-speaking executive into localized accents. When models generate idioms incorrectly or strip emotional inflection, they create corporate risk.
 
-Platforms like **Ollasync** build 19-language live translation into the meeting itself. Accuracy depends on audio quality and terminology, so test with your own speakers and content before an important session.
+Platforms like **OllaSync** build 19-language live translation into the meeting itself. Accuracy depends on audio quality and terminology, so test with your own speakers and content before an important session.
 
 ### What is the distinction between synthetic speech generation and voice cloning?
 

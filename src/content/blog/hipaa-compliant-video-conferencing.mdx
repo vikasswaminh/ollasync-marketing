@@ -51,7 +51,7 @@ Encryption is central to transmission security, so it deserves precision rather 
 
 **Live meeting media is encrypted in transit.** Modern real-time video is protected on the wire with DTLS-SRTP, the same family of transport encryption (TLS 1.3) that secures the rest of the web. That protects PHI against interception between the participant and the media relay — which is precisely what the Security Rule's transmission-security standard asks for. A separate, per-frame end-to-end encryption mode exists for the highest-sensitivity calls, but you should treat it as an option to enable deliberately, not a default that is silently always on. **Anyone claiming "all video is always end-to-end encrypted" is overselling** — and you should be sceptical of it, from us or anyone else.
 
-**Messaging can go further.** Text messaging in Ollasync is fully end-to-end encrypted and *server-blind* by default, built on the open [IETF MLS standard (RFC 9420)](/security) using an independently audited open-source library. The operator holds no keys and cannot read the content. (Routing metadata — who talks to whom, and when — is still visible, as it must be for delivery. We say so plainly.)
+**Messaging can go further.** Text messaging in OllaSync is fully end-to-end encrypted and *server-blind* by default, built on the open [IETF MLS standard (RFC 9420)](/security) using an independently audited open-source library. The operator holds no keys and cannot read the content. (Routing metadata — who talks to whom, and when — is still visible, as it must be for delivery. We say so plainly.)
 
 **Documents are encrypted in transit and access-controlled**, and can be NDA-gated, but they are not client-side end-to-end encrypted today. We will not tell you they are.
 
@@ -70,7 +70,7 @@ Two practical consequences follow:
 1. **No BAA, no PHI.** If a video vendor will not sign a BAA, they cannot lawfully be in the path of your PHI — full stop. Some consumer-grade tools explicitly exclude healthcare use in their terms for exactly this reason.
 2. **Every subprocessor is in scope.** A hosted platform typically relies on other providers underneath it — hosting, storage, delivery. Each one that can touch PHI is another business associate you must account for. The fewer parties in the path, the smaller your compliance surface.
 
-Ollasync will discuss and sign a BAA for hosted deployments that handle PHI, and we provide a Data Processing Agreement alongside it. But the cleanest way to shrink the BAA problem is to remove parties from the path entirely — which, again, points at self-hosting.
+OllaSync will discuss and sign a BAA for hosted deployments that handle PHI, and we provide a Data Processing Agreement alongside it. But the cleanest way to shrink the BAA problem is to remove parties from the path entirely — which, again, points at self-hosting.
 
 ## Why self-hosting is so strong for healthcare
 
@@ -87,7 +87,7 @@ This is the heart of [our self-hosted offering](/self-hosted): control drawn whe
 
 For teams that are not ready to run their own infrastructure, EU-region hosting with a signed BAA and DPA is a reasonable middle path. But if PHI sensitivity is high, self-hosting is the option that most cleanly satisfies the "keep it inside your boundary" instinct that HIPAA rewards.
 
-## What honestly to expect from Ollasync
+## What honestly to expect from OllaSync
 
 Because this is a compliance topic, we will be exact about what we do and do not claim:
 
