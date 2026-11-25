@@ -1,0 +1,172 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { SITE } from '../consts';
+import { DESKTOP_APP_NAME, DESKTOP_PUBLISHER, DESKTOP_RELEASES } from '../data/desktopReleases';
+
+const title = 'Download OllaSync for Windows';
+const description =
+  'Download the OllaSync desktop app for Windows 10 and 11: signed installer, portable version, checksums, release notes and how updates work.';
+
+const latest = DESKTOP_RELEASES[0];
+const REQUIRES = 'Windows 10 (version 2004 or later) or Windows 11, 64-bit';
+const href = (file: string) => `/desktop/${file}`;
+const mb = (bytes: number) => `${Math.round(bytes / 1048576)} MB`;
+const day = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+const reasons = [
+  { icon: 'video', title: 'Its own window', body: 'Meetings open in their own window instead of one browser tab among many. Sign in once and you stay signed in.' },
+  { icon: 'layers', title: 'Share your screen and draw on it', body: 'Annotate on top of the screen you share. Viewers see your drawings; your toolbar and the floating meeting window stay out of the picture.' },
+  { icon: 'key', title: 'The same OllaSync', body: 'Your account, meetings, recordings and settings are the ones you use in the browser. There is no separate sign-up.' },
+];
+
+const steps = [
+  { title: 'Download the installer', body: `One file, ${mb(latest.installer.bytes)}. It needs ${REQUIRES}.` },
+  { title: 'Run it', body: `Windows shows the publisher as ${DESKTOP_PUBLISHER}. The installer is signed, so Windows can check it has not been changed.` },
+  { title: 'Open it and sign in', body: `The app is listed as “${DESKTOP_APP_NAME}” in the Start menu. Sign in with your OllaSync account.` },
+];
+
+const faq = [
+  { q: 'Do I need the app to use OllaSync?', a: 'No. OllaSync runs in the browser with nothing to install. The Windows app gives people who host often a window of its own and screen sharing with annotation.' },
+  { q: 'Which Windows versions are supported?', a: `${REQUIRES}.` },
+  { q: 'Installer or portable version: which one should I take?', a: 'The installer suits most people: it adds the app to the Start menu and keeps it up to date. The portable version runs without installing and keeps its data in a folder next to the file, but it does not update itself.' },
+  { q: 'Is there an app for Mac or Linux?', a: 'The desktop app is for Windows. On Mac, Linux, ChromeOS, phones and tablets, OllaSync runs in the browser.' },
+];
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'OllaSync for Windows',
+  operatingSystem: 'Windows 10, Windows 11',
+  applicationCategory: 'CommunicationApplication',
+  softwareVersion: latest.version,
+  datePublished: latest.date,
+  downloadUrl: `${SITE.url}${href(latest.installer.file)}`,
+  fileSize: mb(latest.installer.bytes),
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Base title={title} description={description} schema={appSchema}>
+  <PageHero
+    eyebrow="Desktop app"
+    eyebrowIcon="layers"
+    crumbs={[{ label: 'Download' }]}
+    title="OllaSync for"
+    titleAccent="Windows"
+    lead="Your meetings in a window of their own, with the same account and the same meetings as in the browser."
+  >
+    <div class="dl-actions" data-reveal>
+      <a href={href(latest.installer.file)} class="btn btn-primary">Download for Windows</a>
+      <a href={href(latest.portable.file)} class="btn btn-ghost">Portable version</a>
+    </div>
+    <p class="dl-meta mono" data-reveal>Version {latest.version} · {day(latest.date)} · {mb(latest.installer.bytes)} · {REQUIRES}</p>
+  </PageHero>
+
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Why use the app</span>
+        <h2 class="h2" style="margin-top:12px">What the app adds to the browser</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        {reasons.map((r) => (
+          <div class="card">
+            <div class="card__icon"><Icon name={r.icon} size={20} /></div>
+            <h3 class="h3">{r.title}</h3>
+            <p style="margin-top:8px">{r.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Install</span>
+        <h2 class="h2" style="margin-top:12px">Three steps</h2>
+      </div>
+      <ol class="grid grid-3 steps" data-reveal>
+        {steps.map((s, i) => (
+          <li class="card">
+            <span class="steps__n mono">{i + 1}</span>
+            <h3 class="h3" style="margin-top:14px">{s.title}</h3>
+            <p style="margin-top:8px">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="releases" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Releases</span>
+        <h2 class="h2" style="margin-top:12px">Release notes and files</h2>
+        <p class="kicker" style="margin-top:14px">Every release is listed here with what changed, its files and their SHA-256 checksums.</p>
+      </div>
+      {DESKTOP_RELEASES.map((r, i) => (
+        <article class="card release" data-reveal>
+          <header class="release__head">
+            <h3 class="h3">Version {r.version}</h3>
+            {i === 0 && <span class="badge-soft">Latest</span>}
+            <time class="muted" datetime={r.date}>{day(r.date)}</time>
+          </header>
+          <ul class="check-list" style="margin-top:18px">
+            {r.changes.map((c) => <li><span class="tick"><Icon name="check" size={12} stroke="var(--teal)" /></span>{c}</li>)}
+          </ul>
+          <div class="files">
+            {[{ label: 'Installer', f: r.installer }, { label: 'Portable version', f: r.portable }].map(({ label, f }) => (
+              <div class="file">
+                <div>
+                  <a href={href(f.file)} class="file__name">{label}</a>
+                  <span class="muted"> · {mb(f.bytes)} · {f.file}</span>
+                </div>
+                <code class="file__sum mono">SHA-256 {f.sha256}</code>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+      <div class="muted verify" data-reveal>
+        <p>To check a download, run this in PowerShell and compare the result with the checksum above:</p>
+        <code class="mono verify__cmd">Get-FileHash .\{latest.installer.file} -Algorithm SHA256</code>
+        <p>The checksums of the latest release are also in <a class="dl-link" href="/desktop/SHA256SUMS.txt">SHA256SUMS.txt</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow-label">Updates</span>
+        <h2 class="h2" style="margin-top:12px">The installed app keeps itself up to date</h2>
+        <p class="kicker" style="margin-top:14px">It downloads a new version in the background and installs it when you close the app. It accepts an update only when the file is complete and signed by the same publisher. The portable version does not update itself: download the new version from this page.</p>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} title="Questions about the app" />
+  <Cta title="Prefer the browser?" sub="OllaSync runs in the browser with nothing to install. Start a meeting with live translation, screen sharing, recordings and AI notes." />
+</Base>
+
+<style>
+  .dl-actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .dl-meta { margin-top: 16px; font-size: 12.5px; color: var(--muted); }
+  .steps { list-style: none; padding: 0; margin: 0; }
+  .steps__n { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: 13px; color: #fff; background: var(--grad-accent); }
+  .release + .release { margin-top: 18px; }
+  .release__head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .release__head time { margin-left: auto; font-size: 14px; }
+  .files { margin-top: 22px; border-top: 1px solid var(--line); }
+  .file { padding: 14px 0; border-bottom: 1px solid var(--line); display: grid; gap: 6px; font-size: 14.5px; }
+  .file:last-child { border-bottom: 0; padding-bottom: 0; }
+  .file__name, .dl-link { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+  .file__name { font-weight: 600; }
+  .verify { margin-top: 18px; font-size: 14px; display: grid; gap: 8px; }
+  .verify__cmd { display: block; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-2); color: var(--ink-2); font-size: 12.5px; white-space: nowrap; overflow-x: auto; }
+  .file__sum { font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+</style>
