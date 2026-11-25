@@ -98,6 +98,7 @@ for (const [route, html] of htmlByRoute) {
     if (!href || href.startsWith('#')) continue;
     const url = new URL(href, 'https://www.ollasync.com');
     if (url.origin !== 'https://www.ollasync.com') continue;
+    if (url.pathname.startsWith('/desktop/')) continue; // release files: served from the bucket by public/_worker.js, never in dist
     if (!htmlByRoute.has(url.pathname) && !redirectedPaths.has(url.pathname) && !isFile(join(root, decodeURIComponent(url.pathname))) && !isFile(join(root, decodeURIComponent(url.pathname), 'index.html'))) {
       const sources = brokenInternalLinks.get(url.pathname) || [];
       sources.push(route);

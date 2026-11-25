@@ -33,6 +33,7 @@ export const NAV: NavGroup[] = [
       { label: 'Video meetings', href: '/features/video-meetings' },
       { label: 'AI meeting notes', href: '/features/ai' },
       { label: 'Meeting recordings', href: '/features/recordings' },
+      { label: 'Windows app', href: '/download', desc: 'Download, release notes and checksums' },
     ],
   },
   {
@@ -75,6 +76,7 @@ export const FOOTER: { title: string; links: NavItem[] }[] = [
       { label: 'Video meetings', href: '/features/video-meetings' },
       { label: 'Meeting recordings', href: '/features/recordings' },
       { label: 'All features', href: '/features' },
+      { label: 'Windows app', href: '/download' },
       { label: 'Pricing', href: '/pricing' },
     ],
   },
