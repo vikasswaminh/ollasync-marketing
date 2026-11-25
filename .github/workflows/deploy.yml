@@ -33,6 +33,9 @@ jobs:
           npm run generate:llms
           npm run test:seo
 
+      - name: Desktop download route (who gets an answer, which names exist, every other page untouched)
+        run: node --test scripts/desktop_worker.test.mjs
+
       - name: CSP (hash every inline script, write dist/_headers)
         # public/_headers ships a __MKT_CSP__ placeholder; this writes the enforced policy from the BUILT pages and
         # fails the deploy on anything the policy would block. Without it the live site served the raw placeholder.
